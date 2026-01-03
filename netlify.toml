@@ -18,11 +18,8 @@
   to = "/admin/index.html"
   status = 200
 
-[[redirects]]
-  # Catch-all redirect for 404 handling (optional)
-  from = "/*"
-  to = "/404.html"
-  status = 404
+# Note: Removed catch-all redirect to allow static files (uploads, etc.) to be served correctly
+# Netlify serves static files automatically, and Astro handles 404s for missing routes
 
 # Headers for security and performance
 # Note: External scripts like Netlify Identity widget need to load without CORS issues
