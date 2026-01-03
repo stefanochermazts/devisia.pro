@@ -51,6 +51,13 @@
     Cache-Control = "no-cache, no-store, must-revalidate"
     Access-Control-Allow-Origin = "*"
 
+[[headers]]
+  for = "/uploads/*"
+  [headers.values]
+    # Ensure SVG files are served with correct MIME type
+    Content-Type = "image/svg+xml"
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # Netlify Functions (if needed in future)
 [functions]
   directory = "netlify/functions"

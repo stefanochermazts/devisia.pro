@@ -28,6 +28,9 @@
     display: inline-flex;
     align-items: center;
     gap: var(--ds-space-2);
+    /* Hide any text content when images are present */
+    font-size: 0;
+    line-height: 0;
   }
 
   .logo-img {
