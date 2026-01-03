@@ -34,7 +34,7 @@
   }
 
   .logo-img {
-    height: 1.75rem;
+    height: 3.5rem;
     width: auto;
     display: block;
   }
@@ -206,6 +206,9 @@
     }
     .nav-menu {
       flex-wrap: wrap;
+    }
+    .logo-img {
+      height: 2.75rem;
     }
     .footer-content {
       grid-template-columns: 1fr;
