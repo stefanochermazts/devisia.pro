@@ -25,24 +25,19 @@
   status = 404
 
 # Headers for security and performance
+# Note: External scripts like Netlify Identity widget need to load without CORS issues
 [[headers]]
   for = "/*"
   [headers.values]
-    # Security headers (allow Netlify Identity widget to load)
+    # Security headers (minimal restrictions for Identity widget)
     X-Content-Type-Options = "nosniff"
-    X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
-    
-    # Performance headers
-    Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
   for = "/*.html"
   [headers.values]
-    # HTML files should not be cached aggressively
-    Cache-Control = "public, max-age=0, must-revalidate"
-    # Allow Netlify Identity widget iframe
-    Content-Security-Policy = "frame-ancestors 'self' https://*.netlify.app https://*.netlify.com"
+    # HTML files should not be cached
+    Cache-Control = "no-cache, no-store, must-revalidate"
 
 [[headers]]
   for = "/admin/*"
