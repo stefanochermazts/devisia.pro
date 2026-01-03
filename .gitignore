@@ -22,3 +22,12 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# CMS uploads (managed by Decap CMS)
+public/uploads/
+
+# Netlify CLI files
+.netlify/
+
+# Windows-specific files
+Thumbs.db
