@@ -11,12 +11,12 @@
   environment = { NODE_VERSION = "20" }
 
 # Redirects and rewrites
+# Note: Specific files like config.yml should be served directly, not redirected
 [[redirects]]
-  # Admin panel redirect (SPA mode)
-  from = "/admin/*"
+  # Admin panel SPA redirect (but don't redirect actual files)
+  from = "/admin/"
   to = "/admin/index.html"
   status = 200
-  force = true
 
 [[redirects]]
   # Catch-all redirect for 404 handling (optional)
@@ -49,6 +49,14 @@
     # Admin panel should not be cached
     Cache-Control = "no-cache, no-store, must-revalidate"
     X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/admin/config.yml"
+  [headers.values]
+    # Ensure YAML file is served with correct MIME type
+    Content-Type = "text/yaml; charset=utf-8"
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Access-Control-Allow-Origin = "*"
 
 # Netlify Functions (if needed in future)
 [functions]
