@@ -52,17 +52,13 @@
     Access-Control-Allow-Origin = "*"
 
 [[headers]]
-  for = "/uploads/*"
+  for = "/uploads/*.svg"
   [headers.values]
-    # Ensure SVG files are served with correct MIME type
-    Content-Type = "image/svg+xml"
     Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/images/*"
+  for = "/images/*.svg"
   [headers.values]
-    # Ensure SVG files are served with correct MIME type
-    Content-Type = "image/svg+xml"
     Cache-Control = "public, max-age=31536000, immutable"
 
 # Netlify Functions (if needed in future)
