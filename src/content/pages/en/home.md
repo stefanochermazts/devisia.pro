@@ -1,8 +1,10 @@
 ---
 title: Home
-description: Devisia builds SaaS products and custom software solutions, delivered end-to-end.
+description: Devisia builds SaaS products and custom software solutions,
+  delivered end-to-end.
 heroTitle: Developing intelligent vision
 heroSubtitle: Devisia builds SaaS products and custom software solutions.
+heroImage: null
 ---
 
 ## What we do
