@@ -3,14 +3,14 @@ import Layout from '../layouts/Layout.astro';
 import { getEntry } from 'astro:content';
 import { type CollectionEntry } from 'astro:content';
 
-const homeEntry: CollectionEntry<'pages'> | undefined = await getEntry('pages', 'home');
+const servicesEntry: CollectionEntry<'pages'> | undefined = await getEntry('pages', 'services');
 
-if (!homeEntry) {
-  return new Response('Home page content not found', { status: 404 });
+if (!servicesEntry) {
+  return new Response('Services page content not found', { status: 404 });
 }
 
-const { data } = homeEntry;
-const { Content } = await homeEntry.render();
+const { data } = servicesEntry;
+const { Content } = await servicesEntry.render();
 ---
 
 <Layout title={data.title} description={data.description} heroImage={data.heroImage}>
