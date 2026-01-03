@@ -24,7 +24,8 @@ pnpm-debug.log*
 .idea/
 
 # CMS uploads (managed by Decap CMS)
-public/uploads/
+public/uploads/*
+!public/uploads/.gitkeep
 
 # Netlify CLI files
 .netlify/
