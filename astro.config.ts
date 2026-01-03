@@ -1,9 +1,9 @@
 import { defineConfig } from 'astro/config';
-import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
+// Note: No adapter needed for static output on Netlify
+// Netlify will serve the static files from dist/ directly
 export default defineConfig({
   output: 'static',
-  adapter: netlify(),
   site: 'https://devisia.pro',
 });
