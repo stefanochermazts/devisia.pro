@@ -1,108 +1,99 @@
 ---
 title: About Devisia — Software, SaaS and vision
-description: Devisia is a software company building proprietary SaaS products
-  and custom software, with a product-driven approach focused on quality and
-  long-term vision.
+description: Devisia is a software company building proprietary SaaS products and custom software, with a product-driven approach focused on quality and long-term vision.
 heroTitle: Developing intelligent vision
 heroImage: /uploads/hero-about.png
 ---
-
-<section class="ds-stack" data-gap="sm" style="container-type: inline-size">
-
-# Who we are
-
-We build digital products with vision.  
-Devisia exists to create software that makes sense over time: proprietary SaaS, scalable platforms, and custom solutions designed to grow with the companies that use them.
-
-We bring development, product, and architecture into one approach—avoiding improvisation and focusing on quality, sustainability, and technical clarity.
-
-</section>
-
 <section class="ds-stack ds-card ds-shadow-1" data-gap="sm">
-  <div class="ds-card__body ds-stack" data-gap="sm">
+<div class="ds-card__body ds-stack" data-gap="sm">
+<h2 style="margin: 0">Our vision</h2>
 
-## Our vision
+<p class="ds-muted" style="margin: 0">
+<strong>Developing intelligent vision.</strong><br />
+We believe software shouldn’t just work—it should guide decisions, simplify processes, and help organizations
+become more aware and autonomous.
+</p>
 
-**Developing intelligent vision.**  
-We believe software shouldn’t just work—it should guide decisions, simplify processes, and help organizations become more aware and autonomous.
+<p style="margin: 0">For us, “intelligent” means:</p>
 
-For us, “intelligent” means:
+<ul style="margin: 0; padding-left: 1.25rem">
+<li>designed with intent</li>
+<li>measurable</li>
+<li>maintainable</li>
+<li>built to evolve, not to be rewritten</li>
+</ul>
 
-- designed with intent
-- measurable
-- maintainable
-- built to evolve, not to be rewritten
-
-  </div>
+</div>
 </section>
 
 <section class="ds-stack" data-gap="sm">
+<h2 style="margin: 0">What we do</h2>
+<p class="ds-muted" style="margin: 0">We build software in two complementary ways:</p>
 
-## What we do
+<!-- prettier-ignore-start -->
+<div class="ds-grid" data-cols="2" style="container-type: inline-size">
+<article class="ds-card">
+<div class="ds-card__body ds-stack" data-gap="sm">
+<h3 style="margin: 0">Devisia SaaS</h3>
+<p class="ds-muted" style="margin: 0">
+We design and build proprietary, vertical products focused on real problems.
+Every SaaS starts from a concrete need, validated in the field, and evolves continuously.
+</p>
+</div>
+</article>
 
-We build software in two complementary ways:
-
-  <div class="ds-grid" data-cols="2" style="container-type: inline-size">
-    <article class="ds-card">
-      <div class="ds-card__body ds-stack" data-gap="sm">
-        <h3 style="margin: 0">Devisia SaaS</h3>
-        <p class="ds-muted" style="margin: 0">
-          We design and build proprietary, vertical products focused on real problems.
-          Every SaaS starts from a concrete need, validated in the field, and evolves continuously.
-        </p>
-      </div>
-    </article>
-
-    <article class="ds-card">
-      <div class="ds-card__body ds-stack" data-gap="sm">
-        <h3 style="margin: 0">Custom software</h3>
-        <p class="ds-muted" style="margin: 0">
-          We support companies building tailored solutions: web applications, internal dashboards and portals,
-          system integrations, complex workflows and automation—from first idea to deploy and maintenance.
-        </p>
-      </div>
-    </article>
-  </div>
+<article class="ds-card">
+<div class="ds-card__body ds-stack" data-gap="sm">
+<h3 style="margin: 0">Custom software</h3>
+<p class="ds-muted" style="margin: 0">
+We support companies building tailored solutions: web applications, internal dashboards and portals,
+system integrations, complex workflows and automation—from first idea to deploy and maintenance.
+</p>
+</div>
+</article>
+</div>
+<!-- prettier-ignore-end -->
 
 </section>
 
 <section class="ds-stack" data-gap="sm">
-
-## How we work
-
-Method, pragmatism, accountability.  
+<h2 style="margin: 0">How we work</h2>
+<p class="ds-muted" style="margin: 0">
+Method, pragmatism, accountability.<br />
 We use clear, iterative processes to reduce risk and keep product control at all times.
+</p>
 
-- Focused analysis and discovery
-- Simple, solid architectures
-- Incremental releases and continuous feedback
-- Attention to performance, security, and reliability
-- Infrastructure and deployment as part of the product
+<ul style="margin: 0; padding-left: 1.25rem">
+<li>Focused analysis and discovery</li>
+<li>Simple, solid architectures</li>
+<li>Incremental releases and continuous feedback</li>
+<li>Attention to performance, security, and reliability</li>
+<li>Infrastructure and deployment as part of the product</li>
+</ul>
 
-No “black boxes”: the software stays understandable and governable.
-
+<p style="margin: 0">No “black boxes”: the software stays understandable and governable.</p>
 </section>
 
 <section class="ds-stack ds-card" data-gap="sm">
-  <div class="ds-card__body ds-stack" data-gap="sm">
+<div class="ds-card__body ds-stack" data-gap="sm">
+<h2 style="margin: 0">Why Devisia</h2>
+<p class="ds-muted" style="margin: 0">We’re the right partner if:</p>
 
-## Why Devisia
+<ul style="margin: 0; padding-left: 1.25rem">
+<li>you’re building a product and want to do it right from the start</li>
+<li>you have a clear idea but need to turn it into real software</li>
+<li>you want a team that thinks like a product owner—not just developers</li>
+<li>you’re looking for technical quality without unnecessary bureaucracy</li>
+</ul>
 
-We’re the right partner if:
-
-- you’re building a product and want to do it right from the start
-- you have a clear idea but need to turn it into real software
-- you want a team that thinks like a product owner—not just developers
-- you’re looking for technical quality without unnecessary bureaucracy
-
-  </div>
+</div>
 </section>
 
 <section class="ds-stack" data-gap="sm">
-
-## Looking ahead
-
-Devisia is always evolving.  
-We build new SaaS, experiment with emerging technologies, and invest in automation and applied intelligence to make software more useful and sustainable.
-
+<h2 style="margin: 0">Looking ahead</h2>
+<p class="ds-muted" style="margin: 0">
+Devisia is always evolving.<br />
+We build new SaaS, experiment with emerging technologies, and invest in automation and applied intelligence
+to make software more useful and sustainable.
+</p>
 </section>

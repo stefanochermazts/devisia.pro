@@ -3,6 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { getEntry, render } from 'astro:content';
 import { type CollectionEntry } from 'astro:content';
 import { breadcrumbListJsonLd } from '../lib/seo/structuredData';
+import PageHero from '../components/PageHero.astro';
 
 const aboutEntry: CollectionEntry<'pagesIt'> | undefined = await getEntry('pagesIt', 'it/about');
 
@@ -30,6 +31,13 @@ const breadcrumbs = breadcrumbListJsonLd({
   structuredData={[breadcrumbs]}
 >
   <article class="ds-stack" data-gap="lg" style="container-type: inline-size">
+    <PageHero
+      lang="it"
+      title={data.heroTitle ?? 'Chi siamo'}
+      subtitle={data.heroSubtitle ?? data.description}
+      image={data.heroImage}
+      fallbackImage="/images/hero-about.svg"
+    />
     <Content />
   </article>
 </Layout>

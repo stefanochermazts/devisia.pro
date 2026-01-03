@@ -1,0 +1,78 @@
+---
+import Button from './ui/Button.astro';
+
+export interface Props {
+  lang?: 'it' | 'en';
+  title: string;
+  subtitle?: string | null;
+  image?: string | null;
+  fallbackImage?: string | null;
+  primaryHref?: string;
+  primaryLabel?: string;
+  secondaryHref?: string;
+  secondaryLabel?: string;
+}
+
+const {
+  lang = 'it',
+  title,
+  subtitle,
+  image,
+  fallbackImage,
+  primaryHref,
+  primaryLabel,
+  secondaryHref,
+  secondaryLabel,
+} = Astro.props;
+
+const showActions =
+  Boolean(primaryHref && primaryLabel) || Boolean(secondaryHref && secondaryLabel);
+---
+
+<section class="ds-grid" data-cols="2" aria-label="Page hero" style="container-type: inline-size">
+  <div class="ds-stack" data-gap="sm">
+    <h1 style="margin: 0">{title}</h1>
+    {
+      subtitle && (
+        <p class="ds-muted" style="max-width: 65ch; margin: 0">
+          {subtitle}
+        </p>
+      )
+    }
+
+    {
+      showActions && (
+        <div class="ds-cluster" style="margin-top: var(--ds-space-3)">
+          {primaryHref && primaryLabel && (
+            <Button href={primaryHref} variant="primary">
+              {primaryLabel}
+            </Button>
+          )}
+          {secondaryHref && secondaryLabel && (
+            <Button href={secondaryHref} variant="secondary">
+              {secondaryLabel}
+            </Button>
+          )}
+        </div>
+      )
+    }
+  </div>
+
+  <div>
+    <div class="ds-card">
+      {
+        image || fallbackImage ? (
+          <img src={image ?? fallbackImage ?? undefined} alt="" loading="eager" decoding="async" />
+        ) : (
+          <div class="ds-card__body ds-surface-2">
+            <p class="ds-muted" style="margin: 0">
+              {lang === 'en'
+                ? 'Hero image placeholder. Add an image in the CMS to customize this area.'
+                : "Segnaposto immagine hero. Aggiungi un'immagine dal CMS per personalizzare questa area."}
+            </p>
+          </div>
+        )
+      }
+    </div>
+  </div>
+</section>
