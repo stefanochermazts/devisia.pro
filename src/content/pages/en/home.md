@@ -1,5 +1,4 @@
 ---
-slug: home
 title: Home
 description: Devisia builds SaaS products and custom software solutions,
   delivered end-to-end.

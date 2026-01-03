@@ -26,10 +26,10 @@ collections:
     label: "Pages"
     folder: "src/content/pages"
     create: true
-    slug: "{{slug}}"
+    # NOTE: No slug field - CMS uses filename directly (e.g. home.md, about.md)
+    identifier_field: "title"
     i18n: true
     fields:
-      - { label: "Slug", name: "slug", widget: "string", required: false, hint: "Used for filename (e.g. home, about, services). If not provided, filename is used.", i18n: duplicate }
       - { label: "Title", name: "title", widget: "string", i18n: true }
       - { label: "Description", name: "description", widget: "text", required: false, i18n: true }
       - { label: "Hero Title", name: "heroTitle", widget: "string", required: false, i18n: true }
