@@ -1,7 +1,9 @@
 backend:
-  name: github
-  repo: stefanochermazts/devisia.pro
+  name: git-gateway
   branch: main
+
+# Local backend for development (optional)
+# local_backend: true
 
 # Publish mode: editorial workflow for content review before publishing
 publish_mode: editorial_workflow
