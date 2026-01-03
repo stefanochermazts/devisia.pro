@@ -1,11 +1,7 @@
-# TEMPORARY: Using test backend for initial setup
-# Switch back to git-gateway after Identity is working
 backend:
-  name: test-repo
-
-# backend:
-#   name: git-gateway
-#   branch: main
+  name: github
+  repo: stefanochermazts/devisia.pro
+  branch: main
 
 # Publish mode: editorial workflow for content review before publishing
 publish_mode: editorial_workflow
