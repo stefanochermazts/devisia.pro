@@ -1,9 +1,10 @@
 import { defineConfig } from 'astro/config';
+import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
-// Note: No adapter needed for static output on Netlify
-// Netlify will serve the static files from dist/ directly
+// Using server output to enable middleware for language detection
 export default defineConfig({
-  output: 'static',
+  output: 'server',
+  adapter: netlify(),
   site: 'https://devisia.pro',
 });
