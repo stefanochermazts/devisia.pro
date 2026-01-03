@@ -47,7 +47,8 @@ collections:
       - { label: "Publication Date", name: "pubDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, i18n: duplicate }
       - { label: "Author", name: "author", widget: "string", i18n: duplicate }
       - { label: "Hero Image", name: "heroImage", widget: "image", required: false, i18n: duplicate }
-      - { label: "Tags", name: "tags", widget: "list", required: false, i18n: duplicate }
+      # Note: Decap i18n validation requires boolean i18n for list widgets.
+      - { label: "Tags", name: "tags", widget: "list", required: false, i18n: true }
       - { label: "Body", name: "body", widget: "markdown", i18n: true }
 
   # Projects collection
@@ -77,5 +78,6 @@ collections:
       - { label: "Cover Image", name: "coverImage", widget: "image", i18n: duplicate }
       - { label: "Logo", name: "logo", widget: "image", required: false, i18n: duplicate }
       - { label: "Open Graph Image", name: "ogImage", widget: "image", required: false, i18n: duplicate }
-      - { label: "Tags", name: "tags", widget: "list", required: false, i18n: duplicate }
+      # Note: Decap i18n validation requires boolean i18n for list widgets.
+      - { label: "Tags", name: "tags", widget: "list", required: false, i18n: true }
       - { label: "Body", name: "body", widget: "markdown", i18n: true }
