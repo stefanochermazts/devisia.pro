@@ -1,9 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
 import { getEntry, render } from 'astro:content';
 import { type CollectionEntry } from 'astro:content';
 
-const contactEntry: CollectionEntry<'pagesIt'> | undefined = await getEntry('pagesIt', 'contact');
+const contactEntry: CollectionEntry<'pagesEn'> | undefined = await getEntry('pagesEn', 'contact');
 
 if (!contactEntry) {
   return new Response('Contact page content not found', { status: 404 });
@@ -13,85 +13,76 @@ const { data } = contactEntry;
 const { Content } = await render(contactEntry);
 ---
 
-<Layout title={data.title} description={data.description}>
+<Layout title={data.title} description={data.description} lang="en">
   <article class="page-content">
     <Content />
-    
+
     <!-- Netlify Forms Contact Form -->
     <section class="contact-form-section">
-      <form 
-        name="contact" 
-        method="POST" 
-        data-netlify="true" 
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
         netlify-honeypot="bot-field"
         class="contact-form"
       >
-        <!-- Hidden fields for Netlify -->
         <input type="hidden" name="form-name" value="contact" />
-        
-        <!-- Honeypot field -->
+
         <p class="hidden">
           <label>
-            Don't fill this out if you're human: 
+            Don't fill this out if you're human:
             <input name="bot-field" />
           </label>
         </p>
-        
-        <!-- Name field -->
+
         <div class="form-group">
           <label for="name" class="form-label">Name *</label>
-          <input 
-            type="text" 
-            id="name" 
-            name="name" 
-            required 
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
             class="form-input"
             placeholder="Your name"
           />
         </div>
-        
-        <!-- Email field -->
+
         <div class="form-group">
           <label for="email" class="form-label">Email *</label>
-          <input 
-            type="email" 
-            id="email" 
-            name="email" 
-            required 
+          <input
+            type="email"
+            id="email"
+            name="email"
+            required
             class="form-input"
             placeholder="your.email@example.com"
           />
         </div>
-        
-        <!-- Subject field -->
+
         <div class="form-group">
           <label for="subject" class="form-label">Subject</label>
-          <input 
-            type="text" 
-            id="subject" 
-            name="subject" 
+          <input
+            type="text"
+            id="subject"
+            name="subject"
             class="form-input"
             placeholder="What is this about?"
           />
         </div>
-        
-        <!-- Message field -->
+
         <div class="form-group">
           <label for="message" class="form-label">Message *</label>
-          <textarea 
-            id="message" 
-            name="message" 
-            required 
-            rows="6" 
+          <textarea
+            id="message"
+            name="message"
+            required
+            rows="6"
             class="form-input"
             placeholder="Tell us more about your project or inquiry..."
           ></textarea>
         </div>
-        
-        <!-- Submit button -->
-        <button type="submit" class="form-submit">
-          Send Message
-        </button>
+
+        <button type="submit" class="form-submit">Send Message</button>
       </form>
     </section>
   </article>
@@ -102,36 +93,36 @@ const { Content } = await render(contactEntry);
     max-width: 800px;
     margin: 0 auto;
   }
-  
+
   .contact-form-section {
     margin-top: 3rem;
     padding: 2rem;
     background-color: #f9fafb;
     border-radius: 0.5rem;
   }
-  
+
   .contact-form {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
   }
-  
+
   .hidden {
     display: none;
   }
-  
+
   .form-group {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .form-label {
     font-weight: 500;
     color: #1f2937;
     font-size: 0.95rem;
   }
-  
+
   .form-input {
     padding: 0.75rem 1rem;
     border: 1px solid #d1d5db;
@@ -140,18 +131,18 @@ const { Content } = await render(contactEntry);
     font-family: inherit;
     transition: border-color 0.2s, box-shadow 0.2s;
   }
-  
+
   .form-input:focus {
     outline: none;
     border-color: #2563eb;
     box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
   }
-  
+
   textarea.form-input {
     resize: vertical;
     min-height: 120px;
   }
-  
+
   .form-submit {
     padding: 0.875rem 2rem;
     background-color: #2563eb;
@@ -164,22 +155,23 @@ const { Content } = await render(contactEntry);
     transition: background-color 0.2s, transform 0.1s;
     align-self: flex-start;
   }
-  
+
   .form-submit:hover {
     background-color: #1e40af;
   }
-  
+
   .form-submit:active {
     transform: translateY(1px);
   }
-  
+
   @media (max-width: 768px) {
     .contact-form-section {
       padding: 1.5rem;
     }
-    
+
     .form-submit {
       width: 100%;
     }
   }
 </style>
+

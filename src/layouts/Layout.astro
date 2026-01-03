@@ -4,22 +4,35 @@ export interface Props {
   description?: string;
   heroImage?: string;
   canonical?: string;
+  lang?: 'it' | 'en';
 }
 
 const {
   title,
-  description = 'Devisia - Your trusted technology partner for digital innovation and business transformation.',
+  description,
   heroImage,
   canonical = Astro.url.pathname,
+  lang = 'it',
 } = Astro.props;
 
 const siteName = 'Devisia';
 const fullTitle = title === 'Home' ? siteName : `${title} | ${siteName}`;
 const canonicalURL = new URL(canonical, Astro.site);
+
+const defaultDescription =
+  lang === 'en'
+    ? 'Devisia - Your trusted technology partner for digital innovation and business transformation.'
+    : 'Devisia - Il tuo partner tecnologico per innovazione digitale e trasformazione del business.';
+
+const metaDescription = description ?? defaultDescription;
+
+const localePrefix = lang === 'en' ? '/en' : '';
+const href = (path: string) => (localePrefix ? `${localePrefix}${path}` : path);
+const homeHref = localePrefix || '/';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,14 +42,14 @@ const canonicalURL = new URL(canonical, Astro.site);
     <!-- Primary Meta Tags -->
     <title>{fullTitle}</title>
     <meta name="title" content={fullTitle} />
-    <meta name="description" content={description} />
+    <meta name="description" content={metaDescription} />
     <link rel="canonical" href={canonicalURL} />
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={fullTitle} />
-    <meta property="og:description" content={description} />
+    <meta property="og:description" content={metaDescription} />
     <meta property="og:site_name" content={siteName} />
     {heroImage && <meta property="og:image" content={new URL(heroImage, Astro.site)} />}
     
@@ -44,7 +57,7 @@ const canonicalURL = new URL(canonical, Astro.site);
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
     <meta property="twitter:title" content={fullTitle} />
-    <meta property="twitter:description" content={description} />
+    <meta property="twitter:description" content={metaDescription} />
     {heroImage && <meta property="twitter:image" content={new URL(heroImage, Astro.site)} />}
     
     <!-- Fonts (Optional: Add Google Fonts or other font services) -->
@@ -58,16 +71,16 @@ const canonicalURL = new URL(canonical, Astro.site);
     <header class="site-header">
       <nav class="nav-container">
         <div class="nav-brand">
-          <a href="/" class="logo">Devisia</a>
+          <a href={homeHref} class="logo">Devisia</a>
         </div>
         
         <ul class="nav-menu">
-          <li><a href="/" class="nav-link">Home</a></li>
-          <li><a href="/about" class="nav-link">About</a></li>
-          <li><a href="/services" class="nav-link">Services</a></li>
-          <li><a href="/projects" class="nav-link">Projects</a></li>
-          <li><a href="/blog" class="nav-link">Blog</a></li>
-          <li><a href="/contact" class="nav-link nav-link-cta">Contact</a></li>
+          <li><a href={homeHref} class="nav-link">Home</a></li>
+          <li><a href={href('/about')} class="nav-link">About</a></li>
+          <li><a href={href('/services')} class="nav-link">Services</a></li>
+          <li><a href={href('/projects')} class="nav-link">Projects</a></li>
+          <li><a href={href('/blog')} class="nav-link">Blog</a></li>
+          <li><a href={href('/contact')} class="nav-link nav-link-cta">Contact</a></li>
         </ul>
       </nav>
     </header>
@@ -89,11 +102,12 @@ const canonicalURL = new URL(canonical, Astro.site);
           <div class="footer-section">
             <h4>Quick Links</h4>
             <ul class="footer-links">
-              <li><a href="/">Home</a></li>
-              <li><a href="/about">About</a></li>
-              <li><a href="/services">Services</a></li>
-              <li><a href="/blog">Blog</a></li>
-              <li><a href="/contact">Contact</a></li>
+              <li><a href={homeHref}>Home</a></li>
+              <li><a href={href('/about')}>About</a></li>
+              <li><a href={href('/services')}>Services</a></li>
+              <li><a href={href('/projects')}>Projects</a></li>
+              <li><a href={href('/blog')}>Blog</a></li>
+              <li><a href={href('/contact')}>Contact</a></li>
             </ul>
           </div>
           

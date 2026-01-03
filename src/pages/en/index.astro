@@ -1,9 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
 import { getEntry, render } from 'astro:content';
 import { type CollectionEntry } from 'astro:content';
 
-const homeEntry: CollectionEntry<'pagesIt'> | undefined = await getEntry('pagesIt', 'home');
+const homeEntry: CollectionEntry<'pagesEn'> | undefined = await getEntry('pagesEn', 'home');
 
 if (!homeEntry) {
   return new Response('Home page content not found', { status: 404 });
@@ -13,7 +13,7 @@ const { data } = homeEntry;
 const { Content } = await render(homeEntry);
 ---
 
-<Layout title={data.title} description={data.description} heroImage={data.heroImage}>
+<Layout title={data.title} description={data.description} heroImage={data.heroImage} lang="en">
   <article class="page-content">
     <Content />
   </article>
@@ -25,3 +25,4 @@ const { Content } = await render(homeEntry);
     margin: 0 auto;
   }
 </style>
+

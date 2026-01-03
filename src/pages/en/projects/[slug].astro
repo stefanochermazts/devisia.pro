@@ -1,10 +1,10 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../../../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 
 export async function getStaticPaths() {
-  const entries = await getCollection('projectsIt');
+  const entries = await getCollection('projectsEn');
   return entries.map((entry) => ({
     params: { slug: entry.id },
     props: { entry },
@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  entry: CollectionEntry<'projectsIt'>;
+  entry: CollectionEntry<'projectsEn'>;
 }
 
 const { entry } = Astro.props;
@@ -21,7 +21,7 @@ const { Content } = await render(entry);
 const ogImage = entry.data.ogImage ?? entry.data.coverImage ?? entry.data.logo;
 ---
 
-<Layout title={entry.data.title} description={entry.data.description} heroImage={ogImage}>
+<Layout title={entry.data.title} description={entry.data.description} heroImage={ogImage} lang="en">
   <article class="project">
     <header class="header">
       <div class="top">
@@ -37,9 +37,9 @@ const ogImage = entry.data.ogImage ?? entry.data.coverImage ?? entry.data.logo;
           <p class="subtitle">{entry.data.description}</p>
           <div class="links">
             <a class="primary" href={entry.data.websiteUrl} target="_blank" rel="noopener noreferrer">
-              Visita il sito
+              Visit website
             </a>
-            <a class="secondary" href="/projects">Torna ai progetti</a>
+            <a class="secondary" href="/en/projects">Back to projects</a>
           </div>
         </div>
       </div>

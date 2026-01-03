@@ -1,9 +1,9 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../../layouts/Layout.astro';
 import { getEntry, render } from 'astro:content';
 import { type CollectionEntry } from 'astro:content';
 
-const servicesEntry: CollectionEntry<'pagesIt'> | undefined = await getEntry('pagesIt', 'services');
+const servicesEntry: CollectionEntry<'pagesEn'> | undefined = await getEntry('pagesEn', 'services');
 
 if (!servicesEntry) {
   return new Response('Services page content not found', { status: 404 });
@@ -13,7 +13,7 @@ const { data } = servicesEntry;
 const { Content } = await render(servicesEntry);
 ---
 
-<Layout title={data.title} description={data.description} heroImage={data.heroImage}>
+<Layout title={data.title} description={data.description} heroImage={data.heroImage} lang="en">
   <article class="page-content">
     <Content />
   </article>
@@ -25,3 +25,4 @@ const { Content } = await render(servicesEntry);
     margin: 0 auto;
   }
 </style>
+

@@ -1,15 +1,12 @@
 ---
-import Layout from '../../layouts/Layout.astro';
+import Layout from '../../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
-const projects = await getCollection('projectsIt');
+const projects = await getCollection('projectsEn');
 
 const sortedProjects = [...projects].sort((a, b) => {
-  // featured first
   if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
-  // then order asc
   if (a.data.order !== b.data.order) return a.data.order - b.data.order;
-  // then title
   return a.data.title.localeCompare(b.data.title);
 });
 
@@ -21,19 +18,20 @@ const statusLabel: Record<string, string> = {
 ---
 
 <Layout
-  title="Progetti"
-  description="Scopri prodotti e progetti Devisia: ciò che stiamo costruendo, sperimentando e portando in produzione."
+  title="Projects"
+  description="Explore Devisia projects and products—what we’re building, experimenting with, and shipping."
+  lang="en"
 >
   <div class="projects-container">
     <header class="projects-header">
-      <h1>Progetti</h1>
+      <h1>Projects</h1>
       <p class="projects-intro">
-        Una selezione di prodotti e iniziative: dalle prime sperimentazioni ai progetti attivi.
+        A curated list of products and initiatives—from early experiments to active launches.
       </p>
     </header>
 
     {sortedProjects.length === 0 ? (
-      <p class="empty">Nessun progetto disponibile.</p>
+      <p class="empty">No projects yet.</p>
     ) : (
       <div class="grid">
         {sortedProjects.map((project) => (
@@ -76,7 +74,7 @@ const statusLabel: Record<string, string> = {
               ) : null}
 
               <div class="actions">
-                <a class="cta" href={`/projects/${project.id}`}>Vedi progetto</a>
+                <a class="cta" href={`/en/projects/${project.id}`}>View project</a>
               </div>
             </div>
           </article>
