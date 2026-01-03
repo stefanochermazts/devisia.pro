@@ -5,9 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Devisia CMS</title>
+
+    <!-- Netlify Identity Widget (required for invite_token / password setup) -->
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
     <!-- Include the Decap CMS script -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+
+    <script>
+      // If the user comes from an invite link, Netlify puts the token in the hash:
+      // /#invite_token=...  (or /#recovery_token=...)
+      // The Identity widget must be present on the page that receives the hash
+      // to show the password setup UI.
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on('init', () => {
+          const hash = window.location.hash || '';
+          if (hash.includes('invite_token=') || hash.includes('recovery_token=')) {
+            window.netlifyIdentity.open();
+          }
+        });
+      }
+    </script>
   </body>
 </html>
