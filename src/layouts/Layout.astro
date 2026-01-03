@@ -5,6 +5,7 @@ export interface Props {
   heroImage?: string;
   canonical?: string;
   lang?: 'it' | 'en';
+  structuredData?: unknown | unknown[];
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   heroImage,
   canonical = Astro.url.pathname,
   lang = 'it',
+  structuredData,
 } = Astro.props;
 
 const siteName = 'Devisia';
@@ -36,6 +38,34 @@ import '../styles/components.css';
 import '../styles/utilities.css';
 
 const themeToggleLabel = lang === 'en' ? 'Toggle theme' : 'Cambia tema';
+
+import {
+  organizationJsonLd,
+  websiteJsonLd,
+  webPageJsonLd,
+  type JsonLd,
+} from '../lib/seo/structuredData';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const pageUrl = canonicalURL.toString();
+
+const baseStructuredData: JsonLd[] = [
+  organizationJsonLd(site),
+  websiteJsonLd(site, lang),
+  webPageJsonLd({
+    site,
+    lang,
+    url: pageUrl,
+    name: fullTitle,
+    description: metaDescription,
+  }),
+];
+
+const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
+  ? (structuredData as JsonLd[])
+  : structuredData
+    ? ([structuredData] as JsonLd[])
+    : [];
 ---
 
 <!doctype html>
@@ -66,6 +96,14 @@ const themeToggleLabel = lang === 'en' ? 'Toggle theme' : 'Cambia tema';
     <meta property="twitter:title" content={fullTitle} />
     <meta property="twitter:description" content={metaDescription} />
     {heroImage && <meta property="twitter:image" content={new URL(heroImage, Astro.site)} />}
+
+    {(baseStructuredData.length || extraStructuredData.length) && (
+      <>
+        {[...baseStructuredData, ...extraStructuredData].map((item) => (
+          <script type="application/ld+json" set:html={JSON.stringify(item)}></script>
+        ))}
+      </>
+    )}
     
     <!-- Fonts (Optional: Add Google Fonts or other font services) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

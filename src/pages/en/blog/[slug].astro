@@ -2,6 +2,7 @@
 import Layout from '../../../layouts/Layout.astro';
 import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
+import { blogPostingJsonLd, breadcrumbListJsonLd } from '../../../lib/seo/structuredData';
 
 export async function getStaticPaths() {
   const blogEntries = await getCollection('blogEn');
@@ -17,6 +18,31 @@ interface Props {
 
 const { entry } = Astro.props;
 const { Content } = await render(entry);
+const slug = entry.id.replace(/^(it|en)\//, '');
+const site = Astro.site ?? new URL('https://devisia.pro');
+const pageUrl = new URL(`/en/blog/${slug}/`, site).toString();
+const published =
+  entry.data.pubDate instanceof Date ? entry.data.pubDate.toISOString() : new Date(entry.data.pubDate).toISOString();
+
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/en/' },
+    { name: 'Blog', url: '/en/blog' },
+    { name: entry.data.title, url: `/en/blog/${slug}` },
+  ],
+});
+
+const blogPosting = blogPostingJsonLd({
+  site,
+  lang: 'en',
+  url: pageUrl,
+  headline: entry.data.title,
+  description: entry.data.description,
+  datePublished: published,
+  authorName: entry.data.author,
+  image: entry.data.heroImage,
+});
 
 const formatDate = (date: Date | string): string => {
   const d = typeof date === 'string' ? new Date(date) : date;
@@ -28,7 +54,13 @@ const formatDate = (date: Date | string): string => {
 };
 ---
 
-<Layout title={entry.data.title} description={entry.data.description} heroImage={entry.data.heroImage} lang="en">
+<Layout
+  title={entry.data.title}
+  description={entry.data.description}
+  heroImage={entry.data.heroImage}
+  lang="en"
+  structuredData={[breadcrumbs, blogPosting]}
+>
   <article class="blog-post">
     <header class="post-header">
       <div class="post-meta">

@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
+import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
 
 const projects = await getCollection('projectsIt');
 const slugFromId = (id: string) => id.replace(/^(it|en)\//, '');
@@ -19,11 +20,21 @@ const statusLabel: Record<string, string> = {
   beta: 'Beta',
   archived: 'Archived',
 };
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/' },
+    { name: 'Projects', url: '/projects' },
+  ],
+});
 ---
 
 <Layout
   title="Progetti"
   description="Scopri prodotti e progetti Devisia: ciò che stiamo costruendo, sperimentando e portando in produzione."
+  structuredData={[breadcrumbs]}
 >
   <div class="projects-container">
     <header class="projects-header">

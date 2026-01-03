@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getEntry, render } from 'astro:content';
 import { type CollectionEntry } from 'astro:content';
+import { breadcrumbListJsonLd } from '../lib/seo/structuredData';
 
 const aboutEntry: CollectionEntry<'pagesIt'> | undefined = await getEntry('pagesIt', 'it/about');
 
@@ -11,9 +12,18 @@ if (!aboutEntry) {
 
 const { data } = aboutEntry;
 const { Content } = await render(aboutEntry);
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/' },
+    { name: data.title, url: '/about' },
+  ],
+});
 ---
 
-<Layout title={data.title} description={data.description} heroImage={data.heroImage}>
+<Layout title={data.title} description={data.description} heroImage={data.heroImage} structuredData={[breadcrumbs]}>
   <article class="page-content">
     <Content />
   </article>
