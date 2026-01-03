@@ -32,6 +32,13 @@ const localePrefix = lang === 'en' ? '/en' : '';
 const href = (path: string) => (localePrefix ? `${localePrefix}${path}` : path);
 const homeHref = localePrefix || '/';
 
+const pathName = canonicalURL.pathname;
+const itPath = lang === 'en' ? pathName.replace(/^\/en(?=\/|$)/, '') || '/' : pathName;
+const enPath = itPath === '/' ? '/en/' : `/en${itPath}`;
+const languageSwitchHref = lang === 'en' ? itPath : enPath;
+const languageSwitchLabel = lang === 'en' ? 'IT' : 'EN';
+const languageSwitchAria = lang === 'en' ? 'Switch to Italian' : 'Passa a inglese';
+
 import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/components.css';
@@ -97,6 +104,11 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
     <meta property="twitter:description" content={metaDescription} />
     {heroImage && <meta property="twitter:image" content={new URL(heroImage, Astro.site)} />}
 
+    <!-- i18n alternates -->
+    <link rel="alternate" hrefLang="it" href={new URL(itPath, site)} />
+    <link rel="alternate" hrefLang="en" href={new URL(enPath, site)} />
+    <link rel="alternate" hrefLang="x-default" href={new URL(itPath, site)} />
+
     {(baseStructuredData.length || extraStructuredData.length) && (
       <>
         {[...baseStructuredData, ...extraStructuredData].map((item) => (
@@ -143,6 +155,11 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
           <li><a href={href('/projects')} class="nav-link">Projects</a></li>
           <li><a href={href('/blog')} class="nav-link">Blog</a></li>
           <li><a href={href('/contact')} class="nav-link nav-link-cta">Contact</a></li>
+          <li>
+            <a href={languageSwitchHref} class="nav-link" aria-label={languageSwitchAria} title={languageSwitchAria}>
+              {languageSwitchLabel}
+            </a>
+          </li>
           <li>
             <button
               type="button"
