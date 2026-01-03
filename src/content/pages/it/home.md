@@ -1,4 +1,5 @@
 ---
+slug: home
 title: Home
 description: Devisia sviluppa prodotti SaaS e soluzioni software su misura, con
   delivery end-to-end.
