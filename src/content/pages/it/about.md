@@ -1,14 +1,13 @@
 ---
 title: About Devisia — Software, SaaS e visione
-description: Devisia è una software company che sviluppa SaaS proprietari e soluzioni software su misura, con un approccio orientato a prodotto, qualità e visione.
-heroImage: /images/hero-about.svg
+description: Devisia è una software company che sviluppa SaaS proprietari e
+  soluzioni software su misura, con un approccio orientato a prodotto, qualità e
+  visione.
+heroTitle: Developing intelligent vision
+heroImage: /uploads/hero-about.png
 ---
 
-<section class="ds-card ds-shadow-1" style="container-type: inline-size">
-  <div class="ds-card__body ds-stack" data-gap="lg">
-    <div class="ds-grid" data-cols="2" style="align-items: center">
-      <div class="ds-stack" data-gap="sm">
-        <span class="ds-tag" data-tone="accent">About</span>
+<section class="ds-stack" data-gap="sm" style="container-type: inline-size">
 
 # Chi siamo
 
@@ -17,19 +16,6 @@ Devisia nasce per costruire software che abbia senso nel tempo: SaaS proprietari
 
 Uniamo sviluppo, prodotto e architettura in un unico approccio, evitando soluzioni improvvisate e focalizzandoci su qualità, sostenibilità e chiarezza tecnica.
 
-      </div>
-
-      <div class="ds-surface-2 ds-radius-2 ds-border ds-pad-4" aria-hidden="true">
-        <img
-          src="/images/hero-about.svg"
-          alt=""
-          loading="lazy"
-          style="width: 100%; height: auto; border-radius: var(--ds-radius-2)"
-        />
-      </div>
-    </div>
-
-  </div>
 </section>
 
 <section class="ds-stack ds-card ds-shadow-1" data-gap="sm">
@@ -76,7 +62,6 @@ Costruiamo software in due modi complementari:
         </p>
       </div>
     </article>
-
   </div>
 
 </section>
