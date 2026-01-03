@@ -31,6 +31,8 @@ collections:
     fields:
       - { label: "Title", name: "title", widget: "string", i18n: true }
       - { label: "Description", name: "description", widget: "text", required: false, i18n: true }
+      - { label: "Hero Title", name: "heroTitle", widget: "string", required: false, i18n: true }
+      - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", required: false, i18n: true }
       - { label: "Hero Image", name: "heroImage", widget: "image", required: false, i18n: duplicate }
       - { label: "Body", name: "body", widget: "markdown", i18n: true }
   

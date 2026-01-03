@@ -1,0 +1,55 @@
+---
+import Button from './ui/Button.astro';
+
+export interface Props {
+  lang?: 'it' | 'en';
+  heroTitle: string;
+  heroSubtitle: string;
+  heroImage?: string;
+}
+
+const { lang = 'it', heroTitle, heroSubtitle, heroImage } = Astro.props;
+const localePrefix = lang === 'en' ? '/en' : '';
+const href = (path: string) => (localePrefix ? `${localePrefix}${path}` : path);
+---
+
+<div class="ds-stack" data-gap="lg" style="container-type: inline-size">
+  <!-- Hero -->
+  <section class="ds-grid" data-cols="2" aria-label="Hero">
+    <div class="ds-stack" data-gap="sm">
+      <h1 style="margin: 0">{heroTitle}</h1>
+      <p class="ds-muted" style="max-width: 65ch; margin: 0">
+        {heroSubtitle}
+      </p>
+
+      <div class="ds-cluster" style="margin-top: var(--ds-space-3)">
+        <Button href={href('/projects')} variant="primary">Explore projects</Button>
+        <Button href={href('/contact')} variant="secondary">Get in touch</Button>
+      </div>
+    </div>
+
+    <div>
+      <div class="ds-card">
+        {heroImage ? (
+          <img src={heroImage} alt="" loading="eager" decoding="async" />
+        ) : (
+          <div class="ds-card__body ds-surface-2">
+            <p class="ds-muted" style="margin: 0">
+              {lang === 'en'
+                ? 'Hero image placeholder. Add an image in the CMS to customize this area.'
+                : "Segnaposto immagine hero. Aggiungi un'immagine dal CMS per personalizzare questa area."}
+            </p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Intro -->
+  <section class="ds-reading">
+    <div class="ds-stack" data-gap="sm">
+      <slot />
+    </div>
+  </section>
+</div>
+

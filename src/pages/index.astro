@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import { getEntry, render } from 'astro:content';
 import { type CollectionEntry } from 'astro:content';
+import HomeHero from '../components/HomeHero.astro';
 
 const homeEntry: CollectionEntry<'pagesIt'> | undefined = await getEntry('pagesIt', 'home');
 
@@ -14,14 +15,12 @@ const { Content } = await render(homeEntry);
 ---
 
 <Layout title={data.title} description={data.description} heroImage={data.heroImage}>
-  <article class="page-content">
+  <HomeHero
+    lang="it"
+    heroTitle={data.heroTitle ?? 'Sviluppiamo visione intelligente'}
+    heroSubtitle={data.heroSubtitle ?? 'Devisia sviluppa prodotti SaaS e soluzioni software su misura.'}
+    heroImage={data.heroImage}
+  >
     <Content />
-  </article>
+  </HomeHero>
 </Layout>
-
-<style>
-  .page-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-</style>
