@@ -3,6 +3,7 @@ title: About Devisia — Software, SaaS and vision
 description: Devisia is a software company building proprietary SaaS products
   and custom software, with a product-driven approach focused on quality and
   long-term vision.
+heroTitle: Developing intelligent vision
 heroImage: /uploads/hero-about.png
 ---
 
