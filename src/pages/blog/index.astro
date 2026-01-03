@@ -4,6 +4,7 @@ import { getCollection } from 'astro:content';
 
 // Get all blog posts
 const allPosts = await getCollection('blogIt');
+const slugFromId = (id: string) => id.replace(/^(it|en)\//, '');
 
 // Sort posts by publication date (newest first)
 const sortedPosts = allPosts.sort((a, b) => {
@@ -55,7 +56,7 @@ const formatDate = (date: Date | string): string => {
               </div>
               
               <h2 class="post-title">
-                <a href={`/blog/${post.id}`}>{post.data.title}</a>
+                <a href={`/blog/${slugFromId(post.id)}`}>{post.data.title}</a>
               </h2>
               
               <p class="post-description">{post.data.description}</p>
@@ -68,7 +69,7 @@ const formatDate = (date: Date | string): string => {
                 </div>
               )}
               
-              <a href={`/blog/${post.id}`} class="read-more">
+              <a href={`/blog/${slugFromId(post.id)}`} class="read-more">
                 Leggi →
               </a>
             </div>

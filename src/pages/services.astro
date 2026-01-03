@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import { getEntry, render } from 'astro:content';
 import { type CollectionEntry } from 'astro:content';
 
-const servicesEntry: CollectionEntry<'pagesIt'> | undefined = await getEntry('pagesIt', 'services');
+const servicesEntry: CollectionEntry<'pagesIt'> | undefined = await getEntry('pagesIt', 'it/services');
 
 if (!servicesEntry) {
   return new Response('Services page content not found', { status: 404 });

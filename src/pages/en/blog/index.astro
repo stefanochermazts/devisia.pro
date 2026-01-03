@@ -3,6 +3,7 @@ import Layout from '../../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 const allPosts = await getCollection('blogEn');
+const slugFromId = (id: string) => id.replace(/^(it|en)\//, '');
 
 const sortedPosts = allPosts.sort((a, b) => {
   return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime();
@@ -52,7 +53,7 @@ const formatDate = (date: Date | string): string => {
               </div>
 
               <h2 class="post-title">
-                <a href={`/en/blog/${post.id}`}>{post.data.title}</a>
+                <a href={`/en/blog/${slugFromId(post.id)}`}>{post.data.title}</a>
               </h2>
 
               <p class="post-description">{post.data.description}</p>
@@ -65,7 +66,7 @@ const formatDate = (date: Date | string): string => {
                 </div>
               )}
 
-              <a href={`/en/blog/${post.id}`} class="read-more">
+              <a href={`/en/blog/${slugFromId(post.id)}`} class="read-more">
                 Read more →
               </a>
             </div>

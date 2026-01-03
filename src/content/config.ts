@@ -1,20 +1,24 @@
 import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
+const optionalString = z.string().optional().nullable();
+const stringList = z.preprocess((v) => (v == null ? [] : v), z.array(z.string()));
+
 // Schema for static pages (home, about, services, contact)
 const pageSchema = z.object({
   title: z.string(),
-  description: z.string().optional(),
-  heroTitle: z.string().optional(),
-  heroSubtitle: z.string().optional(),
-  heroImage: z.string().optional(),
+  description: optionalString,
+  heroTitle: optionalString,
+  heroSubtitle: optionalString,
+  heroImage: optionalString,
 });
 
 const pagesItCollection = defineCollection({
   loader: glob({
     pattern: '**/*.{md,mdx}',
     base: './src/content/pages/it',
-    generateId: ({ entry }) => entry.replace(/\.mdx?$/, ''),
+    // NOTE: IDs must be globally unique across collections in Astro Content Layer.
+    generateId: ({ entry }) => `it/${entry.replace(/\.mdx?$/, '')}`,
   }),
   schema: pageSchema,
 });
@@ -23,7 +27,7 @@ const pagesEnCollection = defineCollection({
   loader: glob({
     pattern: '**/*.{md,mdx}',
     base: './src/content/pages/en',
-    generateId: ({ entry }) => entry.replace(/\.mdx?$/, ''),
+    generateId: ({ entry }) => `en/${entry.replace(/\.mdx?$/, '')}`,
   }),
   schema: pageSchema,
 });
@@ -33,16 +37,16 @@ const blogSchema = z.object({
   title: z.string(),
   description: z.string(),
   pubDate: z.coerce.date(),
-  heroImage: z.string().optional(),
+  heroImage: optionalString,
   author: z.string(),
-  tags: z.array(z.string()).optional(),
+  tags: stringList,
 });
 
 const blogItCollection = defineCollection({
   loader: glob({
     pattern: '**/*.{md,mdx}',
     base: './src/content/blog/it',
-    generateId: ({ entry }) => entry.replace(/\.mdx?$/, ''),
+    generateId: ({ entry }) => `it/${entry.replace(/\.mdx?$/, '')}`,
   }),
   schema: blogSchema,
 });
@@ -51,7 +55,7 @@ const blogEnCollection = defineCollection({
   loader: glob({
     pattern: '**/*.{md,mdx}',
     base: './src/content/blog/en',
-    generateId: ({ entry }) => entry.replace(/\.mdx?$/, ''),
+    generateId: ({ entry }) => `en/${entry.replace(/\.mdx?$/, '')}`,
   }),
   schema: blogSchema,
 });
@@ -65,13 +69,14 @@ const projectSchema = z.object({
     .string()
     .min(1)
     .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Slug must be kebab-case')
-    .optional(),
+    .optional()
+    .nullable(),
   description: z.string().min(1).max(200),
   coverImage: z.string().min(1),
-  logo: z.string().optional(),
-  ogImage: z.string().optional(),
+  logo: optionalString,
+  ogImage: optionalString,
   websiteUrl: z.string().url(),
-  tags: z.array(z.string()).default([]),
+  tags: stringList,
   status: z.enum(['active', 'beta', 'archived']),
   featured: z.boolean().default(false),
   order: z.number().int().nonnegative().default(0),
@@ -81,7 +86,7 @@ const projectsItCollection = defineCollection({
   loader: glob({
     pattern: '**/*.{md,mdx}',
     base: './src/content/projects/it',
-    generateId: ({ entry }) => entry.replace(/\.mdx?$/, ''),
+    generateId: ({ entry }) => `it/${entry.replace(/\.mdx?$/, '')}`,
   }),
   schema: projectSchema,
 });
@@ -90,7 +95,7 @@ const projectsEnCollection = defineCollection({
   loader: glob({
     pattern: '**/*.{md,mdx}',
     base: './src/content/projects/en',
-    generateId: ({ entry }) => entry.replace(/\.mdx?$/, ''),
+    generateId: ({ entry }) => `en/${entry.replace(/\.mdx?$/, '')}`,
   }),
   schema: projectSchema,
 });
