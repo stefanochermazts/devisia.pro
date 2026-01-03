@@ -1,0 +1,67 @@
+---
+import Button from './ui/Button.astro';
+
+export interface Props {
+  lang?: 'it' | 'en';
+  title?: string | null;
+  description?: string | null;
+  image?: string | null;
+}
+
+const { lang = 'it', title, description, image } = Astro.props;
+
+const localePrefix = lang === 'en' ? '/en' : '';
+const href = (path: string) => (localePrefix ? `${localePrefix}${path}` : path);
+
+// Default content
+const defaults = {
+  it: {
+    title: 'Progetti',
+    description: 'Esplora i prodotti che Devisia ha sviluppato e gestisce.',
+  },
+  en: {
+    title: 'Projects',
+    description: 'Explore the products Devisia has built and maintains.',
+  },
+};
+
+const content = {
+  title: title ?? defaults[lang].title,
+  description: description ?? defaults[lang].description,
+  buttonLabel: lang === 'en' ? 'Explore projects' : 'Esplora i progetti',
+};
+---
+
+<section class="ds-stack" data-gap="lg" style="container-type: inline-size">
+  <div class="ds-grid" data-cols={image ? '2' : '1'} style="container-type: inline-size">
+    <div class="ds-stack" data-gap="sm">
+      <h2 style="margin: 0">{content.title}</h2>
+      <p style="margin: 0">{content.description}</p>
+      <div class="ds-cluster" style="margin-top: var(--ds-space-3)">
+        <Button href={href('/projects')} variant="primary">
+          {content.buttonLabel}
+        </Button>
+      </div>
+    </div>
+    {image && (
+      <div>
+        <div class="ds-card">
+          <img src={image} alt="" loading="lazy" decoding="async" />
+        </div>
+      </div>
+    )}
+    {!image && (
+      <div>
+        <div class="ds-card">
+          <div class="ds-card__body ds-surface-2">
+            <p class="ds-muted" style="margin: 0">
+              {lang === 'en'
+                ? 'Projects image placeholder. Add an image in the CMS to customize this area.'
+                : "Segnaposto immagine progetti. Aggiungi un'immagine dal CMS per personalizzare questa area."}
+            </p>
+          </div>
+        </div>
+      </div>
+    )}
+  </div>
+</section>

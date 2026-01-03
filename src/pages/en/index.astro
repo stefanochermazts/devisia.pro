@@ -3,6 +3,10 @@ import Layout from '../../layouts/Layout.astro';
 import { getEntry, render } from 'astro:content';
 import { type CollectionEntry } from 'astro:content';
 import HomeHero from '../../components/HomeHero.astro';
+import HomeWhatWeDo from '../../components/HomeWhatWeDo.astro';
+import HomeHowWeWork from '../../components/HomeHowWeWork.astro';
+import HomeProjectsTeaser from '../../components/HomeProjectsTeaser.astro';
+import HomeContactCTA from '../../components/HomeContactCTA.astro';
 import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
 
 const homeEntry: CollectionEntry<'pagesEn'> | undefined = await getEntry('pagesEn', 'en/home');
@@ -30,4 +34,33 @@ const breadcrumbs = breadcrumbListJsonLd({
   >
     <Content />
   </HomeHero>
+
+  <div class="ds-stack" data-gap="lg" style="container-type: inline-size">
+    <HomeWhatWeDo
+      lang="en"
+      title={data.homeWhatWeDoTitle}
+      description={data.homeWhatWeDoDescription}
+      cards={data.homeWhatWeDoCards ?? undefined}
+    />
+
+    <HomeHowWeWork
+      lang="en"
+      title={data.homeHowWeWorkTitle}
+      description={data.homeHowWeWorkDescription}
+      items={data.homeHowWeWorkItems ?? undefined}
+    />
+
+    <HomeProjectsTeaser
+      lang="en"
+      title={data.homeProjectsTitle}
+      description={data.homeProjectsDescription}
+      image={data.homeProjectsImage ?? undefined}
+    />
+
+    <HomeContactCTA
+      lang="en"
+      title={data.homeContactTitle}
+      description={data.homeContactDescription}
+    />
+  </div>
 </Layout>

@@ -4,6 +4,13 @@ import { glob } from 'astro/loaders';
 const optionalString = z.string().optional().nullable();
 const stringList = z.preprocess((v) => (v == null ? [] : v), z.array(z.string()));
 
+// Schema for feature card in home page
+const featureCardSchema = z.object({
+  tag: z.string(),
+  title: z.string(),
+  description: z.string(),
+});
+
 // Schema for static pages (home, about, services, contact)
 // NOTE: slug is optional and used by Decap CMS for filename generation.
 // Astro ignores it and uses the filename to determine the entry ID.
@@ -14,6 +21,18 @@ const pageSchema = z.object({
   heroTitle: optionalString,
   heroSubtitle: optionalString,
   heroImage: optionalString,
+  // Home page blocks (optional, only used for home page)
+  homeWhatWeDoTitle: optionalString,
+  homeWhatWeDoDescription: optionalString,
+  homeWhatWeDoCards: z.array(featureCardSchema).optional().nullable(),
+  homeHowWeWorkTitle: optionalString,
+  homeHowWeWorkDescription: optionalString,
+  homeHowWeWorkItems: z.array(z.string()).optional().nullable(),
+  homeProjectsTitle: optionalString,
+  homeProjectsDescription: optionalString,
+  homeProjectsImage: optionalString,
+  homeContactTitle: optionalString,
+  homeContactDescription: optionalString,
 });
 
 const pagesItCollection = defineCollection({

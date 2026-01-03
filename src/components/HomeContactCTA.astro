@@ -1,0 +1,47 @@
+---
+import Button from './ui/Button.astro';
+import Card from './ui/Card.astro';
+
+export interface Props {
+  lang?: 'it' | 'en';
+  title?: string | null;
+  description?: string | null;
+}
+
+const { lang = 'it', title, description } = Astro.props;
+
+const localePrefix = lang === 'en' ? '/en' : '';
+const href = (path: string) => (localePrefix ? `${localePrefix}${path}` : path);
+
+// Default content
+const defaults = {
+  it: {
+    title: "Costruiamo qualcosa di significativo",
+    description: 'Se hai un\'idea, un prodotto da migliorare o una sfida tecnica da risolvere, ci piacerebbe parlarne.',
+    buttonLabel: 'Contattaci',
+  },
+  en: {
+    title: "Let's build something meaningful",
+    description: 'If you have an idea, a product to improve, or a technical challenge to solve, we\'d like to hear about it.',
+    buttonLabel: 'Get in touch',
+  },
+};
+
+const content = {
+  title: title ?? defaults[lang].title,
+  description: description ?? defaults[lang].description,
+  buttonLabel: defaults[lang].buttonLabel,
+};
+---
+
+<section class="ds-card ds-shadow-1" style="container-type: inline-size">
+  <div class="ds-card__body ds-stack" data-gap="sm">
+    <h2 style="margin: 0">{content.title}</h2>
+    <p class="ds-muted" style="margin: 0">{content.description}</p>
+    <div class="ds-cluster" style="margin-top: var(--ds-space-3)">
+      <Button href={href('/contact')} variant="primary" size="lg">
+        {content.buttonLabel}
+      </Button>
+    </div>
+  </div>
+</section>

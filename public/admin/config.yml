@@ -36,6 +36,26 @@ collections:
       - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", required: false, i18n: true }
       - { label: "Hero Image", name: "heroImage", widget: "image", required: false, i18n: duplicate }
       - { label: "Body", name: "body", widget: "markdown", i18n: true }
+      # Home page blocks (optional, only used for home page)
+      - { label: "What We Do - Title", name: "homeWhatWeDoTitle", widget: "string", required: false, i18n: true }
+      - { label: "What We Do - Description", name: "homeWhatWeDoDescription", widget: "text", required: false, i18n: true }
+      - label: "What We Do - Cards"
+        name: "homeWhatWeDoCards"
+        widget: "list"
+        required: false
+        i18n: true
+        fields:
+          - { label: "Tag", name: "tag", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+      - { label: "How We Work - Title", name: "homeHowWeWorkTitle", widget: "string", required: false, i18n: true }
+      - { label: "How We Work - Description", name: "homeHowWeWorkDescription", widget: "text", required: false, i18n: true }
+      - { label: "How We Work - Items", name: "homeHowWeWorkItems", widget: "list", required: false, i18n: true }
+      - { label: "Projects - Title", name: "homeProjectsTitle", widget: "string", required: false, i18n: true }
+      - { label: "Projects - Description", name: "homeProjectsDescription", widget: "text", required: false, i18n: true }
+      - { label: "Projects - Image", name: "homeProjectsImage", widget: "image", required: false, i18n: duplicate }
+      - { label: "Contact - Title", name: "homeContactTitle", widget: "string", required: false, i18n: true }
+      - { label: "Contact - Description", name: "homeContactDescription", widget: "text", required: false, i18n: true }
   
   # Blog collection
   - name: "blog"

@@ -1,0 +1,80 @@
+---
+import Card from './ui/Card.astro';
+
+export interface Props {
+  lang?: 'it' | 'en';
+  title?: string | null;
+  description?: string | null;
+  cards?: Array<{ tag: string; title: string; description: string }> | null;
+}
+
+const { lang = 'it', title, description, cards } = Astro.props;
+
+// Default content
+const defaults = {
+  it: {
+    title: 'Cosa facciamo',
+    description: 'Devisia sviluppa prodotti SaaS e soluzioni software su misura.',
+    cards: [
+      {
+        tag: 'Prodotti SaaS',
+        title: 'Prodotti proprietari',
+        description: 'Sviluppiamo SaaS proprietari con focus su iterazione, UX e affidabilità.',
+      },
+      {
+        tag: 'Software su misura',
+        title: 'Soluzioni personalizzate',
+        description: 'Web app, dashboard, portali e integrazioni progettate per il tuo business.',
+      },
+      {
+        tag: 'Delivery end-to-end',
+        title: 'Dalla scoperta al mantenimento',
+        description: 'Discovery → build → deploy → maintain. Un approccio completo al ciclo di vita del software.',
+      },
+    ],
+  },
+  en: {
+    title: 'What we do',
+    description: 'Devisia builds SaaS products and custom software solutions.',
+    cards: [
+      {
+        tag: 'SaaS Products',
+        title: 'Proprietary products',
+        description: 'We build proprietary SaaS products with focus on iteration, UX and reliability.',
+      },
+      {
+        tag: 'Custom Software',
+        title: 'Tailored solutions',
+        description: 'Web apps, dashboards, portals and integrations designed for your business.',
+      },
+      {
+        tag: 'Delivery end-to-end',
+        title: 'Discovery to maintenance',
+        description: 'Discovery → build → deploy → maintain. A complete approach to software lifecycle.',
+      },
+    ],
+  },
+};
+
+const content = {
+  title: title ?? defaults[lang].title,
+  description: description ?? defaults[lang].description,
+  cards: cards ?? defaults[lang].cards,
+};
+---
+
+<section class="ds-stack" data-gap="lg" style="container-type: inline-size">
+  <h2 style="margin: 0">{content.title}</h2>
+  <p class="ds-muted" style="margin: 0">{content.description}</p>
+  <div class="ds-grid" data-cols="3" style="container-type: inline-size">
+    {content.cards.map((card) => (
+      <Card>
+        <div class="ds-card__body ds-stack" data-gap="sm">
+          <span class="ds-tag">{card.tag}</span>
+          <h3 style="margin: 0">{card.title}</h3>
+          <p style="margin: 0">{card.description}</p>
+        </div>
+      </Card>
+    ))}
+  </div>
+</section>
