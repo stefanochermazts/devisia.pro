@@ -28,8 +28,7 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    # Security headers
-    X-Frame-Options = "DENY"
+    # Security headers (allow Netlify Identity widget to load)
     X-Content-Type-Options = "nosniff"
     X-XSS-Protection = "1; mode=block"
     Referrer-Policy = "strict-origin-when-cross-origin"
@@ -42,6 +41,8 @@
   [headers.values]
     # HTML files should not be cached aggressively
     Cache-Control = "public, max-age=0, must-revalidate"
+    # Allow Netlify Identity widget iframe
+    Content-Security-Policy = "frame-ancestors 'self' https://*.netlify.app https://*.netlify.com"
 
 [[headers]]
   for = "/admin/*"
