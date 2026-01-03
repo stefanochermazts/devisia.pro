@@ -23,9 +23,9 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# CMS uploads (managed by Decap CMS)
-public/uploads/*
-!public/uploads/.gitkeep
+# CMS uploads
+# NOTE: This is a static Astro site: any asset referenced as `/uploads/...` must be present at build time.
+# Keep uploaded assets in git so they are available in production builds.
 
 # Netlify CLI files
 .netlify/
