@@ -58,6 +58,13 @@
     Content-Type = "image/svg+xml"
     Cache-Control = "public, max-age=31536000, immutable"
 
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    # Ensure SVG files are served with correct MIME type
+    Content-Type = "image/svg+xml"
+    Cache-Control = "public, max-age=31536000, immutable"
+
 # Netlify Functions (if needed in future)
 [functions]
   directory = "netlify/functions"
