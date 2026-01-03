@@ -9,7 +9,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "serve dist -l 4322",
     "astro": "astro",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -25,6 +25,7 @@
     "eslint": "^8.56.0",
     "eslint-plugin-astro": "^0.31.4",
     "@typescript-eslint/parser": "^6.19.0",
-    "@typescript-eslint/eslint-plugin": "^6.19.0"
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "serve": "^14.2.4"
   }
 }

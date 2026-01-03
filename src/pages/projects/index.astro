@@ -1,0 +1,278 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+
+const sortedProjects = [...projects].sort((a, b) => {
+  // featured first
+  if (a.data.featured !== b.data.featured) return a.data.featured ? -1 : 1;
+  // then order asc
+  if (a.data.order !== b.data.order) return a.data.order - b.data.order;
+  // then title
+  return a.data.title.localeCompare(b.data.title);
+});
+
+const statusLabel: Record<string, string> = {
+  active: 'Active',
+  beta: 'Beta',
+  archived: 'Archived',
+};
+---
+
+<Layout
+  title="Projects"
+  description="Explore Devisia projects and products—what we’re building, experimenting with, and shipping."
+>
+  <div class="projects-container">
+    <header class="projects-header">
+      <h1>Projects</h1>
+      <p class="projects-intro">
+        A curated list of products and initiatives—from early experiments to active launches.
+      </p>
+    </header>
+
+    {sortedProjects.length === 0 ? (
+      <p class="empty">No projects yet.</p>
+    ) : (
+      <div class="grid">
+        {sortedProjects.map((project) => (
+          <article class="card">
+            <div class="card-top">
+              <div class="media">
+                {project.data.logo ? (
+                  <img class="logo" src={project.data.logo} alt={`${project.data.title} logo`} />
+                ) : null}
+
+                <div class="meta">
+                  <div class="title-row">
+                    <h2 class="title">{project.data.title}</h2>
+                    <span class={`status status--${project.data.status}`}>
+                      {statusLabel[project.data.status] ?? project.data.status}
+                    </span>
+                  </div>
+                  <p class="desc">{project.data.description}</p>
+                </div>
+              </div>
+            </div>
+
+            {project.data.coverImage ? (
+              <div class="cover">
+                <img
+                  src={project.data.coverImage}
+                  alt={`${project.data.title} cover`}
+                  loading="lazy"
+                />
+              </div>
+            ) : null}
+
+            <div class="card-bottom">
+              {project.data.tags?.length ? (
+                <div class="tags">
+                  {project.data.tags.map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              ) : null}
+
+              <div class="actions">
+                <a class="cta" href={`/projects/${project.slug}`}>View project</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</Layout>
+
+<style>
+  .projects-container {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .projects-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  .projects-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .projects-intro {
+    font-size: 1.2rem;
+    color: var(--color-text-light, #6b7280);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .empty {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--color-text-light, #6b7280);
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .card {
+    background: white;
+    border: 1px solid var(--color-border, #e5e7eb);
+    border-radius: 0.75rem;
+    overflow: hidden;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-top {
+    padding: 1.25rem 1.25rem 0;
+  }
+
+  .media {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  .logo {
+    width: 44px;
+    height: 44px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border, #e5e7eb);
+    background: var(--color-bg-alt, #f9fafb);
+    padding: 0.25rem;
+    flex: 0 0 auto;
+  }
+
+  .meta {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .title {
+    margin: 0;
+    font-size: 1.35rem;
+    line-height: 1.25;
+    color: var(--color-text, #1f2937);
+  }
+
+  .desc {
+    margin: 0;
+    color: var(--color-text-light, #6b7280);
+    line-height: 1.6;
+  }
+
+  .status {
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.25rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border, #e5e7eb);
+    white-space: nowrap;
+  }
+  .status--active {
+    color: #065f46;
+    background: #ecfdf5;
+    border-color: #a7f3d0;
+  }
+  .status--beta {
+    color: #1e40af;
+    background: #eff6ff;
+    border-color: #bfdbfe;
+  }
+  .status--archived {
+    color: #374151;
+    background: #f3f4f6;
+    border-color: #e5e7eb;
+  }
+
+  .cover {
+    width: 100%;
+    height: 180px;
+    margin-top: 1rem;
+    background: var(--color-bg-alt, #f9fafb);
+    border-top: 1px solid var(--color-border, #e5e7eb);
+    border-bottom: 1px solid var(--color-border, #e5e7eb);
+    overflow: hidden;
+  }
+
+  .cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card-bottom {
+    padding: 1rem 1.25rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: auto;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    background-color: var(--color-bg-alt, #f9fafb);
+    color: var(--color-primary, #2563eb);
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .cta {
+    color: var(--color-primary, #2563eb);
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    transition: gap 0.2s;
+  }
+
+  .cta:hover {
+    gap: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .projects-header h1 {
+      font-size: 2rem;
+    }
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+

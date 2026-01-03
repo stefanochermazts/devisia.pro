@@ -40,3 +40,31 @@ collections:
       - { label: "Hero Image", name: "heroImage", widget: "image", required: false }
       - { label: "Tags", name: "tags", widget: "list", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
+
+  # Projects collection
+  - name: "projects"
+    label: "Projects"
+    folder: "src/content/projects"
+    create: true
+    slug: "{{fields.slug}}"
+    identifier_field: "title"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "kebab-case, used for URL and filename (e.g. mysafenest)" }
+      - { label: "Description", name: "description", widget: "string", hint: "Short summary (shown on listing)" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Order", name: "order", widget: "number", default: 0, value_type: "int", min: 0 }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        default: "active"
+        options:
+          - { label: "Active", value: "active" }
+          - { label: "Beta", value: "beta" }
+          - { label: "Archived", value: "archived" }
+      - { label: "Website URL", name: "websiteUrl", widget: "string" }
+      - { label: "Cover Image", name: "coverImage", widget: "image" }
+      - { label: "Logo", name: "logo", widget: "image", required: false }
+      - { label: "Open Graph Image", name: "ogImage", widget: "image", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
