@@ -1,0 +1,61 @@
+---
+export interface Props {
+  id: string;
+  title: string;
+  triggerLabel?: string;
+  class?: string;
+}
+
+const { id, title, triggerLabel = 'Open dialog', class: className } = Astro.props;
+---
+
+{triggerLabel ? (
+  <button class="ds-btn" data-variant="secondary" type="button" data-ds-dialog-open={id}>
+    {triggerLabel}
+  </button>
+) : null}
+
+<dialog id={id} class={className} data-ds-dialog>
+  <form method="dialog" style="margin: 0">
+    <div style="padding: var(--ds-space-5); max-width: 42rem">
+      <div class="ds-cluster" style="justify-content: space-between; align-items: flex-start">
+        <h2 style="margin: 0">{title}</h2>
+        <button class="ds-btn" data-variant="ghost" type="submit" aria-label="Close dialog">✕</button>
+      </div>
+      <div style="margin-top: var(--ds-space-4)">
+        <slot />
+      </div>
+      <div class="ds-cluster" style="margin-top: var(--ds-space-5); justify-content: flex-end">
+        <button class="ds-btn" data-variant="secondary" type="submit">Close</button>
+      </div>
+    </div>
+  </form>
+</dialog>
+
+<script>
+  // Minimal dialog controller: open buttons call showModal()
+  for (const btn of document.querySelectorAll('[data-ds-dialog-open]')) {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-ds-dialog-open');
+      const dlg = id ? document.getElementById(id) : null;
+      if (dlg && dlg instanceof HTMLDialogElement) dlg.showModal();
+    });
+  }
+</script>
+
+<style>
+  dialog[data-ds-dialog] {
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-3);
+    background: var(--ds-color-surface);
+    color: var(--ds-color-text);
+    box-shadow: var(--ds-shadow-2);
+    padding: 0;
+    width: min(92vw, 46rem);
+  }
+
+  dialog::backdrop {
+    background: color-mix(in srgb, black 35%, transparent);
+  }
+</style>
+

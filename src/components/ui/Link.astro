@@ -1,0 +1,28 @@
+---
+export type LinkVariant = 'default' | 'muted' | 'nav';
+
+export interface Props {
+  href: string;
+  variant?: LinkVariant;
+  target?: string;
+  rel?: string;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const { href, variant = 'default', target, rel, ariaLabel, class: className, ...rest } = Astro.props;
+const classes = ['ds-link', className].filter(Boolean).join(' ');
+---
+
+<a
+  href={href}
+  class={classes}
+  data-variant={variant}
+  target={target}
+  rel={rel}
+  aria-label={ariaLabel}
+  {...rest}
+>
+  <slot />
+</a>
+

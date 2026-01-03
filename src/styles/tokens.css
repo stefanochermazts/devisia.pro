@@ -1,0 +1,137 @@
+@layer tokens {
+  :root {
+    /* Brand */
+    --ds-brand-midnight: #0b1f2a;
+    --ds-brand-charcoal: #111827;
+    --ds-brand-offwhite: #f7f9fb;
+    --ds-brand-teal: #1fa2a6;
+
+    /* Typography */
+    --ds-font-sans: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    --ds-font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      "Courier New", monospace;
+
+    /* Type scale (fluid, rem-based) */
+    --ds-text-xs: clamp(0.75rem, 0.73rem + 0.15vw, 0.82rem);
+    --ds-text-sm: clamp(0.875rem, 0.85rem + 0.22vw, 0.95rem);
+    --ds-text-md: clamp(1rem, 0.98rem + 0.3vw, 1.125rem);
+    --ds-text-lg: clamp(1.125rem, 1.05rem + 0.55vw, 1.375rem);
+    --ds-text-xl: clamp(1.25rem, 1.12rem + 0.85vw, 1.65rem);
+    --ds-text-2xl: clamp(1.5rem, 1.25rem + 1.35vw, 2.05rem);
+    --ds-text-3xl: clamp(1.85rem, 1.4rem + 2.1vw, 2.65rem);
+    --ds-text-4xl: clamp(2.25rem, 1.6rem + 3vw, 3.35rem);
+
+    --ds-leading-tight: 1.15;
+    --ds-leading-base: 1.6;
+    --ds-leading-relaxed: 1.75;
+
+    --ds-tracking-tight: -0.01em;
+    --ds-tracking-base: 0;
+    --ds-tracking-wordmark: 0.06em;
+
+    /* Spacing (8pt, plus small steps) */
+    --ds-space-0: 0;
+    --ds-space-1: 0.25rem; /* 4 */
+    --ds-space-2: 0.5rem; /* 8 */
+    --ds-space-3: 0.75rem; /* 12 */
+    --ds-space-4: 1rem; /* 16 */
+    --ds-space-5: 1.5rem; /* 24 */
+    --ds-space-6: 2rem; /* 32 */
+    --ds-space-7: 2.5rem; /* 40 */
+    --ds-space-8: 3rem; /* 48 */
+    --ds-space-9: 4rem; /* 64 */
+    --ds-space-10: 5rem; /* 80 */
+
+    /* Radius */
+    --ds-radius-1: 0.375rem;
+    --ds-radius-2: 0.5rem;
+    --ds-radius-3: 0.75rem;
+    --ds-radius-4: 1rem;
+    --ds-radius-round: 999px;
+
+    /* Borders */
+    --ds-border-1: 1px;
+    --ds-border-2: 2px;
+
+    /* Shadows (subtle) */
+    --ds-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.06);
+    --ds-shadow-2: 0 6px 18px rgba(0, 0, 0, 0.10);
+
+    /* Motion */
+    --ds-motion-fast: 120ms;
+    --ds-motion-base: 180ms;
+    --ds-motion-slow: 240ms;
+    --ds-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+
+    /* Layout */
+    --ds-container-max: 72rem; /* 1152px */
+    --ds-container-pad: clamp(1rem, 0.5rem + 2vw, 2rem);
+    --ds-reading-max: 72ch;
+
+    /* Semantic colors (LIGHT) */
+    --ds-color-bg: var(--ds-brand-offwhite);
+    --ds-color-surface: #ffffff;
+    --ds-color-surface-2: color-mix(in srgb, var(--ds-color-surface) 85%, var(--ds-brand-offwhite));
+
+    --ds-color-text: var(--ds-brand-charcoal);
+    --ds-color-text-muted: color-mix(in srgb, var(--ds-color-text) 70%, white);
+
+    --ds-color-primary: var(--ds-brand-midnight);
+    --ds-color-accent: var(--ds-brand-teal);
+
+    --ds-color-border: color-mix(in srgb, var(--ds-brand-charcoal) 10%, white);
+    --ds-color-border-strong: color-mix(in srgb, var(--ds-brand-charcoal) 18%, white);
+
+    --ds-color-focus: color-mix(in srgb, var(--ds-color-accent) 40%, transparent);
+
+    --ds-color-danger: #b42318;
+    --ds-color-warning: #b54708;
+    --ds-color-success: #067647;
+    --ds-color-info: #175cd3;
+
+    --ds-focus-ring: 0 0 0 3px var(--ds-color-focus);
+
+    color-scheme: light;
+  }
+
+  /* Explicit dark theme */
+  :root[data-theme="dark"] {
+    --ds-color-bg: color-mix(in srgb, var(--ds-brand-midnight) 85%, black);
+    --ds-color-surface: color-mix(in srgb, var(--ds-brand-midnight) 78%, black);
+    --ds-color-surface-2: color-mix(in srgb, var(--ds-color-surface) 80%, white);
+
+    --ds-color-text: color-mix(in srgb, white 92%, var(--ds-brand-charcoal));
+    --ds-color-text-muted: color-mix(in srgb, white 72%, var(--ds-brand-charcoal));
+
+    --ds-color-border: color-mix(in srgb, white 12%, var(--ds-brand-midnight));
+    --ds-color-border-strong: color-mix(in srgb, white 20%, var(--ds-brand-midnight));
+
+    --ds-color-primary: color-mix(in srgb, white 10%, var(--ds-brand-midnight));
+    --ds-color-accent: var(--ds-brand-teal);
+
+    --ds-color-focus: color-mix(in srgb, var(--ds-color-accent) 45%, transparent);
+    color-scheme: dark;
+  }
+
+  /* Progressive enhancement: dark scheme when user prefers and no explicit override */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+      --ds-color-bg: color-mix(in srgb, var(--ds-brand-midnight) 85%, black);
+      --ds-color-surface: color-mix(in srgb, var(--ds-brand-midnight) 78%, black);
+      --ds-color-surface-2: color-mix(in srgb, var(--ds-color-surface) 80%, white);
+
+      --ds-color-text: color-mix(in srgb, white 92%, var(--ds-brand-charcoal));
+      --ds-color-text-muted: color-mix(in srgb, white 72%, var(--ds-brand-charcoal));
+
+      --ds-color-border: color-mix(in srgb, white 12%, var(--ds-brand-midnight));
+      --ds-color-border-strong: color-mix(in srgb, white 20%, var(--ds-brand-midnight));
+
+      --ds-color-primary: color-mix(in srgb, white 10%, var(--ds-brand-midnight));
+      --ds-color-accent: var(--ds-brand-teal);
+
+      --ds-color-focus: color-mix(in srgb, var(--ds-color-accent) 45%, transparent);
+      color-scheme: dark;
+    }
+  }
+}
+

@@ -1,0 +1,15 @@
+---
+export type BadgeTone = 'neutral' | 'accent';
+
+export interface Props {
+  tone?: BadgeTone;
+  class?: string;
+}
+
+const { tone = 'neutral', class: className, ...rest } = Astro.props;
+---
+
+<span class={['ds-badge', className].filter(Boolean).join(' ')} data-tone={tone} {...rest}>
+  <slot />
+</span>
+

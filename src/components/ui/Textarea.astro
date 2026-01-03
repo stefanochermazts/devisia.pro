@@ -1,0 +1,57 @@
+---
+export interface Props {
+  id: string;
+  name?: string;
+  label?: string;
+  placeholder?: string;
+  value?: string;
+  required?: boolean;
+  disabled?: boolean;
+  hint?: string;
+  error?: string;
+  rows?: number;
+  class?: string;
+}
+
+const {
+  id,
+  name,
+  label,
+  placeholder,
+  value,
+  required = false,
+  disabled = false,
+  hint,
+  error,
+  rows = 6,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const describedBy = [hint ? `${id}-hint` : null, error ? `${id}-error` : null].filter(Boolean).join(' ') || undefined;
+---
+
+<div class={['ds-field', className].filter(Boolean).join(' ')}>
+  {label ? (
+    <label class="ds-label" for={id}>
+      {label}{required ? <span class="sr-only"> (required)</span> : null}
+    </label>
+  ) : null}
+
+  <textarea
+    id={id}
+    name={name}
+    class="ds-textarea"
+    placeholder={placeholder}
+    required={required}
+    disabled={disabled}
+    rows={rows}
+    aria-invalid={error ? 'true' : undefined}
+    aria-describedby={describedBy}
+    {...rest}
+  >{value}</textarea>
+
+  {hint ? <p class="ds-hint" id={`${id}-hint`}>{hint}</p> : null}
+  {error ? <p class="ds-hint" id={`${id}-error`} style={`color: var(--ds-color-danger);`}>{error}</p> : null}
+</div>
+

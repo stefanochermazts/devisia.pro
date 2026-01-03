@@ -1,0 +1,32 @@
+---
+export interface Props {
+  id: string;
+  name?: string;
+  label: string;
+  checked?: boolean;
+  required?: boolean;
+  disabled?: boolean;
+  hint?: string;
+  class?: string;
+}
+
+const { id, name, label, checked = false, required = false, disabled = false, hint, class: className, ...rest } =
+  Astro.props;
+---
+
+<div class={['ds-field', className].filter(Boolean).join(' ')}>
+  <label class="ds-check" for={id}>
+    <input
+      id={id}
+      name={name}
+      type="checkbox"
+      checked={checked}
+      required={required}
+      disabled={disabled}
+      {...rest}
+    />
+    <span>{label}</span>
+  </label>
+  {hint ? <p class="ds-hint">{hint}</p> : null}
+</div>
+

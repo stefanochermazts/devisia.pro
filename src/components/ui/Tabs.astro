@@ -1,0 +1,79 @@
+---
+export interface TabItem {
+  id: string;
+  label: string;
+  content: string;
+}
+
+export interface Props {
+  id: string;
+  tabs: TabItem[];
+  defaultTabId?: string;
+}
+
+const { id, tabs, defaultTabId } = Astro.props;
+const initial = defaultTabId ?? tabs[0]?.id;
+---
+
+<div class="ds-tabs" data-ds-tabs={id}>
+  <div class="ds-tabs__list" role="tablist" aria-label="Tabs">
+    {tabs.map((t) => (
+      <button
+        class="ds-tab"
+        type="button"
+        role="tab"
+        aria-selected={t.id === initial ? 'true' : 'false'}
+        aria-controls={`${id}-panel-${t.id}`}
+        id={`${id}-tab-${t.id}`}
+        data-tab={t.id}
+        tabindex={t.id === initial ? 0 : -1}
+      >
+        {t.label}
+      </button>
+    ))}
+  </div>
+
+  {tabs.map((t) => (
+    <section
+      class="ds-tabs__panel"
+      role="tabpanel"
+      id={`${id}-panel-${t.id}`}
+      aria-labelledby={`${id}-tab-${t.id}`}
+      hidden={t.id === initial ? undefined : true}
+    >
+      {t.content}
+    </section>
+  ))}
+</div>
+
+<script>
+  // Tiny accessible tabs controller (progressive enhancement)
+  for (const root of document.querySelectorAll('[data-ds-tabs]')) {
+    const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
+    const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
+
+    const activate = (tab) => {
+      for (const t of tabs) {
+        const selected = t === tab;
+        t.setAttribute('aria-selected', selected ? 'true' : 'false');
+        t.tabIndex = selected ? 0 : -1;
+      }
+      for (const p of panels) {
+        p.hidden = p.getAttribute('aria-labelledby') !== tab.id;
+      }
+      tab.focus();
+    };
+
+    for (const t of tabs) {
+      t.addEventListener('click', () => activate(t));
+      t.addEventListener('keydown', (e) => {
+        const i = tabs.indexOf(t);
+        if (e.key === 'ArrowRight') activate(tabs[(i + 1) % tabs.length]);
+        if (e.key === 'ArrowLeft') activate(tabs[(i - 1 + tabs.length) % tabs.length]);
+        if (e.key === 'Home') activate(tabs[0]);
+        if (e.key === 'End') activate(tabs[tabs.length - 1]);
+      });
+    }
+  }
+</script>
+

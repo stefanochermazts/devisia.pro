@@ -1,0 +1,20 @@
+---
+export type AlertTone = 'info' | 'success' | 'warning' | 'danger';
+
+export interface Props {
+  tone?: AlertTone;
+  title?: string;
+  role?: 'status' | 'alert';
+  class?: string;
+}
+
+const { tone = 'info', title, role = 'status', class: className, ...rest } = Astro.props;
+---
+
+<section class={['ds-alert', className].filter(Boolean).join(' ')} data-tone={tone} role={role} {...rest}>
+  {title ? <h3 class="ds-alert__title">{title}</h3> : null}
+  <div class="ds-alert__body">
+    <slot />
+  </div>
+</section>
+

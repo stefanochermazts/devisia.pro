@@ -1,0 +1,50 @@
+---
+export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'danger';
+export type ButtonSize = 'sm' | 'md' | 'lg';
+
+export interface Props {
+  variant?: ButtonVariant;
+  size?: ButtonSize;
+  href?: string;
+  target?: string;
+  rel?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  ariaLabel?: string;
+  class?: string;
+}
+
+const {
+  variant = 'primary',
+  size = 'md',
+  href,
+  target,
+  rel,
+  type = 'button',
+  disabled = false,
+  ariaLabel,
+  class: className,
+  ...rest
+} = Astro.props;
+
+const classes = ['ds-btn', className].filter(Boolean).join(' ');
+const shared = {
+  class: classes,
+  'data-variant': variant,
+  'data-size': size,
+  'aria-label': ariaLabel,
+  ...(disabled ? { 'aria-disabled': 'true' } : {}),
+  ...rest,
+};
+---
+
+{href ? (
+  <a href={href} target={target} rel={rel} {...shared} onClick={disabled ? (e) => e.preventDefault() : undefined}>
+    <slot />
+  </a>
+) : (
+  <button type={type} disabled={disabled} {...shared}>
+    <slot />
+  </button>
+)}
+

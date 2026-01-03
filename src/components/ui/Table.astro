@@ -1,0 +1,16 @@
+---
+export interface Props {
+  caption?: string;
+  class?: string;
+}
+
+const { caption, class: className } = Astro.props;
+---
+
+<div class={['ds-table-wrap', className].filter(Boolean).join(' ')}>
+  <table class="ds-table">
+    {caption ? <caption class="sr-only">{caption}</caption> : null}
+    <slot />
+  </table>
+</div>
+

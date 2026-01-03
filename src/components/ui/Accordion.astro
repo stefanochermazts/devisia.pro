@@ -1,0 +1,25 @@
+---
+export interface Item {
+  title: string;
+  content: string;
+}
+
+export interface Props {
+  items: Item[];
+  class?: string;
+}
+
+const { items, class: className } = Astro.props;
+---
+
+<div class={['ds-accordion', 'ds-stack'].filter(Boolean).join(' ')} data-gap="sm">
+  {items.map((item) => (
+    <details>
+      <summary>{item.title}</summary>
+      <div style="margin-top: var(--ds-space-3); color: var(--ds-color-text-muted)">
+        {item.content}
+      </div>
+    </details>
+  ))}
+</div>
+
