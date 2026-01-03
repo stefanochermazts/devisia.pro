@@ -13,15 +13,26 @@
     <!-- Include the Decap CMS script -->
     <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
     
-    <!-- Netlify Identity redirect script -->
+    <!-- Netlify Identity configuration and redirect script -->
     <script>
+      // Set the Netlify site URL for Identity
       if (window.netlifyIdentity) {
+        // Initialize Netlify Identity with your site URL
+        window.netlifyIdentity.init({
+          APIUrl: 'https://sparkling-sopapillas-7a8984.netlify.app/.netlify/identity'
+        });
+        
         window.netlifyIdentity.on('init', user => {
           if (!user) {
             window.netlifyIdentity.on('login', () => {
               document.location.href = '/admin/';
             });
           }
+        });
+        
+        // Handle logout
+        window.netlifyIdentity.on('logout', () => {
+          document.location.href = '/admin/';
         });
       }
     </script>
