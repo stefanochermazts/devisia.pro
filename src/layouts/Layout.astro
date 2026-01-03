@@ -34,6 +34,8 @@ import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/components.css';
 import '../styles/utilities.css';
+
+const themeToggleLabel = lang === 'en' ? 'Toggle theme' : 'Cambia tema';
 ---
 
 <!doctype html>
@@ -69,6 +71,19 @@ import '../styles/utilities.css';
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <script is:inline>
+      // Apply saved theme early to avoid flash
+      (() => {
+        try {
+          const key = 'ds-theme';
+          const saved = localStorage.getItem(key);
+          if (saved === 'dark' || saved === 'light') {
+            document.documentElement.setAttribute('data-theme', saved);
+          }
+        } catch {}
+      })();
+    </script>
   </head>
   
   <body>
@@ -87,6 +102,19 @@ import '../styles/utilities.css';
           <li><a href={href('/projects')} class="nav-link">Projects</a></li>
           <li><a href={href('/blog')} class="nav-link">Blog</a></li>
           <li><a href={href('/contact')} class="nav-link nav-link-cta">Contact</a></li>
+          <li>
+            <button
+              type="button"
+              class="ds-btn"
+              data-variant="ghost"
+              data-size="sm"
+              data-theme-toggle
+              aria-label={themeToggleLabel}
+              title={themeToggleLabel}
+            >
+              <span aria-hidden="true">Theme</span>
+            </button>
+          </li>
         </ul>
       </nav>
     </header>
@@ -132,5 +160,30 @@ import '../styles/utilities.css';
         </div>
       </div>
     </footer>
+
+    <script is:inline>
+      // Theme toggle (data-theme on <html> + localStorage)
+      (() => {
+        const key = 'ds-theme';
+        const root = document.documentElement;
+        const btn = document.querySelector('[data-theme-toggle]');
+        if (!btn) return;
+
+        const get = () => root.getAttribute('data-theme');
+        const set = (t) => {
+          if (!t) root.removeAttribute('data-theme');
+          else root.setAttribute('data-theme', t);
+        };
+
+        // If user hasn't picked a theme yet, we keep default behavior (tokens.css uses prefers-color-scheme).
+        // Button toggles explicit light/dark.
+        btn.addEventListener('click', () => {
+          const current = get();
+          const next = current === 'dark' ? 'light' : 'dark';
+          set(next);
+          try { localStorage.setItem(key, next); } catch {}
+        });
+      })();
+    </script>
   </body>
 </html>
