@@ -1,6 +1,9 @@
 ---
 title: Servizi
-description: Devisia offre sviluppo di prodotti SaaS, software su misura, automazione, integrazioni e direzione tecnica/architetturale, dall’idea alla produzione.
+description: Devisia offre sviluppo di prodotti SaaS, software su misura,
+  automazione, integrazioni e direzione tecnica/architetturale, dall’idea alla
+  produzione.
+heroImage: /uploads/services-hero.png
 ---
 
 <section class="ds-stack" data-gap="lg" style="container-type: inline-size">

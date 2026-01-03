@@ -1,6 +1,10 @@
 ---
+slug: null
 title: Services
-description: Devisia offers SaaS product development, custom software, automation, integrations, and technical architecture services, from idea to production.
+description: Devisia offers SaaS product development, custom software,
+  automation, integrations, and technical architecture services, from idea to
+  production.
+heroImage: /uploads/services-hero.png
 ---
 
 <section class="ds-stack" data-gap="lg" style="container-type: inline-size">
