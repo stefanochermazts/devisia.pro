@@ -18,20 +18,15 @@ const breadcrumbs = breadcrumbListJsonLd({
   site,
   items: [
     { name: 'Home', url: '/' },
-    { name: data.title, url: '/about' },
+    { name: 'Chi siamo', url: '/about' },
   ],
 });
 ---
 
 <Layout title={data.title} description={data.description} heroImage={data.heroImage} structuredData={[breadcrumbs]}>
-  <article class="page-content">
-    <Content />
+  <article class="ds-stack" data-gap="lg" style="container-type: inline-size">
+    <div class="ds-reading ds-stack" data-gap="lg">
+      <Content />
+    </div>
   </article>
 </Layout>
-
-<style>
-  .page-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-</style>
