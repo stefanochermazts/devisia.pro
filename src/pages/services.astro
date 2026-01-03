@@ -4,7 +4,10 @@ import { getEntry, render } from 'astro:content';
 import { type CollectionEntry } from 'astro:content';
 import { breadcrumbListJsonLd } from '../lib/seo/structuredData';
 
-const servicesEntry: CollectionEntry<'pagesIt'> | undefined = await getEntry('pagesIt', 'it/services');
+const servicesEntry: CollectionEntry<'pagesIt'> | undefined = await getEntry(
+  'pagesIt',
+  'it/services'
+);
 
 if (!servicesEntry) {
   return new Response('Services page content not found', { status: 404 });
@@ -23,15 +26,13 @@ const breadcrumbs = breadcrumbListJsonLd({
 });
 ---
 
-<Layout title={data.title} description={data.description} heroImage={data.heroImage} structuredData={[breadcrumbs]}>
-  <article class="page-content">
+<Layout
+  title={data.title}
+  description={data.description}
+  heroImage={data.heroImage}
+  structuredData={[breadcrumbs]}
+>
+  <article class="ds-stack" data-gap="lg" style="container-type: inline-size">
     <Content />
   </article>
 </Layout>
-
-<style>
-  .page-content {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-</style>

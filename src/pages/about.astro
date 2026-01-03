@@ -23,10 +23,13 @@ const breadcrumbs = breadcrumbListJsonLd({
 });
 ---
 
-<Layout title={data.title} description={data.description} heroImage={data.heroImage} structuredData={[breadcrumbs]}>
+<Layout
+  title={data.title}
+  description={data.description}
+  heroImage={data.heroImage}
+  structuredData={[breadcrumbs]}
+>
   <article class="ds-stack" data-gap="lg" style="container-type: inline-size">
-    <div class="ds-reading ds-stack" data-gap="lg">
-      <Content />
-    </div>
+    <Content />
   </article>
 </Layout>

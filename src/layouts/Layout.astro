@@ -82,13 +82,13 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    
+
     <!-- Primary Meta Tags -->
     <title>{fullTitle}</title>
     <meta name="title" content={fullTitle} />
     <meta name="description" content={metaDescription} />
     <link rel="canonical" href={canonicalURL} />
-    
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalURL} />
@@ -96,7 +96,7 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
     <meta property="og:description" content={metaDescription} />
     <meta property="og:site_name" content={siteName} />
     {heroImage && <meta property="og:image" content={new URL(heroImage, Astro.site)} />}
-    
+
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content={canonicalURL} />
@@ -109,18 +109,23 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
     <link rel="alternate" hrefLang="en" href={new URL(enPath, site)} />
     <link rel="alternate" hrefLang="x-default" href={new URL(itPath, site)} />
 
-    {(baseStructuredData.length || extraStructuredData.length) && (
-      <>
-        {[...baseStructuredData, ...extraStructuredData].map((item) => (
-          <script type="application/ld+json" set:html={JSON.stringify(item)}></script>
-        ))}
-      </>
-    )}
-    
+    {
+      (baseStructuredData.length || extraStructuredData.length) && (
+        <>
+          {[...baseStructuredData, ...extraStructuredData].map((item) => (
+            <script type="application/ld+json" set:html={JSON.stringify(item)} />
+          ))}
+        </>
+      )
+    }
+
     <!-- Fonts (Optional: Add Google Fonts or other font services) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
 
     <script is:inline>
       // Apply saved theme early to avoid flash
@@ -131,11 +136,13 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
           if (saved === 'dark' || saved === 'light') {
             document.documentElement.setAttribute('data-theme', saved);
           }
-        } catch {}
+        } catch {
+          /* noop */
+        }
       })();
     </script>
   </head>
-  
+
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <!-- Header / Navigation -->
@@ -147,7 +154,7 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
             <img class="logo-img logo-img--dark" src="/images/logo-inverted.svg" alt="DEVISIA" />
           </a>
         </div>
-        
+
         <ul class="nav-menu">
           <li><a href={homeHref} class="nav-link">Home</a></li>
           <li><a href={href('/about')} class="nav-link">About</a></li>
@@ -156,7 +163,12 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
           <li><a href={href('/blog')} class="nav-link">Blog</a></li>
           <li><a href={href('/contact')} class="nav-link nav-link-cta">Contact</a></li>
           <li>
-            <a href={languageSwitchHref} class="nav-link" aria-label={languageSwitchAria} title={languageSwitchAria}>
+            <a
+              href={languageSwitchHref}
+              class="nav-link"
+              aria-label={languageSwitchAria}
+              title={languageSwitchAria}
+            >
               {languageSwitchLabel}
             </a>
           </li>
@@ -170,40 +182,64 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
               aria-label={themeToggleLabel}
               title={themeToggleLabel}
             >
-              <svg class="theme-icon theme-icon--light" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <circle cx="12" cy="12" r="5"/>
-                <line x1="12" y1="1" x2="12" y2="3"/>
-                <line x1="12" y1="21" x2="12" y2="23"/>
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
-                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-                <line x1="1" y1="12" x2="3" y2="12"/>
-                <line x1="21" y1="12" x2="23" y2="12"/>
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
-                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+              <svg
+                class="theme-icon theme-icon--light"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
               </svg>
-              <svg class="theme-icon theme-icon--dark" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+              <svg
+                class="theme-icon theme-icon--dark"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
               </svg>
             </button>
           </li>
         </ul>
       </nav>
     </header>
-    
+
     <!-- Main Content -->
     <main id="main" class="main-content ds-container">
       <slot />
     </main>
-    
+
     <!-- Footer -->
     <footer class="site-footer">
       <div class="footer-container ds-container">
         <div class="footer-content">
           <div class="footer-section">
             <h3>Devisia</h3>
-            <p>Your trusted technology partner for digital innovation and business transformation.</p>
+            <p>
+              Your trusted technology partner for digital innovation and business transformation.
+            </p>
           </div>
-          
+
           <div class="footer-section">
             <h4>Quick Links</h4>
             <ul class="footer-links">
@@ -215,17 +251,25 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
               <li><a href={href('/contact')}>Contact</a></li>
             </ul>
           </div>
-          
+
           <div class="footer-section">
             <h4>Connect</h4>
             <ul class="footer-links">
               <li><a href="mailto:info@devisia.pro">info@devisia.pro</a></li>
-              <li><a href="https://github.com/stefanochermazts" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-              <li><a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li>
+                <a
+                  href="https://github.com/stefanochermazts"
+                  target="_blank"
+                  rel="noopener noreferrer">GitHub</a>
+              </li>
+              <li>
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer"
+                  >LinkedIn</a>
+              </li>
             </ul>
           </div>
         </div>
-        
+
         <div class="footer-bottom">
           <p>&copy; {new Date().getFullYear()} Devisia. All rights reserved.</p>
         </div>
@@ -252,7 +296,11 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
           const current = get();
           const next = current === 'dark' ? 'light' : 'dark';
           set(next);
-          try { localStorage.setItem(key, next); } catch {}
+          try {
+            localStorage.setItem(key, next);
+          } catch {
+            /* noop */
+          }
         });
       })();
     </script>
