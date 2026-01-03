@@ -25,6 +25,38 @@
     color: var(--ds-color-primary);
     text-decoration: none;
     font-size: var(--ds-text-lg);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ds-space-2);
+  }
+
+  .logo-img {
+    height: 1.75rem;
+    width: auto;
+    display: block;
+  }
+
+  /* Light by default */
+  .logo-img--dark {
+    display: none;
+  }
+
+  /* Explicit dark theme */
+  :root[data-theme="dark"] .logo-img--light {
+    display: none;
+  }
+  :root[data-theme="dark"] .logo-img--dark {
+    display: block;
+  }
+
+  /* Progressive enhancement: if user prefers dark AND no explicit theme is set */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .logo-img--light {
+      display: none;
+    }
+    :root:not([data-theme]) .logo-img--dark {
+      display: block;
+    }
   }
 
   .nav-menu {
