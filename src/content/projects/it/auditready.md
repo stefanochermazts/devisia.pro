@@ -1,45 +1,46 @@
 ---
 title: AuditReady
 slug: auditready
-description: Uno spazio sicuro e condiviso per organizzare documenti,
-  informazioni e accessi importanti per la famiglia.
+description: Uno spazio operativo leggero per raccogliere, organizzare e
+  dimostrare le evidenze richieste durante audit DORA e NIS2.
 featured: true
 order: 2
 status: beta
-websiteUrl: https://www.mysafenest.app
+websiteUrl: https://example.com
 coverImage: /uploads/projects/auditready-cover.jpg
 logo: /uploads/projects/auditready-logo.png
 tags:
-  - budgeting
-  - family
-  - security
-  - documents
-  - digital-life
-  - privacy
+  - audit
+  - compliance
+  - dora
+  - nis2
+  - cybersecurity
+  - governance
+  - evidence
 ---
 ## **Overview**
 
-mysafenest nasce per risolvere un problema molto concreto:
+AuditReady nasce per risolvere uno dei problemi più comuni durante audit regolamentati:
 
-le informazioni importanti della vita familiare sono sparse, difficili da trovare e spesso accessibili a una sola persona.
+le evidenze esistono, ma sono distribuite, versionate male e difficili da dimostrare nel momento giusto.
 
-Documenti, contatti, credenziali, note critiche e istruzioni finiscono per vivere tra email, cartelle locali e app diverse.
+Il progetto fornisce uno spazio operativo strutturato per raccogliere, versionare e collegare evidenze ai controlli DORA e NIS2, mantenendo tracciabilità e ordine senza introdurre piattaforme complesse o promesse di conformità automatica.
 
-mysafenest offre uno spazio unico, sicuro e condiviso per raccoglierle e mantenerle aggiornate.
+AuditReady **non certifica la compliance**: aiuta a dimostrare ciò che è stato realmente implementato.
 
 ## **Highlights**
 
-* Archivio strutturato per documenti e informazioni familiari
-  Accessi e ruoli pensati per nuclei familiari, non per aziende
-  Condivisione controllata e tracciabile
-  Interfaccia semplice, senza complessità inutili
-  Pensato per l’uso quotidiano, non solo per le emergenze
+* Raccolta evidenze organizzata per controllo e framework
+* Stato dei controlli (Missing / In review / Completed)
+* Assegnazione delle responsabilità (ownership)
+* Pacchetti audit esportabili (ZIP/PDF con indice e change log)
+* Supporto a richieste di evidenze a terze parti
 
+## Notes
+AuditReady è attualmente in beta e focalizzato su:
 
-## **Notes**
+* velocità di utilizzo
+* chiarezza dei flussi
+* ripetibilità del processo di audit
 
-mysafenest è progettato con un approccio *calm tech*:
-
-la sicurezza è fondamentale, ma non deve mai diventare un ostacolo all’uso.
-
-Il prodotto evolve ascoltando casi reali e bisogni concreti delle famiglie.
+Il perimetro funzionale è volutamente limitato per garantire affidabilità, sicurezza e adozione in contesti regolamentati.

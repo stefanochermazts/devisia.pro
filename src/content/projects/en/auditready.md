@@ -1,35 +1,62 @@
 ---
 title: AuditReady
 slug: auditready
-description: A secure shared space to organize important documents, information,
-  and access for families.
+description: A lightweight operational workspace to collect, organize, and
+  demonstrate audit evidence for DORA and NIS2.
 featured: true
 order: 2
 status: beta
-websiteUrl: https://www.mysafenest.app
+websiteUrl: https://example.com
 coverImage: /uploads/projects/auditready-cover.jpg
 logo: /uploads/projects/auditready-logo.png
 ogImage: null
 tags:
-  - budgeting
-  - family
-  - security
-  - documents
-  - digital-life
-  - privacy
+  - audit
+  - compliance
+  - dora
+  - nis2
+  - cybersecurity
+  - governance
+  - evidence
 ---
-
 ## Overview
 
-AuditReady is built to reduce the chaos of audit season. It provides a structured place to collect evidence, track controls, and keep policy documents current — without forcing teams into heavyweight tools.
+AuditReady addresses one of the most common problems in regulated audits:
+
+evidence exists, but it is scattered, poorly versioned, and hard to demonstrate when it matters.
+
+The project provides a structured operational workspace to collect, version, and link evidence to DORA and NIS2 controls, ensuring traceability without introducing heavy platforms or unrealistic compliance claims.
+
+AuditReady **does not certify compliance**.
+
+It helps teams demonstrate what has actually been implemented.
 
 ## Highlights
 
-- Evidence requests organized by control and owner
-- Checklists with due dates and reminders
-- Exportable audit packs (PDF/ZIP)
+* Control-based evidence collection
+
+  * Immutable document versioning
+
+
+  * Control status tracking (Missing / In review / Completed)
+
+
+  * Ownership and responsibility mapping
+
+
+  * Exportable audit packs (ZIP/PDF with index and changelog)
+
+
+  * Third-party evidence request support
+
+
 
 ## Notes
 
-Currently in beta: focused on speed, clarity, and repeatable workflows across audits.
+AuditReady is currently in beta and focuses on:
 
+* speed of use
+* workflow clarity
+* repeatable audit processes
+
+The functional scope is intentionally limited to ensure reliability, security, and adoption in regulated environments.
