@@ -1,6 +1,10 @@
 backend:
-  name: git-gateway
+  name: github
+  repo: stefanochermazts/devisia.pro
   branch: main
+  # Use Netlify’s OAuth service for GitHub authentication
+  base_url: https://api.netlify.com
+  auth_endpoint: auth
 
 # Local backend for development (optional)
 # local_backend: true

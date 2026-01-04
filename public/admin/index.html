@@ -5,39 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>Devisia CMS</title>
-
-    <!-- Netlify Identity Widget (required for invite_token / password setup) -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
     <!-- CMS app
-      NOTE: Sveltia CMS currently does NOT support the Netlify "git-gateway" backend.
-      This site uses Netlify Identity + Git Gateway, so we use Decap CMS here.
+      Using Sveltia CMS with the GitHub backend (OAuth via Netlify).
       Pin a specific version to avoid unexpected regressions from the CDN.
     -->
-    <script src="https://unpkg.com/decap-cms@3.9.0/dist/decap-cms.js"></script>
-
-    <script>
-      // If the user comes from an invite link, Netlify puts the token in the hash:
-      // /#invite_token=...  (or /#recovery_token=...)
-      // The Identity widget must be present on the page that receives the hash
-      // to show the password setup UI.
-      if (window.netlifyIdentity) {
-        // Ensure Identity initializes so Git Gateway requests can be authenticated.
-        window.netlifyIdentity.init();
-
-        window.netlifyIdentity.on('init', () => {
-          const hash = window.location.hash || '';
-          if (hash.includes('invite_token=') || hash.includes('recovery_token=')) {
-            window.netlifyIdentity.open();
-          }
-        });
-
-        // Common Netlify CMS pattern: after login, redirect to /admin/ so the app reloads with a fresh token.
-        window.netlifyIdentity.on('login', () => {
-          document.location.href = '/admin/';
-        });
-      }
-    </script>
+    <script src="https://unpkg.com/@sveltia/cms@0.127.0/dist/sveltia-cms.js"></script>
   </body>
 </html>
