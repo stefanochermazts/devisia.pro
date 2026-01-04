@@ -58,7 +58,14 @@ collections:
           - { label: "Description", name: "description", widget: "text" }
       - { label: "How We Work - Title", name: "homeHowWeWorkTitle", widget: "string", required: false, i18n: true }
       - { label: "How We Work - Description", name: "homeHowWeWorkDescription", widget: "text", required: false, i18n: true }
-      - { label: "How We Work - Items", name: "homeHowWeWorkItems", widget: "list", required: false, i18n: true }
+      - label: "How We Work - Items"
+        name: "homeHowWeWorkItems"
+        widget: "list"
+        required: false
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
       - { label: "Projects - Title", name: "homeProjectsTitle", widget: "string", required: false, i18n: true }
       - { label: "Projects - Description", name: "homeProjectsDescription", widget: "text", required: false, i18n: true }
       - { label: "Projects - Image", name: "homeProjectsImage", widget: "image", required: false, i18n: duplicate }
