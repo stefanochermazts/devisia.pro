@@ -1,8 +1,7 @@
 ---
 title: MySafeNest
 slug: mysafenest
-description: mysafenest is a family budgeting software that helps plan expenses,
-  understand cash flow, and make better financial decisions over time.
+description: mysafenest is a family budgeting software that helps plan expenses, understand cash flow, and make better financial decisions over time.
 featured: true
 order: 1
 status: beta
@@ -82,7 +81,7 @@ mysafenest is not built for people who enjoy playing with financial tools.
 
 The guiding principle is simple:
 
-> *if a tool is complicated, you will stop using it.*
+> _if a tool is complicated, you will stop using it._
 
 ------
 

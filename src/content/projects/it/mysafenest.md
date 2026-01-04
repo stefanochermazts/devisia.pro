@@ -1,9 +1,7 @@
 ---
 title: MySafeNest
 slug: mysafenest
-description: mysafenest è un software di budget familiare che aiuta a
-  pianificare le spese, capire dove vanno i soldi e prendere decisioni
-  consapevoli nel tempo.
+description: mysafenest è un software di budget familiare che aiuta a pianificare le spese, capire dove vanno i soldi e prendere decisioni consapevoli nel tempo.
 featured: true
 order: 1
 status: beta
@@ -53,7 +51,7 @@ meno ansia a fine mese  meno discussioni inutili  più controllo, senza ossessio
 
 È un prodotto che segue un principio semplice:
 
-> *se uno strumento è complicato, smetterai di usarlo.*
+> _se uno strumento è complicato, smetterai di usarlo._
 
 ### Perché Devisia ha costruito mysafenest
 
