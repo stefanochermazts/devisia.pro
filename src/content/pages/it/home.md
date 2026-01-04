@@ -16,6 +16,17 @@ homeWhatWeDoCards:
   - tag: Delivery end-to-end
     title: Delivery end-to-end
     description: Discovery, architettura, implementazione e manutenzione. Consegniamo in modo iterativo mantenendo il controllo in ogni fase.
+homeAICapabilitiesTitle: Applied AI, not abstractions
+homeAICapabilitiesDescription: Integriamo capacità AI in prodotti reali con controllo, affidabilità e manutenibilità. Lavoriamo con API, modelli e strumenti esistenti per costruire soluzioni concrete.
+homeAICapabilitiesItems:
+  - title: AI API integration
+    description: LLMs, embeddings, vision, speech. Integrazione diretta con provider e modelli open-source.
+  - title: Prompting & orchestration
+    description: Prompt strutturati, routing, chain. Pattern riutilizzabili e testabili per flussi complessi.
+  - title: Agent workflows
+    description: Tool calling, guardrails, human-in-the-loop. Sistemi che combinano automazione e controllo.
+  - title: Reliability & cost control
+    description: Osservabilità, fallback, caching, rate limits. Monitoraggio e ottimizzazione dei costi operativi.
 homeHowWeWorkTitle: Come lavoriamo
 homeHowWeWorkDescription: Metodo, pragmatismo, responsabilità. Riduciamo il rischio attraverso processi chiari, rilasci incrementali e decisioni tecniche allineate agli obiettivi di business.
 homeHowWeWorkItems:

@@ -16,6 +16,11 @@ const howWeWorkItemSchema = z.object({
   description: z.string(),
 });
 
+const aiCapabilityItemSchema = z.object({
+  title: z.string(),
+  description: z.string(),
+});
+
 // Schema for static pages (home, about, services, contact)
 // NOTE: slug is optional and used by Decap CMS for filename generation.
 // Astro ignores it and uses the filename to determine the entry ID.
@@ -37,6 +42,11 @@ const pageSchema = z.object({
     .union([z.array(z.string()), z.array(howWeWorkItemSchema)])
     .optional()
     .nullable(),
+  homeAICapabilitiesTitle: optionalString,
+  homeAICapabilitiesDescription: optionalString,
+  homeAICapabilitiesItems: z.array(aiCapabilityItemSchema).optional().nullable(),
+  homeAICapabilitiesCtaLabel: optionalString,
+  homeAICapabilitiesCtaHref: optionalString,
   homeProjectsTitle: optionalString,
   homeProjectsDescription: optionalString,
   homeProjectsImage: optionalString,

@@ -4,6 +4,7 @@ import { getEntry, render } from 'astro:content';
 import { type CollectionEntry } from 'astro:content';
 import HomeHero from '../components/HomeHero.astro';
 import HomeWhatWeDo from '../components/HomeWhatWeDo.astro';
+import HomeAICapabilities from '../components/HomeAICapabilities.astro';
 import HomeHowWeWork from '../components/HomeHowWeWork.astro';
 import HomeProjectsTeaser from '../components/HomeProjectsTeaser.astro';
 import HomeContactCTA from '../components/HomeContactCTA.astro';
@@ -41,6 +42,15 @@ const breadcrumbs = breadcrumbListJsonLd({
       title={data.homeWhatWeDoTitle}
       description={data.homeWhatWeDoDescription}
       cards={data.homeWhatWeDoCards ?? undefined}
+    />
+
+    <HomeAICapabilities
+      lang="it"
+      title={data.homeAICapabilitiesTitle}
+      description={data.homeAICapabilitiesDescription}
+      items={data.homeAICapabilitiesItems ?? undefined}
+      ctaLabel={data.homeAICapabilitiesCtaLabel ?? undefined}
+      ctaHref={data.homeAICapabilitiesCtaHref ?? undefined}
     />
 
     <HomeHowWeWork
