@@ -2,6 +2,7 @@ backend:
   name: github
   repo: stefanochermazts/devisia.pro
   branch: main
+  site_id: 6fbb16f9-4f83-4715-9235-f8cf5868e45a
   # Use Netlify’s OAuth service for GitHub authentication
   base_url: https://api.netlify.com
   auth_endpoint: auth
