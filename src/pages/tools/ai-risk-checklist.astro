@@ -92,51 +92,61 @@ const safeguards = [
   {
     id: 'data-minimization',
     label: 'Minimizzazione e redazione dei dati (PII)',
+    description: 'Rimuovi o maschera informazioni personali identificabili (PII) prima dell\'invio ai modelli AI. Applica tecniche di redazione automatica per nomi, email, numeri di telefono e altri dati sensibili, riducendo il rischio di esposizione non autorizzata.',
     triggers: ['dataSensitivity:1', 'dataSensitivity:2', 'userInput:1', 'userInput:2'],
   },
   {
     id: 'retention-policy',
     label: 'Politica di conservazione rigorosa',
+    description: 'Definisci tempi massimi di conservazione per dati e log, con eliminazione automatica al termine del periodo. Limita la conservazione solo ai dati strettamente necessari per il funzionamento del sistema, riducendo la superficie di attacco nel tempo.',
     triggers: ['retention:1', 'retention:2', 'dataSensitivity:2'],
   },
   {
     id: 'rbac',
     label: 'Controllo accessi basato su ruoli (RBAC)',
+    description: 'Implementa un sistema di permessi granulare che limita l\'accesso alle funzionalità AI in base al ruolo dell\'utente. Assicura che solo personale autorizzato possa accedere a dati sensibili o configurare parametri critici del sistema.',
     triggers: ['accessControl:1', 'accessControl:2', 'dataSensitivity:1', 'dataSensitivity:2'],
   },
   {
     id: 'audit-logging',
     label: 'Audit logging (a livello di evento)',
+    description: 'Registra tutti gli eventi significativi del sistema AI: chiamate API, accessi ai dati, modifiche di configurazione, errori. Mantieni log immutabili e ricercabili per analisi forensi e compliance con normative come GDPR o SOC 2.',
     triggers: ['loggingNeeds:2', 'outputImpact:2', 'accessControl:2'],
   },
   {
     id: 'prompt-filtering',
     label: 'Filtraggio prompt/output e controlli policy',
+    description: 'Valida input e output del modello AI per bloccare contenuti inappropriati, prompt injection, o risposte che violano policy aziendali. Implementa filtri basati su regex, liste nere, o modelli di classificazione per garantire conformità.',
     triggers: ['userInput:1', 'userInput:2', 'outputImpact:1', 'outputImpact:2'],
   },
   {
     id: 'human-review',
     label: 'Revisione human-in-the-loop per output ad alto impatto',
+    description: 'Richiedi approvazione umana prima di eseguire azioni critiche generate dall\'AI (scrittura di dati, invio email, modifiche a configurazioni). Implementa workflow di approvazione con notifiche e interfacce di revisione per decisioni ad alto rischio.',
     triggers: ['outputImpact:2', 'humanOversight:1', 'humanOversight:2'],
   },
   {
     id: 'fallback',
     label: 'Strategia di fallback (modalità degradata)',
+    description: 'Definisci comportamenti alternativi quando l\'AI non è disponibile o restituisce errori. Implementa modalità degradate che permettono al sistema di continuare a funzionare con funzionalità ridotte, evitando interruzioni complete del servizio.',
     triggers: ['outputImpact:1', 'outputImpact:2', 'modelUsage:1', 'modelUsage:2'],
   },
   {
     id: 'observability',
     label: 'Osservabilità (latenza, errori, costi, rate limits)',
+    description: 'Monitora metriche chiave del sistema AI: tempi di risposta, tasso di errore, costi per chiamata, utilizzo di rate limits. Configura alerting per anomalie e dashboard per visualizzare trend, permettendo ottimizzazione proattiva e identificazione precoce di problemi.',
     triggers: ['modelUsage:1', 'modelUsage:2', 'outputImpact:1', 'outputImpact:2'],
   },
   {
     id: 'vendor-governance',
     label: 'Governance vendor/modello (versioning, tracciamento modifiche)',
+    description: 'Mantieni traccia delle versioni dei modelli AI utilizzati e delle modifiche alle API dei vendor. Documenta cambiamenti, test di regressione, e impatti su performance. Implementa strategie di versioning che permettono rollback in caso di problemi.',
     triggers: ['modelUsage:1', 'modelUsage:2', 'dataSensitivity:1', 'dataSensitivity:2'],
   },
   {
     id: 'tool-allowlist',
     label: 'Allow-list per tool calling',
+    description: 'Limita gli strumenti che gli agenti AI possono utilizzare a una lista esplicita e approvata. Blocca chiamate a tool non autorizzati, prevenendo esecuzione di codice arbitrario o accesso non autorizzato a risorse di sistema. Valida ogni chiamata tool prima dell\'esecuzione.',
     triggers: ['modelUsage:2'],
   },
 ];
@@ -200,14 +210,12 @@ const safeguards = [
         </div>
       </Card>
 
-      <Card>
-        <div class="ds-card__body ds-stack" data-gap="md">
-          <h3 style="margin: 0; font-size: var(--ds-text-lg); font-weight: 600">Misure di sicurezza consigliate</h3>
-          <ul id="safeguards-list" class="ds-stack" data-gap="sm" style="margin: 0; padding-left: 1.5rem">
-            <!-- Populated by JS -->
-          </ul>
+      <div class="ds-stack" data-gap="md">
+        <h3 style="margin: 0; font-size: var(--ds-text-lg); font-weight: 600">Misure di sicurezza consigliate</h3>
+        <div id="safeguards-list" class="ds-stack" data-gap="md">
+          <!-- Populated by JS -->
         </div>
-      </Card>
+      </div>
     </div>
 
     <footer class="ds-stack" data-gap="xs" style="margin-top: var(--ds-space-8); padding-top: var(--ds-space-6); border-top: var(--ds-border-1) solid var(--ds-color-border)">
@@ -242,51 +250,61 @@ const safeguards = [
       {
         id: 'data-minimization',
         label: 'Minimizzazione e redazione dei dati (PII)',
+        description: 'Rimuovi o maschera informazioni personali identificabili (PII) prima dell\'invio ai modelli AI. Applica tecniche di redazione automatica per nomi, email, numeri di telefono e altri dati sensibili, riducendo il rischio di esposizione non autorizzata.',
         triggers: ['dataSensitivity:1', 'dataSensitivity:2', 'userInput:1', 'userInput:2'],
       },
       {
         id: 'retention-policy',
         label: 'Politica di conservazione rigorosa',
+        description: 'Definisci tempi massimi di conservazione per dati e log, con eliminazione automatica al termine del periodo. Limita la conservazione solo ai dati strettamente necessari per il funzionamento del sistema, riducendo la superficie di attacco nel tempo.',
         triggers: ['retention:1', 'retention:2', 'dataSensitivity:2'],
       },
       {
         id: 'rbac',
         label: 'Controllo accessi basato su ruoli (RBAC)',
+        description: 'Implementa un sistema di permessi granulare che limita l\'accesso alle funzionalità AI in base al ruolo dell\'utente. Assicura che solo personale autorizzato possa accedere a dati sensibili o configurare parametri critici del sistema.',
         triggers: ['accessControl:1', 'accessControl:2', 'dataSensitivity:1', 'dataSensitivity:2'],
       },
       {
         id: 'audit-logging',
         label: 'Audit logging (a livello di evento)',
+        description: 'Registra tutti gli eventi significativi del sistema AI: chiamate API, accessi ai dati, modifiche di configurazione, errori. Mantieni log immutabili e ricercabili per analisi forensi e compliance con normative come GDPR o SOC 2.',
         triggers: ['loggingNeeds:2', 'outputImpact:2', 'accessControl:2'],
       },
       {
         id: 'prompt-filtering',
         label: 'Filtraggio prompt/output e controlli policy',
+        description: 'Valida input e output del modello AI per bloccare contenuti inappropriati, prompt injection, o risposte che violano policy aziendali. Implementa filtri basati su regex, liste nere, o modelli di classificazione per garantire conformità.',
         triggers: ['userInput:1', 'userInput:2', 'outputImpact:1', 'outputImpact:2'],
       },
       {
         id: 'human-review',
         label: 'Revisione human-in-the-loop per output ad alto impatto',
+        description: 'Richiedi approvazione umana prima di eseguire azioni critiche generate dall\'AI (scrittura di dati, invio email, modifiche a configurazioni). Implementa workflow di approvazione con notifiche e interfacce di revisione per decisioni ad alto rischio.',
         triggers: ['outputImpact:2', 'humanOversight:1', 'humanOversight:2'],
       },
       {
         id: 'fallback',
         label: 'Strategia di fallback (modalità degradata)',
+        description: 'Definisci comportamenti alternativi quando l\'AI non è disponibile o restituisce errori. Implementa modalità degradate che permettono al sistema di continuare a funzionare con funzionalità ridotte, evitando interruzioni complete del servizio.',
         triggers: ['outputImpact:1', 'outputImpact:2', 'modelUsage:1', 'modelUsage:2'],
       },
       {
         id: 'observability',
         label: 'Osservabilità (latenza, errori, costi, rate limits)',
+        description: 'Monitora metriche chiave del sistema AI: tempi di risposta, tasso di errore, costi per chiamata, utilizzo di rate limits. Configura alerting per anomalie e dashboard per visualizzare trend, permettendo ottimizzazione proattiva e identificazione precoce di problemi.',
         triggers: ['modelUsage:1', 'modelUsage:2', 'outputImpact:1', 'outputImpact:2'],
       },
       {
         id: 'vendor-governance',
         label: 'Governance vendor/modello (versioning, tracciamento modifiche)',
+        description: 'Mantieni traccia delle versioni dei modelli AI utilizzati e delle modifiche alle API dei vendor. Documenta cambiamenti, test di regressione, e impatti su performance. Implementa strategie di versioning che permettono rollback in caso di problemi.',
         triggers: ['modelUsage:1', 'modelUsage:2', 'dataSensitivity:1', 'dataSensitivity:2'],
       },
       {
         id: 'tool-allowlist',
         label: 'Allow-list per tool calling',
+        description: 'Limita gli strumenti che gli agenti AI possono utilizzare a una lista esplicita e approvata. Blocca chiamate a tool non autorizzati, prevenendo esecuzione di codice arbitrario o accesso non autorizzato a risorse di sistema. Valida ogni chiamata tool prima dell\'esecuzione.',
         triggers: ['modelUsage:2'],
       },
     ];
@@ -386,7 +404,16 @@ const safeguards = [
       riskBadge.setAttribute('data-tone', tone);
       riskExplanation.textContent = explanation;
       safeguardsList.innerHTML = relevantSafeguards
-        .map((s) => `<li style="margin-bottom: var(--ds-space-2)">${s.label}</li>`)
+        .map(
+          (s) => `
+        <div class="ds-card">
+          <div class="ds-card__body ds-stack" data-gap="sm">
+            <h4 style="margin: 0; font-weight: 600; font-size: var(--ds-text-md)">${s.label}</h4>
+            <p style="margin: 0; font-size: var(--ds-text-sm); color: var(--ds-color-text-muted); line-height: var(--ds-leading-relaxed)">${s.description}</p>
+          </div>
+        </div>
+      `
+        )
         .join('');
 
       // Show results
