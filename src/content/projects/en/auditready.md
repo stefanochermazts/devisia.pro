@@ -7,8 +7,8 @@ featured: true
 order: 2
 status: beta
 websiteUrl: https://example.com
-coverImage: /uploads/projects/auditready-cover.jpg
-logo: /uploads/projects/auditready-logo.png
+coverImage: /uploads/auditready.png
+logo: /uploads/logo-auditready.png
 ogImage: null
 tags:
   - audit
