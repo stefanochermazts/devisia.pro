@@ -30,23 +30,8 @@ AuditReady **non certifica la compliance**: aiuta a dimostrare ciò che è stato
 
 ## **Highlights**
 
-
-
-
 * Raccolta evidenze organizzata per controllo e framework
-
 * Stato dei controlli (Missing / In review / Completed)
-
 * Assegnazione delle responsabilità (ownership)
-
 * Pacchetti audit esportabili (ZIP/PDF con indice e change log)
-
 * Supporto a richieste di evidenze a terze parti
-
-## **Notes**
-
-mysafenest è progettato con un approccio *calm tech*:
-
-la sicurezza è fondamentale, ma non deve mai diventare un ostacolo all’uso.
-
-Il prodotto evolve ascoltando casi reali e bisogni concreti delle famiglie.
