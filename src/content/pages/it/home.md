@@ -27,6 +27,8 @@ homeAICapabilitiesItems:
     description: Tool calling, guardrails, human-in-the-loop. Sistemi che combinano automazione e controllo.
   - title: Reliability & cost control
     description: Osservabilità, fallback, caching, rate limits. Monitoraggio e ottimizzazione dei costi operativi.
+homeAIChecklistTitle: AI Risk & Privacy Checklist
+homeAIChecklistDescription: Valuta il livello di rischio e le misure di sicurezza consigliate per il tuo software abilitato all'AI. Tool pratico e gratuito, senza upload né storage.
 homeHowWeWorkTitle: Come lavoriamo
 homeHowWeWorkDescription: Metodo, pragmatismo, responsabilità. Riduciamo il rischio attraverso processi chiari, rilasci incrementali e decisioni tecniche allineate agli obiettivi di business.
 homeHowWeWorkItems:

@@ -27,6 +27,8 @@ homeAICapabilitiesItems:
     description: Tool calling, guardrails, human-in-the-loop. Systems that combine automation and control.
   - title: Reliability & cost control
     description: Observability, fallbacks, caching, rate limits. Monitoring and optimization of operational costs.
+homeAIChecklistTitle: AI Risk & Privacy Checklist
+homeAIChecklistDescription: Assess risk level and recommended safeguards for your AI-enabled software. A practical, free tool with no uploads or storage.
 homeHowWeWorkTitle: How we work
 homeHowWeWorkDescription: Method, pragmatism, responsibility. We reduce risk through clear processes, incremental releases, and technical decisions aligned with business goals.
 homeHowWeWorkItems:

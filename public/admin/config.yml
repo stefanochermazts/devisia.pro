@@ -60,6 +60,8 @@ collections:
           - { label: "Description", name: "description", widget: "text" }
       - { label: "AI Capabilities - CTA Label", name: "homeAICapabilitiesCtaLabel", widget: "string", required: false }
       - { label: "AI Capabilities - CTA Link", name: "homeAICapabilitiesCtaHref", widget: "string", required: false }
+      - { label: "AI Checklist CTA - Title", name: "homeAIChecklistTitle", widget: "string", required: false }
+      - { label: "AI Checklist CTA - Description", name: "homeAIChecklistDescription", widget: "text", required: false }
       - { label: "How We Work - Title", name: "homeHowWeWorkTitle", widget: "string", required: false }
       - { label: "How We Work - Description", name: "homeHowWeWorkDescription", widget: "text", required: false }
       - label: "How We Work - Items"
@@ -110,6 +112,8 @@ collections:
           - { label: "Description", name: "description", widget: "text" }
       - { label: "AI Capabilities - CTA Label", name: "homeAICapabilitiesCtaLabel", widget: "string", required: false }
       - { label: "AI Capabilities - CTA Link", name: "homeAICapabilitiesCtaHref", widget: "string", required: false }
+      - { label: "AI Checklist CTA - Title", name: "homeAIChecklistTitle", widget: "string", required: false }
+      - { label: "AI Checklist CTA - Description", name: "homeAIChecklistDescription", widget: "text", required: false }
       - { label: "How We Work - Title", name: "homeHowWeWorkTitle", widget: "string", required: false }
       - { label: "How We Work - Description", name: "homeHowWeWorkDescription", widget: "text", required: false }
       - label: "How We Work - Items"

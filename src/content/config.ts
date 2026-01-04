@@ -47,6 +47,8 @@ const pageSchema = z.object({
   homeAICapabilitiesItems: z.array(aiCapabilityItemSchema).optional().nullable(),
   homeAICapabilitiesCtaLabel: optionalString,
   homeAICapabilitiesCtaHref: optionalString,
+  homeAIChecklistTitle: optionalString,
+  homeAIChecklistDescription: optionalString,
   homeProjectsTitle: optionalString,
   homeProjectsDescription: optionalString,
   homeProjectsImage: optionalString,
