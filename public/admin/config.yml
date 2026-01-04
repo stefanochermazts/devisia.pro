@@ -7,6 +7,9 @@ backend:
   base_url: https://api.netlify.com
   auth_endpoint: auth
 
+# Netlify OAuth needs the Site ID (UUID). Some CMS clients read it from the root level.
+site_id: 6fbb16f9-4f83-4715-9235-f8cf5868e45a
+
 # Local backend for development (optional)
 # local_backend: true
 
