@@ -1,14 +1,22 @@
 ---
-title: "AuditReady"
-slug: "auditready"
-description: "A lightweight compliance workspace that centralizes evidence, policies, and automated checklists to get teams audit-ready faster."
-coverImage: "/uploads/projects/auditready-cover.jpg"
-logo: "/uploads/projects/auditready-logo.png"
-websiteUrl: "https://example.com/auditready"
-tags: ["compliance", "security", "saas", "governance"]
-status: "beta"
-featured: false
+title: AuditReady
+slug: auditready
+description: A secure shared space to organize important documents, information,
+  and access for families.
+featured: true
 order: 2
+status: beta
+websiteUrl: https://www.mysafenest.app
+coverImage: /uploads/projects/auditready-cover.jpg
+logo: /uploads/projects/auditready-logo.png
+ogImage: null
+tags:
+  - budgeting
+  - family
+  - security
+  - documents
+  - digital-life
+  - privacy
 ---
 
 ## Overview
