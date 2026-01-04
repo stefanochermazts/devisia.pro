@@ -1,8 +1,8 @@
 ---
 title: MySafeNest
 slug: mysafenest
-description: A privacy-first home safety hub that keeps families informed with
-  smart alerts, shared check-ins, and secure data by default.
+description: mysafenest is a family budgeting software that helps plan expenses,
+  understand cash flow, and make better financial decisions over time.
 featured: true
 order: 1
 status: beta

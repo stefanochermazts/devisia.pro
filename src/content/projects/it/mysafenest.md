@@ -1,8 +1,9 @@
 ---
 title: MySafeNest
 slug: mysafenest
-description: Uno spazio sicuro e condiviso per organizzare documenti,
-  informazioni e accessi importanti per la famiglia.
+description: mysafenest è un software di budget familiare che aiuta a
+  pianificare le spese, capire dove vanno i soldi e prendere decisioni
+  consapevoli nel tempo.
 featured: true
 order: 1
 status: beta
