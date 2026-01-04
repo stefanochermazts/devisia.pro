@@ -11,19 +11,11 @@
   </head>
   <body>
     <!-- CMS app
-      We prefer Sveltia CMS (drop-in compatible with Decap config) for a more stable editor experience.
-      Fallback to Decap CMS if Sveltia fails to load.
+      NOTE: Sveltia CMS currently does NOT support the Netlify "git-gateway" backend.
+      This site uses Netlify Identity + Git Gateway, so we use Decap CMS here.
+      Pin a specific version to avoid unexpected regressions from the CDN.
     -->
-    <script>
-      function loadDecapFallback() {
-        if (window.CMS) return;
-        const s = document.createElement('script');
-        // Pin a known version instead of a caret range to avoid surprise regressions.
-        s.src = 'https://unpkg.com/decap-cms@3.9.0/dist/decap-cms.js';
-        document.body.appendChild(s);
-      }
-    </script>
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" onerror="loadDecapFallback()"></script>
+    <script src="https://unpkg.com/decap-cms@3.9.0/dist/decap-cms.js"></script>
 
     <script>
       // If the user comes from an invite link, Netlify puts the token in the hash:
