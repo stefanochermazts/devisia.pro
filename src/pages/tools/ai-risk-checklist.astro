@@ -1,0 +1,397 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/ui/Button.astro';
+import Radio from '../../components/ui/Radio.astro';
+import Card from '../../components/ui/Card.astro';
+import Badge from '../../components/ui/Badge.astro';
+
+const questions = [
+  {
+    id: 'data-sensitivity',
+    name: 'dataSensitivity',
+    label: 'Data sensitivity',
+    options: [
+      { value: '0', label: 'No personal data' },
+      { value: '1', label: 'Personal data (non-sensitive)' },
+      { value: '2', label: 'Sensitive data (health, finance, minors, etc.)' },
+    ],
+  },
+  {
+    id: 'user-input',
+    name: 'userInput',
+    label: 'User input',
+    options: [
+      { value: '0', label: 'Short prompts only' },
+      { value: '1', label: 'Prompts + documents/text snippets' },
+      { value: '2', label: 'File uploads' },
+    ],
+  },
+  {
+    id: 'output-impact',
+    name: 'outputImpact',
+    label: 'Output impact',
+    options: [
+      { value: '0', label: 'Informational only' },
+      { value: '1', label: 'Assists decisions' },
+      { value: '2', label: 'Automated actions (writes/executes changes)' },
+    ],
+  },
+  {
+    id: 'human-oversight',
+    name: 'humanOversight',
+    label: 'Human oversight',
+    options: [
+      { value: '0', label: 'Always reviewed by humans' },
+      { value: '1', label: 'Sometimes reviewed' },
+      { value: '2', label: 'No review / fully automated' },
+    ],
+  },
+  {
+    id: 'access-control',
+    name: 'accessControl',
+    label: 'Access control',
+    options: [
+      { value: '0', label: 'Single team' },
+      { value: '1', label: 'Multiple roles/tenants' },
+      { value: '2', label: 'External users/customers' },
+    ],
+  },
+  {
+    id: 'logging-needs',
+    name: 'loggingNeeds',
+    label: 'Logging needs',
+    options: [
+      { value: '0', label: 'Minimal logs' },
+      { value: '1', label: 'Standard logs' },
+      { value: '2', label: 'Requires audit trail' },
+    ],
+  },
+  {
+    id: 'model-usage',
+    name: 'modelUsage',
+    label: 'Model usage',
+    options: [
+      { value: '0', label: 'API calls only' },
+      { value: '1', label: 'API + tools/agents' },
+      { value: '2', label: 'Agents executing workflows' },
+    ],
+  },
+  {
+    id: 'retention',
+    name: 'retention',
+    label: 'Retention',
+    options: [
+      { value: '0', label: 'No retention' },
+      { value: '1', label: 'Short retention (<= 30 days)' },
+      { value: '2', label: 'Long retention (> 30 days)' },
+    ],
+  },
+];
+
+const safeguards = [
+  {
+    id: 'data-minimization',
+    label: 'Data minimization & redaction (PII)',
+    triggers: ['dataSensitivity:1', 'dataSensitivity:2', 'userInput:1', 'userInput:2'],
+  },
+  {
+    id: 'retention-policy',
+    label: 'Strict retention policy',
+    triggers: ['retention:1', 'retention:2', 'dataSensitivity:2'],
+  },
+  {
+    id: 'rbac',
+    label: 'Role-based access control (RBAC)',
+    triggers: ['accessControl:1', 'accessControl:2', 'dataSensitivity:1', 'dataSensitivity:2'],
+  },
+  {
+    id: 'audit-logging',
+    label: 'Audit logging (event-level)',
+    triggers: ['loggingNeeds:2', 'outputImpact:2', 'accessControl:2'],
+  },
+  {
+    id: 'prompt-filtering',
+    label: 'Prompt/output filtering & policy checks',
+    triggers: ['userInput:1', 'userInput:2', 'outputImpact:1', 'outputImpact:2'],
+  },
+  {
+    id: 'human-review',
+    label: 'Human-in-the-loop review for high impact outputs',
+    triggers: ['outputImpact:2', 'humanOversight:1', 'humanOversight:2'],
+  },
+  {
+    id: 'fallback',
+    label: 'Fallback strategy (degraded mode)',
+    triggers: ['outputImpact:1', 'outputImpact:2', 'modelUsage:1', 'modelUsage:2'],
+  },
+  {
+    id: 'observability',
+    label: 'Observability (latency, errors, cost, rate limits)',
+    triggers: ['modelUsage:1', 'modelUsage:2', 'outputImpact:1', 'outputImpact:2'],
+  },
+  {
+    id: 'vendor-governance',
+    label: 'Vendor/model governance (versioning, change tracking)',
+    triggers: ['modelUsage:1', 'modelUsage:2', 'dataSensitivity:1', 'dataSensitivity:2'],
+  },
+  {
+    id: 'tool-allowlist',
+    label: 'Tool calling allow-lists',
+    triggers: ['modelUsage:2'],
+  },
+];
+---
+
+<Layout title="AI Risk & Privacy Checklist" description="A practical assessment to estimate risk level and recommended safeguards for AI-enabled software.">
+  <div class="ds-container ds-stack" data-gap="lg" style="container-type: inline-size; margin-top: var(--ds-space-8)">
+    <header class="ds-stack" data-gap="sm">
+      <h1 style="margin: 0">AI Risk & Privacy Checklist</h1>
+      <p class="ds-muted" style="max-width: 65ch">
+        A practical assessment to estimate risk level and recommended safeguards for AI-enabled software.
+      </p>
+      <p class="ds-muted" style="font-size: var(--ds-text-xs); margin: 0">
+        No uploads. No storage. Your answers stay in your browser.
+      </p>
+    </header>
+
+    <form id="checklist-form" class="ds-stack" data-gap="lg">
+      {questions.map((q, idx) => (
+        <Card>
+          <div class="ds-card__body ds-stack" data-gap="sm">
+            <label class="ds-label" for={`${q.id}-0`}>
+              {idx + 1}. {q.label}
+            </label>
+            <div class="ds-stack" data-gap="xs">
+              {q.options.map((opt, optIdx) => (
+                <Radio
+                  id={`${q.id}-${optIdx}`}
+                  name={q.name}
+                  label={opt.label}
+                  value={opt.value}
+                  checked={optIdx === 0}
+                />
+              ))}
+            </div>
+            {q.id === 'user-input' && (
+              <div id="file-upload-warning" class="ds-alert" data-tone="warning" style="display: none; margin-top: var(--ds-space-2)">
+                <p style="margin: 0; font-size: var(--ds-text-sm)">
+                  <strong>Note:</strong> File uploads are not supported in this demo. Consider data minimization and redaction for production implementations.
+                </p>
+              </div>
+            )}
+          </div>
+        </Card>
+      ))}
+
+      <div class="ds-cluster">
+        <Button type="submit" variant="primary">
+          Generate recommendations
+        </Button>
+      </div>
+    </form>
+
+    <div id="results-panel" class="ds-stack" data-gap="lg" style="display: none">
+      <Card>
+        <div class="ds-card__body ds-stack" data-gap="md">
+          <div class="ds-cluster">
+            <Badge id="risk-badge" tone="neutral">Low</Badge>
+          </div>
+          <p id="risk-explanation" class="ds-muted" style="margin: 0"></p>
+        </div>
+      </Card>
+
+      <Card>
+        <div class="ds-card__body ds-stack" data-gap="md">
+          <h3 style="margin: 0; font-size: var(--ds-text-lg); font-weight: 600">Recommended safeguards</h3>
+          <ul id="safeguards-list" class="ds-stack" data-gap="sm" style="margin: 0; padding-left: 1.5rem">
+            <!-- Populated by JS -->
+          </ul>
+        </div>
+      </Card>
+    </div>
+
+    <footer class="ds-stack" data-gap="xs" style="margin-top: var(--ds-space-8); padding-top: var(--ds-space-6); border-top: var(--ds-border-1) solid var(--ds-color-border)">
+      <p class="ds-muted" style="font-size: var(--ds-text-xs); margin: 0">
+        This checklist is a starting point, not legal advice.
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    const form = document.getElementById('checklist-form');
+    const resultsPanel = document.getElementById('results-panel');
+    const riskBadge = document.getElementById('risk-badge');
+    const riskExplanation = document.getElementById('risk-explanation');
+    const safeguardsList = document.getElementById('safeguards-list');
+    const fileUploadWarning = document.getElementById('file-upload-warning');
+
+    // Questions data (mirrored from Astro frontmatter)
+    const questions = [
+      { name: 'dataSensitivity' },
+      { name: 'userInput' },
+      { name: 'outputImpact' },
+      { name: 'humanOversight' },
+      { name: 'accessControl' },
+      { name: 'loggingNeeds' },
+      { name: 'modelUsage' },
+      { name: 'retention' },
+    ];
+
+    // Safeguards data (mirrored from Astro frontmatter)
+    const safeguards = [
+      {
+        id: 'data-minimization',
+        label: 'Data minimization & redaction (PII)',
+        triggers: ['dataSensitivity:1', 'dataSensitivity:2', 'userInput:1', 'userInput:2'],
+      },
+      {
+        id: 'retention-policy',
+        label: 'Strict retention policy',
+        triggers: ['retention:1', 'retention:2', 'dataSensitivity:2'],
+      },
+      {
+        id: 'rbac',
+        label: 'Role-based access control (RBAC)',
+        triggers: ['accessControl:1', 'accessControl:2', 'dataSensitivity:1', 'dataSensitivity:2'],
+      },
+      {
+        id: 'audit-logging',
+        label: 'Audit logging (event-level)',
+        triggers: ['loggingNeeds:2', 'outputImpact:2', 'accessControl:2'],
+      },
+      {
+        id: 'prompt-filtering',
+        label: 'Prompt/output filtering & policy checks',
+        triggers: ['userInput:1', 'userInput:2', 'outputImpact:1', 'outputImpact:2'],
+      },
+      {
+        id: 'human-review',
+        label: 'Human-in-the-loop review for high impact outputs',
+        triggers: ['outputImpact:2', 'humanOversight:1', 'humanOversight:2'],
+      },
+      {
+        id: 'fallback',
+        label: 'Fallback strategy (degraded mode)',
+        triggers: ['outputImpact:1', 'outputImpact:2', 'modelUsage:1', 'modelUsage:2'],
+      },
+      {
+        id: 'observability',
+        label: 'Observability (latency, errors, cost, rate limits)',
+        triggers: ['modelUsage:1', 'modelUsage:2', 'outputImpact:1', 'outputImpact:2'],
+      },
+      {
+        id: 'vendor-governance',
+        label: 'Vendor/model governance (versioning, change tracking)',
+        triggers: ['modelUsage:1', 'modelUsage:2', 'dataSensitivity:1', 'dataSensitivity:2'],
+      },
+      {
+        id: 'tool-allowlist',
+        label: 'Tool calling allow-lists',
+        triggers: ['modelUsage:2'],
+      },
+    ];
+
+    // Show warning for file uploads
+    const userInputRadios = document.querySelectorAll('input[name="userInput"]');
+    userInputRadios.forEach((radio) => {
+      radio.addEventListener('change', () => {
+        if (radio.value === '2') {
+          fileUploadWarning.style.display = 'block';
+        } else {
+          fileUploadWarning.style.display = 'none';
+        }
+      });
+    });
+
+    // Scoring function
+    function calculateScore(formData) {
+      let score = 0;
+      questions.forEach((q) => {
+        const value = formData.get(q.name);
+        if (value !== null) {
+          score += parseInt(value, 10);
+        }
+      });
+      return score;
+    }
+
+    // Determine risk level
+    function getRiskLevel(score) {
+      if (score <= 5) return { level: 'Low', tone: 'neutral' };
+      if (score <= 10) return { level: 'Medium', tone: 'accent' };
+      return { level: 'High', tone: 'accent' };
+    }
+
+    // Get risk explanation
+    function getRiskExplanation(score, riskLevel) {
+      if (riskLevel === 'Low') {
+        return 'Your AI implementation has minimal risk factors. Basic safeguards should be sufficient for most use cases.';
+      }
+      if (riskLevel === 'Medium') {
+        return 'Your AI implementation has moderate risk factors. Implement targeted safeguards based on your specific answers.';
+      }
+      return 'Your AI implementation has significant risk factors. Implement comprehensive safeguards and consider additional governance measures.';
+    }
+
+    // Get relevant safeguards
+    function getRelevantSafeguards(formData, score) {
+      const answers = {};
+      questions.forEach((q) => {
+        answers[q.name] = formData.get(q.name);
+      });
+
+      const answerKey = (name, value) => `${name}:${value}`;
+      const relevant = safeguards.filter((safeguard) => {
+        return safeguard.triggers.some((trigger) => {
+          const [name, value] = trigger.split(':');
+          return answers[name] === value;
+        });
+      });
+
+      // Always include observability for medium+ risk
+      if (score > 5) {
+        const obs = safeguards.find((s) => s.id === 'observability');
+        if (obs && !relevant.find((s) => s.id === 'observability')) {
+          relevant.push(obs);
+        }
+      }
+
+      // Always include data minimization for sensitive data
+      if (answers.dataSensitivity === '1' || answers.dataSensitivity === '2') {
+        const dm = safeguards.find((s) => s.id === 'data-minimization');
+        if (dm && !relevant.find((s) => s.id === 'data-minimization')) {
+          relevant.unshift(dm);
+        }
+      }
+
+      // Sort by priority (data minimization first, then others)
+      return relevant.sort((a, b) => {
+        if (a.id === 'data-minimization') return -1;
+        if (b.id === 'data-minimization') return 1;
+        return 0;
+      });
+    }
+
+    // Handle form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const score = calculateScore(formData);
+      const { level, tone } = getRiskLevel(score);
+      const explanation = getRiskExplanation(score, level);
+      const relevantSafeguards = getRelevantSafeguards(formData, score);
+
+      // Update UI
+      riskBadge.textContent = level;
+      riskBadge.setAttribute('data-tone', tone);
+      riskExplanation.textContent = explanation;
+      safeguardsList.innerHTML = relevantSafeguards
+        .map((s) => `<li style="margin-bottom: var(--ds-space-2)">${s.label}</li>`)
+        .join('');
+
+      // Show results
+      resultsPanel.style.display = 'block';
+      resultsPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  </script>
+</Layout>

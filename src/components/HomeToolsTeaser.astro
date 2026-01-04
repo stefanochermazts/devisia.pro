@@ -1,0 +1,44 @@
+---
+import Button from './ui/Button.astro';
+
+export interface Props {
+  lang?: 'it' | 'en';
+  title?: string | null;
+  description?: string | null;
+}
+
+const { lang = 'it', title, description } = Astro.props;
+
+const localePrefix = lang === 'en' ? '/en' : '';
+const href = (path: string) => (localePrefix ? `${localePrefix}${path}` : path);
+
+// Default content
+const defaults = {
+  it: {
+    title: 'Strumenti',
+    description: 'Esplora i nostri tool pubblici per valutare rischi e best practices nell\'integrazione di AI.',
+  },
+  en: {
+    title: 'Tools',
+    description: 'Explore our public tools for assessing risks and best practices in AI integration.',
+  },
+};
+
+const content = {
+  title: title ?? defaults[lang].title,
+  description: description ?? defaults[lang].description,
+  buttonLabel: lang === 'en' ? 'Try AI Risk Checklist' : 'Prova AI Risk Checklist',
+};
+---
+
+<section class="ds-stack" data-gap="sm" style="container-type: inline-size">
+  <div class="ds-reading">
+    <h3 style="margin: 0; font-size: var(--ds-text-lg); font-weight: 600">{content.title}</h3>
+    <p class="ds-muted" style="margin: 0">{content.description}</p>
+  </div>
+  <div class="ds-cluster" style="margin-top: var(--ds-space-3)">
+    <Button href={href('/tools/ai-risk-checklist')} variant="secondary" size="sm">
+      {content.buttonLabel}
+    </Button>
+  </div>
+</section>

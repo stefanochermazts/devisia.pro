@@ -7,6 +7,7 @@ import HomeWhatWeDo from '../../components/HomeWhatWeDo.astro';
 import HomeAICapabilities from '../../components/HomeAICapabilities.astro';
 import HomeHowWeWork from '../../components/HomeHowWeWork.astro';
 import HomeProjectsTeaser from '../../components/HomeProjectsTeaser.astro';
+import HomeToolsTeaser from '../../components/HomeToolsTeaser.astro';
 import HomeContactCTA from '../../components/HomeContactCTA.astro';
 import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
 
@@ -66,6 +67,8 @@ const breadcrumbs = breadcrumbListJsonLd({
       description={data.homeProjectsDescription}
       image={data.homeProjectsImage ?? undefined}
     />
+
+    <HomeToolsTeaser lang="en" />
 
     <HomeContactCTA
       lang="en"
