@@ -1,15 +1,22 @@
 ---
-title: "MySafeNest"
-slug: "mysafenest"
-description: "A privacy-first home safety hub that keeps families informed with smart alerts, shared check-ins, and secure data by default."
-coverImage: "/uploads/projects/mysafenest-cover.jpg"
-logo: "/uploads/projects/mysafenest-logo.png"
-ogImage: "/uploads/projects/mysafenest-og.jpg"
-websiteUrl: "https://example.com/mysafenest"
-tags: ["security", "iot", "privacy", "mobile"]
-status: "active"
+title: MySafeNest
+slug: mysafenest
+description: A privacy-first home safety hub that keeps families informed with
+  smart alerts, shared check-ins, and secure data by default.
 featured: true
 order: 1
+status: beta
+websiteUrl: https://www.mysafenest.app
+coverImage: /uploads/mysafenest.png
+logo: /uploads/logo-mysafenest.png
+ogImage: /uploads/mysafenest.png
+tags:
+  - budgeting
+  - family
+  - security
+  - documents
+  - digital-life
+  - privacy
 ---
 
 ## Overview
