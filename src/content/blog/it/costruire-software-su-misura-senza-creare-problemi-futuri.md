@@ -3,7 +3,7 @@ title: Costruire software su misura senza creare problemi futuri
 description: 'Il software su misura può diventare un vantaggio competitivo oppure un problema nel tempo. In questo articolo raccontiamo come affrontiamo i progetti custom in Devisia: riducendo la complessità, progettando per il cambiamento e costruendo sistemi sostenibili nel lungo periodo.'
 pubDate: 2026-01-04
 author: Stefano Chermaz
-heroImage: ''
+heroImage: /uploads/Custom software can be a competitive advantage.png
 tags:
   - Custom Software
   - Software Architecture
@@ -11,7 +11,7 @@ tags:
   - Technical Strategy
   - Maintainability
 ---
-Il software su misura viene spesso venduto come *libertà*:
+Il software su misura viene spesso venduto come _libertà_:
  una soluzione pensata esattamente per i tuoi processi, il tuo business, le tue esigenze.
 
 Eppure, molti progetti custom si trasformano nel tempo in un peso.
@@ -136,7 +136,7 @@ Questo significa:
 - codebase leggibili
 - decisioni architetturali esplicite
 - deploy e operatività prevedibili
-- documentazione che spiega il *perché*, non solo il *come*
+- documentazione che spiega il _perché_, non solo il _come_
 
 Un sistema è sano quando il team si sente sicuro nel modificarlo — anche a distanza di mesi.
 

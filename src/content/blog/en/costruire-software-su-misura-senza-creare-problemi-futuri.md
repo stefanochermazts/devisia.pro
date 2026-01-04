@@ -3,7 +3,7 @@ title: Building custom software without building future problems
 description: Custom software can be a competitive advantage or a long-term liability. In this article, we explain how we approach custom projects at Devisia by controlling complexity, designing for change, and building software that remains sustainable over time.
 pubDate: 2026-01-04
 author: Stefano Chermaz
-heroImage: ''
+heroImage: /uploads/Custom software can be a competitive advantage.png
 tags:
   - Custom Software
   - Software Architecture
