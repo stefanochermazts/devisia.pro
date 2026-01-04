@@ -44,9 +44,9 @@ const content = {
       </div>
     </div>
     {image && (
-      <div>
+      <div style="margin-top: var(--ds-space-4)">
         <div class="ds-card">
-          <img src={image} alt="" loading="lazy" decoding="async" />
+          <img src={image} alt="" loading="lazy" decoding="async" style="width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--ds-radius-3)" />
         </div>
       </div>
     )}

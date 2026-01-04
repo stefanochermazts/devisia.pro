@@ -15,10 +15,10 @@ const href = (path: string) => (localePrefix ? `${localePrefix}${path}` : path);
 
 <div class="ds-stack" data-gap="lg" style="container-type: inline-size">
   <!-- Hero -->
-  <section class="ds-grid" data-cols="2" aria-label="Hero">
+  <section class="ds-grid" data-cols="2" aria-label="Hero" style="margin-bottom: var(--ds-space-8)">
     <div class="ds-stack" data-gap="sm">
-      <h1 style="margin: 0">{heroTitle}</h1>
-      <p class="ds-muted" style="max-width: 65ch; margin: 0">
+      <h1 style="margin: 0; font-weight: 700">{heroTitle}</h1>
+      <p class="ds-muted" style="max-width: 65ch; margin: 0; font-size: var(--ds-text-sm)">
         {heroSubtitle}
       </p>
 
@@ -28,10 +28,10 @@ const href = (path: string) => (localePrefix ? `${localePrefix}${path}` : path);
       </div>
     </div>
 
-    <div>
+    <div style="margin-top: var(--ds-space-4)">
       <div class="ds-card">
         {heroImage ? (
-          <img src={heroImage} alt="" loading="eager" decoding="async" />
+          <img src={heroImage} alt="" loading="eager" decoding="async" style="width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--ds-radius-3)" />
         ) : (
           <div class="ds-card__body ds-surface-2">
             <p class="ds-muted" style="margin: 0">

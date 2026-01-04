@@ -32,11 +32,31 @@
   }
 
   :where(p, ul, ol) {
-    margin: 0 0 var(--ds-space-4);
+    margin: 0 0 var(--ds-space-5);
+  }
+
+  /* Optimal line length for body text */
+  :where(p) {
+    max-width: min(65ch, 100%);
+  }
+
+  /* Reduce paragraph spacing on mobile */
+  @media (max-width: 36rem) {
+    :where(p, ul, ol) {
+      margin-bottom: var(--ds-space-4);
+    }
   }
 
   :where(ul, ol) {
     padding-left: 1.25rem;
+  }
+
+  :where(ul li, ol li) {
+    margin-bottom: var(--ds-space-2);
+  }
+
+  :where(ul li:last-child, ol li:last-child) {
+    margin-bottom: 0;
   }
 
   :where(h1, h2, h3, h4, h5, h6) {

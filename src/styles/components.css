@@ -139,6 +139,13 @@
     padding-block: var(--ds-space-8);
   }
 
+  /* Reduce main content padding on mobile */
+  @media (max-width: 36rem) {
+    .main-content {
+      padding-block: var(--ds-space-6);
+    }
+  }
+
   .site-footer {
     margin-top: auto;
     border-top: var(--ds-border-1) solid var(--ds-color-border);
@@ -462,7 +469,37 @@
   }
 
   :where(.ds-card__body) {
-    padding: var(--ds-space-5);
+    padding: var(--ds-space-6);
+  }
+
+  /* Reduce card padding on mobile */
+  @media (max-width: 36rem) {
+    :where(.ds-card__body) {
+      padding: var(--ds-space-5);
+    }
+  }
+
+  /* Image styling within cards */
+  :where(.ds-card img) {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    border-radius: var(--ds-radius-3);
+  }
+
+  /* Card typography hierarchy */
+  :where(.ds-card h3) {
+    font-weight: 700;
+    font-size: var(--ds-text-xl);
+    margin-bottom: var(--ds-space-2);
+  }
+
+  :where(.ds-card p:not(.ds-muted)) {
+    font-size: var(--ds-text-sm);
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
   }
 
   /* Tabs */

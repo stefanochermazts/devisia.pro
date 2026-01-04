@@ -61,6 +61,12 @@ Use modern enhancements:
 - `text-wrap: balance` for headings (progressive)
 - `overflow-wrap: anywhere` for long tokens/URLs
 
+### Typography refinements
+- **Body text line length**: Paragraphs use `max-width: min(65ch, 100%)` for optimal readability
+- **Paragraph spacing**: `margin-bottom: var(--ds-space-5)` (24px) for comfortable reading
+- **List item spacing**: `margin-bottom: var(--ds-space-2)` (8px) between list items
+- **Mobile paragraph spacing**: Reduced to `var(--ds-space-4)` (16px) on screens < 36rem
+
 ## Spacing scale (8pt system)
 Defined as `--ds-space-1..10` (4px → 80px) plus fluid spacing tokens.
 
@@ -91,7 +97,11 @@ Prefer **container queries** over global breakpoints. Where needed:
 - `xl`: 1280px
 
 ### Container query strategy
-- Components (Cards, Tables, Nav) adapt with `@container` where it makes sense.
+- Components (Cards, Tables, Nav) adapt with `@container` where it makes sense
+- **Mobile optimization**: Container queries at `max-width: 36rem` reduce vertical density:
+  - Stack gaps: `--ds-space-3` (12px)
+  - Large stack gaps: `--ds-space-4` (16px)
+  - Grid gaps: `--ds-space-4` (16px)
 
 ---
 
@@ -136,6 +146,12 @@ Prefer **container queries** over global breakpoints. Where needed:
 
 ### Card
 - Subtle border + surface; optional header/footer slots
+- **Padding**: `var(--ds-space-6)` (32px) — increased for better readability
+- **Mobile padding**: Reduced to `var(--ds-space-5)` (24px) on screens < 36rem
+- **Typography hierarchy**:
+  - H3: `font-weight: 700`, `font-size: var(--ds-text-xl)`
+  - Body text: `font-size: var(--ds-text-sm)`, muted color, relaxed line-height
+- **Images**: Aspect ratio 16:9, `object-fit: cover`, `border-radius: var(--ds-radius-3)`
 
 ### Navbar / Footer
 - Wordmark typography only; clear navigation hierarchy; skip link
@@ -165,16 +181,45 @@ Prefer **container queries** over global breakpoints. Where needed:
 
 ---
 
+## Image guidelines
+### Standardization
+- **Aspect ratio**: 16:9 for all card images
+- **Object fit**: `cover` to maintain proportions
+- **Border radius**: `var(--ds-radius-3)` to match card styling
+- **Spacing**: `margin-top: var(--ds-space-4)` around image containers
+- **Loading strategy**:
+  - Hero images: `loading="eager"` (above the fold)
+  - Other images: `loading="lazy"` (below the fold)
+- **Decoding**: Always use `decoding="async"` for performance
+
+## Section separation
+### Visual rhythm
+- **Major sections**: Use `margin-top: var(--ds-space-10)` (80px) for clear separation
+- **Section separators**: Optional `border-top` with `padding-top: var(--ds-space-8)` (48px)
+- **Boxed sections**: Use only when changing visual rhythm; prefer subtle borders over shadows
+- **CTA sections**: Maintain box styling but avoid unnecessary shadows
+
 ## Example usage
 
 ### Hero section
-- Use `.ds-hero`, `.ds-stack`, primary button and secondary link.
+- Use `.ds-hero`, `.ds-stack`, primary button and secondary link
+- **H1 styling**: `font-weight: 700` for increased prominence
+- **Subtitle styling**: `font-size: var(--ds-text-sm)`, muted color for reduced visual weight
+- **Spacing**: `margin-bottom: var(--ds-space-8)` (48px) below hero section
+- **Image spacing**: `margin-top: var(--ds-space-4)` around hero images
 
 ### Service cards
-- Use `.ds-grid` + `Card` with `Badge/Tag`.
+- Use `.ds-grid` + `Card` with `Badge/Tag`
+- Keep card descriptions concise (20-30% reduction from original)
+- Ensure strong visual hierarchy with prominent H3 titles
 
 ### Case study layout
-- Use reading container width, headings with balanced wrap, table for outcomes.
+- Use reading container width, headings with balanced wrap, table for outcomes
+
+### Editorial sections
+- Prefer editorial blocks over bullet lists
+- Use H4 titles with descriptive paragraphs
+- Increase spacing between items: `data-gap="lg"` (32px)
 
 ---
 

@@ -3,7 +3,7 @@ export interface Props {
   lang?: 'it' | 'en';
   title?: string | null;
   description?: string | null;
-  items?: string[] | null;
+  items?: Array<{ title: string; description: string }> | string[] | null;
 }
 
 const { lang = 'it', title, description, items } = Astro.props;
@@ -14,37 +14,73 @@ const defaults = {
     title: 'Come lavoriamo',
     description: 'Metodo, pragmatismo, responsabilità. Riduciamo il rischio attraverso processi chiari, rilasci incrementali e decisioni tecniche allineate agli obiettivi di business.',
     items: [
-      'Discovery e analisi mirate',
-      'Architetture semplici e robuste',
-      'Rilascio incrementale con feedback continuo',
-      'Affidabilità integrata: monitoraggio, logging, operational readiness',
+      {
+        title: 'Discovery e analisi mirate',
+        description: 'Partiamo dal contesto: capiamo obiettivi, vincoli e opportunità prima di proporre soluzioni.',
+      },
+      {
+        title: 'Architetture semplici e robuste',
+        description: 'Progettiamo sistemi che scalano senza complessità inutile, mantenendo la manutenibilità nel tempo.',
+      },
+      {
+        title: 'Rilascio incrementale',
+        description: 'Consegniamo valore in modo continuo, integrando feedback e adattandoci alle esigenze che emergono.',
+      },
     ],
   },
   en: {
     title: 'How we work',
     description: 'Method, pragmatism, responsibility. We reduce risk through clear processes, incremental releases, and technical decisions aligned with business goals.',
     items: [
-      'Focused discovery and analysis',
-      'Simple, robust architectures',
-      'Incremental releases with continuous feedback',
-      'Reliability built-in: monitoring, logging, operational readiness',
+      {
+        title: 'Focused discovery and analysis',
+        description: 'We start with context: understanding goals, constraints, and opportunities before proposing solutions.',
+      },
+      {
+        title: 'Simple, robust architectures',
+        description: 'We design systems that scale without unnecessary complexity, maintaining long-term maintainability.',
+      },
+      {
+        title: 'Incremental delivery',
+        description: 'We deliver value continuously, integrating feedback and adapting to emerging needs.',
+      },
     ],
   },
+};
+
+// Normalize items: convert string[] to object format if needed
+const normalizeItems = (
+  items: Array<{ title: string; description: string }> | string[] | null | undefined,
+  defaultItems: Array<{ title: string; description: string }>
+): Array<{ title: string; description: string }> => {
+  if (!items) return defaultItems;
+  // If items are strings, convert to object format
+  if (items.length > 0 && typeof items[0] === 'string') {
+    return (items as string[]).map((item) => ({ title: item, description: '' }));
+  }
+  return items as Array<{ title: string; description: string }>;
 };
 
 const content = {
   title: title ?? defaults[lang].title,
   description: description ?? defaults[lang].description,
-  items: items ?? defaults[lang].items,
+  items: normalizeItems(items, defaults[lang].items),
 };
 ---
 
 <section class="ds-stack" data-gap="lg" style="container-type: inline-size">
-  <h2 style="margin: 0">{content.title}</h2>
-  <p class="ds-muted" style="margin: 0">{content.description}</p>
-  <ul class="ds-stack" data-gap="sm" style="margin: 0; padding-left: 1.25rem">
+  <div class="ds-reading">
+    <h2 style="margin: 0">{content.title}</h2>
+    <p class="ds-muted" style="margin: 0">{content.description}</p>
+  </div>
+  <div class="ds-stack" data-gap="lg" style="margin-top: var(--ds-space-6)">
     {content.items.map((item) => (
-      <li style="margin: 0">{item}</li>
+      <div class="ds-stack" data-gap="sm">
+        <h4 style="margin: 0; font-weight: 600; color: var(--ds-color-text)">{item.title}</h4>
+        <p style="margin: 0; font-size: var(--ds-text-sm); color: var(--ds-color-text-muted); line-height: var(--ds-leading-relaxed)">
+          {item.description}
+        </p>
+      </div>
     ))}
-  </ul>
+  </div>
 </section>

@@ -62,6 +62,19 @@
     .ds-grid[data-cols="4"] {
       grid-template-columns: 1fr;
     }
+
+    /* Reduce vertical density on mobile */
+    .ds-stack {
+      gap: var(--ds-space-3);
+    }
+
+    .ds-stack[data-gap="lg"] {
+      gap: var(--ds-space-4);
+    }
+
+    .ds-grid {
+      gap: var(--ds-space-4);
+    }
   }
 
   /* Inline utilities */

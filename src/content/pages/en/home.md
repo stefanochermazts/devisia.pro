@@ -7,6 +7,3 @@ heroSubtitle: Devisia builds SaaS products and custom software solutions.
 heroImage: /uploads/hero-dev-ai-vision.png
 ---
 
-## What we do
-
-We design and build SaaS products and custom software, delivered end‑to‑end—from discovery and prototyping to production release and continuous improvement. We focus on quality, security, and long-term maintainability.

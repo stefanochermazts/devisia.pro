@@ -29,12 +29,12 @@ const showActions =
   Boolean(primaryHref && primaryLabel) || Boolean(secondaryHref && secondaryLabel);
 ---
 
-<section class="ds-grid" data-cols="2" aria-label="Page hero" style="container-type: inline-size">
+<section class="ds-grid" data-cols="2" aria-label="Page hero" style="container-type: inline-size; margin-bottom: var(--ds-space-8)">
   <div class="ds-stack" data-gap="sm">
-    <h1 style="margin: 0">{title}</h1>
+    <h1 style="margin: 0; font-weight: 700">{title}</h1>
     {
       subtitle && (
-        <p class="ds-muted" style="max-width: 65ch; margin: 0">
+        <p class="ds-muted" style="max-width: 65ch; margin: 0; font-size: var(--ds-text-sm)">
           {subtitle}
         </p>
       )
@@ -58,11 +58,11 @@ const showActions =
     }
   </div>
 
-  <div>
+  <div style="margin-top: var(--ds-space-4)">
     <div class="ds-card">
       {
         image || fallbackImage ? (
-          <img src={image ?? fallbackImage ?? undefined} alt="" loading="eager" decoding="async" />
+          <img src={image ?? fallbackImage ?? undefined} alt="" loading="eager" decoding="async" style="width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--ds-radius-3)" />
         ) : (
           <div class="ds-card__body ds-surface-2">
             <p class="ds-muted" style="margin: 0">
