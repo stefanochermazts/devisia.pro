@@ -35,3 +35,12 @@ AuditReady **non certifica la compliance**: aiuta a dimostrare ciò che è stato
 * Assegnazione delle responsabilità (ownership)
 * Pacchetti audit esportabili (ZIP/PDF con indice e change log)
 * Supporto a richieste di evidenze a terze parti
+
+## Notes
+AuditReady è attualmente in beta e focalizzato su:
+
+* velocità di utilizzo
+* chiarezza dei flussi
+* ripetibilità del processo di audit
+
+Il perimetro funzionale è volutamente limitato per garantire affidabilità, sicurezza e adozione in contesti regolamentati.
