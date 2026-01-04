@@ -20,102 +20,171 @@ publish_mode: editorial_workflow
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
-# i18n configuration
-# Default locale is Italian (no URL prefix). English will be under /en/ in the site routing.
-i18n:
-  structure: multiple_folders
-  locales: [it, en]
-  default_locale: it
+# NOTE: Sveltia CMS has different i18n behavior from Decap CMS. To avoid empty fields
+# when editing translations, we model locales as separate collections (IT / EN).
 
 # Collections define the content types
 collections:
-  # Pages collection
-  - name: "pages"
-    label: "Pages"
-    folder: "src/content/pages"
+  # Pages (IT)
+  - name: "pages_it"
+    label: "Pages (IT)"
+    folder: "src/content/pages/it"
     create: true
-    # NOTE: No slug field - CMS uses filename directly (e.g. home.md, about.md)
     identifier_field: "title"
-    i18n: true
     fields:
-      - { label: "Title", name: "title", widget: "string", i18n: true }
-      - { label: "Description", name: "description", widget: "text", required: false, i18n: true }
-      - { label: "Hero Title", name: "heroTitle", widget: "string", required: false, i18n: true }
-      - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", required: false, i18n: true }
-      - { label: "Hero Image", name: "heroImage", widget: "image", required: false, i18n: duplicate }
-      - { label: "Body", name: "body", widget: "markdown", i18n: true }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Hero Title", name: "heroTitle", widget: "string", required: false }
+      - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", required: false }
+      - { label: "Hero Image", name: "heroImage", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
       # Home page blocks (optional, only used for home page)
-      - { label: "What We Do - Title", name: "homeWhatWeDoTitle", widget: "string", required: false, i18n: true }
-      - { label: "What We Do - Description", name: "homeWhatWeDoDescription", widget: "text", required: false, i18n: true }
+      - { label: "What We Do - Title", name: "homeWhatWeDoTitle", widget: "string", required: false }
+      - { label: "What We Do - Description", name: "homeWhatWeDoDescription", widget: "text", required: false }
       - label: "What We Do - Cards"
         name: "homeWhatWeDoCards"
         widget: "list"
         required: false
-        i18n: true
         fields:
           - { label: "Tag", name: "tag", widget: "string" }
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "text" }
-      - { label: "How We Work - Title", name: "homeHowWeWorkTitle", widget: "string", required: false, i18n: true }
-      - { label: "How We Work - Description", name: "homeHowWeWorkDescription", widget: "text", required: false, i18n: true }
+      - { label: "How We Work - Title", name: "homeHowWeWorkTitle", widget: "string", required: false }
+      - { label: "How We Work - Description", name: "homeHowWeWorkDescription", widget: "text", required: false }
       - label: "How We Work - Items"
         name: "homeHowWeWorkItems"
         widget: "list"
         required: false
-        i18n: true
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - { label: "Description", name: "description", widget: "text" }
-      - { label: "Projects - Title", name: "homeProjectsTitle", widget: "string", required: false, i18n: true }
-      - { label: "Projects - Description", name: "homeProjectsDescription", widget: "text", required: false, i18n: true }
-      - { label: "Projects - Image", name: "homeProjectsImage", widget: "image", required: false, i18n: duplicate }
-      - { label: "Contact - Title", name: "homeContactTitle", widget: "string", required: false, i18n: true }
-      - { label: "Contact - Description", name: "homeContactDescription", widget: "text", required: false, i18n: true }
-  
-  # Blog collection
-  - name: "blog"
-    label: "Blog Posts"
-    folder: "src/content/blog"
+      - { label: "Projects - Title", name: "homeProjectsTitle", widget: "string", required: false }
+      - { label: "Projects - Description", name: "homeProjectsDescription", widget: "text", required: false }
+      - { label: "Projects - Image", name: "homeProjectsImage", widget: "image", required: false }
+      - { label: "Contact - Title", name: "homeContactTitle", widget: "string", required: false }
+      - { label: "Contact - Description", name: "homeContactDescription", widget: "text", required: false }
+
+  # Pages (EN)
+  - name: "pages_en"
+    label: "Pages (EN)"
+    folder: "src/content/pages/en"
+    create: true
+    identifier_field: "title"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Hero Title", name: "heroTitle", widget: "string", required: false }
+      - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text", required: false }
+      - { label: "Hero Image", name: "heroImage", widget: "image", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+      # Home page blocks (optional, only used for home page)
+      - { label: "What We Do - Title", name: "homeWhatWeDoTitle", widget: "string", required: false }
+      - { label: "What We Do - Description", name: "homeWhatWeDoDescription", widget: "text", required: false }
+      - label: "What We Do - Cards"
+        name: "homeWhatWeDoCards"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Tag", name: "tag", widget: "string" }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+      - { label: "How We Work - Title", name: "homeHowWeWorkTitle", widget: "string", required: false }
+      - { label: "How We Work - Description", name: "homeHowWeWorkDescription", widget: "text", required: false }
+      - label: "How We Work - Items"
+        name: "homeHowWeWorkItems"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+      - { label: "Projects - Title", name: "homeProjectsTitle", widget: "string", required: false }
+      - { label: "Projects - Description", name: "homeProjectsDescription", widget: "text", required: false }
+      - { label: "Projects - Image", name: "homeProjectsImage", widget: "image", required: false }
+      - { label: "Contact - Title", name: "homeContactTitle", widget: "string", required: false }
+      - { label: "Contact - Description", name: "homeContactDescription", widget: "text", required: false }
+
+  # Blog (IT)
+  - name: "blog_it"
+    label: "Blog Posts (IT)"
+    folder: "src/content/blog/it"
     create: true
     slug: "{{slug}}"
-    i18n: true
     fields:
-      - { label: "Title", name: "title", widget: "string", i18n: true }
-      - { label: "Description", name: "description", widget: "text", i18n: true }
-      - { label: "Publication Date", name: "pubDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false, i18n: duplicate }
-      - { label: "Author", name: "author", widget: "string", i18n: duplicate }
-      - { label: "Hero Image", name: "heroImage", widget: "image", required: false, i18n: duplicate }
-      # Note: Decap i18n validation requires boolean i18n for list widgets.
-      - { label: "Tags", name: "tags", widget: "list", required: false, i18n: true }
-      - { label: "Body", name: "body", widget: "markdown", i18n: true }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Publication Date", name: "pubDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Hero Image", name: "heroImage", widget: "image", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
 
-  # Projects collection
-  - name: "projects"
-    label: "Projects"
-    folder: "src/content/projects"
+  # Blog (EN)
+  - name: "blog_en"
+    label: "Blog Posts (EN)"
+    folder: "src/content/blog/en"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Publication Date", name: "pubDate", widget: "datetime", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Author", name: "author", widget: "string" }
+      - { label: "Hero Image", name: "heroImage", widget: "image", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # Projects (IT)
+  - name: "projects_it"
+    label: "Projects (IT)"
+    folder: "src/content/projects/it"
     create: true
     slug: "{{fields.slug}}"
     identifier_field: "title"
-    i18n: true
     fields:
-      - { label: "Title", name: "title", widget: "string", i18n: true }
-      - { label: "Slug", name: "slug", widget: "string", hint: "kebab-case, used for URL and filename (e.g. mysafenest)", i18n: duplicate }
-      - { label: "Description", name: "description", widget: "string", hint: "Short summary (shown on listing)", i18n: true }
-      - { label: "Featured", name: "featured", widget: "boolean", default: false, i18n: duplicate }
-      - { label: "Order", name: "order", widget: "number", default: 0, value_type: "int", min: 0, i18n: duplicate }
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "kebab-case, used for URL and filename (e.g. mysafenest)" }
+      - { label: "Description", name: "description", widget: "string", hint: "Short summary (shown on listing)" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Order", name: "order", widget: "number", default: 0, value_type: "int", min: 0 }
       - label: "Status"
         name: "status"
         widget: "select"
         default: "active"
-        i18n: duplicate
         options:
           - { label: "Active", value: "active" }
           - { label: "Beta", value: "beta" }
           - { label: "Archived", value: "archived" }
-      - { label: "Website URL", name: "websiteUrl", widget: "string", i18n: duplicate }
-      - { label: "Cover Image", name: "coverImage", widget: "image", i18n: duplicate }
-      - { label: "Logo", name: "logo", widget: "image", required: false, i18n: duplicate }
-      - { label: "Open Graph Image", name: "ogImage", widget: "image", required: false, i18n: duplicate }
-      # Note: Decap i18n validation requires boolean i18n for list widgets.
-      - { label: "Tags", name: "tags", widget: "list", required: false, i18n: true }
-      - { label: "Body", name: "body", widget: "markdown", i18n: true }
+      - { label: "Website URL", name: "websiteUrl", widget: "string" }
+      - { label: "Cover Image", name: "coverImage", widget: "image" }
+      - { label: "Logo", name: "logo", widget: "image", required: false }
+      - { label: "Open Graph Image", name: "ogImage", widget: "image", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
+
+  # Projects (EN)
+  - name: "projects_en"
+    label: "Projects (EN)"
+    folder: "src/content/projects/en"
+    create: true
+    slug: "{{fields.slug}}"
+    identifier_field: "title"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "kebab-case, used for URL and filename (e.g. mysafenest)" }
+      - { label: "Description", name: "description", widget: "string", hint: "Short summary (shown on listing)" }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Order", name: "order", widget: "number", default: 0, value_type: "int", min: 0 }
+      - label: "Status"
+        name: "status"
+        widget: "select"
+        default: "active"
+        options:
+          - { label: "Active", value: "active" }
+          - { label: "Beta", value: "beta" }
+          - { label: "Archived", value: "archived" }
+      - { label: "Website URL", name: "websiteUrl", widget: "string" }
+      - { label: "Cover Image", name: "coverImage", widget: "image" }
+      - { label: "Logo", name: "logo", widget: "image", required: false }
+      - { label: "Open Graph Image", name: "ogImage", widget: "image", required: false }
+      - { label: "Tags", name: "tags", widget: "list", required: false }
+      - { label: "Body", name: "body", widget: "markdown" }
