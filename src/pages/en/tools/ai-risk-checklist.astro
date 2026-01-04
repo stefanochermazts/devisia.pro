@@ -1,89 +1,89 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import Button from '../../components/ui/Button.astro';
-import Radio from '../../components/ui/Radio.astro';
-import Card from '../../components/ui/Card.astro';
-import Badge from '../../components/ui/Badge.astro';
+import Layout from '../../../layouts/Layout.astro';
+import Button from '../../../components/ui/Button.astro';
+import Radio from '../../../components/ui/Radio.astro';
+import Card from '../../../components/ui/Card.astro';
+import Badge from '../../../components/ui/Badge.astro';
 
 const questions = [
   {
     id: 'data-sensitivity',
     name: 'dataSensitivity',
-    label: 'Sensibilità dei dati',
+    label: 'Data sensitivity',
     options: [
-      { value: '0', label: 'Nessun dato personale' },
-      { value: '1', label: 'Dati personali (non sensibili)' },
-      { value: '2', label: 'Dati sensibili (salute, finanza, minori, ecc.)' },
+      { value: '0', label: 'No personal data' },
+      { value: '1', label: 'Personal data (non-sensitive)' },
+      { value: '2', label: 'Sensitive data (health, finance, minors, etc.)' },
     ],
   },
   {
     id: 'user-input',
     name: 'userInput',
-    label: 'Input utente',
+    label: 'User input',
     options: [
-      { value: '0', label: 'Solo prompt brevi' },
-      { value: '1', label: 'Prompt + documenti/frammenti di testo' },
-      { value: '2', label: 'Upload di file' },
+      { value: '0', label: 'Short prompts only' },
+      { value: '1', label: 'Prompts + documents/text snippets' },
+      { value: '2', label: 'File uploads' },
     ],
   },
   {
     id: 'output-impact',
     name: 'outputImpact',
-    label: 'Impatto dell\'output',
+    label: 'Output impact',
     options: [
-      { value: '0', label: 'Solo informativo' },
-      { value: '1', label: 'Assiste nelle decisioni' },
-      { value: '2', label: 'Azioni automatizzate (scrive/esegue modifiche)' },
+      { value: '0', label: 'Informational only' },
+      { value: '1', label: 'Assists decisions' },
+      { value: '2', label: 'Automated actions (writes/executes changes)' },
     ],
   },
   {
     id: 'human-oversight',
     name: 'humanOversight',
-    label: 'Supervisione umana',
+    label: 'Human oversight',
     options: [
-      { value: '0', label: 'Sempre revisionato da umani' },
-      { value: '1', label: 'A volte revisionato' },
-      { value: '2', label: 'Nessuna revisione / completamente automatizzato' },
+      { value: '0', label: 'Always reviewed by humans' },
+      { value: '1', label: 'Sometimes reviewed' },
+      { value: '2', label: 'No review / fully automated' },
     ],
   },
   {
     id: 'access-control',
     name: 'accessControl',
-    label: 'Controllo accessi',
+    label: 'Access control',
     options: [
-      { value: '0', label: 'Singolo team' },
-      { value: '1', label: 'Ruoli/tenant multipli' },
-      { value: '2', label: 'Utenti/clienti esterni' },
+      { value: '0', label: 'Single team' },
+      { value: '1', label: 'Multiple roles/tenants' },
+      { value: '2', label: 'External users/customers' },
     ],
   },
   {
     id: 'logging-needs',
     name: 'loggingNeeds',
-    label: 'Esigenze di logging',
+    label: 'Logging needs',
     options: [
-      { value: '0', label: 'Log minimi' },
-      { value: '1', label: 'Log standard' },
-      { value: '2', label: 'Richiede audit trail' },
+      { value: '0', label: 'Minimal logs' },
+      { value: '1', label: 'Standard logs' },
+      { value: '2', label: 'Requires audit trail' },
     ],
   },
   {
     id: 'model-usage',
     name: 'modelUsage',
-    label: 'Utilizzo del modello',
+    label: 'Model usage',
     options: [
-      { value: '0', label: 'Solo chiamate API' },
-      { value: '1', label: 'API + strumenti/agenti' },
-      { value: '2', label: 'Agenti che eseguono workflow' },
+      { value: '0', label: 'API calls only' },
+      { value: '1', label: 'API + tools/agents' },
+      { value: '2', label: 'Agents executing workflows' },
     ],
   },
   {
     id: 'retention',
     name: 'retention',
-    label: 'Conservazione',
+    label: 'Retention',
     options: [
-      { value: '0', label: 'Nessuna conservazione' },
-      { value: '1', label: 'Conservazione breve (<= 30 giorni)' },
-      { value: '2', label: 'Conservazione lunga (> 30 giorni)' },
+      { value: '0', label: 'No retention' },
+      { value: '1', label: 'Short retention (<= 30 days)' },
+      { value: '2', label: 'Long retention (> 30 days)' },
     ],
   },
 ];
@@ -91,66 +91,66 @@ const questions = [
 const safeguards = [
   {
     id: 'data-minimization',
-    label: 'Minimizzazione e redazione dei dati (PII)',
+    label: 'Data minimization & redaction (PII)',
     triggers: ['dataSensitivity:1', 'dataSensitivity:2', 'userInput:1', 'userInput:2'],
   },
   {
     id: 'retention-policy',
-    label: 'Politica di conservazione rigorosa',
+    label: 'Strict retention policy',
     triggers: ['retention:1', 'retention:2', 'dataSensitivity:2'],
   },
   {
     id: 'rbac',
-    label: 'Controllo accessi basato su ruoli (RBAC)',
+    label: 'Role-based access control (RBAC)',
     triggers: ['accessControl:1', 'accessControl:2', 'dataSensitivity:1', 'dataSensitivity:2'],
   },
   {
     id: 'audit-logging',
-    label: 'Audit logging (a livello di evento)',
+    label: 'Audit logging (event-level)',
     triggers: ['loggingNeeds:2', 'outputImpact:2', 'accessControl:2'],
   },
   {
     id: 'prompt-filtering',
-    label: 'Filtraggio prompt/output e controlli policy',
+    label: 'Prompt/output filtering & policy checks',
     triggers: ['userInput:1', 'userInput:2', 'outputImpact:1', 'outputImpact:2'],
   },
   {
     id: 'human-review',
-    label: 'Revisione human-in-the-loop per output ad alto impatto',
+    label: 'Human-in-the-loop review for high impact outputs',
     triggers: ['outputImpact:2', 'humanOversight:1', 'humanOversight:2'],
   },
   {
     id: 'fallback',
-    label: 'Strategia di fallback (modalità degradata)',
+    label: 'Fallback strategy (degraded mode)',
     triggers: ['outputImpact:1', 'outputImpact:2', 'modelUsage:1', 'modelUsage:2'],
   },
   {
     id: 'observability',
-    label: 'Osservabilità (latenza, errori, costi, rate limits)',
+    label: 'Observability (latency, errors, cost, rate limits)',
     triggers: ['modelUsage:1', 'modelUsage:2', 'outputImpact:1', 'outputImpact:2'],
   },
   {
     id: 'vendor-governance',
-    label: 'Governance vendor/modello (versioning, tracciamento modifiche)',
+    label: 'Vendor/model governance (versioning, change tracking)',
     triggers: ['modelUsage:1', 'modelUsage:2', 'dataSensitivity:1', 'dataSensitivity:2'],
   },
   {
     id: 'tool-allowlist',
-    label: 'Allow-list per tool calling',
+    label: 'Tool calling allow-lists',
     triggers: ['modelUsage:2'],
   },
 ];
 ---
 
-<Layout title="AI Risk & Privacy Checklist" description="Una valutazione pratica per stimare il livello di rischio e le misure di sicurezza consigliate per software abilitato all'AI." lang="it">
+<Layout title="AI Risk & Privacy Checklist" description="A practical assessment to estimate risk level and recommended safeguards for AI-enabled software." lang="en">
   <div class="ds-container ds-stack" data-gap="lg" style="container-type: inline-size; margin-top: var(--ds-space-8)">
     <header class="ds-stack" data-gap="sm">
       <h1 style="margin: 0">AI Risk & Privacy Checklist</h1>
       <p class="ds-muted" style="max-width: 65ch">
-        Una valutazione pratica per stimare il livello di rischio e le misure di sicurezza consigliate per software abilitato all'AI.
+        A practical assessment to estimate risk level and recommended safeguards for AI-enabled software.
       </p>
       <p class="ds-muted" style="font-size: var(--ds-text-xs); margin: 0">
-        Nessun upload. Nessun storage. Le tue risposte rimangono nel browser.
+        No uploads. No storage. Your answers stay in your browser.
       </p>
     </header>
 
@@ -175,7 +175,7 @@ const safeguards = [
             {q.id === 'user-input' && (
               <div id="file-upload-warning" class="ds-alert" data-tone="warning" style="display: none; margin-top: var(--ds-space-2)">
                 <p style="margin: 0; font-size: var(--ds-text-sm)">
-                  <strong>Nota:</strong> Gli upload di file non sono supportati in questa demo. Considera la minimizzazione e redazione dei dati per implementazioni in produzione.
+                  <strong>Note:</strong> File uploads are not supported in this demo. Consider data minimization and redaction for production implementations.
                 </p>
               </div>
             )}
@@ -185,7 +185,7 @@ const safeguards = [
 
       <div class="ds-cluster">
         <Button type="submit" variant="primary">
-          Genera raccomandazioni
+          Generate recommendations
         </Button>
       </div>
     </form>
@@ -194,7 +194,7 @@ const safeguards = [
       <Card>
         <div class="ds-card__body ds-stack" data-gap="md">
           <div class="ds-cluster">
-            <Badge id="risk-badge" tone="neutral">Basso</Badge>
+            <Badge id="risk-badge" tone="neutral">Low</Badge>
           </div>
           <p id="risk-explanation" class="ds-muted" style="margin: 0"></p>
         </div>
@@ -202,7 +202,7 @@ const safeguards = [
 
       <Card>
         <div class="ds-card__body ds-stack" data-gap="md">
-          <h3 style="margin: 0; font-size: var(--ds-text-lg); font-weight: 600">Misure di sicurezza consigliate</h3>
+          <h3 style="margin: 0; font-size: var(--ds-text-lg); font-weight: 600">Recommended safeguards</h3>
           <ul id="safeguards-list" class="ds-stack" data-gap="sm" style="margin: 0; padding-left: 1.5rem">
             <!-- Populated by JS -->
           </ul>
@@ -212,7 +212,7 @@ const safeguards = [
 
     <footer class="ds-stack" data-gap="xs" style="margin-top: var(--ds-space-8); padding-top: var(--ds-space-6); border-top: var(--ds-border-1) solid var(--ds-color-border)">
       <p class="ds-muted" style="font-size: var(--ds-text-xs); margin: 0">
-        Questa checklist è un punto di partenza, non un consiglio legale.
+        This checklist is a starting point, not legal advice.
       </p>
     </footer>
   </div>
@@ -241,52 +241,52 @@ const safeguards = [
     const safeguards = [
       {
         id: 'data-minimization',
-        label: 'Minimizzazione e redazione dei dati (PII)',
+        label: 'Data minimization & redaction (PII)',
         triggers: ['dataSensitivity:1', 'dataSensitivity:2', 'userInput:1', 'userInput:2'],
       },
       {
         id: 'retention-policy',
-        label: 'Politica di conservazione rigorosa',
+        label: 'Strict retention policy',
         triggers: ['retention:1', 'retention:2', 'dataSensitivity:2'],
       },
       {
         id: 'rbac',
-        label: 'Controllo accessi basato su ruoli (RBAC)',
+        label: 'Role-based access control (RBAC)',
         triggers: ['accessControl:1', 'accessControl:2', 'dataSensitivity:1', 'dataSensitivity:2'],
       },
       {
         id: 'audit-logging',
-        label: 'Audit logging (a livello di evento)',
+        label: 'Audit logging (event-level)',
         triggers: ['loggingNeeds:2', 'outputImpact:2', 'accessControl:2'],
       },
       {
         id: 'prompt-filtering',
-        label: 'Filtraggio prompt/output e controlli policy',
+        label: 'Prompt/output filtering & policy checks',
         triggers: ['userInput:1', 'userInput:2', 'outputImpact:1', 'outputImpact:2'],
       },
       {
         id: 'human-review',
-        label: 'Revisione human-in-the-loop per output ad alto impatto',
+        label: 'Human-in-the-loop review for high impact outputs',
         triggers: ['outputImpact:2', 'humanOversight:1', 'humanOversight:2'],
       },
       {
         id: 'fallback',
-        label: 'Strategia di fallback (modalità degradata)',
+        label: 'Fallback strategy (degraded mode)',
         triggers: ['outputImpact:1', 'outputImpact:2', 'modelUsage:1', 'modelUsage:2'],
       },
       {
         id: 'observability',
-        label: 'Osservabilità (latenza, errori, costi, rate limits)',
+        label: 'Observability (latency, errors, cost, rate limits)',
         triggers: ['modelUsage:1', 'modelUsage:2', 'outputImpact:1', 'outputImpact:2'],
       },
       {
         id: 'vendor-governance',
-        label: 'Governance vendor/modello (versioning, tracciamento modifiche)',
+        label: 'Vendor/model governance (versioning, change tracking)',
         triggers: ['modelUsage:1', 'modelUsage:2', 'dataSensitivity:1', 'dataSensitivity:2'],
       },
       {
         id: 'tool-allowlist',
-        label: 'Allow-list per tool calling',
+        label: 'Tool calling allow-lists',
         triggers: ['modelUsage:2'],
       },
     ];
@@ -317,20 +317,20 @@ const safeguards = [
 
     // Determine risk level
     function getRiskLevel(score) {
-      if (score <= 5) return { level: 'Basso', tone: 'neutral' };
-      if (score <= 10) return { level: 'Medio', tone: 'accent' };
-      return { level: 'Alto', tone: 'accent' };
+      if (score <= 5) return { level: 'Low', tone: 'neutral' };
+      if (score <= 10) return { level: 'Medium', tone: 'accent' };
+      return { level: 'High', tone: 'accent' };
     }
 
     // Get risk explanation
     function getRiskExplanation(score, riskLevel) {
-      if (riskLevel === 'Basso') {
-        return 'La tua implementazione AI ha fattori di rischio minimi. Misure di sicurezza di base dovrebbero essere sufficienti per la maggior parte dei casi d\'uso.';
+      if (riskLevel === 'Low') {
+        return 'Your AI implementation has minimal risk factors. Basic safeguards should be sufficient for most use cases.';
       }
-      if (riskLevel === 'Medio') {
-        return 'La tua implementazione AI ha fattori di rischio moderati. Implementa misure di sicurezza mirate basate sulle tue risposte specifiche.';
+      if (riskLevel === 'Medium') {
+        return 'Your AI implementation has moderate risk factors. Implement targeted safeguards based on your specific answers.';
       }
-      return 'La tua implementazione AI ha fattori di rischio significativi. Implementa misure di sicurezza complete e considera misure di governance aggiuntive.';
+      return 'Your AI implementation has significant risk factors. Implement comprehensive safeguards and consider additional governance measures.';
     }
 
     // Get relevant safeguards
