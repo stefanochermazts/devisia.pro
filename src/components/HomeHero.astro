@@ -31,7 +31,7 @@ const href = (path: string) => (localePrefix ? `${localePrefix}${path}` : path);
     <div style="margin-top: var(--ds-space-4)">
       <div class="ds-card">
         {heroImage ? (
-          <img src={heroImage} alt="" loading="eager" decoding="async" style="width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--ds-radius-3)" />
+          <img class="ds-img-bw" src={heroImage} alt="" loading="eager" decoding="async" style="width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--ds-radius-3)" />
         ) : (
           <div class="ds-card__body ds-surface-2">
             <p class="ds-muted" style="margin: 0">

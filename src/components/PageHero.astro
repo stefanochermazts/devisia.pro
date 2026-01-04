@@ -62,7 +62,7 @@ const showActions =
     <div class="ds-card">
       {
         image || fallbackImage ? (
-          <img src={image ?? fallbackImage ?? undefined} alt="" loading="eager" decoding="async" style="width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--ds-radius-3)" />
+          <img class="ds-img-bw" src={image ?? fallbackImage ?? undefined} alt="" loading="eager" decoding="async" style="width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--ds-radius-3)" />
         ) : (
           <div class="ds-card__body ds-surface-2">
             <p class="ds-muted" style="margin: 0">

@@ -487,6 +487,13 @@
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: var(--ds-radius-3);
+    /* Keep imagery calm/consistent even if uploads are colorful */
+    filter: grayscale(1);
+  }
+
+  /* Allow opt-out for specific images */
+  :where(.ds-card img.ds-img-color) {
+    filter: none;
   }
 
   /* Card typography hierarchy */

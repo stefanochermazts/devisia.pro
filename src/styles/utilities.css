@@ -105,5 +105,15 @@
   .ds-pad-4 {
     padding: var(--ds-space-4);
   }
+
+  /* Media utilities */
+  .ds-img-bw {
+    filter: grayscale(1);
+  }
+
+  /* Opt-out utility (useful for logos / brand images) */
+  .ds-img-color {
+    filter: none !important;
+  }
 }
 
