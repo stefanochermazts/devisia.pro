@@ -10,9 +10,20 @@
     <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   </head>
   <body>
-    <!-- Include the Decap CMS script -->
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
-    <!-- <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>--> 
+    <!-- CMS app
+      We prefer Sveltia CMS (drop-in compatible with Decap config) for a more stable editor experience.
+      Fallback to Decap CMS if Sveltia fails to load.
+    -->
+    <script>
+      function loadDecapFallback() {
+        if (window.CMS) return;
+        const s = document.createElement('script');
+        // Pin a known version instead of a caret range to avoid surprise regressions.
+        s.src = 'https://unpkg.com/decap-cms@3.9.0/dist/decap-cms.js';
+        document.body.appendChild(s);
+      }
+    </script>
+    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" onerror="loadDecapFallback()"></script>
 
     <script>
       // If the user comes from an invite link, Netlify puts the token in the hash:
@@ -20,11 +31,19 @@
       // The Identity widget must be present on the page that receives the hash
       // to show the password setup UI.
       if (window.netlifyIdentity) {
+        // Ensure Identity initializes so Git Gateway requests can be authenticated.
+        window.netlifyIdentity.init();
+
         window.netlifyIdentity.on('init', () => {
           const hash = window.location.hash || '';
           if (hash.includes('invite_token=') || hash.includes('recovery_token=')) {
             window.netlifyIdentity.open();
           }
+        });
+
+        // Common Netlify CMS pattern: after login, redirect to /admin/ so the app reloads with a fresh token.
+        window.netlifyIdentity.on('login', () => {
+          document.location.href = '/admin/';
         });
       }
     </script>
