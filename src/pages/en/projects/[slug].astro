@@ -4,6 +4,8 @@ import { getCollection, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { breadcrumbListJsonLd, softwareApplicationJsonLd } from '../../../lib/seo/structuredData';
 
+export const prerender = true;
+
 export async function getStaticPaths() {
   const entries = await getCollection('projectsEn');
   return entries.map((entry) => ({
