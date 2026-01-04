@@ -26,6 +26,14 @@
     height: auto;
   }
 
+  /* Global image treatment (site content)
+    Make content imagery calm/consistent even when uploads are colorful.
+    Opt-out per-image by adding `.ds-img-color`.
+  */
+  :where(.main-content img):not(.ds-img-color) {
+    filter: grayscale(1);
+  }
+
   :where(button, input, textarea, select) {
     font: inherit;
     color: inherit;
