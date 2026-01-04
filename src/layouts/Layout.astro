@@ -155,7 +155,51 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
           </a>
         </div>
 
-        <ul class="nav-menu">
+        <button
+          type="button"
+          class="ds-btn nav-toggle"
+          data-variant="ghost"
+          data-size="sm"
+          aria-label={lang === 'en' ? 'Open menu' : 'Apri menu'}
+          aria-controls="primary-nav"
+          aria-expanded="false"
+          data-nav-toggle
+        >
+          <svg
+            class="nav-toggle__icon nav-toggle__icon--open"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+          <svg
+            class="nav-toggle__icon nav-toggle__icon--close"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+          <span class="nav-toggle__label">{lang === 'en' ? 'Menu' : 'Menu'}</span>
+        </button>
+
+        <ul id="primary-nav" class="nav-menu" data-nav-menu>
           <li><a href={homeHref} class="nav-link">Home</a></li>
           <li><a href={href('/about')} class="nav-link">About</a></li>
           <li><a href={href('/services')} class="nav-link">Services</a></li>
@@ -301,6 +345,40 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
           } catch {
             /* noop */
           }
+        });
+      })();
+    </script>
+
+    <script is:inline>
+      // Mobile nav toggle (collapsible hamburger menu)
+      (() => {
+        const btn = document.querySelector('[data-nav-toggle]');
+        const menu = document.querySelector('[data-nav-menu]');
+        if (!btn || !menu) return;
+
+        const setOpen = (open) => {
+          btn.setAttribute('aria-expanded', String(open));
+          btn.setAttribute('aria-label', open ? (document.documentElement.lang === 'en' ? 'Close menu' : 'Chiudi menu') : (document.documentElement.lang === 'en' ? 'Open menu' : 'Apri menu'));
+          menu.toggleAttribute('data-open', open);
+        };
+
+        // Start closed on load
+        setOpen(false);
+
+        btn.addEventListener('click', () => {
+          const open = btn.getAttribute('aria-expanded') === 'true';
+          setOpen(!open);
+        });
+
+        // Close menu when a link is clicked (mobile UX)
+        menu.addEventListener('click', (e) => {
+          const target = e.target;
+          if (target && target.tagName === 'A') setOpen(false);
+        });
+
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') setOpen(false);
         });
       })();
     </script>
