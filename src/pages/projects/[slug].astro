@@ -1,28 +1,22 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getCollection, render } from 'astro:content';
+import { getEntry, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { breadcrumbListJsonLd, softwareApplicationJsonLd } from '../../lib/seo/structuredData';
 
-export const prerender = true;
-
-export async function getStaticPaths() {
-  const entries = await getCollection('projectsIt');
-  return entries.map((entry) => ({
-    params: { slug: entry.id.replace(/^(it|en)\//, '') },
-    props: { entry },
-  }));
+const slug = Astro.params.slug;
+if (!slug) {
+  throw new Response(null, { status: 404, statusText: 'Not found' });
 }
 
-interface Props {
-  entry: CollectionEntry<'projectsIt'>;
+const entry: CollectionEntry<'projectsIt'> | undefined = await getEntry('projectsIt', `it/${slug}`);
+if (!entry) {
+  throw new Response(null, { status: 404, statusText: 'Not found' });
 }
 
-const { entry } = Astro.props;
 const { Content } = await render(entry);
 
 const ogImage = entry.data.ogImage ?? entry.data.coverImage ?? entry.data.logo;
-const slug = entry.id.replace(/^(it|en)\//, '');
 const site = Astro.site ?? new URL('https://devisia.pro');
 const pageUrl = new URL(`/projects/${slug}/`, site).toString();
 
