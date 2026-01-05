@@ -230,7 +230,9 @@ const policyHref = locale === 'en' ? '/en/privacy' : '/privacy';
 </script>
 
 <style>
-  .gdpr-hidden {
+  /* Hidden helpers: use higher specificity than .gdpr-modal/.gdpr-banner display rules */
+  .gdpr-banner.gdpr-hidden,
+  .gdpr-modal.gdpr-hidden {
     display: none !important;
   }
 
