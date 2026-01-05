@@ -1,18 +1,20 @@
 ---
 title: Privacy & Cookie Policy
 description: Information about privacy, cookies, and consent management (GDPR).
+heroTitle: ''
+heroSubtitle: ''
+homeWhatWeDoTitle: ''
 ---
-
 # Privacy & Cookie Policy
 
 This page explains how Devisia handles **personal data** and **cookies** in line with GDPR (Regulation (EU) 2016/679) and applicable ePrivacy rules.
 
 ## 1) Data controller (Controller)
 
-**Devisia**  
-Email: [info@devisia.pro](mailto:info@devisia.pro)  
-Registered office: (to be completed)  
-VAT/Company ID: (to be completed)  
+**Devisia**
+Email: [info@devisia.pro](mailto:info@devisia.pro)
+Registered office: Riva Gulli 12 - Trieste
+VAT/Company ID: (to be completed)
 
 If you want to exercise your rights or request information about our data processing, please contact us at the email address above.
 
@@ -30,18 +32,21 @@ We do **not** intentionally collect special categories of data (GDPR art. 9). Pl
 
 We process personal data for the following purposes:
 
-1. **Responding to requests / contact form submissions**  
-   - **Purpose**: handle your message and reply to you.  
-   - **Legal basis**: performance of pre‑contractual measures / contract (GDPR art. 6(1)(b)) and/or legitimate interest (art. 6(1)(f)).  
+1. **Responding to requests / contact form submissions**
 
-2. **Website security, operations, and troubleshooting**  
-   - **Purpose**: protect the site, prevent abuse, and ensure service continuity.  
-   - **Legal basis**: legitimate interest (GDPR art. 6(1)(f)).  
+- **Purpose**: handle your message and reply to you.
+- **Legal basis**: performance of pre‑contractual measures / contract (GDPR art. 6(1)(b)) and/or legitimate interest (art. 6(1)(f)).
 
-3. **Analytics and marketing (optional)**  
-   - **Purpose**: measure and improve the website and/or run marketing tools.  
-   - **Legal basis**: consent (GDPR art. 6(1)(a)).  
-   - These technologies are **not activated** unless you opt in (where applicable).
+2. **Website security, operations, and troubleshooting**
+
+- **Purpose**: protect the site, prevent abuse, and ensure service continuity.
+- **Legal basis**: legitimate interest (GDPR art. 6(1)(f)).
+
+3. **Analytics and marketing (optional)**
+
+- **Purpose**: measure and improve the website and/or run marketing tools.
+- **Legal basis**: consent (GDPR art. 6(1)(a)).
+- These technologies are **not activated** unless you opt in (where applicable).
 
 ## 4) Cookies and similar technologies
 
@@ -52,6 +57,7 @@ We use:
 - **Marketing cookies/technologies** (optional): only if you consent.
 
 ### Consent cookie
+
 Your preferences are stored in a cookie named `gdpr_consent`.
 
 - **Duration**: up to **180 days**, unless you change it earlier.
@@ -60,6 +66,7 @@ Your preferences are stored in a cookie named `gdpr_consent`.
 ## 5) How to manage consent
 
 On your first visit you can:
+
 - **Accept** all cookies
 - **Reject** non‑essential cookies
 - **Manage preferences** by category
@@ -93,4 +100,3 @@ You have the right to access, rectify, erase, restrict processing, portability, 
 For requests: [info@devisia.pro](mailto:info@devisia.pro)
 
 You also have the right to lodge a complaint with your competent supervisory authority.
-
