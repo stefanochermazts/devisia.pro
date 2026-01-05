@@ -158,13 +158,21 @@
   }
 
   .nav-link-cta {
-    border: var(--ds-border-1) solid color-mix(in srgb, var(--ds-color-accent) 40%, transparent);
-    background: color-mix(in srgb, var(--ds-color-accent) 10%, transparent);
-    color: var(--ds-color-text);
+    border: var(--ds-border-1) solid color-mix(in srgb, var(--ds-color-accent) 55%, var(--ds-color-border));
+    background: var(--ds-color-accent);
+    color: white;
+    font-weight: 700;
   }
 
   .nav-link-cta:hover {
-    background: color-mix(in srgb, var(--ds-color-accent) 16%, transparent);
+    background: color-mix(in srgb, var(--ds-color-accent) 88%, black);
+  }
+
+  /* Keep CTA clearly distinct from the "active page" style */
+  .nav-link-cta[aria-current='page'] {
+    background: color-mix(in srgb, var(--ds-color-accent) 78%, black);
+    border-color: color-mix(in srgb, var(--ds-color-accent) 70%, var(--ds-color-border));
+    box-shadow: var(--ds-focus-ring);
   }
 
   .main-content {
