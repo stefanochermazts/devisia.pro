@@ -171,9 +171,10 @@ const breadcrumbs = breadcrumbListJsonLd({
 
   .contact-form-section {
     margin-top: 3rem;
-    padding: 2rem;
-    background-color: #f9fafb;
-    border-radius: 0.5rem;
+    padding: var(--ds-space-6);
+    background-color: var(--ds-color-surface);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-3);
   }
   
   .contact-form {
@@ -194,23 +195,30 @@ const breadcrumbs = breadcrumbListJsonLd({
   
   .form-label {
     font-weight: 500;
-    color: #1f2937;
-    font-size: 0.95rem;
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-sm);
   }
   
   .form-input {
     padding: 0.75rem 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 0.375rem;
-    font-size: 1rem;
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-2);
+    font-size: var(--ds-text-md);
     font-family: inherit;
     transition: border-color 0.2s, box-shadow 0.2s;
+    background-color: var(--ds-color-surface-2);
+    color: var(--ds-color-text);
+  }
+
+  .form-input::placeholder {
+    color: var(--ds-color-text-muted);
+    opacity: 1;
   }
   
   .form-input:focus {
     outline: none;
-    border-color: #2563eb;
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    border-color: color-mix(in srgb, var(--ds-color-accent) 40%, var(--ds-color-border));
+    box-shadow: var(--ds-focus-ring);
   }
   
   textarea.form-input {
@@ -220,19 +228,24 @@ const breadcrumbs = breadcrumbListJsonLd({
   
   .form-submit {
     padding: 0.875rem 2rem;
-    background-color: #2563eb;
+    background-color: var(--ds-color-accent);
     color: white;
     border: none;
-    border-radius: 0.375rem;
-    font-size: 1rem;
+    border-radius: var(--ds-radius-2);
+    font-size: var(--ds-text-md);
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.2s, transform 0.1s;
     align-self: flex-start;
   }
+
+  .form-submit:focus-visible {
+    outline: none;
+    box-shadow: var(--ds-focus-ring);
+  }
   
   .form-submit:hover {
-    background-color: #1e40af;
+    background-color: color-mix(in srgb, var(--ds-color-accent) 85%, black);
   }
   
   .form-submit:active {
