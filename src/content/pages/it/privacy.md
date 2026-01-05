@@ -1,5 +1,5 @@
 ---
-title: Privacy & Cookie Policy
+title: Informativa Privacy e Cookie
 description: Informativa su privacy, cookie e gestione del consenso (GDPR).
 heroTitle: ''
 heroSubtitle: ''

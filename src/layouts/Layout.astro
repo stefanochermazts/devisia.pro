@@ -18,7 +18,11 @@ const {
 } = Astro.props;
 
 const siteName = 'Devisia';
-const fullTitle = title === 'Home' ? siteName : `${title} | ${siteName}`;
+const homeTitleSuffix =
+  lang === 'en'
+    ? 'Technology partner for SaaS & custom software'
+    : 'Partner tecnologico per SaaS e software su misura';
+const fullTitle = title === 'Home' ? `${siteName} — ${homeTitleSuffix}` : `${title} | ${siteName}`;
 const canonicalURL = new URL(canonical, Astro.site);
 
 const defaultDescription =
