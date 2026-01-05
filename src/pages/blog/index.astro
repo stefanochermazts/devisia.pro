@@ -43,6 +43,70 @@ const breadcrumbs = breadcrumbListJsonLd({
         Approfondimenti, tutorial e aggiornamenti su tecnologia, sviluppo software e trasformazione digitale.
       </p>
     </header>
+
+    <section class="page-intro" aria-label="Introduzione al blog">
+      <div class="intro-card">
+        <h2 class="intro-title">Cosa trovi qui</h2>
+        <p class="intro-text">
+          Questo blog nasce per condividere in modo concreto come ragioniamo quando progettiamo e realizziamo software:
+          dal primo workshop con gli stakeholder fino al rilascio in produzione e al miglioramento continuo. Non è un
+          semplice diario di novità: troverai guide operative, esempi, checklist e “decisioni di architettura”
+          spiegate con un linguaggio chiaro, anche quando il tema è tecnico. L’obiettivo è aiutarti a fare scelte più
+          solide, riducendo rischi e costi nascosti, e aumentando la probabilità di ottenere un prodotto che funzioni
+          davvero nel mondo reale.
+        </p>
+        <p class="intro-text">
+          Pubblicheremo contenuti su sviluppo web e backend, integrazioni con API, automazioni, AI applicata ai processi,
+          qualità (testing, osservabilità), sicurezza e privacy (GDPR incluso). Quando parliamo di AI, lo facciamo con un
+          approccio pragmatico: definire bene il problema, misurare il valore, mettere guardrail e governare i fornitori.
+          Se ti interessa questo tema, dai un’occhiata anche alla nostra
+          <a class="intro-link" href="/tools/ai-risk-checklist">AI Risk &amp; Privacy Checklist</a>.
+        </p>
+
+        <div class="intro-grid" role="list">
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">Per chi è</h3>
+            <p class="intro-item-text">
+              Founder, product manager, team tech e persone non tecniche che devono prendere decisioni informate:
+              scope, roadmap, costi, scelte “buy vs build”, e cosa chiedere davvero a un fornitore o a un team interno.
+            </p>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">Come leggere gli articoli</h3>
+            <p class="intro-item-text">
+              Ogni post cerca di rispondere a una domanda reale (es. “Come evito lock-in?”, “Come valido un MVP?”,
+              “Quali metriche contano?”) e termina con azioni pratiche. Se vuoi un confronto diretto, puoi
+              <a class="intro-link" href="/contact">contattarci qui</a>.
+            </p>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">Temi ricorrenti</h3>
+            <ul class="intro-list">
+              <li><strong>Architettura &amp; scalabilità</strong>: scelte semplici, evolutive, misurabili.</li>
+              <li><strong>Qualità</strong>: test, code review, CI/CD e riduzione del debito tecnico.</li>
+              <li><strong>AI responsabile</strong>: valutazione rischi, privacy, logging e controlli.</li>
+              <li><strong>Delivery</strong>: rilasci piccoli, feedback rapidi, obiettivi chiari.</li>
+            </ul>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">Domande frequenti</h3>
+            <p class="intro-item-text">
+              <strong>Quanto spesso pubblicate?</strong> Preferiamo qualità e utilità: pubblichiamo quando abbiamo
+              qualcosa che può davvero aiutarti (una guida, un pattern, una checklist).
+            </p>
+            <p class="intro-item-text">
+              <strong>Posso proporre un tema?</strong> Sì: scrivici cosa stai cercando di risolvere e quali vincoli hai.
+              Valuteremo se farne un articolo o risponderti direttamente.
+            </p>
+          </div>
+        </div>
+
+        <p class="intro-text intro-cta">
+          Vuoi vedere cosa stiamo costruendo? Passa alla pagina
+          <a class="intro-link" href="/projects">Progetti</a> per esplorare prodotti, sperimentazioni e iniziative in corso.
+        </p>
+      </div>
+    </section>
     
     {sortedPosts.length === 0 ? (
       <div class="no-posts">
@@ -112,6 +176,90 @@ const breadcrumbs = breadcrumbListJsonLd({
     color: var(--ds-color-text-muted);
     max-width: 600px;
     margin: 0 auto;
+  }
+
+  .page-intro {
+    margin: 0 auto 2.5rem;
+    max-width: 900px;
+  }
+
+  .intro-card {
+    background: var(--ds-color-surface);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-3);
+    padding: var(--ds-space-6);
+  }
+
+  .intro-title {
+    margin: 0 0 var(--ds-space-3);
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-xl);
+    font-weight: 700;
+  }
+
+  .intro-text {
+    margin: 0 0 var(--ds-space-3);
+    color: var(--ds-color-text);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-cta {
+    margin-top: var(--ds-space-4);
+    color: var(--ds-color-text-muted);
+  }
+
+  .intro-link {
+    color: var(--ds-color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--ds-space-5);
+    margin: var(--ds-space-5) 0 var(--ds-space-4);
+  }
+
+  .intro-item {
+    background: var(--ds-color-surface-2);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-2);
+    padding: var(--ds-space-4);
+  }
+
+  .intro-item-title {
+    margin: 0 0 var(--ds-space-2);
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-md);
+    font-weight: 700;
+  }
+
+  .intro-item-text {
+    margin: 0 0 var(--ds-space-2);
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-list {
+    margin: 0;
+    padding-left: 1.15rem;
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-list li + li {
+    margin-top: 0.35rem;
+  }
+
+  @media (max-width: 768px) {
+    .intro-card {
+      padding: var(--ds-space-5);
+    }
+
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .no-posts {

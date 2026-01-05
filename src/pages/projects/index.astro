@@ -44,6 +44,68 @@ const breadcrumbs = breadcrumbListJsonLd({
       </p>
     </header>
 
+    <section class="page-intro" aria-label="Introduzione ai progetti">
+      <div class="intro-card">
+        <h2 class="intro-title">Cosa significa “progetto” per noi</h2>
+        <p class="intro-text">
+          In questa pagina raccogliamo i prodotti e le iniziative su cui lavoriamo: alcuni sono “case study” con un obiettivo
+          chiaro e una roadmap definita, altri sono sperimentazioni controllate che ci aiutano a validare idee, pattern tecnici o
+          approcci di delivery. In entrambi i casi, il filo conduttore è lo stesso: costruire software che crea valore misurabile,
+          mantenendo la complessità sotto controllo e rispettando requisiti di sicurezza e privacy.
+        </p>
+        <p class="intro-text">
+          Ogni card qui sotto ti dà un’idea rapida del contesto (descrizione, stato, tag). Lo “stato” non è solo una label estetica:
+          ci aiuta a capire quanto un progetto sia vicino alla produzione e che tipo di rischio residuo aspettarsi. “Active” indica
+          un prodotto o iniziativa in uso o in rollout; “Beta” è un lavoro in validazione; “Archived” è qualcosa che abbiamo concluso
+          o messo in pausa, spesso perché abbiamo imparato abbastanza e il valore marginale di continuare era basso.
+        </p>
+
+        <div class="intro-grid" role="list">
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">Come lavoriamo</h3>
+            <ul class="intro-list">
+              <li><strong>Discovery breve</strong>: obiettivi, utenti, vincoli, dati, integrazioni.</li>
+              <li><strong>Prototipo / MVP</strong>: validazione rapida con feedback reali.</li>
+              <li><strong>Industrializzazione</strong>: qualità, test, osservabilità, CI/CD, hardening.</li>
+              <li><strong>Iterazione</strong>: misurazione, miglioramento continuo, roadmap.</li>
+            </ul>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">Cosa puoi aspettarti</h3>
+            <p class="intro-item-text">
+              Troverai descrizioni sintetiche, focus su risultati e “perché” delle scelte. Quando un progetto include AI, ci
+              concentriamo anche su governance, audit logging, minimizzazione dati e controlli policy per ridurre rischio e sorprese.
+              Se ti interessa questa parte, puoi partire dalla nostra
+              <a class="intro-link" href="/tools/ai-risk-checklist">AI Risk &amp; Privacy Checklist</a>.
+            </p>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">Collaborazioni</h3>
+            <p class="intro-item-text">
+              Se vuoi capire come un progetto simile potrebbe applicarsi alla tua realtà, scrivici: bastano obiettivo, contesto e
+              vincoli principali. Possiamo valutare insieme se ha senso un audit rapido, un prototipo o un percorso di sviluppo.
+              Vai alla pagina <a class="intro-link" href="/contact">Contatti</a>.
+            </p>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">FAQ rapida</h3>
+            <p class="intro-item-text">
+              <strong>Perché alcuni progetti sono archiviati?</strong> Perché abbiamo già estratto valore (apprendimento, pattern,
+              riuso) o perché le priorità sono cambiate. Archiviare è spesso una scelta di focus, non un “fallimento”.
+            </p>
+            <p class="intro-item-text">
+              <strong>Posso vedere dettagli tecnici?</strong> Quando possibile li includiamo nelle pagine di progetto e nel blog.
+            </p>
+          </div>
+        </div>
+
+        <p class="intro-text intro-note">
+          Nota: questa pagina evolve nel tempo. Se vuoi una panoramica completa dei servizi, visita
+          <a class="intro-link" href="/services">Servizi</a>.
+        </p>
+      </div>
+    </section>
+
     {sortedProjects.length === 0 ? (
       <p class="empty">Nessun progetto disponibile.</p>
     ) : (
@@ -119,6 +181,90 @@ const breadcrumbs = breadcrumbListJsonLd({
     color: var(--ds-color-text-muted);
     max-width: 700px;
     margin: 0 auto;
+  }
+
+  .page-intro {
+    margin: 0 auto 2.5rem;
+    max-width: 900px;
+  }
+
+  .intro-card {
+    background: var(--ds-color-surface);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-3);
+    padding: var(--ds-space-6);
+  }
+
+  .intro-title {
+    margin: 0 0 var(--ds-space-3);
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-xl);
+    font-weight: 700;
+  }
+
+  .intro-text {
+    margin: 0 0 var(--ds-space-3);
+    color: var(--ds-color-text);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-note {
+    margin-top: var(--ds-space-4);
+    color: var(--ds-color-text-muted);
+  }
+
+  .intro-link {
+    color: var(--ds-color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--ds-space-5);
+    margin: var(--ds-space-5) 0 var(--ds-space-4);
+  }
+
+  .intro-item {
+    background: var(--ds-color-surface-2);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-2);
+    padding: var(--ds-space-4);
+  }
+
+  .intro-item-title {
+    margin: 0 0 var(--ds-space-2);
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-md);
+    font-weight: 700;
+  }
+
+  .intro-item-text {
+    margin: 0 0 var(--ds-space-2);
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-list {
+    margin: 0;
+    padding-left: 1.15rem;
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-list li + li {
+    margin-top: 0.35rem;
+  }
+
+  @media (max-width: 768px) {
+    .intro-card {
+      padding: var(--ds-space-5);
+    }
+
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .empty {

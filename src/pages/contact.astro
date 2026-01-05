@@ -29,6 +29,68 @@ const breadcrumbs = breadcrumbListJsonLd({
 <Layout title={data.title} description={data.description} structuredData={[breadcrumbs]}>
   <article class="page-content">
     <Content />
+
+    <section class="page-intro" aria-label="Introduzione contatti">
+      <div class="intro-card">
+        <h2 class="intro-title">Parliamo del tuo progetto</h2>
+        <p class="intro-text">
+          Se stai valutando un nuovo prodotto digitale, un’evoluzione di una piattaforma esistente, o vuoi capire se (e come)
+          introdurre AI in modo responsabile, questa è la pagina giusta. Usiamo il form per raccogliere le informazioni minime
+          per risponderti in modo utile: niente call infinite, niente giri a vuoto. Se hai già una visione chiara, raccontacela;
+          se invece hai solo un problema (“stiamo perdendo tempo su X”, “non riusciamo a scalare Y”), va benissimo lo stesso.
+          Possiamo aiutarti a trasformare l’esigenza in requisiti, priorità e un piano di esecuzione realistico.
+        </p>
+        <p class="intro-text">
+          Tipicamente rispondiamo entro 1–2 giorni lavorativi. Se la richiesta è complessa, ti proporremo un breve
+          approfondimento (15–30 minuti) per allineare contesto e obiettivi. Il nostro approccio è orientato agli esiti:
+          definizione del valore, riduzione del rischio e rilascio progressivo. In molti casi partiamo da una fase di discovery
+          leggera (interviste, analisi dei vincoli, mappatura dati e processi) e poi passiamo all’implementazione per iterazioni.
+        </p>
+
+        <div class="intro-grid" role="list">
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">Cosa scrivere nel messaggio</h3>
+            <ul class="intro-list">
+              <li><strong>Obiettivo</strong>: cosa vuoi ottenere e come misurerai il successo.</li>
+              <li><strong>Contesto</strong>: settore, utenti, volumi, integrazioni esistenti.</li>
+              <li><strong>Vincoli</strong>: tempi, budget indicativo, compliance (es. GDPR), stack.</li>
+              <li><strong>Stato attuale</strong>: cosa funziona e cosa blocca oggi.</li>
+            </ul>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">Cosa succede dopo l’invio</h3>
+            <p class="intro-item-text">
+              Riceverai una email di conferma. Internamente valutiamo la richiesta, prepariamo 2–3 domande mirate e,
+              se ha senso, ti proponiamo i prossimi step (es. audit rapido, prototipo, backlog iniziale, roadmap).
+              Se preferisci, puoi anche indicare finestre orarie e il canale che preferisci per essere ricontattato.
+            </p>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">AI, dati e privacy</h3>
+            <p class="intro-item-text">
+              Se il tuo caso d’uso coinvolge AI, non serve condividere dati sensibili nel form. Possiamo ragionare su esempi
+              sintetici e definire un percorso sicuro: minimizzazione, redazione PII, retention, audit logging e controlli.
+              Puoi anche partire dalla nostra checklist dedicata:
+              <a class="intro-link" href="/tools/ai-risk-checklist">AI Risk &amp; Privacy Checklist</a>.
+            </p>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">FAQ rapida</h3>
+            <p class="intro-item-text">
+              <strong>Offrite solo sviluppo?</strong> No: possiamo fare anche discovery, audit, workshop, e supporto tecnico.
+            </p>
+            <p class="intro-item-text">
+              <strong>Serve già un brief perfetto?</strong> No: possiamo costruirlo insieme, partendo dal problema.
+            </p>
+          </div>
+        </div>
+
+        <p class="intro-text intro-note">
+          Nota: i dati inviati vengono usati solo per gestire la richiesta e risponderti. Per dettagli su trattamento e cookie,
+          consulta la nostra <a class="intro-link" href="/privacy">Privacy &amp; Cookie Policy</a>.
+        </p>
+      </div>
+    </section>
     
     <!-- Success Message -->
     {isSuccess && (
@@ -70,14 +132,14 @@ const breadcrumbs = breadcrumbListJsonLd({
         
         <!-- Name field -->
         <div class="form-group">
-          <label for="name" class="form-label">Name *</label>
+          <label for="name" class="form-label">Nome *</label>
           <input 
             type="text" 
             id="name" 
             name="name" 
             required 
             class="form-input"
-            placeholder="Your name"
+            placeholder="Il tuo nome"
           />
         </div>
         
@@ -90,38 +152,38 @@ const breadcrumbs = breadcrumbListJsonLd({
             name="email" 
             required 
             class="form-input"
-            placeholder="your.email@example.com"
+            placeholder="nome.cognome@esempio.com"
           />
         </div>
         
         <!-- Subject field -->
         <div class="form-group">
-          <label for="subject" class="form-label">Subject</label>
+          <label for="subject" class="form-label">Oggetto</label>
           <input 
             type="text" 
             id="subject" 
             name="subject" 
             class="form-input"
-            placeholder="What is this about?"
+            placeholder="Di cosa si tratta?"
           />
         </div>
         
         <!-- Message field -->
         <div class="form-group">
-          <label for="message" class="form-label">Message *</label>
+          <label for="message" class="form-label">Messaggio *</label>
           <textarea 
             id="message" 
             name="message" 
             required 
             rows="6" 
             class="form-input"
-            placeholder="Tell us more about your project or inquiry..."
+            placeholder="Raccontaci di più sul tuo progetto o sulla tua richiesta..."
           ></textarea>
         </div>
         
         <!-- Submit button -->
         <button type="submit" class="form-submit">
-          Send Message
+          Invia messaggio
         </button>
       </form>
     </section>
@@ -132,6 +194,89 @@ const breadcrumbs = breadcrumbListJsonLd({
   .page-content {
     max-width: 800px;
     margin: 0 auto;
+  }
+
+  .page-intro {
+    margin-top: 2.5rem;
+  }
+
+  .intro-card {
+    background: var(--ds-color-surface);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-3);
+    padding: var(--ds-space-6);
+  }
+
+  .intro-title {
+    margin: 0 0 var(--ds-space-3);
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-xl);
+    font-weight: 700;
+  }
+
+  .intro-text {
+    margin: 0 0 var(--ds-space-3);
+    color: var(--ds-color-text);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-note {
+    margin-top: var(--ds-space-4);
+    color: var(--ds-color-text-muted);
+  }
+
+  .intro-link {
+    color: var(--ds-color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--ds-space-5);
+    margin: var(--ds-space-5) 0 var(--ds-space-4);
+  }
+
+  .intro-item {
+    background: var(--ds-color-surface-2);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-2);
+    padding: var(--ds-space-4);
+  }
+
+  .intro-item-title {
+    margin: 0 0 var(--ds-space-2);
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-md);
+    font-weight: 700;
+  }
+
+  .intro-item-text {
+    margin: 0 0 var(--ds-space-2);
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-list {
+    margin: 0;
+    padding-left: 1.15rem;
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-list li + li {
+    margin-top: 0.35rem;
+  }
+
+  @media (max-width: 768px) {
+    .intro-card {
+      padding: var(--ds-space-5);
+    }
+
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
   }
   
   .success-message {

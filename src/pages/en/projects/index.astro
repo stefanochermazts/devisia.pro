@@ -42,6 +42,67 @@ const breadcrumbs = breadcrumbListJsonLd({
       </p>
     </header>
 
+    <section class="page-intro" aria-label="Projects introduction">
+      <div class="intro-card">
+        <h2 class="intro-title">What “project” means to us</h2>
+        <p class="intro-text">
+          This page collects products and initiatives we work on. Some are full case studies with a clear goal and roadmap;
+          others are controlled experiments used to validate ideas, technical patterns, or delivery approaches. In both cases,
+          the goal is the same: build software that creates measurable value, keeps complexity manageable, and respects security
+          and privacy requirements.
+        </p>
+        <p class="intro-text">
+          Each card below gives you a quick snapshot (description, status, tags). The “status” is more than a label: it indicates
+          how close the work is to production and what kind of residual risk to expect. “Active” means in use or rolling out; “Beta”
+          means in validation; “Archived” means finished or paused—often because we learned what we needed and shifting focus was the
+          rational choice.
+        </p>
+
+        <div class="intro-grid" role="list">
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">How we work</h3>
+            <ul class="intro-list">
+              <li><strong>Short discovery</strong>: goals, users, constraints, data, integrations.</li>
+              <li><strong>Prototype / MVP</strong>: validate assumptions with real feedback.</li>
+              <li><strong>Industrialization</strong>: quality, tests, observability, CI/CD, hardening.</li>
+              <li><strong>Iteration</strong>: measurement, continuous improvement, roadmap.</li>
+            </ul>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">What you can expect</h3>
+            <p class="intro-item-text">
+              You’ll find concise descriptions, a focus on outcomes, and the “why” behind decisions. When a project includes AI, we
+              also emphasize governance, audit logging, data minimization, and policy checks to reduce surprises. If that’s relevant,
+              start with our <a class="intro-link" href="/en/tools/ai-risk-checklist">AI Risk &amp; Privacy Checklist</a>.
+            </p>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">Collaboration</h3>
+            <p class="intro-item-text">
+              If you want to evaluate how a similar approach could apply to your business, send us a note with your goal, context,
+              and constraints. We can recommend next steps: a quick audit, a prototype, or a delivery roadmap. See
+              <a class="intro-link" href="/en/contact">Contact</a>.
+            </p>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">Quick FAQ</h3>
+            <p class="intro-item-text">
+              <strong>Why are some projects archived?</strong> Because we extracted the value (learning, patterns, reusable components)
+              or priorities changed. Archiving is often a focus decision, not a failure.
+            </p>
+            <p class="intro-item-text">
+              <strong>Can I see technical details?</strong> When possible, we include them in project pages and blog posts.
+            </p>
+          </div>
+        </div>
+
+        <p class="intro-text intro-note">
+          Note: this page evolves over time. For a complete overview of our offering, visit
+          <a class="intro-link" href="/en/services">Services</a>.
+        </p>
+      </div>
+    </section>
+
     {sortedProjects.length === 0 ? (
       <p class="empty">No projects yet.</p>
     ) : (
@@ -117,6 +178,90 @@ const breadcrumbs = breadcrumbListJsonLd({
     color: var(--ds-color-text-muted);
     max-width: 700px;
     margin: 0 auto;
+  }
+
+  .page-intro {
+    margin: 0 auto 2.5rem;
+    max-width: 900px;
+  }
+
+  .intro-card {
+    background: var(--ds-color-surface);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-3);
+    padding: var(--ds-space-6);
+  }
+
+  .intro-title {
+    margin: 0 0 var(--ds-space-3);
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-xl);
+    font-weight: 700;
+  }
+
+  .intro-text {
+    margin: 0 0 var(--ds-space-3);
+    color: var(--ds-color-text);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-note {
+    margin-top: var(--ds-space-4);
+    color: var(--ds-color-text-muted);
+  }
+
+  .intro-link {
+    color: var(--ds-color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--ds-space-5);
+    margin: var(--ds-space-5) 0 var(--ds-space-4);
+  }
+
+  .intro-item {
+    background: var(--ds-color-surface-2);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-2);
+    padding: var(--ds-space-4);
+  }
+
+  .intro-item-title {
+    margin: 0 0 var(--ds-space-2);
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-md);
+    font-weight: 700;
+  }
+
+  .intro-item-text {
+    margin: 0 0 var(--ds-space-2);
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-list {
+    margin: 0;
+    padding-left: 1.15rem;
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-list li + li {
+    margin-top: 0.35rem;
+  }
+
+  @media (max-width: 768px) {
+    .intro-card {
+      padding: var(--ds-space-5);
+    }
+
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .empty {

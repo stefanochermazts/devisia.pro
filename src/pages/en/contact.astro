@@ -30,6 +30,67 @@ const breadcrumbs = breadcrumbListJsonLd({
   <article class="page-content">
     <Content />
 
+    <section class="page-intro" aria-label="Contact introduction">
+      <div class="intro-card">
+        <h2 class="intro-title">Let’s discuss your project</h2>
+        <p class="intro-text">
+          Whether you’re launching a new digital product, improving an existing platform, or exploring how to introduce AI
+          responsibly, this form is the fastest way to reach us. We use it to collect just enough information to respond with
+          a helpful first answer—no endless back-and-forth. If you already have a clear vision, share it; if you only have a
+          pain point (“we’re losing time on X”, “we can’t scale Y”), that’s totally fine. We can help you translate a problem
+          into requirements, priorities, and a realistic execution plan.
+        </p>
+        <p class="intro-text">
+          We typically reply within 1–2 business days. If your request is complex, we may suggest a short 15–30 minute call to
+          align on context and outcomes. Our approach is outcome-driven: define value, reduce risk, and deliver iteratively.
+          In many engagements we start with a lightweight discovery phase (stakeholder input, constraints, data/process mapping),
+          then move into implementation in small increments with rapid feedback.
+        </p>
+
+        <div class="intro-grid" role="list">
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">What to include in your message</h3>
+            <ul class="intro-list">
+              <li><strong>Goal</strong>: what you want to achieve and how you’ll measure success.</li>
+              <li><strong>Context</strong>: industry, users, volumes, existing systems and integrations.</li>
+              <li><strong>Constraints</strong>: timelines, rough budget, compliance needs (e.g. GDPR), tech stack.</li>
+              <li><strong>Current state</strong>: what works today and what’s blocking progress.</li>
+            </ul>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">What happens after you submit</h3>
+            <p class="intro-item-text">
+              You’ll receive a confirmation email. Internally we review the request, prepare a few focused questions, and—if it
+              makes sense—suggest next steps (e.g. quick audit, prototype, initial backlog, delivery roadmap). If you prefer, you
+              can also mention time windows and your preferred channel for follow-up.
+            </p>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">AI, data and privacy</h3>
+            <p class="intro-item-text">
+              If your use case involves AI, you don’t need to share sensitive data in the form. We can start from synthetic examples
+              and define a safe path: minimization, PII redaction, retention, audit logging, and policy checks. You can also begin with
+              our checklist: <a class="intro-link" href="/en/tools/ai-risk-checklist">AI Risk &amp; Privacy Checklist</a>.
+            </p>
+          </div>
+          <div class="intro-item" role="listitem">
+            <h3 class="intro-item-title">Quick FAQ</h3>
+            <p class="intro-item-text">
+              <strong>Do you only do development?</strong> No—discovery, audits, workshops, and technical guidance are also available.
+            </p>
+            <p class="intro-item-text">
+              <strong>Do I need a perfect brief?</strong> Not at all. We can build it together, starting from the problem.
+            </p>
+          </div>
+        </div>
+
+        <p class="intro-text intro-note">
+          Note: the information you send is used only to manage your request and reply. For details on data processing and cookies,
+          see our <a class="intro-link" href="/en/privacy">Privacy &amp; Cookie Policy</a>.
+        </p>
+      </div>
+    </section>
+
     <!-- Success Message -->
     {isSuccess && (
       <div class="success-message" role="alert">
@@ -123,6 +184,89 @@ const breadcrumbs = breadcrumbListJsonLd({
   .page-content {
     max-width: 800px;
     margin: 0 auto;
+  }
+
+  .page-intro {
+    margin-top: 2.5rem;
+  }
+
+  .intro-card {
+    background: var(--ds-color-surface);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-3);
+    padding: var(--ds-space-6);
+  }
+
+  .intro-title {
+    margin: 0 0 var(--ds-space-3);
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-xl);
+    font-weight: 700;
+  }
+
+  .intro-text {
+    margin: 0 0 var(--ds-space-3);
+    color: var(--ds-color-text);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-note {
+    margin-top: var(--ds-space-4);
+    color: var(--ds-color-text-muted);
+  }
+
+  .intro-link {
+    color: var(--ds-color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .intro-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--ds-space-5);
+    margin: var(--ds-space-5) 0 var(--ds-space-4);
+  }
+
+  .intro-item {
+    background: var(--ds-color-surface-2);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-2);
+    padding: var(--ds-space-4);
+  }
+
+  .intro-item-title {
+    margin: 0 0 var(--ds-space-2);
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-md);
+    font-weight: 700;
+  }
+
+  .intro-item-text {
+    margin: 0 0 var(--ds-space-2);
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-list {
+    margin: 0;
+    padding-left: 1.15rem;
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .intro-list li + li {
+    margin-top: 0.35rem;
+  }
+
+  @media (max-width: 768px) {
+    .intro-card {
+      padding: var(--ds-space-5);
+    }
+
+    .intro-grid {
+      grid-template-columns: 1fr;
+    }
   }
 
   .success-message {
