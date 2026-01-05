@@ -1,0 +1,31 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getEntry, render } from 'astro:content';
+import { type CollectionEntry } from 'astro:content';
+import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
+
+const entry: CollectionEntry<'pagesEn'> | undefined = await getEntry('pagesEn', 'en/privacy');
+
+if (!entry) {
+  return new Response('Privacy page content not found', { status: 404 });
+}
+
+const { data } = entry;
+const { Content } = await render(entry);
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/en/' },
+    { name: 'Privacy & Cookie Policy', url: '/en/privacy' },
+  ],
+});
+---
+
+<Layout title={data.title} description={data.description} lang="en" structuredData={[breadcrumbs]}>
+  <article class="ds-stack" data-gap="lg" style="max-width: var(--ds-reading-max); margin-inline: auto;">
+    <Content />
+  </article>
+</Layout>
+
