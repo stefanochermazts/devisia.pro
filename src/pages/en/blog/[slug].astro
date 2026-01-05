@@ -108,12 +108,12 @@ const formatDate = (date: Date | string): string => {
     align-items: center;
     gap: 0.5rem;
     font-size: 0.95rem;
-    color: var(--color-text-light, #6b7280);
+    color: var(--ds-color-text-muted);
     margin-bottom: 1rem;
   }
 
   .separator {
-    color: var(--color-border, #e5e7eb);
+    color: var(--ds-color-border);
   }
 
   .post-author {
@@ -124,13 +124,13 @@ const formatDate = (date: Date | string): string => {
     font-size: 2.5rem;
     line-height: 1.2;
     margin-bottom: 1rem;
-    color: var(--color-text, #1f2937);
+    color: var(--ds-color-text);
   }
 
   .post-description {
     font-size: 1.2rem;
-    color: var(--color-text-light, #6b7280);
-    line-height: 1.6;
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
     margin-bottom: 1.5rem;
   }
 
@@ -144,9 +144,9 @@ const formatDate = (date: Date | string): string => {
   .tag {
     display: inline-block;
     padding: 0.4rem 1rem;
-    background-color: var(--color-bg-alt, #f9fafb);
-    color: var(--color-primary, #2563eb);
-    border-radius: 0.375rem;
+    background-color: var(--ds-color-surface-2);
+    color: var(--ds-color-accent);
+    border-radius: var(--ds-radius-1);
     font-size: 0.875rem;
     font-weight: 500;
   }
@@ -155,7 +155,7 @@ const formatDate = (date: Date | string): string => {
     width: 100%;
     max-height: 400px;
     overflow: hidden;
-    border-radius: 0.75rem;
+    border-radius: var(--ds-radius-3);
     margin-bottom: 2rem;
   }
 
@@ -167,24 +167,84 @@ const formatDate = (date: Date | string): string => {
 
   .post-content {
     font-size: 1.1rem;
-    line-height: 1.8;
-    color: var(--color-text, #1f2937);
+    line-height: var(--ds-leading-relaxed);
+    color: var(--ds-color-text);
+  }
+
+  .post-content :global(h2) {
+    font-size: 2rem;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--ds-color-text);
+  }
+
+  .post-content :global(h3) {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 0.75rem;
+    color: var(--ds-color-text);
+  }
+
+  .post-content :global(p) {
+    margin-bottom: 1.5rem;
+  }
+
+  .post-content :global(ul, ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+  }
+
+  .post-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .post-content :global(pre) {
+    background-color: var(--ds-color-surface-2);
+    color: var(--ds-color-text);
+    padding: 1.5rem;
+    border-radius: var(--ds-radius-2);
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    border: var(--ds-border-1) solid var(--ds-color-border);
+  }
+
+  .post-content :global(code) {
+    background-color: var(--ds-color-surface-2);
+    color: var(--ds-color-text);
+    padding: 0.2rem 0.4rem;
+    border-radius: var(--ds-radius-1);
+    font-size: 0.9em;
+    font-family: var(--ds-font-mono);
+  }
+
+  .post-content :global(pre code) {
+    background-color: transparent;
+    padding: 0;
+    color: inherit;
+  }
+
+  .post-content :global(blockquote) {
+    border-left: var(--ds-border-2) solid var(--ds-color-accent);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: var(--ds-color-text-muted);
   }
 
   .post-footer {
     margin-top: 4rem;
     padding-top: 2rem;
-    border-top: 1px solid var(--color-border, #e5e7eb);
+    border-top: var(--ds-border-1) solid var(--ds-color-border);
   }
 
   .back-link {
-    color: var(--color-primary, #2563eb);
+    color: var(--ds-color-accent);
     text-decoration: none;
     font-weight: 600;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    transition: gap 0.2s;
+    transition: gap var(--ds-motion-base);
   }
 
   .back-link:hover {
