@@ -1,0 +1,332 @@
+---
+import { t, type Locale } from '../lib/i18n';
+
+const locale: Locale = Astro.props.locale ?? 'it';
+---
+
+<div class="gdpr-consent" data-locale={locale}>
+  <!-- Banner (hidden until client decides it must be shown) -->
+  <div class="gdpr-banner gdpr-hidden" role="dialog" aria-modal="true" aria-labelledby="gdpr-banner-title">
+    <div class="gdpr-banner__inner">
+      <p id="gdpr-banner-title" class="gdpr-banner__text">
+        {t('bannerMessage', locale)}
+      </p>
+
+      <div class="gdpr-banner__actions">
+        <button type="button" class="ds-btn" data-variant="primary" data-size="sm" data-gdpr-action="accept-all">
+          {t('acceptAll', locale)}
+        </button>
+        <button type="button" class="ds-btn" data-variant="ghost" data-size="sm" data-gdpr-action="reject-all">
+          {t('rejectAll', locale)}
+        </button>
+        <button type="button" class="ds-btn" data-variant="ghost" data-size="sm" data-gdpr-action="open-preferences">
+          {t('managePreferences', locale)}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Preferences modal (hidden by default) -->
+  <div class="gdpr-modal gdpr-hidden" role="dialog" aria-modal="true" aria-labelledby="gdpr-modal-title">
+    <div class="gdpr-modal__backdrop" data-gdpr-action="close"></div>
+
+    <div class="gdpr-modal__panel" role="document" tabindex="-1">
+      <div class="gdpr-modal__header">
+        <h2 id="gdpr-modal-title" class="gdpr-modal__title">{t('preferencesTitle', locale)}</h2>
+        <button type="button" class="ds-btn" data-variant="ghost" data-size="sm" data-gdpr-action="close" aria-label={t('closeButton', locale)}>
+          {t('closeButton', locale)}
+        </button>
+      </div>
+
+      <form class="gdpr-form" data-gdpr-form>
+        <div class="gdpr-row">
+          <div class="gdpr-row__label">
+            <strong>{t('essentialAlwaysOn', locale)}</strong>
+          </div>
+          <div class="gdpr-row__control">
+            <span class="gdpr-chip" aria-hidden="true">On</span>
+          </div>
+        </div>
+
+        <label class="gdpr-row">
+          <span class="gdpr-row__label">
+            <strong>{t('analyticsLabel', locale)}</strong>
+          </span>
+          <span class="gdpr-row__control">
+            <input type="checkbox" name="analytics" class="gdpr-toggle" />
+          </span>
+        </label>
+
+        <label class="gdpr-row">
+          <span class="gdpr-row__label">
+            <strong>{t('marketingLabel', locale)}</strong>
+          </span>
+          <span class="gdpr-row__control">
+            <input type="checkbox" name="marketing" class="gdpr-toggle" />
+          </span>
+        </label>
+
+        <div class="gdpr-form__actions">
+          <button type="submit" class="ds-btn" data-variant="primary" data-size="sm">
+            {t('saveButton', locale)}
+          </button>
+          <button type="button" class="ds-btn" data-variant="ghost" data-size="sm" data-gdpr-action="close">
+            {t('closeButton', locale)}
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { getConsent, getDefaultConsent, loadConsent, saveConsent } from '../lib/consent';
+
+  const root = document.currentScript?.previousElementSibling;
+  if (!(root instanceof HTMLElement)) {
+    // eslint-disable-next-line no-console
+    console.warn('[gdpr] CookieConsent root not found');
+  } else {
+    const banner = root.querySelector('.gdpr-banner');
+    const modal = root.querySelector('.gdpr-modal');
+    const modalPanel = root.querySelector('.gdpr-modal__panel');
+    const form = root.querySelector('[data-gdpr-form]');
+
+    const setBannerVisible = (visible) => {
+      if (!banner) return;
+      banner.classList.toggle('gdpr-hidden', !visible);
+    };
+
+    const setModalVisible = (visible) => {
+      if (!modal) return;
+      modal.classList.toggle('gdpr-hidden', !visible);
+      if (visible) {
+        document.documentElement.classList.add('gdpr-modal-open');
+      } else {
+        document.documentElement.classList.remove('gdpr-modal-open');
+      }
+    };
+
+    const showModal = () => {
+      if (!modal || !form) return;
+      // hydrate current values into toggles
+      const current = loadConsent() ?? getConsent() ?? getDefaultConsent();
+      const analytics = form.querySelector('input[name="analytics"]');
+      const marketing = form.querySelector('input[name="marketing"]');
+      if (analytics) analytics.checked = Boolean(current.analytics);
+      if (marketing) marketing.checked = Boolean(current.marketing);
+      setModalVisible(true);
+      // focus
+      if (modalPanel instanceof HTMLElement) modalPanel.focus();
+    };
+
+    const hideModal = () => setModalVisible(false);
+
+    const applyConsent = (data) => {
+      try {
+        saveConsent(data);
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error('[gdpr] Failed to save consent', e);
+      }
+      setBannerVisible(false);
+      hideModal();
+    };
+
+    // Initial decision: show banner only if no consent cookie yet
+    const existing = loadConsent();
+    setBannerVisible(!existing);
+
+    root.addEventListener('click', (e) => {
+      const target = e.target;
+      if (!(target instanceof HTMLElement)) return;
+      const action = target.getAttribute('data-gdpr-action');
+      if (!action) return;
+
+      if (action === 'accept-all') {
+        applyConsent({ essential: true, analytics: true, marketing: true });
+      } else if (action === 'reject-all') {
+        applyConsent({ essential: true, analytics: false, marketing: false });
+      } else if (action === 'open-preferences') {
+        showModal();
+      } else if (action === 'close') {
+        hideModal();
+      }
+    });
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const analytics = form.querySelector('input[name="analytics"]')?.checked ?? false;
+        const marketing = form.querySelector('input[name="marketing"]')?.checked ?? false;
+        applyConsent({ essential: true, analytics, marketing });
+      });
+    }
+
+    // Close on Escape
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.classList.contains('gdpr-hidden')) {
+        hideModal();
+      }
+    });
+
+    // Allow other UI (footer link) to open preferences
+    window.addEventListener('open-gdpr-preferences', () => showModal());
+  }
+</script>
+
+<style>
+  .gdpr-hidden {
+    display: none;
+  }
+
+  /* Banner */
+  .gdpr-banner {
+    position: fixed;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 2000;
+    padding: var(--ds-space-4);
+    background: color-mix(in srgb, var(--ds-color-surface) 92%, transparent);
+    border-top: var(--ds-border-1) solid var(--ds-color-border);
+    backdrop-filter: blur(10px);
+  }
+
+  .gdpr-banner__inner {
+    max-width: var(--ds-container-max);
+    margin: 0 auto;
+    padding-inline: var(--ds-container-pad);
+    display: flex;
+    gap: var(--ds-space-4);
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .gdpr-banner__text {
+    margin: 0;
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
+    max-width: 70ch;
+  }
+
+  .gdpr-banner__actions {
+    display: inline-flex;
+    gap: var(--ds-space-2);
+    flex-wrap: wrap;
+  }
+
+  /* Modal */
+  .gdpr-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 2100;
+    display: grid;
+    place-items: center;
+    padding: var(--ds-space-4);
+  }
+
+  .gdpr-modal__backdrop {
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, black 50%, transparent);
+  }
+
+  .gdpr-modal__panel {
+    position: relative;
+    width: min(42rem, 100%);
+    background: var(--ds-color-surface);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-3);
+    box-shadow: var(--ds-shadow-2);
+    padding: var(--ds-space-6);
+    outline: none;
+  }
+
+  .gdpr-modal__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ds-space-3);
+    margin-bottom: var(--ds-space-4);
+  }
+
+  .gdpr-modal__title {
+    margin: 0;
+    font-size: var(--ds-text-lg);
+    color: var(--ds-color-text);
+    letter-spacing: var(--ds-tracking-tight);
+  }
+
+  .gdpr-form {
+    display: grid;
+    gap: var(--ds-space-3);
+  }
+
+  .gdpr-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ds-space-4);
+    padding: var(--ds-space-3);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-2);
+    background: var(--ds-color-surface-2);
+    color: var(--ds-color-text);
+  }
+
+  .gdpr-row__label {
+    display: grid;
+    gap: var(--ds-space-1);
+  }
+
+  .gdpr-row__control {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ds-space-2);
+  }
+
+  .gdpr-toggle {
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--ds-color-accent);
+  }
+
+  .gdpr-chip {
+    font-size: var(--ds-text-xs);
+    font-weight: 700;
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--ds-radius-round);
+    border: var(--ds-border-1) solid color-mix(in srgb, var(--ds-color-success) 30%, var(--ds-color-border));
+    color: var(--ds-color-success);
+    background: color-mix(in srgb, var(--ds-color-success) 10%, var(--ds-color-surface));
+  }
+
+  .gdpr-form__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--ds-space-2);
+    margin-top: var(--ds-space-2);
+  }
+
+  /* Prevent background scroll when modal open */
+  :global(html.gdpr-modal-open),
+  :global(html.gdpr-modal-open body) {
+    overflow: hidden;
+  }
+
+  @media (max-width: 40rem) {
+    .gdpr-modal__panel {
+      padding: var(--ds-space-4);
+    }
+    .gdpr-banner__inner {
+      align-items: stretch;
+    }
+    .gdpr-banner__actions {
+      width: 100%;
+      justify-content: flex-start;
+    }
+  }
+</style>
+
