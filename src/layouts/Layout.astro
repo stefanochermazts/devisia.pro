@@ -339,75 +339,9 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
 
     <CookieConsent locale={lang} />
 
-    <!-- GDPR consent: conditional third-party loader -->
-    <script is:inline>
-      (() => {
-        const CONSENT_COOKIE = 'gdpr_consent';
-        const GA_ID = {JSON.stringify(import.meta.env.PUBLIC_GA_ID || '')};
-
-        const getCookie = (name) => {
-          const needle = encodeURIComponent(name) + '=';
-          return document.cookie
-            .split(';')
-            .map((p) => p.trim())
-            .filter((p) => p.startsWith(needle))
-            .map((p) => decodeURIComponent(p.slice(needle.length)))[0];
-        };
-
-        const loadConsent = () => {
-          const raw = getCookie(CONSENT_COOKIE);
-          if (!raw) return { essential: true, analytics: false, marketing: false };
-          try {
-            const parsed = JSON.parse(raw);
-            if (!parsed || parsed.essential !== true) return { essential: true, analytics: false, marketing: false };
-            return {
-              essential: true,
-              analytics: Boolean(parsed.analytics),
-              marketing: Boolean(parsed.marketing),
-            };
-          } catch {
-            return { essential: true, analytics: false, marketing: false };
-          }
-        };
-
-        const hasScript = (id) =>
-          !!document.querySelector(`script[data-gdpr="analytics"][data-provider="gtag"][data-id="${id}"]`);
-
-        const ensureGtag = () => {
-          window.dataLayer = window.dataLayer || [];
-          window.gtag =
-            window.gtag ||
-            function () {
-              window.dataLayer.push(arguments);
-            };
-        };
-
-        const loadAnalytics = (consent) => {
-          if (!GA_ID) return;
-          if (!consent.analytics) return;
-          if (hasScript(GA_ID)) return;
-          const s = document.createElement('script');
-          s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(GA_ID)}`;
-          s.async = true;
-          s.dataset.gdpr = 'analytics';
-          s.dataset.provider = 'gtag';
-          s.dataset.id = GA_ID;
-          document.head.appendChild(s);
-
-          ensureGtag();
-          window.gtag('js', new Date());
-          window.gtag('config', GA_ID, { anonymize_ip: true });
-        };
-
-        // Initial
-        loadAnalytics(loadConsent());
-        // Future changes
-        window.addEventListener('gdpr-consent-updated', (e) => {
-          const detail = e.detail || loadConsent();
-          loadAnalytics(detail);
-        });
-      })();
-    </script>
+    <!-- GDPR consent: conditional third-party loader
+         Disabled for now because the previous inline env injection caused a runtime SyntaxError in browsers.
+         We'll re-enable via a bundled client module in a follow-up. -->
 
     <script is:inline>
       // Open GDPR cookie preferences from footer
