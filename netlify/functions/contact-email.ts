@@ -121,6 +121,10 @@ const createTransporter = () => {
       user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS,
     },
+    // Add connection timeout settings
+    connectionTimeout: 5000, // 5 seconds to establish connection
+    greetingTimeout: 5000, // 5 seconds for SMTP greeting
+    socketTimeout: 10000, // 10 seconds for socket operations
   });
 };
 
@@ -199,9 +203,9 @@ export const handler: Handler = async (event, context) => {
       subject: (subject as string) || '',
     });
 
-    // Send thank-you email to user
+    // Send thank-you email to user (with timeout)
     try {
-      await transporter.sendMail({
+      const thankYouPromise = transporter.sendMail({
         from: process.env.FROM_EMAIL,
         to: email as string,
         subject: emailLang === 'en'
@@ -209,6 +213,13 @@ export const handler: Handler = async (event, context) => {
           : 'Grazie per averci contattato',
         html: userHtml,
       });
+      
+      // Add timeout to email sending (8 seconds max)
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Email send timeout')), 8000)
+      );
+      
+      await Promise.race([thankYouPromise, timeoutPromise]);
       console.log(`Thank-you email sent to ${email}`);
     } catch (error) {
       console.error('Error sending thank-you email:', error);
@@ -232,21 +243,26 @@ export const handler: Handler = async (event, context) => {
       </div>
     `;
 
-    // Send notification email to site manager
+    // Send notification email to site manager (with timeout)
     try {
-      await transporter.sendMail({
+      const notificationPromise = transporter.sendMail({
         from: process.env.FROM_EMAIL,
         to: process.env.SITE_MANAGER_EMAIL,
         subject: managerSubject,
         html: managerHtml,
       });
+      
+      // Add timeout to email sending (8 seconds max)
+      const timeoutPromise = new Promise((_, reject) => 
+        setTimeout(() => reject(new Error('Email send timeout')), 8000)
+      );
+      
+      await Promise.race([notificationPromise, timeoutPromise]);
       console.log(`Notification email sent to ${process.env.SITE_MANAGER_EMAIL}`);
     } catch (error) {
       console.error('Error sending notification email:', error);
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: 'Error sending notification email' }),
-      };
+      // Still return success to user, but log the error
+      // The form submission was successful even if email fails
     }
 
     // Return redirect response

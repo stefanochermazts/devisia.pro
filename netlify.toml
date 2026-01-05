@@ -61,9 +61,14 @@
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
 
-# Netlify Functions (if needed in future)
+# Netlify Functions
 [functions]
   directory = "netlify/functions"
+  # Increase timeout for email sending (max 26 seconds for free tier)
+  node_bundler = "esbuild"
+
+[functions.contact-email]
+  timeout = 26
 
 # Deploy contexts
 [context.production]
