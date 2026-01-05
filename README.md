@@ -322,6 +322,43 @@ The contact form uses a **double email system**:
 - Ensure SMTP credentials are valid
 - Check that `FROM_EMAIL` and `SITE_MANAGER_EMAIL` are correct
 
+## 🍪 GDPR Cookie Consent
+
+This project includes a lightweight **GDPR cookie consent** system with:
+- A cookie banner shown on first visit (when no consent cookie exists)
+- A preferences modal (Essential / Analytics / Marketing)
+- A persistent footer button to reopen preferences
+- A custom event (`gdpr-consent-updated`) and a conditional script loader to ensure **non-essential scripts are only loaded after consent**
+
+### Key Files
+- `src/lib/cookie.ts`: cookie helpers (get/set/delete + JSON safe helpers)
+- `src/lib/consent.ts`: consent store (cookie persistence + `gdpr-consent-updated` event)
+- `src/locales/it.json`, `src/locales/en.json`: consent UI translations
+- `src/lib/i18n.ts`: `t()` helper (fallback to EN)
+- `src/components/CookieConsent.astro`: banner + preferences modal (vanilla JS, design tokens)
+- `src/lib/scriptLoader.ts`: conditional third-party loader (Analytics/Marketing hooks)
+- `src/lib/gdprClient.ts`: client bootstrap (initial load + event listener)
+- `src/layouts/Layout.astro`: integrates the banner and loads `gdprClient`
+
+### Consent Cookie
+- Name: `gdpr_consent`
+- Structure:
+  - `essential: true` (always)
+  - `analytics: boolean`
+  - `marketing: boolean`
+
+### Adding Analytics (Google Analytics)
+Set the following **public** environment variable in Netlify:
+- `PUBLIC_GA_ID` = your GA Measurement ID (e.g. `G-XXXXXXX`)
+
+The GA script will be injected **only if** the user enables Analytics in cookie preferences.
+
+### Running Tests
+Unit tests are powered by Vitest:
+```bash
+npm test
+```
+
 ### Content Changes Not Appearing
 
 **Problem**: Edited content doesn't show on the live site.
