@@ -175,11 +175,12 @@ const policyHref = locale === 'en' ? '/en/privacy' : '/privacy';
 
     const showModal = () => {
       if (!form) return;
-      const current = loadConsent() ?? { essential: true, analytics: false, marketing: false };
+      const current = loadConsent();
+      const consent = current || { essential: true, analytics: false, marketing: false };
       const analytics = form.querySelector('input[name="analytics"]');
       const marketing = form.querySelector('input[name="marketing"]');
-      if (analytics) analytics.checked = Boolean(current.analytics);
-      if (marketing) marketing.checked = Boolean(current.marketing);
+      if (analytics) analytics.checked = Boolean(consent.analytics);
+      if (marketing) marketing.checked = Boolean(consent.marketing);
       setModalVisible(true);
     };
 
@@ -209,9 +210,11 @@ const policyHref = locale === 'en' ? '/en/privacy' : '/privacy';
     if (form) {
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const analytics = form.querySelector('input[name="analytics"]')?.checked ?? false;
-        const marketing = form.querySelector('input[name="marketing"]')?.checked ?? false;
-        applyConsent({ essential: true, analytics, marketing });
+        const analyticsEl = form.querySelector('input[name="analytics"]');
+        const marketingEl = form.querySelector('input[name="marketing"]');
+        const analytics = analyticsEl && analyticsEl.checked ? true : false;
+        const marketing = marketingEl && marketingEl.checked ? true : false;
+        applyConsent({ essential: true, analytics: analytics, marketing: marketing });
       });
     }
 
