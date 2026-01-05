@@ -228,7 +228,8 @@
     font-size: var(--ds-text-sm);
   }
 
-  @media (max-width: 52rem) {
+  /* Switch to hamburger earlier to avoid nav items wrapping around ~1024px */
+  @media (max-width: 64rem) {
     .nav-container {
       flex-direction: row;
       align-items: center;
