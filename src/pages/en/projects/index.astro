@@ -43,8 +43,14 @@ const breadcrumbs = breadcrumbListJsonLd({
     </header>
 
     <section class="page-intro" aria-label="Projects introduction">
-      <div class="intro-card">
-        <h2 class="intro-title">What “project” means to us</h2>
+      <details class="intro-details">
+        <summary class="intro-summary">
+          <h2 class="intro-title">What “project” means to us</h2>
+          <svg class="intro-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </summary>
+        <div class="intro-body">
         <p class="intro-text">
           This page collects products and initiatives we work on. Some are full case studies with a clear goal and roadmap;
           others are controlled experiments used to validate ideas, technical patterns, or delivery approaches. In both cases,
@@ -100,7 +106,8 @@ const breadcrumbs = breadcrumbListJsonLd({
           Note: this page evolves over time. For a complete overview of our offering, visit
           <a class="intro-link" href="/en/services">Services</a>.
         </p>
-      </div>
+        </div>
+      </details>
     </section>
 
     {sortedProjects.length === 0 ? (
@@ -185,15 +192,48 @@ const breadcrumbs = breadcrumbListJsonLd({
     max-width: 900px;
   }
 
-  .intro-card {
+  .intro-details {
     background: var(--ds-color-surface);
     border: var(--ds-border-1) solid var(--ds-color-border);
     border-radius: var(--ds-radius-3);
     padding: var(--ds-space-6);
   }
 
+  .intro-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--ds-space-4);
+    cursor: pointer;
+    list-style: none;
+  }
+
+  .intro-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .intro-summary:focus-visible {
+    outline: none;
+    box-shadow: var(--ds-focus-ring);
+    border-radius: var(--ds-radius-2);
+  }
+
+  .intro-chevron {
+    color: var(--ds-color-text-muted);
+    flex: 0 0 auto;
+    transition: transform var(--ds-motion-base) var(--ds-ease-standard);
+  }
+
+  .intro-details[open] .intro-chevron {
+    transform: rotate(180deg);
+  }
+
+  .intro-body {
+    margin-top: var(--ds-space-4);
+  }
+
   .intro-title {
-    margin: 0 0 var(--ds-space-3);
+    margin: 0;
     color: var(--ds-color-text);
     font-size: var(--ds-text-xl);
     font-weight: 700;
