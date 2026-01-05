@@ -147,6 +147,16 @@
     background: var(--ds-color-surface-2);
   }
 
+  .nav-link[aria-current='page'] {
+    background: color-mix(in srgb, var(--ds-color-accent) 14%, var(--ds-color-surface-2));
+    border: var(--ds-border-1) solid color-mix(in srgb, var(--ds-color-accent) 35%, var(--ds-color-border));
+    color: var(--ds-color-text);
+  }
+
+  .nav-link[aria-current='page']:hover {
+    background: color-mix(in srgb, var(--ds-color-accent) 18%, var(--ds-color-surface-2));
+  }
+
   .nav-link-cta {
     border: var(--ds-border-1) solid color-mix(in srgb, var(--ds-color-accent) 40%, transparent);
     background: color-mix(in srgb, var(--ds-color-accent) 10%, transparent);

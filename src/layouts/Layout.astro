@@ -43,6 +43,19 @@ const languageSwitchHref = lang === 'en' ? itPath : enPath;
 const languageSwitchLabel = lang === 'en' ? 'IT' : 'EN';
 const languageSwitchAria = lang === 'en' ? 'Switch to Italian' : 'Passa a inglese';
 
+const normalizePath = (p: string) => {
+  const withoutTrailing = p.length > 1 ? p.replace(/\/+$/, '') : p;
+  return withoutTrailing || '/';
+};
+
+const currentPath = normalizePath(pathName);
+
+const isActive = (targetHref: string, mode: 'exact' | 'section' = 'exact') => {
+  const target = normalizePath(targetHref);
+  if (mode === 'exact') return currentPath === target;
+  return currentPath === target || currentPath.startsWith(`${target}/`);
+};
+
 import '../styles/tokens.css';
 import '../styles/base.css';
 import '../styles/components.css';
@@ -207,12 +220,36 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
         </button>
 
         <ul id="primary-nav" class="nav-menu" data-nav-menu>
-          <li><a href={homeHref} class="nav-link">Home</a></li>
-          <li><a href={href('/about')} class="nav-link">About</a></li>
-          <li><a href={href('/services')} class="nav-link">Services</a></li>
-          <li><a href={href('/projects')} class="nav-link">Projects</a></li>
-          <li><a href={href('/blog')} class="nav-link">Blog</a></li>
-          <li><a href={href('/contact')} class="nav-link nav-link-cta">Contact</a></li>
+          <li>
+            <a href={homeHref} class="nav-link" aria-current={isActive(homeHref, 'exact') ? 'page' : undefined}>
+              Home
+            </a>
+          </li>
+          <li>
+            <a href={href('/about')} class="nav-link" aria-current={isActive(href('/about'), 'section') ? 'page' : undefined}>
+              About
+            </a>
+          </li>
+          <li>
+            <a href={href('/services')} class="nav-link" aria-current={isActive(href('/services'), 'section') ? 'page' : undefined}>
+              Services
+            </a>
+          </li>
+          <li>
+            <a href={href('/projects')} class="nav-link" aria-current={isActive(href('/projects'), 'section') ? 'page' : undefined}>
+              Projects
+            </a>
+          </li>
+          <li>
+            <a href={href('/blog')} class="nav-link" aria-current={isActive(href('/blog'), 'section') ? 'page' : undefined}>
+              Blog
+            </a>
+          </li>
+          <li>
+            <a href={href('/contact')} class="nav-link nav-link-cta" aria-current={isActive(href('/contact'), 'section') ? 'page' : undefined}>
+              Contact
+            </a>
+          </li>
           <li>
             <a
               href={languageSwitchHref}
