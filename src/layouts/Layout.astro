@@ -340,7 +340,9 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
     <CookieConsent locale={lang} />
 
     <!-- GDPR consent: conditional third-party loader -->
-    <script type="module" src={Astro.resolve('../lib/gdprClient.ts')}></script>
+    <script type="module">
+      import '../lib/gdprClient';
+    </script>
 
     <script is:inline>
       // Open GDPR cookie preferences from footer
