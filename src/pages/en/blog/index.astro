@@ -43,74 +43,6 @@ const breadcrumbs = breadcrumbListJsonLd({
       </p>
     </header>
 
-    <section class="page-intro" aria-label="Blog introduction">
-      <details class="intro-details">
-        <summary class="intro-summary">
-          <h2 class="intro-title">What you’ll find here</h2>
-          <svg class="intro-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <polyline points="6 9 12 15 18 9"></polyline>
-          </svg>
-        </summary>
-        <div class="intro-body">
-        <p class="intro-text">
-          This blog is where we share how we approach software work in practice—from the first discovery session to a
-          production release and continuous improvement. It’s not a feed of announcements: we aim for actionable notes,
-          clear explanations, and reusable mental models. If you’re building a product, modernizing a legacy stack, or
-          evaluating “build vs buy”, our goal is to help you make better decisions, avoid hidden costs, and ship with
-          confidence.
-        </p>
-        <p class="intro-text">
-          Topics include web and backend engineering, API integrations, automation, quality (testing, CI/CD,
-          observability), security, and privacy (GDPR). When we talk about AI, we keep it grounded: define the job-to-be-done,
-          measure value, implement guardrails, and make risk visible. If you’re working on AI features, you may also like
-          our <a class="intro-link" href="/en/tools/ai-risk-checklist">AI Risk &amp; Privacy Checklist</a>.
-        </p>
-
-        <div class="intro-grid" role="list">
-          <div class="intro-item" role="listitem">
-            <h3 class="intro-item-title">Who it’s for</h3>
-            <p class="intro-item-text">
-              Founders, product owners, and engineering teams who need clarity: what to prioritize, how to validate
-              assumptions, how to manage complexity, and what “good” looks like when you’re choosing architecture or a vendor.
-            </p>
-          </div>
-          <div class="intro-item" role="listitem">
-            <h3 class="intro-item-title">How to use it</h3>
-            <p class="intro-item-text">
-              Each article answers a real question and ends with practical takeaways you can apply immediately. If you want
-              to discuss your context, feel free to <a class="intro-link" href="/en/contact">reach out</a>.
-            </p>
-          </div>
-          <div class="intro-item" role="listitem">
-            <h3 class="intro-item-title">Recurring themes</h3>
-            <ul class="intro-list">
-              <li><strong>Architecture</strong>: evolvable choices that keep options open.</li>
-              <li><strong>Quality</strong>: tests, reviews, CI/CD and sustainable delivery.</li>
-              <li><strong>Responsible AI</strong>: privacy, logging, policy checks, and governance.</li>
-              <li><strong>Outcomes</strong>: small releases, fast feedback, measurable impact.</li>
-            </ul>
-          </div>
-          <div class="intro-item" role="listitem">
-            <h3 class="intro-item-title">Quick FAQ</h3>
-            <p class="intro-item-text">
-              <strong>How often do you publish?</strong> We prefer usefulness over cadence—new posts appear when we have something
-              genuinely valuable (a pattern, a checklist, a guide).
-            </p>
-            <p class="intro-item-text">
-              <strong>Can I suggest a topic?</strong> Yes. Tell us what you’re trying to achieve and what constraints you have.
-              We’ll either turn it into a post or answer you directly.
-            </p>
-          </div>
-        </div>
-
-        <p class="intro-text intro-cta">
-          Want to explore what we’re building? Visit <a class="intro-link" href="/en/projects">Projects</a> for products,
-          experiments, and active initiatives.
-        </p>
-        </div>
-      </details>
-    </section>
-
     {sortedPosts.length === 0 ? (
       <div class="no-posts">
         <p>No blog posts yet. Check back soon!</p>
@@ -153,6 +85,75 @@ const breadcrumbs = breadcrumbListJsonLd({
         ))}
       </div>
     )}
+
+    <section class="page-intro" aria-label="Blog introduction">
+      <details class="intro-details">
+        <summary class="intro-summary">
+          <span class="intro-summary-title">What you’ll find here</span>
+          <svg class="intro-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </summary>
+        <div class="intro-body">
+          <h2 class="intro-title">What you’ll find here</h2>
+          <p class="intro-text">
+            This blog is where we share how we approach software work in practice—from the first discovery session to a
+            production release and continuous improvement. It’s not a feed of announcements: we aim for actionable notes,
+            clear explanations, and reusable mental models. If you’re building a product, modernizing a legacy stack, or
+            evaluating “build vs buy”, our goal is to help you make better decisions, avoid hidden costs, and ship with
+            confidence.
+          </p>
+          <p class="intro-text">
+            Topics include web and backend engineering, API integrations, automation, quality (testing, CI/CD,
+            observability), security, and privacy (GDPR). When we talk about AI, we keep it grounded: define the job-to-be-done,
+            measure value, implement guardrails, and make risk visible. If you’re working on AI features, you may also like
+            our <a class="intro-link" href="/en/tools/ai-risk-checklist">AI Risk &amp; Privacy Checklist</a>.
+          </p>
+
+          <div class="intro-grid" role="list">
+            <div class="intro-item" role="listitem">
+              <h3 class="intro-item-title">Who it’s for</h3>
+              <p class="intro-item-text">
+                Founders, product owners, and engineering teams who need clarity: what to prioritize, how to validate
+                assumptions, how to manage complexity, and what “good” looks like when you’re choosing architecture or a vendor.
+              </p>
+            </div>
+            <div class="intro-item" role="listitem">
+              <h3 class="intro-item-title">How to use it</h3>
+              <p class="intro-item-text">
+                Each article answers a real question and ends with practical takeaways you can apply immediately. If you want
+                to discuss your context, feel free to <a class="intro-link" href="/en/contact">reach out</a>.
+              </p>
+            </div>
+            <div class="intro-item" role="listitem">
+              <h3 class="intro-item-title">Recurring themes</h3>
+              <ul class="intro-list">
+                <li><strong>Architecture</strong>: evolvable choices that keep options open.</li>
+                <li><strong>Quality</strong>: tests, reviews, CI/CD and sustainable delivery.</li>
+                <li><strong>Responsible AI</strong>: privacy, logging, policy checks, and governance.</li>
+                <li><strong>Outcomes</strong>: small releases, fast feedback, measurable impact.</li>
+              </ul>
+            </div>
+            <div class="intro-item" role="listitem">
+              <h3 class="intro-item-title">Quick FAQ</h3>
+              <p class="intro-item-text">
+                <strong>How often do you publish?</strong> We prefer usefulness over cadence—new posts appear when we have something
+                genuinely valuable (a pattern, a checklist, a guide).
+              </p>
+              <p class="intro-item-text">
+                <strong>Can I suggest a topic?</strong> Yes. Tell us what you’re trying to achieve and what constraints you have.
+                We’ll either turn it into a post or answer you directly.
+              </p>
+            </div>
+          </div>
+
+          <p class="intro-text intro-cta">
+            Want to explore what we’re building? Visit <a class="intro-link" href="/en/projects">Projects</a> for products,
+            experiments, and active initiatives.
+          </p>
+        </div>
+      </details>
+    </section>
   </div>
 </Layout>
 
@@ -180,7 +181,7 @@ const breadcrumbs = breadcrumbListJsonLd({
   }
 
   .page-intro {
-    margin: 0 auto 2.5rem;
+    margin: 2.5rem auto 0;
     max-width: 900px;
   }
 
@@ -188,6 +189,10 @@ const breadcrumbs = breadcrumbListJsonLd({
     background: var(--ds-color-surface);
     border: var(--ds-border-1) solid var(--ds-color-border);
     border-radius: var(--ds-radius-3);
+    padding: var(--ds-space-4);
+  }
+
+  .intro-details[open] {
     padding: var(--ds-space-6);
   }
 
@@ -198,6 +203,12 @@ const breadcrumbs = breadcrumbListJsonLd({
     gap: var(--ds-space-4);
     cursor: pointer;
     list-style: none;
+  }
+
+  .intro-summary-title {
+    font-weight: 700;
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-lg);
   }
 
   .intro-summary::-webkit-details-marker {
@@ -287,7 +298,11 @@ const breadcrumbs = breadcrumbListJsonLd({
   }
 
   @media (max-width: 768px) {
-    .intro-card {
+    .intro-details {
+      padding: var(--ds-space-4);
+    }
+
+    .intro-details[open] {
       padding: var(--ds-space-5);
     }
 
