@@ -16,6 +16,9 @@ These values are obtained from your Mailtrap account: https://mailtrap.io/
 - `SITE_MANAGER_EMAIL`: Email address that receives contact form notifications (e.g., `stefano.chermaz@gmail.com`)
 - `FROM_EMAIL`: Email address used as sender in the "From" field (e.g., `info@devisia.pro`)
 
+### Optional (Recommended) Security
+- `SMTP_CHECK_TOKEN`: If set, the SMTP healthcheck endpoint requires `?token=...` to avoid exposing a public SMTP connectivity probe.
+
 ## Local Development
 
 Create a `.env` file in the project root with these variables:
@@ -27,6 +30,7 @@ SMTP_USER=your_mailtrap_username
 SMTP_PASS=your_mailtrap_password
 SITE_MANAGER_EMAIL=stefano.chermaz@gmail.com
 FROM_EMAIL=info@devisia.pro
+SMTP_CHECK_TOKEN=choose_a_long_random_token
 ```
 
 **Note:** The `.env` file is already in `.gitignore` and will not be committed to the repository.
