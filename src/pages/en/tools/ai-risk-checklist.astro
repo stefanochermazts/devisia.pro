@@ -10,80 +10,88 @@ const questions = [
     id: 'data-sensitivity',
     name: 'dataSensitivity',
     label: 'Data sensitivity',
+    description: 'Evaluate how critical the information processed by the AI system is.',
     options: [
-      { value: '0', label: 'No personal data' },
-      { value: '1', label: 'Personal data (non-sensitive)' },
-      { value: '2', label: 'Sensitive data (health, finance, minors, etc.)' },
+      { value: '0', label: 'No personal data', description: 'Public or synthetic data with no reference to identifiable individuals.' },
+      { value: '1', label: 'Personal data (non-sensitive)', description: 'Common information like names, business emails, or browsing preferences.' },
+      { value: '2', label: 'Sensitive data (health, finance, minors, etc.)', description: 'Protected information requiring maximum safeguards and strict compliance.' },
     ],
   },
   {
     id: 'user-input',
     name: 'userInput',
     label: 'User input',
+    description: 'The volume and type of data that users upload or write into prompts.',
     options: [
-      { value: '0', label: 'Short prompts only' },
-      { value: '1', label: 'Prompts + documents/text snippets' },
-      { value: '2', label: 'File uploads' },
+      { value: '0', label: 'Short prompts only', description: 'Simple text interactions limited to a few lines.' },
+      { value: '1', label: 'Prompts + documents/text snippets', description: 'Sending extended texts or portions of documents for analysis or synthesis.' },
+      { value: '2', label: 'File uploads', description: 'Uploading whole files (PDFs, images) that may contain unfiltered data.' },
     ],
   },
   {
     id: 'output-impact',
     name: 'outputImpact',
     label: 'Output impact',
+    description: 'How much weight and what consequences the AI-generated results have in the real world.',
     options: [
-      { value: '0', label: 'Informational only' },
-      { value: '1', label: 'Assists decisions' },
-      { value: '2', label: 'Automated actions (writes/executes changes)' },
+      { value: '0', label: 'Informational only', description: 'Output is used only for non-critical consultation or creative support.' },
+      { value: '1', label: 'Assists decisions', description: 'Output guides human choices in professional contexts or operational processes.' },
+      { value: '2', label: 'Automated actions (writes/executes changes)', description: 'AI independently modifies databases, writes code, or sends communications.' },
     ],
   },
   {
     id: 'human-oversight',
     name: 'humanOversight',
     label: 'Human oversight',
+    description: 'The level of human control and validation before the AI output is utilized.',
     options: [
-      { value: '0', label: 'Always reviewed by humans' },
-      { value: '1', label: 'Sometimes reviewed' },
-      { value: '2', label: 'No review / fully automated' },
+      { value: '0', label: 'Always reviewed by humans', description: 'Every single output is verified by a person before any use.' },
+      { value: '1', label: 'Sometimes reviewed', description: 'Partial review, spot checks, or limited to specific use cases only.' },
+      { value: '2', label: 'No review / fully automated', description: 'AI operates independently without direct human filters or approvals.' },
     ],
   },
   {
     id: 'access-control',
     name: 'accessControl',
     label: 'Access control',
+    description: 'Who the recipients or users interacting with the AI features are.',
     options: [
-      { value: '0', label: 'Single team' },
-      { value: '1', label: 'Multiple roles/tenants' },
-      { value: '2', label: 'External users/customers' },
+      { value: '0', label: 'Single team', description: 'Internal use limited to a small, trusted, and trained group.' },
+      { value: '1', label: 'Multiple roles/tenants', description: 'Extended use across different departments or segregated user groups.' },
+      { value: '2', label: 'External users/customers', description: 'AI is exposed to end users or customers outside the organization\'s direct control.' },
     ],
   },
   {
     id: 'logging-needs',
     name: 'loggingNeeds',
     label: 'Logging needs',
+    description: 'The level of traceability required to monitor interactions and ensure compliance.',
     options: [
-      { value: '0', label: 'Minimal logs' },
-      { value: '1', label: 'Standard logs' },
-      { value: '2', label: 'Requires audit trail' },
+      { value: '0', label: 'Minimal logs', description: 'Monitoring system status and general technical errors is sufficient.' },
+      { value: '1', label: 'Standard logs', description: 'Basic tracking of who uses the system, when, and with what volumes.' },
+      { value: '2', label: 'Requires audit trail', description: 'Immutable recording of every single interaction for legal or regulatory purposes.' },
     ],
   },
   {
     id: 'model-usage',
     name: 'modelUsage',
     label: 'Model usage',
+    description: 'How the AI interacts with other systems or performs technical tasks.',
     options: [
-      { value: '0', label: 'API calls only' },
-      { value: '1', label: 'API + tools/agents' },
-      { value: '2', label: 'Agents executing workflows' },
+      { value: '0', label: 'API calls only', description: 'The model receives input and returns text, without interacting with other resources.' },
+      { value: '1', label: 'API + tools/agents', description: 'AI can invoke external tools (e.g., calculators, search) to enrich the output.' },
+      { value: '2', label: 'Agents executing workflows', description: 'AI orchestrates complex processes by calling multiple functions in autonomous sequence.' },
     ],
   },
   {
     id: 'retention',
     name: 'retention',
     label: 'Retention',
+    description: 'How long input and output data remain stored in the systems.',
     options: [
-      { value: '0', label: 'No retention' },
-      { value: '1', label: 'Short retention (<= 30 days)' },
-      { value: '2', label: 'Long retention (> 30 days)' },
+      { value: '0', label: 'No retention', description: 'Data is deleted immediately after the response is processed.' },
+      { value: '1', label: 'Short retention (<= 30 days)', description: 'Storage limited to the time needed for the session or immediate debugging.' },
+      { value: '2', label: 'Long retention (> 30 days)', description: 'Data archived for historical analysis, model improvement, or contractual obligations.' },
     ],
   },
 ];
@@ -168,18 +176,32 @@ const safeguards = [
       {questions.map((q, idx) => (
         <Card>
           <div class="ds-card__body ds-stack" data-gap="sm">
-            <label class="ds-label" for={`${q.id}-0`}>
-              {idx + 1}. {q.label}
-            </label>
             <div class="ds-stack" data-gap="xs">
+              <label class="ds-label" for={`${q.id}-0`}>
+                {idx + 1}. {q.label}
+              </label>
+              {q.description && (
+                <p class="ds-muted" style="margin: 0; font-size: var(--ds-text-sm)">
+                  {q.description}
+                </p>
+              )}
+            </div>
+            <div class="ds-stack" data-gap="sm" style="margin-top: var(--ds-space-2)">
               {q.options.map((opt, optIdx) => (
-                <Radio
-                  id={`${q.id}-${optIdx}`}
-                  name={q.name}
-                  label={opt.label}
-                  value={opt.value}
-                  checked={optIdx === 0}
-                />
+                <div class="ds-stack" data-gap="xs">
+                  <Radio
+                    id={`${q.id}-${optIdx}`}
+                    name={q.name}
+                    label={opt.label}
+                    value={opt.value}
+                    checked={optIdx === 0}
+                  />
+                  {opt.description && (
+                    <p class="ds-muted" style="margin: 0 0 0 calc(18px + 0.75rem); font-size: var(--ds-text-xs); line-height: var(--ds-leading-relaxed)">
+                      {opt.description}
+                    </p>
+                  )}
+                </div>
               ))}
             </div>
             {q.id === 'user-input' && (

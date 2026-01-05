@@ -10,80 +10,88 @@ const questions = [
     id: 'data-sensitivity',
     name: 'dataSensitivity',
     label: 'Sensibilità dei dati',
+    description: 'Valuta quanto sono critiche le informazioni elaborate dal sistema AI.',
     options: [
-      { value: '0', label: 'Nessun dato personale' },
-      { value: '1', label: 'Dati personali (non sensibili)' },
-      { value: '2', label: 'Dati sensibili (salute, finanza, minori, ecc.)' },
+      { value: '0', label: 'Nessun dato personale', description: 'Dati pubblici o sintetici senza alcun riferimento a individui identificabili.' },
+      { value: '1', label: 'Dati personali (non sensibili)', description: 'Informazioni comuni come nomi, email aziendali o preferenze di navigazione.' },
+      { value: '2', label: 'Dati sensibili (salute, finanza, minori, ecc.)', description: 'Informazioni protette che richiedono tutele massime e conformità rigorosa.' },
     ],
   },
   {
     id: 'user-input',
     name: 'userInput',
     label: 'Input utente',
+    description: 'Il volume e il tipo di dati che gli utenti caricano o scrivono nei prompt.',
     options: [
-      { value: '0', label: 'Solo prompt brevi' },
-      { value: '1', label: 'Prompt + documenti/frammenti di testo' },
-      { value: '2', label: 'Upload di file' },
+      { value: '0', label: 'Solo prompt brevi', description: 'Interazioni testuali semplici e limitate a poche righe.' },
+      { value: '1', label: 'Prompt + documenti/frammenti di testo', description: 'Invio di testi estesi o porzioni di documenti per analisi o sintesi.' },
+      { value: '2', label: 'Upload di file', description: 'Caricamento di file interi (PDF, immagini) che possono contenere dati non filtrati.' },
     ],
   },
   {
     id: 'output-impact',
     name: 'outputImpact',
     label: 'Impatto dell\'output',
+    description: 'Quanto peso e quali conseguenze hanno i risultati generati dall\'AI nel mondo reale.',
     options: [
-      { value: '0', label: 'Solo informativo' },
-      { value: '1', label: 'Assiste nelle decisioni' },
-      { value: '2', label: 'Azioni automatizzate (scrive/esegue modifiche)' },
+      { value: '0', label: 'Solo informativo', description: 'L\'output è usato solo per consultazione o supporto creativo non critico.' },
+      { value: '1', label: 'Assiste nelle decisioni', description: 'L\'output guida scelte umane in ambiti professionali o processi operativi.' },
+      { value: '2', label: 'Azioni automatizzate (scrive/esegue modifiche)', description: 'L\'AI esegue modifiche a database, scrive codice o invia comunicazioni in autonomia.' },
     ],
   },
   {
     id: 'human-oversight',
     name: 'humanOversight',
     label: 'Supervisione umana',
+    description: 'Il livello di controllo e validazione umana prima che l\'output dell\'AI venga utilizzato.',
     options: [
-      { value: '0', label: 'Sempre revisionato da umani' },
-      { value: '1', label: 'A volte revisionato' },
-      { value: '2', label: 'Nessuna revisione / completamente automatizzato' },
+      { value: '0', label: 'Sempre revisionato da umani', description: 'Ogni singolo output viene verificato da una persona prima di qualunque utilizzo.' },
+      { value: '1', label: 'A volte revisionato', description: 'Revisione parziale, a campione o limitata solo ad alcuni casi d\'uso.' },
+      { value: '2', label: 'Nessuna revisione / completamente automatizzato', description: 'L\'AI opera in autonomia senza filtri o approvazioni umane dirette.' },
     ],
   },
   {
     id: 'access-control',
     name: 'accessControl',
     label: 'Controllo accessi',
+    description: 'Chi sono i destinatari o gli utenti che interagiscono con le funzionalità AI.',
     options: [
-      { value: '0', label: 'Singolo team' },
-      { value: '1', label: 'Ruoli/tenant multipli' },
-      { value: '2', label: 'Utenti/clienti esterni' },
+      { value: '0', label: 'Singolo team', description: 'Uso interno limitato a un gruppo ristretto, fidato e formato.' },
+      { value: '1', label: 'Ruoli/tenant multipli', description: 'Uso esteso a diversi reparti aziendali o gruppi di utenti segregati.' },
+      { value: '2', label: 'Utenti/clienti esterni', description: 'L\'AI è esposta a utenti finali o clienti fuori dal controllo diretto dell\'organizzazione.' },
     ],
   },
   {
     id: 'logging-needs',
     name: 'loggingNeeds',
     label: 'Esigenze di logging',
+    description: 'Il livello di tracciabilità necessario per monitorare le interazioni e garantire la compliance.',
     options: [
-      { value: '0', label: 'Log minimi' },
-      { value: '1', label: 'Log standard' },
-      { value: '2', label: 'Richiede audit trail' },
+      { value: '0', label: 'Log minimi', description: 'È sufficiente monitorare lo stato del sistema e gli errori tecnici generali.' },
+      { value: '1', label: 'Log standard', description: 'Tracciamento di base su chi usa il sistema, quando e con quali volumi.' },
+      { value: '2', label: 'Richiede audit trail', description: 'Registrazione immutabile di ogni singola interazione per fini legali o normativi.' },
     ],
   },
   {
     id: 'model-usage',
     name: 'modelUsage',
     label: 'Utilizzo del modello',
+    description: 'In che modo l\'AI interagisce con altri sistemi o esegue compiti tecnici.',
     options: [
-      { value: '0', label: 'Solo chiamate API' },
-      { value: '1', label: 'API + strumenti/agenti' },
-      { value: '2', label: 'Agenti che eseguono workflow' },
+      { value: '0', label: 'Solo chiamate API', description: 'Il modello riceve input e restituisce testo, senza interagire con altre risorse.' },
+      { value: '1', label: 'API + strumenti/agenti', description: 'L\'AI può invocare strumenti esterni (es. calcolatrici, ricerche) per arricchire l\'output.' },
+      { value: '2', label: 'Agenti che eseguono workflow', description: 'L\'AI orchestra processi complessi chiamando più funzioni in sequenza autonoma.' },
     ],
   },
   {
     id: 'retention',
     name: 'retention',
     label: 'Conservazione',
+    description: 'Per quanto tempo i dati di input e output rimangono memorizzati nei sistemi.',
     options: [
-      { value: '0', label: 'Nessuna conservazione' },
-      { value: '1', label: 'Conservazione breve (<= 30 giorni)' },
-      { value: '2', label: 'Conservazione lunga (> 30 giorni)' },
+      { value: '0', label: 'Nessuna conservazione', description: 'I dati vengono eliminati immediatamente dopo l\'elaborazione della risposta.' },
+      { value: '1', label: 'Conservazione breve (<= 30 giorni)', description: 'Memorizzazione limitata al tempo necessario per la sessione o debug immediato.' },
+      { value: '2', label: 'Conservazione lunga (> 30 giorni)', description: 'Dati archiviati per analisi storiche, miglioramento modelli o obblighi contrattuali.' },
     ],
   },
 ];
@@ -168,18 +176,32 @@ const safeguards = [
       {questions.map((q, idx) => (
         <Card>
           <div class="ds-card__body ds-stack" data-gap="sm">
-            <label class="ds-label" for={`${q.id}-0`}>
-              {idx + 1}. {q.label}
-            </label>
             <div class="ds-stack" data-gap="xs">
+              <label class="ds-label" for={`${q.id}-0`}>
+                {idx + 1}. {q.label}
+              </label>
+              {q.description && (
+                <p class="ds-muted" style="margin: 0; font-size: var(--ds-text-sm)">
+                  {q.description}
+                </p>
+              )}
+            </div>
+            <div class="ds-stack" data-gap="sm" style="margin-top: var(--ds-space-2)">
               {q.options.map((opt, optIdx) => (
-                <Radio
-                  id={`${q.id}-${optIdx}`}
-                  name={q.name}
-                  label={opt.label}
-                  value={opt.value}
-                  checked={optIdx === 0}
-                />
+                <div class="ds-stack" data-gap="xs">
+                  <Radio
+                    id={`${q.id}-${optIdx}`}
+                    name={q.name}
+                    label={opt.label}
+                    value={opt.value}
+                    checked={optIdx === 0}
+                  />
+                  {opt.description && (
+                    <p class="ds-muted" style="margin: 0 0 0 calc(18px + 0.75rem); font-size: var(--ds-text-xs); line-height: var(--ds-leading-relaxed)">
+                      {opt.description}
+                    </p>
+                  )}
+                </div>
               ))}
             </div>
             {q.id === 'user-input' && (
