@@ -12,6 +12,9 @@ These values are obtained from your Mailtrap account: https://mailtrap.io/
 - `SMTP_USER`: SMTP username from Mailtrap
 - `SMTP_PASS`: SMTP password from Mailtrap
 
+**Note:** This project currently uses **Mailtrap Email API (Bearer token)** for sending emails from Netlify Functions.
+For backward compatibility, the Bearer token is read from `SMTP_PASS`.
+
 ### Site Configuration
 - `SITE_MANAGER_EMAIL`: Email address that receives contact form notifications (e.g., `stefano.chermaz@gmail.com`)
 - `FROM_EMAIL`: Email address used as sender in the "From" field (e.g., `info@devisia.pro`)

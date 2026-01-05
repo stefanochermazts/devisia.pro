@@ -1,5 +1,4 @@
 import type { Handler } from '@netlify/functions';
-import nodemailer from 'nodemailer';
 
 const json = (statusCode: number, body: unknown) => ({
   statusCode,
@@ -13,23 +12,7 @@ const getEnv = (key: string): string => {
   return value;
 };
 
-const createTransporter = () => {
-  const host = getEnv('SMTP_HOST');
-  const port = Number(getEnv('SMTP_PORT'));
-  const user = getEnv('SMTP_USER');
-  const pass = getEnv('SMTP_PASS');
-
-  return nodemailer.createTransport({
-    host,
-    port,
-    secure: port === 465,
-    auth: { user, pass },
-    // Conservative timeouts to surface connectivity issues quickly
-    connectionTimeout: 5000,
-    greetingTimeout: 5000,
-    socketTimeout: 10000,
-  });
-};
+const MAILTRAP_SEND_URL = 'https://send.api.mailtrap.io/api/send';
 
 export const handler: Handler = async (event) => {
   if (event.httpMethod !== 'GET') {
@@ -46,19 +29,45 @@ export const handler: Handler = async (event) => {
   }
 
   try {
-    const transporter = createTransporter();
+    const token = getEnv('SMTP_PASS'); // using SMTP_PASS as Mailtrap API token
+    const fromEmail = getEnv('FROM_EMAIL');
+    const toEmail = getEnv('SITE_MANAGER_EMAIL');
 
-    // verify() checks connection + auth with the SMTP server
-    await transporter.verify();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
 
-    return json(200, {
-      ok: true,
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT),
-      secure: Number(process.env.SMTP_PORT) === 465,
-    });
+    try {
+      const res = await fetch(MAILTRAP_SEND_URL, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          from: { email: fromEmail, name: 'Devisia' },
+          to: [{ email: toEmail }],
+          subject: 'Mailtrap API connectivity check',
+          text: 'This is an automated connectivity check from Netlify.',
+          html: '<p>This is an automated connectivity check from Netlify.</p>',
+        }),
+        signal: controller.signal,
+      });
+
+      const body = await res.text().catch(() => '');
+      if (!res.ok) {
+        return json(500, {
+          ok: false,
+          status: res.status,
+          body,
+        });
+      }
+
+      return json(200, { ok: true, status: res.status, body });
+    } finally {
+      clearTimeout(timeout);
+    }
   } catch (err: any) {
-    console.error('SMTP verify failed:', err);
+    console.error('Mailtrap API check failed:', err);
     return json(500, {
       ok: false,
       message: err?.message ?? String(err),

@@ -1,5 +1,4 @@
 import type { Handler } from '@netlify/functions';
-import nodemailer from 'nodemailer';
 import { parse } from 'querystring';
 
 // Email templates embedded directly in the function
@@ -103,29 +102,55 @@ const EMAIL_TEMPLATES = {
 </html>`,
 };
 
-// Initialize SMTP transporter
-const createTransporter = () => {
-  const requiredEnvVars = ['SMTP_HOST', 'SMTP_PORT', 'SMTP_USER', 'SMTP_PASS', 'FROM_EMAIL', 'SITE_MANAGER_EMAIL'];
-  
-  for (const envVar of requiredEnvVars) {
-    if (!process.env[envVar]) {
-      throw new Error(`Missing required environment variable: ${envVar}`);
-    }
-  }
+const MAILTRAP_SEND_URL = 'https://send.api.mailtrap.io/api/send';
 
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST,
-    port: Number(process.env.SMTP_PORT),
-    secure: Number(process.env.SMTP_PORT) === 465, // true for port 465
-    auth: {
-      user: process.env.SMTP_USER,
-      pass: process.env.SMTP_PASS,
-    },
-    // Add connection timeout settings
-    connectionTimeout: 5000, // 5 seconds to establish connection
-    greetingTimeout: 5000, // 5 seconds for SMTP greeting
-    socketTimeout: 10000, // 10 seconds for socket operations
-  });
+const getEnv = (key: string): string => {
+  const value = process.env[key];
+  if (!value) throw new Error(`Missing required environment variable: ${key}`);
+  return value;
+};
+
+const sendViaMailtrapApi = async (params: {
+  to: string;
+  toName?: string;
+  subject: string;
+  html: string;
+  text: string;
+  timeoutMs?: number;
+}) => {
+  const token = getEnv('SMTP_PASS'); // Using SMTP_PASS as Mailtrap API token (per your setup)
+  const fromEmail = getEnv('FROM_EMAIL');
+  const fromName = 'Devisia';
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), params.timeoutMs ?? 8000);
+
+  try {
+    const res = await fetch(MAILTRAP_SEND_URL, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: { email: fromEmail, name: fromName },
+        to: [{ email: params.to, name: params.toName }],
+        subject: params.subject,
+        text: params.text,
+        html: params.html,
+      }),
+      signal: controller.signal,
+    });
+
+    const responseText = await res.text().catch(() => '');
+    if (!res.ok) {
+      throw new Error(`Mailtrap API error (${res.status}): ${responseText || res.statusText}`);
+    }
+
+    return { ok: true, status: res.status, body: responseText };
+  } finally {
+    clearTimeout(timeout);
+  }
 };
 
 // Load email template
@@ -184,18 +209,6 @@ export const handler: Handler = async (event, context) => {
     // Determine language (default to Italian)
     const emailLang = (lang === 'en' ? 'en' : 'it') as 'it' | 'en';
 
-    // Create transporter
-    let transporter;
-    try {
-      transporter = createTransporter();
-    } catch (error) {
-      console.error('Error creating transporter:', error);
-      return {
-        statusCode: 500,
-        body: JSON.stringify({ error: 'Email service configuration error' }),
-      };
-    }
-
     // Load and prepare thank-you email template
     const userTemplate = loadTemplate(emailLang);
     const userHtml = replacePlaceholders(userTemplate, {
@@ -203,28 +216,13 @@ export const handler: Handler = async (event, context) => {
       subject: (subject as string) || '',
     });
 
-    // Send thank-you email to user (with timeout)
-    try {
-      const thankYouPromise = transporter.sendMail({
-        from: process.env.FROM_EMAIL,
-        to: email as string,
-        subject: emailLang === 'en'
-          ? 'Thank you for contacting Devisia'
-          : 'Grazie per averci contattato',
-        html: userHtml,
-      });
-      
-      // Add timeout to email sending (8 seconds max)
-      const timeoutPromise = new Promise((_, reject) => 
-        setTimeout(() => reject(new Error('Email send timeout')), 8000)
-      );
-      
-      await Promise.race([thankYouPromise, timeoutPromise]);
-      console.log(`Thank-you email sent to ${email}`);
-    } catch (error) {
-      console.error('Error sending thank-you email:', error);
-      // Continue to notification email even if thank-you fails
-    }
+    // Send thank-you email to user via Mailtrap API (non-blocking)
+    const thankYouSubject =
+      emailLang === 'en' ? 'Thank you for contacting Devisia' : 'Grazie per averci contattato';
+    const thankYouText =
+      emailLang === 'en'
+        ? `Hello ${(name as string) || ''},\n\nThank you for contacting us${subject ? ` regarding "${String(subject).trim()}"` : ''}.\nWe have received your message and will get back to you as soon as possible.\n\nDevisia`
+        : `Ciao ${(name as string) || ''},\n\nGrazie per averci contattato${subject ? ` riguardo "${String(subject).trim()}"` : ''}.\nAbbiamo ricevuto il tuo messaggio e ti risponderemo al più presto.\n\nDevisia`;
 
     // Prepare notification email for site manager
     const managerSubject = `New contact form submission${emailLang === 'en' ? ' (EN)' : ' (IT)'}`;
@@ -242,27 +240,37 @@ export const handler: Handler = async (event, context) => {
         </p>
       </div>
     `;
+    const managerText = `New contact form submission\n\nName: ${String(name)}\nEmail: ${String(email)}\n${subject ? `Subject: ${String(subject)}\n` : ''}\nMessage:\n${String(message)}\n\nLanguage: ${emailLang}`;
 
-    // Send notification email to site manager (with timeout)
-    try {
-      const notificationPromise = transporter.sendMail({
-        from: process.env.FROM_EMAIL,
-        to: process.env.SITE_MANAGER_EMAIL,
+    // Fire both sends in parallel; never block the redirect
+    const siteManagerEmail = getEnv('SITE_MANAGER_EMAIL');
+    const [thankYouResult, managerResult] = await Promise.allSettled([
+      sendViaMailtrapApi({
+        to: email as string,
+        subject: thankYouSubject,
+        html: userHtml,
+        text: thankYouText,
+        timeoutMs: 8000,
+      }),
+      sendViaMailtrapApi({
+        to: siteManagerEmail,
         subject: managerSubject,
         html: managerHtml,
-      });
-      
-      // Add timeout to email sending (8 seconds max)
-      const timeoutPromise = new Promise((_, reject) => 
-        setTimeout(() => reject(new Error('Email send timeout')), 8000)
-      );
-      
-      await Promise.race([notificationPromise, timeoutPromise]);
-      console.log(`Notification email sent to ${process.env.SITE_MANAGER_EMAIL}`);
-    } catch (error) {
-      console.error('Error sending notification email:', error);
-      // Still return success to user, but log the error
-      // The form submission was successful even if email fails
+        text: managerText,
+        timeoutMs: 8000,
+      }),
+    ]);
+
+    if (thankYouResult.status === 'rejected') {
+      console.error('Thank-you email failed (Mailtrap API):', thankYouResult.reason);
+    } else {
+      console.log(`Thank-you email API status: ${thankYouResult.value.status}`);
+    }
+
+    if (managerResult.status === 'rejected') {
+      console.error('Manager email failed (Mailtrap API):', managerResult.reason);
+    } else {
+      console.log(`Manager email API status: ${managerResult.value.status}`);
     }
 
     // Return redirect response
