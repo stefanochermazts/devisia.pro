@@ -5,27 +5,59 @@ description: Informativa su privacy, cookie e gestione del consenso (GDPR).
 
 # Privacy & Cookie Policy
 
-Questa pagina descrive come Devisia gestisce **dati personali** e **cookie** in conformità al GDPR e alla normativa ePrivacy.
+Questa pagina descrive come Devisia gestisce **dati personali** e **cookie** in conformità al GDPR (Reg. (UE) 2016/679) e alla normativa ePrivacy applicabile.
 
 ## 1) Titolare del trattamento
 
 **Devisia**  
-Email: [info@devisia.pro](mailto:info@devisia.pro)
+Email: [info@devisia.pro](mailto:info@devisia.pro)  
+Sede legale: (da completare)  
+P. IVA / ID aziendale: (da completare)  
 
-## 2) Tipologie di dati trattati
+Per esercitare i tuoi diritti o richiedere informazioni sul trattamento, puoi scrivere all’indirizzo email indicato sopra.
 
-- **Dati forniti dall’utente**: ad esempio quando compili il modulo contatti (nome, email, messaggio).
-- **Dati tecnici**: log e informazioni di base necessarie al funzionamento del sito.
+## 2) Quali dati trattiamo
 
-## 3) Cookie e tecnologie simili
+Possiamo trattare:
+
+- **Dati di contatto e contenuto** (forniti da te): nome, email, oggetto (opzionale), testo del messaggio.
+- **Dati tecnici e di utilizzo**: indirizzo IP, informazioni su dispositivo e browser, timestamp, metadati della richiesta e informazioni diagnostiche necessarie a erogare il sito in modo sicuro e affidabile.
+- **Preferenze di consenso**: scelte relative a cookie/tecnologie opzionali (analytics/marketing).
+
+Non raccogliamo intenzionalmente categorie particolari di dati (art. 9 GDPR). Ti invitiamo a non inserire informazioni sensibili nei campi di testo libero.
+
+## 3) Finalità e basi giuridiche
+
+Trattiamo dati personali per le seguenti finalità:
+
+1. **Gestione richieste e modulo contatti**  
+   - **Finalità**: gestire il tuo messaggio e risponderti.  
+   - **Base giuridica**: misure precontrattuali/contratto (art. 6(1)(b) GDPR) e/o legittimo interesse (art. 6(1)(f)).  
+
+2. **Sicurezza del sito, operatività e troubleshooting**  
+   - **Finalità**: protezione del sito, prevenzione abusi e continuità del servizio.  
+   - **Base giuridica**: legittimo interesse (art. 6(1)(f)).  
+
+3. **Analytics e marketing (opzionali)**  
+   - **Finalità**: misurare e migliorare il sito e/o utilizzare strumenti di marketing.  
+   - **Base giuridica**: consenso (art. 6(1)(a)).  
+   - Queste tecnologie **non sono attivate** se non presti consenso (quando applicabile).
+
+## 4) Cookie e tecnologie simili
 
 Utilizziamo:
 
-- **Cookie essenziali**: necessari al funzionamento del sito (sempre attivi).
-- **Cookie analytics** (opzionali): usati per misurare in modo aggregato l’uso del sito, solo se acconsenti.
-- **Cookie marketing** (opzionali): eventuali strumenti di marketing, solo se acconsenti.
+- **Cookie/tecnologie essenziali**: strettamente necessari al funzionamento e alla sicurezza del sito (sempre attivi).
+- **Cookie/tecnologie analytics** (opzionali): solo se acconsenti.
+- **Cookie/tecnologie marketing** (opzionali): solo se acconsenti.
 
-## 4) Gestione del consenso
+### Cookie di consenso
+Le preferenze vengono memorizzate nel cookie `gdpr_consent`.
+
+- **Durata**: fino a **180 giorni**, salvo modifica anticipata.
+- **Contenuto**: essential (sempre true), analytics (true/false), marketing (true/false).
+
+## 5) Come gestire il consenso
 
 Al primo accesso puoi:
 - **Accettare** tutti i cookie
@@ -34,22 +66,31 @@ Al primo accesso puoi:
 
 Puoi modificare la scelta in qualsiasi momento cliccando **“Preferenze”** nel footer.
 
-## 5) Base giuridica
+Puoi anche eliminare il cookie di consenso dalle impostazioni del browser. Nota: eliminare i cookie può azzerare le preferenze.
 
-- **Cookie essenziali**: legittimo interesse / necessità tecnica.
-- **Cookie non essenziali (analytics/marketing)**: consenso (art. 6(1)(a) GDPR).
+## 6) Destinatari e responsabili del trattamento
 
-## 6) Conservazione
+Possiamo condividere dati personali con fornitori che agiscono come **responsabili del trattamento** (art. 28 GDPR), solo nella misura necessaria all’erogazione del sito e dei servizi correlati (es. hosting, invio email per le risposte ai contatti).
 
-Le preferenze di consenso vengono memorizzate per un periodo limitato e possono essere aggiornate in qualsiasi momento.
+Non vendiamo dati personali.
 
-## 7) Diritti dell’interessato
+## 7) Trasferimenti extra SEE
+
+Alcuni fornitori possono trattare dati al di fuori del SEE/UK/CH. In tali casi adottiamo garanzie adeguate (es. Clausole Contrattuali Standard e misure aggiuntive quando richiesto).
+
+## 8) Conservazione
+
+Conserviamo i dati personali solo per il tempo necessario alle finalità sopra indicate:
+
+- **Richieste via contatto**: per il tempo necessario alla gestione e ad eventuali follow‑up; poi solo se necessario per obblighi di legge o tutela in sede difensiva.
+- **Log tecnici**: conservati per un periodo limitato per sicurezza e troubleshooting, poi eliminati o anonimizzati.
+- **Cookie di consenso**: fino a **180 giorni** (vedi sopra), salvo modifica anticipata.
+
+## 9) Diritti dell’interessato
 
 Hai diritto a: accesso, rettifica, cancellazione, limitazione, portabilità e opposizione, nonché a revocare il consenso in ogni momento.
 
 Per richieste: [info@devisia.pro](mailto:info@devisia.pro)
 
----
-
-_Nota_: questo testo è un template informativo. Per conformità completa (es. dettagli su fornitori, DPA, trasferimenti extra UE, tempi di conservazione, ecc.) è consigliata una revisione legale.
+Hai inoltre il diritto di proporre reclamo all’Autorità di controllo competente.
 
