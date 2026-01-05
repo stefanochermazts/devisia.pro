@@ -13,6 +13,9 @@ if (!contactEntry) {
 const { data } = contactEntry;
 const { Content } = await render(contactEntry);
 
+// Check if form was submitted successfully
+const isSuccess = Astro.url.searchParams.get('success') === 'true';
+
 const site = Astro.site ?? new URL('https://devisia.pro');
 const breadcrumbs = breadcrumbListJsonLd({
   site,
@@ -27,6 +30,20 @@ const breadcrumbs = breadcrumbListJsonLd({
   <article class="page-content">
     <Content />
 
+    <!-- Success Message -->
+    {isSuccess && (
+      <div class="success-message" role="alert">
+        <svg class="success-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+          <polyline points="22 4 12 14.01 9 11.01"></polyline>
+        </svg>
+        <div class="success-content">
+          <h3 class="success-title">Message sent successfully!</h3>
+          <p class="success-text">Thank you for contacting us. We've sent you a confirmation email and will get back to you as soon as possible.</p>
+        </div>
+      </div>
+    )}
+
     <!-- Netlify Forms Contact Form -->
     <section class="contact-form-section">
       <form
@@ -34,6 +51,7 @@ const breadcrumbs = breadcrumbListJsonLd({
         method="POST"
         data-netlify="true"
         netlify-honeypot="bot-field"
+        action="/.netlify/functions/contact-email"
         class="contact-form"
       >
         <input type="hidden" name="form-name" value="contact" />
@@ -44,6 +62,9 @@ const breadcrumbs = breadcrumbListJsonLd({
             <input name="bot-field" />
           </label>
         </p>
+
+        <!-- Language field for i18n email templates -->
+        <input type="hidden" name="lang" value="en" />
 
         <div class="form-group">
           <label for="name" class="form-label">Name *</label>
@@ -102,6 +123,41 @@ const breadcrumbs = breadcrumbListJsonLd({
   .page-content {
     max-width: 800px;
     margin: 0 auto;
+  }
+
+  .success-message {
+    margin-top: 3rem;
+    padding: var(--ds-space-4);
+    background-color: color-mix(in srgb, var(--ds-color-success) 10%, var(--ds-color-surface));
+    border: var(--ds-border-1) solid color-mix(in srgb, var(--ds-color-success) 30%, var(--ds-color-border));
+    border-radius: var(--ds-radius-3);
+    display: flex;
+    gap: var(--ds-space-4);
+    align-items: flex-start;
+  }
+
+  .success-icon {
+    color: var(--ds-color-success);
+    flex-shrink: 0;
+    margin-top: 0.125rem;
+  }
+
+  .success-content {
+    flex: 1;
+  }
+
+  .success-title {
+    margin: 0 0 var(--ds-space-2);
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-lg);
+    font-weight: 600;
+  }
+
+  .success-text {
+    margin: 0;
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
   }
 
   .contact-form-section {

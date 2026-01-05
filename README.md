@@ -13,7 +13,7 @@ This is the official website for Devisia, a technology consulting firm specializ
 - **Content Management** via Decap CMS (formerly Netlify CMS)
 - **Git-based Workflow** for content versioning and collaboration
 - **SEO Optimization** with proper meta tags and Open Graph support
-- **Netlify Forms** for contact form submissions
+- **Netlify Forms** for contact form submissions with automatic double email system (thank-you email to user + notification to site manager)
 - **Responsive Design** that works on all devices
 - **TypeScript** for type safety and better developer experience
 
@@ -299,6 +299,28 @@ npm run lint         # Lint code with ESLint
 - Check that the `form-name` hidden input matches the form `name`
 - Look for submissions in **Netlify Dashboard** → **Forms**
 - Ensure the site has been deployed at least once (Netlify detects forms during build)
+
+### Contact Form Email System
+
+The contact form uses a **double email system**:
+1. **Thank-you email** sent to the user who submitted the form (in their language: IT/EN)
+2. **Notification email** sent to the site manager with form details
+
+**Configuration Required**:
+- See `ENV_VARS.md` for required environment variables
+- Configure SMTP settings (Mailtrap recommended for testing)
+- Set environment variables in Netlify Dashboard for production
+
+**Testing Locally**:
+- Use `netlify dev` instead of `npm run dev` to test Netlify Functions
+- Configure `.env` file with Mailtrap credentials
+- Mailtrap sandbox captures emails without sending them (perfect for testing)
+
+**Troubleshooting Email Issues**:
+- Check Netlify Function logs: **Netlify Dashboard** → **Functions** → **contact-email**
+- Verify all environment variables are set correctly
+- Ensure SMTP credentials are valid
+- Check that `FROM_EMAIL` and `SITE_MANAGER_EMAIL` are correct
 
 ### Content Changes Not Appearing
 
