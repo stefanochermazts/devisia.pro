@@ -1,13 +1,107 @@
 import type { Handler } from '@netlify/functions';
 import nodemailer from 'nodemailer';
-import { readFileSync } from 'fs';
-import { fileURLToPath } from 'url';
-import { dirname, join } from 'path';
 import { parse } from 'querystring';
 
-// Get __dirname equivalent for ESM
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+// Email templates embedded directly in the function
+// This avoids file system path issues in Netlify Functions
+const EMAIL_TEMPLATES = {
+  it: `<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Grazie per averci contattato</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f7f9fb; color: #1f2937;">
+  <table role="presentation" style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td style="padding: 40px 20px;">
+        <table role="presentation" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+          <tr>
+            <td style="padding: 40px 40px 20px; text-align: center; background-color: #0b1f2a;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 600;">Devisia</h1>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 40px;">
+              <h2 style="margin: 0 0 20px; color: #1f2937; font-size: 20px; font-weight: 600;">Ciao {{name}},</h2>
+              <p style="margin: 0 0 16px; color: #4b5563; font-size: 16px; line-height: 1.6;">
+                Grazie per averci contattato{{subject}}.
+              </p>
+              <p style="margin: 0 0 16px; color: #4b5563; font-size: 16px; line-height: 1.6;">
+                Abbiamo ricevuto il tuo messaggio e ti risponderemo al più presto. Di solito rispondiamo entro 24-48 ore lavorative.
+              </p>
+              <p style="margin: 0; color: #4b5563; font-size: 16px; line-height: 1.6;">
+                Nel frattempo, se hai domande urgenti, puoi contattarci direttamente all'indirizzo <a href="mailto:info@devisia.pro" style="color: #1fa2a6; text-decoration: none;">info@devisia.pro</a>.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 30px 40px; background-color: #f9fafb; border-top: 1px solid #e5e7eb; text-align: center;">
+              <p style="margin: 0 0 8px; color: #6b7280; font-size: 14px;">
+                Cordiali saluti,<br>
+                <strong style="color: #1f2937;">Il team Devisia</strong>
+              </p>
+              <p style="margin: 0; color: #9ca3af; font-size: 12px;">
+                <a href="https://devisia.pro" style="color: #1fa2a6; text-decoration: none;">devisia.pro</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`,
+  en: `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Thank you for contacting us</title>
+</head>
+<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #f7f9fb; color: #1f2937;">
+  <table role="presentation" style="width: 100%; border-collapse: collapse;">
+    <tr>
+      <td style="padding: 40px 20px;">
+        <table role="presentation" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);">
+          <tr>
+            <td style="padding: 40px 40px 20px; text-align: center; background-color: #0b1f2a;">
+              <h1 style="margin: 0; color: #ffffff; font-size: 24px; font-weight: 600;">Devisia</h1>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 40px;">
+              <h2 style="margin: 0 0 20px; color: #1f2937; font-size: 20px; font-weight: 600;">Hello {{name}},</h2>
+              <p style="margin: 0 0 16px; color: #4b5563; font-size: 16px; line-height: 1.6;">
+                Thank you for contacting us{{subject}}.
+              </p>
+              <p style="margin: 0 0 16px; color: #4b5563; font-size: 16px; line-height: 1.6;">
+                We have received your message and will get back to you as soon as possible. We typically respond within 24-48 business hours.
+              </p>
+              <p style="margin: 0; color: #4b5563; font-size: 16px; line-height: 1.6;">
+                In the meantime, if you have urgent questions, you can contact us directly at <a href="mailto:info@devisia.pro" style="color: #1fa2a6; text-decoration: none;">info@devisia.pro</a>.
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 30px 40px; background-color: #f9fafb; border-top: 1px solid #e5e7eb; text-align: center;">
+              <p style="margin: 0 0 8px; color: #6b7280; font-size: 14px;">
+                Best regards,<br>
+                <strong style="color: #1f2937;">The Devisia Team</strong>
+              </p>
+              <p style="margin: 0; color: #9ca3af; font-size: 12px;">
+                <a href="https://devisia.pro" style="color: #1fa2a6; text-decoration: none;">devisia.pro</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`,
+};
 
 // Initialize SMTP transporter
 const createTransporter = () => {
@@ -32,17 +126,7 @@ const createTransporter = () => {
 
 // Load email template
 const loadTemplate = (lang: 'it' | 'en'): string => {
-  try {
-    // Path relative to the function file
-    const templatePath = join(__dirname, '../../src/email-templates', `thank-you.${lang}.html`);
-    return readFileSync(templatePath, 'utf-8');
-  } catch (error) {
-    console.error(`Error loading template for lang ${lang}:`, error);
-    // Fallback to plain text template
-    return lang === 'en'
-      ? '<p>Hello {{name}},</p><p>Thank you for contacting us{{subject}}.</p><p>We have received your message and will get back to you soon.</p>'
-      : '<p>Ciao {{name}},</p><p>Grazie per averci contattato{{subject}}.</p><p>Abbiamo ricevuto il tuo messaggio e ti risponderemo presto.</p>';
-  }
+  return EMAIL_TEMPLATES[lang] || EMAIL_TEMPLATES.it;
 };
 
 // Replace placeholders in template
