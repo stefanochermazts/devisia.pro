@@ -1,11 +1,12 @@
 ---
 import { t, type Locale } from '../lib/i18n';
+import cookieConsentClientUrl from '../lib/cookieConsentClient.ts?url';
 
 const locale: Locale = Astro.props.locale ?? 'it';
 const policyHref = locale === 'en' ? '/en/privacy' : '/privacy';
 ---
 
-<div class="gdpr-consent" data-locale={locale}>
+<div class="gdpr-consent" data-gdpr-consent-root data-locale={locale}>
   <!-- Banner (hidden until client decides it must be shown) -->
   <div class="gdpr-banner gdpr-hidden" role="dialog" aria-modal="true" aria-labelledby="gdpr-banner-title">
     <div class="gdpr-banner__inner">
@@ -86,101 +87,7 @@ const policyHref = locale === 'en' ? '/en/privacy' : '/privacy';
   </div>
 </div>
 
-<script type="module">
-  import { getConsent, getDefaultConsent, loadConsent, saveConsent } from '../lib/consent';
-
-  const root = document.currentScript?.previousElementSibling;
-  if (!(root instanceof HTMLElement)) {
-    // eslint-disable-next-line no-console
-    console.warn('[gdpr] CookieConsent root not found');
-  } else {
-    const banner = root.querySelector('.gdpr-banner');
-    const modal = root.querySelector('.gdpr-modal');
-    const modalPanel = root.querySelector('.gdpr-modal__panel');
-    const form = root.querySelector('[data-gdpr-form]');
-
-    const setBannerVisible = (visible) => {
-      if (!banner) return;
-      banner.classList.toggle('gdpr-hidden', !visible);
-    };
-
-    const setModalVisible = (visible) => {
-      if (!modal) return;
-      modal.classList.toggle('gdpr-hidden', !visible);
-      if (visible) {
-        document.documentElement.classList.add('gdpr-modal-open');
-      } else {
-        document.documentElement.classList.remove('gdpr-modal-open');
-      }
-    };
-
-    const showModal = () => {
-      if (!modal || !form) return;
-      // hydrate current values into toggles
-      const current = loadConsent() ?? getConsent() ?? getDefaultConsent();
-      const analytics = form.querySelector('input[name="analytics"]');
-      const marketing = form.querySelector('input[name="marketing"]');
-      if (analytics) analytics.checked = Boolean(current.analytics);
-      if (marketing) marketing.checked = Boolean(current.marketing);
-      setModalVisible(true);
-      // focus
-      if (modalPanel instanceof HTMLElement) modalPanel.focus();
-    };
-
-    const hideModal = () => setModalVisible(false);
-
-    const applyConsent = (data) => {
-      try {
-        saveConsent(data);
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error('[gdpr] Failed to save consent', e);
-      }
-      setBannerVisible(false);
-      hideModal();
-    };
-
-    // Initial decision: show banner only if no consent cookie yet
-    const existing = loadConsent();
-    setBannerVisible(!existing);
-
-    root.addEventListener('click', (e) => {
-      const target = e.target;
-      if (!(target instanceof HTMLElement)) return;
-      const action = target.getAttribute('data-gdpr-action');
-      if (!action) return;
-
-      if (action === 'accept-all') {
-        applyConsent({ essential: true, analytics: true, marketing: true });
-      } else if (action === 'reject-all') {
-        applyConsent({ essential: true, analytics: false, marketing: false });
-      } else if (action === 'open-preferences') {
-        showModal();
-      } else if (action === 'close') {
-        hideModal();
-      }
-    });
-
-    if (form) {
-      form.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const analytics = form.querySelector('input[name="analytics"]')?.checked ?? false;
-        const marketing = form.querySelector('input[name="marketing"]')?.checked ?? false;
-        applyConsent({ essential: true, analytics, marketing });
-      });
-    }
-
-    // Close on Escape
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal && !modal.classList.contains('gdpr-hidden')) {
-        hideModal();
-      }
-    });
-
-    // Allow other UI (footer link) to open preferences
-    window.addEventListener('open-gdpr-preferences', () => showModal());
-  }
-</script>
+<script type="module" src={cookieConsentClientUrl}></script>
 
 <style>
   .gdpr-hidden {

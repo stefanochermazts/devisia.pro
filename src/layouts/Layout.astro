@@ -46,6 +46,7 @@ import '../styles/utilities.css';
 
 import CookieConsent from '../components/CookieConsent.astro';
 import { t } from '../lib/i18n';
+import gdprClientUrl from '../lib/gdprClient.ts?url';
 
 const themeToggleLabel = lang === 'en' ? 'Toggle theme' : 'Cambia tema';
 
@@ -340,9 +341,7 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
     <CookieConsent locale={lang} />
 
     <!-- GDPR consent: conditional third-party loader -->
-    <script type="module">
-      import '../lib/gdprClient';
-    </script>
+    <script type="module" src={gdprClientUrl}></script>
 
     <script is:inline>
       // Open GDPR cookie preferences from footer
