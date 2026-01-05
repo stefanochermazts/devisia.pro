@@ -1,18 +1,20 @@
 ---
 title: Privacy & Cookie Policy
 description: Informativa su privacy, cookie e gestione del consenso (GDPR).
+heroTitle: ''
+heroSubtitle: ''
+homeWhatWeDoTitle: ''
 ---
-
 # Privacy & Cookie Policy
 
 Questa pagina descrive come Devisia gestisce **dati personali** e **cookie** in conformità al GDPR (Reg. (UE) 2016/679) e alla normativa ePrivacy applicabile.
 
 ## 1) Titolare del trattamento
 
-**Devisia**  
-Email: [info@devisia.pro](mailto:info@devisia.pro)  
-Sede legale: (da completare)  
-P. IVA / ID aziendale: (da completare)  
+**Devisia**
+Email: [info@devisia.pro](mailto:info@devisia.pro)
+Sede legale: Riva Gulli 12 - Trieste
+P. IVA / ID aziendale: 
 
 Per esercitare i tuoi diritti o richiedere informazioni sul trattamento, puoi scrivere all’indirizzo email indicato sopra.
 
@@ -30,18 +32,21 @@ Non raccogliamo intenzionalmente categorie particolari di dati (art. 9 GDPR). Ti
 
 Trattiamo dati personali per le seguenti finalità:
 
-1. **Gestione richieste e modulo contatti**  
-   - **Finalità**: gestire il tuo messaggio e risponderti.  
-   - **Base giuridica**: misure precontrattuali/contratto (art. 6(1)(b) GDPR) e/o legittimo interesse (art. 6(1)(f)).  
+1. **Gestione richieste e modulo contatti**
 
-2. **Sicurezza del sito, operatività e troubleshooting**  
-   - **Finalità**: protezione del sito, prevenzione abusi e continuità del servizio.  
-   - **Base giuridica**: legittimo interesse (art. 6(1)(f)).  
+- **Finalità**: gestire il tuo messaggio e risponderti.
+- **Base giuridica**: misure precontrattuali/contratto (art. 6(1)(b) GDPR) e/o legittimo interesse (art. 6(1)(f)).
 
-3. **Analytics e marketing (opzionali)**  
-   - **Finalità**: misurare e migliorare il sito e/o utilizzare strumenti di marketing.  
-   - **Base giuridica**: consenso (art. 6(1)(a)).  
-   - Queste tecnologie **non sono attivate** se non presti consenso (quando applicabile).
+2. **Sicurezza del sito, operatività e troubleshooting**
+
+- **Finalità**: protezione del sito, prevenzione abusi e continuità del servizio.
+- **Base giuridica**: legittimo interesse (art. 6(1)(f)).
+
+3. **Analytics e marketing (opzionali)**
+
+- **Finalità**: misurare e migliorare il sito e/o utilizzare strumenti di marketing.
+- **Base giuridica**: consenso (art. 6(1)(a)).
+- Queste tecnologie **non sono attivate** se non presti consenso (quando applicabile).
 
 ## 4) Cookie e tecnologie simili
 
@@ -52,6 +57,7 @@ Utilizziamo:
 - **Cookie/tecnologie marketing** (opzionali): solo se acconsenti.
 
 ### Cookie di consenso
+
 Le preferenze vengono memorizzate nel cookie `gdpr_consent`.
 
 - **Durata**: fino a **180 giorni**, salvo modifica anticipata.
@@ -60,6 +66,7 @@ Le preferenze vengono memorizzate nel cookie `gdpr_consent`.
 ## 5) Come gestire il consenso
 
 Al primo accesso puoi:
+
 - **Accettare** tutti i cookie
 - **Rifiutare** i cookie non essenziali
 - **Gestire le preferenze** per categoria
@@ -93,4 +100,3 @@ Hai diritto a: accesso, rettifica, cancellazione, limitazione, portabilità e op
 Per richieste: [info@devisia.pro](mailto:info@devisia.pro)
 
 Hai inoltre il diritto di proporre reclamo all’Autorità di controllo competente.
-
