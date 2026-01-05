@@ -1,6 +1,5 @@
 ---
 import { t, type Locale } from '../lib/i18n';
-import cookieConsentClientUrl from '../lib/cookieConsentClient.ts?url';
 
 const locale: Locale = Astro.props.locale ?? 'it';
 const policyHref = locale === 'en' ? '/en/privacy' : '/privacy';
@@ -87,7 +86,142 @@ const policyHref = locale === 'en' ? '/en/privacy' : '/privacy';
   </div>
 </div>
 
-<script type="module" src={cookieConsentClientUrl}></script>
+<script is:inline>
+  (() => {
+    const CONSENT_COOKIE = 'gdpr_consent';
+    const DAYS = 180;
+
+    const root = document.querySelector('[data-gdpr-consent-root]');
+    if (!root) return;
+
+    const banner = root.querySelector('.gdpr-banner');
+    const modal = root.querySelector('.gdpr-modal');
+    const modalPanel = root.querySelector('.gdpr-modal__panel');
+    const form = root.querySelector('[data-gdpr-form]');
+
+    const getSecure = () => {
+      try {
+        return location.protocol === 'https:';
+      } catch {
+        return false;
+      }
+    };
+
+    const getCookie = (name) => {
+      const needle = encodeURIComponent(name) + '=';
+      return document.cookie
+        .split(';')
+        .map((p) => p.trim())
+        .filter((p) => p.startsWith(needle))
+        .map((p) => decodeURIComponent(p.slice(needle.length)))[0];
+    };
+
+    const setCookie = (name, value, days = DAYS) => {
+      const expires = new Date(Date.now() + days * 864e5).toUTCString();
+      const secure = getSecure() ? '; Secure' : '';
+      document.cookie =
+        encodeURIComponent(name) +
+        '=' +
+        encodeURIComponent(value) +
+        '; Expires=' +
+        expires +
+        '; Path=/; SameSite=Lax' +
+        secure;
+    };
+
+    const loadConsent = () => {
+      const raw = getCookie(CONSENT_COOKIE);
+      if (!raw) return null;
+      try {
+        const parsed = JSON.parse(raw);
+        if (!parsed || parsed.essential !== true) return null;
+        if (typeof parsed.analytics !== 'boolean') return null;
+        if (typeof parsed.marketing !== 'boolean') return null;
+        return parsed;
+      } catch {
+        return null;
+      }
+    };
+
+    const saveConsent = (data) => {
+      const safe = {
+        essential: true,
+        analytics: Boolean(data.analytics),
+        marketing: Boolean(data.marketing),
+      };
+      try {
+        setCookie(CONSENT_COOKIE, JSON.stringify(safe), DAYS);
+      } catch {
+        // ignore
+      }
+      try {
+        window.dispatchEvent(new CustomEvent('gdpr-consent-updated', { detail: safe }));
+      } catch {
+        // ignore
+      }
+    };
+
+    const setVisible = (el, visible) => {
+      if (!el) return;
+      el.classList.toggle('gdpr-hidden', !visible);
+    };
+
+    const setModalVisible = (visible) => {
+      if (!modal) return;
+      setVisible(modal, visible);
+      document.documentElement.classList.toggle('gdpr-modal-open', visible);
+      if (visible) modalPanel && modalPanel.focus && modalPanel.focus();
+    };
+
+    const showModal = () => {
+      if (!form) return;
+      const current = loadConsent() ?? { essential: true, analytics: false, marketing: false };
+      const analytics = form.querySelector('input[name="analytics"]');
+      const marketing = form.querySelector('input[name="marketing"]');
+      if (analytics) analytics.checked = Boolean(current.analytics);
+      if (marketing) marketing.checked = Boolean(current.marketing);
+      setModalVisible(true);
+    };
+
+    const hideModal = () => setModalVisible(false);
+
+    const applyConsent = (data) => {
+      saveConsent(data);
+      setVisible(banner, false);
+      hideModal();
+    };
+
+    // initial: show banner only if no cookie yet
+    setVisible(banner, !loadConsent());
+
+    root.addEventListener('click', (e) => {
+      const t = e.target;
+      if (!(t instanceof HTMLElement)) return;
+      const action = t.getAttribute('data-gdpr-action');
+      if (!action) return;
+
+      if (action === 'accept-all') applyConsent({ essential: true, analytics: true, marketing: true });
+      if (action === 'reject-all') applyConsent({ essential: true, analytics: false, marketing: false });
+      if (action === 'open-preferences') showModal();
+      if (action === 'close') hideModal();
+    });
+
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const analytics = form.querySelector('input[name="analytics"]')?.checked ?? false;
+        const marketing = form.querySelector('input[name="marketing"]')?.checked ?? false;
+        applyConsent({ essential: true, analytics, marketing });
+      });
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal && !modal.classList.contains('gdpr-hidden')) hideModal();
+    });
+
+    window.addEventListener('open-gdpr-preferences', () => showModal());
+  })();
+</script>
 
 <style>
   .gdpr-hidden {
