@@ -24,6 +24,7 @@
   },
   "devDependencies": {
     "@astrojs/netlify": "^6.6.3",
+    "@astrojs/sitemap": "^3.6.0",
     "@netlify/functions": "^5.1.2",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://devisia.pro/sitemap-index.xml
+
