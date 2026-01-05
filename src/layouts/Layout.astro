@@ -343,7 +343,7 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
     <script is:inline>
       (() => {
         const CONSENT_COOKIE = 'gdpr_consent';
-        const GA_ID = {JSON.stringify(import.meta.env.PUBLIC_GA_ID ?? '')};
+        const GA_ID = {JSON.stringify(import.meta.env.PUBLIC_GA_ID || '')};
 
         const getCookie = (name) => {
           const needle = encodeURIComponent(name) + '=';
