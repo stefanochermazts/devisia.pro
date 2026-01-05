@@ -196,9 +196,12 @@ const policyHref = locale === 'en' ? '/en/privacy' : '/privacy';
     setVisible(banner, !loadConsent());
 
     root.addEventListener('click', (e) => {
-      const t = e.target;
-      if (!(t instanceof HTMLElement)) return;
-      const action = t.getAttribute('data-gdpr-action');
+      const target = e.target;
+      if (!(target instanceof HTMLElement)) return;
+
+      const actionEl = target.closest('[data-gdpr-action]');
+      if (!actionEl) return;
+      const action = actionEl.getAttribute('data-gdpr-action');
       if (!action) return;
 
       if (action === 'accept-all') applyConsent({ essential: true, analytics: true, marketing: true });
