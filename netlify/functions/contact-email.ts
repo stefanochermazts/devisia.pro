@@ -186,7 +186,7 @@ export const handler: Handler = async (event, context) => {
   try {
     // Parse form data (url-encoded)
     const body = parse(event.body || '');
-    const { name, email, subject, message, lang, 'bot-field': botField } = body;
+    const { name, email, subject, message, lang, privacy_consent, 'bot-field': botField } = body;
 
     // Honeypot check - if bot-field is filled, it's spam
     if (botField) {
@@ -203,6 +203,16 @@ export const handler: Handler = async (event, context) => {
       return {
         statusCode: 400,
         body: JSON.stringify({ error: 'Missing required fields: name, email, and message are required' }),
+      };
+    }
+
+    // Enforce privacy consent (required by the form UI)
+    const consentValue = String(privacy_consent || '').toLowerCase();
+    const hasConsent = consentValue === 'true' || consentValue === 'on' || consentValue === '1' || consentValue === 'yes';
+    if (!hasConsent) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ error: 'Privacy consent is required' }),
       };
     }
 
@@ -231,6 +241,7 @@ export const handler: Handler = async (event, context) => {
         <h2 style="color: #0b1f2a;">New Contact Form Submission</h2>
         <p><strong>Name:</strong> ${(name as string).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
         <p><strong>Email:</strong> ${(email as string).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
+        <p><strong>Privacy consent:</strong> yes</p>
         ${subject ? `<p><strong>Subject:</strong> ${(subject as string).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>` : ''}
         <p><strong>Message:</strong></p>
         <div style="background-color: #f9fafb; padding: 15px; border-radius: 4px; white-space: pre-wrap;">${(message as string).replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>')}</div>
@@ -240,7 +251,7 @@ export const handler: Handler = async (event, context) => {
         </p>
       </div>
     `;
-    const managerText = `New contact form submission\n\nName: ${String(name)}\nEmail: ${String(email)}\n${subject ? `Subject: ${String(subject)}\n` : ''}\nMessage:\n${String(message)}\n\nLanguage: ${emailLang}`;
+    const managerText = `New contact form submission\n\nName: ${String(name)}\nEmail: ${String(email)}\nPrivacy consent: yes\n${subject ? `Subject: ${String(subject)}\n` : ''}\nMessage:\n${String(message)}\n\nLanguage: ${emailLang}`;
 
     // Fire both sends in parallel; never block the redirect
     const siteManagerEmail = getEnv('SITE_MANAGER_EMAIL');

@@ -180,6 +180,25 @@ const breadcrumbs = breadcrumbListJsonLd({
             placeholder="Raccontaci di più sul tuo progetto o sulla tua richiesta..."
           ></textarea>
         </div>
+
+        <!-- Privacy consent -->
+        <div class="form-group form-group--consent">
+          <label class="consent-label" for="privacy_consent">
+            <input
+              id="privacy_consent"
+              name="privacy_consent"
+              type="checkbox"
+              value="true"
+              required
+              class="consent-checkbox"
+            />
+            <span class="consent-text">
+              Dichiaro di aver letto l’
+              <a class="consent-link" href="/privacy">Informativa Privacy &amp; Cookie</a>
+              e acconsento al trattamento dei dati per essere ricontattato.
+            </span>
+          </label>
+        </div>
         
         <!-- Submit button -->
         <button type="submit" class="form-submit">
@@ -336,6 +355,39 @@ const breadcrumbs = breadcrumbListJsonLd({
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
+  }
+
+  .form-group--consent {
+    gap: 0;
+  }
+
+  .consent-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .consent-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-top: 0.15rem;
+    accent-color: var(--ds-color-accent);
+    flex: 0 0 auto;
+  }
+
+  .consent-text {
+    color: var(--ds-color-text-muted);
+  }
+
+  .consent-link {
+    color: var(--ds-color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
   }
   
   .form-label {
