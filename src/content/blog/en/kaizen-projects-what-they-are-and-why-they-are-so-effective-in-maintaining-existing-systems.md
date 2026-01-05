@@ -7,7 +7,13 @@ description: |-
 pubDate: 2026-01-05
 author: Stefano Chermaz
 heroImage: /uploads/progetti-kaizen.png
-tags: []
+tags:
+  - Kaizen
+  - Continuous Improvement
+  - Software Maintenance
+  - System Evolution
+  - IT Project Management
+  - Long-Term Value
 ---
 In the software and digital product world, attention is often focused on the **initial development phase**: new platforms, new features, new releases.
  However, the real complexity — and long-term value — emerges **after** go-live.
@@ -99,13 +105,13 @@ Very often, a small, targeted improvement delivers more value than a new feature
 
 ## Kaizen vs “One-Shot” Projects
 
-| Traditional Approach | Kaizen Approach          |
-| -------------------- | ------------------------ |
-| Fixed start and end  | Continuous journey       |
-| Large releases       | Incremental improvements |
-| High risk            | Controlled risk          |
-| Delivery-focused     | Long-term value-focused  |
-| Reactive maintenance | Proactive evolution      |
+| Traditional Approach | Kaizen Approach |
+| --- | --- |
+| Fixed start and end | Continuous journey |
+| Large releases | Incremental improvements |
+| High risk | Controlled risk |
+| Delivery-focused | Long-term value-focused |
+| Reactive maintenance | Proactive evolution |
 
 ------
 
