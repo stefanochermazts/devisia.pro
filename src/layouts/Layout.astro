@@ -6,6 +6,7 @@ export interface Props {
   canonical?: string;
   lang?: 'it' | 'en';
   structuredData?: unknown | unknown[];
+  languageSwitchHref?: string;
 }
 
 const {
@@ -15,6 +16,7 @@ const {
   canonical,
   lang = 'it',
   structuredData,
+  languageSwitchHref: customLanguageSwitchHref,
 } = Astro.props;
 
 const siteName = 'Devisia';
@@ -48,7 +50,7 @@ const pathName = canonicalURL.pathname;
 const itPath = lang === 'en' ? pathName.replace(/^\/en(?=\/|$)/, '') || '/' : pathName;
 // For trailingSlash: 'never', we use /en for English home
 const enPath = itPath === '/' ? '/en' : `/en${itPath}`;
-const languageSwitchHref = lang === 'en' ? itPath : enPath;
+const languageSwitchHref = customLanguageSwitchHref || (lang === 'en' ? itPath : enPath);
 const languageSwitchLabel = lang === 'en' ? 'IT' : 'EN';
 const languageSwitchAria = lang === 'en' ? 'Switch to Italian' : 'Passa a inglese';
 

@@ -20,6 +20,10 @@ const pageUrl = new URL(`/en/blog/${slug}/`, site).toString();
 const published =
   entry.data.pubDate instanceof Date ? entry.data.pubDate.toISOString() : new Date(entry.data.pubDate).toISOString();
 
+const languageSwitchHref = entry.data.translationSlug 
+  ? `/blog/${entry.data.translationSlug}`
+  : undefined;
+
 const breadcrumbs = breadcrumbListJsonLd({
   site,
   items: [
@@ -56,6 +60,7 @@ const formatDate = (date: Date | string): string => {
   heroImage={entry.data.heroImage}
   lang="en"
   structuredData={[breadcrumbs, blogPosting]}
+  languageSwitchHref={languageSwitchHref}
 >
   <article class="blog-post">
     <header class="post-header">

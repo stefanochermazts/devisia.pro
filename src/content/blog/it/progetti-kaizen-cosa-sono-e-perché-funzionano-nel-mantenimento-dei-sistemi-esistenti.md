@@ -14,6 +14,7 @@ tags:
   - Evoluzione dei sistemi
   - Gestione progetti IT
   - Valore nel tempo
+translationSlug: kaizen-projects-what-they-are-and-why-they-are-so-effective-in-maintaining-existing-systems
 ---
 ## Cos’è il Kaizen
 

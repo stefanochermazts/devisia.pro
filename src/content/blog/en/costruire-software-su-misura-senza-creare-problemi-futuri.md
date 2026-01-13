@@ -10,6 +10,7 @@ tags:
   - Product Development
   - Technical Strategy
   - Maintainability
+translationSlug: costruire-software-su-misura-senza-creare-problemi-futuri
 ---
 Custom software is often sold as _freedom_:
  software tailored exactly to your needs, your processes, your business.

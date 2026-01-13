@@ -14,6 +14,7 @@ tags:
   - System Evolution
   - IT Project Management
   - Long-Term Value
+translationSlug: progetti-kaizen-cosa-sono-e-perché-funzionano-nel-mantenimento-dei-sistemi-esistenti
 ---
 In the software and digital product world, attention is often focused on the **initial development phase**: new platforms, new features, new releases.
  However, the real complexity — and long-term value — emerges **after** go-live.

@@ -83,6 +83,7 @@ const blogSchema = z.object({
   heroImage: optionalString,
   author: z.string(),
   tags: stringList,
+  translationSlug: optionalString,
 });
 
 const blogItCollection = defineCollection({

@@ -10,6 +10,7 @@ tags:
   - Product Development
   - Technical Strategy
   - Maintainability
+translationSlug: costruire-software-su-misura-senza-creare-problemi-futuri
 ---
 Il software su misura viene spesso venduto come _libertà_:
  una soluzione pensata esattamente per i tuoi processi, il tuo business, le tue esigenze.
