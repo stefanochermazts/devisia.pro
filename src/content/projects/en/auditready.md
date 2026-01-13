@@ -1,12 +1,11 @@
 ---
 title: AuditReady
 slug: auditready
-description: A lightweight operational workspace to collect, organize, and
-  demonstrate audit evidence for DORA and NIS2.
+description: A lightweight operational workspace to collect, organize, and demonstrate audit evidence for DORA and NIS2.
 featured: true
 order: 2
 status: beta
-websiteUrl: https://example.com
+websiteUrl: https://audit-ready.eu
 coverImage: /uploads/auditready.png
 logo: /uploads/logo-auditready.png
 ogImage: null
