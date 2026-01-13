@@ -1,12 +1,11 @@
 ---
 title: AuditReady
 slug: auditready
-description: Uno spazio operativo leggero per raccogliere, organizzare e
-  dimostrare le evidenze richieste durante audit DORA e NIS2.
+description: Uno spazio operativo leggero per raccogliere, organizzare e dimostrare le evidenze richieste durante audit DORA e NIS2.
 featured: true
 order: 2
 status: beta
-websiteUrl: https://example.com
+websiteUrl: https://audit-ready.eu
 coverImage: /uploads/auditready.png
 logo: /uploads/logo-auditready.png
 tags:
@@ -37,6 +36,7 @@ AuditReady **non certifica la compliance**: aiuta a dimostrare ciò che è stato
 * Supporto a richieste di evidenze a terze parti
 
 ## Notes
+
 AuditReady è attualmente in beta e focalizzato su:
 
 * velocità di utilizzo
