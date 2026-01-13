@@ -39,5 +39,5 @@ export const onRequest = defineMiddleware((context, next) => {
   }
 
   // Otherwise, redirect to English version
-  return Response.redirect(new URL('/en/', url), 302);
+  return Response.redirect(new URL('/en', url), 302);
 });

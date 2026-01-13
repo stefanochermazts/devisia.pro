@@ -12,7 +12,7 @@ const {
   title,
   description,
   heroImage,
-  canonical = Astro.url.pathname,
+  canonical,
   lang = 'it',
   structuredData,
 } = Astro.props;
@@ -23,7 +23,15 @@ const homeTitleSuffix =
     ? 'Technology partner for SaaS & custom software'
     : 'Partner tecnologico per SaaS e software su misura';
 const fullTitle = title === 'Home' ? `${siteName} — ${homeTitleSuffix}` : `${title} | ${siteName}`;
-const canonicalURL = new URL(canonical, Astro.site);
+
+// Normalize path: remove trailing slash except for root '/'
+const normalizePath = (p: string) => {
+  const withoutTrailing = p.length > 1 ? p.replace(/\/+$/, '') : p;
+  return withoutTrailing || '/';
+};
+
+const canonicalPath = canonical || normalizePath(Astro.url.pathname);
+const canonicalURL = new URL(canonicalPath, Astro.site);
 
 const defaultDescription =
   lang === 'en'
@@ -38,15 +46,11 @@ const homeHref = localePrefix || '/';
 
 const pathName = canonicalURL.pathname;
 const itPath = lang === 'en' ? pathName.replace(/^\/en(?=\/|$)/, '') || '/' : pathName;
-const enPath = itPath === '/' ? '/en/' : `/en${itPath}`;
+// For trailingSlash: 'never', we use /en for English home
+const enPath = itPath === '/' ? '/en' : `/en${itPath}`;
 const languageSwitchHref = lang === 'en' ? itPath : enPath;
 const languageSwitchLabel = lang === 'en' ? 'IT' : 'EN';
 const languageSwitchAria = lang === 'en' ? 'Switch to Italian' : 'Passa a inglese';
-
-const normalizePath = (p: string) => {
-  const withoutTrailing = p.length > 1 ? p.replace(/\/+$/, '') : p;
-  return withoutTrailing || '/';
-};
 
 const currentPath = normalizePath(pathName);
 

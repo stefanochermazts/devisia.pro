@@ -8,5 +8,6 @@ export default defineConfig({
   output: 'server',
   adapter: netlify(),
   site: 'https://devisia.pro',
+  trailingSlash: 'never',
   integrations: [sitemap()],
 });
