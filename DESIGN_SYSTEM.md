@@ -229,5 +229,4 @@ Prefer **container queries** over global breakpoints. Where needed:
 - `src/styles/components.css`
 - `src/styles/utilities.css`
 - UI components in `src/components/ui/*`
-- Demo page: `src/pages/design-system.astro`
 
