@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import Button from './ui/Button.astro';
 
 export interface Props {
@@ -62,7 +63,17 @@ const showActions =
     <div class="ds-card">
       {
         image || fallbackImage ? (
-          <img class="ds-img-bw" src={image ?? fallbackImage ?? undefined} alt="" loading="eager" decoding="async" style="width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--ds-radius-3)" />
+          <Image 
+            class="ds-img-bw" 
+            src={(image ?? fallbackImage) as string} 
+            alt="" 
+            loading="eager" 
+            decoding="async" 
+            fetchpriority="high"
+            width={800}
+            height={450}
+            style="width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--ds-radius-3)" 
+          />
         ) : (
           <div class="ds-card__body ds-surface-2">
             <p class="ds-muted" style="margin: 0">

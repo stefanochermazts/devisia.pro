@@ -145,11 +145,11 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
       )
     }
 
-    <!-- Fonts (Optional: Add Google Fonts or other font services) -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       rel="stylesheet"
     />
 
@@ -176,8 +176,22 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
       <nav class="nav-container ds-container" aria-label="Primary">
         <div class="nav-brand">
           <a href={homeHref} class="logo" aria-label="DEVISIA">
-            <img class="logo-img logo-img--light" src="/images/logo.svg" alt="DEVISIA" />
-            <img class="logo-img logo-img--dark" src="/images/logo-inverted.svg" alt="DEVISIA" />
+            <img 
+              class="logo-img logo-img--light" 
+              src="/images/logo.svg" 
+              alt="DEVISIA" 
+              width="280"
+              height="56"
+              decoding="async"
+            />
+            <img 
+              class="logo-img logo-img--dark" 
+              src="/images/logo-inverted.svg" 
+              alt="DEVISIA" 
+              width="280"
+              height="56"
+              decoding="async"
+            />
           </a>
         </div>
 

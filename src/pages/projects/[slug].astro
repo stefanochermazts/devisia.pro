@@ -4,6 +4,7 @@ import { getEntry, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { breadcrumbListJsonLd, softwareApplicationJsonLd } from '../../lib/seo/structuredData';
 import Button from '../../components/ui/Button.astro';
+import { Image } from 'astro:assets';
 
 const slug = Astro.params.slug;
 if (!slug) {
@@ -47,7 +48,14 @@ const softwareApp = softwareApplicationJsonLd({
     <header class="header">
       <div class="top">
         {entry.data.logo ? (
-          <img class="logo" src={entry.data.logo} alt={`${entry.data.title} logo`} />
+          <Image 
+            class="logo" 
+            src={entry.data.logo} 
+            alt={`${entry.data.title} logo`} 
+            width={56}
+            height={56}
+            decoding="async"
+          />
         ) : null}
 
         <div class="heading">
@@ -69,7 +77,14 @@ const softwareApp = softwareApplicationJsonLd({
 
       {entry.data.coverImage ? (
         <div class="cover">
-          <img src={entry.data.coverImage} alt={`${entry.data.title} cover`} loading="lazy" />
+          <Image 
+            src={entry.data.coverImage} 
+            alt={`${entry.data.title} cover`} 
+            loading="lazy" 
+            decoding="async"
+            width={900}
+            height={320}
+          />
         </div>
       ) : null}
 

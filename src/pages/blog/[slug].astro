@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { getEntry, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { blogPostingJsonLd, breadcrumbListJsonLd } from '../../lib/seo/structuredData';
+import { Image } from 'astro:assets';
 
 const slug = Astro.params.slug;
 if (!slug) {
@@ -85,7 +86,15 @@ const formatDate = (date: Date | string): string => {
       
       {entry.data.heroImage && (
         <div class="post-hero-image">
-          <img src={entry.data.heroImage} alt={entry.data.title} />
+          <Image 
+            src={entry.data.heroImage} 
+            alt={entry.data.title} 
+            width={800}
+            height={400}
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
         </div>
       )}
     </header>
