@@ -1,7 +1,7 @@
 ---
 title: MySafeNest
 slug: mysafenest
-description: mysafenest is a family budgeting software that helps plan expenses, understand cash flow, and make better financial decisions over time.
+description: mysafenest is an ai-based family budgeting software that helps plan expenses and make informed decisions while respecting privacy.
 featured: true
 order: 1
 status: beta
@@ -22,33 +22,20 @@ tags:
 Managing a family budget is not a math problem.
  It’s a problem of **clarity**, **continuity**, and **shared decisions**.
 
-Most budgeting tools focus on charts, endless categories, or complex bank integrations.
- mysafenest was built from a different starting point: helping families **understand where their money goes**, **plan realistically**, and **make better decisions over time**.
-
-------
+Most budgeting tools focus on invasive bank integrations. mysafenest was built from a different starting point: helping families **understand where their money goes** through an **ai and privacy** approach that ensures sensitive data stays secure.
 
 ### The real problem
 
-In everyday family life:
-
-- expenses are rarely the same month after month
-- income and costs change over time
-- financial decisions are often made by intuition
-- the budget usually lives in one person’s head
-
-Spreadsheets, abandoned apps, scattered notes.
- None of these help build real **financial awareness**.
-
-------
+In everyday family life, financial decisions are often made by intuition. Our **ai-based software** allows for secure, anonymous analysis of spending patterns to build real **financial awareness**.
 
 ### What mysafenest actually does
 
-mysafenest is a **family budgeting software** designed to:
+mysafenest is a **family budgeting software** designed with a **responsible ai** mindset:
 
 - give a clear view of income and expenses
-- plan monthly and yearly budgets realistically
+- plan monthly budgets realistically
 - separate fixed costs from variable spending
-- turn budgeting into a shared, visible process
+- maintain total control over your financial data
 
 It doesn’t promise full automation.
  It helps you **see**, **decide**, and **adjust**.

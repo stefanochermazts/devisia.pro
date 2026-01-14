@@ -1,7 +1,7 @@
 ---
 title: AuditReady
 slug: auditready
-description: Uno spazio operativo leggero per raccogliere, organizzare e dimostrare le evidenze richieste durante audit DORA e NIS2.
+description: Uno spazio operativo leggero per raccogliere, organizzare e dimostrare le evidenze richieste durante audit DORA e NIS2. Un esempio di sviluppo SaaS focalizzato sulla compliance.
 featured: true
 order: 2
 status: beta
@@ -23,9 +23,9 @@ AuditReady nasce per risolvere uno dei problemi più comuni durante audit regola
 
 le evidenze esistono, ma sono distribuite, versionate male e difficili da dimostrare nel momento giusto.
 
-Il progetto fornisce uno spazio operativo strutturato per raccogliere, versionare e collegare evidenze ai controlli DORA e NIS2, mantenendo tracciabilità e ordine senza introdurre piattaforme complesse o promesse di conformità automatica.
+Il progetto è un esempio concreto di **sviluppo saas** orientato alla cybersecurity, fornendo uno spazio operativo strutturato per raccogliere, versionare e collegare evidenze ai controlli DORA e NIS2. Manteniamo tracciabilità e ordine senza introdurre piattaforme complesse, integrando principi di **governance intelligenza artificiale** per la futura automazione della raccolta dati.
 
-AuditReady **non certifica la compliance**: aiuta a dimostrare ciò che è stato realmente implementato.
+AuditReady **non certifica la compliance**: è un supporto di **sviluppo software su misura** che aiuta a dimostrare ciò che è stato realmente implementato.
 
 ## **Highlights**
 

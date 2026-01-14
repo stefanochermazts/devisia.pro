@@ -1,0 +1,197 @@
+{
+  "src\\content\\pages\\it\\about.md": {
+    "found": [],
+    "missing": [
+      "software basato su ai",
+      "sviluppo applicazioni web",
+      "ai e privacy",
+      "governance intelligenza artificiale",
+      "società sviluppo software",
+      "ai responsabile",
+      "integrazione ai nei software",
+      "software personalizzato per aziende",
+      "software su misura aziende",
+      "integrazione api ai",
+      "sviluppo saas",
+      "ai by design",
+      "sicurezza ai",
+      "sviluppo software su misura",
+      "ai per aziende",
+      "sviluppo software con intelligenza artificiale"
+    ]
+  },
+  "src\\content\\pages\\it\\contact.md": {
+    "found": [],
+    "missing": [
+      "software basato su ai",
+      "sviluppo applicazioni web",
+      "ai e privacy",
+      "governance intelligenza artificiale",
+      "società sviluppo software",
+      "ai responsabile",
+      "integrazione ai nei software",
+      "software personalizzato per aziende",
+      "software su misura aziende",
+      "integrazione api ai",
+      "sviluppo saas",
+      "ai by design",
+      "sicurezza ai",
+      "sviluppo software su misura",
+      "ai per aziende",
+      "sviluppo software con intelligenza artificiale"
+    ]
+  },
+  "src\\content\\pages\\it\\home.md": {
+    "found": [
+      "software basato su ai",
+      "sviluppo applicazioni web",
+      "governance intelligenza artificiale",
+      "ai responsabile",
+      "software personalizzato per aziende",
+      "software su misura aziende",
+      "integrazione api ai",
+      "sviluppo saas",
+      "sviluppo software su misura",
+      "ai per aziende",
+      "sviluppo software con intelligenza artificiale"
+    ],
+    "missing": [
+      "ai e privacy",
+      "società sviluppo software",
+      "integrazione ai nei software",
+      "ai by design",
+      "sicurezza ai"
+    ]
+  },
+  "src\\content\\pages\\it\\privacy.md": {
+    "found": [],
+    "missing": [
+      "software basato su ai",
+      "sviluppo applicazioni web",
+      "ai e privacy",
+      "governance intelligenza artificiale",
+      "società sviluppo software",
+      "ai responsabile",
+      "integrazione ai nei software",
+      "software personalizzato per aziende",
+      "software su misura aziende",
+      "integrazione api ai",
+      "sviluppo saas",
+      "ai by design",
+      "sicurezza ai",
+      "sviluppo software su misura",
+      "ai per aziende",
+      "sviluppo software con intelligenza artificiale"
+    ]
+  },
+  "src\\content\\pages\\it\\services.md": {
+    "found": [
+      "software basato su ai",
+      "sviluppo applicazioni web",
+      "governance intelligenza artificiale",
+      "ai responsabile",
+      "integrazione ai nei software",
+      "software personalizzato per aziende",
+      "software su misura aziende",
+      "integrazione api ai",
+      "sviluppo saas",
+      "sviluppo software su misura",
+      "sviluppo software con intelligenza artificiale"
+    ],
+    "missing": [
+      "ai e privacy",
+      "società sviluppo software",
+      "ai by design",
+      "sicurezza ai",
+      "ai per aziende"
+    ]
+  },
+  "src\\content\\blog\\it\\costruire-software-su-misura-senza-creare-problemi-futuri.md": {
+    "found": [
+      "società sviluppo software",
+      "ai by design",
+      "sicurezza ai",
+      "sviluppo software su misura"
+    ],
+    "missing": [
+      "software basato su ai",
+      "sviluppo applicazioni web",
+      "ai e privacy",
+      "governance intelligenza artificiale",
+      "ai responsabile",
+      "integrazione ai nei software",
+      "software personalizzato per aziende",
+      "software su misura aziende",
+      "integrazione api ai",
+      "sviluppo saas",
+      "ai per aziende",
+      "sviluppo software con intelligenza artificiale"
+    ]
+  },
+  "src\\content\\blog\\it\\progetti-kaizen-cosa-sono-e-perché-funzionano-nel-mantenimento-dei-sistemi-esistenti.md": {
+    "found": [
+      "governance intelligenza artificiale",
+      "ai responsabile",
+      "integrazione ai nei software",
+      "sviluppo saas",
+      "sicurezza ai"
+    ],
+    "missing": [
+      "software basato su ai",
+      "sviluppo applicazioni web",
+      "ai e privacy",
+      "società sviluppo software",
+      "software personalizzato per aziende",
+      "software su misura aziende",
+      "integrazione api ai",
+      "ai by design",
+      "sviluppo software su misura",
+      "ai per aziende",
+      "sviluppo software con intelligenza artificiale"
+    ]
+  },
+  "src\\content\\projects\\it\\auditready.md": {
+    "found": [
+      "governance intelligenza artificiale",
+      "sviluppo saas",
+      "sviluppo software su misura"
+    ],
+    "missing": [
+      "software basato su ai",
+      "sviluppo applicazioni web",
+      "ai e privacy",
+      "società sviluppo software",
+      "ai responsabile",
+      "integrazione ai nei software",
+      "software personalizzato per aziende",
+      "software su misura aziende",
+      "integrazione api ai",
+      "ai by design",
+      "sicurezza ai",
+      "ai per aziende",
+      "sviluppo software con intelligenza artificiale"
+    ]
+  },
+  "src\\content\\projects\\it\\mysafenest.md": {
+    "found": [
+      "software basato su ai",
+      "ai e privacy",
+      "ai responsabile"
+    ],
+    "missing": [
+      "sviluppo applicazioni web",
+      "governance intelligenza artificiale",
+      "società sviluppo software",
+      "integrazione ai nei software",
+      "software personalizzato per aziende",
+      "software su misura aziende",
+      "integrazione api ai",
+      "sviluppo saas",
+      "ai by design",
+      "sicurezza ai",
+      "sviluppo software su misura",
+      "ai per aziende",
+      "sviluppo software con intelligenza artificiale"
+    ]
+  }
+}

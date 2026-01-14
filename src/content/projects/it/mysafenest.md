@@ -1,7 +1,7 @@
 ---
 title: MySafeNest
 slug: mysafenest
-description: mysafenest è un software di budget familiare che aiuta a pianificare le spese, capire dove vanno i soldi e prendere decisioni consapevoli nel tempo.
+description: mysafenest è un software di budget familiare basato su ai che aiuta a pianificare le spese e prendere decisioni consapevoli nel rispetto della privacy.
 featured: true
 order: 1
 status: beta
@@ -21,21 +21,17 @@ tags:
 
 Gestire il budget familiare non è un problema di matematica. È un problema di **chiarezza**, **continuità** e **decisioni condivise**.
 
-La maggior parte degli strumenti esistenti si concentra su grafici, categorie infinite o automazioni bancarie difficili da configurare. mysafenest nasce da un’esigenza diversa: aiutare le famiglie a **capire dove vanno i soldi**, **pianificare le spese** e **prendere decisioni migliori nel tempo**.
+La maggior parte degli strumenti esistenti si concentra su grafici o automazioni bancarie invasive. mysafenest nasce da un’esigenza diversa: aiutare le famiglie a **capire dove vanno i soldi** attraverso un approccio di **ai e privacy** che garantisce la sicurezza dei dati sensibili.
 
 ### Il problema reale
 
-Nella vita quotidiana di una famiglia:
-
-le spese ricorrenti non sono mai tutte uguali  entrate e uscite cambiano mese per mese  le decisioni economiche sono spesso prese “a sensazione”  il budget vive nella testa di una sola persona
-
-Foglio Excel, app abbandonate dopo due settimane, appunti sparsi. Niente di tutto questo aiuta davvero a costruire **consapevolezza finanziaria**.
+Nella vita quotidiana di una famiglia, le decisioni economiche sono spesso prese “a sensazione”. Il nostro **software basato su ai** permette di analizzare i pattern di spesa in modo anonimo e sicuro.
 
 ### Cosa fa davvero mysafenest
 
-mysafenest è un **software di budget familiare** progettato per:
+mysafenest è un **software di budget familiare** progettato come soluzione di **ai responsabile**:
 
-avere una visione chiara delle entrate e delle spese  pianificare il mese (e l’anno) in modo realistico  distinguere ciò che è fisso da ciò che è variabile  rendere il budget uno strumento condiviso, non individuale
+avere una visione chiara delle entrate e delle spese  pianificare il mese in modo realistico  distinguere ciò che è fisso da ciò che è variabile  mantenere il controllo totale sui propri dati finanziari
 
 Non promette di “ottimizzare” tutto automaticamente. Ti aiuta a **vedere**, **decidere** e **correggere**.
 

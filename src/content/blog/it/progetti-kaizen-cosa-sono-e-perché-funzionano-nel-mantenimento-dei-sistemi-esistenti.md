@@ -1,9 +1,7 @@
 ---
 title: 'Progetti Kaizen: cosa sono e perché funzionano nel mantenimento dei sistemi esistenti'
 description: |-
-  Nel mondo del software e dei prodotti digitali, l’attenzione è spesso concentrata sulla fase di sviluppo iniziale: nuove piattaforme, nuove funzionalità, nuovi rilasci.
-  Ma la vera complessità – e il vero valore – emergono dopo il go-live.
-  È qui che entrano in gioco i progetti Kaizen.
+  Nel mondo del software e dei prodotti digitali, l’attenzione è spesso concentrata sulla fase di sviluppo iniziale. Ma la vera complessità emerge dopo il go-live, specialmente nello sviluppo SaaS e nell'integrazione di sistemi di AI responsabile.
 pubDate: 2026-01-05
 author: Stefano Chermaz
 heroImage: /uploads/progetti-kaizen.png
@@ -26,7 +24,7 @@ Kaizen è una metodologia di origine giapponese che significa letteralmente **�
 - coinvolgimento costante delle persone
 - osservazione sistematica dei processi esistenti
 
-Applicato al mondo del software, Kaizen non è un framework tecnico, ma **un modo di gestire l’evoluzione di un sistema**.
+Applicato al mondo del software, Kaizen non è un framework tecnico, ma **un modo di gestire l’evoluzione di un sistema**, fondamentale nello **sviluppo saas** moderno.
 
 ------
 
@@ -41,10 +39,10 @@ Tipicamente include attività come:
 - riduzione del debito tecnico
 - miglioramento dei flussi operativi
 - affinamento dell’esperienza utente
-- automazione progressiva
-- aumento dell’affidabilità e della sicurezza
+- automazione progressiva e **integrazione ai nei software** esistenti
+- aumento dell’affidabilità, della **sicurezza ai** e della **governance intelligenza artificiale**
 
-Il focus non è “aggiungere tanto”, ma **far funzionare meglio ciò che esiste**.
+Il focus non è “aggiungere tanto”, ma **far funzionare meglio ciò che esiste** garantendo un approccio di **ai responsabile**.
 
 ------
 
