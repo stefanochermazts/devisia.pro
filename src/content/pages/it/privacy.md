@@ -1,13 +1,15 @@
 ---
-title: Informativa Privacy e Cookie
-description: Informativa su privacy, cookie e gestione del consenso (GDPR).
+title: 'AI e Privacy: Informativa GDPR e Cookie | Devisia'
+description: >-
+  Informazioni su AI e privacy, gestione dei cookie e governance intelligenza
+  artificiale secondo le normative GDPR vigenti.
 heroTitle: ''
 heroSubtitle: ''
 homeWhatWeDoTitle: ''
 ---
-# Privacy & Cookie Policy
+# AI e Privacy: Informativa sulla Protezione dei Dati
 
-Questa pagina descrive come Devisia gestisce **dati personali** e **cookie** in conformità al GDPR (Reg. (UE) 2016/679) e alla normativa ePrivacy applicabile.
+Questa pagina descrive come Devisia gestisce **dati personali** e **cookie** in conformità al GDPR (Reg. (UE) 2016/679) e alla normativa ePrivacy applicabile, seguendo un approccio rigoroso di **AI governance** e **sicurezza AI**.
 
 ## 1) Titolare del trattamento
 

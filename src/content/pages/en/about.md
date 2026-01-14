@@ -1,9 +1,13 @@
 ---
-title: About Devisia — Software, SaaS and vision
-description: Devisia is a software company building proprietary SaaS products and custom software, with a product-driven approach focused on quality and long-term vision.
+title: Custom Software Development and Product Vision | Devisia
+description: >-
+  A software company focused on custom software development and proprietary SaaS
+  development, combining technical excellence with business pragmatism.
 heroTitle: Developing intelligent vision
 heroImage: /uploads/hero-about.png
 ---
+# Custom Software Development Company: Our Vision and Method
+
 <section class="ds-stack ds-card ds-shadow-1" data-gap="sm">
 <div class="ds-card__body ds-stack" data-gap="sm">
 <h2 style="margin: 0">Our vision</h2>
@@ -27,7 +31,7 @@ become more aware and autonomous.
 </section>
 
 <section class="ds-stack" data-gap="sm">
-<h2 style="margin: 0">What we do</h2>
+<h2 style="margin: 0">What we do: Custom software development and SaaS</h2>
 <p class="ds-muted" style="margin: 0">We build software in two complementary ways:</p>
 
 <!-- prettier-ignore-start -->
@@ -57,7 +61,7 @@ system integrations, complex workflows and automation—from first idea to deplo
 </section>
 
 <section class="ds-stack" data-gap="sm">
-<h2 style="margin: 0">How we work</h2>
+<h2 style="margin: 0">How we work in SaaS and Custom Software Development</h2>
 <p class="ds-muted" style="margin: 0">
 Method, pragmatism, accountability.<br />
 We use clear, iterative processes to reduce risk and keep product control at all times.
@@ -93,7 +97,6 @@ We use clear, iterative processes to reduce risk and keep product control at all
 <h2 style="margin: 0">Looking ahead</h2>
 <p class="ds-muted" style="margin: 0">
 Devisia is always evolving.<br />
-We build new SaaS, experiment with emerging technologies, and invest in automation and applied intelligence
-to make software more useful and sustainable.
+We build new SaaS, experiment with emerging technologies, and invest in automation and applied intelligence following <strong>AI by design</strong> and <strong>AI security</strong> principles to make every <strong>AI-based software</strong> more useful and sustainable.
 </p>
 </section>

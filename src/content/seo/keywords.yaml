@@ -1,0 +1,39 @@
+it:
+  primary:
+    - "sviluppo software su misura"
+    - "sviluppo saas"
+    - "integrazione ai"
+    - "società sviluppo software"
+    - "ai per aziende"
+  secondary:
+    - "ai e privacy"
+    - "governance intelligenza artificiale"
+    - "ai responsabile"
+    - "ai by design"
+    - "sicurezza ai"
+    - "integrazione api ai"
+    - "software su misura aziende"
+    - "sviluppo applicazioni web"
+    - "software basato su ai"
+    - "sviluppo software con intelligenza artificiale"
+    - "software personalizzato per aziende"
+
+en:
+  primary:
+    - "custom software development"
+    - "SaaS development"
+    - "AI integration"
+    - "software development company"
+    - "AI for businesses"
+  secondary:
+    - "AI and privacy"
+    - "AI governance"
+    - "responsible AI"
+    - "AI by design"
+    - "AI security"
+    - "AI API integration"
+    - "custom software for companies"
+    - "web application development"
+    - "AI-based software"
+    - "software development with artificial intelligence"
+    - "custom software for businesses"

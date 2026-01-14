@@ -1,13 +1,15 @@
 ---
-title: Privacy & Cookie Policy
-description: Information about privacy, cookies, and consent management (GDPR).
+title: 'AI and Privacy: GDPR & Cookie Policy | Devisia'
+description: >-
+  Detailed information on AI and privacy, cookie management, and AI governance
+  in compliance with global data protection regulations.
 heroTitle: ''
 heroSubtitle: ''
 homeWhatWeDoTitle: ''
 ---
-# Privacy & Cookie Policy
+# AI and Privacy: Data Protection & Cookie Policy
 
-This page explains how Devisia handles **personal data** and **cookies** in line with GDPR (Regulation (EU) 2016/679) and applicable ePrivacy rules.
+This page explains how Devisia handles **personal data** and **cookies** in line with GDPR (Regulation (EU) 2016/679) and applicable ePrivacy rules, following a rigorous **AI governance** and **AI security** approach.
 
 ## 1) Data controller (Controller)
 

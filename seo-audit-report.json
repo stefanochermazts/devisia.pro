@@ -1,0 +1,114 @@
+[
+  {
+    "path": "src\\content\\pages\\en\\about.md",
+    "title": "About Devisia — Software, SaaS and vision",
+    "description": "Devisia is a software company building proprietary SaaS products and custom software, with a product-driven approach focused on quality and long-term vision.",
+    "h1": "",
+    "h2s": [],
+    "h3s": []
+  },
+  {
+    "path": "src\\content\\pages\\en\\contact.md",
+    "title": "Contact Us",
+    "description": "Get in touch with Devisia for inquiries about our services, project consultations, or partnership opportunities.",
+    "h1": "Contact Us",
+    "h2s": [
+      "Get In Touch",
+      "Our Office",
+      "Business Hours"
+    ],
+    "h3s": []
+  },
+  {
+    "path": "src\\content\\pages\\en\\home.md",
+    "title": "Custom Software Development & AI Solutions Company | Devisia",
+    "description": "Devisia is a custom software development company specializing in AI solutions, SaaS products, and web applications for businesses, focusing on quality and privacy.",
+    "h1": "",
+    "h2s": [],
+    "h3s": []
+  },
+  {
+    "path": "src\\content\\pages\\en\\privacy.md",
+    "title": "Privacy & Cookie Policy",
+    "description": "Information about privacy, cookies, and consent management (GDPR).",
+    "h1": "Privacy & Cookie Policy",
+    "h2s": [
+      "1) Data controller (Controller)",
+      "2) What data we process",
+      "3) Purposes and legal bases",
+      "4) Cookies and similar technologies",
+      "5) How to manage consent",
+      "6) Recipients and processors",
+      "7) International transfers",
+      "8) Retention",
+      "9) Your rights"
+    ],
+    "h3s": [
+      "Consent cookie"
+    ]
+  },
+  {
+    "path": "src\\content\\pages\\en\\services.md",
+    "title": "Custom Web Application & Software Development Services | Devisia",
+    "description": "Devisia offers custom web application development, SaaS development, and business software solutions with responsible AI integration and governance.",
+    "h1": "",
+    "h2s": [],
+    "h3s": []
+  },
+  {
+    "path": "src\\content\\pages\\it\\about.md",
+    "title": "About Devisia — Software, SaaS e visione",
+    "description": "Devisia è una software company che sviluppa SaaS proprietari e soluzioni software su misura, con un approccio orientato a prodotto, qualità e visione.",
+    "h1": "",
+    "h2s": [],
+    "h3s": []
+  },
+  {
+    "path": "src\\content\\pages\\it\\contact.md",
+    "title": "Contatti",
+    "description": "Contatta Devisia per informazioni sui servizi, consulenze di progetto o opportunità di collaborazione.",
+    "h1": "Contatti",
+    "h2s": [
+      "Scrivici",
+      "Riferimenti",
+      "Orari"
+    ],
+    "h3s": []
+  },
+  {
+    "path": "src\\content\\pages\\it\\home.md",
+    "title": "Società di sviluppo software su misura e basato su AI | Devisia",
+    "description": "Devisia è una società di sviluppo software specializzata in soluzioni su misura, prodotti SaaS e integrazione AI per aziende, con focus su qualità e privacy.",
+    "h1": "",
+    "h2s": [],
+    "h3s": []
+  },
+  {
+    "path": "src\\content\\pages\\it\\privacy.md",
+    "title": "Informativa Privacy e Cookie",
+    "description": "Informativa su privacy, cookie e gestione del consenso (GDPR).",
+    "h1": "Privacy & Cookie Policy",
+    "h2s": [
+      "1) Titolare del trattamento",
+      "2) Quali dati trattiamo",
+      "3) Finalità e basi giuridiche",
+      "4) Cookie e tecnologie simili",
+      "5) Come gestire il consenso",
+      "6) Destinatari e responsabili del trattamento",
+      "7) Trasferimenti extra SEE",
+      "8) Conservazione",
+      "9) Diritti dell’interessato"
+    ],
+    "h3s": [
+      "Cookie di consenso"
+    ]
+  },
+  {
+    "path": "src\\content\\pages\\it\\services.md",
+    "title": "Servizi di Sviluppo Applicazioni Web e Software su Misura | Devisia",
+    "description": "Devisia offre servizi di sviluppo applicazioni web, software su misura aziende e sviluppo SaaS con integrazione AI responsabile e governance intelligenza artificiale.",
+    "h1": "",
+    "h2s": [],
+    "h3s": []
+  }
+]

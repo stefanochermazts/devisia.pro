@@ -1,9 +1,14 @@
 ---
-title: About Devisia — Software, SaaS e visione
-description: Devisia è una software company che sviluppa SaaS proprietari e soluzioni software su misura, con un approccio orientato a prodotto, qualità e visione.
+title: Sviluppo Software su Misura e Visione di Prodotto | Devisia
+description: >-
+  Siamo una software company focalizzata su software su misura aziende e
+  sviluppo SaaS proprietari, con un approccio pragmatico e visione a lungo
+  termine.
 heroTitle: Developing intelligent vision
 heroImage: /uploads/hero-about.png
 ---
+# Società di Sviluppo Software su Misura: Visione e Metodo
+
 <section class="ds-stack ds-card ds-shadow-1" data-gap="sm">
 <div class="ds-card__body ds-stack" data-gap="sm">
 <h2 style="margin: 0">La nostra visione</h2>
@@ -27,7 +32,7 @@ rendere le organizzazioni più consapevoli e autonome.
 </section>
 
 <section class="ds-stack" data-gap="sm">
-<h2 style="margin: 0">Cosa facciamo</h2>
+<h2 style="margin: 0">Cosa facciamo: Software su misura aziende e SaaS</h2>
 <p class="ds-muted" style="margin: 0">Costruiamo software in due modi complementari:</p>
 
 <!-- prettier-ignore-start -->
@@ -57,7 +62,7 @@ integrazioni tra sistemi, automazioni e workflow complessi. Dall’idea iniziale
 </section>
 
 <section class="ds-stack" data-gap="sm">
-<h2 style="margin: 0">Come lavoriamo</h2>
+<h2 style="margin: 0">Come lavoriamo nello Sviluppo SaaS e Custom</h2>
 <p class="ds-muted" style="margin: 0">
 Metodo, pragmatismo, responsabilità.<br />
 Lavoriamo con processi chiari e iterativi, riducendo il rischio e mantenendo sempre il controllo sul prodotto.
@@ -93,7 +98,6 @@ Lavoriamo con processi chiari e iterativi, riducendo il rischio e mantenendo sem
 <h2 style="margin: 0">Guardiamo avanti</h2>
 <p class="ds-muted" style="margin: 0">
 Devisia è in continua evoluzione.<br />
-Costruiamo nuovi SaaS, sperimentiamo tecnologie emergenti e investiamo in automazione e intelligenza applicata
-per rendere il software sempre più utile e sostenibile.
+Costruiamo nuovi SaaS, sperimentiamo tecnologie emergenti e investiamo in automazione e intelligenza applicata seguendo principi di <strong>AI by design</strong> e <strong>sicurezza AI</strong> per rendere ogni <strong>software basato su AI</strong> sempre più utile e sostenibile.
 </p>
 </section>
