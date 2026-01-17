@@ -335,6 +335,7 @@ const breadcrumbs = breadcrumbListJsonLd({
   }
 
   .card {
+    position: relative;
     background: var(--ds-color-surface);
     border: var(--ds-border-1) solid var(--ds-color-border);
     border-radius: var(--ds-radius-3);
@@ -474,6 +475,13 @@ const breadcrumbs = breadcrumbListJsonLd({
     align-items: center;
     gap: 0.25rem;
     transition: gap var(--ds-motion-base);
+  }
+
+  .cta::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
   }
 
   .cta:hover {
