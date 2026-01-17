@@ -17,6 +17,13 @@
     padding-block: var(--ds-space-3);
   }
 
+  /* Compact header on mobile */
+  @media (max-width: 48rem) {
+    .nav-container {
+      padding-block: var(--ds-space-2);
+    }
+  }
+
   .nav-brand .logo {
     font-family: var(--ds-font-sans);
     font-weight: 500;
@@ -112,6 +119,12 @@
   /* Mobile nav toggle (hamburger) */
   .nav-toggle {
     display: none;
+  }
+
+  @media (max-width: 48rem) {
+    .nav-toggle {
+      padding: 0.35rem 0.6rem;
+    }
   }
 
   .nav-toggle__label {
@@ -275,7 +288,12 @@
       justify-content: flex-start;
     }
     .logo-img {
-      height: 2.75rem;
+      height: 2.5rem;
+    }
+    @media (max-width: 36rem) {
+      .logo-img {
+        height: 2.15rem;
+      }
     }
     .footer-content {
       grid-template-columns: 1fr;
