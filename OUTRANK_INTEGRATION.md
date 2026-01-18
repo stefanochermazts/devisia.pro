@@ -34,23 +34,30 @@ Nella dashboard di Outrank/Artiforge, vai alla sezione **Integrations > Webhooks
 
 ## Struttura del Payload Atteso
 
-Il webhook deve inviare un JSON con questa struttura:
+Il webhook deve inviare un JSON con questa struttura (simile a quella di Outrank/Artiforge):
 
 ```json
 {
-  "title": "Titolo dell'Articolo",
-  "content_markdown": "# Contenuto in Markdown...",
-  "slug": "titolo-dell-articolo",
-  "meta_description": "Breve descrizione SEO dell'articolo.",
-  "hero_image": "https://url-immagine-copertina.jpg",
-  "tags": ["AI", "SaaS", "Tecnologia"],
-  "language": "it",
-  "author": "Devisia AI",
-  "translation_slug": "slug-versione-inglese"
+  "event_type": "publish_articles",
+  "timestamp": "2023-04-01T12:00:00Z",
+  "data": {
+    "articles": [
+      {
+        "title": "Titolo dell'Articolo",
+        "content_markdown": "# Markdown Content",
+        "slug": "article-slug",
+        "meta_description": "SEO description",
+        "image_url": "https://example.com/image.jpg",
+        "tags": ["tag1", "tag2"],
+        "language": "it"
+      }
+    ]
+  }
 }
 ```
 
 ## Note Tecniche
-*   La funzione gestisce sia la **creazione** che l'**aggiornamento** degli articoli (se lo slug esiste già, il file viene aggiornato).
+*   La funzione supporta l'elaborazione di **più articoli** contemporaneamente (array `articles`).
+*   La funzione gestisce sia la **creazione** che l'**aggiornamento** degli articoli.
 *   Il campo `language` determina la cartella di destinazione (`it` o `en`). Se omesso, il default è `it`.
 *   Il build di Astro viene innescato dal commit su GitHub, quindi l'articolo apparirà online dopo pochi minuti (tempo del build).
