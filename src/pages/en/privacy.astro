@@ -24,8 +24,16 @@ const breadcrumbs = breadcrumbListJsonLd({
 ---
 
 <Layout title={data.title} description={data.description} lang="en" structuredData={[breadcrumbs]}>
+  <script
+    slot="head"
+    is:inline
+    id="usercentrics-ppg"
+    privacy-policy-id="c06b3d4c-53c6-4fb3-bfb9-b1f6d9c98342"
+    src="https://policygenerator.usercentrics.eu/api/privacy-policy"
+  ></script>
   <article class="ds-stack" data-gap="lg" style="max-width: var(--ds-reading-max); margin-inline: auto;">
     <Content />
+    <div class="uc-privacy-policy"></div>
   </article>
 </Layout>
 
