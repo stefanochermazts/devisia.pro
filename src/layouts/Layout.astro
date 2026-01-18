@@ -67,7 +67,6 @@ import '../styles/base.css';
 import '../styles/components.css';
 import '../styles/utilities.css';
 
-import CookieConsent from '../components/CookieConsent.astro';
 import { t } from '../lib/i18n';
 
 const themeToggleLabel = lang === 'en' ? 'Toggle theme' : 'Cambia tema';
@@ -392,40 +391,12 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
 
         <div class="footer-bottom">
           <p>&copy; {new Date().getFullYear()} Devisia. All rights reserved.</p>
-          <button
-            type="button"
-            class="ds-btn"
-            data-variant="ghost"
-            data-size="sm"
-            data-open-cookie-preferences
-            aria-label={t('managePreferences', lang)}
-            title={t('managePreferences', lang)}
-          >
-            {t('managePreferences', lang)}
-          </button>
           <a class="ds-btn" data-variant="ghost" data-size="sm" href={href('/privacy')}>
             {t('policyLink', lang)}
           </a>
         </div>
       </div>
     </footer>
-
-    <CookieConsent locale={lang} />
-
-    <!-- GDPR consent: conditional third-party loader
-         Disabled for now because the previous inline env injection caused a runtime SyntaxError in browsers.
-         We'll re-enable via a bundled client module in a follow-up. -->
-
-    <script is:inline>
-      // Open GDPR cookie preferences from footer
-      (() => {
-        const btn = document.querySelector('[data-open-cookie-preferences]');
-        if (!btn) return;
-        btn.addEventListener('click', () => {
-          window.dispatchEvent(new CustomEvent('open-gdpr-preferences'));
-        });
-      })();
-    </script>
 
     <script is:inline>
       // Theme toggle (data-theme on <html> + localStorage)

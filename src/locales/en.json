@@ -1,14 +1,3 @@
 {
-  "bannerMessage": "We use cookies to improve your experience. You can accept, reject, or manage your preferences.",
-  "acceptAll": "Accept all",
-  "rejectAll": "Reject all",
-  "managePreferences": "Preferences",
-  "preferencesTitle": "Manage cookie preferences",
-  "analyticsLabel": "Analytics (anonymous measurement)",
-  "marketingLabel": "Marketing",
-  "saveButton": "Save choices",
-  "closeButton": "Close",
-  "essentialAlwaysOn": "Essential (always on)",
   "policyLink": "Privacy & cookie policy"
 }
-
