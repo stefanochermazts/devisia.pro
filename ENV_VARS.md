@@ -29,6 +29,7 @@ These values are required for the automated blog post publication via webhook:
 - `OUTRANK_SECRET`: A secret token that Outrank will send in the `Authorization: Bearer <token>` header to authenticate the request.
 - `GITHUB_REPO_OWNER`: (Optional) The owner of the repository (default: `stefanochermazts`).
 - `GITHUB_REPO_NAME`: (Optional) The name of the repository (default: `devisia.pro`).
+- `OPENAI_API_KEY`: (Optional) If set, the webhook will automatically translate English articles to Italian using GPT-4o-mini.
 
 ## Local Development
 
