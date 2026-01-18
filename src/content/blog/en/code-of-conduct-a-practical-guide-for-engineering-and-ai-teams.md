@@ -213,7 +213,7 @@ When these GDPR tenets are embedded in your code, they become part of the daily 
 
 ### Aligning with NIS2 Security Mandates
 
-The NIS2 Directive raises the bar for cybersecurity, particularly regarding supply chain security and incident response. Your **code of conduct **is the ideal place to codify your organization's commitment to these higher security standards, translating regulatory demands into expected behaviors and technical controls.
+The NIS2 Directive raises the bar for cybersecurity, particularly regarding supply chain security and incident response. Your \*\*code of conduct \*\*is the ideal place to codify your organization's commitment to these higher security standards, translating regulatory demands into expected behaviors and technical controls.
 
 Address NIS2 requirements with specific clauses:
 
@@ -225,7 +225,7 @@ By linking your code directly to these directives, you create a clear line of si
 
 ## Maintaining and Evolving Your Code of Conduct
 
-A **code of conduct **is not a static document. To remain a practical guide for product and engineering teams, it must be treated as a living artifact. Technology, regulations, and business objectives change, and the code must evolve alongside them to remain effective.
+A \*\*code of conduct \*\*is not a static document. To remain a practical guide for product and engineering teams, it must be treated as a living artifact. Technology, regulations, and business objectives change, and the code must evolve alongside them to remain effective.
 
 Without a defined lifecycle, even the best-written code will become obsolete. It will degrade from a framework for responsible innovation into a source of irrelevant bureaucracy. This is a significant risk: teams will ignore an outdated document, leaving critical ethical gaps in the development process.
 
@@ -274,7 +274,7 @@ While HR policies are a necessary complement, the technical code governs the "ho
 
 ### How Should We Handle Conflicts Between Business Goals and the Code?
 
-This is precisely where a well-defined **code of conduct **proves its value.
+This is precisely where a well-defined \*\*code of conduct \*\*proves its value.
 
 Instead of relying on ad-hoc decisions, it provides a pre-agreed framework for navigating difficult trade-offs. When a conflict arises, the reporting mechanism should be used to escalate the issue to the designated lead or review team.
 
