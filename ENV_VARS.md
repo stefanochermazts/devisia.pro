@@ -22,6 +22,14 @@ For backward compatibility, the Bearer token is read from `SMTP_PASS`.
 ### Optional (Recommended) Security
 - `SMTP_CHECK_TOKEN`: If set, the SMTP healthcheck endpoint requires `?token=...` to avoid exposing a public SMTP connectivity probe.
 
+### Outrank / Artiforge Integration
+These values are required for the automated blog post publication via webhook:
+
+- `GITHUB_TOKEN`: A Personal Access Token with `repo` permissions to commit files to the repository.
+- `OUTRANK_SECRET`: A secret token that Outrank will send in the `Authorization: Bearer <token>` header to authenticate the request.
+- `GITHUB_REPO_OWNER`: (Optional) The owner of the repository (default: `stefanochermazts`).
+- `GITHUB_REPO_NAME`: (Optional) The name of the repository (default: `devisia.pro`).
+
 ## Local Development
 
 Create a `.env` file in the project root with these variables:
