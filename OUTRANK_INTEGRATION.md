@@ -13,8 +13,22 @@ Questa guida spiega come configurare l'integrazione automatica per pubblicare ar
 ## Configurazione
 
 ### 1. Preparazione su GitHub
-*   Crea un **Personal Access Token (classic)** su GitHub con lo scope `repo`.
-*   Copia il token.
+Devi creare un Token che abbia i permessi di **scrittura** sul repository.
+
+#### Opzione A: Token Classico (Consigliato per semplicità)
+1.  Vai su [GitHub Developer Settings > Personal access tokens > Tokens (classic)](https://github.com/settings/tokens).
+2.  Clicca **Generate new token (classic)**.
+3.  Dai un nome (es. "Devisia Outrank").
+4.  **IMPORTANTE**: Seleziona la casella **`repo`** (Full control of private repositories). Se il repo è pubblico, basta `public_repo`, ma `repo` è più sicuro per evitare errori.
+5.  Copia il token (inizia con `ghp_`).
+
+#### Opzione B: Fine-grained Token (Più sicuro)
+1.  Vai su [GitHub Developer Settings > Personal access tokens > Fine-grained tokens](https://github.com/settings/tokens?type=beta).
+2.  Clicca **Generate new token**.
+3.  Seleziona il proprietario e il repository `devisia.pro`.
+4.  In **Repository permissions**, cerca **Contents**.
+5.  Imposta Access su **Read and write**.
+6.  Copia il token (inizia con `github_pat_`).
 
 ### 2. Configurazione su Netlify
 Aggiungi le seguenti variabili d'ambiente nel pannello di controllo di Netlify (**Site Settings > Build & deploy > Environment variables**):
