@@ -95,7 +95,7 @@ export const handler: Handler = async (event) => {
         const meta_description = data.meta_description || data.description || data.seo_description;
         const hero_image = data.hero_image || data.image_url || data.featured_image;
         const tags = data.tags || [];
-        const language = data.language || 'it';
+        const language = data.language || 'en';
         const author = data.author || 'Devisia AI';
         const translation_slug = data.translation_slug;
 
