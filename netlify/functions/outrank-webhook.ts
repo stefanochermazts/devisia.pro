@@ -44,25 +44,44 @@ export const handler: Handler = async (event) => {
   }
 
   try {
-    const payload = JSON.parse(event.body || '{}');
+    const rawBody = event.body || '{}';
+    console.log('Received webhook payload:', rawBody);
     
-    // Extract data from payload
-    const {
-      title,
-      content_markdown,
-      slug,
-      meta_description,
-      hero_image,
-      tags = [],
-      language = 'it',
-      author = 'Devisia AI',
-      translation_slug
-    } = payload;
-
-    if (!title || !content_markdown || !slug) {
+    let payload;
+    try {
+      payload = JSON.parse(rawBody);
+    } catch (e) {
       return {
         statusCode: 400,
-        body: JSON.stringify({ error: 'Missing required fields: title, content_markdown, and slug are required' }),
+        body: JSON.stringify({ error: 'Invalid JSON payload', received: rawBody.substring(0, 100) }),
+      };
+    }
+    
+    // Extract data from payload (handle both direct and potentially nested under 'data')
+    const data = payload.data || payload;
+    
+    const title = data.title || data.article_title;
+    const content_markdown = data.content_markdown || data.markdown || data.content;
+    const slug = data.slug || data.article_slug;
+    const meta_description = data.meta_description || data.description || data.seo_description;
+    const hero_image = data.hero_image || data.image_url || data.featured_image;
+    const tags = data.tags || [];
+    const language = data.language || 'it';
+    const author = data.author || 'Devisia AI';
+    const translation_slug = data.translation_slug;
+
+    if (!title || !content_markdown || !slug) {
+      const missing = [];
+      if (!title) missing.push('title');
+      if (!content_markdown) missing.push('content_markdown');
+      if (!slug) missing.push('slug');
+
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ 
+          error: `Missing required fields: ${missing.join(', ')}`,
+          received_keys: Object.keys(data)
+        }),
       };
     }
 
