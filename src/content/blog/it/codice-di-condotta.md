@@ -4,7 +4,7 @@ description: Impara a predisporre un codice di condotta pratico per il tuo team 
 translationSlug: code-of-conduct-a-practical-guide-for-engineering-and-ai-teams
 pubDate: 2026-01-18T16:45:44.575Z
 author: Stefano Chermaz
-heroImage: https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/c7c24477-62c0-4ddf-8759-d91f22fcea43/code-of-conduct-guide.jpg
+heroImage: /uploads/code-of-conduct-guide.jpg
 tags:
   - codice di condotta
   - AI Governance
@@ -71,9 +71,6 @@ un codice di condotta tecnico **non dichiara valori**, li **integra nel ciclo di
 The following table highlights the key differences.
 
 ### Dal comportamento umano alle decisioni tecniche
-
-|  |
-| --- |
 
 | Component | Generic Code of Conduct | Tech & AI-Specific Code of Conduct |
 | --- | --- | --- |
