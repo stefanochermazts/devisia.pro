@@ -1,6 +1,6 @@
 ---
 title: A Practical Engineering Guide to GDPR Article 30 (RoPA)
-description: Master Article 30 GDPR with our guide for software teams. Learn to create and maintain your Record of Processing Activities (RoPA) with practical examples.
+description: Master Article 30. GDPR with our guide for software teams. Learn to create and maintain your Record of Processing Activities (RoPA) with practical examples.
 translationSlug: article-30-gdpr
 autoTranslateToIt: true
 pubDate: 2026-01-20T06:44:18.464Z
