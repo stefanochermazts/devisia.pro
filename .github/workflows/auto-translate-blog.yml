@@ -1,0 +1,49 @@
+name: Auto-translate blog EN -> IT
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/content/blog/en/**"
+      - "scripts/translate-blog-en-to-it.js"
+      - "package.json"
+      - "package-lock.json"
+
+permissions:
+  contents: write
+
+jobs:
+  translate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Translate posts
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          OPENAI_MODEL: gpt-5-mini
+        run: node scripts/translate-blog-en-to-it.js
+
+      - name: Commit changes (if any)
+        run: |
+          if git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git add src/content/blog/it
+          git commit -m "auto: translate blog posts EN->IT"
+          git push
+

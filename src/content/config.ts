@@ -84,6 +84,7 @@ const blogSchema = z.object({
   author: z.string(),
   tags: stringList,
   translationSlug: optionalString,
+  autoTranslateToIt: z.boolean().optional().nullable(),
 });
 
 const blogItCollection = defineCollection({
