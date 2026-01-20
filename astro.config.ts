@@ -8,4 +8,7 @@ export default defineConfig({
   adapter: netlify(),
   site: 'https://devisia.pro',
   trailingSlash: 'never',
+  image: {
+    domains: ['cdn.outrank.so'],
+  },
 });
