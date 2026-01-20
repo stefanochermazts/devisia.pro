@@ -673,6 +673,41 @@
     background: var(--ds-color-surface-2);
   }
 
+  /* Markdown tables (blog posts) */
+  :where(.blog-post .post-content table) {
+    width: 100%;
+    max-width: 100%;
+    border-collapse: collapse;
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-2);
+    overflow: auto;
+    display: block; /* allow horizontal scroll on small screens */
+    background: var(--ds-color-surface);
+  }
+
+  :where(.blog-post .post-content th, .blog-post .post-content td) {
+    padding: 0.85rem 1rem;
+    border-bottom: var(--ds-border-1) solid var(--ds-color-border);
+    text-align: left;
+    vertical-align: top;
+    /* Override global `overflow-wrap:anywhere` to avoid "St / ag / e" splitting */
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: auto;
+  }
+
+  :where(.blog-post .post-content thead th) {
+    font-size: var(--ds-text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ds-color-text-muted);
+    background: var(--ds-color-surface-2);
+  }
+
+  :where(.blog-post .post-content td :where(code, a), .blog-post .post-content th :where(code, a)) {
+    overflow-wrap: anywhere;
+  }
+
   /* Tooltip */
   :where(.ds-tooltip) {
     position: relative;
