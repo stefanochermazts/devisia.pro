@@ -48,6 +48,8 @@ jobs:
 
       - name: Commit changes (if any)
         run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add -A src/content/blog/it
           if git diff --cached --quiet; then
             echo "No changes to commit."
