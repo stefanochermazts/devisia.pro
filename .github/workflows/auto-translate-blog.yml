@@ -48,11 +48,11 @@ jobs:
 
       - name: Commit changes (if any)
         run: |
-          if git diff --quiet; then
+          git add -A src/content/blog/it
+          if git diff --cached --quiet; then
             echo "No changes to commit."
             exit 0
           fi
-          git add src/content/blog/it
           git commit -m "auto: translate blog posts EN->IT"
           git push
 
