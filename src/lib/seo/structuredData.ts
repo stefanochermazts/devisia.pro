@@ -21,7 +21,7 @@ export function organizationJsonLd(site: URL): JsonLd {
     name: 'Devisia',
     url,
     logo,
-    email: 'info@devisia.pro',
+    email: 'info@devisia.it',
     sameAs: ['https://github.com/stefanochermazts'],
   };
 }

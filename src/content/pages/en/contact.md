@@ -17,7 +17,7 @@ Fill out the form below and one of our team members will get back to you within 
 **Devisia Technology Solutions**  
 Address: [Your Office Address]  
 Phone: [Your Phone Number]  
-Email: info@devisia.pro
+Email: info@devisia.it
 
 ## Business Hours
 

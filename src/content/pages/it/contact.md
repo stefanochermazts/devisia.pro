@@ -17,7 +17,7 @@ Compila il form qui sotto e ti risponderemo al più presto (di solito entro 24 o
 **Devisia Technology Solutions**  
 Address: [Your Office Address]  
 Phone: [Your Phone Number]  
-Email: info@devisia.pro
+Email: info@devisia.it
 
 ## Orari
 
