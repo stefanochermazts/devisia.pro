@@ -44,7 +44,22 @@ Rules:
 4. Translate the title and SEO meta description as well.
 5. Return the result as a JSON object with these keys: "title", "meta_description", "content_markdown".`;
 
-  const userPrompt = JSON.stringify({ title, meta_description, content_markdown });
+  // NOTE: Do not JSON.stringify the markdown input: the escaping (\n, \") makes long posts
+  // much harder to translate and may cause the model to "echo" the input content_markdown.
+  const userPrompt = [
+    'Translate these fields from English to Italian.',
+    '',
+    'TITLE:',
+    title,
+    '',
+    'META_DESCRIPTION:',
+    meta_description,
+    '',
+    'CONTENT_MARKDOWN:',
+    '<<<MARKDOWN',
+    content_markdown,
+    'MARKDOWN',
+  ].join('\n');
 
   const res = await fetch('https://api.openai.com/v1/chat/completions', {
     method: 'POST',
@@ -59,6 +74,7 @@ Rules:
         { role: 'user', content: userPrompt },
       ],
       response_format: { type: 'json_object' },
+      temperature: 0,
     }),
   });
 
@@ -80,6 +96,12 @@ Rules:
 
   if (!parsed.title || !parsed.meta_description || !parsed.content_markdown) {
     throw new Error('OpenAI JSON is missing one of: title, meta_description, content_markdown.');
+  }
+
+  // Guardrail: if the body comes back identical, we likely got an "echo" instead of a translation.
+  // Fail fast so the workflow doesn't publish EN content under an IT URL.
+  if (String(parsed.content_markdown).trim() === String(content_markdown).trim()) {
+    throw new Error('OpenAI returned content_markdown identical to input (likely not translated).');
   }
 
   return parsed;
