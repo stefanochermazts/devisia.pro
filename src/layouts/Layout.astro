@@ -462,14 +462,22 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
     </script>
 
     <script is:inline define:vars={{ gtmId }}>
-      // Lazy-load GTM to improve Lighthouse TBT.
-      // This delays third-party JS until the browser is idle (or after a short timeout).
+      // Defer GTM aggressively to reduce Lighthouse Mobile TBT.
+      // Strategy:
+      // - Load on first user interaction (scroll/click/key) OR
+      // - Fallback: load a few seconds after window 'load'
       (() => {
         const id = gtmId;
         if (!id) return;
 
-        const load = () => {
-          if (document.querySelector('script[data-provider="gtm"][data-id="' + id + '"]')) return;
+        let loaded = false;
+        const alreadyInjected = () =>
+          Boolean(document.querySelector('script[data-provider="gtm"][data-id="' + id + '"]'));
+
+        const inject = () => {
+          if (loaded || alreadyInjected()) return;
+          loaded = true;
+
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
 
@@ -481,12 +489,42 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
           document.head.appendChild(s);
         };
 
-        if ('requestIdleCallback' in window) {
-          // @ts-expect-error requestIdleCallback may not be in typings depending on TS lib config
-          window.requestIdleCallback(load, { timeout: 3000 });
-        } else {
-          setTimeout(load, 1500);
-        }
+        const load = () => {
+          // Try to run during an idle period when possible.
+          if ('requestIdleCallback' in window) {
+            // @ts-expect-error requestIdleCallback may not be in typings depending on TS lib config
+            window.requestIdleCallback(inject, { timeout: 2000 });
+          } else {
+            setTimeout(inject, 0);
+          }
+        };
+
+        const onInteract = () => {
+          cleanup();
+          load();
+        };
+
+        const cleanup = () => {
+          window.removeEventListener('pointerdown', onInteract);
+          window.removeEventListener('keydown', onInteract);
+          window.removeEventListener('scroll', onInteract);
+        };
+
+        window.addEventListener('pointerdown', onInteract, { passive: true, once: true });
+        window.addEventListener('keydown', onInteract, { passive: true, once: true });
+        window.addEventListener('scroll', onInteract, { passive: true, once: true });
+
+        // Fallback: load after the page is fully loaded and some time has passed.
+        window.addEventListener(
+          'load',
+          () => {
+            setTimeout(() => {
+              cleanup();
+              load();
+            }, 8000);
+          },
+          { once: true }
+        );
       })();
     </script>
   </body>
