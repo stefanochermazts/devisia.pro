@@ -1,5 +1,5 @@
 ---
-title: 'Cloud Computing vs. On Premise: An Architectural Guide for Technical Leaders'
+title: 'Cloud Computing vs. On-Premise: An Architectural Guide for Technical Leaders'
 description: A definitive comparison of cloud computing vs on-premise infrastructure. Analyze TCO, security, scalability, and AI readiness to make the right choice.
 translationSlug: cloud-computing-vs-on-premise
 autoTranslateToIt: true
