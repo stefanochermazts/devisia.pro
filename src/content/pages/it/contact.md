@@ -14,15 +14,13 @@ Compila il form qui sotto e ti risponderemo al più presto (di solito entro 24 o
 
 ## Riferimenti
 
-**Devisia Technology Solutions**  
-Address: [Your Office Address]  
-Phone: [Your Phone Number]  
+**Devisia s.r.l.**  
+Address: Riva Tommaso Gulli 12 - Trieste  
+Phone: 3317916134  
 Email: info@devisia.it
 
 ## Orari
 
 Monday - Friday: 9:00 AM - 6:00 PM  
-Saturday: 10:00 AM - 2:00 PM  
-Sunday: Closed
-
+Saturday - Sunday: Closed
 A presto!
