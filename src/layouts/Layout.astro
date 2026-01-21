@@ -98,6 +98,10 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
   : structuredData
     ? ([structuredData] as JsonLd[])
     : [];
+
+// Performance: load GTM lazily (helps Lighthouse TBT).
+// You can override via Netlify env var PUBLIC_GTM_ID. If unset, we use the current container id.
+const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
 ---
 
 <!doctype html>
@@ -109,11 +113,7 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
     <meta name="generator" content={Astro.generator} />
 
     <!-- Google Tag Manager -->
-    <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-N7JP6BWG');</script>
+    <!-- Loaded lazily at end of <body> to reduce main-thread work (TBT). -->
     <!-- End Google Tag Manager -->
 
     <!-- Primary Meta Tags -->
@@ -138,9 +138,9 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
     {heroImage && <meta property="twitter:image" content={new URL(heroImage, Astro.site)} />}
 
     <!-- i18n alternates -->
-    <link rel="alternate" hrefLang="it" href={new URL(itPath, site)} />
-    <link rel="alternate" hrefLang="en" href={new URL(enPath, site)} />
-    <link rel="alternate" hrefLang="x-default" href={new URL(itPath, site)} />
+    <link rel="alternate" hreflang="it" href={new URL(itPath, site)} />
+    <link rel="alternate" hreflang="en" href={new URL(enPath, site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL(itPath, site)} />
 
     {
       (baseStructuredData.length || extraStructuredData.length) && (
@@ -179,7 +179,7 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
 
   <body>
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N7JP6BWG"
+    <noscript><iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <a class="skip-link" href="#main">Skip to content</a>
@@ -458,6 +458,35 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
         document.addEventListener('keydown', (e) => {
           if (e.key === 'Escape') setOpen(false);
         });
+      })();
+    </script>
+
+    <script is:inline define:vars={{ gtmId }}>
+      // Lazy-load GTM to improve Lighthouse TBT.
+      // This delays third-party JS until the browser is idle (or after a short timeout).
+      (() => {
+        const id = gtmId;
+        if (!id) return;
+
+        const load = () => {
+          if (document.querySelector('script[data-provider="gtm"][data-id="' + id + '"]')) return;
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
+
+          const s = document.createElement('script');
+          s.async = true;
+          s.src = 'https://www.googletagmanager.com/gtm.js?id=' + encodeURIComponent(id);
+          s.dataset.provider = 'gtm';
+          s.dataset.id = id;
+          document.head.appendChild(s);
+        };
+
+        if ('requestIdleCallback' in window) {
+          // @ts-expect-error requestIdleCallback may not be in typings depending on TS lib config
+          window.requestIdleCallback(load, { timeout: 3000 });
+        } else {
+          setTimeout(load, 1500);
+        }
       })();
     </script>
   </body>
