@@ -14,15 +14,14 @@ Fill out the form below and one of our team members will get back to you within 
 
 ## Our Office
 
-**Devisia Technology Solutions**  
-Address: [Your Office Address]  
-Phone: [Your Phone Number]  
+**Devisia s.r.l.**  
+Address: Riva Tommaso Gulli 12 - Trieste  
+Phone: 3317916134  
 Email: info@devisia.it
 
 ## Business Hours
 
 Monday - Friday: 9:00 AM - 6:00 PM  
-Saturday: 10:00 AM - 2:00 PM  
-Sunday: Closed
+Saturday - Sunday: Closed
 
 We look forward to working with you!
