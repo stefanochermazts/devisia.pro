@@ -89,6 +89,8 @@ const formatDate = (date: Date | string): string => {
             alt={entry.data.title} 
             width={800}
             height={400}
+            widths={[320, 480, 540, 640, 800]}
+            sizes="(max-width: 48rem) 92vw, 800px"
             loading="eager"
             decoding="async"
             fetchpriority="high"
