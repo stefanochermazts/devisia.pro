@@ -139,7 +139,7 @@ const breadcrumbs = breadcrumbListJsonLd({
             name="name" 
             required 
             class="form-input"
-            placeholder="Il tuo nome"
+            placeholder="Es. Marco"
           />
         </div>
         
@@ -152,19 +152,19 @@ const breadcrumbs = breadcrumbListJsonLd({
             name="email" 
             required 
             class="form-input"
-            placeholder="nome.cognome@esempio.com"
+            placeholder="nome@azienda.com"
           />
         </div>
         
         <!-- Subject field -->
         <div class="form-group">
-          <label for="subject" class="form-label">Oggetto</label>
+          <label for="subject" class="form-label">Oggetto (facoltativo)</label>
           <input 
             type="text" 
             id="subject" 
             name="subject" 
             class="form-input"
-            placeholder="Di cosa si tratta?"
+            placeholder="Es. Nuovo prodotto / Migliorare una piattaforma / AI & privacy"
           />
         </div>
         
@@ -177,7 +177,7 @@ const breadcrumbs = breadcrumbListJsonLd({
             required 
             rows="6" 
             class="form-input"
-            placeholder="Raccontaci di più sul tuo progetto o sulla tua richiesta..."
+            placeholder="In poche righe: cosa succede oggi e cosa vorresti cambiare. Anche appunti “grezzi” vanno benissimo."
           ></textarea>
         </div>
 
@@ -193,16 +193,16 @@ const breadcrumbs = breadcrumbListJsonLd({
               class="consent-checkbox"
             />
             <span class="consent-text">
-              Dichiaro di aver letto l’
+              Ho letto l’
               <a class="consent-link" href="/privacy">Informativa Privacy &amp; Cookie</a>
-              e acconsento al trattamento dei dati per essere ricontattato.
+              e autorizzo l’uso dei miei dati solo per gestire questa richiesta e ricontattarmi.
             </span>
           </label>
         </div>
         
         <!-- Submit button -->
         <button type="submit" class="form-submit">
-          Invia messaggio
+          Invia e ti rispondiamo
         </button>
       </form>
     </section>

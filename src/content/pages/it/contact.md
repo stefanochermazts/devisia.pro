@@ -1,26 +1,32 @@
 ---
-title: Contatta la nostra Società Sviluppo Software su Misura | Devisia
+title: Parliamo del tuo progetto | Devisia
 description: >-
-  Hai bisogno di uno sviluppo software su misura? Contatta Devisia, la società
-  sviluppo software per trasformare la tua visione in prodotti digitali solidi.
+  Hai un’idea da validare, un prodotto da migliorare o un sistema da
+  semplificare? Raccontaci il contesto: ti aiutiamo a fare chiarezza su opzioni,
+  rischi e prossimi passi.
 ---
-# Contatta la nostra Società di Sviluppo Software su Misura
+# Parliamo del tuo progetto
 
-Ci fa piacere sentirti! Che tu voglia parlare di un progetto, chiedere informazioni sui nostri servizi o semplicemente conoscerci, siamo qui.
+Ci fa piacere sentirti. Questa pagina è per chi vuole capire se Devisia è il partner giusto—senza dover arrivare con un brief perfetto.
 
-## Scrivici per il tuo Sviluppo Software su Misura
+Se hai un’idea in testa, un problema operativo da risolvere o un prodotto che “funziona, ma fa fatica”, va benissimo partire da lì.
 
-Compila il form qui sotto e ti risponderemo al più presto (di solito entro 24 ore lavorative).
+## Scrivici
+
+Compila il form qui sotto. Ti rispondiamo di solito entro **24 ore lavorative**.
+
+Il primo obiettivo non è “vendere”: è capire il contesto e darti un riscontro chiaro.
 
 ## Riferimenti
 
 **Devisia s.r.l.**  
-Address: Riva Tommaso Gulli 12 - Trieste  
-Phone: 3317916134  
+Indirizzo: Riva Tommaso Gulli 12 - Trieste  
+Telefono: 3317916134  
 Email: info@devisia.it
 
 ## Orari
 
-Monday - Friday: 9:00 AM - 6:00 PM  
-Saturday - Sunday: Closed
-A presto!
+Lunedì - Venerdì: 9:00 - 18:00  
+Sabato - Domenica: chiuso
+
+A presto.

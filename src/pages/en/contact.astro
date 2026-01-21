@@ -114,7 +114,6 @@ const breadcrumbs = breadcrumbListJsonLd({
         netlify-honeypot="bot-field"
         action="/.netlify/functions/contact-email"
         class="contact-form"
-        netlify
       >
         <input type="hidden" name="form-name" value="contact" />
 
@@ -136,7 +135,7 @@ const breadcrumbs = breadcrumbListJsonLd({
             name="name"
             required
             class="form-input"
-            placeholder="Your name"
+            placeholder="e.g., Alex"
           />
         </div>
 
@@ -148,18 +147,18 @@ const breadcrumbs = breadcrumbListJsonLd({
             name="email"
             required
             class="form-input"
-            placeholder="your.email@example.com"
+            placeholder="you@company.com"
           />
         </div>
 
         <div class="form-group">
-          <label for="subject" class="form-label">Subject</label>
+          <label for="subject" class="form-label">Subject (optional)</label>
           <input
             type="text"
             id="subject"
             name="subject"
             class="form-input"
-            placeholder="What is this about?"
+            placeholder="e.g., New product / Improve a platform / Reduce manual work"
           />
         </div>
 
@@ -171,7 +170,7 @@ const breadcrumbs = breadcrumbListJsonLd({
             required
             rows="6"
             class="form-input"
-            placeholder="Tell us more about your project or inquiry..."
+            placeholder="A few lines is enough: what’s happening today, and what you’d like to change. Rough notes are welcome."
           ></textarea>
         </div>
 
@@ -187,14 +186,14 @@ const breadcrumbs = breadcrumbListJsonLd({
               class="consent-checkbox"
             />
             <span class="consent-text">
-              I confirm that I have read the
+              I’ve read the
               <a class="consent-link" href="/en/privacy">Privacy &amp; Cookie Policy</a>
-              and I consent to the processing of my data to be contacted back.
+              and agree to the use of my details to reply to this request.
             </span>
           </label>
         </div>
 
-        <button type="submit" class="form-submit">Send Message</button>
+        <button type="submit" class="form-submit">Send and we’ll reply</button>
       </form>
     </section>
   </article>
