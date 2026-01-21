@@ -15,7 +15,7 @@ tags:
 ---
 Article 30 of the GDPR is not a legal formality for the compliance department to handle. For software teams, it's a technical mandate requiring a detailed logbook of your data processing activities—a living blueprint of how your software handles personal data. This logbook is officially known as the **Record of Processing Activities (RoPA)**. Far from being a simple administrative task, maintaining it is a critical engineering challenge.
 
-This guide reframes **Article 30 GDPR** compliance not as a bureaucratic hurdle but as an essential discipline for building robust, secure, and legally sound software systems.
+This guide reframes **Article 30 GDPR** compliance, not as a bureaucratic hurdle, but as an essential discipline for building robust, secure, and legally sound software systems.
 
 ## The Problem: Why Article 30 Is a Critical Engineering Challenge
 
