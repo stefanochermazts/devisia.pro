@@ -1,92 +1,93 @@
 ---
-title: Società Sviluppo Software su Misura e Soluzioni AI | Devisia
+title: Devisia | Prodotti digitali affidabili, AI e privacy-by-design
 description: >-
-  Devisia è una società sviluppo software specializzata in sviluppo software su
-  misura, soluzioni SaaS e integrazione AI per aziende orientata alla qualità.
-heroTitle: Sviluppo software su misura basato su AI
+  Devisia progetta e realizza prodotti digitali e sistemi privacy-by-design per
+  aziende che vogliono crescere con continuità. AI quando serve, con controllo e
+  senza complicazioni.
+heroTitle: Portiamo il tuo prodotto digitale da idea a risultato
 heroSubtitle: >-
-  Devisia è la società di sviluppo software che trasforma la tua visione in
-  realtà attraverso software personalizzato per aziende e soluzioni basate su
-  intelligenza artificiale.
+  Per founder, executive e team prodotto che vogliono rilasciare più velocemente,
+  ridurre il rischio e mantenere il controllo. Progettiamo e costruiamo sistemi
+  che reggono nel tempo, con AI e privacy-by-design come fondamenta.
 heroImage: /uploads/hero-dev-ai-vision.png
-homeWhatWeDoTitle: Società di sviluppo software e applicazioni web
+homeWhatWeDoTitle: Cosa cambia dopo aver lavorato con Devisia
 homeWhatWeDoDescription: >-
-  Sviluppiamo prodotti SaaS e soluzioni di sviluppo applicazioni web su misura
-  progettate per scalare. Dalla validazione iniziale alla delivery di livello
-  production, ci concentriamo su chiarezza, manutenibilità e valore di lungo
-  termine per il business.
+  Ottieni un prodotto più chiaro da usare e più semplice da far evolvere. Meno
+  attrito nei processi. Decisioni più rapide perché dati e responsabilità sono
+  leggibili. E un partner che resta anche dopo il primo rilascio.
 homeWhatWeDoCards:
-  - tag: Sviluppo SaaS
-    title: Sviluppo SaaS
+  - tag: Prodotto
+    title: Un prodotto che crea valore
     description: >-
-      Progettiamo e sviluppiamo SaaS proprietari focalizzati su problemi reali,
-      iterando rapidamente con affidabilità e UX al centro.
-  - tag: Software su misura
-    title: Software su misura aziende
+      Mettiamo ordine nelle priorità e consegniamo una prima versione solida.
+      Poi la miglioriamo con continuità, senza perdere tempo in complessità
+      inutili.
+  - tag: Operatività
+    title: Meno lavoro manuale, più controllo
     description: >-
-      Web app, dashboard e integrazioni su misura per i tuoi workflow —
-      costruiti per adattarsi al tuo business come software personalizzato per
-      aziende.
-  - tag: Delivery end-to-end
-    title: Delivery end-to-end
+      Automatizziamo passaggi ripetitivi e integriamo i sistemi che già usi.
+      Il risultato: processi più fluidi, meno errori e informazioni accessibili
+      quando servono.
+  - tag: Continuità
+    title: Un partner tecnico di lungo periodo
     description: >-
-      Discovery, architettura, implementazione e manutenzione. Consegniamo in
-      modo iterativo mantenendo il controllo in ogni fase.
-homeAICapabilitiesTitle: 'AI per aziende: integrazione e governance'
+      Non spariamo dopo il go-live. Ti aiutiamo a mantenere qualità e ritmo nel
+      tempo, con scelte che rendono più facile cambiare direzione quando il
+      business lo chiede.
+homeAICapabilitiesTitle: 'AI utile, con garanzie'
 homeAICapabilitiesDescription: >-
-  Integriamo capacità AI in prodotti reali con controllo, affidabilità e
-  governance intelligenza artificiale. Lavoriamo con API, modelli e strumenti
-  esistenti per costruire soluzioni di AI responsabile.
+  Quando l’AI porta un vantaggio reale, la integriamo in modo misurabile e
+  governabile. Riduciamo sorprese operative e rischi di compliance, così puoi
+  adottarla con fiducia.
 homeAICapabilitiesItems:
-  - title: Integrazione API AI
+  - title: Integrazione nel prodotto
     description: >-
-      LLMs, embeddings, vision, speech. Integrazione diretta con provider e
-      modelli open-source attraverso integrazione API AI.
-  - title: Prompting & orchestration
+      Assistenti, ricerca intelligente, automazioni. Funzionalità che migliorano
+      l’esperienza e liberano tempo, senza cambiare tutto il tuo stack.
+  - title: Affidabilità prima di tutto
     description: >-
-      Prompt strutturati, routing, chain. Pattern riutilizzabili e testabili per
-      flussi complessi.
-  - title: Agent workflows
+      Fallback, controlli e limiti chiari. Così l’AI resta prevedibile anche
+      quando cambiano dati, volumi e casi d’uso.
+  - title: Privacy e compliance by design
     description: >-
-      Tool calling, guardrails, human-in-the-loop. Sistemi che combinano
-      automazione e controllo.
-  - title: Reliability & cost control
+      Minimizzazione dei dati, tracciamenti sotto consenso, scelte che riducono
+      esposizione e lavoro legale. Non è un “extra”: è parte del progetto.
+  - title: Costi sotto controllo
     description: >-
-      Osservabilità, fallback, caching, rate limits. Monitoraggio e
-      ottimizzazione dei costi operativi.
-homeAIChecklistTitle: AI Risk & Privacy Checklist
+      Monitoriamo uso e impatto. Ottimizziamo dove serve per evitare che una
+      buona idea diventi un costo fisso ingestibile.
+homeAIChecklistTitle: Checklist rischio AI e privacy
 homeAIChecklistDescription: >-
-  Valuta il livello di rischio e le misure di sicurezza consigliate per il tuo
-  software basato su AI. Tool pratico e gratuito, senza upload né storage.
+  Un tool gratuito per capire rischi, responsabilità e contromisure prima di
+  investire. Nessun upload, nessuno storage: lo usi e basta.
 homeHowWeWorkTitle: Come lavoriamo
 homeHowWeWorkDescription: >-
-  Metodo, pragmatismo, responsabilità. Riduciamo il rischio attraverso processi
-  chiari, rilasci incrementali e decisioni tecniche allineate agli obiettivi di
-  business.
+  Con calma e precisione. Ci interessa il risultato, non il rumore. Ti aiutiamo
+  a fare scelte chiare e a mantenere continuità tra roadmap, budget e delivery.
 homeHowWeWorkItems:
-  - title: Discovery e analisi mirate
+  - title: Chiarezza su obiettivi e priorità
     description: >-
-      Partiamo dal contesto: capiamo obiettivi, vincoli e opportunità prima di
-      proporre soluzioni di sviluppo software su misura.
-  - title: Architetture semplici e robuste
+      Capire cosa conta davvero, cosa rimandare e cosa evitare. Così si riduce
+      il rischio e si accelera senza perdere qualità.
+  - title: Scelte che reggono nel tempo
     description: >-
-      Progettiamo sistemi che scalano senza complessità inutile, mantenendo la
-      manutenibilità nel tempo.
-  - title: Rilascio incrementale
+      Progettiamo soluzioni leggibili e mantenibili. Non per “perfezionismo”, ma
+      per ridurre costi e dipendenze nel tempo.
+  - title: Rilasci continui, feedback reali
     description: >-
-      Consegniamo valore in modo continuo, integrando feedback e adattandoci
-      alle esigenze che emergono.
-homeProjectsTitle: Progetti e Case Studies
+      Mettiamo in produzione in modo incrementale e misuriamo. Il prodotto
+      migliora con il business, non contro il business.
+homeProjectsTitle: Progetti e casi reali
 homeProjectsDescription: >-
-  Esplora cosa stiamo costruendo in Devisia — prodotti SaaS, piattaforme ed
-  esperimenti di sviluppo software con intelligenza artificiale.
+  Dai un’occhiata a cosa abbiamo costruito e a come ragioniamo: esempi concreti
+  di prodotti, piattaforme e sistemi che devono funzionare ogni giorno.
 homeProjectsImage: /uploads/progetti.png
-homeContactTitle: Costruiamo qualcosa di significativo
+homeContactTitle: Parliamo del tuo contesto
 homeContactDescription: >-
-  Hai un'idea da validare, un prodotto da migliorare o un sistema da
-  semplificare? Raccontaci il tuo contesto — ti proporremo un percorso chiaro
-  verso il tuo software personalizzato.
+  Che tu debba lanciare una nuova iniziativa o rimettere in ordine un sistema
+  esistente, partiremo da obiettivi e vincoli. Ti restituiamo una proposta
+  chiara: opzioni, rischi, tempi e prossimi passi.
 ---
-# Sviluppo Software su Misura e Integrazione AI per Aziende
+# Software che sostiene il tuo business
 
-Siamo una **società di sviluppo software** con un approccio orientato a prodotto: scelte chiare, delivery incrementale, attenzione a qualità e manutenzione nello **sviluppo software su misura** e nella creazione di **software personalizzato per aziende**.
+Devisia è un partner di prodotto per aziende che vogliono costruire, far crescere e mantenere sistemi digitali senza dipendenze fragili. Lavoriamo per ridurre rischio e complessità, mantenendo velocità e controllo.

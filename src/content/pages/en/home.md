@@ -1,87 +1,92 @@
 ---
-title: Custom Software Development Company & AI Integration | Devisia
+title: Devisia | Reliable digital products, AI, and privacy-by-design
 description: >-
-  Devisia is a software development company specializing in custom software
-  development, SaaS products, and enterprise AI solutions focused on quality.
-heroTitle: Custom AI Software Development for Businesses
+  Devisia designs and builds digital products and privacy-by-design systems for
+  teams that need speed without fragility. AI when it creates real leverage, with
+  control and clarity.
+heroTitle: Turn your product idea into a reliable business asset
 heroSubtitle: >-
-  Devisia is a custom software development company that transforms your vision
-  into reality through tailored business software and AI-based solutions.
+  For founders, executives, and product teams who want to ship faster, reduce
+  risk, and stay in control. We build systems that hold up over time—grounded in
+  privacy-by-design, and strengthened by AI where it matters.
 heroImage: /uploads/hero-dev-ai-vision.png
-homeWhatWeDoTitle: Software Development Company & Web Applications
+homeWhatWeDoTitle: What changes after working with Devisia
 homeWhatWeDoDescription: >-
-  We build SaaS products and custom web application development solutions
-  designed to scale. From early validation to production-grade delivery, we
-  focus on clarity, maintainability, and long-term business value.
+  You get a product that is easier to run, easier to evolve, and clearer to own.
+  Less manual work. Fewer surprises. Decisions move faster because data and
+  responsibilities are visible.
 homeWhatWeDoCards:
-  - tag: SaaS Development
-    title: SaaS Development
+  - tag: Product
+    title: A product that delivers value
     description: >-
-      We design and develop proprietary SaaS products focused on real problems,
-      iterating fast with reliability and UX at the center.
-  - tag: Custom Software
-    title: Custom Business Software
+      We align on priorities and ship a solid first version. Then we improve it
+      continuously—without piling on unnecessary complexity.
+  - tag: Operations
+    title: Less manual work, more control
     description: >-
-      Web apps, dashboards, and integrations tailored to your workflows — built
-      as custom software for businesses to fit your needs.
-  - tag: End-to-end delivery
-    title: End-to-end delivery
+      We streamline workflows and connect the tools you already use. The result:
+      fewer errors, smoother operations, and information you can trust.
+  - tag: Continuity
+    title: A long-term engineering partner
     description: >-
-      Discovery, architecture, implementation, and maintenance. We ship
-      iteratively and keep control at every stage.
-homeAICapabilitiesTitle: 'AI for Business: Integration & Governance'
+      We don’t disappear after launch. We help you keep quality and momentum as
+      priorities change and the product grows.
+homeAICapabilitiesTitle: 'Useful AI, with safeguards'
 homeAICapabilitiesDescription: >-
-  We integrate AI capabilities into real products with control, reliability, and
-  artificial intelligence governance. We build responsible AI solutions using
-  existing APIs and models.
+  When AI creates a measurable advantage, we integrate it in a way that stays
+  predictable. You get the upside—without uncontrolled costs, compliance risks,
+  or operational surprises.
 homeAICapabilitiesItems:
-  - title: AI API Integration
+  - title: Product integration
     description: >-
-      LLMs, embeddings, vision, speech. Direct integration with providers and
-      open-source models through AI API integration.
-  - title: Prompting & orchestration
+      Assistants, smart search, and automation—built to improve customer
+      experience and free up your team’s time.
+  - title: Reliability first
     description: >-
-      Structured prompts, routing, chains. Reusable, testable patterns for
-      complex flows.
-  - title: Agent workflows
+      Clear limits, checks, and fallbacks—so AI stays stable as data, volume, and
+      use cases change.
+  - title: Privacy & compliance by design
     description: >-
-      Tool calling, guardrails, human-in-the-loop. Systems that combine
-      automation and control.
-  - title: Reliability & cost control
+      Data minimization, consent-based tracking, and safer defaults. Reduced
+      exposure, less legal friction, and more trust.
+  - title: Costs under control
     description: >-
-      Observability, fallbacks, caching, rate limits. Monitoring and
-      optimization of operational costs.
+      We measure usage and impact. We optimize where it matters so a good idea
+      doesn’t become a runaway cost.
 homeAIChecklistTitle: AI Risk & Privacy Checklist
 homeAIChecklistDescription: >-
-  Assess risk level and recommended safeguards for your AI-based software. A
-  practical, free tool with no uploads or storage.
+  A free tool to assess risk, responsibilities, and safeguards before you
+  invest. No uploads. No storage. Just clarity.
 homeHowWeWorkTitle: How we work
 homeHowWeWorkDescription: >-
-  Method, pragmatism, responsibility. We reduce risk through clear processes,
-  incremental releases, and technical decisions aligned with business goals.
+  Calm execution. Clear decisions. We keep continuity between roadmap, budget,
+  and delivery—so progress doesn’t depend on heroics.
 homeHowWeWorkItems:
-  - title: Focused discovery and analysis
+  - title: Clarity on goals and priorities
     description: >-
-      We start with context: understanding goals, constraints, and opportunities
-      before proposing custom software development solutions.
-  - title: 'Simple, robust architectures'
+      We align on what matters, what to defer, and what to avoid. That’s how you
+      move faster without increasing risk.
+  - title: Choices that hold up over time
     description: >-
-      We design systems that scale without unnecessary complexity, maintaining
-      long-term maintainability.
-  - title: Incremental delivery
+      We build solutions that are readable and maintainable. Not for
+      perfectionism—because it lowers long-term costs and dependency.
+  - title: Continuous releases, real feedback
     description: >-
-      We deliver value continuously, integrating feedback and adapting to
-      emerging needs.
-homeProjectsTitle: Projects & Case Studies
+      We ship incrementally and measure outcomes. The product evolves with the
+      business, not against it.
+homeProjectsTitle: Projects & real work
 homeProjectsDescription: >-
-  Explore what we're building at Devisia — SaaS products, platforms, and
-  software development with artificial intelligence.
+  See what we’ve built and how we think—concrete examples of products and
+  systems that have to work every day.
 homeProjectsImage: /uploads/progetti.png
-homeContactTitle: Let's build something meaningful
+homeContactTitle: Tell us your context
 homeContactDescription: >-
-  Have an idea to validate, a product to improve, or a system to simplify? Tell
-  us your context — we'll propose a clear path towards your custom software.
+  Whether you’re launching something new or fixing an existing system, we start
+  from goals and constraints. You’ll get a clear proposal: options, risks,
+  timeline, and next steps.
 ---
-# Custom Software Development and AI Integration for Businesses
+# Software that supports your business
 
-We are a **software development company** with a product mindset: clear decisions, incremental delivery, and a strong focus on quality and maintainability in **custom software development** and **custom software for businesses**.
+Devisia is a long-term product and engineering partner for teams that want to
+build, grow, and maintain digital systems without fragile dependencies. We
+reduce risk and complexity while keeping speed and control.
