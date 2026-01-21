@@ -99,8 +99,14 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
     ? ([structuredData] as JsonLd[])
     : [];
 
-// Performance: load GTM lazily (helps Lighthouse TBT).
-// You can override via Netlify env var PUBLIC_GTM_ID. If unset, we use the current container id.
+// Consent + performance:
+// - Load Cookiebot early so the banner appears immediately.
+// - Load GTM only after Cookiebot consent (analytics/marketing) to reduce TBT + ensure GDPR compliance.
+//
+// Configuration:
+// - PUBLIC_COOKIEBOT_ID: your Cookiebot "data-cbid" id (required to show banner)
+// - PUBLIC_GTM_ID: your Google Tag Manager container id (optional, defaults to current id)
+const cookiebotId = import.meta.env.PUBLIC_COOKIEBOT_ID || '';
 const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
 ---
 
@@ -159,6 +165,21 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
       href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap"
       rel="stylesheet"
     />
+
+    {
+      cookiebotId && (
+        <>
+          <!-- Cookiebot CMP (loads early so banner shows immediately) -->
+          <script
+            id="Cookiebot"
+            src="https://consent.cookiebot.com/uc.js"
+            data-cbid={cookiebotId}
+            data-blockingmode="auto"
+            type="text/javascript"
+          ></script>
+        </>
+      )
+    }
 
     <script is:inline>
       // Apply saved theme early to avoid flash
@@ -462,10 +483,8 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
     </script>
 
     <script is:inline define:vars={{ gtmId }}>
-      // Defer GTM aggressively to reduce Lighthouse Mobile TBT.
-      // Strategy:
-      // - Load on first user interaction (scroll/click/key) OR
-      // - Fallback: load a few seconds after window 'load'
+      // Load GTM only after Cookiebot consent.
+      // This keeps the banner immediate but prevents GTM (and its tags) from contributing to Lighthouse TBT before consent.
       (() => {
         const id = gtmId;
         if (!id) return;
@@ -489,8 +508,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
           document.head.appendChild(s);
         };
 
-        const load = () => {
-          // Try to run during an idle period when possible.
+        const loadWhenIdle = () => {
           if ('requestIdleCallback' in window) {
             // @ts-expect-error requestIdleCallback may not be in typings depending on TS lib config
             window.requestIdleCallback(inject, { timeout: 2000 });
@@ -499,32 +517,28 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
           }
         };
 
-        const onInteract = () => {
-          cleanup();
-          load();
+        const hasConsent = () => {
+          try {
+            // Cookiebot exposes consent via window.Cookiebot.consent
+            // We treat statistics or marketing as sufficient to load GTM.
+            // @ts-expect-error Cookiebot is a global injected by the CMP script
+            const c = window.Cookiebot && window.Cookiebot.consent;
+            return Boolean(c && (c.statistics || c.marketing));
+          } catch {
+            return false;
+          }
         };
 
-        const cleanup = () => {
-          window.removeEventListener('pointerdown', onInteract);
-          window.removeEventListener('keydown', onInteract);
-          window.removeEventListener('scroll', onInteract);
+        const onConsentReady = () => {
+          if (hasConsent()) loadWhenIdle();
         };
 
-        window.addEventListener('pointerdown', onInteract, { passive: true, once: true });
-        window.addEventListener('keydown', onInteract, { passive: true, once: true });
-        window.addEventListener('scroll', onInteract, { passive: true, once: true });
+        // Cookiebot custom events (recommended integration pattern)
+        window.addEventListener('CookiebotOnConsentReady', onConsentReady);
+        window.addEventListener('CookiebotOnAccept', onConsentReady);
 
-        // Fallback: load after the page is fully loaded and some time has passed.
-        window.addEventListener(
-          'load',
-          () => {
-            setTimeout(() => {
-              cleanup();
-              load();
-            }, 8000);
-          },
-          { once: true }
-        );
+        // If Cookiebot is already ready (returning visitor), load immediately (idle).
+        onConsentReady();
       })();
     </script>
   </body>
