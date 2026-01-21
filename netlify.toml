@@ -29,6 +29,15 @@
     # Security headers (minimal restrictions for Identity widget)
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    # Mitigate clickjacking
+    X-Frame-Options = "DENY"
+    # Origin isolation (helps protect against cross-origin window interactions)
+    # Use same-origin-allow-popups to remain compatible with auth/login popups if any.
+    Cross-Origin-Opener-Policy = "same-origin-allow-popups"
+    # HSTS (rollout: start low, then increase and consider includeSubDomains+preload)
+    Strict-Transport-Security = "max-age=86400"
+    # Conservative Permissions Policy (deny powerful features by default)
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
 
 [[headers]]
   for = "/*.html"
