@@ -98,6 +98,10 @@ export const handler: Handler = async (event) => {
         const language = data.language || 'en';
         const author = data.author || 'Devisia AI';
         const translation_slug = data.translation_slug;
+        const autoTranslateToIt =
+          typeof data.autoTranslateToIt === 'boolean'
+            ? data.autoTranslateToIt
+            : language === 'en';
 
         if (!title || !content_markdown || !slug) {
             errors.push({ 
@@ -118,10 +122,11 @@ export const handler: Handler = async (event) => {
             `author: "${author}"`,
             `tags: [${tags.map((t: string) => `"${t}"`).join(', ')}]`,
             translation_slug ? `translationSlug: "${translation_slug}"` : `translationSlug: "${slug}"`,
+            autoTranslateToIt ? 'autoTranslateToIt: true' : null,
             '---',
             '',
             content_markdown
-        ].join('\n');
+        ].filter(Boolean).join('\n');
 
         // GitHub API Configuration
         const token = getEnv('GITHUB_TOKEN');
@@ -226,7 +231,6 @@ Rules:
 
                 // Prepare IT frontmatter
                 // We use the SAME translationSlug to link them
-                const itSlug = slug; // Keep same slug or translate it? Keeping same slug is easier for linking, but translated slug is better for SEO. Let's keep same slug for now or append -it? 
                 // Best practice: translate slug. But we need a mapping.
                 // For simplicity, let's use the English slug but in the /it/ folder. 
                 // Or better: ask AI to translate slug too?
@@ -268,7 +272,9 @@ Rules:
                         const d = await getItRes.json();
                         itSha = d.sha;
                     }
-                } catch(e) {}
+                } catch (e) {
+                    // If the file doesn't exist yet, GitHub will return 404; that's fine.
+                }
 
                 const itCommitMsg = itSha ? `auto: update translated blog post ${slug}` : `auto: create translated blog post ${slug}`;
                 

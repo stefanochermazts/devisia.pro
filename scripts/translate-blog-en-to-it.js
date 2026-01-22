@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
+import crypto from 'node:crypto';
 import matter from 'gray-matter';
 
 const REPO_ROOT = process.cwd();
@@ -29,6 +30,17 @@ async function readMarkdownFile(filePath) {
 
 async function ensureDir(dir) {
   await fs.mkdir(dir, { recursive: true });
+}
+
+function computeTranslationSourceHash({ title, description, content_markdown }) {
+  // Only include what materially affects the translation output.
+  // (pubDate/author/tags are not translated; keep them out to avoid unnecessary churn.)
+  const payload = {
+    title: String(title ?? ''),
+    description: String(description ?? ''),
+    content_markdown: String(content_markdown ?? ''),
+  };
+  return crypto.createHash('sha256').update(JSON.stringify(payload), 'utf8').digest('hex');
 }
 
 function buildChatCompletionBody({ model, messages }) {
@@ -203,7 +215,7 @@ async function translateMarkdownInChunks(content_markdown) {
 
 async function main() {
   const files = await fs.readdir(EN_DIR);
-  const markdownFiles = files.filter(isMarkdownFile);
+  const markdownFiles = files.filter(isMarkdownFile).sort((a, b) => a.localeCompare(b));
 
   if (markdownFiles.length === 0) {
     console.log('No EN blog posts found.');
@@ -214,6 +226,7 @@ async function main() {
 
   const problems = [];
   const updated = [];
+  const force = process.env.FORCE_TRANSLATE === '1' || process.env.FORCE_TRANSLATE === 'true';
 
   for (const filename of markdownFiles) {
     const enSlug = stripExt(filename);
@@ -245,6 +258,39 @@ async function main() {
       continue;
     }
 
+    const sourceHash = computeTranslationSourceHash({
+      title,
+      description,
+      content_markdown: parsed.content,
+    });
+
+    const itPath = path.join(IT_DIR, `${itSlug}.md`);
+
+    if (!force) {
+      try {
+        const { parsed: itParsed } = await readMarkdownFile(itPath);
+        const itData = itParsed.data || {};
+        if (typeof itData.translationSourceHash === 'string' && itData.translationSourceHash === sourceHash) {
+          console.log(`Skipping (up-to-date): ${enSlug} -> ${itSlug}`);
+          continue;
+        }
+
+        // Migration: if the IT file already exists but doesn't have a source hash yet,
+        // set it without re-translating (prevents daily churn on unchanged EN posts).
+        // We only do this when the IT file is linked to this EN post.
+        if (!itData.translationSourceHash && itData.translationSlug === enSlug) {
+          const nextFrontmatter = { ...itData, translationSourceHash: sourceHash };
+          const nextRaw = matter.stringify(itParsed.content, nextFrontmatter);
+          await fs.writeFile(itPath, nextRaw, 'utf8');
+          updated.push(itPath);
+          console.log(`Marked as up-to-date (hash added): ${enSlug} -> ${itSlug}`);
+          continue;
+        }
+      } catch {
+        // Missing IT file is fine; we'll create it.
+      }
+    }
+
     console.log(`Translating EN -> IT: ${enSlug} -> ${itSlug}`);
 
     const translatedMeta = await translateMetaWithOpenAI({
@@ -261,12 +307,12 @@ async function main() {
       author,
       tags,
       translationSlug: enSlug,
+      translationSourceHash: sourceHash,
     };
 
     // IMPORTANT: Do not carry autoTranslateToIt into IT files.
     const itBody = translatedBody;
 
-    const itPath = path.join(IT_DIR, `${itSlug}.md`);
     const itRaw = matter.stringify(itBody, itFrontmatter);
 
     await fs.writeFile(itPath, itRaw, 'utf8');
