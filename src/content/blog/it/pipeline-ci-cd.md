@@ -17,6 +17,7 @@ tags:
   - automation
   - devsecops
 translationSlug: pipeline-ci-cd
+translationSourceHash: d48ea87f0a91e8fc7e5e150104c8369ef4e2a1df8b65b618cc8925a73f795951
 ---
 Una pipeline CI/CD è il processo automatizzato che sposta il software dal commit di uno sviluppatore attraverso le fasi di build, test e deployment in un ambiente di produzione. Funziona come un piano di controllo centrale per la consegna del software, applicando qualità e coerenza ed eliminando i rischi insiti nell'intervento manuale. Per qualsiasi organizzazione che costruisca o gestisca sistemi software reali, una pipeline robusta non è un lusso — è un requisito fondamentale per release prevedibili e di alta qualità.
 

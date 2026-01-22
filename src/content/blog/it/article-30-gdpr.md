@@ -15,6 +15,7 @@ tags:
   - data processing records
   - privacy by design
 translationSlug: article-30-gdpr
+translationSourceHash: 1ac955561905d63610cbd9eea4bdf2c8d1c6cd9b03589f72374fd92c19c05612
 ---
 L'Articolo 30 del GDPR non è una formalità legale da affidare al solo reparto compliance. Per i team software è un mandato tecnico che richiede un registro dettagliato delle vostre attività di trattamento dei dati — un progetto vivo di come il vostro software gestisce i dati personali. Questo registro è ufficialmente noto come il **Registro delle attività di trattamento (RoPA)**. Lontano dall'essere un semplice compito amministrativo, mantenerlo è una sfida ingegneristica critica.
 
