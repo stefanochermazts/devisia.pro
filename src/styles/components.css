@@ -286,6 +286,7 @@
     .nav-toggle {
       display: inline-flex;
       margin-left: auto;
+      align-self: center; /* Ensure vertical alignment with logo */
     }
     .nav-menu {
       width: 100%;
@@ -307,9 +308,18 @@
     .logo-img {
       height: 2.5rem;
     }
+    /* Ensure monogram maintains square aspect ratio on mobile */
+    .logo-img--mark {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
     @media (max-width: 36rem) {
       .logo-img {
         height: 2.15rem;
+      }
+      .logo-img--mark {
+        height: 2.15rem;
+        width: 2.15rem;
       }
     }
     .footer-content {
