@@ -46,6 +46,12 @@
     display: block;
   }
 
+  /* Monogram icon next to wordmark */
+  .logo-img--mark {
+    aspect-ratio: 1 / 1;
+    border-radius: var(--ds-radius-2);
+  }
+
   /* Light by default */
   .logo-img--dark {
     display: none;
