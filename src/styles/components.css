@@ -13,7 +13,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--ds-space-4);
+    gap: var(--ds-space-3);
     padding-block: var(--ds-space-3);
   }
 
@@ -48,8 +48,19 @@
 
   /* Monogram icon next to wordmark */
   .logo-img--mark {
+    height: 3rem;
+    width: 3rem;
     aspect-ratio: 1 / 1;
     border-radius: var(--ds-radius-2);
+  }
+
+  .logo-img--word {
+    height: 3rem;
+  }
+
+  /* Prevent nav items from breaking into multiple lines */
+  .nav-link {
+    white-space: nowrap;
   }
 
   /* Light by default */
@@ -153,7 +164,7 @@
   .nav-link {
     display: inline-flex;
     align-items: center;
-    padding: 0.55rem 0.85rem;
+    padding: 0.5rem 0.75rem;
     border-radius: var(--ds-radius-2);
     color: var(--ds-color-text);
     text-decoration: none;

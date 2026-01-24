@@ -26,5 +26,5 @@
   </defs>
 
   <!-- Paint a solid layer, but only where the masked word exists (minus the slot) -->
-  <rect x="0" y="0" width="520" height="80" fill="#0B1F2A" mask="url(#devisia-cut-mask)"/>
+  <rect x="0" y="0" width="520" height="80" fill="#ffffff" mask="url(#devisia-cut-mask)"/>
 </svg>
