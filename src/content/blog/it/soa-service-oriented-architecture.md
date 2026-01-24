@@ -14,6 +14,7 @@ tags:
   - microservices vs soa
   - esb patterns
 translationSlug: soa-service-oriented-architecture
+translationSourceHash: 03a2835d03e9222358ada6eb6cf4001e973101c37451c6f794a9a4535c67705b
 ---
 **Architettura orientata ai servizi (SOA)** è uno stile architetturale per progettare e costruire sistemi software. Il concetto centrale è strutturare le applicazioni come una raccolta di servizi discreti e interoperabili che comunicano su una rete. Questi servizi sono tipicamente autonomi e rappresentano funzioni aziendali specifiche.
 
