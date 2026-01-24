@@ -283,6 +283,13 @@
       align-items: center;
       flex-wrap: wrap;
     }
+    .nav-brand {
+      min-width: 0;
+    }
+    .nav-brand .logo {
+      max-width: 100%;
+      gap: var(--ds-space-1);
+    }
     .nav-toggle {
       display: inline-flex;
       margin-left: auto;
@@ -308,6 +315,10 @@
     .logo-img {
       height: 2.5rem;
     }
+    .logo-img--word {
+      max-width: 11rem;
+      width: auto;
+    }
     /* Ensure monogram maintains square aspect ratio on mobile */
     .logo-img--mark {
       height: 2.5rem;
@@ -316,6 +327,11 @@
     @media (max-width: 36rem) {
       .logo-img {
         height: 2.15rem;
+      }
+      .logo-img--word {
+        height: auto;
+        width: 9.5rem;
+        max-width: 100%;
       }
       .logo-img--mark {
         height: 2.15rem;
