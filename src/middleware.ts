@@ -16,6 +16,11 @@ export const onRequest = defineMiddleware((context, next) => {
 
   // Get Accept-Language header
   const acceptLanguage = request.headers.get('accept-language') || '';
+
+  // If the header is missing, do not guess. Serve default (Italian) to avoid unstable redirects.
+  if (!acceptLanguage.trim()) {
+    return next();
+  }
   
   // Parse Accept-Language header to find preferred language
   // Format: "it-IT,it;q=0.9,en-US;q=0.8,en;q=0.7"
@@ -28,10 +33,9 @@ export const onRequest = defineMiddleware((context, next) => {
     })
     .sort((a, b) => b.quality - a.quality);
 
-  // Check if Italian is the preferred language
-  const prefersItalian = languages.some(
-    (lang) => lang.locale.startsWith('it')
-  );
+  // Check only the top preference to avoid mis-detecting users with multiple languages configured.
+  const top = languages[0]?.locale || '';
+  const prefersItalian = top.startsWith('it');
 
   // If Italian is preferred, serve the Italian version (root)
   if (prefersItalian) {
