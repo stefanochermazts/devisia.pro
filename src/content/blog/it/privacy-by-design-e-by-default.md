@@ -1,20 +1,16 @@
 ---
-title: 'Privacy by Design e by Default: Guida per ingegneri'
-description: >-
-  Applica la privacy by design e by default con questa guida pratica. Scopri
-  pattern architetturali e strategie GDPR per software moderni, soluzioni SaaS e
-  sistemi di intelligenza artificiale.
+title: 'Privacy by design e by default: guida per chi progetta sistemi'
+description: Applica la privacy by design e by default con questa guida pratica. Scopri pattern architetturali e strategie GDPR per software moderni, soluzioni SaaS e sistemi di intelligenza artificiale.
+translationSlug: privacy-by-design-e-by-default
 pubDate: 2026-01-25T07:05:43.028Z
-heroImage: >-
-  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/d8411768-cf6f-42bb-be29-1ecbc42a97ca/privacy-by-design-e-by-default-privacy-guide.jpg
 author: Devisia AI
+heroImage: https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/d8411768-cf6f-42bb-be29-1ecbc42a97ca/privacy-by-design-e-by-default-privacy-guide.jpg
 tags:
   - privacy by design e by default
   - GDPR Compliance
   - Privacy Engineering
   - Secure Software
   - AI Governance
-translationSlug: privacy-by-design-e-by-default
 translationSourceHash: 4c2d2a8d28fdc7bdeaae292b5b93cbdc4d1e1661ef120a505bb109de49ec3862
 ---
 **Privacy by design e by default** non sono compiti di conformità da svolgere in fase avanzata; sono una filosofia architetturale fondamentale. Questo approccio integra la protezione dei dati nel cuore dei tuoi sistemi software fin dall'inizio, invece di considerarla una funzionalità aggiuntiva. Stabilisce la privacy come requisito non funzionale che informa ogni decisione, dalla scoperta iniziale alla messa in produzione e alla manutenzione.
