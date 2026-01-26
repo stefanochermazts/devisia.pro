@@ -89,7 +89,16 @@ async function translateMetaWithOpenAI({ title, meta_description }) {
 Translate the following fields from English to Italian.
 Rules:
 1. Keep meaning accurate and natural Italian.
-2. Return the result as a JSON object with these keys: "title", "meta_description".`;
+2. Avoid overly literal translations of role titles and industry terms; prefer common Italian usage in tech.
+3. Keep established English role labels when they are clearer for the target audience.
+4. Use this glossary consistently:
+- engineering leader -> engineering leader
+- tech lead -> tech lead
+- product manager -> product manager
+- growth -> growth
+- go-to-market -> go-to-market
+- scale/scale up -> scalare/scalabilità (when it reads naturally)
+5. Return the result as a JSON object with these keys: "title", "meta_description".`;
 
   const userPrompt = [
     'Translate these fields from English to Italian.',
