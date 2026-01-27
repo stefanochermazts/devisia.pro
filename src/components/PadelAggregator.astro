@@ -5,7 +5,7 @@ export interface Props {
 
 const { lang = 'it' } = Astro.props;
 
-import padelClientUrl from '../scripts/padelAggregator.ts?url';
+import padelClientUrl from '../scripts/padelAggregator.entry.js?url';
 
 const STRINGS =
   lang === 'en'
