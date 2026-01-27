@@ -82,6 +82,9 @@
 [functions.outrank-webhook]
   timeout = 26
 
+[functions.generate-structure]
+  timeout = 26
+
 # Deploy contexts
 [context.production]
   command = "npm run build"

@@ -63,28 +63,19 @@ export const handler: Handler = async (event) => {
     );
   }
 
-  // Call AI provider and enforce strict schema; retry once on invalid JSON/schema.
-  for (let attempt = 1; attempt <= 2; attempt++) {
-    const retryHint =
-      attempt === 2
-        ? 'Your previous response was invalid. Return ONLY valid JSON matching the provided schema. Do not add extra keys.'
-        : undefined;
-
-    let out: unknown;
-    try {
-      out = await generateStructureArtifact({ input_text: trimmed, locale, retryHint });
-    } catch (err: unknown) {
-      console.error('AI provider error:', err);
-      return json(502, { code: 'AI_PROVIDER_FAILED', message: 'AI provider failed.' });
-    }
-
-    const validated = validateArtifactV1(out);
-    if (validated.ok) return json(200, { artifact: validated.value });
-
-    if (attempt === 2) {
-      return json(502, { code: 'INVALID_AI_OUTPUT', message: 'AI output failed validation.' });
-    }
+  // Call AI provider and enforce strict schema.
+  // The AI provider already retries per-section in "sectioned" mode, so avoid a global retry here
+  // (it would multiply calls and increase timeout risk).
+  let out: unknown;
+  try {
+    out = await generateStructureArtifact({ input_text: trimmed, locale });
+  } catch (err: unknown) {
+    console.error('AI provider error:', err);
+    return json(502, { code: 'AI_PROVIDER_FAILED', message: 'AI provider failed.' });
   }
+
+  const validated = validateArtifactV1(out);
+  if (validated.ok) return json(200, { artifact: validated.value });
 
   return json(502, { code: 'INVALID_AI_OUTPUT', message: 'AI output failed validation.' });
 };
