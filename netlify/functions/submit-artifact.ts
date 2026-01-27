@@ -76,10 +76,17 @@ export const handler: Handler = async (event) => {
     retention_policy_version: 'v1',
   };
 
-  const inbox = getEnv('DEVISIA_INBOX');
-  const rendered = renderArtifactEmail(record);
-
   try {
+    let inbox: string;
+    try {
+      inbox = getEnv('DEVISIA_INBOX');
+    } catch (err) {
+      console.error('Missing env var:', err);
+      return json(500, { code: 'MISSING_ENV', message: 'Missing required environment variable: DEVISIA_INBOX' });
+    }
+
+    const rendered = renderArtifactEmail(record);
+
     await sendViaMailtrapApi({
       to: inbox,
       subject: rendered.subject,
