@@ -71,7 +71,13 @@ export const handler: Handler = async (event) => {
     out = await generateStructureArtifact({ input_text: trimmed, locale });
   } catch (err: unknown) {
     console.error('AI provider error:', err);
-    return json(502, { code: 'AI_PROVIDER_FAILED', message: 'AI provider failed.' });
+    const msg = err instanceof Error ? err.message : String(err);
+    // Return a safe, non-sensitive hint for debugging (no secrets, no raw input).
+    return json(502, {
+      code: 'AI_PROVIDER_FAILED',
+      message: 'AI provider failed.',
+      detail: msg.slice(0, 160),
+    });
   }
 
   const validated = validateArtifactV1(out);

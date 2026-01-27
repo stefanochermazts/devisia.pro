@@ -267,23 +267,33 @@ function validateCriticalConsiderationsSection(
 }
 
 async function callSectionWithRetry(params: {
+  sectionName: 'system_overview' | 'core_domain_model' | 'key_flows' | 'critical_considerations';
   model: string;
   systemPrompt: string;
   userPrompt: string;
   validate: (v: unknown) => { ok: true; value: PartialArtifact } | { ok: false };
   timeoutMs: number;
 }) {
+  const isAbort = (e: unknown) => e instanceof Error && e.name === 'AbortError';
+
   // Attempt 1
-  const out1 = await callOpenAIChatCompletions({
-    model: params.model,
-    messages: [
-      { role: 'system', content: params.systemPrompt },
-      { role: 'user', content: params.userPrompt },
-    ],
-    timeoutMs: params.timeoutMs,
-  });
-  const v1 = params.validate(out1);
-  if (v1.ok) return v1.value;
+  try {
+    const out1 = await callOpenAIChatCompletions({
+      model: params.model,
+      messages: [
+        { role: 'system', content: params.systemPrompt },
+        { role: 'user', content: params.userPrompt },
+      ],
+      timeoutMs: params.timeoutMs,
+    });
+    const v1 = params.validate(out1);
+    if (v1.ok) return v1.value;
+  } catch (e) {
+    // Retry below (including AbortError).
+    if (!isAbort(e)) {
+      // For non-timeout errors we still attempt one retry, but keep context in message if it fails.
+    }
+  }
 
   // Attempt 2 (retry hint)
   const retryUserPrompt = [
@@ -292,18 +302,26 @@ async function callSectionWithRetry(params: {
     params.userPrompt,
   ].join('\n');
 
-  const out2 = await callOpenAIChatCompletions({
-    model: params.model,
-    messages: [
-      { role: 'system', content: params.systemPrompt },
-      { role: 'user', content: retryUserPrompt },
-    ],
-    timeoutMs: Math.max(6_000, Math.floor(params.timeoutMs * 0.8)),
-  });
-  const v2 = params.validate(out2);
-  if (v2.ok) return v2.value;
+  try {
+    const out2 = await callOpenAIChatCompletions({
+      model: params.model,
+      messages: [
+        { role: 'system', content: params.systemPrompt },
+        { role: 'user', content: retryUserPrompt },
+      ],
+      // Keep retry shorter to fit Netlify overall timeout budget.
+      timeoutMs: Math.min(8_000, Math.max(6_000, Math.floor(params.timeoutMs * 0.6))),
+    });
+    const v2 = params.validate(out2);
+    if (v2.ok) return v2.value;
+  } catch (e) {
+    if (isAbort(e)) {
+      throw new Error(`SECTION_TIMEOUT:${params.sectionName}`);
+    }
+    throw new Error(`SECTION_FAILED:${params.sectionName}`);
+  }
 
-  throw new Error('Invalid AI output for section.');
+  throw new Error(`SECTION_INVALID:${params.sectionName}`);
 }
 
 export async function generateStructureArtifact(params: {
@@ -343,7 +361,7 @@ export async function generateStructureArtifact(params: {
 
   // SECTIONED mode: 4 smaller prompts, then merge into ArtifactV1 shape.
   // Keep per-call timeout lower to leave room for merge/validation and potential one-section retry.
-  const perCallTimeoutMs = 14_000;
+  const perCallTimeoutMs = 18_000;
 
   const sectionPrompts = {
     system_overview: [
@@ -386,6 +404,7 @@ export async function generateStructureArtifact(params: {
 
   const [systemOverview, domainModel, flows, considerations] = await Promise.all([
     callSectionWithRetry({
+      sectionName: 'system_overview',
       model,
       systemPrompt: SYSTEM_PROMPT_V1_SECTIONED,
       userPrompt: sectionPrompts.system_overview,
@@ -393,6 +412,7 @@ export async function generateStructureArtifact(params: {
       timeoutMs: perCallTimeoutMs,
     }),
     callSectionWithRetry({
+      sectionName: 'core_domain_model',
       model,
       systemPrompt: SYSTEM_PROMPT_V1_SECTIONED,
       userPrompt: sectionPrompts.core_domain_model,
@@ -400,6 +420,7 @@ export async function generateStructureArtifact(params: {
       timeoutMs: perCallTimeoutMs,
     }),
     callSectionWithRetry({
+      sectionName: 'key_flows',
       model,
       systemPrompt: SYSTEM_PROMPT_V1_SECTIONED,
       userPrompt: sectionPrompts.key_flows,
@@ -407,6 +428,7 @@ export async function generateStructureArtifact(params: {
       timeoutMs: perCallTimeoutMs,
     }),
     callSectionWithRetry({
+      sectionName: 'critical_considerations',
       model,
       systemPrompt: SYSTEM_PROMPT_V1_SECTIONED,
       userPrompt: sectionPrompts.critical_considerations,
