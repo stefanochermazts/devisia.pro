@@ -27,6 +27,17 @@ function randomRefId() {
   return out;
 }
 
+function extractMailtrapErrorDetails(err: unknown): { message?: string; status?: number; bodySnippet?: string } {
+  const msg = err instanceof Error ? err.message : String(err ?? '');
+  // Format from mailtrap.ts: "Mailtrap API error (STATUS): BODY"
+  const m = msg.match(/Mailtrap API error \((\d+)\):\s*([\s\S]*)$/);
+  if (!m) return { message: msg };
+  const status = parseInt(m[1] || '', 10);
+  const body = (m[2] || '').trim();
+  const bodySnippet = body ? body.slice(0, 1200) : undefined;
+  return { message: msg, status: Number.isFinite(status) ? status : undefined, bodySnippet };
+}
+
 export const handler: Handler = async (event) => {
   if (event.httpMethod !== 'POST') return json(405, { error: 'Method not allowed' });
 
@@ -85,7 +96,13 @@ export const handler: Handler = async (event) => {
       return json(500, { code: 'MISSING_ENV', message: 'Missing required environment variable: DEVISIA_INBOX' });
     }
 
-    const rendered = renderArtifactEmail(record);
+    let rendered: { subject: string; html: string; text: string };
+    try {
+      rendered = renderArtifactEmail(record);
+    } catch (err) {
+      console.error('Email render failed:', err);
+      return json(500, { code: 'RENDER_FAILED' });
+    }
 
     await sendViaMailtrapApi({
       to: inbox,
@@ -96,7 +113,12 @@ export const handler: Handler = async (event) => {
     });
   } catch (err: unknown) {
     console.error('Mailtrap sending failed:', err);
-    return json(502, { code: 'DELIVERY_FAILED' });
+    const details = extractMailtrapErrorDetails(err);
+    return json(502, {
+      code: 'DELIVERY_FAILED',
+      ...(details.status ? { status: details.status } : {}),
+      ...(details.bodySnippet ? { message: details.bodySnippet } : {}),
+    });
   }
 
   return json(200, { ref_id });
