@@ -1,19 +1,19 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import InputForm from '../components/ai-structure/InputForm.astro';
-import OutputRenderer from '../components/ai-structure/OutputRenderer.astro';
-import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro';
+import Layout from '../../layouts/Layout.astro';
+import InputForm from '../../components/ai-structure/InputForm.en.astro';
+import OutputRenderer from '../../components/ai-structure/OutputRenderer.en.astro';
+import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.astro';
 ---
 
-<Layout title="Struttura tecnica, in 60 secondi" description="Descrivi un’idea o un problema. Ottieni una prima struttura di sistema: dominio, flussi, punti critici.">
+<Layout title="Technical structure, in 60 seconds" description="Describe an idea or problem. Get an initial system structure: domain, flows, critical points." lang="en">
   <section class="ds-ai-structure">
     <header class="ds-ai-structure__header">
-      <h1 class="ds-ai-structure__title">Struttura tecnica, in 60 secondi</h1>
+      <h1 class="ds-ai-structure__title">Technical structure, in 60 seconds</h1>
       <p class="ds-ai-structure__intro">
-        Descrivi un’idea o un problema.<br />
-        Ottieni una prima struttura di sistema: dominio, flussi, punti critici.
+        Describe an idea or problem.<br />
+        Get an initial system structure: domain, flows, critical points.
       </p>
-      <p class="ds-ai-structure__privacy">Non inserire dati sensibili o segreti.</p>
+      <p class="ds-ai-structure__privacy">Do not enter sensitive data or secrets.</p>
     </header>
 
     <InputForm />
@@ -87,7 +87,7 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
         if (loading) {
           setText(
             statusBody,
-            'Analisi del contesto in corso.\nStrutturazione di dominio e flussi.'
+            'Analyzing context.\nStructuring domain and flows.'
           );
           setHidden(statusWrap, false);
         } else {
@@ -177,7 +177,7 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
           const res = await fetch('/.netlify/functions/generate-structure', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ input_text: input, locale: 'it' }),
+            body: JSON.stringify({ input_text: input, locale: 'en' }),
             signal: controller.signal,
           });
 
@@ -186,7 +186,7 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
             if (data && data.code === 'SENSITIVE_INPUT') {
               showError('Sensitive-looking data detected. Remove secrets and retry.');
             } else {
-              showError('Errore. Riprova.');
+              showError('Error. Please try again.');
             }
             return;
           }
@@ -195,9 +195,9 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
           renderArtifact(lastArtifact);
         } catch (e) {
           if (e instanceof Error && e.name === 'AbortError') {
-            showError('Timeout: la richiesta ha impiegato troppo tempo. Riprova.');
+            showError('Timeout: the request took too long. Please try again.');
           } else {
-            showError('Errore. Riprova.');
+            showError('Error. Please try again.');
           }
         } finally {
           clearTimeout(timeout);
@@ -241,7 +241,7 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
         setHidden(modalSuccessWrap, true);
 
         if (!lastArtifact || !lastInput) {
-          setText(modalErrorBody, 'Errore. Riprova.');
+          setText(modalErrorBody, 'Error. Please try again.');
           setHidden(modalErrorWrap, false);
           return;
         }
@@ -252,17 +252,17 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
         const consent = Boolean(modalConsent?.checked);
 
         if (!email) {
-          setText(modalErrorBody, 'Email richiesta.');
+          setText(modalErrorBody, 'Email required.');
           setHidden(modalErrorWrap, false);
           return;
         }
         if (note.length > 500) {
-          setText(modalErrorBody, 'Nota troppo lunga (max 500).');
+          setText(modalErrorBody, 'Note too long (max 500).');
           setHidden(modalErrorWrap, false);
           return;
         }
         if (!consent) {
-          setText(modalErrorBody, 'Consenso richiesto.');
+          setText(modalErrorBody, 'Consent required.');
           setHidden(modalErrorWrap, false);
           return;
         }
@@ -283,7 +283,7 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
           });
           const data = await res.json().catch(() => ({}));
           if (!res.ok || !data?.ref_id) {
-            setText(modalErrorBody, 'Errore. Riprova.');
+            setText(modalErrorBody, 'Error. Please try again.');
             setHidden(modalErrorWrap, false);
             return;
           }
@@ -299,7 +299,7 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
           modalConsent?.toggleAttribute('disabled', true);
           modalSuccessWrap?.scrollIntoView?.({ block: 'nearest', behavior: 'smooth' });
         } catch {
-          setText(modalErrorBody, 'Errore. Riprova.');
+          setText(modalErrorBody, 'Error. Please try again.');
           setHidden(modalErrorWrap, false);
         } finally {
           // Keep disabled on success; otherwise re-enable
@@ -364,4 +364,3 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
     }
   </style>
 </Layout>
-

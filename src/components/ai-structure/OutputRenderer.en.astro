@@ -1,0 +1,54 @@
+<section class="ds-card" data-ai-structure-output hidden>
+  <div class="ds-card__body" style="display:grid; gap: var(--ds-space-4);">
+    <div>
+      <h2 style="margin:0 0 var(--ds-space-2); font-size: var(--ds-text-lg);">1) System Overview</h2>
+      <p data-artifact-system-overview style="margin:0; color: var(--ds-color-text);"></p>
+    </div>
+
+    <div>
+      <h2 style="margin:0 0 var(--ds-space-2); font-size: var(--ds-text-lg);">2) Core Domain Model</h2>
+      <ul data-artifact-domain-model style="margin:0; padding-left: 1.1rem; display:grid; gap: 0.35rem;"></ul>
+    </div>
+
+    <div>
+      <h2 style="margin:0 0 var(--ds-space-2); font-size: var(--ds-text-lg);">3) Key Flows</h2>
+      <div data-artifact-flows style="display:grid; gap: var(--ds-space-2);"></div>
+    </div>
+
+    <div>
+      <h2 style="margin:0 0 var(--ds-space-2); font-size: var(--ds-text-lg);">4) Critical Considerations</h2>
+      <div style="display:grid; gap: var(--ds-space-3);">
+        <div>
+          <div style="font-weight:700; margin-bottom: 0.35rem;">Technical</div>
+          <ul data-artifact-considerations-technical style="margin:0; padding-left: 1.1rem; display:grid; gap: 0.35rem;"></ul>
+        </div>
+        <div>
+          <div style="font-weight:700; margin-bottom: 0.35rem;">Privacy &amp; Data</div>
+          <ul data-artifact-considerations-privacy style="margin:0; padding-left: 1.1rem; display:grid; gap: 0.35rem;"></ul>
+        </div>
+        <div>
+          <div style="font-weight:700; margin-bottom: 0.35rem;">Architectural</div>
+          <ul data-artifact-considerations-architectural style="margin:0; padding-left: 1.1rem; display:grid; gap: 0.35rem;"></ul>
+        </div>
+      </div>
+    </div>
+
+    <div data-ai-structure-after-text style="margin:0;" hidden>
+      <p style="margin:0 0 0.35rem; color: var(--ds-color-text);">
+        This output is an initial technical structure: domain concepts, flows, and critical points.
+      </p>
+      <p style="margin:0; color: var(--ds-color-text-muted); font-size: var(--ds-text-sm);">
+        It is not a complete specification nor an implementation: it serves to align boundaries and risks before the next steps.
+      </p>
+    </div>
+
+    <div style="display:flex; gap: var(--ds-space-2); flex-wrap: wrap;">
+      <button class="ds-btn" data-variant="primary" type="button" data-ai-structure-open-modal hidden>
+        Let's review it together
+      </button>
+      <button class="ds-btn" data-variant="secondary" type="button" data-ai-structure-regenerate hidden>
+        Regenerate
+      </button>
+    </div>
+  </div>
+</section>

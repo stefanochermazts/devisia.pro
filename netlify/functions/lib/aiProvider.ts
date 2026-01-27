@@ -85,33 +85,41 @@ function buildChatCompletionBody(params: { model: string; messages: ChatMessage[
 async function callOpenAIChatCompletions(params: { model: string; messages: ChatMessage[] }) {
   const apiKey = getEnv('OPENAI_API_KEY');
 
-  const res = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: buildChatCompletionBody(params),
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 50_000); // 50s timeout
 
-  if (!res.ok) {
-    const text = await res.text().catch(() => '');
-    throw new Error(`OpenAI API error (${res.status}): ${text || res.statusText}`);
-  }
-
-  const data = await res.json();
-  const content =
-    data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
-  if (!content) throw new Error('OpenAI API returned an unexpected payload (missing message content).');
-
-  let parsed: unknown;
   try {
-    parsed = JSON.parse(content);
-  } catch {
-    throw new Error(`OpenAI did not return valid JSON. Raw: ${String(content).slice(0, 500)}`);
-  }
+    const res = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${apiKey}`,
+      },
+      body: buildChatCompletionBody(params),
+      signal: controller.signal,
+    });
 
-  return parsed;
+    if (!res.ok) {
+      const text = await res.text().catch(() => '');
+      throw new Error(`OpenAI API error (${res.status}): ${text || res.statusText}`);
+    }
+
+    const data = await res.json();
+    const content =
+      data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+    if (!content) throw new Error('OpenAI API returned an unexpected payload (missing message content).');
+
+    let parsed: unknown;
+    try {
+      parsed = JSON.parse(content);
+    } catch {
+      throw new Error(`OpenAI did not return valid JSON. Raw: ${String(content).slice(0, 500)}`);
+    }
+
+    return parsed;
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 const ARTIFACT_SCHEMA_HINT = `ArtifactV1 MUST be valid JSON with EXACTLY this structure:

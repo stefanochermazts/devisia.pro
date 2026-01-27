@@ -1,0 +1,104 @@
+<dialog class="ds-ai-structure__dialog" data-ai-structure-dialog>
+  <form method="dialog" class="ds-ai-structure__dialog-close">
+    <button class="ds-btn" data-variant="ghost" type="button" data-ai-structure-close aria-label="Close">
+      ✕
+    </button>
+  </form>
+
+  <div class="ds-ai-structure__dialog-body">
+    <h2 class="ds-ai-structure__dialog-title">Let's review it together</h2>
+    <p class="ds-ai-structure__dialog-text">
+      Send this artifact to Devisia.<br />
+      We'll start from the output, not from scratch.
+    </p>
+
+    <form class="ds-ai-structure__dialog-form" data-ai-structure-submit-form>
+      <div class="ds-field">
+        <input class="ds-input" type="email" required data-ai-structure-email placeholder="Email" />
+      </div>
+
+      <div class="ds-field">
+        <input class="ds-input" type="text" data-ai-structure-name placeholder="Name" />
+      </div>
+
+      <div class="ds-field">
+        <textarea class="ds-textarea" rows="4" maxlength="500" data-ai-structure-note placeholder="Note"></textarea>
+      </div>
+
+      <label class="ds-check" style="margin-top: var(--ds-space-2);">
+        <input type="checkbox" required data-ai-structure-consent />
+        <span>
+          I authorize the storage of input and output for follow-up and analysis.<br />
+          Default retention: 30 days.
+        </span>
+      </label>
+
+      <div class="ds-alert" data-ai-structure-submit-error hidden>
+        <p class="ds-alert__body"></p>
+      </div>
+
+      <div
+        class="ds-alert ds-ai-structure__success"
+        data-tone="success"
+        data-ai-structure-submit-success
+        role="status"
+        aria-live="polite"
+        hidden
+      >
+        <p class="ds-alert__body" style="margin:0;">
+          Received.<br />
+          <strong>Reference ID: <span data-ai-structure-ref>DV-XXXXXX</span></strong><br />
+          To request deletion, cite this ID.
+        </p>
+      </div>
+
+      <div style="display:flex; justify-content:flex-start; margin-top: var(--ds-space-3);">
+        <button class="ds-btn" data-variant="primary" type="submit" data-ai-structure-submit>
+          Send to Devisia
+        </button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<style>
+  .ds-ai-structure__dialog {
+    width: min(42rem, calc(100vw - 2rem));
+    border: 0;
+    padding: 0;
+    border-radius: 12px;
+    background: var(--ds-color-bg);
+    color: var(--ds-color-text);
+    box-shadow: var(--ds-shadow-2);
+  }
+  .ds-ai-structure__dialog::backdrop {
+    background: rgba(0, 0, 0, 0.45);
+  }
+  .ds-ai-structure__dialog-body {
+    padding: var(--ds-space-5);
+    display: grid;
+    gap: var(--ds-space-3);
+  }
+  .ds-ai-structure__dialog-close {
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--ds-space-3) var(--ds-space-3) 0;
+  }
+  .ds-ai-structure__dialog-title {
+    margin: 0;
+    font-size: var(--ds-text-lg);
+  }
+  .ds-ai-structure__dialog-text {
+    margin: 0;
+    color: var(--ds-color-text-muted);
+  }
+  .ds-ai-structure__dialog-form {
+    display: grid;
+    gap: var(--ds-space-3);
+  }
+  .ds-ai-structure__success {
+    border-color: color-mix(in srgb, var(--ds-color-success) 45%, var(--ds-color-border));
+    background: color-mix(in srgb, var(--ds-color-success) 8%, var(--ds-color-surface));
+    box-shadow: var(--ds-focus-ring);
+  }
+</style>
