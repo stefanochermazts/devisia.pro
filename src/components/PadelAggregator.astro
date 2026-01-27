@@ -5,8 +5,6 @@ export interface Props {
 
 const { lang = 'it' } = Astro.props;
 
-import padelClientUrl from '../scripts/padelAggregator.entry.js?url';
-
 const STRINGS =
   lang === 'en'
     ? {
@@ -106,5 +104,7 @@ const STRINGS =
   set:html={`window.__PADEL_STRINGS__ = ${JSON.stringify(STRINGS)};`}
 ></script>
 
-<script type="module" src={padelClientUrl}></script>
+<script type="module">
+  import '/scripts/padelAggregator.js';
+</script>
 

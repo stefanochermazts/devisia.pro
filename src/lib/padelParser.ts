@@ -286,6 +286,59 @@ function formatDowAndDate(dateISO?: string, start?: Date): string | undefined {
   return undefined;
 }
 
+function normalizeVenueKey(s: string) {
+  return s
+    .toUpperCase()
+    .replace(/[^A-Z0-9]+/g, '')
+    .trim();
+}
+
+function formatVenueLine(params: { venueName?: string; court?: string }) {
+  let venue = (params.venueName || '').trim();
+  let court = params.court;
+
+  if (venue) {
+    // If venue is duplicated like "A, A", keep only one.
+    const parts = venue.split(',').map((p) => p.trim()).filter(Boolean);
+    if (parts.length >= 2) {
+      const a = normalizeVenueKey(parts[0]);
+      const b = normalizeVenueKey(parts[1]);
+      if (a && b && a === b) venue = parts[0];
+    }
+
+    // If venue already contains the court, don't repeat it.
+    const m = venue.match(/\bcampo\s+(\d+)\b/i);
+    if (m && court) {
+      const cNum = String(court).match(/\d+/)?.[0];
+      if (cNum && cNum === m[1]) court = undefined;
+      // Also remove any trailing "– Campo X" from venue.
+      venue = venue.replace(/\s*[–-]\s*campo\s+\d+\s*$/i, '').trim();
+    }
+  }
+
+  const venueOut = venue ? `*${venue.toUpperCase()}*` : '';
+  if (venueOut && court) return `${venueOut} – ${court}`;
+  return venueOut || court || '';
+}
+
+function formatPlayersLines(params: { playersConfirmed: string[]; openSlots: number }) {
+  const confirmed = params.playersConfirmed || [];
+  const totalSlots = Math.max(4, confirmed.length + Math.max(0, params.openSlots || 0));
+  const slots: Array<string | null> = [];
+  for (let i = 0; i < totalSlots; i++) {
+    slots.push(confirmed[i] ? confirmed[i] : null);
+  }
+
+  const lines = slots.map((name) => (name ? `✅ ${name}` : `❓ libero`));
+
+  // Padel is usually 2v2. Use "vs" split only when we have exactly 4 slots.
+  if (totalSlots === 4) {
+    return [lines[0], lines[1], 'vs', lines[2], lines[3]].filter(Boolean);
+  }
+
+  return lines;
+}
+
 export function formatForWhatsApp(events: ParsedEvent[]): string {
   const sorted = sortEvents(events);
   const parts: string[] = [];
@@ -294,13 +347,18 @@ export function formatForWhatsApp(events: ParsedEvent[]): string {
     const dowDate = formatDowAndDate(e.dateISO, e.startDateTime);
     const header = [dowDate || 'Senza data', e.time ? `· ${e.time}` : null].filter(Boolean).join(' ');
 
-    const line2 = [e.venueName || null, e.court ? `– ${e.court}` : null].filter(Boolean).join(' ');
+    const venueLine = formatVenueLine({ venueName: e.venueName, court: e.court });
+    const levelLine = e.levelRange ? `Livello ${e.levelRange}` : '';
+    const playersLines = formatPlayersLines({
+      playersConfirmed: e.playersConfirmed,
+      openSlots: e.openSlots,
+    });
 
-    const counts = `✅${e.playersConfirmed.length} ❓${e.openSlots}`;
-    const level = e.levelRange ? `Livello ${e.levelRange}` : null;
-    const line3 = [level, counts].filter(Boolean).join(' · ');
-
-    parts.push([header, line2 || null, line3 || null, e.url || null].filter(Boolean).join('\n'));
+    parts.push(
+      [header, venueLine || null, levelLine || null, ...playersLines, e.url || null]
+        .filter(Boolean)
+        .join('\n')
+    );
   }
 
   return parts.join('\n\n');
