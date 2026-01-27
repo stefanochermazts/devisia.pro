@@ -19,6 +19,7 @@ For backward compatibility, the Bearer token is read from `SMTP_PASS`.
 - `SITE_MANAGER_EMAIL`: Email address that receives contact form notifications (e.g., `stefano.chermaz@gmail.com`)
 - `FROM_EMAIL`: Email address used as sender in the "From" field (e.g., `info@devisia.pro`)
 - `DEVISIA_INBOX`: Inbox that receives AI artifacts submitted from `/ai-structure` (e.g., `info@devisia.pro`)
+- `REPLY_TO_EMAIL`: (Optional) Reply-to address for user-facing emails (default in code: `info@devisia.it`)
 
 ### Optional (Recommended) Security
 - `SMTP_CHECK_TOKEN`: If set, the SMTP healthcheck endpoint requires `?token=...` to avoid exposing a public SMTP connectivity probe.
@@ -44,6 +45,7 @@ SMTP_PASS=your_mailtrap_password
 SITE_MANAGER_EMAIL=stefano.chermaz@gmail.com
 FROM_EMAIL=info@devisia.pro
 DEVISIA_INBOX=info@devisia.pro
+REPLY_TO_EMAIL=info@devisia.it
 SMTP_CHECK_TOKEN=choose_a_long_random_token
 ```
 

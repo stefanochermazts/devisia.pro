@@ -37,10 +37,17 @@
         <p class="ds-alert__body"></p>
       </div>
 
-      <div class="ds-alert" data-ai-structure-submit-success hidden>
+      <div
+        class="ds-alert ds-ai-structure__success"
+        data-tone="success"
+        data-ai-structure-submit-success
+        role="status"
+        aria-live="polite"
+        hidden
+      >
         <p class="ds-alert__body" style="margin:0;">
           Ricevuto.<br />
-          Reference ID: <span data-ai-structure-ref>DV-XXXXXX</span><br />
+          <strong>Reference ID: <span data-ai-structure-ref>DV-XXXXXX</span></strong><br />
           Per la cancellazione, cita questo ID.
         </p>
       </div>
@@ -88,6 +95,11 @@
   .ds-ai-structure__dialog-form {
     display: grid;
     gap: var(--ds-space-3);
+  }
+  .ds-ai-structure__success {
+    border-color: color-mix(in srgb, var(--ds-color-success) 45%, var(--ds-color-border));
+    background: color-mix(in srgb, var(--ds-color-success) 8%, var(--ds-color-surface));
+    box-shadow: var(--ds-focus-ring);
   }
 </style>
 

@@ -205,10 +205,13 @@ export const handler: Handler = async (event, _context) => {
     const managerText = `New contact form submission\n\nName: ${String(name)}\nEmail: ${String(email)}\nPrivacy consent: yes\n${subject ? `Subject: ${String(subject)}\n` : ''}\nMessage:\n${String(message)}\n\nLanguage: ${emailLang}`;
 
     // Fire both sends in parallel; never block the redirect
+    const replyToEmail = process.env.REPLY_TO_EMAIL || 'info@devisia.it';
     const siteManagerEmail = getEnv('SITE_MANAGER_EMAIL');
     const [thankYouResult, managerResult] = await Promise.allSettled([
       sendViaMailtrapApi({
         to: email as string,
+        replyToEmail,
+        replyToName: 'Devisia',
         subject: thankYouSubject,
         html: userHtml,
         text: thankYouText,
@@ -216,6 +219,9 @@ export const handler: Handler = async (event, _context) => {
       }),
       sendViaMailtrapApi({
         to: siteManagerEmail,
+        // Let the manager reply directly to the submitter.
+        replyToEmail: String(email),
+        replyToName: String(name || ''),
         subject: managerSubject,
         html: managerHtml,
         text: managerText,

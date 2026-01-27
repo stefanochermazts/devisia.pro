@@ -79,7 +79,7 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
         if (loading) {
           setText(
             statusBody,
-            'Sto strutturando il sistema.\nDominio, flussi, considerazioni critiche.'
+            'Analisi del contesto in corso.\nStrutturazione di dominio e flussi.'
           );
           setHidden(statusWrap, false);
         } else {
@@ -274,11 +274,22 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
 
           setText(modalRef, String(data.ref_id));
           setHidden(modalSuccessWrap, false);
+
+          // Make success state obvious and prevent double-submit.
+          modalSubmit?.toggleAttribute('disabled', true);
+          modalEmail?.toggleAttribute('disabled', true);
+          modalName?.toggleAttribute('disabled', true);
+          modalNote?.toggleAttribute('disabled', true);
+          modalConsent?.toggleAttribute('disabled', true);
+          modalSuccessWrap?.scrollIntoView?.({ block: 'nearest', behavior: 'smooth' });
         } catch {
           setText(modalErrorBody, 'Errore. Riprova.');
           setHidden(modalErrorWrap, false);
         } finally {
-          modalSubmit?.toggleAttribute('disabled', false);
+          // Keep disabled on success; otherwise re-enable
+          if (modalSuccessWrap?.hasAttribute('hidden')) {
+            modalSubmit?.toggleAttribute('disabled', false);
+          }
         }
       });
 

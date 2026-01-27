@@ -9,6 +9,8 @@ export const getEnv = (key: string): string => {
 export async function sendViaMailtrapApi(params: {
   to: string;
   toName?: string;
+  replyToEmail?: string;
+  replyToName?: string;
   subject: string;
   html: string;
   text: string;
@@ -30,6 +32,9 @@ export async function sendViaMailtrapApi(params: {
       },
       body: JSON.stringify({
         from: { email: fromEmail, name: fromName },
+        ...(params.replyToEmail
+          ? { reply_to: { email: params.replyToEmail, ...(params.replyToName ? { name: params.replyToName } : {}) } }
+          : {}),
         to: [{ email: params.to, name: params.toName }],
         subject: params.subject,
         text: params.text,

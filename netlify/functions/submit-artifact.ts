@@ -106,6 +106,9 @@ export const handler: Handler = async (event) => {
 
     await sendViaMailtrapApi({
       to: inbox,
+      // Let Devisia reply directly to the submitter from the received email.
+      replyToEmail: email,
+      replyToName: name || undefined,
       subject: rendered.subject,
       html: rendered.html,
       text: rendered.text,
