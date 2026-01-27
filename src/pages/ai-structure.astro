@@ -1,0 +1,340 @@
+---
+import Layout from '../layouts/Layout.astro';
+import InputForm from '../components/ai-structure/InputForm.astro';
+import OutputRenderer from '../components/ai-structure/OutputRenderer.astro';
+import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro';
+---
+
+<Layout title="Struttura tecnica, in 60 secondi" description="Descrivi un’idea o un problema. Ottieni una prima struttura di sistema: dominio, flussi, punti critici.">
+  <section class="ds-ai-structure">
+    <header class="ds-ai-structure__header">
+      <h1 class="ds-ai-structure__title">Struttura tecnica, in 60 secondi</h1>
+      <p class="ds-ai-structure__intro">
+        Descrivi un’idea o un problema.<br />
+        Ottieni una prima struttura di sistema: dominio, flussi, punti critici.
+      </p>
+      <p class="ds-ai-structure__privacy">Non inserire dati sensibili o segreti.</p>
+    </header>
+
+    <InputForm />
+    <OutputRenderer />
+    <SeeTogetherModal />
+  </section>
+
+  <script is:inline>
+    (() => {
+      const $ = (sel) => document.querySelector(sel);
+
+      const form = $('[data-ai-structure-form]');
+      const textarea = $('[data-ai-structure-input]');
+      const btnGenerate = $('[data-ai-structure-generate]');
+      const statusWrap = $('[data-ai-structure-status]');
+      const statusBody = $('[data-ai-structure-status] .ds-alert__body');
+      const errorWrap = $('[data-ai-structure-error]');
+      const errorBody = $('[data-ai-structure-error] .ds-alert__body');
+
+      const outputWrap = $('[data-ai-structure-output]');
+      const afterText = $('[data-ai-structure-after-text]');
+      const btnSeeTogether = $('[data-ai-structure-open-modal]');
+      const btnRegenerate = $('[data-ai-structure-regenerate]');
+
+      const dialog = $('[data-ai-structure-dialog]');
+      const modalForm = $('[data-ai-structure-submit-form]');
+      const modalEmail = $('[data-ai-structure-email]');
+      const modalName = $('[data-ai-structure-name]');
+      const modalNote = $('[data-ai-structure-note]');
+      const modalConsent = $('[data-ai-structure-consent]');
+      const modalSubmit = $('[data-ai-structure-submit]');
+      const modalClose = $('[data-ai-structure-close]');
+      const modalErrorWrap = $('[data-ai-structure-submit-error]');
+      const modalErrorBody = $('[data-ai-structure-submit-error] .ds-alert__body');
+      const modalSuccessWrap = $('[data-ai-structure-submit-success]');
+      const modalRef = $('[data-ai-structure-ref]');
+
+      const setText = (el, text) => {
+        if (!el) return;
+        el.textContent = text;
+      };
+
+      const setHidden = (el, hidden) => {
+        if (!el) return;
+        el.toggleAttribute('hidden', Boolean(hidden));
+      };
+
+      const resetError = () => {
+        setHidden(errorWrap, true);
+        setText(errorBody, '');
+      };
+
+      const showError = (msg) => {
+        setText(errorBody, msg);
+        setHidden(errorWrap, false);
+      };
+
+      const setLoading = (loading) => {
+        btnGenerate?.toggleAttribute('disabled', Boolean(loading));
+        textarea?.toggleAttribute('disabled', Boolean(loading));
+        btnRegenerate?.toggleAttribute('disabled', Boolean(loading));
+        btnSeeTogether?.toggleAttribute('disabled', Boolean(loading));
+        if (loading) {
+          setText(
+            statusBody,
+            'Sto strutturando il sistema.\nDominio, flussi, considerazioni critiche.'
+          );
+          setHidden(statusWrap, false);
+        } else {
+          setHidden(statusWrap, true);
+        }
+      };
+
+      let lastArtifact = null;
+      let lastInput = '';
+
+      const renderArtifact = (artifact) => {
+        setText($('[data-artifact-system-overview]'), artifact.system_overview || '');
+
+        const dm = $('[data-artifact-domain-model]');
+        if (dm) {
+          dm.innerHTML = '';
+          (artifact.core_domain_model || []).forEach((e) => {
+            const li = document.createElement('li');
+            li.innerHTML =
+              '<strong>' +
+              String(e.name || '').replace(/</g, '&lt;').replace(/>/g, '&gt;') +
+              ':</strong> ' +
+              String(e.description || '').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            dm.appendChild(li);
+          });
+        }
+
+        const flows = $('[data-artifact-flows]');
+        if (flows) {
+          flows.innerHTML = '';
+          (artifact.key_flows || []).forEach((f) => {
+            const block = document.createElement('div');
+            block.className = 'ds-ai-structure__flow';
+            const title = document.createElement('div');
+            title.className = 'ds-ai-structure__flow-title';
+            title.textContent = String(f.title || '');
+            const ol = document.createElement('ol');
+            (f.steps || []).forEach((s) => {
+              const li = document.createElement('li');
+              li.textContent = String(s || '');
+              ol.appendChild(li);
+            });
+            block.appendChild(title);
+            block.appendChild(ol);
+            flows.appendChild(block);
+          });
+        }
+
+        const setList = (sel, items) => {
+          const ul = $(sel);
+          if (!ul) return;
+          ul.innerHTML = '';
+          (items || []).forEach((x) => {
+            const li = document.createElement('li');
+            li.textContent = String(x || '');
+            ul.appendChild(li);
+          });
+        };
+
+        setList('[data-artifact-considerations-technical]', artifact.critical_considerations?.technical);
+        setList('[data-artifact-considerations-privacy]', artifact.critical_considerations?.privacy_data);
+        setList('[data-artifact-considerations-architectural]', artifact.critical_considerations?.architectural);
+
+        setHidden(outputWrap, false);
+        setHidden(afterText, false);
+        setHidden(btnSeeTogether, false);
+        setHidden(btnRegenerate, false);
+      };
+
+      const generate = async () => {
+        resetError();
+        setHidden(modalErrorWrap, true);
+        setHidden(modalSuccessWrap, true);
+
+        const input = String(textarea?.value || '').trim();
+        lastInput = input;
+
+        if (input.length < 80 || input.length > 1500) {
+          showError('Input length must be between 80 and 1500 characters.');
+          return;
+        }
+
+        setLoading(true);
+        try {
+          const res = await fetch('/.netlify/functions/generate-structure', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ input_text: input, locale: 'it' }),
+          });
+
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) {
+            if (data && data.code === 'SENSITIVE_INPUT') {
+              showError('Sensitive-looking data detected. Remove secrets and retry.');
+            } else {
+              showError('Errore. Riprova.');
+            }
+            return;
+          }
+
+          lastArtifact = data.artifact;
+          renderArtifact(lastArtifact);
+        } catch (e) {
+          showError('Errore. Riprova.');
+        } finally {
+          setLoading(false);
+        }
+      };
+
+      const openModal = () => {
+        if (!dialog) return;
+        setHidden(modalErrorWrap, true);
+        setHidden(modalSuccessWrap, true);
+        if (typeof dialog.showModal === 'function') dialog.showModal();
+        else dialog.setAttribute('open', '');
+        modalEmail?.focus?.();
+      };
+
+      const closeModal = () => {
+        if (!dialog) return;
+        if (typeof dialog.close === 'function') dialog.close();
+        else dialog.removeAttribute('open');
+      };
+
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        generate();
+      });
+
+      btnRegenerate?.addEventListener('click', () => generate());
+      btnSeeTogether?.addEventListener('click', () => openModal());
+      modalClose?.addEventListener('click', () => closeModal());
+      dialog?.addEventListener('click', (e) => {
+        const rect = dialog.getBoundingClientRect();
+        const inDialog =
+          e.clientX >= rect.left && e.clientX <= rect.right && e.clientY >= rect.top && e.clientY <= rect.bottom;
+        if (!inDialog) closeModal();
+      });
+
+      modalForm?.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        setHidden(modalErrorWrap, true);
+        setHidden(modalSuccessWrap, true);
+
+        if (!lastArtifact || !lastInput) {
+          setText(modalErrorBody, 'Errore. Riprova.');
+          setHidden(modalErrorWrap, false);
+          return;
+        }
+
+        const email = String(modalEmail?.value || '').trim();
+        const name = String(modalName?.value || '').trim();
+        const note = String(modalNote?.value || '').trim();
+        const consent = Boolean(modalConsent?.checked);
+
+        if (!email) {
+          setText(modalErrorBody, 'Email richiesta.');
+          setHidden(modalErrorWrap, false);
+          return;
+        }
+        if (note.length > 500) {
+          setText(modalErrorBody, 'Nota troppo lunga (max 500).');
+          setHidden(modalErrorWrap, false);
+          return;
+        }
+        if (!consent) {
+          setText(modalErrorBody, 'Consenso richiesto.');
+          setHidden(modalErrorWrap, false);
+          return;
+        }
+
+        modalSubmit?.toggleAttribute('disabled', true);
+        try {
+          const res = await fetch('/.netlify/functions/submit-artifact', {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({
+              email,
+              ...(name ? { name } : {}),
+              ...(note ? { note } : {}),
+              consent,
+              input_raw: lastInput,
+              artifact: lastArtifact,
+            }),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok || !data?.ref_id) {
+            setText(modalErrorBody, 'Errore. Riprova.');
+            setHidden(modalErrorWrap, false);
+            return;
+          }
+
+          setText(modalRef, String(data.ref_id));
+          setHidden(modalSuccessWrap, false);
+        } catch {
+          setText(modalErrorBody, 'Errore. Riprova.');
+          setHidden(modalErrorWrap, false);
+        } finally {
+          modalSubmit?.toggleAttribute('disabled', false);
+        }
+      });
+
+      // Start with output hidden
+      setHidden(outputWrap, true);
+      setHidden(afterText, true);
+      setHidden(btnSeeTogether, true);
+      setHidden(btnRegenerate, true);
+      setHidden(statusWrap, true);
+      setHidden(errorWrap, true);
+      setHidden(modalErrorWrap, true);
+      setHidden(modalSuccessWrap, true);
+
+      // Support "Escape" close for fallback open attribute
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeModal();
+      });
+    })();
+  </script>
+
+  <style>
+    .ds-ai-structure {
+      max-width: 56rem;
+      margin: 0 auto;
+      display: grid;
+      gap: var(--ds-space-5);
+    }
+    .ds-ai-structure__header {
+      display: grid;
+      gap: var(--ds-space-2);
+    }
+    .ds-ai-structure__title {
+      margin: 0;
+      font-size: clamp(1.6rem, 2.4vw, 2.2rem);
+      letter-spacing: var(--ds-tracking-tight);
+    }
+    .ds-ai-structure__intro {
+      margin: 0;
+      color: var(--ds-color-text-muted);
+    }
+    .ds-ai-structure__privacy {
+      margin: 0;
+      font-size: var(--ds-text-sm);
+      color: var(--ds-color-text-muted);
+    }
+    .ds-ai-structure__flow {
+      display: grid;
+      gap: 0.35rem;
+      padding: 0.75rem 0.85rem;
+      border-radius: var(--ds-radius-2);
+      border: var(--ds-border-1) solid var(--ds-color-border);
+      background: var(--ds-color-surface);
+    }
+    .ds-ai-structure__flow-title {
+      font-weight: 700;
+    }
+  </style>
+</Layout>
+

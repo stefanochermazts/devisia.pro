@@ -1,0 +1,41 @@
+<form class="ds-card ds-ai-structure__card" data-ai-structure-form>
+  <div class="ds-card__body" style="display:grid; gap: var(--ds-space-3);">
+    <div class="ds-field">
+      <textarea
+        class="ds-textarea"
+        data-ai-structure-input
+        rows="7"
+        maxlength="1500"
+        aria-label="Input"
+        placeholder=""
+      ></textarea>
+      <p class="ds-hint">Scrivi contesto, utenti coinvolti, cosa deve succedere e principali vincoli.</p>
+    </div>
+
+    <div class="ds-alert" data-ai-structure-error hidden>
+      <p class="ds-alert__body"></p>
+    </div>
+
+    <div class="ds-alert" data-ai-structure-status hidden>
+      <p class="ds-alert__body" style="white-space: pre-wrap;"></p>
+    </div>
+
+    <div style="display:flex; justify-content:flex-start;">
+      <button type="submit" class="ds-btn" data-variant="primary" data-ai-structure-generate>
+        Genera struttura
+      </button>
+    </div>
+  </div>
+</form>
+
+<style>
+  .ds-ai-structure__card :global(.ds-card__body) {
+    padding: var(--ds-space-5);
+  }
+  @media (max-width: 36rem) {
+    .ds-ai-structure__card :global(.ds-card__body) {
+      padding: var(--ds-space-4);
+    }
+  }
+</style>
+
