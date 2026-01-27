@@ -1,0 +1,16 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PadelAggregator from '../../../components/PadelAggregator.astro';
+import '../../../styles/padel.css';
+---
+
+<Layout
+  title="Padel – Request aggregator"
+  description="Paste WhatsApp messages: extract events, sort by date/time, generate WhatsApp-friendly output."
+  lang="en"
+>
+  <div class="ds-container" style="margin-top: var(--ds-space-6)">
+    <PadelAggregator lang="en" />
+  </div>
+</Layout>
+

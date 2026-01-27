@@ -1,0 +1,110 @@
+---
+export interface Props {
+  lang?: 'it' | 'en';
+}
+
+const { lang = 'it' } = Astro.props;
+
+import padelClientUrl from '../scripts/padelAggregator.ts?url';
+
+const STRINGS =
+  lang === 'en'
+    ? {
+        title: 'Padel – Request aggregator',
+        subtitle:
+          'Paste messages copied from WhatsApp. The tool extracts matches, sorts them by date/time, and generates a WhatsApp-ready message.',
+        privacy: 'No uploads. No storage. Everything stays in your browser.',
+        inputLabel: 'Input (paste here)',
+        outputLabel: 'Output (WhatsApp-ready)',
+        btnAnalyze: 'Analyze requests',
+        btnCopy: 'Copy to clipboard',
+        btnClear: 'Clear',
+        copied: 'Copied',
+        copyFallback: 'Selected — copy manually',
+        badgeIncomplete: 'incomplete',
+        labelLevel: 'Level',
+        previewTitle: 'Preview',
+        unrecognizedTitle: 'Unrecognized',
+        emptyOutput: 'No events found.',
+      }
+    : {
+        title: 'Padel – Aggregatore richieste',
+        subtitle:
+          'Incolla messaggi copiati da WhatsApp. Il tool estrae gli eventi, li ordina per data/ora e genera un testo pronto da reincollare.',
+        privacy: 'Nessun upload. Nessuno storage. Tutto rimane nel browser.',
+        inputLabel: 'Input (incolla qui)',
+        outputLabel: 'Output (pronto per WhatsApp)',
+        btnAnalyze: 'Analizza richieste',
+        btnCopy: 'Copia negli appunti',
+        btnClear: 'Pulisci',
+        copied: 'Copiato',
+        copyFallback: 'Selezionato — copia manualmente',
+        badgeIncomplete: 'incompleto',
+        labelLevel: 'Livello',
+        previewTitle: 'Preview',
+        unrecognizedTitle: 'Non riconosciuti',
+        emptyOutput: 'Nessun evento trovato.',
+      };
+---
+
+<section class="padel-tool" data-padel-root>
+  <header class="padel-tool__header">
+    <h1 class="padel-tool__title">{STRINGS.title}</h1>
+    <p class="padel-tool__subtitle">{STRINGS.subtitle}</p>
+    <p class="padel-tool__note">{STRINGS.privacy}</p>
+  </header>
+
+  <div class="padel-tool__grid">
+    <div class="ds-stack" data-gap="xs">
+      <label class="ds-label" for="padel-input">{STRINGS.inputLabel}</label>
+      <textarea id="padel-input" class="padel-tool__input" data-padel-input spellcheck="false"></textarea>
+    </div>
+
+    <div class="padel-tool__actions" role="group" aria-label="Actions">
+      <button class="ds-btn" data-variant="primary" type="button" data-padel-analyze>
+        {STRINGS.btnAnalyze}
+      </button>
+      <button class="ds-btn" data-variant="secondary" type="button" data-padel-copy>
+        {STRINGS.btnCopy}
+      </button>
+      <button class="ds-btn" data-variant="ghost" type="button" data-padel-clear>
+        {STRINGS.btnClear}
+      </button>
+    </div>
+
+    <div class="padel-tool__status" aria-live="polite" data-padel-status></div>
+
+    <div class="ds-stack" data-gap="xs">
+      <label class="ds-label" for="padel-output">{STRINGS.outputLabel}</label>
+      <textarea
+        id="padel-output"
+        class="padel-tool__output"
+        data-padel-output
+        readonly
+        spellcheck="false"
+      ></textarea>
+    </div>
+
+    <details class="padel-tool__details" data-padel-preview>
+      <summary>{STRINGS.previewTitle}</summary>
+      <div class="padel-tool__details-body">
+        <div class="padel-tool__cards" data-padel-cards></div>
+      </div>
+    </details>
+
+    <details class="padel-tool__details" data-padel-unrecognized>
+      <summary>{STRINGS.unrecognizedTitle}</summary>
+      <div class="padel-tool__details-body">
+        <pre class="padel-tool__muted" style="margin:0; white-space: pre-wrap;" data-padel-unrecognized-body></pre>
+      </div>
+    </details>
+  </div>
+</section>
+
+<script
+  is:inline
+  set:html={`window.__PADEL_STRINGS__ = ${JSON.stringify(STRINGS)};`}
+></script>
+
+<script type="module" src={padelClientUrl}></script>
+
