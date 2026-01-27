@@ -335,14 +335,14 @@ function formatPreview(events) {
     const when = [formatDowAndDate(e.dateISO, e.startDateTime) || 'Senza data', e.time || null]
       .filter(Boolean)
       .join(' · ');
+    const venueLine = formatVenueLine({ venueName: e.venueName, court: e.court });
+    const playersLines = formatPlayersLines({ playersConfirmed: e.playersConfirmed, openSlots: e.openSlots });
     return {
       id: `e${idx}`,
       whenLabel: when,
-      venueLabel: e.venueName || 'Struttura non riconosciuta',
-      courtLabel: e.court,
+      venueLabel: venueLine || 'Struttura non riconosciuta',
       levelLabel: e.levelRange,
-      confirmedCount: e.playersConfirmed.length,
-      openSlots: e.openSlots,
+      playersLines: playersLines,
       url: e.url,
       incomplete: e.incomplete,
     };
@@ -401,16 +401,17 @@ function init() {
     previewEvents.forEach((e) => {
       const div = document.createElement('div');
       div.className = 'padel-tool__card';
+      const playersHtml = (e.playersLines || []).map((line) => escapeHtml(line)).join('<br>');
+      // Convert Markdown-style bold (*text*) to HTML <strong>
+      const venueHtml = String(e.venueLabel || '').replace(/\*([^*]+)\*/g, '<strong>$1</strong>');
       div.innerHTML = `
         <div class="padel-tool__card-top">
           <strong>${escapeHtml(e.whenLabel)}</strong>
           ${e.incomplete ? `<span class="padel-tool__badge padel-tool__badge--warn">${escapeHtml(STRINGS.badgeIncomplete)}</span>` : ``}
         </div>
-        <div>${escapeHtml(e.venueLabel)}${e.courtLabel ? ` <span class="padel-tool__muted">– ${escapeHtml(e.courtLabel)}</span>` : ``}</div>
+        <div>${venueHtml}</div>
         <div class="padel-tool__muted">
-          ${e.levelLabel ? `${escapeHtml(STRINGS.labelLevel)} ${escapeHtml(e.levelLabel)} · ` : ``}✅${escapeHtml(
-            e.confirmedCount
-          )} ❓${escapeHtml(e.openSlots)}
+          ${e.levelLabel ? `${escapeHtml(STRINGS.labelLevel)} ${escapeHtml(e.levelLabel)} · ` : ``}${playersHtml}
         </div>
         ${
           e.url
