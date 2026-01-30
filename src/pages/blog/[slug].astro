@@ -196,7 +196,11 @@ const formatDate = (date: Date | string): string => {
   }
   
   .post-content :global(br) {
-    display: none;
+    display: none !important;
+  }
+  
+  .blog-post .post-content :global(br) {
+    display: none !important;
   }
   
   .post-content :global(h2) {

@@ -35,8 +35,6 @@ Crucially, organizations with mature Privacy by Design programs save an average 
 
 The concept of Privacy by Design is built on seven core principles articulated by Dr. Ann Cavoukian. For software engineers and architects, these are not abstract ideals but practical guidelines for system design and development workflows. They provide a clear framework for building products that respect users from the outset.
 
-<br>
-
 ### Translating Principles into Engineering Practice
 
 | Principle | Core Concept | Practical Application in Software Development |
@@ -48,8 +46,6 @@ The concept of Privacy by Design is built on seven core principles articulated b
 | **5. End-to-End Security—Full Lifecycle Protection** | Data is secured from collection to destruction. | Implement encryption in transit and at rest. Use secure data deletion methods. Enforce strict access controls throughout the data lifecycle. |
 | **6. Visibility and Transparency—Keep it Open** | Stakeholders understand what data is collected and for what purpose. | Provide clear, concise privacy policies. Implement user-facing dashboards for managing personal data and consent. |
 | **7. Respect for User Privacy—Keep it User-Centric** | The system architecture and design prioritize the user's interests. | Design intuitive consent flows and easy-to-use data access/deletion request tools. Put the user in control of their data. |
-
-<br>
 
 These principles establish that privacy is not just another feature on the backlog. It is a fundamental quality metric for any well-engineered system.
 

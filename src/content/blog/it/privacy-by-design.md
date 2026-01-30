@@ -44,8 +44,6 @@ Trattare la privacy come un'attività a bassa priorità ha conseguenze finanziar
 
 Il concetto di Privacy by Design si basa su sette principi fondamentali articolati dalla Dr.ssa Ann Cavoukian. Per ingegneri del software e architetti, questi non sono ideali astratti ma linee guida pratiche per il design del sistema e i flussi di lavoro di sviluppo. Forniscono un quadro chiaro per costruire prodotti che rispettano gli utenti fin dall'inizio.
 
-<br>
-
 ### Tradurre i Principi in Pratica Ingegneristica
 
 | Principle | Core Concept | Practical Application in Software Development |
@@ -57,8 +55,6 @@ Il concetto di Privacy by Design si basa su sette principi fondamentali articola
 | **5. End-to-End Security—Full Lifecycle Protection** | I dati sono protetti dalla raccolta alla distruzione. | Implementare crittografia in transito e a riposo. Utilizzare metodi sicuri per l'eliminazione dei dati. Applicare controlli di accesso rigidi lungo l'intero ciclo di vita dei dati. |
 | **6. Visibility and Transparency—Keep it Open** | Gli stakeholder comprendono quali dati vengono raccolti e per quale scopo. | Fornire informative sulla privacy chiare e concise. Implementare dashboard rivolti all'utente per gestire dati personali e consensi. |
 | **7. Respect for User Privacy—Keep it User-Centric** | L'architettura e il design del sistema danno priorità agli interessi dell'utente. | Progettare flussi di consenso intuitivi e strumenti facili per le richieste di accesso/cancellazione dei dati. Mettere l'utente al controllo dei propri dati. |
-
-<br>
 
 Questi principi stabiliscono che la privacy non è solo un'altra funzionalità nella backlog. È una metrica di qualità fondamentale per qualsiasi sistema ben ingegnerizzato.
 
