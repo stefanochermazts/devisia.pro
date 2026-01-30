@@ -111,8 +111,14 @@ const formatDate = (date: Date | string): string => {
 
 <style>
   .blog-post {
-    max-width: 800px;
+    max-width: 98vw;
     margin: 0 auto;
+  }
+  
+  @media (min-width: 48rem) {
+    .blog-post {
+      max-width: 90vw;
+    }
   }
 
   .post-header {
