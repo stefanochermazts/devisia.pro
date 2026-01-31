@@ -6,11 +6,14 @@ import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
 // Get all blog posts
 const allPosts = await getCollection('blogIt');
 const slugFromId = (id: string) => id.replace(/^(it|en)\//, '');
+const PAGE_SIZE = 8;
 
 // Sort posts by publication date (newest first)
 const sortedPosts = allPosts.sort((a, b) => {
   return new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime();
 });
+
+const initialPosts = sortedPosts.slice(0, PAGE_SIZE);
 
 const formatDate = (date: Date | string): string => {
   const d = typeof date === 'string' ? new Date(date) : date;
@@ -49,44 +52,64 @@ const breadcrumbs = breadcrumbListJsonLd({
         <p>Nessun articolo pubblicato. Torna presto!</p>
       </div>
     ) : (
-      <div class="posts-grid">
-        {sortedPosts.map((post) => (
-          <article class="post-card">
-            {post.data.heroImage && (
-              <div class="post-image">
-                <img src={post.data.heroImage} alt={post.data.title} loading="lazy" />
-              </div>
-            )}
-            
-            <div class="post-content">
-              <div class="post-meta">
-                <time datetime={post.data.pubDate.toString()}>
-                  {formatDate(post.data.pubDate)}
-                </time>
-                <span class="post-author">by {post.data.author}</span>
-              </div>
-              
-              <h2 class="post-title">
-                <a href={`/blog/${slugFromId(post.id)}`}>{post.data.title}</a>
-              </h2>
-              
-              <p class="post-description">{post.data.description}</p>
-              
-              {post.data.tags && post.data.tags.length > 0 && (
-                <div class="post-tags">
-                  {post.data.tags.map((tag) => (
-                    <span class="tag">{tag}</span>
-                  ))}
+      <>
+        <div
+          class="posts-grid"
+          id="posts-grid"
+          data-endpoint="/api/blog.json?lang=it"
+          data-locale="it-IT"
+          data-url-prefix="/blog"
+          data-read-more-label="Leggi →"
+          data-offset={initialPosts.length}
+          data-total={sortedPosts.length}
+          data-page-size={PAGE_SIZE}
+        >
+          {initialPosts.map((post) => (
+            <article class="post-card">
+              {post.data.heroImage && (
+                <div class="post-image">
+                  <img src={post.data.heroImage} alt={post.data.title} loading="lazy" />
                 </div>
               )}
-              
-              <a href={`/blog/${slugFromId(post.id)}`} class="read-more">
-                Leggi →
-              </a>
-            </div>
-          </article>
-        ))}
-      </div>
+
+              <div class="post-content">
+                <div class="post-meta">
+                  <time datetime={post.data.pubDate.toString()}>{formatDate(post.data.pubDate)}</time>
+                  <span class="post-author">by {post.data.author}</span>
+                </div>
+
+                <h2 class="post-title">
+                  <a href={`/blog/${slugFromId(post.id)}`}>{post.data.title}</a>
+                </h2>
+
+                <p class="post-description">{post.data.description}</p>
+
+                {post.data.tags && post.data.tags.length > 0 && (
+                  <div class="post-tags">
+                    {post.data.tags.map((tag: string) => (
+                      <span class="tag">{tag}</span>
+                    ))}
+                  </div>
+                )}
+
+                <a href={`/blog/${slugFromId(post.id)}`} class="read-more">
+                  Leggi →
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        {sortedPosts.length > PAGE_SIZE && (
+          <div class="load-more-wrap" aria-label="Caricamento articoli">
+            <p id="posts-status" class="load-status" aria-live="polite"></p>
+            <button id="load-more" class="load-more" type="button">
+              Carica altri
+            </button>
+            <div id="posts-sentinel" class="load-sentinel" aria-hidden="true"></div>
+          </div>
+        )}
+      </>
     )}
 
     <section class="page-intro" aria-label="Introduzione al blog">
@@ -328,6 +351,53 @@ const breadcrumbs = breadcrumbListJsonLd({
     grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 2rem;
   }
+
+  .load-more-wrap {
+    margin-top: 1.75rem;
+    display: grid;
+    place-items: center;
+    gap: 0.75rem;
+  }
+
+  .load-status {
+    margin: 0;
+    color: var(--ds-color-text-muted);
+    min-height: 1.25rem;
+  }
+
+  .load-more {
+    appearance: none;
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    background: var(--ds-color-surface);
+    color: var(--ds-color-text);
+    padding: 0.75rem 1rem;
+    border-radius: var(--ds-radius-2);
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform var(--ds-motion-base), box-shadow var(--ds-motion-base);
+  }
+
+  .load-more:hover {
+    transform: translateY(-1px);
+    box-shadow: var(--ds-shadow-1);
+  }
+
+  .load-more:focus-visible {
+    outline: none;
+    box-shadow: var(--ds-focus-ring);
+  }
+
+  .load-more[disabled] {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .load-sentinel {
+    width: 100%;
+    height: 1px;
+  }
   
   .post-card {
     background: var(--ds-color-surface);
@@ -435,3 +505,162 @@ const breadcrumbs = breadcrumbListJsonLd({
     }
   }
 </style>
+
+<script is:inline>
+  (() => {
+    const grid = document.getElementById('posts-grid');
+    if (!grid) return;
+
+    const endpointBase = grid.dataset.endpoint;
+    const locale = grid.dataset.locale || 'it-IT';
+    const urlPrefix = grid.dataset.urlPrefix || '/blog';
+    const readMoreLabel = grid.dataset.readMoreLabel || 'Leggi →';
+
+    const statusEl = document.getElementById('posts-status');
+    const buttonEl = document.getElementById('load-more');
+    const sentinelEl = document.getElementById('posts-sentinel');
+
+    const pageSize = Number.parseInt(grid.dataset.pageSize || '8', 10) || 8;
+    const total = Number.parseInt(grid.dataset.total || '0', 10) || 0;
+    let offset = Number.parseInt(grid.dataset.offset || '0', 10) || 0;
+
+    if (!endpointBase || !buttonEl || !sentinelEl || total <= offset) {
+      if (buttonEl) buttonEl.hidden = true;
+      if (sentinelEl) sentinelEl.hidden = true;
+      return;
+    }
+
+    const dateFormatter = new Intl.DateTimeFormat(locale, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+
+    const setStatus = (msg) => {
+      if (!statusEl) return;
+      statusEl.textContent = msg || '';
+    };
+
+    const mk = (tag, className) => {
+      const el = document.createElement(tag);
+      if (className) el.className = className;
+      return el;
+    };
+
+    const renderPostCard = (post) => {
+      const article = mk('article', 'post-card');
+
+      if (post.heroImage) {
+        const imgWrap = mk('div', 'post-image');
+        const img = document.createElement('img');
+        img.loading = 'lazy';
+        img.src = post.heroImage;
+        img.alt = post.title;
+        imgWrap.appendChild(img);
+        article.appendChild(imgWrap);
+      }
+
+      const content = mk('div', 'post-content');
+
+      const meta = mk('div', 'post-meta');
+      const time = document.createElement('time');
+      time.dateTime = post.pubDate;
+      time.textContent = dateFormatter.format(new Date(post.pubDate));
+      meta.appendChild(time);
+
+      const author = mk('span', 'post-author');
+      author.textContent = `by ${post.author}`;
+      meta.appendChild(author);
+      content.appendChild(meta);
+
+      const title = mk('h2', 'post-title');
+      const link = document.createElement('a');
+      link.href = `${urlPrefix}/${post.slug}`;
+      link.textContent = post.title;
+      title.appendChild(link);
+      content.appendChild(title);
+
+      const desc = mk('p', 'post-description');
+      desc.textContent = post.description;
+      content.appendChild(desc);
+
+      if (Array.isArray(post.tags) && post.tags.length > 0) {
+        const tagsWrap = mk('div', 'post-tags');
+        for (const t of post.tags) {
+          const tag = mk('span', 'tag');
+          tag.textContent = String(t);
+          tagsWrap.appendChild(tag);
+        }
+        content.appendChild(tagsWrap);
+      }
+
+      const readMore = document.createElement('a');
+      readMore.href = `${urlPrefix}/${post.slug}`;
+      readMore.className = 'read-more';
+      readMore.textContent = readMoreLabel;
+      content.appendChild(readMore);
+
+      article.appendChild(content);
+      return article;
+    };
+
+    let loading = false;
+    let done = false;
+
+    const loadMore = async () => {
+      if (loading || done) return;
+      loading = true;
+      buttonEl.disabled = true;
+      setStatus('Caricamento…');
+
+      try {
+        const res = await fetch(`${endpointBase}&offset=${offset}&limit=${pageSize}`, {
+          headers: { Accept: 'application/json' },
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+        const data = await res.json();
+        const posts = Array.isArray(data.posts) ? data.posts : [];
+
+        for (const p of posts) {
+          grid.appendChild(renderPostCard(p));
+        }
+
+        offset =
+          Number.parseInt(String(data.nextOffset ?? offset + posts.length), 10) ||
+          offset + posts.length;
+        done = !data.hasMore || offset >= total || posts.length === 0;
+
+        if (done) {
+          setStatus('');
+          buttonEl.hidden = true;
+          sentinelEl.hidden = true;
+        } else {
+          setStatus('');
+          buttonEl.disabled = false;
+        }
+      } catch (err) {
+        // Keep the button as manual fallback.
+        setStatus('Impossibile caricare altri articoli. Riprova.');
+        buttonEl.disabled = false;
+      } finally {
+        loading = false;
+      }
+    };
+
+    buttonEl.addEventListener('click', () => void loadMore());
+
+    if ('IntersectionObserver' in window) {
+      buttonEl.hidden = true;
+      const io = new IntersectionObserver(
+        (entries) => {
+          for (const e of entries) {
+            if (e.isIntersecting) void loadMore();
+          }
+        },
+        { rootMargin: '600px 0px' }
+      );
+      io.observe(sentinelEl);
+    }
+  })();
+</script>
