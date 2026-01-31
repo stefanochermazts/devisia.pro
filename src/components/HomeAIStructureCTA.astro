@@ -1,0 +1,84 @@
+---
+import Button from './ui/Button.astro';
+
+export interface Props {
+  lang?: 'it' | 'en';
+  title?: string | null;
+  description?: string | null;
+  items?: string[] | null;
+  ctaLabel?: string | null;
+  ctaHref?: string | null; // path, will be localized via prefix
+}
+
+const { lang = 'it', title, description, items, ctaLabel, ctaHref } = Astro.props;
+
+const localePrefix = lang === 'en' ? '/en' : '';
+const href = (path: string) => (localePrefix ? `${localePrefix}${path}` : path);
+
+// Defaults are a safety net; primary copy should come from the home content entry.
+const defaults = {
+  it: {
+    title: 'AI Structure',
+    description:
+      'Un tool pubblico per trasformare un brief grezzo in una prima struttura di sistema: dominio, flussi, punti critici.',
+    items: [
+      'System overview: confini e responsabilità',
+      'Domain model: entità e significato',
+      'Key flows: causa → effetto',
+      'Critical considerations: tech, dati/privacy, architettura',
+    ],
+    ctaLabel: 'Esplora AI Structure',
+    ctaHref: '/ai-structure',
+  },
+  en: {
+    title: 'AI Structure',
+    description:
+      'A public tool that turns a rough brief into a first system structure: domain, flows, critical considerations.',
+    items: [
+      'System overview: scope and boundaries',
+      'Domain model: core entities',
+      'Key flows: cause → effect',
+      'Critical considerations: tech, data/privacy, architecture',
+    ],
+    ctaLabel: 'Explore AI Structure',
+    ctaHref: '/ai-structure',
+  },
+};
+
+const content = {
+  title: title ?? defaults[lang].title,
+  description: description ?? defaults[lang].description,
+  items: items ?? defaults[lang].items,
+  ctaLabel: ctaLabel ?? defaults[lang].ctaLabel,
+  ctaHref: ctaHref ?? defaults[lang].ctaHref,
+};
+---
+
+<section class="ds-card" style="container-type: inline-size; margin-top: var(--ds-space-8)">
+  <div class="ds-card__body ds-stack" data-gap="sm">
+    <div class="ds-reading">
+      <h2 style="margin: 0">{content.title}</h2>
+      <p class="ds-muted" style="margin: 0">{content.description}</p>
+    </div>
+
+    <ul
+      class="ds-cluster"
+      role="list"
+      style="margin: var(--ds-space-3) 0 0; padding: 0; list-style: none"
+      aria-label={lang === 'en' ? 'What it demonstrates' : 'Cosa dimostra'}
+    >
+      {content.items.slice(0, 4).map((item) => (
+        <li>
+          <span class="ds-tag">{item}</span>
+        </li>
+      ))}
+    </ul>
+
+    <div class="ds-cluster" style="margin-top: var(--ds-space-3)">
+      <Button href={href(content.ctaHref)} variant="primary" size="lg">
+        {content.ctaLabel}
+      </Button>
+    </div>
+  </div>
+</section>
+

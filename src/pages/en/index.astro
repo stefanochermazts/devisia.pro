@@ -5,6 +5,7 @@ import { type CollectionEntry } from 'astro:content';
 import HomeHero from '../../components/HomeHero.astro';
 import HomeWhatWeDo from '../../components/HomeWhatWeDo.astro';
 import HomeAICapabilities from '../../components/HomeAICapabilities.astro';
+import HomeAIStructureCTA from '../../components/HomeAIStructureCTA.astro';
 import HomeAIChecklistCTA from '../../components/HomeAIChecklistCTA.astro';
 import HomeHowWeWork from '../../components/HomeHowWeWork.astro';
 import HomeProjectsTeaser from '../../components/HomeProjectsTeaser.astro';
@@ -53,6 +54,16 @@ const breadcrumbs = breadcrumbListJsonLd({
       items={data.homeAICapabilitiesItems ?? undefined}
       ctaLabel={data.homeAICapabilitiesCtaLabel ?? undefined}
       ctaHref={data.homeAICapabilitiesCtaHref ?? undefined}
+    />
+
+    <!-- AI Structure fits best right after AI capabilities: a concrete demo before the risk checklist CTA. -->
+    <HomeAIStructureCTA
+      lang="en"
+      title={data.homeAIStructureTitle}
+      description={data.homeAIStructureDescription}
+      items={data.homeAIStructureItems ?? undefined}
+      ctaLabel={data.homeAIStructureCtaLabel ?? undefined}
+      ctaHref={data.homeAIStructureCtaHref ?? undefined}
     />
 
     <HomeAIChecklistCTA

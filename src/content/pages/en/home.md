@@ -53,6 +53,18 @@ homeAICapabilitiesItems:
     description: >-
       We measure usage and impact. We optimize where it matters so a good idea
       doesn’t become a runaway cost.
+homeAIStructureTitle: AI Structure
+homeAIStructureDescription: >-
+  A public tool that demonstrates a “no chat” flow: describe your context and
+  get a first technical structure (domain, flows, critical considerations) to
+  align scope and risks before the next steps.
+homeAIStructureItems:
+  - "System overview: scope and boundaries"
+  - "Domain model: entities and responsibilities"
+  - "Key flows: cause → effect"
+  - "Critical considerations: tech, data/privacy, architecture"
+homeAIStructureCtaLabel: Explore AI Structure
+homeAIStructureCtaHref: /ai-structure
 homeAIChecklistTitle: AI Risk & Privacy Checklist
 homeAIChecklistDescription: >-
   A free tool to assess risk, responsibilities, and safeguards before you
