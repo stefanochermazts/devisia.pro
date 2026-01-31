@@ -217,6 +217,13 @@ const formatDate = (date: Date | string): string => {
 
   .post-content :global(p) {
     margin-bottom: 1.5rem;
+    max-width: 98vw;
+  }
+  
+  @media (min-width: 48rem) {
+    .post-content :global(p) {
+      max-width: 90vw;
+    }
   }
 
   .post-content :global(ul, ol) {
