@@ -220,6 +220,17 @@ const breadcrumbs = breadcrumbListJsonLd({
       max-width: 90vw;
     }
   }
+  
+  /* Ensure markdown-rendered paragraphs can use the same width */
+  .page-content :global(p) {
+    max-width: 98vw;
+  }
+  
+  @media (min-width: 48rem) {
+    .page-content :global(p) {
+      max-width: 90vw;
+    }
+  }
 
   .page-intro {
     margin-top: 2.5rem;
