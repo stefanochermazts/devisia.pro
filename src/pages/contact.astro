@@ -211,8 +211,14 @@ const breadcrumbs = breadcrumbListJsonLd({
 
 <style>
   .page-content {
-    max-width: 800px;
+    max-width: 98vw;
     margin: 0 auto;
+  }
+  
+  @media (min-width: 48rem) {
+    .page-content {
+      max-width: 90vw;
+    }
   }
 
   .page-intro {
