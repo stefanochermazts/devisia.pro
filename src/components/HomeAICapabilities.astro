@@ -77,11 +77,11 @@ const href = (path: string) => (localePrefix ? `${localePrefix}${path}` : path);
 ---
 
 <section class="ds-stack" data-gap="lg" style="container-type: inline-size">
-  <div class="ds-reading">
+  <div class="ds-grid" data-cols="2" style="container-type: inline-size; align-items: start">
     <h2 style="margin: 0">{content.title}</h2>
     <p class="ds-muted" style="margin: 0">{content.description}</p>
   </div>
-  <div class="ds-stack" data-gap="lg" style="margin-top: var(--ds-space-6)">
+  <div class="ds-grid" data-cols="2" style="container-type: inline-size; margin-top: var(--ds-space-6)">
     {content.items.map((item) => (
       <div class="ds-stack" data-gap="sm">
         <h3 style="margin: 0; font-weight: 600; font-size: var(--ds-text-md); color: var(--ds-color-text)">{item.title}</h3>

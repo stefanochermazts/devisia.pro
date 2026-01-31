@@ -56,21 +56,23 @@ const breadcrumbs = breadcrumbListJsonLd({
       ctaHref={data.homeAICapabilitiesCtaHref ?? undefined}
     />
 
-    <!-- AI Structure fits best right after AI capabilities: a concrete demo before the risk checklist CTA. -->
-    <HomeAIStructureCTA
-      lang="it"
-      title={data.homeAIStructureTitle}
-      description={data.homeAIStructureDescription}
-      items={data.homeAIStructureItems ?? undefined}
-      ctaLabel={data.homeAIStructureCtaLabel ?? undefined}
-      ctaHref={data.homeAIStructureCtaHref ?? undefined}
-    />
+    <!-- Compact AI area: after capabilities, show two concrete tools side-by-side on desktop. -->
+    <div class="ds-grid" data-cols="2" style="container-type: inline-size">
+      <HomeAIStructureCTA
+        lang="it"
+        title={data.homeAIStructureTitle}
+        description={data.homeAIStructureDescription}
+        items={data.homeAIStructureItems ?? undefined}
+        ctaLabel={data.homeAIStructureCtaLabel ?? undefined}
+        ctaHref={data.homeAIStructureCtaHref ?? undefined}
+      />
 
-    <HomeAIChecklistCTA
-      lang="it"
-      title={data.homeAIChecklistTitle}
-      description={data.homeAIChecklistDescription}
-    />
+      <HomeAIChecklistCTA
+        lang="it"
+        title={data.homeAIChecklistTitle}
+        description={data.homeAIChecklistDescription}
+      />
+    </div>
 
     <HomeHowWeWork
       lang="it"
