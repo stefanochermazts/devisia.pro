@@ -30,6 +30,7 @@ import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.
       const btnGenerate = $('[data-ai-structure-generate]');
       const btnGenerateText = $('[data-ai-structure-generate-text]');
       const btnGenerateSpinner = $('[data-ai-structure-generate-spinner]');
+      const btnGenerateProgress = $('[data-ai-structure-progress]');
       const statusWrap = $('[data-ai-structure-status]');
       const statusBody = $('[data-ai-structure-status] .ds-alert__body');
       const errorWrap = $('[data-ai-structure-error]');
@@ -77,6 +78,42 @@ import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.
         setHidden(errorWrap, false);
       };
 
+      const PROGRESS_STEPS = [
+        'System Overview…',
+        'Core Domain Model…',
+        'Key Flows…',
+        'Critical Considerations…',
+      ];
+
+      let progressTimer = null;
+      const stopProgress = () => {
+        if (progressTimer) clearInterval(progressTimer);
+        progressTimer = null;
+        setText(btnGenerateProgress, '');
+        setHidden(btnGenerateProgress, true);
+      };
+
+      const startProgress = () => {
+        stopProgress();
+        let idx = 0;
+        setText(btnGenerateProgress, PROGRESS_STEPS[idx]);
+        setHidden(btnGenerateProgress, false);
+        // This is a best-effort indicator (backend runs sections in parallel).
+        progressTimer = setInterval(() => {
+          idx = Math.min(PROGRESS_STEPS.length - 1, idx + 1);
+          setText(btnGenerateProgress, PROGRESS_STEPS[idx]);
+        }, 3500);
+      };
+
+      const updateProgressFromDetail = (detail) => {
+        const d = String(detail || '');
+        const m = d.match(/SECTION_(?:TIMEOUT|FAILED|INVALID):([a-z_]+)/i);
+        if (!m) return;
+        const section = String(m[1] || '').replace(/_/g, ' ');
+        setText(btnGenerateProgress, `Stuck at: ${section}`);
+        setHidden(btnGenerateProgress, false);
+      };
+
       const setLoading = (loading) => {
         btnGenerate?.toggleAttribute('disabled', Boolean(loading));
         textarea?.toggleAttribute('disabled', Boolean(loading));
@@ -85,12 +122,14 @@ import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.
         if (btnGenerateText) setHidden(btnGenerateText, Boolean(loading));
         if (btnGenerateSpinner) setHidden(btnGenerateSpinner, !loading);
         if (loading) {
+          startProgress();
           setText(
             statusBody,
             'Analyzing context.\nStructuring domain and flows.'
           );
           setHidden(statusWrap, false);
         } else {
+          stopProgress();
           setHidden(statusWrap, true);
         }
       };
@@ -183,11 +222,9 @@ import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.
 
           const data = await res.json().catch(() => ({}));
           if (!res.ok) {
-            if (data && data.code === 'SENSITIVE_INPUT') {
-              showError('Sensitive-looking data detected. Remove secrets and retry.');
-            } else {
-              showError('Error. Please try again.');
-            }
+            updateProgressFromDetail(data?.detail);
+            const payload = { http_status: res.status, ...(data && typeof data === 'object' ? data : { body: data }) };
+            showError(JSON.stringify(payload, null, 2));
             return;
           }
 
@@ -195,9 +232,15 @@ import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.
           renderArtifact(lastArtifact);
         } catch (e) {
           if (e instanceof Error && e.name === 'AbortError') {
-            showError('Timeout: the request took too long. Please try again.');
+            showError(
+              JSON.stringify(
+                { code: 'TIMEOUT', message: 'Timeout: the request took too long. Please try again.' },
+                null,
+                2
+              )
+            );
           } else {
-            showError('Error. Please try again.');
+            showError(JSON.stringify({ code: 'NETWORK_ERROR', message: 'Error. Please try again.' }, null, 2));
           }
         } finally {
           clearTimeout(timeout);
