@@ -295,10 +295,12 @@ async function callSectionWithRetry(params: {
     const v1 = params.validate(out1);
     if (v1.ok) return v1.value;
   } catch (e) {
-    // Retry below (including AbortError).
-    if (!isAbort(e)) {
-      // For non-timeout errors we still attempt one retry, but keep context in message if it fails.
+    // If we hit the per-section timeout, don't retry: it usually increases the chance
+    // of exceeding the Netlify function time budget.
+    if (isAbort(e)) {
+      throw new Error(`SECTION_TIMEOUT:${params.sectionName}`);
     }
+    // For non-timeout errors we still attempt one retry below.
   }
 
   // Attempt 2 (retry hint)
@@ -366,8 +368,9 @@ export async function generateStructureArtifact(params: {
   }
 
   // SECTIONED mode: 4 smaller prompts, then merge into ArtifactV1 shape.
-  // Keep per-call timeout lower to leave room for merge/validation and potential one-section retry.
-  const perCallTimeoutMs = 18_000;
+  // Keep per-call timeout close to the Netlify budget.
+  // Note: we avoid retrying timeouts (see callSectionWithRetry) to prevent budget blowups.
+  const perCallTimeoutMs = 23_000;
 
   const sectionPrompts = {
     system_overview: [
