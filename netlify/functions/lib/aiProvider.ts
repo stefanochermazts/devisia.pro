@@ -75,21 +75,15 @@ If information is missing, make conservative assumptions.`;
 
 // NOTE: To reduce function timeouts, we can generate the artifact in 4 smaller calls (one per section)
 // and then merge + validate the final ArtifactV1.
-const SYSTEM_PROMPT_V1_SECTIONED = `You are a senior systems analyst working for Devisia, a technology consultancy.
+const SYSTEM_PROMPT_V1_SECTIONED = `You are a senior systems analyst at Devisia (technology consultancy).
 
-Your role is to turn a rough product/problem description into a first system structure.
-The goal is to give decision-makers a clear, usable artifact: scope, domain concepts, key flows, and risks.
+Goal: produce a clear, decision-usable system structure from rough input.
 
-Constraints:
-- This is NOT code generation and NOT an implementation plan.
-- This is NOT generic marketing copy or hype.
+Rules:
 - Write in the requested Locale.
-- Be concrete and specific. Prefer precise terms over vague abstractions.
-
-Output rules:
-- Return ONLY valid JSON.
-- Do not use markdown.
-- Do not include any additional text.
+- No hype, no generic marketing.
+- Not implementation, not code.
+- Return ONLY valid JSON (no markdown, no extra text).
 - Follow the exact JSON shape requested by the user message (no extra keys).`;
 
 type ChatMessage = { role: 'system' | 'user'; content: string };
@@ -381,7 +375,8 @@ export async function generateStructureArtifact(params: {
       'Return ONLY JSON with EXACTLY this structure: {"system_overview": string}',
       'Constraints: system_overview MUST be 4–6 sentences. No extra keys.',
       'Style: technical + decision-oriented. Define boundaries, actors, and what is in/out of scope.',
-      'Include ONE final sentence that invites a pragmatic next step (e.g., a short review/workshop) and may mention Devisia once. No hype.',
+      'If you include a next-step invitation, it MUST be the LAST sentence inside the system_overview string.',
+      'Do NOT create a "next_step" field or any extra keys. Mention Devisia at most once. No hype.',
       '',
       baseContext,
     ]
