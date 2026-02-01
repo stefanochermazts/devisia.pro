@@ -44,7 +44,8 @@ System Overview:
 - 4 to 6 sentences
 - Describe what the system is and what problem it addresses
 - Define scope and boundaries
-- No benefits, no value claims, no marketing language
+- Keep it technical and decision-oriented (what exists, what changes, what must be true)
+- You may include ONE final sentence that suggests a pragmatic next step (e.g., a short review/workshop) and may mention Devisia once.
 
 Core Domain Model:
 - 6 to 8 domain entities
@@ -74,11 +75,22 @@ If information is missing, make conservative assumptions.`;
 
 // NOTE: To reduce function timeouts, we can generate the artifact in 4 smaller calls (one per section)
 // and then merge + validate the final ArtifactV1.
-const SYSTEM_PROMPT_V1_SECTIONED = `You are performing a constrained system-structuring task for a technology consultancy.
-Your role is to transform an unstructured problem or product description into an initial system structure.
-This task is NOT: business strategy, marketing/copywriting, technical implementation, or code generation.
-Tone must be technical, neutral, and precise.
-Return ONLY valid JSON. Do not use markdown. Do not include any additional text.`;
+const SYSTEM_PROMPT_V1_SECTIONED = `You are a senior systems analyst working for Devisia, a technology consultancy.
+
+Your role is to turn a rough product/problem description into a first system structure.
+The goal is to give decision-makers a clear, usable artifact: scope, domain concepts, key flows, and risks.
+
+Constraints:
+- This is NOT code generation and NOT an implementation plan.
+- This is NOT generic marketing copy or hype.
+- Write in the requested Locale.
+- Be concrete and specific. Prefer precise terms over vague abstractions.
+
+Output rules:
+- Return ONLY valid JSON.
+- Do not use markdown.
+- Do not include any additional text.
+- Follow the exact JSON shape requested by the user message (no extra keys).`;
 
 type ChatMessage = { role: 'system' | 'user'; content: string };
 
@@ -368,6 +380,8 @@ export async function generateStructureArtifact(params: {
       params.retryHint ? params.retryHint : null,
       'Return ONLY JSON with EXACTLY this structure: {"system_overview": string}',
       'Constraints: system_overview MUST be 4–6 sentences. No extra keys.',
+      'Style: technical + decision-oriented. Define boundaries, actors, and what is in/out of scope.',
+      'Include ONE final sentence that invites a pragmatic next step (e.g., a short review/workshop) and may mention Devisia once. No hype.',
       '',
       baseContext,
     ]
@@ -377,6 +391,7 @@ export async function generateStructureArtifact(params: {
       params.retryHint ? params.retryHint : null,
       'Return ONLY JSON with EXACTLY this structure: {"core_domain_model": [{"name": string, "description": string}] }',
       'Constraints: 6–8 entities. Each entity must have exactly name and description. No extra keys.',
+      'Style: pick real domain concepts (not UI, not technical classes). Keep descriptions short and concrete.',
       '',
       baseContext,
     ]
@@ -386,6 +401,7 @@ export async function generateStructureArtifact(params: {
       params.retryHint ? params.retryHint : null,
       'Return ONLY JSON with EXACTLY this structure: {"key_flows": [{"title": string, "steps": string[]}] }',
       'Constraints: 2–4 flows. Each flow has 2–3 steps. No extra keys.',
+      'Style: describe cause → effect flows (not UI clicks). Use crisp, operational steps.',
       '',
       baseContext,
     ]
@@ -395,6 +411,7 @@ export async function generateStructureArtifact(params: {
       params.retryHint ? params.retryHint : null,
       'Return ONLY JSON with EXACTLY this structure: {"critical_considerations": {"technical": string[], "privacy_data": string[], "architectural": string[]} }',
       'Constraints: each list has 1–3 items. No extra keys.',
+      'Style: risks, trade-offs, and what must be clarified. Avoid implementation details and avoid generic statements.',
       '',
       baseContext,
     ]
