@@ -26,6 +26,8 @@ function isPlainObject(value: unknown): value is Record<string, unknown> {
 export const handler: Handler = async (event) => {
   if (event.httpMethod !== 'POST') return json(405, { error: 'Method not allowed' });
 
+  const model = process.env.OPENAI_MODEL || 'gpt-5-mini';
+
   let payload: unknown;
   try {
     payload = event.body ? JSON.parse(event.body) : {};
@@ -77,12 +79,13 @@ export const handler: Handler = async (event) => {
       code: 'AI_PROVIDER_FAILED',
       message: 'AI provider failed.',
       detail: msg.slice(0, 160),
+      model,
     });
   }
 
   const validated = validateArtifactV1(out);
-  if (validated.ok) return json(200, { artifact: validated.value });
+  if (validated.ok) return json(200, { artifact: validated.value, model });
 
-  return json(502, { code: 'INVALID_AI_OUTPUT', message: 'AI output failed validation.' });
+  return json(502, { code: 'INVALID_AI_OUTPUT', message: 'AI output failed validation.', model });
 };
 
