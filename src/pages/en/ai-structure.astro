@@ -80,6 +80,13 @@ import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.
         setHidden(errorWrap, false);
       };
 
+      const isInViewport = (el) => {
+        if (!el) return false;
+        const r = el.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight || 0;
+        return r.top >= 0 && r.top <= Math.max(180, vh * 0.35);
+      };
+
       const PROGRESS_STEPS = [
         'System Overview…',
         'Core Domain Model…',
@@ -199,6 +206,12 @@ import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.
         setHidden(modelLine, !(modelUsed || '').trim());
         setHidden(btnSeeTogether, false);
         setHidden(btnRegenerate, false);
+
+        requestAnimationFrame(() => {
+          if (!isInViewport(outputWrap)) {
+            outputWrap?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
+          }
+        });
       };
 
       const generate = async () => {

@@ -80,6 +80,14 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
         setHidden(errorWrap, false);
       };
 
+      const isInViewport = (el) => {
+        if (!el) return false;
+        const r = el.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight || 0;
+        // Consider "visible" if top is within viewport and element isn't far below.
+        return r.top >= 0 && r.top <= Math.max(180, vh * 0.35);
+      };
+
       const PROGRESS_STEPS = [
         'System Overview…',
         'Core Domain Model…',
@@ -199,6 +207,14 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
         setHidden(modelLine, !(modelUsed || '').trim());
         setHidden(btnSeeTogether, false);
         setHidden(btnRegenerate, false);
+
+        // On laptops/short viewports, results can be below the fold.
+        // After rendering, bring the user to the results area.
+        requestAnimationFrame(() => {
+          if (!isInViewport(outputWrap)) {
+            outputWrap?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
+          }
+        });
       };
 
       const generate = async () => {
