@@ -55,9 +55,9 @@ homeAICapabilitiesItems:
       doesn’t become a runaway cost.
 homeAIStructureTitle: AI Structure
 homeAIStructureDescription: >-
-  A public tool that demonstrates a “no chat” flow: describe your context and
-  get a first technical structure (domain, flows, critical considerations) to
-  align scope and risks before the next steps.
+  We show you how we would approach it at Devisia: 
+  system boundaries, key flows, responsibilities, and critical points. 
+  No chatbot. No ambiguity.
 homeAIStructureItems:
   - "System overview: scope and boundaries"
   - "Domain model: entities and responsibilities"

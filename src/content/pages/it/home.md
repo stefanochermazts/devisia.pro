@@ -58,9 +58,9 @@ homeAICapabilitiesItems:
       buona idea diventi un costo fisso ingestibile.
 homeAIStructureTitle: AI Structure
 homeAIStructureDescription: >-
-  Un tool pubblico che mostra un flusso “senza chat”: descrivi un contesto e
-  ottieni una prima struttura tecnica (dominio, flussi, punti critici) da usare
-  per allineare confini e rischi.
+  Noi di Devisia ti restituiamo come lo affronteremmo: 
+  confini, flussi, responsabilità e punti critici. 
+  Senza chatbot, senza ambiguità.
 homeAIStructureItems:
   - "System overview: scope e confini"
   - "Domain model: entità e responsabilità"
