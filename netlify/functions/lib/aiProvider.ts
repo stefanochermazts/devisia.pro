@@ -340,7 +340,18 @@ export async function generateStructureArtifact(params: {
   const model = process.env.OPENAI_MODEL || 'gpt-5-mini';
 
   const locale = (params.locale || 'it').trim();
-  const baseContext = [`Locale: ${locale}`, '', 'USER_INPUT:', params.input_text].join('\n');
+  const lc = locale.toLowerCase();
+  const languageRule = (() => {
+    if (lc.startsWith('it')) {
+      return 'Output language: Italian. Tutte le stringhe devono essere in italiano (non inglese). Do not mix languages.';
+    }
+    if (lc.startsWith('en')) {
+      return 'Output language: English. All strings must be in English (not Italian). Do not mix languages.';
+    }
+    return `Output language: ${locale}. All natural-language strings must be in that language. Do not mix languages.`;
+  })();
+
+  const baseContext = [`Locale: ${locale}`, languageRule, '', 'USER_INPUT:', params.input_text].join('\n');
 
   const mode = (process.env.AI_STRUCTURE_MODE || 'sectioned').trim().toLowerCase();
   if (mode === 'single') {
@@ -390,6 +401,7 @@ export async function generateStructureArtifact(params: {
       'Return ONLY JSON with EXACTLY this structure: {"core_domain_model": [{"name": string, "description": string}] }',
       'Constraints: 6–8 entities. Each entity must have exactly name and description. No extra keys.',
       'Style: pick real domain concepts (not UI, not technical classes). Keep descriptions short and concrete.',
+      'Language rule: all entity names and descriptions must follow the Output language in the context.',
       '',
       baseContext,
     ]
@@ -400,6 +412,7 @@ export async function generateStructureArtifact(params: {
       'Return ONLY JSON with EXACTLY this structure: {"key_flows": [{"title": string, "steps": string[]}] }',
       'Constraints: 2–4 flows. Each flow has 2–3 steps. No extra keys.',
       'Style: describe cause → effect flows (not UI clicks). Use crisp, operational steps.',
+      'Language rule: all titles and steps must follow the Output language in the context.',
       '',
       baseContext,
     ]
@@ -410,6 +423,7 @@ export async function generateStructureArtifact(params: {
       'Return ONLY JSON with EXACTLY this structure: {"critical_considerations": {"technical": string[], "privacy_data": string[], "architectural": string[]} }',
       'Constraints: each list has 1–3 items. No extra keys.',
       'Style: risks, trade-offs, and what must be clarified. Avoid implementation details and avoid generic statements.',
+      'Language rule: all bullet strings must follow the Output language in the context.',
       '',
       baseContext,
     ]
