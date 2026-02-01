@@ -105,8 +105,14 @@ const softwareApp = softwareApplicationJsonLd({
 
 <style>
   .project {
-    max-width: 900px;
+    max-width: 98vw;
     margin: 0 auto;
+  }
+
+  @media (min-width: 48rem) {
+    .project {
+      max-width: 90vw;
+    }
   }
 
   .header {
