@@ -38,6 +38,8 @@ import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.
 
       const outputWrap = $('[data-ai-structure-output]');
       const afterText = $('[data-ai-structure-after-text]');
+      const modelLine = $('[data-ai-structure-model-line]');
+      const modelSpan = $('[data-ai-structure-model]');
       const btnSeeTogether = $('[data-ai-structure-open-modal]');
       const btnRegenerate = $('[data-ai-structure-regenerate]');
 
@@ -136,8 +138,9 @@ import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.
 
       let lastArtifact = null;
       let lastInput = '';
+      let lastModel = '';
 
-      const renderArtifact = (artifact) => {
+      const renderArtifact = (artifact, modelUsed) => {
         setText($('[data-artifact-system-overview]'), artifact.system_overview || '');
 
         const dm = $('[data-artifact-domain-model]');
@@ -192,6 +195,8 @@ import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.
 
         setHidden(outputWrap, false);
         setHidden(afterText, false);
+        if (modelSpan) setText(modelSpan, modelUsed || '');
+        setHidden(modelLine, !(modelUsed || '').trim());
         setHidden(btnSeeTogether, false);
         setHidden(btnRegenerate, false);
       };
@@ -229,7 +234,8 @@ import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.
           }
 
           lastArtifact = data.artifact;
-          renderArtifact(lastArtifact);
+          lastModel = String(data.model || '');
+          renderArtifact(lastArtifact, lastModel);
         } catch (e) {
           if (e instanceof Error && e.name === 'AbortError') {
             showError(
