@@ -55,7 +55,7 @@ homeAICapabilitiesItems:
       doesn’t become a runaway cost.
 homeAIStructureTitle: AI Structure
 homeAIStructureDescription: >-
-  We show you how we would approach it at Devisia: 
+  Tell us about the project you have in mind. We show you how we would approach it at Devisia: 
   system boundaries, key flows, responsibilities, and critical points. 
   No chatbot. No ambiguity.
 homeAIStructureItems:

@@ -58,8 +58,8 @@ homeAICapabilitiesItems:
       buona idea diventi un costo fisso ingestibile.
 homeAIStructureTitle: AI Structure
 homeAIStructureDescription: >-
-  Noi di Devisia ti restituiamo come lo affronteremmo: 
-  confini, flussi, responsabilità e punti critici. 
+  Raccontaci il progetto che hai in mente.
+  Noi di Devisia ti restituiamo come lo affronteremmo: confini, flussi, responsabilità e punti critici. 
   Senza chatbot, senza ambiguità.
 homeAIStructureItems:
   - "System overview: scope e confini"
