@@ -100,7 +100,8 @@ async function callOpenAIChatCompletions(params: { model: string; messages: Chat
   const apiKey = getEnv('OPENAI_API_KEY');
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), params.timeoutMs ?? 24_000);
+  // Netlify Pro allows up to 60s per function; keep a little headroom for parsing/validation.
+  const timeout = setTimeout(() => controller.abort(), params.timeoutMs ?? 55_000);
 
   try {
     const res = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -318,7 +319,7 @@ async function callSectionWithRetry(params: {
         { role: 'user', content: retryUserPrompt },
       ],
       // Keep retry shorter to fit Netlify overall timeout budget.
-      timeoutMs: Math.min(8_000, Math.max(6_000, Math.floor(params.timeoutMs * 0.6))),
+      timeoutMs: Math.min(20_000, Math.max(10_000, Math.floor(params.timeoutMs * 0.6))),
     });
     const v2 = params.validate(out2);
     if (v2.ok) return v2.value;
@@ -373,15 +374,15 @@ export async function generateStructureArtifact(params: {
         { role: 'system', content: SYSTEM_PROMPT_V1 },
         { role: 'user', content: userPrompt },
       ],
-      // Keep under Netlify 26s max.
-      timeoutMs: 24_000,
+      // Netlify Pro allows up to 60s; keep headroom.
+      timeoutMs: 55_000,
     });
   }
 
   // SECTIONED mode: 4 smaller prompts, then merge into ArtifactV1 shape.
   // Keep per-call timeout close to the Netlify budget.
   // Note: we avoid retrying timeouts (see callSectionWithRetry) to prevent budget blowups.
-  const perCallTimeoutMs = 23_000;
+  const perCallTimeoutMs = 50_000;
 
   const sectionPrompts = {
     system_overview: [

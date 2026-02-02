@@ -229,7 +229,7 @@ import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.
 
         setLoading(true);
         const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 60_000); // 60s timeout
+        const timeout = setTimeout(() => controller.abort(), 70_000); // allow Netlify Pro timeout + network overhead
         try {
           const res = await fetch('/.netlify/functions/generate-structure', {
             method: 'POST',

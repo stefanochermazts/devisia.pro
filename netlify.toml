@@ -83,7 +83,10 @@
   timeout = 26
 
 [functions.generate-structure]
-  timeout = 26
+  timeout = 60
+
+[functions.submit-artifact]
+  timeout = 60
 
 # Deploy contexts
 [context.production]
