@@ -13,10 +13,13 @@ const STRINGS =
           'Paste messages copied from WhatsApp. The tool extracts matches, sorts them by date/time, and generates a WhatsApp-ready message.',
         privacy: 'No uploads. No storage. Everything stays in your browser.',
         inputLabel: 'Input (paste here)',
+        btnPaste: 'Paste',
         outputLabel: 'Output (WhatsApp-ready)',
         btnAnalyze: 'Analyze requests',
         btnCopy: 'Copy to clipboard',
         btnClear: 'Clear',
+        pasted: 'Pasted',
+        pasteFallback: 'Paste manually (press and hold inside the input)',
         copied: 'Copied',
         copyFallback: 'Selected — copy manually',
         badgeIncomplete: 'incomplete',
@@ -31,10 +34,13 @@ const STRINGS =
           'Incolla messaggi copiati da WhatsApp. Il tool estrae gli eventi, li ordina per data/ora e genera un testo pronto da reincollare.',
         privacy: 'Nessun upload. Nessuno storage. Tutto rimane nel browser.',
         inputLabel: 'Input (incolla qui)',
+        btnPaste: 'Incolla',
         outputLabel: 'Output (pronto per WhatsApp)',
         btnAnalyze: 'Analizza richieste',
         btnCopy: 'Copia negli appunti',
         btnClear: 'Pulisci',
+        pasted: 'Incollato',
+        pasteFallback: 'Incolla manualmente (pressione prolungata dentro l’input)',
         copied: 'Copiato',
         copyFallback: 'Selezionato — copia manualmente',
         badgeIncomplete: 'incompleto',
@@ -55,6 +61,11 @@ const STRINGS =
   <div class="padel-tool__grid">
     <div class="ds-stack" data-gap="xs">
       <label class="ds-label" for="padel-input">{STRINGS.inputLabel}</label>
+      <div class="padel-tool__input-actions">
+        <button class="ds-btn" data-variant="secondary" type="button" data-padel-paste>
+          {STRINGS.btnPaste}
+        </button>
+      </div>
       <textarea id="padel-input" class="padel-tool__input" data-padel-input spellcheck="false"></textarea>
     </div>
 

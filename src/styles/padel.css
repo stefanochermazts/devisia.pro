@@ -34,6 +34,15 @@
   gap: var(--ds-space-4);
 }
 
+.padel-tool__input-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.padel-tool__input-actions .ds-btn {
+  min-height: 44px;
+}
+
 .padel-tool textarea {
   width: 100%;
   font-size: 16px; /* mobile minimum */

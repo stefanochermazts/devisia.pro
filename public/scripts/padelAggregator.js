@@ -4,6 +4,9 @@
 const STRINGS = (() => {
   const s = (globalThis && globalThis.__PADEL_STRINGS__) || {};
   return {
+    btnPaste: s.btnPaste || 'Incolla',
+    pasted: s.pasted || 'Incollato',
+    pasteFallback: s.pasteFallback || 'Incolla manualmente (pressione prolungata dentro l’input)',
     btnCopy: s.btnCopy || 'Copia negli appunti',
     copied: s.copied || 'Copiato',
     copyFallback: s.copyFallback || 'Selezionato — copia manualmente',
@@ -382,6 +385,7 @@ function init() {
   const input = document.querySelector('[data-padel-input]');
   const output = document.querySelector('[data-padel-output]');
   const status = document.querySelector('[data-padel-status]');
+  const btnPaste = document.querySelector('[data-padel-paste]');
   const btnAnalyze = document.querySelector('[data-padel-analyze]');
   const btnCopy = document.querySelector('[data-padel-copy]');
   const btnClear = document.querySelector('[data-padel-clear]');
@@ -444,6 +448,53 @@ function init() {
     (output || preview || root)?.scrollIntoView?.({ behavior: 'smooth', block: 'start' });
   };
 
+  const pasteIntoInput = async () => {
+    if (!input) return;
+    setStatus('');
+
+    try {
+      input.focus?.();
+    } catch {
+      /* noop */
+    }
+
+    try {
+      if (navigator.clipboard?.readText) {
+        const clip = await navigator.clipboard.readText();
+        if (!clip) return;
+
+        // Insert at cursor/selection (best-effort), fallback to append.
+        try {
+          const v = String(input.value || '');
+          const start = Number.isFinite(input.selectionStart) ? input.selectionStart : v.length;
+          const end = Number.isFinite(input.selectionEnd) ? input.selectionEnd : v.length;
+          input.value = v.slice(0, start) + clip + v.slice(end);
+          const pos = start + clip.length;
+          input.selectionStart = input.selectionEnd = pos;
+        } catch {
+          input.value = String(input.value || '') + clip;
+        }
+
+        ensureTrailingDoubleNewline(input);
+
+        setStatus(STRINGS.pasted);
+        setTimeout(() => setStatus(''), 1500);
+        return;
+      }
+    } catch {
+      /* fall through */
+    }
+
+    // Fallback: browsers may deny clipboard read; prompt manual paste.
+    try {
+      input.focus?.();
+      setStatus(STRINGS.pasteFallback);
+      setTimeout(() => setStatus(''), 2500);
+    } catch {
+      /* noop */
+    }
+  };
+
   const copyOutput = async () => {
     const text = String(output?.value || '');
     if (!text) return;
@@ -477,6 +528,7 @@ function init() {
     setTimeout(() => ensureTrailingDoubleNewline(input), 0);
   });
 
+  btnPaste?.addEventListener('click', () => void pasteIntoInput());
   btnAnalyze?.addEventListener('click', () => analyze());
   btnCopy?.addEventListener('click', () => void copyOutput());
   btnClear?.addEventListener('click', () => {
