@@ -442,9 +442,9 @@ function init() {
       // Render Hook AI result
       if (aiHookBody && data.hook) {
         const h = data.hook;
-        const verdictMap = { good: STRINGS.aiVerdict_good, generic: STRINGS.aiVerdict_generic, weak: STRINGS.aiVerdict_weak };
+        const verdictMap = { good: STRINGS.aiVerdict_good, generic: STRINGS.aiVerdict_generic, weak: STRINGS.aiVerdict_weak, error: STRINGS.aiError };
         const verdictLabel = verdictMap[h.verdict] || h.verdict;
-        const badgeClass = h.verdict === 'good' ? 'li-tool__badge--good' : 'li-tool__badge--warn';
+        const badgeClass = h.verdict === 'good' ? 'li-tool__badge--good' : h.verdict === 'error' ? 'li-tool__badge--warn' : 'li-tool__badge--warn';
         let html = `<span class="li-tool__badge ${badgeClass}">${escapeHtml(verdictLabel)}</span>`;
         if (h.reason) html += `<p class="li-tool__ai-text">${escapeHtml(h.reason)}</p>`;
         if (h.suggestion) html += `<p class="li-tool__ai-text li-tool__ai-suggestion"><strong>${escapeHtml(STRINGS.aiSuggestionLabel)}:</strong> ${escapeHtml(h.suggestion)}</p>`;

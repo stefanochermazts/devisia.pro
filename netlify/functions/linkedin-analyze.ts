@@ -98,52 +98,61 @@ export const handler: Handler = async (event) => {
       ? 'Rispondi in italiano.'
       : `Respond in ${locale}.`;
 
-  // Run both analyses in parallel
-  try {
-    const [hookRaw, toneRaw] = await Promise.all([
-      callOpenAIChatCompletions({
-        model,
-        messages: [
-          { role: 'system', content: HOOK_SYSTEM_PROMPT },
-          { role: 'user', content: `${languageHint}\n\nPost opening:\n${hookInput}` },
-        ],
-        timeoutMs: 50_000,
-      }),
-      callOpenAIChatCompletions({
-        model,
-        messages: [
-          { role: 'system', content: TONE_SYSTEM_PROMPT },
-          { role: 'user', content: `${languageHint}\n\nFull post:\n${text}` },
-        ],
-        timeoutMs: 50_000,
-      }),
-    ]);
+  // Run both analyses in parallel with allSettled so we can return partial results
+  // instead of a gateway 504 if one call is slow.
+  const perCallTimeout = 25_000; // keep well under 60s gateway limit
 
-    // Basic shape validation (lenient — we trust the model but guard against crashes)
-    const hook = isPlainObject(hookRaw) ? hookRaw : {};
-    const tone = isPlainObject(toneRaw) ? toneRaw : {};
-
-    return json(200, {
-      hook: {
-        verdict: typeof hook.verdict === 'string' ? hook.verdict : 'unknown',
-        reason: typeof hook.reason === 'string' ? hook.reason : '',
-        suggestion: typeof hook.suggestion === 'string' ? hook.suggestion : '',
-      },
-      tone: {
-        score: typeof tone.score === 'number' ? tone.score : 0,
-        issues: Array.isArray(tone.issues) ? tone.issues.slice(0, 20) : [],
-        summary: typeof tone.summary === 'string' ? tone.summary : '',
-      },
+  const [hookResult, toneResult] = await Promise.allSettled([
+    callOpenAIChatCompletions({
       model,
-    });
-  } catch (err: unknown) {
-    console.error('LinkedIn analyze error:', err);
-    const msg = err instanceof Error ? err.message : String(err);
+      messages: [
+        { role: 'system', content: HOOK_SYSTEM_PROMPT },
+        { role: 'user', content: `${languageHint}\n\nPost opening:\n${hookInput}` },
+      ],
+      timeoutMs: perCallTimeout,
+    }),
+    callOpenAIChatCompletions({
+      model,
+      messages: [
+        { role: 'system', content: TONE_SYSTEM_PROMPT },
+        { role: 'user', content: `${languageHint}\n\nFull post:\n${text}` },
+      ],
+      timeoutMs: perCallTimeout,
+    }),
+  ]);
+
+  const hookRaw = hookResult.status === 'fulfilled' && isPlainObject(hookResult.value) ? hookResult.value : null;
+  const toneRaw = toneResult.status === 'fulfilled' && isPlainObject(toneResult.value) ? toneResult.value : null;
+
+  // If both failed, return 502
+  if (!hookRaw && !toneRaw) {
+    const hookErr = hookResult.status === 'rejected' ? String(hookResult.reason) : '';
+    const toneErr = toneResult.status === 'rejected' ? String(toneResult.reason) : '';
+    console.error('LinkedIn analyze: both calls failed.', { hookErr, toneErr });
     return json(502, {
       code: 'AI_PROVIDER_FAILED',
       message: 'AI analysis failed.',
-      detail: msg.slice(0, 160),
+      detail: (hookErr || toneErr).slice(0, 160),
       model,
     });
   }
+
+  // Return whatever succeeded (partial results are fine)
+  return json(200, {
+    hook: hookRaw
+      ? {
+          verdict: typeof hookRaw.verdict === 'string' ? hookRaw.verdict : 'unknown',
+          reason: typeof hookRaw.reason === 'string' ? hookRaw.reason : '',
+          suggestion: typeof hookRaw.suggestion === 'string' ? hookRaw.suggestion : '',
+        }
+      : { verdict: 'error', reason: 'Hook analysis timed out.', suggestion: '' },
+    tone: toneRaw
+      ? {
+          score: typeof toneRaw.score === 'number' ? toneRaw.score : 0,
+          issues: Array.isArray(toneRaw.issues) ? toneRaw.issues.slice(0, 20) : [],
+          summary: typeof toneRaw.summary === 'string' ? toneRaw.summary : '',
+        }
+      : { score: 0, issues: [], summary: 'Tone analysis timed out.' },
+    model,
+  });
 };
