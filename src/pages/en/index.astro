@@ -7,6 +7,7 @@ import HomeWhatWeDo from '../../components/HomeWhatWeDo.astro';
 import HomeAICapabilities from '../../components/HomeAICapabilities.astro';
 import HomeAIStructureCTA from '../../components/HomeAIStructureCTA.astro';
 import HomeAIChecklistCTA from '../../components/HomeAIChecklistCTA.astro';
+import HomeLinkedInCTA from '../../components/HomeLinkedInCTA.astro';
 import HomeHowWeWork from '../../components/HomeHowWeWork.astro';
 import HomeProjectsTeaser from '../../components/HomeProjectsTeaser.astro';
 import HomeToolsTeaser from '../../components/HomeToolsTeaser.astro';
@@ -56,8 +57,8 @@ const breadcrumbs = breadcrumbListJsonLd({
       ctaHref={data.homeAICapabilitiesCtaHref ?? undefined}
     />
 
-    <!-- Compact AI area: after capabilities, show two concrete tools side-by-side on desktop. -->
-    <div class="ds-grid" data-cols="2" style="container-type: inline-size">
+    <!-- Compact tool area: show three concrete tools side-by-side on desktop. -->
+    <div class="ds-grid" data-cols="3" style="container-type: inline-size">
       <HomeAIStructureCTA
         lang="en"
         title={data.homeAIStructureTitle}
@@ -72,6 +73,8 @@ const breadcrumbs = breadcrumbListJsonLd({
         title={data.homeAIChecklistTitle}
         description={data.homeAIChecklistDescription}
       />
+
+      <HomeLinkedInCTA lang="en" />
     </div>
 
     <HomeHowWeWork

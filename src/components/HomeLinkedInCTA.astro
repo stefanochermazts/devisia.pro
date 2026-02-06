@@ -1,0 +1,39 @@
+---
+import Button from './ui/Button.astro';
+
+export interface Props {
+  lang?: 'it' | 'en';
+}
+
+const { lang = 'it' } = Astro.props;
+
+const localePrefix = lang === 'en' ? '/en' : '';
+const href = (path: string) => (localePrefix ? `${localePrefix}${path}` : path);
+
+const content =
+  lang === 'en'
+    ? {
+        title: 'LinkedIn Post Formatter',
+        description:
+          'Format your LinkedIn posts for readability: line breaks, bullets, hook check and tone check. Privacy-first, runs in your browser.',
+        buttonLabel: 'Try the tool',
+      }
+    : {
+        title: 'LinkedIn Post Formatter',
+        description:
+          'Formatta i tuoi post LinkedIn per la leggibilità: a-capo, elenchi, hook check e controllo tono. Privacy-first, tutto nel browser.',
+        buttonLabel: 'Prova il tool',
+      };
+---
+
+<section class="ds-card" style="container-type: inline-size">
+  <div class="ds-card__body ds-stack" data-gap="sm">
+    <h2 style="margin: 0">{content.title}</h2>
+    <p class="ds-muted" style="margin: 0">{content.description}</p>
+    <div class="ds-cluster" style="margin-top: var(--ds-space-3)">
+      <Button href={href('/tools/linkedin-post-formatter')} variant="primary" size="lg">
+        {content.buttonLabel}
+      </Button>
+    </div>
+  </div>
+</section>
