@@ -1,0 +1,251 @@
+---
+export interface Props {
+  lang?: 'it' | 'en';
+}
+
+const { lang = 'it' } = Astro.props;
+
+const STRINGS =
+  lang === 'en'
+    ? {
+        lang: 'en',
+        h1: 'LinkedIn Post Formatter',
+        intro:
+          'A small tool to format LinkedIn posts and make text easier to read on mobile. Runs in your browser: no APIs, no storage.',
+        privacy: 'Privacy: your text stays in your browser. Nothing is saved or sent.',
+        inputLabel: 'Your LinkedIn post',
+        btnFormat: 'Format',
+        btnCopy: 'Copy formatted text',
+        btnReset: 'Reset',
+        copied: 'Copied',
+        copyFallback: 'Selected — copy manually',
+        // Sections
+        labelFormatter: 'Formatter',
+        labelFormatterDesc:
+          'Fix spacing, line breaks and bullets without touching links, hashtags or mentions.',
+        labelHookCheck: 'Hook check',
+        labelHookCheckDesc:
+          'Checks the first two lines and flags generic openings or missing context.',
+        labelToneCheck: 'Tone check',
+        labelToneCheckDesc:
+          'Highlights vague phrases and marketing copy. Useful for a technical, sober tone.',
+        hookGood: 'Good clarity',
+        hookGeneric: 'Too generic opening',
+        hookMissingContext: 'Missing context',
+        toneClean: 'Clean tone',
+        toneIssues: 'vague/marketingese phrases found',
+        // AI analysis
+        btnAiAnalyze: 'AI Analysis',
+        aiDisclaimer: 'Text is sent for analysis. It is not stored.',
+        aiLoading: 'Analyzing...',
+        aiError: 'Analysis unavailable',
+        aiHookLabel: 'Hook (AI)',
+        aiToneLabel: 'Tone (AI)',
+        aiVerdict_good: 'Good',
+        aiVerdict_generic: 'Generic',
+        aiVerdict_weak: 'Weak',
+        aiSuggestionLabel: 'Suggestion',
+        aiToneScore: 'Score',
+        previewLabel: 'Formatted preview',
+        keywordSentence:
+          'If you are looking for practical LinkedIn tools, this LinkedIn text formatter is also a clean LinkedIn post formatter.',
+        // FAQ
+        faqTitle: 'FAQ',
+        faq: [
+          {
+            q: 'Does it use LinkedIn APIs?',
+            a: 'No. No APIs and it never posts anything.',
+          },
+          {
+            q: 'Is my text stored?',
+            a: 'No. It stays in your browser.',
+          },
+          {
+            q: 'Does it change links or hashtags?',
+            a: 'No, it preserves them.',
+          },
+          {
+            q: 'Can I use it on mobile?',
+            a: 'Yes, copy and paste.',
+          },
+          {
+            q: 'Who is it for?',
+            a: 'Anyone who writes posts and wants clarity, not automation.',
+          },
+        ],
+      }
+    : {
+        lang: 'it',
+        h1: 'LinkedIn Post Formatter',
+        intro:
+          'Un tool leggero per formattare post LinkedIn e rendere il testo più leggibile su mobile. Funziona nel browser: niente API, niente salvataggi.',
+        privacy: 'Privacy: il testo resta nel tuo browser. Non viene salvato né inviato.',
+        inputLabel: 'Il tuo post LinkedIn',
+        btnFormat: 'Formatta',
+        btnCopy: 'Copia testo formattato',
+        btnReset: 'Reset',
+        copied: 'Copiato',
+        copyFallback: 'Selezionato — copia manualmente',
+        // Sections
+        labelFormatter: 'Formatter',
+        labelFormatterDesc:
+          'Sistema spaziature, a-capo ed elenchi senza toccare link, hashtag e mention.',
+        labelHookCheck: 'Hook check',
+        labelHookCheckDesc:
+          'Controlla le prime due righe: ti segnala aperture generiche o senza contesto.',
+        labelToneCheck: 'Tone check',
+        labelToneCheckDesc:
+          'Evidenzia frasi vaghe e marketingese. Utile per mantenere un tono tecnico e sobrio.',
+        hookGood: 'Buona chiarezza',
+        hookGeneric: 'Apertura troppo generica',
+        hookMissingContext: 'Manca contesto concreto',
+        toneClean: 'Tono pulito',
+        toneIssues: 'frasi vaghe/marketingese trovate',
+        // AI analysis
+        btnAiAnalyze: 'Analisi AI',
+        aiDisclaimer: 'Il testo viene inviato per l\'analisi. Non viene salvato.',
+        aiLoading: 'Analisi in corso...',
+        aiError: 'Analisi non disponibile',
+        aiHookLabel: 'Hook (AI)',
+        aiToneLabel: 'Tone (AI)',
+        aiVerdict_good: 'Buono',
+        aiVerdict_generic: 'Generico',
+        aiVerdict_weak: 'Debole',
+        aiSuggestionLabel: 'Suggerimento',
+        aiToneScore: 'Punteggio',
+        previewLabel: 'Anteprima formattata',
+        keywordSentence:
+          'Se cerchi LinkedIn tools pratici, questo LinkedIn text formatter è anche un LinkedIn post formatter semplice e pulito.',
+        // FAQ
+        faqTitle: 'FAQ',
+        faq: [
+          {
+            q: 'Usa le API di LinkedIn?',
+            a: 'No. Non usa API e non pubblica nulla.',
+          },
+          {
+            q: 'Il testo viene salvato?',
+            a: 'No. Rimane nel browser.',
+          },
+          {
+            q: 'Modifica link e hashtag?',
+            a: 'No, li preserva.',
+          },
+          {
+            q: 'Posso usare l\'output su mobile?',
+            a: 'Sì, copia e incolla.',
+          },
+          {
+            q: 'Per chi è pensato?',
+            a: 'Per chi pubblica e vuole chiarezza, non automazione.',
+          },
+        ],
+      };
+---
+
+<section class="li-tool" data-li-root>
+  <!-- Hero -->
+  <header class="li-tool__header">
+    <h1 class="li-tool__title">{STRINGS.h1}</h1>
+    <p class="li-tool__subtitle">{STRINGS.intro}</p>
+    <p class="li-tool__note">{STRINGS.privacy}</p>
+  </header>
+
+  <!-- Tool body -->
+  <div class="li-tool__body">
+    <!-- Left: Editor -->
+    <div class="li-tool__editor ds-stack" data-gap="xs">
+      <label class="ds-label" for="li-input">{STRINGS.inputLabel}</label>
+      <div class="li-tool__toolbar" role="toolbar" aria-label="Formatting">
+        <button class="li-tool__tb-btn" type="button" data-li-tb="bullet" title="Bullet •" aria-label="Bullet point">•</button>
+        <button class="li-tool__tb-btn li-tool__tb-btn--bold" type="button" data-li-tb="bold" title="Bold" aria-label="Bold">B</button>
+        <button class="li-tool__tb-btn li-tool__tb-btn--italic" type="button" data-li-tb="italic" title="Italic" aria-label="Italic">I</button>
+        <button class="li-tool__tb-btn li-tool__tb-btn--bolditalic" type="button" data-li-tb="bolditalic" title="Bold Italic" aria-label="Bold Italic">BI</button>
+      </div>
+      <textarea
+        id="li-input"
+        class="li-tool__input"
+        data-li-input
+        spellcheck="false"
+        rows="12"
+      ></textarea>
+
+      <div class="li-tool__actions" role="group" aria-label="Actions">
+        <button class="ds-btn" data-variant="primary" type="button" data-li-format>
+          {STRINGS.btnFormat}
+        </button>
+        <button class="ds-btn" data-variant="secondary" type="button" data-li-copy>
+          {STRINGS.btnCopy}
+        </button>
+        <button class="ds-btn" data-variant="ghost" type="button" data-li-reset>
+          {STRINGS.btnReset}
+        </button>
+        <button class="ds-btn" data-variant="secondary" type="button" data-li-ai-analyze>
+          {STRINGS.btnAiAnalyze}
+        </button>
+      </div>
+      <p class="li-tool__ai-disclaimer">{STRINGS.aiDisclaimer}</p>
+      <div class="li-tool__status" aria-live="polite" data-li-status></div>
+    </div>
+
+    <!-- Right: Panels -->
+    <div class="li-tool__panels ds-stack" data-gap="sm">
+      <!-- Feature descriptions -->
+      <div class="li-tool__panel">
+        <h3 class="li-tool__panel-title">{STRINGS.labelFormatter}</h3>
+        <p class="li-tool__panel-desc">{STRINGS.labelFormatterDesc}</p>
+      </div>
+      <div class="li-tool__panel">
+        <h3 class="li-tool__panel-title">{STRINGS.labelHookCheck}</h3>
+        <p class="li-tool__panel-desc">{STRINGS.labelHookCheckDesc}</p>
+        <span data-li-hook-result></span>
+        <div class="li-tool__ai-result" data-li-ai-hook hidden>
+          <h4 class="li-tool__ai-result-title">{STRINGS.aiHookLabel}</h4>
+          <div data-li-ai-hook-body></div>
+        </div>
+      </div>
+      <div class="li-tool__panel">
+        <h3 class="li-tool__panel-title">{STRINGS.labelToneCheck}</h3>
+        <p class="li-tool__panel-desc">{STRINGS.labelToneCheckDesc}</p>
+        <span data-li-tone-result></span>
+        <div class="li-tool__ai-result" data-li-ai-tone hidden>
+          <h4 class="li-tool__ai-result-title">{STRINGS.aiToneLabel}</h4>
+          <div data-li-ai-tone-body></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results (hidden until format) -->
+  <div class="li-tool__results" data-li-results hidden>
+    <h2 class="li-tool__section-title">{STRINGS.previewLabel}</h2>
+    <div class="li-tool__preview" data-li-preview>
+      <div class="li-tool__preview-body" data-li-preview-body></div>
+    </div>
+  </div>
+
+  <!-- Keyword sentence -->
+  <p class="li-tool__keyword-sentence">{STRINGS.keywordSentence}</p>
+
+  <!-- FAQ -->
+  <section class="li-tool__faq" aria-label="FAQ">
+    <h2 class="li-tool__section-title">{STRINGS.faqTitle}</h2>
+    {
+      STRINGS.faq.map((item) => (
+        <details class="li-tool__faq-item">
+          <summary>{item.q}</summary>
+          <p>{item.a}</p>
+        </details>
+      ))
+    }
+  </section>
+</section>
+
+<script
+  is:inline
+  set:html={`window.__LINKEDIN_STRINGS__ = ${JSON.stringify(STRINGS)};`}
+></script>
+
+<script type="module">
+  import '/scripts/linkedinFormatter.js';
+</script>

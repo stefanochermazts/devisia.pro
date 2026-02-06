@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LinkedInPostFormatter from '../../components/LinkedInPostFormatter.astro';
+import '../../styles/linkedin-formatter.css';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'LinkedIn Post Formatter',
+  description:
+    'Un LinkedIn post formatter che migliora la leggibilità del testo: a-capo, elenchi, spaziature, hook check e controllo tono. Nessuna API, tutto nel browser.',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'EUR',
+  },
+  url: 'https://devisia.pro/tools/linkedin-post-formatter',
+};
+---
+
+<Layout
+  title="LinkedIn Post Formatter (privacy-first)"
+  description="Un LinkedIn post formatter che migliora la leggibilità del testo: a-capo, elenchi, spaziature, hook check e controllo tono. Nessuna API, tutto nel browser."
+  lang="it"
+  structuredData={structuredData}
+>
+  <div class="ds-container" style="margin-top: var(--ds-space-6)">
+    <LinkedInPostFormatter lang="it" />
+  </div>
+</Layout>

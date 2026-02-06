@@ -86,7 +86,7 @@ Rules:
 - Return ONLY valid JSON (no markdown, no extra text).
 - Follow the exact JSON shape requested by the user message (no extra keys).`;
 
-type ChatMessage = { role: 'system' | 'user'; content: string };
+export type ChatMessage = { role: 'system' | 'user'; content: string };
 
 function buildChatCompletionBody(params: { model: string; messages: ChatMessage[] }) {
   return JSON.stringify({
@@ -96,7 +96,7 @@ function buildChatCompletionBody(params: { model: string; messages: ChatMessage[
   });
 }
 
-async function callOpenAIChatCompletions(params: { model: string; messages: ChatMessage[]; timeoutMs?: number }) {
+export async function callOpenAIChatCompletions(params: { model: string; messages: ChatMessage[]; timeoutMs?: number }) {
   const apiKey = getEnv('OPENAI_API_KEY');
 
   const controller = new AbortController();

@@ -1,0 +1,32 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import LinkedInPostFormatter from '../../../components/LinkedInPostFormatter.astro';
+import '../../../styles/linkedin-formatter.css';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'LinkedIn Post Formatter',
+  description:
+    'A lightweight LinkedIn post formatter that improves text readability: line breaks, bullets, spacing, hook check and tone check. No APIs, runs in your browser.',
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  url: 'https://devisia.pro/en/tools/linkedin-post-formatter',
+};
+---
+
+<Layout
+  title="LinkedIn Post Formatter (privacy-first)"
+  description="A lightweight LinkedIn post formatter that improves text readability: line breaks, bullets, spacing, hook check and tone check. No APIs, runs in your browser."
+  lang="en"
+  structuredData={structuredData}
+>
+  <div class="ds-container" style="margin-top: var(--ds-space-6)">
+    <LinkedInPostFormatter lang="en" />
+  </div>
+</Layout>

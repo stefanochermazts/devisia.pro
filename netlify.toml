@@ -88,6 +88,9 @@
 [functions.submit-artifact]
   timeout = 60
 
+[functions.linkedin-analyze]
+  timeout = 26
+
 # Deploy contexts
 [context.production]
   command = "npm run build"
