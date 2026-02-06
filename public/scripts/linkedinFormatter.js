@@ -422,7 +422,7 @@ function init() {
 
     try {
       const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 20_000);
+      const timeout = setTimeout(() => controller.abort(), 70_000);
 
       const res = await fetch('/.netlify/functions/linkedin-analyze', {
         method: 'POST',

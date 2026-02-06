@@ -107,7 +107,7 @@ export const handler: Handler = async (event) => {
           { role: 'system', content: HOOK_SYSTEM_PROMPT },
           { role: 'user', content: `${languageHint}\n\nPost opening:\n${hookInput}` },
         ],
-        timeoutMs: 15_000,
+        timeoutMs: 50_000,
       }),
       callOpenAIChatCompletions({
         model,
@@ -115,7 +115,7 @@ export const handler: Handler = async (event) => {
           { role: 'system', content: TONE_SYSTEM_PROMPT },
           { role: 'user', content: `${languageHint}\n\nFull post:\n${text}` },
         ],
-        timeoutMs: 15_000,
+        timeoutMs: 50_000,
       }),
     ]);
 
