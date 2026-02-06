@@ -57,7 +57,9 @@ Rules:
 export const handler: Handler = async (event) => {
   if (event.httpMethod !== 'POST') return json(405, { error: 'Method not allowed' });
 
-  const model = process.env.OPENAI_MODEL || 'gpt-5-mini';
+  // Dedicated model for LinkedIn analysis (typically needs a fast, cheap model).
+  // Falls back to the general OPENAI_MODEL, then to gpt-4o-mini (fast default).
+  const model = process.env.OPENAI_MODEL_LINKEDIN || process.env.OPENAI_MODEL || 'gpt-4o-mini';
 
   let payload: unknown;
   try {
@@ -100,7 +102,8 @@ export const handler: Handler = async (event) => {
 
   // Run both analyses in parallel with allSettled so we can return partial results
   // instead of a gateway 504 if one call is slow.
-  const perCallTimeout = 25_000; // keep well under 60s gateway limit
+  // Hook analyzes only 2-3 lines → faster. Tone analyzes the full text → needs more time.
+  // Both must finish well under the 60s Netlify gateway limit.
 
   const [hookResult, toneResult] = await Promise.allSettled([
     callOpenAIChatCompletions({
@@ -109,7 +112,7 @@ export const handler: Handler = async (event) => {
         { role: 'system', content: HOOK_SYSTEM_PROMPT },
         { role: 'user', content: `${languageHint}\n\nPost opening:\n${hookInput}` },
       ],
-      timeoutMs: perCallTimeout,
+      timeoutMs: 25_000,
     }),
     callOpenAIChatCompletions({
       model,
@@ -117,7 +120,7 @@ export const handler: Handler = async (event) => {
         { role: 'system', content: TONE_SYSTEM_PROMPT },
         { role: 'user', content: `${languageHint}\n\nFull post:\n${text}` },
       ],
-      timeoutMs: perCallTimeout,
+      timeoutMs: 40_000,
     }),
   ]);
 
