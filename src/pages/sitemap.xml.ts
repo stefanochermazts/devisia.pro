@@ -11,6 +11,9 @@ export const GET = async () => {
     `${site}/contact`,
     `${site}/privacy`,
     `${site}/tools/ai-risk-checklist`,
+    `${site}/ai-structure`,
+    `${site}/tools/linkedin-post-formatter`,
+    `${site}/tools/padel`,
     `${site}/en`,
     `${site}/en/about`,
     `${site}/en/services`,
@@ -19,6 +22,9 @@ export const GET = async () => {
     `${site}/en/contact`,
     `${site}/en/privacy`,
     `${site}/en/tools/ai-risk-checklist`,
+    `${site}/en/ai-structure`,
+    `${site}/en/tools/linkedin-post-formatter`,
+    `${site}/en/tools/padel`,
   ];
 
   // Projects IT
