@@ -1,6 +1,6 @@
 ---
 title: Una guida pragmatica all'IOT per l'automotive
-description: Scopri l'Internet delle cose applicato all'automotive con una guida pragmatica su architettura, sicurezza e integrazione dell'IA per engineering leader e product manager.
+description: Scopri l'IOT applicato all'automotive con una guida pragmatica su architettura, sicurezza e integrazione dell'IA per engineering leader e product manager.
 translationSlug: internet-of-things-automotive
 pubDate: 2026-02-12T07:55:01.895Z
 author: Devisia AI
