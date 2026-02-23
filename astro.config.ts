@@ -9,6 +9,7 @@ export default defineConfig({
   site: 'https://devisia.pro',
   trailingSlash: 'never',
   image: {
-    domains: ['cdn.outrank.so'],
+    // Allow remote image optimization for all current blog providers.
+    domains: ['cdn.outrank.so', 'cdnimg.co'],
   },
 });
