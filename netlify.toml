@@ -80,7 +80,7 @@
   timeout = 26
 
 [functions.outrank-webhook]
-  timeout = 26
+  timeout = 60
 
 [functions.generate-structure]
   timeout = 60

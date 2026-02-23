@@ -183,124 +183,15 @@ export const handler: Handler = async (event) => {
             url: `https://github.com/${owner}/${repo}/blob/main/${path}`
         });
 
-        // ==========================================
-        // AUTOMATIC TRANSLATION (EN -> IT)
-        // ==========================================
-        if (language === 'en' && process.env.OPENAI_API_KEY) {
-            try {
-                const openaiApiKey = process.env.OPENAI_API_KEY;
-                console.log(`Starting translation for ${slug} to IT...`);
-
-                const systemPrompt = `You are a professional translator and SEO copywriter for a software company called Devisia.
-Translate the following Markdown content from English to Italian.
-Rules:
-1. Maintain the exact same Markdown structure, headings, bolding, and links.
-2. Do NOT translate image URLs, but DO translate image alt texts if present.
-3. Keep the tone professional, technical yet accessible (Devisia's style).
-4. Translate the title and SEO meta description as well.
-5. Return the result as a JSON object with these keys: "title", "meta_description", "content_markdown".`;
-
-                const userPrompt = JSON.stringify({
-                    title,
-                    meta_description,
-                    content_markdown
-                });
-
-                const aiRes = await fetch('https://api.openai.com/v1/chat/completions', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${openaiApiKey}`
-                    },
-                    body: JSON.stringify({
-                        model: "gpt-4o-mini", // Optimized for speed and cost, good for translation
-                        messages: [
-                            { role: "system", content: systemPrompt },
-                            { role: "user", content: userPrompt }
-                        ],
-                        response_format: { type: "json_object" }
-                    })
-                });
-
-                if (!aiRes.ok) {
-                    throw new Error(`OpenAI API error: ${aiRes.statusText}`);
-                }
-
-                const aiData = await aiRes.json();
-                const translatedData = JSON.parse(aiData.choices[0].message.content);
-
-                // Prepare IT frontmatter
-                // We use the SAME translationSlug to link them
-                // Best practice: translate slug. But we need a mapping.
-                // For simplicity, let's use the English slug but in the /it/ folder. 
-                // Or better: ask AI to translate slug too?
-                // Let's keep english slug for IT file to simplify linking, but content is IT.
-                // WAIT: If we use same slug in /it/ folder, the URL will be /blog/slug (Italian) and /en/blog/slug (English). This is perfect.
-                
-                const itPath = `src/content/blog/it/${slug}.md`;
-                const itFrontmatter = [
-                    '---',
-                    `title: "${translatedData.title.replace(/"/g, '\\"')}"`,
-                    `description: "${(translatedData.meta_description || '').replace(/"/g, '\\"')}"`,
-                    `pubDate: ${pubDate}`,
-                    hero_image ? `heroImage: "${hero_image}"` : 'heroImage: null',
-                    `author: "${author}"`,
-                    `tags: [${tags.map((t: string) => `"${t}"`).join(', ')}]`,
-                    `translationSlug: "${slug}"`, // Link to itself/common ID
-                    '---',
-                    '',
-                    translatedData.content_markdown
-                ].join('\n');
-
-                // We also need to update the EN file to have translationSlug set to "slug" if it wasn't set?
-                // In the code above, we already set translationSlug: "${translation_slug}" : 'null'.
-                // If translation_slug came empty from payload, we should have set it to 'slug' (the current slug) so they match.
-                // Let's assume for this auto-translation flow that the common ID is the English slug.
-                
-                // Need to re-update the EN file? 
-                // Only if translationSlug was null.
-                // For now let's just create the IT file. Ideally, the EN file frontmatter should have `translationSlug: slug`
-                
-                // Save IT file
-                const itApiUrl = `https://api.github.com/repos/${owner}/${repo}/contents/${itPath}`;
-                let itSha: string | undefined;
-                try {
-                    const getItRes = await fetch(itApiUrl, {
-                        headers: { 'Authorization': `token ${token}`, 'Accept': 'application/vnd.github.v3+json' }
-                    });
-                    if (getItRes.ok) {
-                        const d = await getItRes.json();
-                        itSha = d.sha;
-                    }
-                } catch (e) {
-                    // If the file doesn't exist yet, GitHub will return 404; that's fine.
-                }
-
-                const itCommitMsg = itSha ? `auto: update translated blog post ${slug}` : `auto: create translated blog post ${slug}`;
-                
-                await fetch(itApiUrl, {
-                    method: 'PUT',
-                    headers: {
-                        'Authorization': `token ${token}`,
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/vnd.github.v3+json',
-                        'User-Agent': 'Devisia-Webhook-Handler'
-                    },
-                    body: JSON.stringify({
-                        message: itCommitMsg,
-                        content: Buffer.from(itFrontmatter).toString('base64'),
-                        sha: itSha 
-                    })
-                });
-
-                console.log(`Translation to IT successful for ${slug}`);
-                results.push({ slug: `${slug}-it`, status: 'translated', path: itPath });
-
-            } catch (transErr: any) {
-                console.error(`Translation failed for ${slug}:`, transErr);
-                errors.push({ slug, error: `Translation failed: ${transErr.message}` });
-                // We don't fail the whole request, as the EN article was published.
-            }
+        // Keep webhook fast and reliable:
+        // translation is handled asynchronously by the existing blog translation workflow.
+        if (language === 'en' && autoTranslateToIt) {
+            console.log(`[outrank-webhook] queued translation for slug="${slug}" language="${language}"`);
+            results.push({
+                slug: `${slug}-it`,
+                status: 'queued_translation',
+                note: 'EN article saved. IT translation will be generated by workflow.'
+            });
         }
 
         } catch (err: any) {
@@ -309,6 +200,9 @@ Rules:
         }
     }
 
+    console.log(
+      `[outrank-webhook] processed=${articlesToProcess.length} success=${results.length} failed=${errors.length}`
+    );
     return {
       statusCode: results.length > 0 ? 201 : 400, // 201 if at least one succeeded
       body: JSON.stringify({ 
