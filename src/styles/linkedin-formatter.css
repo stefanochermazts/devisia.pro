@@ -41,7 +41,7 @@
 
 @media (min-width: 52rem) {
   .li-tool__body {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
     align-items: start;
   }
 }
@@ -50,6 +50,13 @@
 .li-tool__editor {
   display: grid;
   gap: var(--ds-space-3);
+}
+
+.li-tool__step-label {
+  margin: 0;
+  font-size: var(--ds-text-xs);
+  color: var(--ds-color-text-muted);
+  letter-spacing: 0.03em;
 }
 
 /* Formatting toolbar */
@@ -122,6 +129,10 @@
 
 .li-tool__actions .ds-btn {
   min-height: 44px;
+}
+
+.li-tool__actions .ds-btn[data-variant='ghost'] {
+  margin-left: auto;
 }
 
 .li-tool__status {
@@ -199,7 +210,7 @@
   border-radius: var(--ds-radius-2);
   background: var(--ds-color-surface);
   padding: var(--ds-space-4);
-  min-height: 6rem;
+  min-height: 9rem;
 }
 
 .li-tool__preview-body {
@@ -228,6 +239,7 @@
 .li-tool__faq {
   margin-top: var(--ds-space-6);
   margin-bottom: var(--ds-space-6);
+  max-width: 72ch;
 }
 
 .li-tool__faq-item {
@@ -369,5 +381,8 @@
   }
   .li-tool__actions .ds-btn {
     flex: 1 1 auto;
+  }
+  .li-tool__actions .ds-btn[data-variant='ghost'] {
+    margin-left: 0;
   }
 }

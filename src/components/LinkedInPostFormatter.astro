@@ -155,6 +155,7 @@ const STRINGS =
   <div class="li-tool__body">
     <!-- Left: Editor -->
     <div class="li-tool__editor ds-stack" data-gap="xs">
+      <p class="li-tool__step-label">{lang === 'en' ? 'Step 1' : 'Step 1'} · {lang === 'en' ? 'Write or paste text' : 'Scrivi o incolla il testo'}</p>
       <label class="ds-label" for="li-input">{STRINGS.inputLabel}</label>
       <div class="li-tool__toolbar" role="toolbar" aria-label="Formatting">
         <button class="li-tool__tb-btn" type="button" data-li-tb="bullet" title="Bullet •" aria-label="Bullet point">•</button>
@@ -170,9 +171,13 @@ const STRINGS =
         rows="12"
       ></textarea>
 
+      <p class="li-tool__step-label">{lang === 'en' ? 'Step 2' : 'Step 2'} · {lang === 'en' ? 'Run checks' : 'Esegui i controlli'}</p>
       <div class="li-tool__actions" role="group" aria-label="Actions">
         <button class="ds-btn" data-variant="primary" type="button" data-li-format>
           {STRINGS.btnFormat}
+        </button>
+        <button class="ds-btn" data-variant="secondary" type="button" data-li-ai-analyze>
+          {STRINGS.btnAiAnalyze}
         </button>
         <button class="ds-btn" data-variant="secondary" type="button" data-li-copy>
           {STRINGS.btnCopy}
@@ -180,12 +185,18 @@ const STRINGS =
         <button class="ds-btn" data-variant="ghost" type="button" data-li-reset>
           {STRINGS.btnReset}
         </button>
-        <button class="ds-btn" data-variant="secondary" type="button" data-li-ai-analyze>
-          {STRINGS.btnAiAnalyze}
-        </button>
       </div>
       <p class="li-tool__ai-disclaimer">{STRINGS.aiDisclaimer}</p>
       <div class="li-tool__status" aria-live="polite" data-li-status></div>
+
+      <!-- Results (hidden until format) -->
+      <div class="li-tool__results" data-li-results hidden>
+        <p class="li-tool__step-label">{lang === 'en' ? 'Step 3' : 'Step 3'} · {lang === 'en' ? 'Review and copy output' : 'Rivedi e copia l’output'}</p>
+        <h2 class="li-tool__section-title">{STRINGS.previewLabel}</h2>
+        <div class="li-tool__preview" data-li-preview>
+          <div class="li-tool__preview-body" data-li-preview-body></div>
+        </div>
+      </div>
     </div>
 
     <!-- Right: Panels -->
@@ -213,14 +224,6 @@ const STRINGS =
           <div data-li-ai-tone-body></div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <!-- Results (hidden until format) -->
-  <div class="li-tool__results" data-li-results hidden>
-    <h2 class="li-tool__section-title">{STRINGS.previewLabel}</h2>
-    <div class="li-tool__preview" data-li-preview>
-      <div class="li-tool__preview-body" data-li-preview-body></div>
     </div>
   </div>
 
