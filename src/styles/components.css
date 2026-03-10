@@ -14,13 +14,13 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--ds-space-3);
-    padding-block: var(--ds-space-3);
+    padding-block: var(--ds-space-2);
   }
 
   /* Compact header on mobile */
   @media (max-width: 48rem) {
     .nav-container {
-      padding-block: var(--ds-space-2);
+      padding-block: var(--ds-space-1);
     }
   }
 
@@ -55,7 +55,7 @@
   }
 
   .logo-img--word {
-    height: 3rem;
+    height: 5rem;
   }
 
   /* Prevent nav items from breaking into multiple lines */
