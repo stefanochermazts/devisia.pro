@@ -12,7 +12,7 @@ export function absUrl(site: URL, urlOrPath?: string | null): string | undefined
 
 export function organizationJsonLd(site: URL): JsonLd {
   const url = site.toString().replace(/\/$/, '');
-  const logo = absUrl(site, '/images/monogramma.svg') ?? url;
+  const logo = absUrl(site, '/images/monogram-light.png') ?? url;
 
   return {
     '@context': 'https://schema.org',

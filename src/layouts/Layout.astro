@@ -121,7 +121,9 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/images/favicon-light.png" media="(prefers-color-scheme: light)" />
+    <link rel="icon" type="image/png" href="/images/favicon-dark.png" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" type="image/png" href="/images/favicon-light.png" />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Google Tag Manager -->
@@ -211,8 +213,16 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
         <div class="nav-brand">
           <a href={homeHref} class="logo" aria-label="DEVISIA">
             <img
-              class="logo-img logo-img--mark"
-              src="/images/monogramma-inverted.svg"
+              class="logo-img logo-img--mark logo-img--light"
+              src="/images/monogram-light.png"
+              alt=""
+              width="56"
+              height="56"
+              decoding="async"
+            />
+            <img
+              class="logo-img logo-img--mark logo-img--dark"
+              src="/images/monogram-dark.png"
               alt=""
               width="56"
               height="56"
@@ -220,7 +230,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
             />
             <img 
               class="logo-img logo-img--word logo-img--light" 
-              src="/images/logo.svg" 
+              src="/images/logo-light.png" 
               alt="DEVISIA" 
               width="280"
               height="56"
@@ -228,7 +238,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
             />
             <img 
               class="logo-img logo-img--word logo-img--dark" 
-              src="/images/logo-inverted.svg" 
+              src="/images/logo-dark.png" 
               alt="DEVISIA" 
               width="280"
               height="56"
