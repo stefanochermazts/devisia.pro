@@ -4,20 +4,28 @@ export const GET = async () => {
   const site = 'https://devisia.pro';
   const pages: string[] = [
     `${site}/`,
-    `${site}/about`,
-    `${site}/services`,
-    `${site}/projects`,
+    `${site}/cosa-facciamo`,
+    `${site}/metodo`,
+    `${site}/ai-governata`,
+    `${site}/compliance-auditabilita`,
+    `${site}/prodotti`,
+    `${site}/prodotti/auditready`,
+    `${site}/chi-siamo`,
+    `${site}/contatti`,
     `${site}/blog`,
-    `${site}/contact`,
     `${site}/privacy`,
     `${site}/tools/ai-risk-checklist`,
     `${site}/ai-structure`,
     `${site}/tools/linkedin-post-formatter`,
     `${site}/tools/padel`,
     `${site}/en`,
+    `${site}/en/what-we-do`,
+    `${site}/en/method`,
+    `${site}/en/governed-ai`,
+    `${site}/en/compliance-auditability`,
+    `${site}/en/products`,
+    `${site}/en/products/auditready`,
     `${site}/en/about`,
-    `${site}/en/services`,
-    `${site}/en/projects`,
     `${site}/en/blog`,
     `${site}/en/contact`,
     `${site}/en/privacy`,
@@ -25,30 +33,33 @@ export const GET = async () => {
     `${site}/en/ai-structure`,
     `${site}/en/tools/linkedin-post-formatter`,
     `${site}/en/tools/padel`,
+    /* Legacy URLs with redirects; still list canonic target above */
+    `${site}/projects/mysafenest`,
+    `${site}/en/projects/mysafenest`,
   ];
 
-  // Projects IT
   const projectsIt = await getCollection('projectsIt');
   projectsIt.forEach((project) => {
     const slug = project.data.slug || project.id.split('/')[1];
-    pages.push(`${site}/projects/${slug}`);
+    if (slug !== 'auditready') {
+      pages.push(`${site}/projects/${slug}`);
+    }
   });
 
-  // Projects EN
   const projectsEn = await getCollection('projectsEn');
   projectsEn.forEach((project) => {
     const slug = project.data.slug || project.id.split('/')[1];
-    pages.push(`${site}/en/projects/${slug}`);
+    if (slug !== 'auditready') {
+      pages.push(`${site}/en/projects/${slug}`);
+    }
   });
 
-  // Blog IT
   const blogIt = await getCollection('blogIt');
   blogIt.forEach((post) => {
     const slug = post.id.split('/')[1];
     pages.push(`${site}/blog/${slug}`);
   });
 
-  // Blog EN
   const blogEn = await getCollection('blogEn');
   blogEn.forEach((post) => {
     const slug = post.id.split('/')[1];

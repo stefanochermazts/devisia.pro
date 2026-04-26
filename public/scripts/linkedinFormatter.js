@@ -19,7 +19,7 @@ const STRINGS = (() => {
     labelHookCheck: s.labelHookCheck || 'Hook check',
     labelToneCheck: s.labelToneCheck || 'Tone check',
     // AI analysis
-    btnAiAnalyze: s.btnAiAnalyze || 'Analisi AI',
+    btnAiAnalyze: s.btnAiAnalyze || 'Analisi AI del testo',
     aiLoading: s.aiLoading || 'Analisi in corso...',
     aiError: s.aiError || 'Analisi non disponibile',
     aiVerdict_good: s.aiVerdict_good || 'Buono',
@@ -112,7 +112,7 @@ function replaceSelection(textarea, replaceFn, insertText) {
 // ────────────────────────────────────────────────────
 
 // Preserve URLs, emails, @mentions, #hashtags by replacing them with tokens, then restoring.
-const TOKEN_RE = /(?:https?:\/\/[^\s]+|[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}|@[\w.]+|#[\w]+)/g;
+const TOKEN_RE = /(?:https?:\/\/[^\s]+|[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}|@[\w.]+|#[\w]+)/g;
 
 function tokenize(text) {
   const tokens = [];
@@ -265,6 +265,8 @@ function checkTone(text) {
 function highlightTone(text) {
   const { matches } = checkTone(text);
   if (!matches.length) return escapeHtml(text);
+  const markOpen = '\uE000LI_MARK_OPEN\uE000';
+  const markClose = '\uE000LI_MARK_CLOSE\uE000';
 
   // Sort matches by index descending so we can insert markers without shifting indices
   const sorted = [...matches].sort((a, b) => b.index - a.index);
@@ -274,13 +276,13 @@ function highlightTone(text) {
     const before = result.slice(0, m.index);
     const word = result.slice(m.index, m.index + m.length);
     const after = result.slice(m.index + m.length);
-    result = before + '\x01MARK_OPEN\x01' + word + '\x01MARK_CLOSE\x01' + after;
+    result = before + markOpen + word + markClose + after;
   }
 
   // Escape HTML, then replace markers with <mark>
   let html = escapeHtml(result);
-  html = html.replace(/\x01MARK_OPEN\x01/g, '<mark>');
-  html = html.replace(/\x01MARK_CLOSE\x01/g, '</mark>');
+  html = html.split(markOpen).join('<mark>');
+  html = html.split(markClose).join('</mark>');
 
   // Convert newlines to <br> for preview
   html = html.replace(/\n/g, '<br>');
@@ -303,7 +305,6 @@ function init() {
   const status = document.querySelector('[data-li-status]');
 
   // Result panels
-  const previewArea = document.querySelector('[data-li-preview]');
   const previewBody = document.querySelector('[data-li-preview-body]');
   const hookResult = document.querySelector('[data-li-hook-result]');
   const toneResult = document.querySelector('[data-li-tone-result]');

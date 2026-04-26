@@ -1,0 +1,33 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactProtocol from '../components/site/ContactProtocol.astro';
+import { getEntry, render } from 'astro:content';
+import { type CollectionEntry } from 'astro:content';
+import { breadcrumbListJsonLd } from '../lib/seo/structuredData';
+
+const contactEntry: CollectionEntry<'pagesIt'> | undefined = await getEntry('pagesIt', 'it/contact');
+
+if (!contactEntry) {
+  return new Response('Contact page content not found', { status: 404 });
+}
+
+const { data } = contactEntry;
+const { Content } = await render(contactEntry);
+
+// Check if form was submitted successfully
+const isSuccess = Astro.url.searchParams.get('success') === 'true';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/' },
+    { name: data.title, url: '/contatti' },
+  ],
+});
+---
+
+<Layout title={data.title} description={data.description} structuredData={[breadcrumbs]}>
+  <Content />
+  <ContactProtocol isSuccess={isSuccess} />
+</Layout>

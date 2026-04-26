@@ -1,0 +1,57 @@
+---
+/**
+ * "Cosa facciamo / What we do" diagram: same visual language as home SystemLayers,
+ * different copy synthesising build, integrate, govern, evidence.
+ */
+export interface Props {
+  lang: 'it' | 'en';
+}
+const { lang } = Astro.props;
+const isEn = lang === 'en';
+---
+
+<div class="site-layers" aria-hidden="true">
+  <div class="site-layers__frame site-layers__frame--whatwedo">
+    <div class="site-layers__axis site-layers__axis--x"></div>
+    <div class="site-layers__axis site-layers__axis--y"></div>
+    <div class="site-layers__node site-layers__node--process">01</div>
+    <div class="site-layers__node site-layers__node--data">02</div>
+    <div class="site-layers__node site-layers__node--system">03</div>
+    <div class="site-layers__node site-layers__node--proof">
+      {isEn ? 'proof' : 'prove'}
+    </div>
+  </div>
+  {
+    isEn ? (
+      <>
+        <div class="site-layers__row site-layers__row--process">
+          <span class="site-layers__label">01</span>
+          <span>Build: applications, platforms, durable services</span>
+        </div>
+        <div class="site-layers__row site-layers__row--data">
+          <span class="site-layers__label">02</span>
+          <span>Integrate: data, APIs, contracts with what you run</span>
+        </div>
+        <div class="site-layers__row site-layers__row--system">
+          <span class="site-layers__label">03</span>
+          <span>Govern: AI, controls, operations and verifiable evidence</span>
+        </div>
+      </>
+    ) : (
+      <>
+        <div class="site-layers__row site-layers__row--process">
+          <span class="site-layers__label">01</span>
+          <span>Costruire: applicazioni, piattaforme, servizi che reggono nel tempo</span>
+        </div>
+        <div class="site-layers__row site-layers__row--data">
+          <span class="site-layers__label">02</span>
+          <span>Integrare: dati, API, contratti con i sistemi esistenti</span>
+        </div>
+        <div class="site-layers__row site-layers__row--system">
+          <span class="site-layers__label">03</span>
+          <span>Governare: AI, controlli, operatività ed evidenze verificabili</span>
+        </div>
+      </>
+    )
+  }
+</div>

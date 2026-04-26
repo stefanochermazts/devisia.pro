@@ -13,6 +13,8 @@
     font-family: var(--ds-font-sans);
     font-size: var(--ds-text-md);
     line-height: var(--ds-leading-base);
+    font-weight: 450;
+    font-kerning: normal;
     color: var(--ds-color-text);
     background: var(--ds-color-bg);
     text-rendering: optimizeLegibility;
@@ -27,12 +29,9 @@
   }
 
   /* Global image treatment (site content)
-    Make content imagery calm/consistent even when uploads are colorful.
-    Opt-out per-image by adding `.ds-img-color`.
+    Color is the default — let evidence read as evidence.
+    Opt *into* desaturation per-image with `.ds-img-bw`.
   */
-  :where(.main-content img):not(.ds-img-color) {
-    filter: grayscale(1);
-  }
 
   :where(button, input, textarea, select) {
     font: inherit;
@@ -69,24 +68,49 @@
 
   :where(h1, h2, h3, h4, h5, h6) {
     margin: 0 0 var(--ds-space-3);
-    font-weight: 600;
+    font-family: var(--ds-font-heading);
     line-height: var(--ds-leading-tight);
-    letter-spacing: var(--ds-tracking-tight);
+    font-kerning: normal;
+    font-optical-sizing: auto;
   }
 
   :where(h1) {
     font-size: var(--ds-text-4xl);
+    font-weight: 780;
+    letter-spacing: -0.028em;
     text-wrap: balance;
   }
+
   :where(h2) {
     font-size: var(--ds-text-3xl);
+    font-weight: 720;
+    letter-spacing: -0.022em;
     text-wrap: balance;
   }
+
   :where(h3) {
     font-size: var(--ds-text-2xl);
+    font-weight: 680;
+    letter-spacing: -0.018em;
+    text-wrap: balance;
   }
+
   :where(h4) {
     font-size: var(--ds-text-xl);
+    font-weight: 640;
+    letter-spacing: -0.012em;
+  }
+
+  :where(h5) {
+    font-size: var(--ds-text-lg);
+    font-weight: 640;
+    letter-spacing: -0.008em;
+  }
+
+  :where(h6) {
+    font-size: var(--ds-text-md);
+    font-weight: 620;
+    letter-spacing: 0;
   }
 
   :where(a) {
@@ -120,9 +144,12 @@
     padding: 0;
   }
 
+  /* Focus indicator uses outline so it is never clipped by `overflow: clip`
+     on cards or other containers. Keeps the teal signal as the focus colour. */
   :where(:focus-visible) {
-    outline: none;
-    box-shadow: var(--ds-focus-ring);
+    outline: 2px solid var(--ds-color-accent);
+    outline-offset: 2px;
+    box-shadow: none;
   }
 
   ::selection {

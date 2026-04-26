@@ -1,0 +1,57 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/site/PageIntro.astro';
+import EditorialCTA from '../../components/site/EditorialCTA.astro';
+import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
+
+const description =
+  'AI integration for businesses with AI governance, privacy, AI security, human-in-the-loop, logging, audit trail and validation.';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/en' },
+    { name: 'Governed AI', url: '/en/governed-ai' },
+  ],
+});
+---
+
+<Layout
+  lang="en"
+  title="Governed AI"
+  documentTitle="Governed AI for organisations | Devisia"
+  description={description}
+  structuredData={[breadcrumbs]}
+>
+  <PageIntro
+    h1="AI integration for businesses, with perimeter and accountability"
+    lede="We design assistants, agents, RAG and AI workflows inside architectures with boundaries, oversight, policy and logged outputs, aligned with your systems, privacy needs and compliance requirements."
+  />
+
+  <div class="ds-stack ds-reading" data-gap="lg" style="margin-bottom: var(--ds-space-8)">
+    <h2>Prototype versus production</h2>
+    <p>
+      Demos optimise for demos. Production cares about latency, cost, failure modes, abuse, data subject rights, and what happens
+      when an output is unacceptable.
+    </p>
+
+    <h2>Responsible AI treats LLMs as probabilistic systems</h2>
+    <p>Put boundaries around them, verify material decisions and keep humans in the loop where accountability must remain human.</p>
+
+    <h2>What we integrate</h2>
+    <p>Chatbots, agents, RAG, orchestration, MCP servers and automation, with a clear data, permission, retention and logging matrix.</p>
+
+    <h2>AI security controls</h2>
+    <p>Human-in-the-loop, instrumentation policy, versioning, audit trail, sampling, fallbacks, data minimisation and safe shutdowns.</p>
+    <p>Useful tools: <a href="/en/tools/ai-risk-checklist">AI risk &amp; privacy checklist</a> and <a href="/en/ai-structure">AI Structure</a>.</p>
+  </div>
+
+  <EditorialCTA
+    variant="tint"
+    title="Value with a perimeter, not surprises in production"
+    ctaLabel="Design a controlled AI use case"
+    ctaHref="/en/contact"
+    copy="Share scope, data, users, limits and what your organisation accepts as proof. We define what can be automated, what must remain human and how to trace it."
+  />
+</Layout>

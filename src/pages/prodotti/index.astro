@@ -1,0 +1,133 @@
+---
+import { AUDITREADY_SITE_URL } from '../../lib/auditready';
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/site/PageIntro.astro';
+import EditorialCTA from '../../components/site/EditorialCTA.astro';
+import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
+
+const description =
+  'Prodotti Devisia per trasformare metodo, controlli, AI by design ed evidenze in strumenti operativi. AuditReady organizza pacchetti audit.';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/' },
+    { name: 'Prodotti', url: '/prodotti' },
+  ],
+});
+---
+
+<Layout title="Prodotti" description={description} structuredData={[breadcrumbs]}>
+  <PageIntro
+    eyebrow="Prodotti"
+    h1="Prodotti per trasformare controllo ed evidenze in operatività"
+    lede="Costruiamo prodotti solo quando un problema operativo mostra un pattern ripetibile: controlli da mappare, evidenze da validare, responsabilità da rendere leggibili. AuditReady è il primo punto in cui questa logica diventa interfaccia."
+  />
+
+  <section class="product-proof-layer" aria-labelledby="product-proof-title">
+    <div class="product-proof-layer__intro">
+      <p class="product-proof-layer__mark" aria-hidden="true">PROOF</p>
+      <div>
+        <h2 id="product-proof-title" class="site-h2">AuditReady non è uno scaffale documentale</h2>
+        <p class="site-lead">
+          È un sistema operativo per preparare prove: raccoglie richieste, collega controlli, valida responsabilità e produce pacchetti leggibili quando arriva un audit.
+        </p>
+      </div>
+      <div class="product-proof-layer__status" aria-label="Coordinate prodotto">
+        <span>AuditReady</span>
+        <span>Evidence OS</span>
+        <span>Beta controllata</span>
+      </div>
+    </div>
+
+    <ol class="product-flow" aria-label="Modello operativo AuditReady">
+      <li class="product-flow__item">
+        <span class="product-flow__code" aria-hidden="true">01</span>
+        <h3>Richieste</h3>
+        <p>Audit, controlli, framework, ticket, asset e fornitori entrano in un perimetro dichiarato e verificabile.</p>
+      </li>
+      <li class="product-flow__item">
+        <span class="product-flow__code" aria-hidden="true">02</span>
+        <h3>Controlli</h3>
+        <p>Ogni evidenza viene collegata a responsabilità, fonte, stato, scadenza e criterio di validazione.</p>
+      </li>
+      <li class="product-flow__item">
+        <span class="product-flow__code" aria-hidden="true">03</span>
+        <h3>Validazione</h3>
+        <p>Il sistema separa ciò che è pronto, ciò che manca e ciò che richiede intervento umano.</p>
+      </li>
+      <li class="product-flow__item">
+        <span class="product-flow__code" aria-hidden="true">04</span>
+        <h3>Export</h3>
+        <p>Il lavoro diventa pacchetto di evidenze, audit trail e stato operativo leggibile.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="product-role-lanes" aria-labelledby="product-roles-title">
+    <div class="product-role-lanes__head">
+      <h2 id="product-roles-title" class="site-h2">Cosa controlla ogni ruolo</h2>
+      <p>
+        AuditReady non promette scorciatoie. Riduce il lavoro disperso tra fogli, email e cartelle, rendendo chiaro cosa serve, chi lo possiede e quale prova resta.
+      </p>
+    </div>
+
+    <div class="product-role-lanes__grid">
+      <article class="product-role-lanes__item" aria-labelledby="product-role-leadership">
+        <span>Leadership</span>
+        <h3 id="product-role-leadership">Rischio e avanzamento</h3>
+        <p>Vede dove il processo è fermo, quali controlli sono scoperti e quali decisioni richiedono escalation.</p>
+      </article>
+      <article class="product-role-lanes__item" aria-labelledby="product-role-operations">
+        <span>Operations e product</span>
+        <h3 id="product-role-operations">Workflow e ownership</h3>
+        <p>Trasforma richieste ricorrenti in attività assegnate, verificabili e collegate a sistemi reali.</p>
+      </article>
+      <article class="product-role-lanes__item" aria-labelledby="product-role-compliance">
+        <span>Compliance e security</span>
+        <h3 id="product-role-compliance">Audit trail e responsabilità</h3>
+        <p>Prepara evidenze, stato dei controlli e pacchetti esportabili senza ricostruire tutto a fine percorso.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="product-beta-panel" aria-labelledby="product-beta-title">
+    <div>
+      <span class="product-beta-panel__label">Beta controllata</span>
+      <h2 id="product-beta-title">Perimetro chiaro prima dell’accesso</h2>
+    </div>
+    <div class="product-beta-panel__body">
+      <p>
+        AuditReady è orientato a DORA, NIS2, richieste di controlli, evidenze ricorrenti e responsabilità chiare. Non sostituisce governance interna, metodo o ownership: li rende più visibili e più facili da mantenere.
+      </p>
+      <div class="product-beta-panel__scope">
+        <div>
+          <strong>Incluso</strong>
+          <p>Perimetro, owner, stato dei controlli, evidenze collegate, pacchetti esportabili.</p>
+        </div>
+        <div>
+          <strong>Non promette</strong>
+          <p>Governance automatica, compliance magica, responsabilità delegate al software.</p>
+        </div>
+      </div>
+      <div class="product-beta-panel__actions">
+        <a class="ds-btn" data-variant="primary" data-size="lg" href={AUDITREADY_SITE_URL} target="_blank" rel="noopener noreferrer">
+          Apri AuditReady
+        </a>
+        <a class="ds-link" data-variant="muted" href="/contatti">Capisci se è adatto al tuo contesto <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <aside class="product-future-note" aria-label="Criterio per futuri prodotti">
+    Altri prodotti nasceranno solo quando un problema produce un pattern ripetibile: perimetro chiaro, controllo necessario, prova da mantenere.
+  </aside>
+
+  <EditorialCTA
+    title="Il prodotto accelera solo se il perimetro è chiaro"
+    ctaLabel="Parliamo di un prodotto verticale"
+    ctaHref="/contatti"
+    copy="Se avete in mente un dominio, un'evidenza ricorrente o un processo regolamentato, possiamo valutare se costruirlo o integrarlo. Senza forzare un prodotto dove serve prima lavoro di processo."
+  />
+</Layout>

@@ -1,0 +1,64 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/site/PageIntro.astro';
+import EditorialCTA from '../../components/site/EditorialCTA.astro';
+import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
+
+const description =
+  'AuditReady organizza evidenze, controlli, assegnazioni ed export per audit e sicurezza AI. AI assistita, supervisione umana, tracciamento.';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/' },
+    { name: 'Prodotti', url: '/prodotti' },
+    { name: 'AuditReady', url: '/prodotti/auditready' },
+  ],
+});
+---
+
+<Layout title="AuditReady" description={description} structuredData={[breadcrumbs]}>
+  <PageIntro
+    h1="AuditReady prepara le evidenze prima che vengano richieste"
+    lede="Prodotto Devisia per raccogliere, strutturare, validare ed esportare evidenze legate a controlli, audit, cybersecurity e fornitori, con tracciamento e pacchetti esportabili, senza sostituirvi o certificare la vostra compliance."
+  />
+
+  <div class="ds-stack ds-reading" data-gap="lg" style="margin-bottom: var(--ds-space-8)">
+    <h2>Il problema</h2>
+    <p>Le evidenze esistono, ma non sono nello stesso posto, nello stesso formato, o collegate a responsabilità e controlli come richiede un audit regolamentato o una richiesta di terza parte.</p>
+
+    <h2>Per chi</h2>
+    <p>IT manager, uffici compliance, DPO, consulenti, team security e operations che devono portare in sede ciò che chiede un revisore, non una narrativa generica.</p>
+
+    <h2>Cosa fa, in concreto</h2>
+    <ul>
+      <li>Evidenze ordinate e collegate a controlli e stati; meno caccia al file, più coerenza.</li>
+      <li>Responsabilità e revisione (ownership, in review, completato) visibili.</li>
+      <li>Export in pacchetti (ZIP, PDF con indice) per giornate di audit o richieste documentali.</li>
+      <li>Supporto allineato a riferimenti come GDPR, NIS2, DORA, ISO 27001 a livello di mappatura e organizzazione, non come certificazione del prodotto.</li>
+    </ul>
+
+    <h2>AI in AuditReady</h2>
+    <p>Assistenza ai compiti che si prestano, dentro limiti, log e controlli umani: non output che fanno fede al posto vostro.</p>
+
+    <h2>Stato</h2>
+    <p>Prodotto in <strong>beta</strong> con perimetro funzionale consapevolmente ristretto: stabilità e adozione prima di espandere la superficie.</p>
+
+    <h2>Esterno ufficiale</h2>
+    <p>
+      Sito e richieste: <a href="https://audit-ready.eu" rel="noopener noreferrer" target="_blank">audit-ready.eu</a> (marchio e
+      evoluzione del prodotto).
+    </p>
+
+    <p>Contesto normativo: <a href="/compliance-auditabilita">Compliance e auditabilità</a></p>
+  </div>
+
+  <EditorialCTA
+    variant="tint"
+    title="Prima il perimetro, poi la demo"
+    ctaLabel="Parliamo di AuditReady"
+    ctaHref="/contatti"
+    copy="Se volete valutare adozione, perimetro, integrazione con i vostri controlli o export verso fornitori, partiamo da un contesto d'uso, non da una demo con dati finti."
+  />
+</Layout>

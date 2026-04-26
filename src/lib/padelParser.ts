@@ -98,7 +98,7 @@ export function parseItalianDate(text: string): { year: number; monthIndex: numb
   const t = String(text || '');
 
   // Tolerant numeric formats: 28/01/2026, 28-01-2026, 28.01.2026
-  const mNum = t.match(/\b(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})\b/);
+  const mNum = t.match(/\b(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})\b/);
   if (mNum) {
     const day = Number(mNum[1]);
     const monthIndex = Number(mNum[2]) - 1;

@@ -9,7 +9,6 @@ heroSubtitle: >-
   Per founder, executive e team prodotto che vogliono rilasciare più velocemente,
   ridurre il rischio e mantenere il controllo. Progettiamo e costruiamo sistemi
   che reggono nel tempo, con AI e privacy-by-design come fondamenta.
-heroImage: /uploads/hero-dev-ai-vision.png
 homeWhatWeDoTitle: Cosa cambia dopo aver lavorato con Devisia
 homeWhatWeDoDescription: >-
   Ottieni un prodotto più chiaro da usare e più semplice da far evolvere. Meno
@@ -62,16 +61,12 @@ homeAIStructureDescription: >-
   Noi di Devisia ti restituiamo come lo affronteremmo: confini, flussi, responsabilità e punti critici. 
   Senza chatbot, senza ambiguità.
 homeAIStructureItems:
-  - "System overview: scope e confini"
-  - "Domain model: entità e responsabilità"
-  - "Key flows: causa → effetto"
-  - "Critical considerations: tecnico, dati/privacy, architettura"
+  - "System overview, scope e confini"
+  - "Domain model, entità e responsabilità"
+  - "Key flows, causa e effetto"
+  - "Critical considerations: tecnico, dati e privacy, architettura"
 homeAIStructureCtaLabel: Esplora AI Structure
 homeAIStructureCtaHref: /ai-structure
-homeAIChecklistTitle: Checklist rischio AI e privacy
-homeAIChecklistDescription: >-
-  Un tool gratuito per capire rischi, responsabilità e contromisure prima di
-  investire. Nessun upload, nessuno storage: lo usi e basta.
 homeHowWeWorkTitle: Come lavoriamo
 homeHowWeWorkDescription: >-
   Con calma e precisione. Ci interessa il risultato, non il rumore. Ti aiutiamo
@@ -89,11 +84,6 @@ homeHowWeWorkItems:
     description: >-
       Mettiamo in produzione in modo incrementale e misuriamo. Il prodotto
       migliora con il business, non contro il business.
-homeProjectsTitle: Progetti e casi reali
-homeProjectsDescription: >-
-  Dai un’occhiata a cosa abbiamo costruito e a come ragioniamo: esempi concreti
-  di prodotti, piattaforme e sistemi che devono funzionare ogni giorno.
-homeProjectsImage: /uploads/progetti.png
 homeContactTitle: Parliamo del tuo contesto
 homeContactDescription: >-
   Che tu debba lanciare una nuova iniziativa o rimettere in ordine un sistema

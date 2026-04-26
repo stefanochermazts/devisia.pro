@@ -1,44 +1,60 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { getEntry, render } from 'astro:content';
-import { type CollectionEntry } from 'astro:content';
+import PageIntro from '../../components/site/PageIntro.astro';
+import EditorialCTA from '../../components/site/EditorialCTA.astro';
 import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
-import PageHero from '../../components/PageHero.astro';
 
-const aboutEntry: CollectionEntry<'pagesEn'> | undefined = await getEntry('pagesEn', 'en/about');
-
-if (!aboutEntry) {
-  return new Response('About page content not found', { status: 404 });
-}
-
-const { data } = aboutEntry;
-const { Content } = await render(aboutEntry);
+const description =
+  'Devisia is a software development company for products, responsible AI and operational compliance where control, architecture and traceability matter.';
 
 const site = Astro.site ?? new URL('https://devisia.pro');
 const breadcrumbs = breadcrumbListJsonLd({
   site,
   items: [
-    { name: 'Home', url: '/en/' },
+    { name: 'Home', url: '/en' },
     { name: 'About', url: '/en/about' },
   ],
 });
 ---
 
-<Layout
-  title={data.title}
-  description={data.description}
-  heroImage={data.heroImage}
-  lang="en"
-  structuredData={[breadcrumbs]}
->
-  <article class="ds-stack" data-gap="lg" style="container-type: inline-size">
-    <PageHero
-      lang="en"
-      title={data.heroTitle ?? 'About'}
-      subtitle={data.heroSubtitle ?? data.description}
-      image={data.heroImage}
-      fallbackImage="/images/hero-about.svg"
-    />
-    <Content />
-  </article>
+<Layout lang="en" title="About" description={description} structuredData={[breadcrumbs]}>
+  <PageIntro
+    h1="A software development company for systems that must stay under control"
+    lede="Devisia brings together platform development, responsible AI, data governance and operational compliance for real problems of process, security, audit and accountability."
+  />
+
+  <div class="ds-stack ds-reading" data-gap="lg" style="margin-bottom: var(--ds-space-8)">
+    <h2>Why we exist</h2>
+    <p>
+      To prevent digital work from becoming fragile stacks, buried requirements, ungoverned models in production and scattered evidence when you must prove
+      something. We work with teams that have something to lose: reputation, continuity, regulation, customers, data.
+    </p>
+
+    <h2>Problems we tackle</h2>
+    <ul>
+      <li>Processes and data misaligned across business units, systems and suppliers.</li>
+      <li>Software that grows by accretion and becomes opaque to operators and auditors.</li>
+      <li>AI used where boundaries, validation or trace are missing.</li>
+      <li>Compliance asks that are not supported by tools, logs, exports and clear ownership.</li>
+    </ul>
+
+    <h2>How we think</h2>
+    <p>Architecture and accountability before code and automation, once the perimeter is clear. Evidence, not theatre.</p>
+
+    <h2>Products</h2>
+    <p>
+      We ship <a href="/en/products">vertical products</a> when the repeatable pain is clear. AuditReady is the current public product.
+    </p>
+
+    <h2>What we are not</h2>
+    <p>Not a generic full-service agency, not a slide vendor. If you want transformation without touching process, we are misaligned.</p>
+  </div>
+
+  <EditorialCTA
+    variant="tint"
+    title="If your next constraint is serious, treat it with competence, not slogans"
+    ctaLabel="Get to know your context"
+    ctaHref="/en/contact"
+    copy="First touch: understand facts, constraints, ownership and acceptance criteria, without forcing a stack or vendor choice."
+  />
 </Layout>

@@ -1,0 +1,273 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-04-25T12:00:00.000Z",
+  "title": "Design System: Devisia",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "primary",
+        "displayName": "Inchiostro",
+        "canonical": "oklch(0.22 0.02 250)",
+        "tonalRamp": [
+          "oklch(0.12 0.02 250)",
+          "oklch(0.16 0.02 250)",
+          "oklch(0.2 0.02 250)",
+          "oklch(0.24 0.02 250)",
+          "oklch(0.3 0.02 250)",
+          "oklch(0.4 0.02 250)",
+          "oklch(0.55 0.02 250)",
+          "oklch(0.75 0.02 250)"
+        ]
+      },
+      "ink-deep": {
+        "role": "primary",
+        "displayName": "Inchiostro profondo",
+        "canonical": "oklch(0.18 0.025 255)",
+        "tonalRamp": [
+          "oklch(0.1 0.025 255)",
+          "oklch(0.13 0.025 255)",
+          "oklch(0.16 0.025 255)",
+          "oklch(0.18 0.025 255)",
+          "oklch(0.24 0.025 255)",
+          "oklch(0.32 0.025 255)",
+          "oklch(0.45 0.02 255)",
+          "oklch(0.6 0.015 255)"
+        ]
+      },
+      "ivory": {
+        "role": "neutral",
+        "displayName": "Ivory",
+        "canonical": "oklch(0.98 0.01 90)",
+        "tonalRamp": [
+          "oklch(0.2 0.01 90)",
+          "oklch(0.35 0.01 90)",
+          "oklch(0.5 0.01 90)",
+          "oklch(0.7 0.01 90)",
+          "oklch(0.85 0.01 90)",
+          "oklch(0.92 0.01 90)",
+          "oklch(0.96 0.01 90)",
+          "oklch(0.99 0.006 90)"
+        ]
+      },
+      "paper": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "oklch(0.96 0.012 85)",
+        "tonalRamp": [
+          "oklch(0.2 0.012 85)",
+          "oklch(0.35 0.012 85)",
+          "oklch(0.5 0.012 85)",
+          "oklch(0.65 0.012 85)",
+          "oklch(0.8 0.012 85)",
+          "oklch(0.88 0.012 85)",
+          "oklch(0.93 0.012 85)",
+          "oklch(0.97 0.012 85)"
+        ]
+      },
+      "ember": {
+        "role": "secondary",
+        "displayName": "Ember",
+        "canonical": "oklch(0.45 0.1 30)",
+        "tonalRamp": [
+          "oklch(0.2 0.08 30)",
+          "oklch(0.28 0.09 30)",
+          "oklch(0.35 0.1 30)",
+          "oklch(0.4 0.1 30)",
+          "oklch(0.45 0.1 30)",
+          "oklch(0.55 0.09 30)",
+          "oklch(0.68 0.07 30)",
+          "oklch(0.85 0.04 30)"
+        ]
+      },
+      "pine": {
+        "role": "tertiary",
+        "displayName": "Pine",
+        "canonical": "oklch(0.45 0.08 195)",
+        "tonalRamp": [
+          "oklch(0.2 0.06 195)",
+          "oklch(0.28 0.07 195)",
+          "oklch(0.35 0.08 195)",
+          "oklch(0.4 0.08 195)",
+          "oklch(0.45 0.08 195)",
+          "oklch(0.55 0.07 195)",
+          "oklch(0.7 0.05 195)",
+          "oklch(0.88 0.03 195)"
+        ]
+      },
+      "hero-tint": {
+        "role": "primary",
+        "displayName": "Hero tint",
+        "canonical": "oklch(0.2 0.028 255)",
+        "tonalRamp": [
+          "oklch(0.1 0.02 255)",
+          "oklch(0.12 0.022 255)",
+          "oklch(0.16 0.025 255)",
+          "oklch(0.2 0.028 255)",
+          "oklch(0.28 0.028 255)",
+          "oklch(0.4 0.02 255)",
+          "oklch(0.55 0.015 255)",
+          "oklch(0.7 0.01 255)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface",
+        "canonical": "oklch(0.99 0.006 90)",
+        "tonalRamp": [
+          "oklch(0.2 0.006 90)",
+          "oklch(0.35 0.006 90)",
+          "oklch(0.5 0.006 90)",
+          "oklch(0.65 0.006 90)",
+          "oklch(0.8 0.006 90)",
+          "oklch(0.9 0.006 90)",
+          "oklch(0.95 0.006 90)",
+          "oklch(0.99 0.006 90)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero e titoli marketing (Bitter)." },
+      "headline": { "displayName": "Headline", "purpose": "H2, sezioni." },
+      "title": { "displayName": "Title", "purpose": "H3-H4." },
+      "body": { "displayName": "Body", "purpose": "Testo corpo (Lexend)." },
+      "label": { "displayName": "Label", "purpose": "Nav, micro UI (Manrope)." }
+    },
+    "shadows": [
+      {
+        "name": "ds-shadow-1",
+        "value": "0 1px 2px oklch(0.2 0.02 250 / 0.07)",
+        "purpose": "Header dopo scroll, card discrete, switch knob."
+      },
+      {
+        "name": "ds-shadow-2",
+        "value": "0 8px 24px oklch(0.2 0.02 250 / 0.1)",
+        "purpose": "Overlay, pannelli sopra il flusso (light)."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ds-motion-fast",
+        "value": "120ms",
+        "purpose": "Stati su bottoni, bordi, colori."
+      },
+      {
+        "name": "ds-motion-base",
+        "value": "180ms",
+        "purpose": "Header, transizioni piu' visibili."
+      },
+      {
+        "name": "ds-ease-standard",
+        "value": "cubic-bezier(0.2, 0, 0, 1)",
+        "purpose": "Easing predefinito per UI."
+      },
+      {
+        "name": "ds-ease-out",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Uscita morbida dove definito in CSS."
+      }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "36rem" },
+      { "name": "md", "value": "48rem" },
+      { "name": "lg", "value": "64.01rem" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "CTA piena, sfondo --ds-color-primary, bordo scurito, hover translateY(-1px) e mix verso bianco.",
+      "html": "<button type=\"button\" class=\"ds-btn\" data-variant=\"primary\">Contatti</button>",
+      "css": ".ds-btn[data-variant=\"primary\"] { --_bg: var(--ds-color-primary); --_fg: white; --_bd: color-mix(in srgb, var(--ds-color-primary) 70%, black); display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; min-height: 2.75rem; padding: 0.7rem 0.95rem; border-radius: var(--ds-radius-2); border: 1px solid var(--_bd); background: var(--_bg); color: var(--_fg); font-weight: 600; font-family: inherit; cursor: pointer; transition: background 120ms cubic-bezier(0.2, 0, 0, 1), border-color 120ms cubic-bezier(0.2, 0, 0, 1), transform 120ms cubic-bezier(0.2, 0, 0, 1); } .ds-btn[data-variant=\"primary\"]:hover:not([disabled]) { transform: translateY(-1px); background: color-mix(in srgb, var(--_bg) 92%, white); } .ds-btn[data-variant=\"primary\"]:focus-visible { outline: 2px solid var(--ds-color-focus); outline-offset: 2px; }"
+    },
+    {
+      "name": "Ghost button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Trasparente, testo --ds-color-text, senza bordo a riposo.",
+      "html": "<button type=\"button\" class=\"ds-btn\" data-variant=\"ghost\">Annulla</button>",
+      "css": ".ds-btn[data-variant=\"ghost\"] { --_bg: transparent; --_fg: var(--ds-color-text); --_bd: transparent; display: inline-flex; align-items: center; justify-content: center; min-height: 2.75rem; padding: 0.7rem 0.95rem; border-radius: var(--ds-radius-2); border: 1px solid var(--_bd); background: var(--_bg); color: var(--_fg); font-weight: 600; cursor: pointer; transition: background 120ms cubic-bezier(0.2, 0, 0, 1), transform 120ms cubic-bezier(0.2, 0, 0, 1); } .ds-btn[data-variant=\"ghost\"]:hover:not([disabled]) { transform: translateY(-1px); background: color-mix(in srgb, var(--ds-color-surface) 100%, white); }"
+    },
+    {
+      "name": "Site navigation link",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Link menu Manrope, min-height 2.75rem, current page con mix ember su superficie.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\">Metodo</a>",
+      "css": ".ds-nav-link { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0.5rem 0.75rem; border-radius: var(--ds-radius-2); color: var(--ds-color-text); text-decoration: none; font-weight: 560; letter-spacing: -0.01em; font-family: var(--ds-font-ui), system-ui, sans-serif; transition: background 120ms cubic-bezier(0.2, 0, 0, 1), color 120ms cubic-bezier(0.2, 0, 0, 1); } .ds-nav-link:hover { background: var(--ds-color-surface-2); } .ds-nav-link[aria-current='page'] { background: color-mix(in srgb, var(--ds-color-accent) 14%, var(--ds-color-surface-2)); border: 1px solid color-mix(in srgb, var(--ds-color-accent) 35%, var(--ds-color-border)); color: var(--ds-color-text); }"
+    },
+    {
+      "name": "Nav CTA (primary in header)",
+      "kind": "nav",
+      "refersTo": "nav-link-cta",
+      "description": "Contatti in header: primary con underline accent inset.",
+      "html": "<a class=\"ds-nav-cta\" href=\"#\">Contatti</a>",
+      "css": ".ds-nav-cta { display: inline-flex; align-items: center; min-height: 2.75rem; padding: 0.5rem 0.75rem; border-radius: var(--ds-radius-2); border: 1px solid color-mix(in srgb, var(--ds-color-primary) 70%, black); background: var(--ds-color-primary); color: white; font-weight: 700; font-family: var(--ds-font-ui), system-ui, sans-serif; text-decoration: none; box-shadow: inset 0 -2px 0 0 var(--ds-color-accent); transition: background 120ms cubic-bezier(0.2, 0, 0, 1); } .ds-nav-cta:hover { background: color-mix(in srgb, var(--ds-color-primary) 88%, white); }"
+    },
+    {
+      "name": "Text input",
+      "kind": "input",
+      "refersTo": "ds-input",
+      "description": "Superficie card, bordo, focus con ring e mix accent su bordo.",
+      "html": "<input type=\"text\" class=\"ds-input\" placeholder=\"Email\" />",
+      "css": ".ds-input { width: 100%; max-width: 20rem; padding: 0.65rem 0.85rem; border-radius: var(--ds-radius-2); border: 1px solid var(--ds-color-border); background: var(--ds-color-surface); color: var(--ds-color-text); box-shadow: inset 0 0 0 1px transparent; transition: border-color 120ms cubic-bezier(0.2, 0, 0, 1), box-shadow 120ms cubic-bezier(0.2, 0, 0, 1); } .ds-input:focus-visible { border-color: color-mix(in srgb, var(--ds-color-accent) 50%, var(--ds-color-border)); box-shadow: var(--ds-focus-ring); outline: none; }"
+    },
+    {
+      "name": "Card",
+      "kind": "card",
+      "refersTo": "ds-card",
+      "description": "Raggio 3, bordo, ombra 1, body con padding generoso.",
+      "html": "<article class=\"ds-card\"><div class=\"ds-card__body\"><h3>Titolo</h3><p class=\"ds-muted\">Riassunto.</p></div></article>",
+      "css": ".ds-card { border-radius: var(--ds-radius-3); border: 1px solid var(--ds-color-border); background: var(--ds-color-surface); box-shadow: var(--ds-shadow-1); overflow: clip; } .ds-card__body { padding: var(--ds-space-6); } .ds-card h3 { font-weight: 700; font-size: var(--ds-text-xl); margin: 0 0 var(--ds-space-2); } .ds-card p.ds-muted { margin: 0; font-size: var(--ds-text-sm); color: var(--ds-color-text-muted); line-height: var(--ds-leading-relaxed); }"
+    },
+    {
+      "name": "Site header",
+      "kind": "nav",
+      "refersTo": "site-header",
+      "description": "Sticky, Manrope, ombra leggera solo dopo scroll (data-scrolled).",
+      "html": "<header class=\"ds-site-header\" data-scrolled=\"false\"><div class=\"ds-site-header__inner\">Brand</div></header>",
+      "css": ".ds-site-header { position: relative; z-index: 50; font-family: var(--ds-font-ui), system-ui, sans-serif; background: var(--ds-color-bg); border-bottom: 1px solid var(--ds-color-border); transition: box-shadow 180ms cubic-bezier(0.2, 0, 0, 1), border-color 180ms cubic-bezier(0.2, 0, 0, 1); } .ds-site-header[data-scrolled='true'] { box-shadow: var(--ds-shadow-1); border-bottom-color: var(--ds-color-border-strong); } .ds-site-header__inner { padding: 0.5rem 1rem; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "La sala controllo leggibile",
+    "overview": "Il sistema visivo del sito Devisia nasce da un manuale tecnico caldo e da una regia a contrasto: fondali avorio e carta, inchiostro blu-freddo, accenti arancio-terra (ember) e verde-blu (pine) per segnalare controlli e struttura. La superficie non e' decorazione: ogni sezione segue un flusso riconoscibile (contesto, problema, metodo, prova, azione) come chiede il prodotto. L'utente percepisce ordine, continuita' e possibilita' di verifica, non \"tech hype\".\n\nIl codice sorgente dei token e' in `src/styles/tokens.css` (OKLCH). I valori qui e nel frontmatter allineano quei token; per il lavoro giornaliero gli agenti devono riferirsi a `--ds-*` nel CSS, non duplicare costanti in prose con valori diversi.",
+    "keyCharacteristics": [
+      "Tre famiglie: **Bitter Variable** (titoli e display marketing), **Manrope Variable** (header, footer, UI chrome), **Lexend Variable** (corpo e lettura continua).",
+      "Committed ma non \"drenched\": hero scuri (hero-tint) e superfici carta, senza glassmorphism come default.",
+      "Profondita' con ombre leggere (due livelli) e bordi 1px/2px, non strisce laterali colorate su card o liste.",
+      "Stati interattivi con transizione rapida (120ms) o base (180ms) e `ease-standard`, senza rimbalzi."
+    ],
+    "rules": [
+      {
+        "name": "The OKLCH Source Rule",
+        "body": "I valori normativi per colore stanno in `:root` come OKLCH. Se serve hex per un export (Figma, Stitch), convertire da li', non scrivere un secondo \"colore ufficiale\" in markdown che diverge.",
+        "section": "colors"
+      },
+      {
+        "name": "The Three-Family Rule",
+        "body": "Non mescolare Bitter nel corpo lungo o Manrope nei titoli `h1-h6` salvo casi gia' codificati (es. componenti legacy): tre ruoli, tre stack.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Default-Glass Rule",
+        "body": "Niente `backdrop-filter` o vetro come estetica di default; se usato, e' un caso eccezionale e motivato in componente, non in landing generica. Coerente con l'anti-reference \"SaaS generica\" in PRODUCT.md.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do mantenere un flusso per sezione: contesto, problema, metodo, prova, prossima azione.",
+      "Do usare i token `--ds-*` e variabili gia' definite per colore, spazio, raggio e ombra.",
+      "Do rispettare WCAG AA come baseline e puntare a AAA dove non rovina la gerarchia, come da PRODUCT.",
+      "Do trattare messaggi su AI con perimetro, limiti, supervisione, auditabilita' (principio 5 in PRODUCT), anche in scelta visiva (nessun \"magico\" da hero stock)."
+    ],
+    "donts": [
+      "Don't lasciare la pagina disordinata, con gerarchie confuse o sezioni equivalenti impilate senza ritmo, come in Anti-references.",
+      "Don't usare l'estetica SaaS generica: gradienti vistosi ovunque, metriche da hero template, griglie infinite di icone+ titolo+ testo, promesse AI rumorose, consulenza corporate fredda in stock language: tutto esplicitamente vietato in Anti-references.",
+      "Don't usare bordo sinistro o destro spesso come unica cifra su card o voci di lista: bande laterali >1px come accento, vietate (legge condivisa del progetto / skill).",
+      "Don't usare `background-clip: text` con gradiente per enfasi: enfasi con peso, dimensione, spazio, non finta metallizzazione.",
+      "Don't reintrodurre il pieno \"hero metric\" (numero enorme, label piccola, quattro stat, gradient dietro) come pattern di home."
+    ]
+  }
+}

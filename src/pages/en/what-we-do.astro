@@ -1,0 +1,161 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/site/PageIntro.astro';
+import WhatWeDoLayers from '../../components/site/WhatWeDoLayers.astro';
+import EditorialCTA from '../../components/site/EditorialCTA.astro';
+import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
+
+const description =
+  'Custom software development, web application development, SaaS development and AI integration for critical, accountable processes.';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/en' },
+    { name: 'What we do', url: '/en/what-we-do' },
+  ],
+});
+---
+
+<Layout
+  lang="en"
+  title="What we do"
+  documentTitle="Custom software development, AI and SaaS | Devisia"
+  description={description}
+  structuredData={[breadcrumbs]}
+>
+  <PageIntro
+    eyebrow="What we do"
+    h1="Custom software development for accountable digital work"
+    lede="We build platforms, web application development, SaaS development, automation and AI integration when a process must withstand volume, exceptions, audits, privacy, operational continuity and explicit accountability."
+  />
+
+  <p class="sr-only">
+    Visual summary: build applications and platforms, integrate data and systems, govern AI and controls, with a focus on
+    verifiable evidence.
+  </p>
+  <section class="site-section site-section--dark what-we-do-layers">
+    <div class="ds-container">
+      <WhatWeDoLayers lang="en" />
+    </div>
+  </section>
+
+  <section class="responsibility-filter" aria-labelledby="filter-title">
+    <div>
+      <p class="responsibility-filter__mark" aria-hidden="true">RESP</p>
+      <div class="responsibility-filter__status" aria-hidden="true">
+        <span>Threshold</span>
+        <span>Control</span>
+        <span>Proof</span>
+      </div>
+    </div>
+    <div>
+      <h2 id="filter-title" class="site-h2">We do not build when accountability is invisible</h2>
+      <p class="site-lead">
+        We enter when digital work crosses a responsibility threshold: sensitive data, traceable decisions, critical integrations,
+        distributed roles, evidence to produce or systems that must evolve after release.
+      </p>
+      <ul class="responsibility-filter__signals" aria-label="Signals of high-accountability work">
+        <li>Process with exceptions</li>
+        <li>Decisions to explain</li>
+        <li>Critical data or suppliers</li>
+        <li>Audit or continuity</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="evidence-chain-section" aria-labelledby="chain-title">
+    <p class="evidence-chain-section__mark" aria-hidden="true">P-C-E</p>
+    <div class="evidence-chain-section__intro">
+      <h2 id="chain-title" class="site-h2">The chain that decides whether to build</h2>
+      <p class="site-lead">
+        Every project is read as a verifiable sequence. If a step cannot be controlled or evidenced, we address it before writing code, APIs or AI components.
+      </p>
+    </div>
+
+    <ol class="evidence-chain" aria-label="Chain: problem, control, evidence">
+      <li class="evidence-chain__item">
+        <span class="evidence-chain__code" aria-hidden="true">01</span>
+        <h3>Problem</h3>
+        <p>Which operation creates lost time, errors, risk, manual dependency or decisions that are hard to explain?</p>
+      </li>
+      <li class="evidence-chain__item">
+        <span class="evidence-chain__code" aria-hidden="true">02</span>
+        <h3>Control</h3>
+        <p>Which boundaries, roles, data, policies, validations and accountability must be explicit in the system?</p>
+      </li>
+      <li class="evidence-chain__item">
+        <span class="evidence-chain__code" aria-hidden="true">03</span>
+        <h3>Evidence</h3>
+        <p>Which trace must stay readable: log, decision record, audit trail, report, export or operational state?</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="responsibility-matrix" aria-labelledby="matrix-title">
+    <div class="responsibility-matrix__head">
+      <h2 id="matrix-title" class="site-h2">What we build when the chain is clear</h2>
+      <p>
+        We do not separate software, AI and compliance into silos. We treat them as parts of the same operating system:
+        what automates must also explain, control and leave proof.
+      </p>
+    </div>
+
+    <div class="responsibility-matrix__rows">
+      <article class="responsibility-matrix__row">
+        <span>Build</span>
+        <h3>Web applications and platforms</h3>
+        <p>Applications, workflows and services for processes with volume, exceptions, integrations or long-term quality requirements.</p>
+        <div class="responsibility-matrix__proof">
+          <strong>Expected proof: readable domain, clear versions, observability.</strong>
+        </div>
+      </article>
+      <article class="responsibility-matrix__row">
+        <span>Integrate</span>
+        <h3>Data, APIs and existing systems</h3>
+        <p>AI API integration and controlled exchange between systems, with contracts, error handling, reconciliation and role-aligned access rights.</p>
+        <div class="responsibility-matrix__proof">
+          <strong>Expected proof: visible errors, data ownership, explainable reconciliation.</strong>
+        </div>
+      </article>
+      <article class="responsibility-matrix__row">
+        <span>Govern</span>
+        <h3>AI integration inside software</h3>
+        <p>Models, RAG, agents and assisted tools only where inputs, outputs, oversight and accountability are designed.</p>
+        <div class="responsibility-matrix__proof">
+          <strong>Expected proof: limits, logs, validation, human escalation.</strong>
+          <a class="ds-link" data-variant="muted" href="/en/governed-ai">Explore governed AI <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+      <article class="responsibility-matrix__row">
+        <span>Evidence</span>
+        <h3>Compliance, audit and operational tools</h3>
+        <p>Control maps, assets, suppliers, dashboards and reports that answer concrete questions from teams and auditors.</p>
+        <div class="responsibility-matrix__proof">
+          <strong>Expected proof: exportable evidence, assigned accountability, readable system state.</strong>
+          <a class="ds-link" data-variant="muted" href="/en/compliance-auditability">Compliance and auditability <span aria-hidden="true">→</span></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="no-build-filter" aria-labelledby="no-build-title">
+    <div class="no-build-filter__panel">
+      <span aria-hidden="true">STOP</span>
+      <h2 id="no-build-title">When we do not build</h2>
+      <p>
+        If no one owns the outcome, if the result cannot be verified, or if software would only hide an undefined process,
+        we prefer to say so. The first useful output can be an accountability map, not a line of code.
+      </p>
+    </div>
+  </section>
+
+  <EditorialCTA
+    variant="tint"
+    title="Describe the context, not the solution"
+    copy="Share process, risk, data, integrations, people involved and the evidence that must remain. First step: understand whether the problem, control and evidence chain can hold."
+    ctaLabel="Talk about the operational problem"
+    ctaHref="/en/contact"
+  />
+</Layout>

@@ -242,7 +242,7 @@ export const handler: Handler = async (event, _context) => {
     }
 
     // Return redirect response
-    const redirectUrl = emailLang === 'en' ? '/en/contact?success=true' : '/contact?success=true';
+    const redirectUrl = emailLang === 'en' ? '/en/contact?success=true' : '/contatti?success=true';
     
     return {
       statusCode: 303,

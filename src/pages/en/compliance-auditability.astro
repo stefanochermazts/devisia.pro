@@ -1,0 +1,58 @@
+---
+import { AUDITREADY_SITE_URL } from '../../lib/auditready';
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/site/PageIntro.astro';
+import EditorialCTA from '../../components/site/EditorialCTA.astro';
+import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
+
+const description =
+  'Operational compliance for GDPR, NIS2, DORA and ISO 27001: evidence, assets, suppliers, processes, AI security and traceability.';
+
+const documentTitle = 'Digital compliance and auditability | Devisia';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/en' },
+    { name: 'Compliance and auditability', url: '/en/compliance-auditability' },
+  ],
+});
+---
+
+<Layout
+  lang="en"
+  title="Compliance and auditability"
+  documentTitle={documentTitle}
+  description={description}
+  structuredData={[breadcrumbs]}
+>
+  <PageIntro
+    h1="Operational compliance means producing evidence, not collecting documents"
+    lede="We design systems and flows where controls, logs, assignments, exports and operational continuity match what the organisation must be able to show in audit or incident response."
+  />
+
+  <div class="ds-stack ds-reading" data-gap="lg" style="margin-bottom: var(--ds-space-8)">
+    <h2>The real problem</h2>
+    <p>
+      Often the activity exists, but artefacts are <strong>not collected, linked, versioned and available</strong> in the shape and
+      timing required. That is an operational problem, not a presentation problem.
+    </p>
+
+    <h2>Frameworks, governance and AI security in one system</h2>
+    <p>GDPR, NIS2, DORA, ISO 27001, supply chain, assets and dependencies, processes, roles, export and business continuity.</p>
+
+    <h2>AuditReady</h2>
+    <p>
+      <a href={AUDITREADY_SITE_URL} target="_blank" rel="noopener noreferrer">AuditReady</a> is a Devisia product to collect, link and package evidence with traceability.
+      It supports clarity; it does not replace your DPO, legal counsel or auditors.
+    </p>
+  </div>
+
+  <EditorialCTA
+    title="Align tools, controls and evidence with how you actually work"
+    ctaLabel="Discuss the evidence you need"
+    ctaHref="/en/contact"
+    copy="We start from what you are asked for today, who is accountable, and where proofs live now. Then we propose operational tools and steps."
+  />
+</Layout>

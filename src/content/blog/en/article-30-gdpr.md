@@ -167,7 +167,7 @@ Common mistakes include:
 *   **Assigning an incorrect basis,** like claiming "legitimate interest" for an activity that requires explicit "consent."
 *   **Failing to document the specific legitimate interest** when that basis is used.
 
-A missing or incorrect lawful basis is a direct violation of core GDPR principles and an immediate red flag for any auditor. It demonstrates a lack of foundational understanding of data protection law and undermines any claim of being [**audit-ready and compliant by design**](https://devisia.pro/projects/auditready).
+A missing or incorrect lawful basis is a direct violation of core GDPR principles and an immediate red flag for any auditor. It demonstrates a lack of foundational understanding of data protection law and undermines any claim of being <a href="https://audit-ready.eu" target="_blank" rel="noopener noreferrer"><strong>audit-ready and compliant by design</strong></a>.
 
 ## Using Your RoPA to Drive Privacy by Design
 

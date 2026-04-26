@@ -1,0 +1,51 @@
+---
+import { AUDITREADY_SITE_URL } from '../lib/auditready';
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/site/PageIntro.astro';
+import EditorialCTA from '../components/site/EditorialCTA.astro';
+import { breadcrumbListJsonLd } from '../lib/seo/structuredData';
+
+const description =
+  'Compliance operativa per GDPR, NIS2, DORA e ISO 27001: evidenze, asset, fornitori, processi, sicurezza AI e tracciabilità.';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/' },
+    { name: 'Compliance e auditabilità', url: '/compliance-auditabilita' },
+  ],
+});
+---
+
+<Layout title="Compliance e auditabilità" description={description} structuredData={[breadcrumbs]}>
+  <PageIntro
+    h1="La compliance operativa è produrre evidenze, non accumulare documenti"
+    lede="Progettiamo sistemi e flussi in cui controlli, log, assegnazioni, export e continuità operativa sono coerenti con ciò che l'organizzazione deve poter mostrare in audit o a fronte di incidenti."
+  />
+
+  <div class="ds-stack ds-reading" data-gap="lg" style="margin-bottom: var(--ds-space-8)">
+    <h2>Il problema reale</h2>
+    <p>
+      In audit e verifiche regolamentate, spesso le attività esistono, ma <strong>non sono raccolte, collegate, versionate e
+        disponibili</strong> con la forma richiesta, nel momento richiesto. È un problema operativo, non di presentazione.
+    </p>
+
+    <h2>Framework, governance e sicurezza AI in un sistema integrato</h2>
+    <p>GDPR, NIS2, DORA, ISO 27001, catena di fornitura, asset e dipendenze, processi, ruoli, esportazione e business continuity.</p>
+    <p>Non sostituiamo DPO, legali o consulenti: rendiamo <strong>più sostenibili le prove</strong> rispetto a ciò che già fate.</p>
+
+    <h2>AuditReady</h2>
+    <p>
+      <a href={AUDITREADY_SITE_URL} target="_blank" rel="noopener noreferrer">AuditReady</a> è un prodotto Devisia per raccogliere, collegare e pacchettizzare evidenze con
+      tracciabilità: utile, ma non sostituisce il giudizio interno o esterno. Non siamo un organismo di certificazione.
+    </p>
+  </div>
+
+  <EditorialCTA
+    title="Allineiamo strumenti, controlli ed evidenze al modo in cui lavorate davvero"
+    ctaLabel="Ragioniamo sulle evidenze che servono"
+    ctaHref="/contatti"
+    copy="Partiamo da cosa vi chiedono oggi, da chi è responsabile e da dove escono le prove. Poi proponiamo strumenti e passi operativi."
+  />
+</Layout>

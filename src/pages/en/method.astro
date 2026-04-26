@@ -1,0 +1,139 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PageIntro from '../../components/site/PageIntro.astro';
+import MethodGraph from '../../components/site/MethodGraph.astro';
+import EditorialCTA from '../../components/site/EditorialCTA.astro';
+import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
+
+const description =
+  'Devisia method: process, data and constraints before code. AI by design, control, evidence and maintainable software.';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/en' },
+    { name: 'Method', url: '/en/method' },
+  ],
+});
+---
+
+<Layout lang="en" title="Method" description={description} structuredData={[breadcrumbs]}>
+  <PageIntro
+    eyebrow="Method"
+    h1="A method for governable software and AI by design"
+    lede="We translate real processes into digital architectures that stay understandable, maintainable and verifiable. Each phase clarifies boundaries, accountability, release criteria and the evidence that remains after go-live."
+  />
+
+  <MethodGraph lang="en" />
+
+  <section class="method-operating-model" aria-labelledby="method-model-title">
+    <div class="method-operating-model__intro">
+      <p class="method-operating-model__mark" aria-hidden="true">CTRL</p>
+      <div>
+        <h2 id="method-model-title" class="site-h2">Three movements, six steps, no black box</h2>
+        <p class="site-lead">
+          The method reduces ambiguity before increasing technology. Each movement connects a decision to a control and to a verifiable artifact.
+        </p>
+      </div>
+      <div class="method-operating-model__status" aria-hidden="true">
+        <span>Observe</span>
+        <span>Boundary</span>
+        <span>Evidence</span>
+      </div>
+    </div>
+
+    <ol class="method-movements" role="list" aria-label="Devisia method movements">
+      <li class="method-movements__item">
+        <span class="method-movements__code" aria-hidden="true">01</span>
+        <div>
+          <h3>Understand the system before automating</h3>
+          <p>We observe real work, interview operators and owners, and capture exceptions, constraints, data and meaningful states.</p>
+        </div>
+        <strong>Output: process map, accountability, exceptions.</strong>
+      </li>
+      <li class="method-movements__item">
+        <span class="method-movements__code" aria-hidden="true">02</span>
+        <div>
+          <h3>Define controls and AI governance</h3>
+          <p>We model service boundaries, permissions, logging, validation, policies, done criteria and rules for AI or automation.</p>
+        </div>
+        <strong>Output: control register, release criteria, rollback plan.</strong>
+      </li>
+      <li class="method-movements__item">
+        <span class="method-movements__code" aria-hidden="true">03</span>
+        <div>
+          <h3>Release with evidence</h3>
+          <p>We build iteratively, connect requests, code, environments and hand-offs, then leave monitoring and operations in place.</p>
+        </div>
+        <strong>Output: evidence trail, operational handoff, continuity after go-live.</strong>
+      </li>
+    </ol>
+  </section>
+
+  <section class="method-evidence-matrix" aria-labelledby="method-evidence-title">
+    <p class="method-evidence-matrix__mark" aria-hidden="true">TRACE</p>
+    <div class="method-evidence-matrix__head">
+      <h2 id="method-evidence-title" class="site-h2">What must remain after each phase</h2>
+      <p>
+        The method's value is not the sequence of activities. It is the quality of decisions that remain verifiable when the system changes, scales or gets audited.
+      </p>
+    </div>
+
+    <div class="method-evidence-matrix__rows">
+      <article class="method-evidence-matrix__row">
+        <span>Observe</span>
+        <h3>What really happens?</h3>
+        <p>Interviews, exceptions, unwritten rules, actors involved and operational constraints.</p>
+        <strong>Artifact: real-work process map.</strong>
+      </article>
+      <article class="method-evidence-matrix__row">
+        <span>Model</span>
+        <h3>Which states and data matter?</h3>
+        <p>Entities, ownership, states, transitions, access rights and control points.</p>
+        <strong>Artifact: domain and accountability model.</strong>
+      </article>
+      <article class="method-evidence-matrix__row">
+        <span>Delimit</span>
+        <h3>Where is the boundary?</h3>
+        <p>Channels, services, permissions, integrations, logging, validation and AI policy.</p>
+        <strong>Artifact: boundary map and control register.</strong>
+      </article>
+      <article class="method-evidence-matrix__row">
+        <span>Build</span>
+        <h3>How do we know it is done?</h3>
+        <p>Measurable criteria, staging, tests, rollback plan and traceable decisions.</p>
+        <strong>Artifact: release criteria and decision record.</strong>
+      </article>
+      <article class="method-evidence-matrix__row">
+        <span>Verify</span>
+        <h3>What proof remains?</h3>
+        <p>Links between request, code, environment, hand-off, validation and ownership.</p>
+        <strong>Artifact: exportable evidence trail.</strong>
+      </article>
+      <article class="method-evidence-matrix__row">
+        <span>Govern</span>
+        <h3>Who keeps control?</h3>
+        <p>Monitoring, ownership, maintenance, incidents, evolution and continuity after release.</p>
+        <strong>Artifact: operational handoff and evolution plan.</strong>
+      </article>
+    </div>
+  </section>
+
+  <section class="method-noise-filter" aria-labelledby="method-avoid-title">
+    <div class="method-noise-filter__panel">
+      <span aria-hidden="true">NO</span>
+      <h2 id="method-avoid-title">What we avoid</h2>
+      <p>
+        Ungrounded big bangs, integrations designed away from operators, models in production without validation, compliance as documents detached from the running system. Not ideology: hidden risk and hidden cost.
+      </p>
+    </div>
+  </section>
+
+  <EditorialCTA
+    title="Bring process, constraints and required evidence"
+    ctaLabel="Review your process with us"
+    ctaHref="/en/contact"
+    copy="First conversation: understand where the boundary is uncertain, which responsibilities must be explicit and which proof must remain. Then we propose phases, impact and ownership."
+  />
+</Layout>

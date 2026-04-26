@@ -160,12 +160,12 @@ const safeguards = [
 ];
 ---
 
-<Layout title="Checklist rischio AI e privacy" description="Una valutazione pratica per stimare il livello di rischio e le misure di sicurezza consigliate per software abilitato all'AI." lang="it">
+<Layout title="Checklist rischio AI e privacy" description="Valuta sicurezza AI, privacy, audit trail e governance per software basato su AI. Ottieni misure consigliate senza inviare dati." lang="it">
   <div class="ds-container ds-stack" data-gap="lg" style="container-type: inline-size; margin-top: var(--ds-space-8)">
     <header class="ds-stack" data-gap="sm">
-      <h1 style="margin: 0">AI Risk & Privacy Checklist</h1>
+      <h1 style="margin: 0">Checklist rischio AI e privacy</h1>
       <p class="ds-muted" style="max-width: 65ch">
-        Una valutazione pratica per stimare il livello di rischio e le misure di sicurezza consigliate per software abilitato all'AI.
+        Una valutazione pratica per stimare rischio, privacy, sicurezza AI e governance prima di portare un sistema in produzione.
       </p>
       <p class="ds-muted" style="font-size: var(--ds-text-xs); margin: 0">
         Nessun upload. Nessun storage. Le tue risposte rimangono nel browser.
@@ -217,7 +217,7 @@ const safeguards = [
 
       <div class="ds-cluster">
         <Button type="submit" variant="primary">
-          Genera raccomandazioni
+          Genera misure consigliate
         </Button>
       </div>
     </form>
@@ -365,12 +365,12 @@ const safeguards = [
     // Get risk explanation
     function getRiskExplanation(score, riskLevel) {
       if (riskLevel === 'Basso') {
-        return 'La tua implementazione AI ha fattori di rischio minimi. Misure di sicurezza di base dovrebbero essere sufficienti per la maggior parte dei casi d\'uso.';
+        return 'Il caso d\'uso AI mostra fattori di rischio limitati. Restano utili controlli di base su dati, accessi, logging e responsabilità.';
       }
       if (riskLevel === 'Medio') {
-        return 'La tua implementazione AI ha fattori di rischio moderati. Implementa misure di sicurezza mirate basate sulle tue risposte specifiche.';
+        return 'Il caso d\'uso AI presenta rischio medio. Servono misure mirate su dati, supervisione, accessi, logging e fallback.';
       }
-      return 'La tua implementazione AI ha fattori di rischio significativi. Implementa misure di sicurezza complete e considera misure di governance aggiuntive.';
+      return 'Il caso d\'uso AI presenta rischio alto. Prima della produzione servono controlli completi, governance esplicita e revisione umana sulle decisioni critiche.';
     }
 
     // Get relevant safeguards
@@ -380,7 +380,6 @@ const safeguards = [
         answers[q.name] = formData.get(q.name);
       });
 
-      const answerKey = (name, value) => `${name}:${value}`;
       const relevant = safeguards.filter((safeguard) => {
         return safeguard.triggers.some((trigger) => {
           const [name, value] = trigger.split(':');

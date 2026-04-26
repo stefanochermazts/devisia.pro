@@ -1,0 +1,26 @@
+---
+export interface Props {
+  title: string;
+  copy: string;
+  ctaLabel: string;
+  ctaHref: string;
+  variant?: 'default' | 'tint' | 'dark';
+}
+const { title, copy, ctaLabel, ctaHref, variant = 'default' } = Astro.props;
+const mod =
+  variant === 'tint' ? ' site-section--tint' : variant === 'dark' ? ' site-section--dark' : '';
+---
+
+<section class={`site-section${mod}`} aria-labelledby="editorial-cta-h">
+  <div class="ds-container">
+    <div class="site-cta">
+      <h2 id="editorial-cta-h" class="site-h2" style="margin-top:0">
+        {title}
+      </h2>
+      <p class="site-lead">{copy}</p>
+      <a class="ds-btn" data-variant="primary" data-size="lg" href={ctaHref}>
+        {ctaLabel}
+      </a>
+    </div>
+  </div>
+</section>

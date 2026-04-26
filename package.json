@@ -18,7 +18,9 @@
     "test:run": "vitest run"
   },
   "dependencies": {
-    "@fontsource/inter": "^5.2.8",
+    "@fontsource-variable/bitter": "^5.2.10",
+    "@fontsource-variable/lexend": "^5.2.8",
+    "@fontsource-variable/manrope": "^5.2.8",
     "astro": "^5.16.6",
     "dotenv": "^17.2.3",
     "gray-matter": "^4.0.3",

@@ -5,15 +5,15 @@ import OutputRenderer from '../components/ai-structure/OutputRenderer.astro';
 import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro';
 ---
 
-<Layout title="Struttura tecnica, in 60 secondi" description="Descrivi un’idea o un problema. Ottieni una prima struttura di sistema: dominio, flussi, punti critici.">
+<Layout title="AI Structure" description="Trasforma un'idea in una prima struttura tecnica: dominio, flussi, punti critici, privacy e architettura. Utile per software basato su AI.">
   <section class="ds-ai-structure">
     <header class="ds-ai-structure__header">
-      <h1 class="ds-ai-structure__title">Struttura tecnica, in 60 secondi</h1>
+      <h1 class="ds-ai-structure__title">AI Structure: prima struttura tecnica in pochi minuti</h1>
       <p class="ds-ai-structure__intro">
-        Descrivi un’idea o un problema.<br />
-        Ottieni una prima struttura di sistema: dominio, flussi, punti critici.
+        Descrivi un’idea, un processo o un problema operativo.<br />
+        Ottieni una prima lettura di dominio, flussi, punti critici, privacy e architettura.
       </p>
-      <p class="ds-ai-structure__privacy">Non inserire dati sensibili o segreti.</p>
+      <p class="ds-ai-structure__privacy">Non inserire dati sensibili, segreti, credenziali o informazioni personali reali.</p>
     </header>
 
     <InputForm />
@@ -89,10 +89,10 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
       };
 
       const PROGRESS_STEPS = [
-        'System Overview…',
-        'Core Domain Model…',
-        'Key Flows…',
-        'Critical Considerations…',
+        'Panoramica sistema…',
+        'Modello dominio…',
+        'Flussi principali…',
+        'Punti critici…',
       ];
 
       let progressTimer = null;
@@ -226,7 +226,7 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
         lastInput = input;
 
         if (input.length < 80 || input.length > 1500) {
-          showError('Input length must be between 80 and 1500 characters.');
+          showError('Scrivi tra 80 e 1500 caratteri: abbastanza contesto per ragionare, senza dati sensibili.');
           return;
         }
 

@@ -5,15 +5,15 @@ import OutputRenderer from '../../components/ai-structure/OutputRenderer.en.astr
 import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.astro';
 ---
 
-<Layout title="Technical structure, in 60 seconds" description="Describe an idea or problem. Get an initial system structure: domain, flows, critical points." lang="en">
+<Layout title="AI Structure" description="Turn an idea into an initial technical structure: domain, flows, critical points, privacy and architecture. Useful for AI-based software." lang="en">
   <section class="ds-ai-structure">
     <header class="ds-ai-structure__header">
-      <h1 class="ds-ai-structure__title">Technical structure, in 60 seconds</h1>
+      <h1 class="ds-ai-structure__title">AI Structure: first technical structure in minutes</h1>
       <p class="ds-ai-structure__intro">
-        Describe an idea or problem.<br />
-        Get an initial system structure: domain, flows, critical points.
+        Describe an idea, process or operational problem.<br />
+        Get an initial read on domain, flows, critical points, privacy and architecture.
       </p>
-      <p class="ds-ai-structure__privacy">Do not enter sensitive data or secrets.</p>
+      <p class="ds-ai-structure__privacy">Do not enter sensitive data, secrets, credentials or real personal information.</p>
     </header>
 
     <InputForm />
@@ -223,7 +223,7 @@ import SeeTogetherModal from '../../components/ai-structure/SeeTogetherModal.en.
         lastInput = input;
 
         if (input.length < 80 || input.length > 1500) {
-          showError('Input length must be between 80 and 1500 characters.');
+          showError('Write between 80 and 1500 characters: enough context to reason, without sensitive data.');
           return;
         }
 

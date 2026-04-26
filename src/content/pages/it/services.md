@@ -42,6 +42,6 @@ heroImage: /uploads/services-hero.png
 <div class="ds-card__body ds-stack" data-gap="sm">
 <h2 style="margin: 0">Costruiamo il tuo software personalizzato</h2>
 <p class="ds-muted" style="margin: 0">Se hai un’idea, un prodotto da migliorare o una sfida tecnica da risolvere, ci piacerebbe parlarne.</p>
-<div class="ds-cluster"><a class="ds-btn" data-variant="primary" data-size="lg" href="/contact">Contattaci</a><a class="ds-link" data-variant="muted" href="/projects">Vedi i progetti</a></div>
+<div class="ds-cluster"><a class="ds-btn" data-variant="primary" data-size="lg" href="/contatti">Contattaci</a><a class="ds-link" data-variant="muted" href="/prodotti">Vedi i progetti</a></div>
 </div>
 </section>

@@ -1,0 +1,67 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PageIntro from '../../../components/site/PageIntro.astro';
+import EditorialCTA from '../../../components/site/EditorialCTA.astro';
+import { breadcrumbListJsonLd } from '../../../lib/seo/structuredData';
+
+const description =
+  'AuditReady organises evidence, controls, assignments and exports for audits, compliance and AI security. Assisted AI, human oversight, traceability.';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/en' },
+    { name: 'Products', url: '/en/products' },
+    { name: 'AuditReady', url: '/en/products/auditready' },
+  ],
+});
+---
+
+<Layout
+  lang="en"
+  title="AuditReady"
+  documentTitle="AuditReady | Evidence for audit, compliance and security | Devisia"
+  description={description}
+  structuredData={[breadcrumbs]}
+>
+  <PageIntro
+    h1="AuditReady prepares evidence before it is requested"
+    lede="A Devisia product to collect, structure, validate and export evidence tied to controls, audits, cybersecurity and suppliers, with traceability and export packs, without replacing or certifying your compliance posture."
+  />
+
+  <div class="ds-stack ds-reading" data-gap="lg" style="margin-bottom: var(--ds-space-8)">
+    <h2>The problem</h2>
+    <p>Evidence exists but is not in one place, in one shape, or linked to accountability the way auditors or counterparties ask.</p>
+
+    <h2>For whom</h2>
+    <p>IT, compliance, DPOs, consultants and security operations teams that must bring concrete material to reviews, not a story deck.</p>
+
+    <h2>What it does</h2>
+    <ul>
+      <li>Orders evidence and ties it to controls and states.</li>
+      <li>Makes ownership and review visible.</li>
+      <li>Builds export bundles for audit days or third-party requests.</li>
+      <li>Aligns with references such as GDPR, NIS2, DORA, ISO 27001 at the level of organisation, not product certification.</li>
+    </ul>
+
+    <h2>AI in AuditReady</h2>
+    <p>Assistance for appropriate tasks, with limits, logs and human gates, not outputs that substitute your accountability.</p>
+
+    <h2>Status</h2>
+    <p>Product in <strong>beta</strong> with a deliberately narrow functional surface.</p>
+
+    <p>
+      Public site: <a href="https://audit-ready.eu" rel="noopener noreferrer" target="_blank">audit-ready.eu</a>
+    </p>
+    <p>Regulatory framing: <a href="/en/compliance-auditability">Compliance &amp; auditability</a></p>
+  </div>
+
+  <EditorialCTA
+    variant="tint"
+    title="Perimeter first, demo second"
+    ctaLabel="Talk about AuditReady"
+    ctaHref="/en/contact"
+    copy="If you want to evaluate adoption, scope, integration with your controls or exports to counterparties, we start from a real use case, not a demo with fake data."
+  />
+</Layout>

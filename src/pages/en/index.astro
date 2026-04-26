@@ -1,102 +1,174 @@
 ---
+import { AUDITREADY_SITE_URL } from '../../lib/auditready';
 import Layout from '../../layouts/Layout.astro';
-import { getEntry, render } from 'astro:content';
-import { type CollectionEntry } from 'astro:content';
-import HomeHero from '../../components/HomeHero.astro';
-import HomeWhatWeDo from '../../components/HomeWhatWeDo.astro';
-import HomeAICapabilities from '../../components/HomeAICapabilities.astro';
-import HomeAIStructureCTA from '../../components/HomeAIStructureCTA.astro';
-import HomeAIChecklistCTA from '../../components/HomeAIChecklistCTA.astro';
-import HomeLinkedInCTA from '../../components/HomeLinkedInCTA.astro';
-import HomeHowWeWork from '../../components/HomeHowWeWork.astro';
-import HomeProjectsTeaser from '../../components/HomeProjectsTeaser.astro';
-import HomeToolsTeaser from '../../components/HomeToolsTeaser.astro';
-import HomeContactCTA from '../../components/HomeContactCTA.astro';
+import SiteHero from '../../components/site/SiteHero.astro';
+import SystemLayers from '../../components/site/SystemLayers.astro';
+import EditorialCTA from '../../components/site/EditorialCTA.astro';
 import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
 
-const homeEntry: CollectionEntry<'pagesEn'> | undefined = await getEntry('pagesEn', 'en/home');
-
-if (!homeEntry) {
-  return new Response('Home page content not found', { status: 404 });
-}
-
-const { data } = homeEntry;
-const { Content } = await render(homeEntry);
+const title = 'Home';
+const description =
+  'Software development company for custom software, AI for businesses and operational compliance: governable architecture, evidence and control over time.';
 
 const site = Astro.site ?? new URL('https://devisia.pro');
 const breadcrumbs = breadcrumbListJsonLd({
   site,
-  items: [{ name: 'Home', url: '/en/' }],
+  items: [{ name: 'Home', url: '/en' }],
 });
 ---
 
-<Layout title={data.title} description={data.description} heroImage={data.heroImage} lang="en" structuredData={[breadcrumbs]}>
-  <HomeHero
-    lang="en"
-    heroTitle={data.heroTitle ?? 'Developing intelligent vision'}
-    heroSubtitle={data.heroSubtitle ?? 'Devisia builds SaaS products and custom software solutions.'}
-    heroImage={data.heroImage}
+<Layout
+  title={title}
+  documentTitle="Devisia | Governed software, AI and compliance"
+  description={description}
+  structuredData={[breadcrumbs]}
+  lang="en"
+  containMain={false}
+>
+  <SiteHero
+    title="Software that must hold when it has to be proven."
+    lede="Devisia designs digital systems for organisations that cannot afford black boxes: platforms, governed AI and operational compliance where data, processes, accountability and evidence stay readable."
+    primaryLabel="Talk about the system to build"
+    primaryHref="/en/contact"
+    secondaryLabel="See our method"
+    secondaryHref="/en/method"
   >
-    <Content />
-  </HomeHero>
-
-  <div class="ds-stack" data-gap="lg" style="container-type: inline-size; margin-top: var(--ds-space-8)">
-    <HomeWhatWeDo
-      lang="en"
-      title={data.homeWhatWeDoTitle}
-      description={data.homeWhatWeDoDescription}
-      cards={data.homeWhatWeDoCards ?? undefined}
-    />
-
-    <HomeAICapabilities
-      lang="en"
-      title={data.homeAICapabilitiesTitle}
-      description={data.homeAICapabilitiesDescription}
-      items={data.homeAICapabilitiesItems ?? undefined}
-      ctaLabel={data.homeAICapabilitiesCtaLabel ?? undefined}
-      ctaHref={data.homeAICapabilitiesCtaHref ?? undefined}
-    />
-
-    <!-- Compact tool area: show three concrete tools side-by-side on desktop. -->
-    <div class="ds-grid" data-cols="3" style="container-type: inline-size">
-      <HomeAIStructureCTA
-        lang="en"
-        title={data.homeAIStructureTitle}
-        description={data.homeAIStructureDescription}
-        items={data.homeAIStructureItems ?? undefined}
-        ctaLabel={data.homeAIStructureCtaLabel ?? undefined}
-        ctaHref={data.homeAIStructureCtaHref ?? undefined}
-      />
-
-      <HomeAIChecklistCTA
-        lang="en"
-        title={data.homeAIChecklistTitle}
-        description={data.homeAIChecklistDescription}
-      />
-
-      <HomeLinkedInCTA lang="en" />
+    <div slot="visual" class="site-hero__viz">
+      <div class="home-hero-signal" aria-hidden="true">
+        <span>Process</span>
+        <span>Control</span>
+        <span>Proof</span>
+      </div>
+      <SystemLayers lang="en" />
     </div>
+  </SiteHero>
 
-    <HomeHowWeWork
-      lang="en"
-      title={data.homeHowWeWorkTitle}
-      description={data.homeHowWeWorkDescription}
-      items={data.homeHowWeWorkItems ?? undefined}
-    />
-
-    <HomeProjectsTeaser
-      lang="en"
-      title={data.homeProjectsTitle}
-      description={data.homeProjectsDescription}
-      image={data.homeProjectsImage ?? undefined}
-    />
-
-    <HomeToolsTeaser lang="en" />
-
-    <HomeContactCTA
-      lang="en"
-      title={data.homeContactTitle}
-      description={data.homeContactDescription}
-    />
+  <div class="ds-container" style="padding-top:0">
+    <section class="home-control-slab" aria-labelledby="home-prob">
+      <p class="home-control-slab__word" aria-hidden="true">CTRL</p>
+      <div>
+        <h2 id="home-prob" class="site-h2">If the process is fragile, automation makes it faster</h2>
+        <p class="site-lead">
+          Technology does not rescue an opaque flow. When roles, data and constraints are explicit, custom software development and AI integration increase quality, control and operational capacity.
+        </p>
+      </div>
+    </section>
   </div>
+
+  <section class="site-section site-section--tint" aria-labelledby="home-three">
+    <div class="ds-container">
+      <h2 id="home-three" class="site-h2">Three domains, one governable system</h2>
+      <p class="site-lead">
+        We do not ship disconnected modules. A useful system connects custom software for businesses, governed AI and operational proof.
+      </p>
+      <div class="system-map">
+        <p class="system-map__stamp" aria-hidden="true">01 / 02 / 03</p>
+        <div class="system-map__track">
+          <div class="system-map__item">
+            <span class="system-map__num">01</span>
+            <div>
+              <h3>Custom software for businesses</h3>
+              <p>Platforms and applications built to last, integrate with what you already run, and stay maintainable. Less guesswork, more decisions grounded in evidence.</p>
+            </div>
+          </div>
+          <div class="system-map__item">
+            <span class="system-map__num">02</span>
+            <div>
+              <h3>AI for businesses</h3>
+              <p>Assistants, RAG, agents and workflows only where there is a control model: boundaries, logging, validation, human oversight and clear accountability.</p>
+            </div>
+          </div>
+          <div class="system-map__item">
+            <span class="system-map__num">03</span>
+            <div>
+              <h3>Operational compliance</h3>
+              <p>Not a pile of policies, but the ongoing ability to show what was done, by whom, when and with which evidence.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ds-container">
+    <section class="site-section" aria-labelledby="home-proof">
+      <h2 id="home-proof" class="site-h2">From real work to verifiable proof</h2>
+      <p class="site-lead">
+        This is not a checklist. It is a chain of control: understand where risk begins, design the boundaries, and make each
+        decision readable when it needs to be evidenced.
+      </p>
+      <div class="proof-rail">
+        <article class="proof-rail__item">
+          <div>
+            <strong>Method</strong>
+            <h3>Process before technology</h3>
+            <p>We interview operators, exceptions and unwritten rules before choosing interfaces, automations or AI components.</p>
+          </div>
+          <a class="ds-link" data-variant="muted" href="/en/method">How we work <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="proof-rail__item">
+          <div>
+            <strong>AI</strong>
+            <h3>Models inside clear boundaries</h3>
+            <p>A production AI system needs limits, logs, validation, policy, oversight and human accountability.</p>
+          </div>
+          <a class="ds-link" data-variant="muted" href="/en/governed-ai">Governed AI <span aria-hidden="true">→</span></a>
+        </article>
+        <article class="proof-rail__item">
+          <div>
+            <strong>Compliance</strong>
+            <h3>Intentions are not evidence</h3>
+            <p>GDPR, NIS2, DORA and ISO 27001 become sustainable when every control produces readable proof.</p>
+          </div>
+          <a class="ds-link" data-variant="muted" href="/en/compliance-auditability">Auditability <span aria-hidden="true">→</span></a>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <section class="site-section site-section--dark" aria-labelledby="home-ar2">
+    <div class="ds-container audit-console">
+      <div>
+        <h2 id="home-ar2" class="site-h2">AuditReady: when control becomes proof</h2>
+        <p class="site-lead">
+          Collect, organise, validate and export evidence for audits, compliance and security. AI-assisted where it helps, human
+          control always. It is how we turn method and governance into an operational product.
+        </p>
+        <a
+          class="ds-btn"
+          data-variant="primary"
+          data-size="lg"
+          href={AUDITREADY_SITE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          style="margin-top: var(--ds-space-2)">Explore AuditReady</a>
+      </div>
+      <div class="audit-console__panel" aria-hidden="true">
+        <div class="audit-console__header"><span>AuditReady</span><span>evidence stream</span></div>
+        <div class="audit-console__row"><span>CTRL-01</span><span>Owner and data source assigned</span><span>logged</span></div>
+        <div class="audit-console__row"><span>CTRL-02</span><span>Policy connected to the decision</span><span>checked</span></div>
+        <div class="audit-console__row"><span>CTRL-03</span><span>Evidence export ready for audit</span><span>ready</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="ds-container">
+    <section class="site-section" aria-labelledby="home-why">
+      <h2 id="home-why" class="site-h2">Less noise. More structure</h2>
+      <ul class="site-list-check">
+        <li>We start from process, not from a technology catalogue.</li>
+        <li>We make constraints, data, roles and accountability explicit.</li>
+        <li>We build readable, traceable software.</li>
+        <li>We treat AI and compliance as architectural decisions, not add-ons.</li>
+        <li>We favour controlled releases and verifiable evidence.</li>
+      </ul>
+    </section>
+  </div>
+
+  <EditorialCTA
+    title="If the system must hold, we start from what it must prove"
+    copy="Share process, data, risk, constraints and people involved. The first goal is to align context, boundaries and success criteria, not to sell a ready-made bundle."
+    ctaLabel="Start a conversation"
+    ctaHref="/en/contact"
+  />
 </Layout>

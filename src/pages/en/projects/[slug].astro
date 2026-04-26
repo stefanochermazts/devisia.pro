@@ -11,6 +11,10 @@ if (!slug) {
   throw new Response(null, { status: 404, statusText: 'Not found' });
 }
 
+if (slug === 'auditready') {
+  return Astro.redirect('https://audit-ready.eu/', 301);
+}
+
 const entry: CollectionEntry<'projectsEn'> | undefined = await getEntry('projectsEn', `en/${slug}`);
 if (!entry) {
   throw new Response(null, { status: 404, statusText: 'Not found' });

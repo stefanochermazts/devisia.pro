@@ -171,7 +171,7 @@ Errori comuni includono:
 *   **Assegnare una base errata,** come affermare "interesse legittimo" per un'attività che richiede il "consenso" esplicito.
 *   **Non documentare il legittimo interesse specifico** quando tale base è utilizzata.
 
-Una base giuridica mancante o errata è una violazione diretta dei principi fondamentali del GDPR e un immediato segnale di allarme per qualsiasi revisore. Dimostra una mancanza di comprensione fondamentale della normativa sulla protezione dei dati e mina qualsiasi rivendicazione di essere [**pronto per la verifica e conforme per progettazione**](https://devisia.pro/projects/auditready).
+Una base giuridica mancante o errata è una violazione diretta dei principi fondamentali del GDPR e un immediato segnale di allarme per qualsiasi revisore. Dimostra una mancanza di comprensione fondamentale della normativa sulla protezione dei dati e mina qualsiasi rivendicazione di essere <a href="https://audit-ready.eu" target="_blank" rel="noopener noreferrer"><strong>pronto per la verifica e conforme per progettazione</strong></a>.
 
 ## Usare il RoPA per guidare la Privacy by Design
 

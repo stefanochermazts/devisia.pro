@@ -1,7 +1,7 @@
 ---
 title: AuditReady
 slug: auditready
-description: A lightweight operational workspace to collect, organize, and demonstrate audit evidence for DORA and NIS2. A focused example of SaaS development for compliance.
+description: AuditReady collects, organises and demonstrates DORA and NIS2 audit evidence. SaaS development for compliance, controls and AI security.
 featured: true
 order: 2
 status: beta
@@ -20,11 +20,9 @@ tags:
 ---
 ## Overview
 
-AuditReady addresses one of the most common problems in regulated audits:
+AuditReady addresses one of the most common problems in regulated audits: evidence exists, but it is scattered, poorly versioned and hard to demonstrate when it matters.
 
-evidence exists, but it is scattered, poorly versioned, and hard to demonstrate when it matters.
-
-The project is a concrete example of **SaaS development** oriented towards cybersecurity, providing a structured operational workspace to collect, version, and link evidence to DORA and NIS2 controls. We ensure traceability while integrating **artificial intelligence governance** principles for future data collection automation.
+The project is a concrete example of **SaaS development** oriented to cybersecurity: a structured operational workspace to collect, version and link evidence to DORA and NIS2 controls. It keeps traceability clear while integrating **AI governance** principles for future data collection automation.
 
 AuditReady **does not certify compliance**.
 
@@ -32,21 +30,13 @@ It is a **custom software development** support that helps teams demonstrate wha
 
 ## Highlights
 
-* Control-based evidence collection
-
-  * Immutable document versioning
-
-
-  * Control status tracking (Missing / In review / Completed)
-
-
-  * Ownership and responsibility mapping
-
-
-  * Exportable audit packs (ZIP/PDF with index and changelog)
-
-
-  * Third-party evidence request support
+- Control-based evidence collection
+- Immutable document versioning
+- Control status tracking (Missing / In review / Completed)
+- Ownership and responsibility mapping
+- Exportable audit packs (ZIP/PDF with index and changelog)
+- Third-party evidence request support
+- Preparation for assisted workflows with AI security and human oversight
 
 
 

@@ -28,14 +28,16 @@ const {
 
 const showActions =
   Boolean(primaryHref && primaryLabel) || Boolean(secondaryHref && secondaryLabel);
+const sectionLabel = lang === 'en' ? 'Page opening' : 'Apertura pagina';
 ---
 
-<section class="ds-grid" data-cols="2" aria-label="Page hero" style="container-type: inline-size; margin-bottom: var(--ds-space-8)">
-  <div class="ds-stack" data-gap="sm">
-    <h1 style="margin: 0; font-weight: 700">{title}</h1>
+<section class="page-hero" aria-label={sectionLabel} style="container-type: inline-size">
+  <div class="page-hero__copy ds-stack" data-gap="sm">
+    <p class="page-hero__eyebrow" aria-hidden="true">Devisia</p>
+    <h1 class="page-hero__title">{title}</h1>
     {
       subtitle && (
-        <p class="ds-muted" style="max-width: 65ch; margin: 0; font-size: var(--ds-text-sm)">
+        <p class="page-hero__subtitle">
           {subtitle}
         </p>
       )
@@ -43,7 +45,7 @@ const showActions =
 
     {
       showActions && (
-        <div class="ds-cluster" style="margin-top: var(--ds-space-3)">
+        <div class="ds-cluster page-hero__actions">
           {primaryHref && primaryLabel && (
             <Button href={primaryHref} variant="primary">
               {primaryLabel}
@@ -59,12 +61,12 @@ const showActions =
     }
   </div>
 
-  <div style="margin-top: var(--ds-space-4)">
-    <div class="ds-card">
+  <div class="page-hero__media-wrap">
+    <div class="page-hero__media">
       {
         image || fallbackImage ? (
           <Image 
-            class="ds-img-bw" 
+            class="page-hero__image ds-img-color"
             src={(image ?? fallbackImage) as string} 
             alt="" 
             loading="eager" 
@@ -73,11 +75,10 @@ const showActions =
             width={800}
             height={450}
             widths={[320, 480, 540, 640, 800]}
-            sizes="(max-width: 48rem) 92vw, 45vw"
-            style="width: 100%; height: auto; display: block; aspect-ratio: 16 / 9; object-fit: cover; border-radius: var(--ds-radius-3)" 
+            sizes="(max-width: 52rem) 92vw, 42vw"
           />
         ) : (
-          <div class="ds-card__body ds-surface-2">
+          <div class="page-hero__placeholder">
             <p class="ds-muted" style="margin: 0">
               {lang === 'en'
                 ? 'Hero image placeholder. Add an image in the CMS to customize this area.'
@@ -89,3 +90,87 @@ const showActions =
     </div>
   </div>
 </section>
+
+<style>
+  .page-hero {
+    display: grid;
+    gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+    align-items: end;
+    margin-bottom: var(--ds-space-9);
+  }
+
+  .page-hero__copy {
+    max-width: 40rem;
+  }
+
+  .page-hero__eyebrow {
+    margin: 0;
+    font-size: var(--ds-text-xs);
+    font-weight: 700;
+    letter-spacing: var(--ds-tracking-wordmark);
+    text-transform: uppercase;
+    color: var(--ds-color-accent);
+  }
+
+  .page-hero__title {
+    margin: 0;
+    max-width: 11ch;
+    font-family: var(--ds-font-heading);
+    font-size: var(--ds-text-4xl);
+    font-weight: 760;
+    line-height: 1.08;
+    letter-spacing: -0.028em;
+    text-wrap: balance;
+  }
+
+  .page-hero__subtitle {
+    margin: 0;
+    max-width: 58ch;
+    font-size: var(--ds-text-md);
+    line-height: var(--ds-leading-relaxed);
+    color: var(--ds-color-text);
+  }
+
+  .page-hero__actions {
+    margin-top: var(--ds-space-4);
+  }
+
+  .page-hero__media-wrap {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .page-hero__media,
+  .page-hero__placeholder {
+    width: min(100%, 38rem);
+  }
+
+  .page-hero__image,
+  .page-hero__placeholder {
+    width: 100%;
+    min-height: 100%;
+    border-radius: calc(var(--ds-radius-3) + 0.25rem);
+    border: var(--ds-border-1) solid color-mix(in srgb, var(--ds-color-primary) 18%, var(--ds-color-border));
+    box-shadow: var(--ds-shadow-1);
+    background: color-mix(in srgb, var(--ds-color-surface) 84%, var(--ds-color-bg));
+    overflow: hidden;
+  }
+
+  .page-hero__image {
+    display: block;
+    aspect-ratio: 5 / 4;
+    object-fit: cover;
+  }
+
+  .page-hero__placeholder {
+    display: grid;
+    place-items: center;
+    padding: var(--ds-space-6);
+  }
+
+  @container (min-width: 52rem) {
+    .page-hero {
+      grid-template-columns: minmax(0, 1.05fr) minmax(18rem, 0.95fr);
+    }
+  }
+</style>

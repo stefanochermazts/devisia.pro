@@ -1,0 +1,16 @@
+---
+export interface Props {
+  eyebrow?: string;
+  h1: string;
+  lede: string;
+}
+const { eyebrow, h1, lede } = Astro.props;
+---
+
+<header class="site-pg-hero page-intro">
+  {eyebrow && <p class="site-eyebrow">{eyebrow}</p>}
+  <h1>{h1}</h1>
+  <p class="ds-muted" style="font-size: var(--ds-text-lg); line-height: var(--ds-leading-relaxed)">
+    {lede}
+  </p>
+</header>

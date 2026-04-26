@@ -1,0 +1,832 @@
+---
+interface Copy {
+  ariaLabel: string;
+  eyebrow: string;
+  title: string;
+  lede: string;
+  status: string[];
+  mark: string;
+  successTitle: string;
+  successText: string;
+  formEyebrow: string;
+  formTitle: string;
+  formText: string;
+  protocolTitle: string;
+  protocolSteps: Array<{
+    code: string;
+    title: string;
+    text: string;
+  }>;
+  directTitle: string;
+  directText: string;
+  phoneLabel: string;
+  emailLabel: string;
+  briefingTitle: string;
+  briefingItems: string[];
+  privacyTitle: string;
+  privacyText: string;
+  privacyLink: string;
+  checklistText: string;
+  checklistLink: string;
+  fields: {
+    name: string;
+    namePlaceholder: string;
+    email: string;
+    emailPlaceholder: string;
+    subject: string;
+    subjectPlaceholder: string;
+    message: string;
+    messagePlaceholder: string;
+    consent: string;
+    honeypot: string;
+    submit: string;
+  };
+}
+
+interface Props {
+  lang?: 'it' | 'en';
+  isSuccess?: boolean;
+}
+
+const { lang = 'it', isSuccess = false } = Astro.props;
+const isEnglish = lang === 'en';
+
+const copy: Copy = isEnglish
+  ? {
+      ariaLabel: 'Contact Devisia',
+      eyebrow: 'Contact protocol',
+      title: 'Bring the system. We will bring the controls.',
+      lede:
+        'Use this page when the work carries responsibility: a product to govern, a platform to untangle, an AI integration that must reach production without becoming opaque.',
+      status: ['Context', 'Triage', 'Reply in 24 business hours'],
+      mark: 'CONTACT',
+      successTitle: 'Message received. The protocol starts now.',
+      successText:
+        'We sent a confirmation email. We will review the context, prepare focused questions and reply within 24 business hours.',
+      formEyebrow: 'Primary channel',
+      formTitle: 'Send the context',
+      formText:
+        'A perfect brief is not required. The useful first signal is where the risk, constraint or decision pressure sits.',
+      protocolTitle: 'What happens next',
+      protocolSteps: [
+        {
+          code: '01',
+          title: 'Context',
+          text: 'We read goal, current state, constraints and sensitive areas before proposing a solution.',
+        },
+        {
+          code: '02',
+          title: 'Triage',
+          text: 'We identify the right next step: audit, discovery, prototype, backlog or roadmap.',
+        },
+        {
+          code: '03',
+          title: 'Reply',
+          text: 'You receive a practical answer with focused questions, not a generic sales pitch.',
+        },
+      ],
+      directTitle: 'Direct signals',
+      directText: 'Prefer a direct route? Use email or phone and reference the system you want to make governable.',
+      phoneLabel: 'Phone',
+      emailLabel: 'Email',
+      briefingTitle: 'Useful briefing frame',
+      briefingItems: ['Goal and success criteria', 'Users, volumes and integrations', 'Compliance, timeline and data constraints', 'What works today and what blocks progress'],
+      privacyTitle: 'AI, data and privacy',
+      privacyText:
+        'Do not include sensitive data in the form. We can work from synthetic examples and define minimization, PII redaction, retention, audit logging and policy checks.',
+      privacyLink: '/en/privacy',
+      checklistText: 'Start from the AI Risk & Privacy Checklist',
+      checklistLink: '/en/tools/ai-risk-checklist',
+      fields: {
+        name: 'Name *',
+        namePlaceholder: 'e.g., Alex',
+        email: 'Email *',
+        emailPlaceholder: 'you@company.com',
+        subject: 'Subject (optional)',
+        subjectPlaceholder: 'New product / Govern a platform / AI and privacy',
+        message: 'Message *',
+        messagePlaceholder:
+          'A few lines are enough: what is happening today, what you want to change and which constraints matter.',
+        consent: 'I agree to the use of my details only to manage and reply to this request. Details:',
+        honeypot: 'Website',
+        submit: 'Send the context',
+      },
+    }
+  : {
+      ariaLabel: 'Contatta Devisia',
+      eyebrow: 'Protocollo di contatto',
+      title: 'Portaci il sistema. Noi portiamo i controlli.',
+      lede:
+        'Usa questa pagina quando il lavoro ha responsabilità: un prodotto da governare, una piattaforma da rimettere in ordine, un’integrazione AI da portare in produzione senza opacità.',
+      status: ['Contesto', 'Triage', 'Risposta entro 24 ore lavorative'],
+      mark: 'CONTATTO',
+      successTitle: 'Messaggio ricevuto. Il protocollo parte ora.',
+      successText:
+        'Ti abbiamo inviato una email di conferma. Leggiamo il contesto, prepariamo domande mirate e rispondiamo entro 24 ore lavorative.',
+      formEyebrow: 'Canale principale',
+      formTitle: 'Invia il contesto',
+      formText:
+        'Non serve un brief perfetto. Il primo segnale utile è dove si trova rischio, vincolo o pressione decisionale.',
+      protocolTitle: 'Cosa succede dopo',
+      protocolSteps: [
+        {
+          code: '01',
+          title: 'Contesto',
+          text: 'Leggiamo obiettivo, stato attuale, vincoli e aree sensibili prima di proporre una soluzione.',
+        },
+        {
+          code: '02',
+          title: 'Triage',
+          text: 'Identifichiamo il prossimo passo corretto: audit, discovery, prototipo, backlog o roadmap.',
+        },
+        {
+          code: '03',
+          title: 'Risposta',
+          text: 'Ricevi un riscontro pratico con domande mirate, non una proposta commerciale generica.',
+        },
+      ],
+      directTitle: 'Segnali diretti',
+      directText:
+        'Preferisci un canale diretto? Usa email o telefono e indica il sistema che vuoi rendere governabile.',
+      phoneLabel: 'Telefono',
+      emailLabel: 'Email',
+      briefingTitle: 'Brief utile',
+      briefingItems: ['Obiettivo e criteri di successo', 'Utenti, volumi e integrazioni', 'Compliance, tempi e vincoli sui dati', 'Cosa funziona oggi e cosa blocca'],
+      privacyTitle: 'AI, dati e privacy',
+      privacyText:
+        'Non inserire dati sensibili nel form. Possiamo lavorare su esempi sintetici e definire minimizzazione, redazione PII, retention, audit logging e controlli.',
+      privacyLink: '/privacy',
+      checklistText: 'Parti dalla AI Risk & Privacy Checklist',
+      checklistLink: '/tools/ai-risk-checklist',
+      fields: {
+        name: 'Nome *',
+        namePlaceholder: 'Es. Marco',
+        email: 'Email *',
+        emailPlaceholder: 'nome@azienda.com',
+        subject: 'Oggetto (facoltativo)',
+        subjectPlaceholder: 'Nuovo prodotto / Piattaforma da governare / AI e privacy',
+        message: 'Messaggio *',
+        messagePlaceholder:
+          'In poche righe: cosa succede oggi, cosa vorresti cambiare e quali vincoli non possiamo ignorare.',
+        consent: 'Autorizzo l’uso dei miei dati solo per gestire questa richiesta e ricontattarmi. Dettagli:',
+        honeypot: 'Sito web',
+        submit: 'Invia il contesto',
+      },
+    };
+---
+
+<article class="contact-protocol" aria-label={copy.ariaLabel}>
+  {isSuccess && (
+    <section class="contact-success" role="alert">
+      <svg class="contact-success__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 6 9 17l-5-5"></path>
+      </svg>
+      <div>
+        <h2>{copy.successTitle}</h2>
+        <p>{copy.successText}</p>
+      </div>
+    </section>
+  )}
+
+  <section class="contact-hero">
+    <div class="contact-hero__copy">
+      <p class="contact-hero__eyebrow">{copy.eyebrow}</p>
+      <h1>{copy.title}</h1>
+      <p class="contact-hero__lede">{copy.lede}</p>
+      <div class="contact-hero__status" aria-label={isEnglish ? 'Contact steps' : 'Passaggi del contatto'}>
+        {copy.status.map((item) => <span>{item}</span>)}
+      </div>
+    </div>
+
+    <div class="contact-hero__diagram" aria-hidden="true">
+      <span class="contact-hero__mark">{copy.mark}</span>
+      <span class="contact-hero__axis"></span>
+      <span class="contact-hero__node contact-hero__node--context">CTX</span>
+      <span class="contact-hero__node contact-hero__node--control">CTRL</span>
+      <span class="contact-hero__node contact-hero__node--reply">24H</span>
+    </div>
+  </section>
+
+  <section class="contact-workbench" aria-labelledby="contact-form-title">
+    <div class="contact-workbench__form">
+      <div class="contact-form-heading">
+        <p>{copy.formEyebrow}</p>
+        <h2 id="contact-form-title">{copy.formTitle}</h2>
+        <p>{copy.formText}</p>
+      </div>
+
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        netlify-honeypot="bot-field"
+        action="/.netlify/functions/contact-email"
+        class="contact-form"
+      >
+        <input type="hidden" name="form-name" value="contact" />
+        <p class="hidden" aria-hidden="true">
+          <label>
+            {copy.fields.honeypot}
+            <input type="text" name="bot-field" tabindex="-1" autocomplete="off" />
+          </label>
+        </p>
+        <input type="hidden" name="lang" value={lang} />
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="name" class="form-label">{copy.fields.name}</label>
+            <input type="text" id="name" name="name" required maxlength="120" autocomplete="name" class="form-input" placeholder={copy.fields.namePlaceholder} />
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">{copy.fields.email}</label>
+            <input type="email" id="email" name="email" required maxlength="254" autocomplete="email" class="form-input" placeholder={copy.fields.emailPlaceholder} />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="subject" class="form-label">{copy.fields.subject}</label>
+          <input type="text" id="subject" name="subject" maxlength="200" class="form-input" placeholder={copy.fields.subjectPlaceholder} />
+        </div>
+
+        <div class="form-group">
+          <label for="message" class="form-label">{copy.fields.message}</label>
+          <textarea id="message" name="message" required maxlength="4000" rows="7" class="form-input" placeholder={copy.fields.messagePlaceholder}></textarea>
+        </div>
+
+        <div class="form-group form-group--consent">
+          <label class="consent-label" for="privacy_consent">
+            <input id="privacy_consent" name="privacy_consent" type="checkbox" value="true" required class="consent-checkbox" />
+            <span class="consent-text">
+              {copy.fields.consent}
+              <a class="consent-link" href={copy.privacyLink}>{isEnglish ? 'Privacy & Cookie Policy' : 'Informativa Privacy & Cookie'}</a>
+            </span>
+          </label>
+        </div>
+
+        <button type="submit" class="form-submit">{copy.fields.submit}</button>
+      </form>
+    </div>
+
+    <aside class="contact-workbench__rail" aria-label={isEnglish ? 'Contact protocol details' : 'Dettagli del protocollo di contatto'}>
+      <section class="contact-protocol-steps" aria-labelledby="contact-protocol-title">
+        <h2 id="contact-protocol-title">{copy.protocolTitle}</h2>
+        <ol>
+          {copy.protocolSteps.map((step) => (
+            <li>
+              <span>{step.code}</span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+
+      <section class="contact-direct" aria-labelledby="contact-direct-title">
+        <h2 id="contact-direct-title">{copy.directTitle}</h2>
+        <p>{copy.directText}</p>
+        <dl>
+          <div>
+            <dt>{copy.emailLabel}</dt>
+            <dd><a href="mailto:info@devisia.it">info@devisia.it</a></dd>
+          </div>
+          <div>
+            <dt>{copy.phoneLabel}</dt>
+            <dd><a href="tel:+390409777469">+39 040 977 7469</a></dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="contact-brief" aria-labelledby="contact-brief-title">
+        <h2 id="contact-brief-title">{copy.briefingTitle}</h2>
+        <ul>
+          {copy.briefingItems.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+
+      <section class="contact-privacy" aria-labelledby="contact-privacy-title">
+        <h2 id="contact-privacy-title">{copy.privacyTitle}</h2>
+        <p>{copy.privacyText}</p>
+        <a href={copy.checklistLink}>{copy.checklistText}</a>
+      </section>
+    </aside>
+  </section>
+</article>
+
+<style>
+  .contact-protocol {
+    position: relative;
+    overflow: clip;
+    background:
+      linear-gradient(112deg, transparent 0 58%, color-mix(in oklch, var(--ds-color-accent) 14%, transparent) 58% 60%, transparent 60%),
+      linear-gradient(90deg, color-mix(in oklch, var(--ds-color-accent-2) 10%, transparent) 1px, transparent 1px),
+      var(--ds-color-bg);
+    background-size: auto, clamp(3rem, 7vw, 6rem) clamp(3rem, 7vw, 6rem), auto;
+  }
+
+  .contact-hero,
+  .contact-workbench,
+  .contact-success {
+    width: min(100% - 2rem, 76rem);
+    margin-inline: auto;
+  }
+
+  .contact-hero {
+    display: grid;
+    gap: clamp(2rem, 4vw, 4rem);
+    align-items: end;
+    padding-block: clamp(3.25rem, 2rem + 5vw, 6.6rem) clamp(2rem, 4vw, 3.8rem);
+  }
+
+  @media (min-width: 58rem) {
+    .contact-hero {
+      grid-template-columns: minmax(0, 0.98fr) minmax(24rem, 0.72fr);
+    }
+  }
+
+  .contact-hero__copy {
+    position: relative;
+    z-index: 1;
+  }
+
+  .contact-hero__eyebrow,
+  .contact-form-heading p {
+    margin: 0 0 var(--ds-space-3);
+    color: var(--ds-color-accent);
+    font-size: var(--ds-text-xs);
+    font-weight: 800;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .contact-hero h1 {
+    max-width: 11.4ch;
+    margin: 0;
+    color: var(--ds-color-text);
+    font-family: var(--ds-font-display);
+    font-size: clamp(3.1rem, 0.9rem + 7.1vw, 6.9rem);
+    font-weight: 800;
+    letter-spacing: -0.055em;
+    line-height: 0.92;
+    word-spacing: 0.06em;
+    text-wrap: balance;
+  }
+
+  .contact-hero__lede {
+    max-width: 58ch;
+    margin: var(--ds-space-6) 0 0;
+    color: var(--ds-color-text-muted);
+    font-size: clamp(1.05rem, 0.7vw + 0.95rem, 1.35rem);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .contact-hero__status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    margin-top: var(--ds-space-6);
+    width: fit-content;
+    border: 1px solid color-mix(in oklch, var(--ds-color-accent) 36%, var(--ds-color-border));
+    background: color-mix(in oklch, var(--ds-color-accent) 26%, var(--ds-color-border));
+  }
+
+  .contact-hero__status span {
+    padding: 0.78rem 0.95rem;
+    background: var(--ds-color-surface);
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-xs);
+    font-weight: 800;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .contact-hero__status span:first-child {
+    background: var(--ds-color-accent);
+    color: color-mix(in oklch, white 95%, var(--ds-color-accent));
+  }
+
+  .contact-hero__diagram {
+    position: relative;
+    min-height: clamp(18rem, 30vw, 26rem);
+    border: 1px solid color-mix(in oklch, var(--ds-color-accent) 36%, var(--ds-color-border));
+    background:
+      linear-gradient(135deg, color-mix(in oklch, var(--ds-color-hero-tint) 92%, black), color-mix(in oklch, var(--ds-color-accent) 20%, var(--ds-color-hero-tint))),
+      var(--ds-color-hero-tint);
+    color: color-mix(in oklch, white 90%, var(--ds-color-hero-tint));
+    box-shadow: 0 2rem 4rem color-mix(in oklch, var(--ds-color-hero-tint) 24%, transparent);
+    clip-path: polygon(0 0, 100% 7%, 94% 100%, 5% 92%);
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .contact-hero__diagram::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, color-mix(in oklch, white 12%, transparent) 1px, transparent 1px),
+      linear-gradient(0deg, color-mix(in oklch, white 10%, transparent) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    opacity: 0.5;
+  }
+
+  .contact-hero__mark {
+    position: absolute;
+    inset-inline: -0.2em;
+    bottom: -0.16em;
+    z-index: -1;
+    color: color-mix(in oklch, white 12%, transparent);
+    font-family: var(--ds-font-display);
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 800;
+    letter-spacing: -0.09em;
+    line-height: 0.8;
+    white-space: nowrap;
+  }
+
+  .contact-hero__axis {
+    position: absolute;
+    left: 18%;
+    right: 15%;
+    top: 48%;
+    height: 2px;
+    background: color-mix(in oklch, var(--ds-color-accent) 70%, white);
+    transform: rotate(-16deg);
+  }
+
+  .contact-hero__node {
+    position: absolute;
+    display: grid;
+    place-items: center;
+    width: clamp(4.6rem, 7vw, 6.5rem);
+    aspect-ratio: 1;
+    border: 1px solid color-mix(in oklch, var(--ds-color-accent) 62%, white);
+    background: color-mix(in oklch, var(--ds-color-hero-tint) 78%, black);
+    color: color-mix(in oklch, white 92%, var(--ds-color-hero-tint));
+    font-size: var(--ds-text-xs);
+    font-weight: 900;
+    letter-spacing: var(--ds-tracking-caps);
+  }
+
+  .contact-hero__node--context {
+    left: 14%;
+    top: 19%;
+  }
+
+  .contact-hero__node--control {
+    left: 45%;
+    top: 39%;
+    width: clamp(5.7rem, 8vw, 7.4rem);
+    background: var(--ds-color-accent);
+  }
+
+  .contact-hero__node--reply {
+    right: 13%;
+    bottom: 21%;
+  }
+
+  .contact-success {
+    display: flex;
+    gap: var(--ds-space-4);
+    align-items: flex-start;
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    padding: clamp(1.25rem, 2vw, 1.8rem);
+    border: 1px solid color-mix(in oklch, var(--ds-color-success) 44%, var(--ds-color-border));
+    background: color-mix(in oklch, var(--ds-color-success) 12%, var(--ds-color-surface));
+  }
+
+  .contact-success__icon {
+    flex: 0 0 auto;
+    color: var(--ds-color-success);
+  }
+
+  .contact-success h2 {
+    margin: 0 0 var(--ds-space-2);
+    font-size: var(--ds-text-xl);
+  }
+
+  .contact-success p {
+    margin: 0;
+    color: var(--ds-color-text-muted);
+  }
+
+  .contact-workbench {
+    display: grid;
+    gap: clamp(1.5rem, 3vw, 3rem);
+    align-items: start;
+    padding-block: 0 clamp(4rem, 7vw, 7rem);
+  }
+
+  @media (min-width: 64rem) {
+    .contact-workbench {
+      grid-template-columns: minmax(0, 1fr) minmax(20rem, 0.54fr);
+    }
+  }
+
+  .contact-workbench__form {
+    position: relative;
+    padding: clamp(1.4rem, 3vw, 2.6rem);
+    border: 1px solid color-mix(in oklch, var(--ds-color-accent) 38%, var(--ds-color-border));
+    background: color-mix(in oklch, var(--ds-color-surface) 92%, var(--ds-color-accent));
+    box-shadow: 0 2rem 5rem color-mix(in oklch, var(--ds-color-accent) 13%, transparent);
+  }
+
+  .contact-workbench__form::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 0.45rem;
+    background: var(--ds-color-accent);
+  }
+
+  .contact-form-heading {
+    display: grid;
+    gap: var(--ds-space-3);
+    margin-bottom: var(--ds-space-6);
+  }
+
+  .contact-form-heading h2 {
+    margin: 0;
+    font-family: var(--ds-font-display);
+    font-size: clamp(2.2rem, 1.4rem + 3vw, 4.2rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    word-spacing: 0.04em;
+  }
+
+  .contact-form-heading p:last-child {
+    max-width: 52ch;
+    margin: 0;
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-lg);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .contact-form {
+    display: grid;
+    gap: var(--ds-space-5);
+  }
+
+  .form-grid {
+    display: grid;
+    gap: var(--ds-space-5);
+  }
+
+  @media (min-width: 42rem) {
+    .form-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .hidden {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.62rem;
+  }
+
+  .form-group--consent {
+    gap: 0;
+  }
+
+  .form-label {
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-xs);
+    font-weight: 800;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.95rem 1rem;
+    border: 1px solid color-mix(in oklch, var(--ds-color-border) 80%, var(--ds-color-text));
+    border-radius: 0;
+    background-color: color-mix(in oklch, var(--ds-color-bg) 72%, var(--ds-color-surface));
+    color: var(--ds-color-text);
+    font: inherit;
+    font-size: var(--ds-text-md);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  }
+
+  .form-input::placeholder {
+    color: color-mix(in oklch, var(--ds-color-text-muted) 78%, transparent);
+    opacity: 1;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--ds-color-accent);
+    background-color: var(--ds-color-surface);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ds-color-accent) 24%, transparent);
+  }
+
+  textarea.form-input {
+    min-height: 12rem;
+    resize: vertical;
+  }
+
+  .consent-label {
+    display: flex;
+    gap: 0.78rem;
+    align-items: flex-start;
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
+    cursor: pointer;
+  }
+
+  .consent-checkbox {
+    flex: 0 0 auto;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-top: 0.2rem;
+    accent-color: var(--ds-color-accent);
+  }
+
+  .consent-link,
+  .contact-direct a,
+  .contact-privacy a {
+    color: var(--ds-color-accent);
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .form-submit {
+    justify-self: start;
+    min-width: min(100%, 16rem);
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--ds-color-accent);
+    border-radius: 0;
+    background: var(--ds-color-accent);
+    color: color-mix(in oklch, white 96%, var(--ds-color-accent));
+    font: inherit;
+    font-size: var(--ds-text-sm);
+    font-weight: 900;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+  }
+
+  .form-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2rem color-mix(in oklch, var(--ds-color-accent) 22%, transparent);
+  }
+
+  .form-submit:focus-visible {
+    outline: none;
+    box-shadow: var(--ds-focus-ring);
+  }
+
+  .form-submit:active {
+    transform: translateY(0);
+  }
+
+  .contact-workbench__rail {
+    display: grid;
+    gap: 1px;
+    border: 1px solid var(--ds-color-border);
+    background: var(--ds-color-border);
+  }
+
+  .contact-workbench__rail > section {
+    padding: clamp(1.1rem, 2vw, 1.45rem);
+    background: color-mix(in oklch, var(--ds-color-surface) 95%, var(--ds-color-hero-tint));
+  }
+
+  .contact-workbench__rail h2,
+  .contact-protocol-steps h3 {
+    margin: 0;
+    color: var(--ds-color-text);
+  }
+
+  .contact-workbench__rail h2 {
+    font-size: var(--ds-text-md);
+    letter-spacing: -0.02em;
+  }
+
+  .contact-protocol-steps ol,
+  .contact-brief ul {
+    display: grid;
+    gap: var(--ds-space-4);
+    margin: var(--ds-space-4) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .contact-protocol-steps li {
+    display: grid;
+    grid-template-columns: 3.2rem minmax(0, 1fr);
+    gap: var(--ds-space-3);
+    align-items: start;
+  }
+
+  .contact-protocol-steps li > span {
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    border: 1px solid color-mix(in oklch, var(--ds-color-accent) 42%, var(--ds-color-border));
+    color: var(--ds-color-accent);
+    font-size: var(--ds-text-xs);
+    font-weight: 900;
+    letter-spacing: var(--ds-tracking-caps);
+  }
+
+  .contact-protocol-steps p,
+  .contact-direct p,
+  .contact-privacy p {
+    margin: var(--ds-space-2) 0 0;
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .contact-direct dl {
+    display: grid;
+    gap: 1px;
+    margin: var(--ds-space-4) 0 0;
+    background: var(--ds-color-border);
+  }
+
+  .contact-direct dl > div {
+    display: grid;
+    gap: 0.3rem;
+    padding: 0.85rem;
+    background: var(--ds-color-surface);
+  }
+
+  .contact-direct dt {
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-xs);
+    font-weight: 800;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .contact-direct dd {
+    margin: 0;
+  }
+
+  .contact-brief li {
+    position: relative;
+    padding-left: 1.15rem;
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .contact-brief li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.65em;
+    width: 0.42rem;
+    height: 0.42rem;
+    background: var(--ds-color-accent);
+  }
+
+  .contact-privacy a {
+    display: inline-block;
+    margin-top: var(--ds-space-3);
+    font-size: var(--ds-text-sm);
+  }
+
+  @media (max-width: 44rem) {
+    .contact-hero,
+    .contact-workbench,
+    .contact-success {
+      width: min(100% - 1.25rem, 76rem);
+    }
+
+    .contact-hero h1 {
+      font-size: clamp(3.15rem, 17vw, 4.8rem);
+    }
+
+    .contact-hero__status {
+      width: 100%;
+    }
+
+    .contact-hero__status span {
+      flex: 1 1 100%;
+    }
+
+    .contact-hero__diagram {
+      min-height: 18rem;
+    }
+
+    .form-submit {
+      width: 100%;
+    }
+  }
+</style>

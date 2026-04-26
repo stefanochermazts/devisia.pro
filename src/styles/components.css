@@ -4,9 +4,17 @@
     position: sticky;
     top: 0;
     z-index: 50;
-    background: color-mix(in srgb, var(--ds-color-bg) 80%, transparent);
-    backdrop-filter: blur(10px);
+    font-family: var(--ds-font-ui);
+    background: var(--ds-color-bg);
     border-bottom: var(--ds-border-1) solid var(--ds-color-border);
+    transition: box-shadow var(--ds-motion-base) var(--ds-ease-standard),
+      border-color var(--ds-motion-base) var(--ds-ease-standard);
+  }
+
+  /* Quiet structural lift once the user scrolls past the hero. No glassmorphism. */
+  .site-header[data-scrolled="true"] {
+    box-shadow: var(--ds-shadow-1);
+    border-bottom-color: var(--ds-color-border-strong);
   }
 
   .nav-container {
@@ -24,8 +32,14 @@
     }
   }
 
+  .nav-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ds-space-3);
+  }
+
   .nav-brand .logo {
-    font-family: var(--ds-font-sans);
+    font-family: var(--ds-font-ui);
     font-weight: 500;
     letter-spacing: var(--ds-tracking-wordmark);
     text-transform: uppercase;
@@ -38,6 +52,50 @@
     /* Hide any text content when images are present */
     font-size: 0;
     line-height: 0;
+  }
+
+  /* Inline language switcher beside the wordmark. The current locale is
+     dimmed; the alternate locale carries the link weight. This keeps locale
+     switching one click away while removing it from the primary nav menu. */
+  .brand-lang {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: var(--ds-radius-2);
+    font-size: var(--ds-text-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ds-color-text-muted);
+    text-decoration: none;
+    transition: color var(--ds-motion-fast) var(--ds-ease-standard),
+      background var(--ds-motion-fast) var(--ds-ease-standard);
+  }
+
+  .brand-lang:hover,
+  .brand-lang:focus-visible {
+    background: var(--ds-color-surface-2);
+    color: var(--ds-color-text);
+  }
+
+  .brand-lang__current {
+    color: var(--ds-color-text);
+  }
+
+  .brand-lang__sep {
+    color: var(--ds-color-border-strong);
+  }
+
+  .brand-lang__alt {
+    color: var(--ds-color-text-muted);
+    border-bottom: 1px solid color-mix(in srgb, var(--ds-color-accent) 50%, transparent);
+  }
+
+  .brand-lang:hover .brand-lang__alt,
+  .brand-lang:focus-visible .brand-lang__alt {
+    color: var(--ds-color-accent);
+    border-bottom-color: var(--ds-color-accent);
   }
 
   .logo-img {
@@ -133,6 +191,28 @@
     align-items: center;
   }
 
+  .nav-menu--site {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    row-gap: var(--ds-space-1);
+    column-gap: var(--ds-space-1);
+  }
+
+  /* Each item stretches to the row’s cross size so anchors stay vertically
+     centered even when the CTA has a border / heavier weight than text links. */
+  .nav-menu--site > li {
+    display: flex;
+    align-items: center;
+  }
+
+  @media (min-width: 64.01rem) {
+    .nav-menu--site .nav-link {
+      font-size: var(--ds-text-sm);
+      padding: 0.4rem 0.5rem;
+      min-height: 2.5rem;
+    }
+  }
+
   /* Mobile nav toggle (hamburger) */
   .nav-toggle {
     display: none;
@@ -164,11 +244,13 @@
   .nav-link {
     display: inline-flex;
     align-items: center;
+    min-height: 2.75rem;
     padding: 0.5rem 0.75rem;
     border-radius: var(--ds-radius-2);
     color: var(--ds-color-text);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 560;
+    letter-spacing: -0.01em;
     transition: background var(--ds-motion-fast) var(--ds-ease-standard),
       color var(--ds-motion-fast) var(--ds-ease-standard);
   }
@@ -187,22 +269,33 @@
     background: color-mix(in srgb, var(--ds-color-accent) 18%, var(--ds-color-surface-2));
   }
 
-  .nav-link-cta {
-    border: var(--ds-border-1) solid color-mix(in srgb, var(--ds-color-accent) 55%, var(--ds-color-border));
-    background: var(--ds-color-accent);
-    color: white;
+  /* Primary CTA: chained `.nav-link.nav-link-cta` beats `.nav-link[aria-current]`
+     (class+attr), so label color stays correct on /contatti and other routes. */
+  .nav-link.nav-link-cta {
+    border: var(--ds-border-1) solid color-mix(in srgb, var(--ds-color-primary) 70%, black);
+    background: var(--ds-color-primary);
+    color: #fff;
     font-weight: 700;
+    line-height: 1.15;
+    box-shadow: inset 0 -2px 0 0 var(--ds-color-accent);
   }
 
-  .nav-link-cta:hover {
-    background: color-mix(in srgb, var(--ds-color-accent) 88%, black);
+  .nav-link.nav-link-cta:hover {
+    background: color-mix(in srgb, var(--ds-color-primary) 88%, white);
+    color: #fff;
   }
 
-  /* Keep CTA clearly distinct from the "active page" style */
-  .nav-link-cta[aria-current='page'] {
-    background: color-mix(in srgb, var(--ds-color-accent) 78%, black);
-    border-color: color-mix(in srgb, var(--ds-color-accent) 70%, var(--ds-color-border));
-    box-shadow: var(--ds-focus-ring);
+  /* Active state: keep high-contrast label; do not inherit `.nav-link[aria-current]` ink. */
+  .nav-link.nav-link-cta[aria-current='page'] {
+    background: color-mix(in srgb, var(--ds-color-primary) 92%, white);
+    border-color: var(--ds-color-accent);
+    box-shadow: inset 0 -2px 0 0 var(--ds-color-accent);
+    color: #fff;
+  }
+
+  .nav-link.nav-link-cta[aria-current='page']:hover {
+    background: color-mix(in srgb, var(--ds-color-primary) 85%, white);
+    color: #fff;
   }
 
   .main-content {
@@ -217,9 +310,14 @@
   }
 
   .site-footer {
+    font-family: var(--ds-font-ui);
     margin-top: auto;
     border-top: var(--ds-border-1) solid var(--ds-color-border);
     background: var(--ds-color-surface);
+  }
+
+  .site-footer .footer-bottom__legal {
+    font-family: var(--ds-font-sans);
   }
 
   .footer-container {
@@ -274,6 +372,41 @@
     padding-top: var(--ds-space-5);
     color: var(--ds-color-text-muted);
     font-size: var(--ds-text-sm);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--ds-space-4);
+    flex-wrap: wrap;
+  }
+
+  .footer-bottom__legal {
+    display: grid;
+    gap: var(--ds-space-1);
+    margin: 0;
+  }
+
+  .footer-bottom__legal p {
+    margin: 0;
+  }
+
+  /* Theme toggle in the footer. Reads as a small utility button, with the
+     label visible on wide screens (less ambiguity than the icon-only header
+     version) and icon-only on narrow screens. */
+  .footer-theme-toggle {
+    flex-shrink: 0;
+    align-self: center;
+    gap: 0.5rem;
+  }
+
+  .footer-theme-toggle__label {
+    font-size: var(--ds-text-sm);
+    font-weight: 600;
+  }
+
+  @media (max-width: 36rem) {
+    .footer-theme-toggle__label {
+      display: none;
+    }
   }
 
   /* Switch to hamburger earlier to avoid nav items wrapping around ~1024px */
@@ -348,13 +481,14 @@
     --_bg: transparent;
     --_fg: var(--ds-color-text);
     --_bd: var(--ds-color-border);
-    --_padY: 0.6rem;
-    --_padX: 0.9rem;
+    --_padY: 0.7rem;
+    --_padX: 0.95rem;
 
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    min-height: 2.75rem;
     padding: var(--_padY) var(--_padX);
     border-radius: var(--ds-radius-2);
     border: var(--ds-border-1) solid var(--_bd);
@@ -407,15 +541,20 @@
     transform: none;
   }
 
+  /* `sm` is reserved for icon-only utility controls (theme toggle, menu).
+     We accept the smaller hit area there because the controls are flanked by
+     larger neighbours and labelled. Body buttons should never use `sm`. */
   :where(.ds-btn[data-size="sm"]) {
     --_padY: 0.45rem;
     --_padX: 0.75rem;
+    min-height: 2.25rem;
     font-size: var(--ds-text-sm);
   }
 
   :where(.ds-btn[data-size="lg"]) {
-    --_padY: 0.75rem;
-    --_padX: 1.1rem;
+    --_padY: 0.85rem;
+    --_padX: 1.15rem;
+    min-height: 3rem;
     font-size: var(--ds-text-md);
   }
 
@@ -600,7 +739,8 @@
     }
   }
 
-  /* Image styling within cards */
+  /* Image styling within cards. Color is the default — opt into desaturation
+     with `.ds-img-bw` when the editorial intent calls for it. */
   :where(.ds-card img) {
     width: 100%;
     height: auto;
@@ -608,13 +748,6 @@
     aspect-ratio: 16 / 9;
     object-fit: cover;
     border-radius: var(--ds-radius-3);
-    /* Keep imagery calm/consistent even if uploads are colorful */
-    filter: grayscale(1);
-  }
-
-  /* Allow opt-out for specific images */
-  :where(.ds-card img.ds-img-color) {
-    filter: none;
   }
 
   /* Card typography hierarchy */
@@ -834,6 +967,124 @@
   :where(.ds-pagination a[aria-current="page"]) {
     border-color: var(--ds-color-border-strong);
     background: var(--ds-color-surface-2);
+  }
+
+  /* Mobile sticky CTA: only visible on narrow viewports. The element is
+     present in the DOM on every page, but `display: none` removes it on
+     wider screens where the header CTA is reachable without scrolling.
+     Visibility on mobile is controlled by `data-visible` set in JS, with a
+     small fade + lift transition so it never appears jarring. */
+  .mobile-sticky-cta {
+    display: none;
+  }
+
+  @media (max-width: 48rem) {
+    .mobile-sticky-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--ds-font-ui);
+      position: fixed;
+      bottom: max(env(safe-area-inset-bottom, 0px), 0.75rem);
+      left: 50%;
+      transform: translate(-50%, calc(100% + 1rem));
+      z-index: 60;
+      min-height: 3rem;
+      padding: 0.85rem 1.4rem;
+      border-radius: var(--ds-radius-round);
+      background: var(--ds-color-primary);
+      color: white;
+      font-weight: 700;
+      font-size: var(--ds-text-md);
+      text-decoration: none;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18), 0 1px 2px rgba(0, 0, 0, 0.12);
+      border: 1px solid color-mix(in srgb, var(--ds-color-primary) 70%, black);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform var(--ds-motion-base) var(--ds-ease-standard),
+        opacity var(--ds-motion-base) var(--ds-ease-standard);
+    }
+
+    .mobile-sticky-cta[data-visible="true"] {
+      transform: translate(-50%, 0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .mobile-sticky-cta__arrow {
+      color: var(--ds-color-accent);
+      font-weight: 600;
+    }
+
+    .mobile-sticky-cta:focus-visible {
+      outline: 2px solid var(--ds-color-accent);
+      outline-offset: 3px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .mobile-sticky-cta {
+      transition: opacity var(--ds-motion-fast) linear;
+      transform: translate(-50%, 0);
+    }
+  }
+
+  /* ----------------------------------------------------------------------
+     Home page composition rhythm
+     ----------------------------------------------------------------------
+     The home page is composed of four narrative movements, not a stack of
+     equal-weight sections. The rhythm system encodes this:
+       - Tight intra-pair gaps inside each movement (related ideas read as
+         a unit: "what we do" → "what we shipped", "AI capability" → "AI
+         deliverable").
+       - Generous inter-movement gaps between groups, so the page breathes
+         like an essay with chapter breaks rather than a bullet list.
+     The first movement also gets the largest top margin (below the hero),
+     because the hero is a moment, not just another section. */
+  .home-flow {
+    margin-top: clamp(3.5rem, 2.5rem + 4vw, 6rem);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-flow__group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .home-flow__group[data-rhythm="pair"] {
+    gap: clamp(2.5rem, 1.5rem + 3vw, 4.5rem);
+  }
+
+  .home-flow__group[data-rhythm="epilogue"] {
+    gap: clamp(2rem, 1.25rem + 2vw, 3.25rem);
+  }
+
+  /* Inter-movement gap: the pause between chapters. Roughly 2x the largest
+     intra-pair gap so the squint test reads four blocks, not seven. */
+  .home-flow__group + .home-flow__group {
+    margin-top: clamp(5rem, 3rem + 6vw, 9rem);
+  }
+
+  /* On mobile the composition collapses, but we preserve the contrast
+     between intra-pair (tight) and inter-movement (generous) — just at a
+     smaller scale, so the rhythm is still legible. */
+  @media (max-width: 48rem) {
+    .home-flow {
+      margin-top: var(--ds-space-8);
+    }
+
+    .home-flow__group + .home-flow__group {
+      margin-top: var(--ds-space-9);
+    }
+
+    .home-flow__group[data-rhythm="pair"] {
+      gap: var(--ds-space-7);
+    }
+
+    .home-flow__group[data-rhythm="epilogue"] {
+      gap: var(--ds-space-6);
+    }
   }
 }
 

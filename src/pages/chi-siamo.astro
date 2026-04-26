@@ -1,0 +1,59 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageIntro from '../components/site/PageIntro.astro';
+import EditorialCTA from '../components/site/EditorialCTA.astro';
+import { breadcrumbListJsonLd } from '../lib/seo/structuredData';
+
+const description =
+  'Devisia è una società sviluppo software per prodotti, AI responsabile e compliance operativa, dove contano controllo, architettura e tracciabilità.';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/' },
+    { name: 'Chi siamo', url: '/chi-siamo' },
+  ],
+});
+---
+
+<Layout title="Chi siamo" description={description} structuredData={[breadcrumbs]}>
+  <PageIntro
+    h1="Una società sviluppo software per sistemi che devono restare sotto controllo"
+    lede="Devisia unisce sviluppo di piattaforme, AI responsabile, governance dei dati e compliance operativa per problemi concreti di processo, sicurezza, audit e responsabilità."
+  />
+
+  <div class="ds-stack ds-reading" data-gap="lg" style="margin-bottom: var(--ds-space-8)">
+    <h2>Perché esistiamo</h2>
+    <p>
+      Per evitare che digitale significhi stack fragile, requisiti sommersi, modelli in produzione senza criteri o evidenze
+      sparse quando serve dimostrare. Lavoriamo con team che hanno già qualcosa da perdere: reputazione, continuità,
+      regole, clienti, dati.
+    </p>
+
+    <h2>Problemi che affrontiamo</h2>
+    <ul>
+      <li>Processi e dati poco allineati tra reparti, sistemi e fornitori.</li>
+      <li>Software che cresce per accumulo e diventa opaco a chi lo deve usare o verificare.</li>
+      <li>Intelligenza artificiale usata dove mancano confini, validazione o traccia.</li>
+      <li>Richieste di compliance che non trovano supporto in strumenti, log, export e responsabilità chiare.</li>
+    </ul>
+
+    <h2>Come ragioniamo</h2>
+    <p>Architettura e responsabilità prima, codice e automazioni quando il perimetro è chiaro. Evidenze, non teatro.</p>
+
+    <h2>Prodotti</h2>
+    <p>Costruiamo <a href="/prodotti">prodotti</a> verticali perché talvolta il modo migliore per risolvere è rendere operativo ciò che altrimenti resta un foglio di calcolo. Non per sostituirvi: per darvi spazio, ordine, export e tracciamento.</p>
+
+    <h2>Cosa non siamo</h2>
+    <p>Non siamo una generica agenzia full-service, né un fornitore di slide. Se cercate un partner che prometta trasformazione senza toccare processi, non siamo allineati.</p>
+  </div>
+
+  <EditorialCTA
+    variant="tint"
+    title="Se il vostro prossimo vincolo è serio, trattatelo con competenza, non con slogan"
+    ctaLabel="Conosciamo il tuo contesto"
+    ctaHref="/contatti"
+    copy="Primo contatto: capire fatti, vincoli, responsabilità e criteri di accettazione, senza forzare una scelta su stack o vendor."
+  />
+</Layout>
