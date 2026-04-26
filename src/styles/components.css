@@ -198,14 +198,17 @@
     column-gap: var(--ds-space-1);
   }
 
-  /* Each item stretches to the row’s cross size so anchors stay vertically
-     centered even when the CTA has a border / heavier weight than text links. */
-  .nav-menu--site > li {
-    display: flex;
-    align-items: center;
-  }
-
   @media (min-width: 64.01rem) {
+    /* Baseline row: keeps “Contatti” aligned with text links despite border /
+       bold weight (center alignment was nudging the CTA visually upward). */
+    .nav-menu--site {
+      align-items: baseline;
+    }
+
+    .nav-menu--site > li {
+      display: contents;
+    }
+
     .nav-menu--site .nav-link {
       font-size: var(--ds-text-sm);
       padding: 0.4rem 0.5rem;
@@ -272,24 +275,31 @@
   /* Primary CTA: chained `.nav-link.nav-link-cta` beats `.nav-link[aria-current]`
      (class+attr), so label color stays correct on /contatti and other routes. */
   .nav-link.nav-link-cta {
-    border: var(--ds-border-1) solid color-mix(in srgb, var(--ds-color-primary) 70%, black);
+    /* Rim legibile su header avorio (light) e ancora definito su header scuro:
+       mix con --ds-color-bg invece di “primary + black” (quasi invisibile sul fill). */
+    border: var(--ds-border-1) solid
+      color-mix(in oklch, var(--ds-color-bg) 38%, var(--ds-color-primary));
     background: var(--ds-color-primary);
     color: #fff;
     font-weight: 700;
-    line-height: 1.15;
-    box-shadow: inset 0 -2px 0 0 var(--ds-color-accent);
+    /* Accento come bordo inferiore: niente inset che sposta il centro ottico. */
+    box-shadow: 0 1px 2px color-mix(in oklch, var(--ds-color-text) 12%, transparent);
+    border-bottom: var(--ds-border-2) solid var(--ds-color-accent);
   }
 
   .nav-link.nav-link-cta:hover {
     background: color-mix(in srgb, var(--ds-color-primary) 88%, white);
     color: #fff;
+    border-color: color-mix(in oklch, var(--ds-color-bg) 32%, var(--ds-color-primary));
+    border-bottom-color: var(--ds-color-accent);
   }
 
   /* Active state: keep high-contrast label; do not inherit `.nav-link[aria-current]` ink. */
   .nav-link.nav-link-cta[aria-current='page'] {
     background: color-mix(in srgb, var(--ds-color-primary) 92%, white);
-    border-color: var(--ds-color-accent);
-    box-shadow: inset 0 -2px 0 0 var(--ds-color-accent);
+    border-color: color-mix(in oklch, var(--ds-color-accent) 55%, var(--ds-color-primary));
+    border-bottom-color: var(--ds-color-accent);
+    box-shadow: 0 1px 2px color-mix(in oklch, var(--ds-color-text) 10%, transparent);
     color: #fff;
   }
 
