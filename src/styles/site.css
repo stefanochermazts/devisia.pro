@@ -1845,7 +1845,7 @@
     font-size: var(--ds-text-base);
   }
 
-  .product-beta-panel__actions {
+  [class$="__actions"]:has(.ds-link) {
     display: flex;
     flex-wrap: wrap;
     gap: var(--ds-space-6);
