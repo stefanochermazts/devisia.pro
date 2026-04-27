@@ -24,7 +24,8 @@
     "astro": "^5.16.6",
     "dotenv": "^17.2.3",
     "gray-matter": "^4.0.3",
-    "nodemailer": "^7.0.12"
+    "nodemailer": "^7.0.12",
+    "rehype-external-links": "^3.0.0"
   },
   "devDependencies": {
     "@astrojs/netlify": "^6.6.3",

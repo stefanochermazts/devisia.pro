@@ -91,9 +91,6 @@ const breadcrumbs = breadcrumbListJsonLd({
                   </section>
                 )}
 
-                <a href={`/en/blog/${slugFromId(post.id)}`} class="read-more">
-                  Read more →
-                </a>
               </section>
             </article>
           ))}
@@ -183,9 +180,10 @@ const breadcrumbs = breadcrumbListJsonLd({
 </Layout>
 
 <style is:global>
-  .blog-container {
+  :where(.blog-container, .blog-post) {
     max-width: 98vw;
     margin: 0 auto;
+    padding-block: var(--ds-space-6);    
   }
 
   @media (min-width: 48rem) {

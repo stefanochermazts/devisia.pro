@@ -109,7 +109,12 @@
     --ds-color-border: color-mix(in oklch, white 16%, var(--ds-brand-ink-deep));
     --ds-color-border-strong: color-mix(in oklch, white 24%, var(--ds-brand-ink-deep));
 
-    --ds-color-focus: color-mix(in oklch, var(--ds-color-accent) 50%, transparent);
+    /* Accenti più chiari del light: su bg/superficie scuri l’ember/pine ereditati
+       non raggiungono 8:1; qui L e C sono calibrati per WCAG (testo/interfacce). */
+    --ds-color-accent: oklch(0.85 0.12 49);
+    --ds-color-accent-2: oklch(0.87 0.08 198);
+
+    --ds-color-focus: color-mix(in oklch, var(--ds-color-accent) 58%, transparent);
 
     --ds-shadow-1: 0 1px 2px oklch(0 0 0 / 0.35);
     --ds-shadow-2: 0 8px 28px oklch(0 0 0 / 0.4);
@@ -131,7 +136,10 @@
       --ds-color-border: color-mix(in oklch, white 16%, var(--ds-brand-ink-deep));
       --ds-color-border-strong: color-mix(in oklch, white 24%, var(--ds-brand-ink-deep));
 
-      --ds-color-focus: color-mix(in oklch, var(--ds-color-accent) 50%, transparent);
+      --ds-color-accent: oklch(0.85 0.12 49);
+      --ds-color-accent-2: oklch(0.87 0.08 198);
+
+      --ds-color-focus: color-mix(in oklch, var(--ds-color-accent) 58%, transparent);
 
       --ds-shadow-1: 0 1px 2px oklch(0 0 0 / 0.35);
       --ds-shadow-2: 0 8px 28px oklch(0 0 0 / 0.4);
