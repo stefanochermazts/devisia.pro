@@ -600,7 +600,10 @@
     max-width: 13ch;
     font-size: clamp(1.4rem, 2.5vw, 2rem);
     line-height: var(--ds-leading-tight);
+    /* Blocco titolo = sempre due righe di altezza: le <p> sotto restano allineate tra le card. */
+    min-height: 2lh;
     margin: 0 0 var(--ds-space-3);
+    text-wrap: balance;
   }
 
   .proof-rail__item p {
