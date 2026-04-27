@@ -113,12 +113,20 @@
     letter-spacing: 0;
   }
 
+  /* Link: colore + area di click/tap (padding + margine negativo); stesso pattern ovunque.
+     .ds-btn, .skip-link, .mobile-sticky-cta, ecc. sovrascrivono padding/raggio nel layer components. */
   :where(a) {
     color: var(--ds-color-accent);
     text-decoration-color: color-mix(in srgb, var(--ds-color-accent) 35%, transparent);
     text-underline-offset: 0.18em;
     transition: color var(--ds-motion-fast) var(--ds-ease-standard),
       text-decoration-color var(--ds-motion-fast) var(--ds-ease-standard);
+    display: inline-flex;
+    flex-wrap: wrap;
+    place-items: start;
+    padding: var(--ds-space-2);
+    margin: calc(var(--ds-space-2) * -1);
+    border-radius: var(--ds-radius-2);
   }
 
   :where(a:hover) {

@@ -61,8 +61,6 @@
     display: inline-flex;
     align-items: baseline;
     gap: 0.35rem;
-    padding: 0.4rem 0.6rem;
-    border-radius: var(--ds-radius-2);
     font-size: var(--ds-text-xs);
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -185,7 +183,7 @@
   .nav-menu {
     list-style: none;
     display: flex;
-    gap: var(--ds-space-2);
+    gap: var(--ds-space-3);
     margin: 0;
     padding: 0;
     align-items: center;
@@ -194,8 +192,8 @@
   .nav-menu--site {
     flex-wrap: wrap;
     justify-content: flex-end;
-    row-gap: var(--ds-space-1);
-    column-gap: var(--ds-space-1);
+    row-gap: var(--ds-space-2);
+    column-gap: var(--ds-space-2);
   }
 
   @media (min-width: 64.01rem) {
@@ -211,7 +209,6 @@
 
     .nav-menu--site .nav-link {
       font-size: var(--ds-text-sm);
-      padding: 0.4rem 0.5rem;
       min-height: 2.5rem;
     }
   }
@@ -248,8 +245,6 @@
     display: inline-flex;
     align-items: center;
     min-height: 2.75rem;
-    padding: 0.5rem 0.75rem;
-    border-radius: var(--ds-radius-2);
     color: var(--ds-color-text);
     text-decoration: none;
     font-weight: 560;
@@ -961,14 +956,12 @@
 
   :where(.ds-pagination) {
     display: flex;
-    gap: var(--ds-space-2);
+    gap: var(--ds-space-3);
     flex-wrap: wrap;
     align-items: center;
   }
 
   :where(.ds-pagination a) {
-    padding: 0.45rem 0.7rem;
-    border-radius: var(--ds-radius-2);
     border: var(--ds-border-1) solid var(--ds-color-border);
     background: var(--ds-color-surface);
     text-decoration: none;

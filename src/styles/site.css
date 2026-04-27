@@ -140,8 +140,8 @@
   /* Home hero: PROCESSO / CONTROLLO / PROVA è `position:absolute` in alto a destra sul viz.
      Senza riserva orizzontale la prima riga del diagramma invade quell’area. */
   .site-hero__viz .site-layers__row--process {
-    width: min(16.25rem, calc(100% - 9.5rem));
-    max-width: calc(100% - 9.5rem);
+    width: min(15.5rem, calc(100% - 10.25rem));
+    max-width: calc(100% - 10.25rem);
   }
 
   .site-section {
@@ -281,8 +281,9 @@
 
   .site-layers {
     position: relative;
-    min-height: clamp(27rem, 42vw, 38rem);
-    font-size: var(--ds-text-sm);
+    /* Più altezza: le tre righe testuali sono tutte ancorate da `top` e servono corsia verticale. */
+    min-height: clamp(31rem, 50vw, 44rem);
+    font-size: var(--ds-text-xs);
   }
 
   .site-layers__frame {
@@ -364,25 +365,26 @@
     letter-spacing: -0.04em;
   }
 
+  /* Nodi più “in alto / ai lati” così non competono con la fascia centrale delle righe. */
   .site-layers__node--process {
-    left: 12%;
-    top: 14%;
+    left: 10%;
+    top: 6%;
   }
 
   .site-layers__node--data {
-    right: 16%;
-    top: 24%;
+    right: 10%;
+    top: 12%;
     background: color-mix(in oklch, var(--ds-color-hero-tint) 72%, var(--ds-color-accent));
   }
 
   .site-layers__node--system {
-    left: 22%;
-    bottom: 11%;
+    left: 8%;
+    bottom: 7%;
   }
 
   .site-layers__node--proof {
-    right: 10%;
-    bottom: 14%;
+    right: 6%;
+    bottom: 8%;
     width: clamp(6.6rem, 10vw, 9rem);
     border-radius: 999px;
     background: color-mix(in oklch, var(--ds-color-accent) 86%, var(--ds-color-hero-tint));
@@ -395,30 +397,36 @@
     position: absolute;
     display: flex;
     align-items: center;
-    gap: var(--ds-space-3);
-    padding: var(--ds-space-3) var(--ds-space-4);
+    gap: var(--ds-space-2);
+    padding: var(--ds-space-2) var(--ds-space-3);
     background: color-mix(in oklch, white 6%, var(--ds-color-hero-tint));
     border: var(--ds-border-1) solid color-mix(in oklch, white 12%, var(--ds-color-hero-tint));
     color: color-mix(in oklch, white 90%, var(--ds-color-hero-tint));
-    /* Più stretto così le scritte non invadono l’area dei cerchi numerati. */
-    width: min(22rem, 70%);
+    line-height: 1.35;
+    width: min(19rem, 64%);
     box-shadow: 0 24px 54px color-mix(in oklch, var(--ds-color-hero-tint) 62%, transparent);
   }
 
-  /* Righe sotto / accanto ai nodi, non sopra i grandi “01 / 02 / 03”. */
+  /*
+   * Tre fasce verticali tutte da `top` (niente `bottom` sulla riga 03): così la 02
+   * non “sale” verso la 03 e non si accavalla con testi multi‑riga.
+   */
   .site-layers__row--process {
     left: 4%;
-    top: 32%;
+    top: 34%;
   }
 
   .site-layers__row--data {
     right: 4%;
-    top: 48%;
+    left: auto;
+    top: 51%;
   }
 
   .site-layers__row--system {
-    left: 4%;
-    bottom: 31%;
+    left: 26%;
+    top: 69%;
+    bottom: auto;
+    width: min(18.5rem, 58%);
   }
 
   .site-layers__label {
@@ -429,7 +437,7 @@
 
   @media (max-width: 36rem) {
     .site-layers {
-      min-height: 28rem;
+      min-height: 32rem;
     }
 
     .site-layers__row {
@@ -438,8 +446,27 @@
       width: 86%;
     }
 
+    .site-layers__row--process {
+      top: 14%;
+    }
+
     .site-layers__row--data {
       right: 0;
+      top: 40%;
+    }
+
+    .site-layers__row--system {
+      left: 4%;
+      top: 66%;
+      width: 86%;
+    }
+
+    .site-layers__node--process {
+      top: 4%;
+    }
+
+    .site-layers__node--data {
+      top: 8%;
     }
   }
 
