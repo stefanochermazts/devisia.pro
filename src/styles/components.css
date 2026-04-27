@@ -308,14 +308,16 @@
     color: #fff;
   }
 
+  /* Solo padding in basso: il padding-top creava uno “strato” visibile sotto
+     l’header sticky (hero e altre pagine partono già dal bordo inferiore barra). */
   .main-content {
-    padding-block: var(--ds-space-8);
+    padding-block-start: 0;
+    padding-block-end: var(--ds-space-8);
   }
 
-  /* Reduce main content padding on mobile */
   @media (max-width: 36rem) {
     .main-content {
-      padding-block: var(--ds-space-6);
+      padding-block-end: var(--ds-space-6);
     }
   }
 
