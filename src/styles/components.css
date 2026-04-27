@@ -577,7 +577,7 @@
   :where(.ds-link) {
     color: var(--ds-color-accent);
     font-weight: 500;
-    font-size: var(--ds-text-lg);
+    font-size: var(--ds-text-md);
   }
 
   :where(.ds-link[data-variant="muted"]) {
