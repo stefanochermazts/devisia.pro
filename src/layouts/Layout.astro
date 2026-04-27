@@ -255,7 +255,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
     <!-- Header / Navigation -->
     <header class="site-header" data-scrolled="false">
       <nav class="nav-container ds-container" aria-label="Primary">
-        <div class="nav-brand">
+        <section class="nav-brand" aria-label="Brand">
           <a href={homeHref} class="logo" aria-label="DEVISIA">
             <img 
               class="logo-img logo-img--word logo-img--light" 
@@ -291,7 +291,7 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
             <span class="brand-lang__sep" aria-hidden="true">·</span>
             <span class="brand-lang__alt">{lang === 'en' ? 'IT' : 'EN'}</span>
           </a>
-        </div>
+        </section>
 
         <button
           type="button"
@@ -369,16 +369,16 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
 
     <!-- Footer -->
     <footer class="site-footer">
-      <div class="footer-container ds-container">
-        <div class="footer-content">
-          <div class="footer-section">
+      <section class="footer-container ds-container" aria-label={lang === 'en' ? 'Site footer' : 'Piè di pagina'}>
+        <section class="footer-content">
+          <section class="footer-section">
             <h3>Devisia</h3>
             <p>
               {footerContent.tagline}
             </p>
-          </div>
+          </section>
 
-          <div class="footer-section">
+          <section class="footer-section">
             <h4>{footerContent.quickLinks}</h4>
             <ul class="footer-links">
               {footerNavItems.map((item) => (
@@ -387,9 +387,9 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
                 </li>
               ))}
             </ul>
-          </div>
+          </section>
 
-          <div class="footer-section">
+          <section class="footer-section">
             <h4>{footerContent.connect}</h4>
             <ul class="footer-links">
               <li><a href="mailto:info@devisia.it">info@devisia.it</a></li>
@@ -398,15 +398,15 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
                   >LinkedIn</a>
               </li>
             </ul>
-          </div>
-        </div>
+          </section>
+        </section>
 
-        <div class="footer-bottom">
-          <div class="footer-bottom__legal">
+        <section class="footer-bottom">
+          <section class="footer-bottom__legal">
             <p>&copy; {new Date().getFullYear()} Devisia s.r.l. - Riva Tommaso Gulli 12 - 34123 - Trieste</p>
             <p>P.IVA: 01443020324 - PEC: devisia@namirialpec.it - REA: TS - 217091</p>
             <p><a href={href('/privacy')}>{t('policyLink', lang)}</a></p>
-          </div>
+          </section>
           {/* Theme toggle moved out of the primary nav to slim the header.
               It lives quietly in the footer, where utility controls belong. */}
           <button
@@ -456,8 +456,8 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
             </svg>
             <span class="footer-theme-toggle__label">{themeToggleLabel}</span>
           </button>
-        </div>
-      </div>
+        </section>
+      </section>
     </footer>
 
     <!-- Mobile sticky CTA: only renders on narrow viewports and only after

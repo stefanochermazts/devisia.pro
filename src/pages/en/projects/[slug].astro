@@ -56,7 +56,7 @@ const softwareApp = softwareApplicationJsonLd({
 >
   <article class="project">
     <header class="header">
-      <div class="top">
+      <section class="top">
         {entry.data.logo ? (
           <Image 
             class="logo" 
@@ -68,25 +68,25 @@ const softwareApp = softwareApplicationJsonLd({
           />
         ) : null}
 
-        <div class="heading">
-          <div class="title-row">
+        <section class="heading">
+          <section class="title-row">
             <h1>{entry.data.title}</h1>
             <span class={`status status--${entry.data.status}`}>{entry.data.status}</span>
-          </div>
+          </section>
           <p class="subtitle">{entry.data.description}</p>
-          <div class="links">
+          <section class="links">
             {entry.data.websiteUrl ? (
               <Button href={entry.data.websiteUrl} target="_blank" rel="noopener noreferrer" variant="primary">
                 Visit website
               </Button>
             ) : null}
             <Button href="/en/projects" variant="ghost">Back to projects</Button>
-          </div>
-        </div>
-      </div>
+          </section>
+        </section>
+      </section>
 
       {entry.data.coverImage ? (
-        <div class="cover">
+        <section class="cover">
           <Image 
             src={entry.data.coverImage} 
             alt={`${entry.data.title} cover`} 
@@ -95,15 +95,15 @@ const softwareApp = softwareApplicationJsonLd({
             width={900}
             height={320}
           />
-        </div>
+        </section>
       ) : null}
 
       {entry.data.tags?.length ? (
-        <div class="tags">
+        <section class="tags">
           {entry.data.tags.map((tag) => (
             <span class="tag">{tag}</span>
           ))}
-        </div>
+        </section>
       ) : null}
     </header>
 

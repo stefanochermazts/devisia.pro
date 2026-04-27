@@ -169,9 +169,9 @@ import SeeTogetherModal from '../components/ai-structure/SeeTogetherModal.astro'
         if (flows) {
           flows.innerHTML = '';
           (artifact.key_flows || []).forEach((f) => {
-            const block = document.createElement('div');
+            const block = document.createElement('section');
             block.className = 'ds-ai-structure__flow';
-            const title = document.createElement('div');
+            const title = document.createElement('section');
             title.className = 'ds-ai-structure__flow-title';
             title.textContent = String(f.title || '');
             const ol = document.createElement('ol');

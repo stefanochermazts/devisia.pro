@@ -35,7 +35,7 @@ const {
 const describedBy = [hint ? `${id}-hint` : null, error ? `${id}-error` : null].filter(Boolean).join(' ') || undefined;
 ---
 
-<div class={['ds-field', className].filter(Boolean).join(' ')}>
+<section class={['ds-field', className].filter(Boolean).join(' ')}>
   {label ? (
     <label class="ds-label" for={id}>
       {label}{required ? <span class="sr-only"> (required)</span> : null}
@@ -61,5 +61,5 @@ const describedBy = [hint ? `${id}-hint` : null, error ? `${id}-error` : null].f
 
   {hint ? <p class="ds-hint" id={`${id}-hint`}>{hint}</p> : null}
   {error ? <p class="ds-hint" id={`${id}-error`} style={`color: var(--ds-color-danger);`}>{error}</p> : null}
-</div>
+</section>
 

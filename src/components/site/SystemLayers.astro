@@ -6,48 +6,48 @@ const { lang } = Astro.props;
 const isEn = lang === 'en';
 ---
 
-<div class="site-layers" aria-hidden="true">
-  <div class="site-layers__frame">
-    <div class="site-layers__axis site-layers__axis--x"></div>
-    <div class="site-layers__axis site-layers__axis--y"></div>
-    <div class="site-layers__node site-layers__node--process">01</div>
-    <div class="site-layers__node site-layers__node--data">02</div>
-    <div class="site-layers__node site-layers__node--system">03</div>
-    <div class="site-layers__node site-layers__node--proof">
+<section class="site-layers" aria-hidden="true">
+  <section class="site-layers__frame">
+    <section class="site-layers__axis site-layers__axis--x"></section>
+    <section class="site-layers__axis site-layers__axis--y"></section>
+    <section class="site-layers__node site-layers__node--process">01</section>
+    <section class="site-layers__node site-layers__node--data">02</section>
+    <section class="site-layers__node site-layers__node--system">03</section>
+    <section class="site-layers__node site-layers__node--proof">
       {isEn ? 'proof' : 'prove'}
-    </div>
-  </div>
+    </section>
+  </section>
   {
     isEn ? (
       <>
-        <div class="site-layers__row site-layers__row--process">
+        <section class="site-layers__row site-layers__row--process">
           <span class="site-layers__label">01</span>
           <span>Process, roles, exceptions, decisions</span>
-        </div>
-        <div class="site-layers__row site-layers__row--data">
+        </section>
+        <section class="site-layers__row site-layers__row--data">
           <span class="site-layers__label">02</span>
           <span>Data, ownership, policies, evidence</span>
-        </div>
-        <div class="site-layers__row site-layers__row--system">
+        </section>
+        <section class="site-layers__row site-layers__row--system">
           <span class="site-layers__label">03</span>
           <span>Software, automation, models, operations</span>
-        </div>
+        </section>
       </>
     ) : (
       <>
-        <div class="site-layers__row site-layers__row--process">
+        <section class="site-layers__row site-layers__row--process">
           <span class="site-layers__label">01</span>
           <span>Processo, ruoli, eccezioni, decisioni</span>
-        </div>
-        <div class="site-layers__row site-layers__row--data">
+        </section>
+        <section class="site-layers__row site-layers__row--data">
           <span class="site-layers__label">02</span>
           <span>Dati, responsabilità, policy, evidenze</span>
-        </div>
-        <div class="site-layers__row site-layers__row--system">
+        </section>
+        <section class="site-layers__row site-layers__row--system">
           <span class="site-layers__label">03</span>
           <span>Software, automazione, modelli, operatività</span>
-        </div>
+        </section>
       </>
     )
   }
-</div>
+</section>

@@ -15,8 +15,8 @@ const { id, tabs, defaultTabId } = Astro.props;
 const initial = defaultTabId ?? tabs[0]?.id;
 ---
 
-<div class="ds-tabs" data-ds-tabs={id}>
-  <div class="ds-tabs__list" role="tablist" aria-label="Tabs">
+<section class="ds-tabs" data-ds-tabs={id}>
+  <section class="ds-tabs__list" role="tablist" aria-label="Tabs">
     {tabs.map((t) => (
       <button
         class="ds-tab"
@@ -31,7 +31,7 @@ const initial = defaultTabId ?? tabs[0]?.id;
         {t.label}
       </button>
     ))}
-  </div>
+  </section>
 
   {tabs.map((t) => (
     <section
@@ -44,7 +44,7 @@ const initial = defaultTabId ?? tabs[0]?.id;
       {t.content}
     </section>
   ))}
-</div>
+</section>
 
 <script>
   // Tiny accessible tabs controller (progressive enhancement)

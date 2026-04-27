@@ -10,22 +10,22 @@ export interface Props {
 const { title, lede, primaryLabel, primaryHref, secondaryLabel, secondaryHref } = Astro.props;
 ---
 
-<div class="site-hero site-hero--bleed" data-hero>
-  <div class="ds-container site-hero__inner">
-    <div class="site-hero__grid">
-      <div class="site-hero__copy">
+<section class="site-hero site-hero--bleed" data-hero>
+  <section class="ds-container site-hero__inner">
+    <section class="site-hero__grid">
+      <section class="site-hero__copy">
         <h1 class="site-hero__title">{title}</h1>
         <p class="site-hero__lede">{lede}</p>
-        <div class="site-hero__actions">
+        <section class="site-hero__actions">
           <a class="ds-btn" data-variant="primary" data-size="lg" href={primaryHref}>
             {primaryLabel}
           </a>
           <a class="ds-link" data-variant="muted" href={secondaryHref}>
             {secondaryLabel} <span aria-hidden="true">→</span>
           </a>
-        </div>
-      </div>
+        </section>
+      </section>
       <slot name="visual" />
-    </div>
-  </div>
-</div>
+    </section>
+  </section>
+</section>

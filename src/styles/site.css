@@ -1822,7 +1822,7 @@
     }
   }
 
-  .product-beta-panel__scope div {
+  .product-beta-panel__scope section {
     display: grid;
     gap: var(--ds-space-2);
     padding: var(--ds-space-4);

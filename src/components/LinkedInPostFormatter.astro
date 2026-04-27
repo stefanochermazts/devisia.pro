@@ -152,17 +152,17 @@ const STRINGS =
   </header>
 
   <!-- Tool body -->
-  <div class="li-tool__body">
+  <section class="li-tool__body">
     <!-- Left: Editor -->
-    <div class="li-tool__editor ds-stack" data-gap="xs">
+    <section class="li-tool__editor ds-stack" data-gap="xs">
       <p class="li-tool__step-label">{lang === 'en' ? 'Step 1' : 'Step 1'} · {lang === 'en' ? 'Write or paste text' : 'Scrivi o incolla il testo'}</p>
       <label class="ds-label" for="li-input">{STRINGS.inputLabel}</label>
-      <div class="li-tool__toolbar" role="toolbar" aria-label="Formatting">
+      <section class="li-tool__toolbar" role="toolbar" aria-label="Formatting">
         <button class="li-tool__tb-btn" type="button" data-li-tb="bullet" title="Bullet •" aria-label="Bullet point">•</button>
         <button class="li-tool__tb-btn li-tool__tb-btn--bold" type="button" data-li-tb="bold" title="Bold" aria-label="Bold">B</button>
         <button class="li-tool__tb-btn li-tool__tb-btn--italic" type="button" data-li-tb="italic" title="Italic" aria-label="Italic">I</button>
         <button class="li-tool__tb-btn li-tool__tb-btn--bolditalic" type="button" data-li-tb="bolditalic" title="Bold Italic" aria-label="Bold Italic">BI</button>
-      </div>
+      </section>
       <textarea
         id="li-input"
         class="li-tool__input"
@@ -172,7 +172,7 @@ const STRINGS =
       ></textarea>
 
       <p class="li-tool__step-label">{lang === 'en' ? 'Step 2' : 'Step 2'} · {lang === 'en' ? 'Run checks' : 'Esegui i controlli'}</p>
-      <div class="li-tool__actions" role="group" aria-label="Actions">
+      <section class="li-tool__actions" role="group" aria-label="Actions">
         <button class="ds-btn" data-variant="primary" type="button" data-li-format>
           {STRINGS.btnFormat}
         </button>
@@ -185,47 +185,47 @@ const STRINGS =
         <button class="ds-btn" data-variant="ghost" type="button" data-li-reset>
           {STRINGS.btnReset}
         </button>
-      </div>
+      </section>
       <p class="li-tool__ai-disclaimer">{STRINGS.aiDisclaimer}</p>
-      <div class="li-tool__status" aria-live="polite" data-li-status></div>
+      <section class="li-tool__status" aria-live="polite" data-li-status></section>
 
       <!-- Results (hidden until format) -->
-      <div class="li-tool__results" data-li-results hidden>
+      <section class="li-tool__results" data-li-results hidden>
         <p class="li-tool__step-label">{lang === 'en' ? 'Step 3' : 'Step 3'} · {lang === 'en' ? 'Review and copy output' : 'Rivedi e copia l’output'}</p>
         <h2 class="li-tool__section-title">{STRINGS.previewLabel}</h2>
-        <div class="li-tool__preview" data-li-preview>
-          <div class="li-tool__preview-body" data-li-preview-body></div>
-        </div>
-      </div>
-    </div>
+        <section class="li-tool__preview" data-li-preview>
+          <section class="li-tool__preview-body" data-li-preview-body></section>
+        </section>
+      </section>
+    </section>
 
     <!-- Right: Panels -->
-    <div class="li-tool__panels ds-stack" data-gap="sm">
+    <section class="li-tool__panels ds-stack" data-gap="sm">
       <!-- Feature descriptions -->
-      <div class="li-tool__panel">
+      <article class="li-tool__panel">
         <h3 class="li-tool__panel-title">{STRINGS.labelFormatter}</h3>
         <p class="li-tool__panel-desc">{STRINGS.labelFormatterDesc}</p>
-      </div>
-      <div class="li-tool__panel">
+      </article>
+      <article class="li-tool__panel">
         <h3 class="li-tool__panel-title">{STRINGS.labelHookCheck}</h3>
         <p class="li-tool__panel-desc">{STRINGS.labelHookCheckDesc}</p>
         <span data-li-hook-result></span>
-        <div class="li-tool__ai-result" data-li-ai-hook hidden>
+        <section class="li-tool__ai-result" data-li-ai-hook hidden>
           <h4 class="li-tool__ai-result-title">{STRINGS.aiHookLabel}</h4>
-          <div data-li-ai-hook-body></div>
-        </div>
-      </div>
-      <div class="li-tool__panel">
+          <section data-li-ai-hook-body></section>
+        </section>
+      </article>
+      <article class="li-tool__panel">
         <h3 class="li-tool__panel-title">{STRINGS.labelToneCheck}</h3>
         <p class="li-tool__panel-desc">{STRINGS.labelToneCheckDesc}</p>
         <span data-li-tone-result></span>
-        <div class="li-tool__ai-result" data-li-ai-tone hidden>
+        <section class="li-tool__ai-result" data-li-ai-tone hidden>
           <h4 class="li-tool__ai-result-title">{STRINGS.aiToneLabel}</h4>
-          <div data-li-ai-tone-body></div>
-        </div>
-      </div>
-    </div>
-  </div>
+          <section data-li-ai-tone-body></section>
+        </section>
+      </article>
+    </section>
+  </section>
 
   <!-- Keyword sentence -->
   <p class="li-tool__keyword-sentence">{STRINGS.keywordSentence}</p>

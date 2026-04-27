@@ -64,28 +64,28 @@ const formatDate = (date: Date | string): string => {
 >
   <article class="blog-post">
     <header class="post-header">
-      <div class="post-meta">
+      <section class="post-meta">
         <time datetime={entry.data.pubDate.toString()}>
           {formatDate(entry.data.pubDate)}
         </time>
         <span class="separator">·</span>
         <span class="post-author">di {entry.data.author}</span>
-      </div>
+      </section>
       
       <h1 class="post-title">{entry.data.title}</h1>
       
       <p class="post-description">{entry.data.description}</p>
       
       {entry.data.tags && entry.data.tags.length > 0 && (
-        <div class="post-tags">
+        <section class="post-tags">
           {entry.data.tags.map((tag) => (
             <span class="tag">{tag}</span>
           ))}
-        </div>
+        </section>
       )}
       
       {entry.data.heroImage && (
-        <div class="post-hero-image">
+        <section class="post-hero-image">
           <Image 
             src={entry.data.heroImage} 
             alt={entry.data.title} 
@@ -97,13 +97,13 @@ const formatDate = (date: Date | string): string => {
             decoding="async"
             fetchpriority="high"
           />
-        </div>
+        </section>
       )}
     </header>
     
-    <div class="post-content">
+    <section class="post-content">
       <Content />
-    </div>
+    </section>
     
     <footer class="post-footer">
       <a href="/blog" class="back-link">← Torna al blog</a>

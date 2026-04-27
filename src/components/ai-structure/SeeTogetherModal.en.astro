@@ -5,7 +5,7 @@
     </button>
   </form>
 
-  <div class="ds-ai-structure__dialog-body">
+  <section class="ds-ai-structure__dialog-body">
     <h2 class="ds-ai-structure__dialog-title">Review it with Devisia</h2>
     <p class="ds-ai-structure__dialog-text">
       Send this artifact to Devisia.<br />
@@ -13,17 +13,17 @@
     </p>
 
     <form class="ds-ai-structure__dialog-form" data-ai-structure-submit-form>
-      <div class="ds-field">
+      <section class="ds-field">
         <input class="ds-input" type="email" required data-ai-structure-email placeholder="Email" />
-      </div>
+      </section>
 
-      <div class="ds-field">
+      <section class="ds-field">
         <input class="ds-input" type="text" data-ai-structure-name placeholder="Name" />
-      </div>
+      </section>
 
-      <div class="ds-field">
+      <section class="ds-field">
         <textarea class="ds-textarea" rows="4" maxlength="500" data-ai-structure-note placeholder="Note, constraints or main question"></textarea>
-      </div>
+      </section>
 
       <label class="ds-check" style="margin-top: var(--ds-space-2);">
         <input type="checkbox" required data-ai-structure-consent />
@@ -33,11 +33,11 @@
         </span>
       </label>
 
-      <div class="ds-alert" data-ai-structure-submit-error hidden>
+      <section class="ds-alert" data-ai-structure-submit-error hidden>
         <p class="ds-alert__body"></p>
-      </div>
+      </section>
 
-      <div
+      <section
         class="ds-alert ds-ai-structure__success"
         data-tone="success"
         data-ai-structure-submit-success
@@ -50,15 +50,15 @@
           <strong>Reference ID: <span data-ai-structure-ref>DV-XXXXXX</span></strong><br />
           To request deletion, cite this ID.
         </p>
-      </div>
+      </section>
 
-      <div style="display:flex; justify-content:flex-start; margin-top: var(--ds-space-3);">
+      <section style="display:flex; justify-content:flex-start; margin-top: var(--ds-space-3);">
         <button class="ds-btn" data-variant="primary" type="submit" data-ai-structure-submit>
           Send context to Devisia
         </button>
-      </div>
+      </section>
     </form>
-  </div>
+  </section>
 </dialog>
 
 <style>

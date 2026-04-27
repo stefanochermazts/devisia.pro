@@ -75,19 +75,19 @@ function init() {
     if (!cards) return;
     cards.innerHTML = '';
     previewEvents.forEach((e) => {
-      const div = document.createElement('div');
-      div.className = 'padel-tool__card';
-      div.innerHTML = `
-        <div class="padel-tool__card-top">
+      const card = document.createElement('article');
+      card.className = 'padel-tool__card';
+      card.innerHTML = `
+        <section class="padel-tool__card-top">
           <strong>${escapeHtml(e.whenLabel)}</strong>
           ${e.incomplete ? `<span class="padel-tool__badge padel-tool__badge--warn">${escapeHtml(STRINGS.badgeIncomplete)}</span>` : ``}
-        </div>
-        <div>${escapeHtml(e.venueLabel)}${e.courtLabel ? ` <span class="padel-tool__muted">– ${escapeHtml(e.courtLabel)}</span>` : ``}</div>
-        <div class="padel-tool__muted">
+        </section>
+        <section>${escapeHtml(e.venueLabel)}${e.courtLabel ? ` <span class="padel-tool__muted">– ${escapeHtml(e.courtLabel)}</span>` : ``}</section>
+        <section class="padel-tool__muted">
           ${e.levelLabel ? `${escapeHtml(STRINGS.labelLevel)} ${escapeHtml(e.levelLabel)} · ` : ``}✅${escapeHtml(
             e.confirmedCount
           )} ❓${escapeHtml(e.openSlots)}
-        </div>
+        </section>
         ${
           e.url
             ? `<a class="padel-tool__link" href="${escapeHtml(e.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(
@@ -96,7 +96,7 @@ function init() {
             : ``
         }
       `;
-      cards.appendChild(div);
+      cards.appendChild(card);
     });
   };
 

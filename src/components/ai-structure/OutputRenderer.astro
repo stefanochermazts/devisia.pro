@@ -1,51 +1,51 @@
 <section class="ds-card" data-ai-structure-output hidden>
-  <div class="ds-card__body" style="display:grid; gap: var(--ds-space-4);">
-    <div>
+  <section class="ds-card__body" style="display:grid; gap: var(--ds-space-4);">
+    <section>
       <h2 style="margin:0 0 var(--ds-space-2); font-size: var(--ds-text-lg);">1) Panoramica del sistema</h2>
-      <div class="ds-ai-structure__flow">
+      <section class="ds-ai-structure__flow">
         <p
           data-artifact-system-overview
           style="margin:0; color: var(--ds-color-text); line-height: var(--ds-leading-relaxed); font-size: var(--ds-text-md); width: 100%; max-width: none;"
         ></p>
-      </div>
-    </div>
+      </section>
+    </section>
 
-    <div>
+    <section>
       <h2 style="margin:0 0 var(--ds-space-2); font-size: var(--ds-text-lg);">2) Modello di dominio</h2>
       <ul data-artifact-domain-model style="margin:0; padding-left: 1.1rem; display:grid; gap: 0.35rem;"></ul>
-    </div>
+    </section>
 
-    <div>
+    <section>
       <h2 style="margin:0 0 var(--ds-space-2); font-size: var(--ds-text-lg);">3) Flussi principali</h2>
-      <div data-artifact-flows style="display:grid; gap: var(--ds-space-2);"></div>
-    </div>
+      <section data-artifact-flows style="display:grid; gap: var(--ds-space-2);"></section>
+    </section>
 
-    <div>
+    <section>
       <h2 style="margin:0 0 var(--ds-space-2); font-size: var(--ds-text-lg);">4) Punti critici</h2>
-      <div style="display:grid; gap: var(--ds-space-3);">
-        <div>
-          <div style="font-weight:700; margin-bottom: 0.35rem;">Tecnici</div>
+      <section style="display:grid; gap: var(--ds-space-3);">
+        <section>
+          <section style="font-weight:700; margin-bottom: 0.35rem;">Tecnici</section>
           <ul data-artifact-considerations-technical style="margin:0; padding-left: 1.1rem; display:grid; gap: 0.35rem;"></ul>
-        </div>
-        <div>
-          <div style="font-weight:700; margin-bottom: 0.35rem;">Privacy e dati</div>
+        </section>
+        <section>
+          <section style="font-weight:700; margin-bottom: 0.35rem;">Privacy e dati</section>
           <ul data-artifact-considerations-privacy style="margin:0; padding-left: 1.1rem; display:grid; gap: 0.35rem;"></ul>
-        </div>
-        <div>
-          <div style="font-weight:700; margin-bottom: 0.35rem;">Architetturali</div>
+        </section>
+        <section>
+          <section style="font-weight:700; margin-bottom: 0.35rem;">Architetturali</section>
           <ul data-artifact-considerations-architectural style="margin:0; padding-left: 1.1rem; display:grid; gap: 0.35rem;"></ul>
-        </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </section>
 
-    <div data-ai-structure-after-text style="margin:0;" hidden>
+    <section data-ai-structure-after-text style="margin:0;" hidden>
       <p style="margin:0 0 0.35rem; color: var(--ds-color-text);">
         Questo output è una prima struttura tecnica: concetti di dominio, flussi e punti critici.
       </p>
       <p style="margin:0; color: var(--ds-color-text-muted); font-size: var(--ds-text-sm);">
         Non è una specifica completa né un’implementazione: serve per allineare confini e rischi prima dei prossimi step.
       </p>
-    </div>
+    </section>
     <p
       class="ds-muted"
       data-ai-structure-model-line
@@ -55,14 +55,13 @@
       Modello: <span data-ai-structure-model></span>
     </p>
 
-    <div style="display:flex; gap: var(--ds-space-2); flex-wrap: wrap;">
+    <section style="display:flex; gap: var(--ds-space-2); flex-wrap: wrap;">
       <button class="ds-btn" data-variant="primary" type="button" data-ai-structure-open-modal hidden>
         Rivediamolo insieme
       </button>
       <button class="ds-btn" data-variant="secondary" type="button" data-ai-structure-regenerate hidden>
         Rigenera
       </button>
-    </div>
-  </div>
+    </section>
+  </section>
 </section>
-

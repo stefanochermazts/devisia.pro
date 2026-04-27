@@ -9,7 +9,7 @@ heroImage: /uploads/hero-about.png
 # Custom Software Development Company: Our Vision and Method
 
 <section class="ds-stack ds-card ds-shadow-1" data-gap="sm">
-<div class="ds-card__body ds-stack" data-gap="sm">
+<section class="ds-card__body ds-stack" data-gap="sm">
 <h2 style="margin: 0">Our vision</h2>
 
 <p class="ds-muted" style="margin: 0">
@@ -27,7 +27,7 @@ become more aware and autonomous.
 <li>built to evolve, not to be rewritten</li>
 </ul>
 
-</div>
+</section>
 </section>
 
 <section class="ds-stack" data-gap="sm">
@@ -35,27 +35,27 @@ become more aware and autonomous.
 <p class="ds-muted" style="margin: 0">We build software in two complementary ways:</p>
 
 <!-- prettier-ignore-start -->
-<div class="ds-grid" data-cols="2" style="container-type: inline-size">
+<section class="ds-grid" data-cols="2" style="container-type: inline-size">
 <article class="ds-card">
-<div class="ds-card__body ds-stack" data-gap="sm">
+<section class="ds-card__body ds-stack" data-gap="sm">
 <h3 style="margin: 0">Devisia SaaS</h3>
 <p class="ds-muted" style="margin: 0">
 We design and build proprietary, vertical products focused on real problems.
 Every SaaS starts from a concrete need, validated in the field, and evolves continuously.
 </p>
-</div>
+</section>
 </article>
 
 <article class="ds-card">
-<div class="ds-card__body ds-stack" data-gap="sm">
+<section class="ds-card__body ds-stack" data-gap="sm">
 <h3 style="margin: 0">Custom software</h3>
 <p class="ds-muted" style="margin: 0">
 We support companies building tailored solutions: web applications, internal dashboards and portals,
 system integrations, complex workflows and automation—from first idea to deploy and maintenance.
 </p>
-</div>
+</section>
 </article>
-</div>
+</section>
 <!-- prettier-ignore-end -->
 
 </section>
@@ -79,7 +79,7 @@ We use clear, iterative processes to reduce risk and keep product control at all
 </section>
 
 <section class="ds-stack ds-card" data-gap="sm">
-<div class="ds-card__body ds-stack" data-gap="sm">
+<section class="ds-card__body ds-stack" data-gap="sm">
 <h2 style="margin: 0">Why Devisia</h2>
 <p class="ds-muted" style="margin: 0">We’re the right partner if:</p>
 
@@ -90,7 +90,7 @@ We use clear, iterative processes to reduce risk and keep product control at all
 <li>you’re looking for technical quality without unnecessary bureaucracy</li>
 </ul>
 
-</div>
+</section>
 </section>
 
 <section class="ds-stack" data-gap="sm">

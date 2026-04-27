@@ -13,11 +13,11 @@ export interface Props {
 const { id, name, label, value, checked = false, disabled = false, hint, class: className, ...rest } = Astro.props;
 ---
 
-<div class={['ds-field', className].filter(Boolean).join(' ')}>
+<section class={['ds-field', className].filter(Boolean).join(' ')}>
   <label class="ds-check" for={id}>
     <input id={id} name={name} type="radio" value={value} checked={checked} disabled={disabled} {...rest} />
     <span>{label}</span>
   </label>
   {hint ? <p class="ds-hint">{hint}</p> : null}
-</div>
+</section>
 

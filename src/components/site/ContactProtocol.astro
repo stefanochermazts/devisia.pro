@@ -181,39 +181,39 @@ const copy: Copy = isEnglish
       <svg class="contact-success__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M20 6 9 17l-5-5"></path>
       </svg>
-      <div>
+      <section>
         <h2>{copy.successTitle}</h2>
         <p>{copy.successText}</p>
-      </div>
+      </section>
     </section>
   )}
 
   <section class="contact-hero">
-    <div class="contact-hero__copy">
+    <section class="contact-hero__copy">
       <p class="contact-hero__eyebrow">{copy.eyebrow}</p>
       <h1>{copy.title}</h1>
       <p class="contact-hero__lede">{copy.lede}</p>
-      <div class="contact-hero__status" aria-label={isEnglish ? 'Contact steps' : 'Passaggi del contatto'}>
+      <section class="contact-hero__status" aria-label={isEnglish ? 'Contact steps' : 'Passaggi del contatto'}>
         {copy.status.map((item) => <span>{item}</span>)}
-      </div>
-    </div>
+      </section>
+    </section>
 
-    <div class="contact-hero__diagram" aria-hidden="true">
+    <section class="contact-hero__diagram" aria-hidden="true">
       <span class="contact-hero__mark">{copy.mark}</span>
       <span class="contact-hero__axis"></span>
       <span class="contact-hero__node contact-hero__node--context">CTX</span>
       <span class="contact-hero__node contact-hero__node--control">CTRL</span>
       <span class="contact-hero__node contact-hero__node--reply">24H</span>
-    </div>
+    </section>
   </section>
 
   <section class="contact-workbench" aria-labelledby="contact-form-title">
-    <div class="contact-workbench__form">
-      <div class="contact-form-heading">
+    <section class="contact-workbench__form">
+      <section class="contact-form-heading">
         <p>{copy.formEyebrow}</p>
         <h2 id="contact-form-title">{copy.formTitle}</h2>
         <p>{copy.formText}</p>
-      </div>
+      </section>
 
       <form
         name="contact"
@@ -232,29 +232,29 @@ const copy: Copy = isEnglish
         </p>
         <input type="hidden" name="lang" value={lang} />
 
-        <div class="form-grid">
-          <div class="form-group">
+        <section class="form-grid">
+          <section class="form-group">
             <label for="name" class="form-label">{copy.fields.name}</label>
             <input type="text" id="name" name="name" required maxlength="120" autocomplete="name" class="form-input" placeholder={copy.fields.namePlaceholder} />
-          </div>
+          </section>
 
-          <div class="form-group">
+          <section class="form-group">
             <label for="email" class="form-label">{copy.fields.email}</label>
             <input type="email" id="email" name="email" required maxlength="254" autocomplete="email" class="form-input" placeholder={copy.fields.emailPlaceholder} />
-          </div>
-        </div>
+          </section>
+        </section>
 
-        <div class="form-group">
+        <section class="form-group">
           <label for="subject" class="form-label">{copy.fields.subject}</label>
           <input type="text" id="subject" name="subject" maxlength="200" class="form-input" placeholder={copy.fields.subjectPlaceholder} />
-        </div>
+        </section>
 
-        <div class="form-group">
+        <section class="form-group">
           <label for="message" class="form-label">{copy.fields.message}</label>
           <textarea id="message" name="message" required maxlength="4000" rows="7" class="form-input" placeholder={copy.fields.messagePlaceholder}></textarea>
-        </div>
+        </section>
 
-        <div class="form-group form-group--consent">
+        <section class="form-group form-group--consent">
           <label class="consent-label" for="privacy_consent">
             <input id="privacy_consent" name="privacy_consent" type="checkbox" value="true" required class="consent-checkbox" />
             <span class="consent-text">
@@ -262,11 +262,11 @@ const copy: Copy = isEnglish
               <a class="consent-link" href={copy.privacyLink}>{isEnglish ? 'Privacy & Cookie Policy' : 'Informativa Privacy & Cookie'}</a>
             </span>
           </label>
-        </div>
+        </section>
 
         <button type="submit" class="form-submit">{copy.fields.submit}</button>
       </form>
-    </div>
+    </section>
 
     <aside class="contact-workbench__rail" aria-label={isEnglish ? 'Contact protocol details' : 'Dettagli del protocollo di contatto'}>
       <section class="contact-protocol-steps" aria-labelledby="contact-protocol-title">
@@ -275,10 +275,10 @@ const copy: Copy = isEnglish
           {copy.protocolSteps.map((step) => (
             <li>
               <span>{step.code}</span>
-              <div>
+              <section>
                 <h3>{step.title}</h3>
                 <p>{step.text}</p>
-              </div>
+              </section>
             </li>
           ))}
         </ol>
@@ -288,14 +288,10 @@ const copy: Copy = isEnglish
         <h2 id="contact-direct-title">{copy.directTitle}</h2>
         <p>{copy.directText}</p>
         <dl>
-          <div>
-            <dt>{copy.emailLabel}</dt>
-            <dd><a href="mailto:info@devisia.it">info@devisia.it</a></dd>
-          </div>
-          <div>
-            <dt>{copy.phoneLabel}</dt>
-            <dd><a href="tel:+390409777469">+39 040 977 7469</a></dd>
-          </div>
+          <dt>{copy.emailLabel}</dt>
+          <dd><a href="mailto:info@devisia.it">info@devisia.it</a></dd>
+          <dt>{copy.phoneLabel}</dt>
+          <dd><a href="tel:+390409777469">+39 040 977 7469</a></dd>
         </dl>
       </section>
 
@@ -759,14 +755,10 @@ const copy: Copy = isEnglish
     background: var(--ds-color-border);
   }
 
-  .contact-direct dl > div {
-    display: grid;
-    gap: 0.3rem;
-    padding: 0.85rem;
-    background: var(--ds-color-surface);
-  }
-
   .contact-direct dt {
+    margin: 0;
+    padding: 0.85rem 0.85rem 0.2rem;
+    background: var(--ds-color-surface);
     color: var(--ds-color-text-muted);
     font-size: var(--ds-text-xs);
     font-weight: 800;
@@ -776,6 +768,8 @@ const copy: Copy = isEnglish
 
   .contact-direct dd {
     margin: 0;
+    padding: 0 0.85rem 0.85rem;
+    background: var(--ds-color-surface);
   }
 
   .contact-brief li {

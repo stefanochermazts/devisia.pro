@@ -38,7 +38,7 @@ const breadcrumbs = breadcrumbListJsonLd({
   lang="en"
   structuredData={[breadcrumbs]}
 >
-  <div class="blog-container">
+  <section class="blog-container">
     <header class="blog-header">
       <h1>Blog</h1>
       <p class="blog-intro">
@@ -47,12 +47,12 @@ const breadcrumbs = breadcrumbListJsonLd({
     </header>
 
     {sortedPosts.length === 0 ? (
-      <div class="no-posts">
+      <section class="no-posts">
         <p>No blog posts yet. Check back soon!</p>
-      </div>
+      </section>
     ) : (
       <>
-        <div
+        <section
           class="posts-grid"
           id="posts-grid"
           data-endpoint="/api/blog.json?lang=en"
@@ -66,16 +66,16 @@ const breadcrumbs = breadcrumbListJsonLd({
           {initialPosts.map((post) => (
             <article class="post-card">
               {post.data.heroImage && (
-                <div class="post-image">
+                <section class="post-image">
                   <img src={post.data.heroImage} alt={post.data.title} loading="lazy" />
-                </div>
+                </section>
               )}
 
-              <div class="post-content">
-                <div class="post-meta">
+              <section class="post-content">
+                <section class="post-meta">
                   <time datetime={post.data.pubDate.toString()}>{formatDate(post.data.pubDate)}</time>
                   <span class="post-author">by {post.data.author}</span>
-                </div>
+                </section>
 
                 <h2 class="post-title">
                   <a href={`/en/blog/${slugFromId(post.id)}`}>{post.data.title}</a>
@@ -84,29 +84,29 @@ const breadcrumbs = breadcrumbListJsonLd({
                 <p class="post-description">{post.data.description}</p>
 
                 {post.data.tags && post.data.tags.length > 0 && (
-                  <div class="post-tags">
+                  <section class="post-tags">
                     {post.data.tags.map((tag: string) => (
                       <span class="tag">{tag}</span>
                     ))}
-                  </div>
+                  </section>
                 )}
 
                 <a href={`/en/blog/${slugFromId(post.id)}`} class="read-more">
                   Read more →
                 </a>
-              </div>
+              </section>
             </article>
           ))}
-        </div>
+        </section>
 
         {sortedPosts.length > PAGE_SIZE && (
-          <div class="load-more-wrap" aria-label="Loading blog posts">
+          <section class="load-more-wrap" aria-label="Loading blog posts">
             <p id="posts-status" class="load-status" aria-live="polite"></p>
             <button id="load-more" class="load-more" type="button">
               Load more
             </button>
-            <div id="posts-sentinel" class="load-sentinel" aria-hidden="true"></div>
-          </div>
+            <section id="posts-sentinel" class="load-sentinel" aria-hidden="true"></section>
+          </section>
         )}
       </>
     )}
@@ -119,7 +119,7 @@ const breadcrumbs = breadcrumbListJsonLd({
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </summary>
-        <div class="intro-body">
+        <section class="intro-body">
           <h2 class="intro-title">What you’ll find here</h2>
           <p class="intro-text">
             This blog is where we share how we approach software work in practice—from the first discovery session to a
@@ -135,22 +135,22 @@ const breadcrumbs = breadcrumbListJsonLd({
             our <a class="intro-link" href="/en/tools/ai-risk-checklist">AI Risk &amp; Privacy Checklist</a>.
           </p>
 
-          <div class="intro-grid" role="list">
-            <div class="intro-item" role="listitem">
+          <section class="intro-grid" role="list">
+            <article class="intro-item" role="listitem">
               <h3 class="intro-item-title">Who it’s for</h3>
               <p class="intro-item-text">
                 Founders, product owners, and engineering teams who need clarity: what to prioritize, how to validate
                 assumptions, how to manage complexity, and what “good” looks like when you’re choosing architecture or a vendor.
               </p>
-            </div>
-            <div class="intro-item" role="listitem">
+            </article>
+            <article class="intro-item" role="listitem">
               <h3 class="intro-item-title">How to use it</h3>
               <p class="intro-item-text">
                 Each article answers a real question and ends with practical takeaways you can apply immediately. If you want
                 to discuss your context, feel free to <a class="intro-link" href="/en/contact">reach out</a>.
               </p>
-            </div>
-            <div class="intro-item" role="listitem">
+            </article>
+            <article class="intro-item" role="listitem">
               <h3 class="intro-item-title">Recurring themes</h3>
               <ul class="intro-list">
                 <li><strong>Architecture</strong>: evolvable choices that keep options open.</li>
@@ -158,8 +158,8 @@ const breadcrumbs = breadcrumbListJsonLd({
                 <li><strong>Responsible AI</strong>: privacy, logging, policy checks, and governance.</li>
                 <li><strong>Outcomes</strong>: small releases, fast feedback, measurable impact.</li>
               </ul>
-            </div>
-            <div class="intro-item" role="listitem">
+            </article>
+            <article class="intro-item" role="listitem">
               <h3 class="intro-item-title">Quick FAQ</h3>
               <p class="intro-item-text">
                 <strong>How often do you publish?</strong> We prefer usefulness over cadence—new posts appear when we have something
@@ -169,17 +169,17 @@ const breadcrumbs = breadcrumbListJsonLd({
                 <strong>Can I suggest a topic?</strong> Yes. Tell us what you’re trying to achieve and what constraints you have.
                 We’ll either turn it into a post or answer you directly.
               </p>
-            </div>
-          </div>
+            </article>
+          </section>
 
           <p class="intro-text intro-cta">
             Want to explore what we’re building? Visit <a class="intro-link" href="/en/projects">Projects</a> for products,
             experiments, and active initiatives.
           </p>
-        </div>
+        </section>
       </details>
     </section>
-  </div>
+  </section>
 </Layout>
 
 <style is:global>
@@ -560,7 +560,7 @@ const breadcrumbs = breadcrumbListJsonLd({
       const article = mk('article', 'post-card');
 
       if (post.heroImage) {
-        const imgWrap = mk('div', 'post-image');
+        const imgWrap = mk('section', 'post-image');
         const img = document.createElement('img');
         img.loading = 'lazy';
         img.src = post.heroImage;
@@ -569,9 +569,9 @@ const breadcrumbs = breadcrumbListJsonLd({
         article.appendChild(imgWrap);
       }
 
-      const content = mk('div', 'post-content');
+      const content = mk('section', 'post-content');
 
-      const meta = mk('div', 'post-meta');
+      const meta = mk('section', 'post-meta');
       const time = document.createElement('time');
       time.dateTime = post.pubDate;
       time.textContent = dateFormatter.format(new Date(post.pubDate));
@@ -594,7 +594,7 @@ const breadcrumbs = breadcrumbListJsonLd({
       content.appendChild(desc);
 
       if (Array.isArray(post.tags) && post.tags.length > 0) {
-        const tagsWrap = mk('div', 'post-tags');
+        const tagsWrap = mk('section', 'post-tags');
         for (const t of post.tags) {
           const tag = mk('span', 'tag');
           tag.textContent = String(t);

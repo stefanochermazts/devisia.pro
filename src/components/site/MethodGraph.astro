@@ -41,24 +41,24 @@ const steps = isEn
     ];
 ---
 
-<div class="method-graph">
+<section class="method-graph">
   <p class="sr-only">{copy.summary}</p>
-  <div class="method-graph__board">
-    <div class="method-graph__flow method-graph__flow--stack" aria-hidden="true">
+  <section class="method-graph__board">
+    <section class="method-graph__flow method-graph__flow--stack" aria-hidden="true">
       {
         steps.map((s, i) => (
-          <div class="method-graph__step">
-            <div class="method-graph__node">
+          <section class="method-graph__step">
+            <section class="method-graph__node">
               <span class="method-graph__num">{s.n}</span>
               <span class="method-graph__label">{s.label}</span>
-            </div>
+            </section>
             {i < steps.length - 1 && <span class="method-graph__chev" aria-hidden="true">→</span>}
-          </div>
+          </section>
         ))
       }
-    </div>
+    </section>
     <p class="method-graph__loop" aria-hidden="true">
       <span class="method-graph__loop-text">{copy.feedback}</span>
     </p>
-  </div>
-</div>
+  </section>
+</section>

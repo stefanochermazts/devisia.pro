@@ -17,18 +17,18 @@ const { id, title, triggerLabel = 'Open dialog', class: className } = Astro.prop
 
 <dialog id={id} class={className} data-ds-dialog>
   <form method="dialog" style="margin: 0">
-    <div style="padding: var(--ds-space-5); max-width: 42rem">
-      <div class="ds-cluster" style="justify-content: space-between; align-items: flex-start">
+    <section style="padding: var(--ds-space-5); max-width: 42rem">
+      <section class="ds-cluster" style="justify-content: space-between; align-items: flex-start">
         <h2 style="margin: 0">{title}</h2>
         <button class="ds-btn" data-variant="ghost" type="submit" aria-label="Close dialog">✕</button>
-      </div>
-      <div style="margin-top: var(--ds-space-4)">
+      </section>
+      <section style="margin-top: var(--ds-space-4)">
         <slot />
-      </div>
-      <div class="ds-cluster" style="margin-top: var(--ds-space-5); justify-content: flex-end">
+      </section>
+      <section class="ds-cluster" style="margin-top: var(--ds-space-5); justify-content: flex-end">
         <button class="ds-btn" data-variant="secondary" type="submit">Close</button>
-      </div>
-    </div>
+      </section>
+    </section>
   </form>
 </dialog>
 

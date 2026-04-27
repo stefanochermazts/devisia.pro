@@ -12,14 +12,14 @@ export interface Props {
 const { items, class: className } = Astro.props;
 ---
 
-<div class={['ds-accordion', 'ds-stack'].filter(Boolean).join(' ')} data-gap="sm">
+<section class={['ds-accordion', 'ds-stack'].filter(Boolean).join(' ')} data-gap="sm">
   {items.map((item) => (
     <details>
       <summary>{item.title}</summary>
-      <div style="margin-top: var(--ds-space-3); color: var(--ds-color-text-muted)">
+      <section style="margin-top: var(--ds-space-3); color: var(--ds-color-text-muted)">
         {item.content}
-      </div>
+      </section>
     </details>
   ))}
-</div>
+</section>
 

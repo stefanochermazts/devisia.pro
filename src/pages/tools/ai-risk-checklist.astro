@@ -161,7 +161,7 @@ const safeguards = [
 ---
 
 <Layout title="Checklist rischio AI e privacy" description="Valuta sicurezza AI, privacy, audit trail e governance per software basato su AI. Ottieni misure consigliate senza inviare dati." lang="it">
-  <div class="ds-container ds-stack" data-gap="lg" style="container-type: inline-size; margin-top: var(--ds-space-8)">
+  <section class="ds-container ds-stack" data-gap="lg" style="container-type: inline-size; margin-top: var(--ds-space-8)">
     <header class="ds-stack" data-gap="sm">
       <h1 style="margin: 0">Checklist rischio AI e privacy</h1>
       <p class="ds-muted" style="max-width: 65ch">
@@ -175,8 +175,8 @@ const safeguards = [
     <form id="checklist-form" class="ds-stack" data-gap="lg">
       {questions.map((q, idx) => (
         <Card>
-          <div class="ds-card__body ds-stack" data-gap="sm">
-            <div class="ds-stack" data-gap="xs">
+          <section class="ds-card__body ds-stack" data-gap="sm">
+            <section class="ds-stack" data-gap="xs">
               <label class="ds-label" for={`${q.id}-0`}>
                 {idx + 1}. {q.label}
               </label>
@@ -185,10 +185,10 @@ const safeguards = [
                   {q.description}
                 </p>
               )}
-            </div>
-            <div class="ds-stack" data-gap="sm" style="margin-top: var(--ds-space-2)">
+            </section>
+            <section class="ds-stack" data-gap="sm" style="margin-top: var(--ds-space-2)">
               {q.options.map((opt, optIdx) => (
-                <div class="ds-stack" data-gap="xs">
+                <section class="ds-stack" data-gap="xs">
                   <Radio
                     id={`${q.id}-${optIdx}`}
                     name={q.name}
@@ -201,51 +201,51 @@ const safeguards = [
                       {opt.description}
                     </p>
                   )}
-                </div>
+                </section>
               ))}
-            </div>
+            </section>
             {q.id === 'user-input' && (
-              <div id="file-upload-warning" class="ds-alert" data-tone="warning" style="display: none; margin-top: var(--ds-space-2)">
+              <section id="file-upload-warning" class="ds-alert" data-tone="warning" style="display: none; margin-top: var(--ds-space-2)">
                 <p style="margin: 0; font-size: var(--ds-text-sm)">
                   <strong>Nota:</strong> Gli upload di file non sono supportati in questa demo. Considera la minimizzazione e redazione dei dati per implementazioni in produzione.
                 </p>
-              </div>
+              </section>
             )}
-          </div>
+          </section>
         </Card>
       ))}
 
-      <div class="ds-cluster">
+      <section class="ds-cluster">
         <Button type="submit" variant="primary">
           Genera misure consigliate
         </Button>
-      </div>
+      </section>
     </form>
 
-    <div id="results-panel" class="ds-stack" data-gap="lg" style="display: none">
+    <section id="results-panel" class="ds-stack" data-gap="lg" style="display: none">
       <Card>
-        <div class="ds-card__body ds-stack" data-gap="md">
-          <div class="ds-cluster">
+        <section class="ds-card__body ds-stack" data-gap="md">
+          <section class="ds-cluster">
             <Badge id="risk-badge" tone="neutral">Basso</Badge>
-          </div>
+          </section>
           <p id="risk-explanation" class="ds-muted" style="margin: 0"></p>
-        </div>
+        </section>
       </Card>
 
-      <div class="ds-stack" data-gap="md">
+      <section class="ds-stack" data-gap="md">
         <h3 style="margin: 0; font-size: var(--ds-text-lg); font-weight: 600">Misure di sicurezza consigliate</h3>
-        <div id="safeguards-list" class="ds-stack" data-gap="md">
+        <section id="safeguards-list" class="ds-stack" data-gap="md">
           <!-- Populated by JS -->
-        </div>
-      </div>
-    </div>
+        </section>
+      </section>
+    </section>
 
     <footer class="ds-stack" data-gap="xs" style="margin-top: var(--ds-space-8); padding-top: var(--ds-space-6); border-top: var(--ds-border-1) solid var(--ds-color-border)">
       <p class="ds-muted" style="font-size: var(--ds-text-xs); margin: 0">
         Questa checklist è un punto di partenza, non un consiglio legale.
       </p>
     </footer>
-  </div>
+  </section>
 
   <script>
     const form = document.getElementById('checklist-form');
@@ -427,12 +427,12 @@ const safeguards = [
       safeguardsList.innerHTML = relevantSafeguards
         .map(
           (s) => `
-        <div class="ds-card">
-          <div class="ds-card__body ds-stack" data-gap="sm">
+        <article class="ds-card">
+          <section class="ds-card__body ds-stack" data-gap="sm">
             <h3 style="margin: 0; font-weight: 600; font-size: var(--ds-text-md)">${s.label}</h3>
             <p style="margin: 0; font-size: var(--ds-text-sm); color: var(--ds-color-text-muted); line-height: var(--ds-leading-relaxed)">${s.description}</p>
-          </div>
-        </div>
+          </section>
+        </article>
       `
         )
         .join('');

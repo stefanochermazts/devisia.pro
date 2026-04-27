@@ -49,6 +49,8 @@
     display: inline-flex;
     align-items: center;
     gap: var(--ds-space-2);
+    padding: 0;
+    margin: var(--ds-space-2);
     /* Hide any text content when images are present */
     font-size: 0;
     line-height: 0;
@@ -193,7 +195,7 @@
     flex-wrap: wrap;
     justify-content: flex-end;
     row-gap: var(--ds-space-2);
-    column-gap: var(--ds-space-2);
+    gap: var(--ds-space-4);
   }
 
   @media (min-width: 64.01rem) {

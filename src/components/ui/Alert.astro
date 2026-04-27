@@ -13,8 +13,8 @@ const { tone = 'info', title, role = 'status', class: className, ...rest } = Ast
 
 <section class={['ds-alert', className].filter(Boolean).join(' ')} data-tone={tone} role={role} {...rest}>
   {title ? <h3 class="ds-alert__title">{title}</h3> : null}
-  <div class="ds-alert__body">
+  <section class="ds-alert__body">
     <slot />
-  </div>
+  </section>
 </section>
 

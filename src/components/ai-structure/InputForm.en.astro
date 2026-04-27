@@ -1,6 +1,6 @@
 <form class="ds-card ds-ai-structure__card" data-ai-structure-form>
-  <div class="ds-card__body" style="display:grid; gap: var(--ds-space-3);">
-    <div class="ds-field">
+  <section class="ds-card__body" style="display:grid; gap: var(--ds-space-3);">
+    <section class="ds-field">
       <textarea
         class="ds-textarea"
         data-ai-structure-input
@@ -13,17 +13,17 @@
         Write as an operational brief: context, actors, what needs to happen, constraints and main risks.<br />
         Rough notes are fine. Avoid real names, secrets, personal data or confidential documents.
       </p>
-    </div>
+    </section>
 
-    <div class="ds-alert" data-ai-structure-error hidden>
+    <section class="ds-alert" data-ai-structure-error hidden>
       <p class="ds-alert__body" style="white-space: pre-wrap;"></p>
-    </div>
+    </section>
 
-    <div class="ds-alert" data-ai-structure-status hidden>
+    <section class="ds-alert" data-ai-structure-status hidden>
       <p class="ds-alert__body" style="white-space: pre-wrap;"></p>
-    </div>
+    </section>
 
-    <div style="display:flex; justify-content:flex-start;">
+    <section style="display:flex; justify-content:flex-start;">
       <button type="submit" class="ds-btn" data-variant="primary" data-ai-structure-generate>
         <span data-ai-structure-generate-text>Generate first structure</span>
         <svg
@@ -44,8 +44,8 @@
         </svg>
         <span class="ds-ai-structure__progress" data-ai-structure-progress hidden></span>
       </button>
-    </div>
-  </div>
+    </section>
+  </section>
 </form>
 
 <style>

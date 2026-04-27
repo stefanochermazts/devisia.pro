@@ -10,7 +10,7 @@ heroImage: /uploads/hero-about.png
 # Società di Sviluppo Software su Misura: Visione e Metodo
 
 <section class="ds-stack ds-card ds-shadow-1" data-gap="sm">
-<div class="ds-card__body ds-stack" data-gap="sm">
+<section class="ds-card__body ds-stack" data-gap="sm">
 <h2 style="margin: 0">La nostra visione</h2>
 
 <p class="ds-muted" style="margin: 0">
@@ -28,7 +28,7 @@ rendere le organizzazioni più consapevoli e autonome.
 <li>pronto ad evolvere, non a essere riscritto</li>
 </ul>
 
-</div>
+</section>
 </section>
 
 <section class="ds-stack" data-gap="sm">
@@ -36,27 +36,27 @@ rendere le organizzazioni più consapevoli e autonome.
 <p class="ds-muted" style="margin: 0">Costruiamo software in due modi complementari:</p>
 
 <!-- prettier-ignore-start -->
-<div class="ds-grid" data-cols="2" style="container-type: inline-size">
+<section class="ds-grid" data-cols="2" style="container-type: inline-size">
 <article class="ds-card">
-<div class="ds-card__body ds-stack" data-gap="sm">
+<section class="ds-card__body ds-stack" data-gap="sm">
 <h3 style="margin: 0">SaaS Devisia</h3>
 <p class="ds-muted" style="margin: 0">
 Progettiamo e sviluppiamo prodotti proprietari, verticali e focalizzati su problemi reali.
 Ogni SaaS nasce da un’esigenza concreta, validata sul campo, e viene fatto evolvere in modo continuo.
 </p>
-</div>
+</section>
 </article>
 
 <article class="ds-card">
-<div class="ds-card__body ds-stack" data-gap="sm">
+<section class="ds-card__body ds-stack" data-gap="sm">
 <h3 style="margin: 0">Software custom</h3>
 <p class="ds-muted" style="margin: 0">
 Affianchiamo aziende nello sviluppo di soluzioni su misura: web application, dashboard e portali interni,
 integrazioni tra sistemi, automazioni e workflow complessi. Dall’idea iniziale fino al deploy e alla manutenzione.
 </p>
-</div>
+</section>
 </article>
-</div>
+</section>
 <!-- prettier-ignore-end -->
 
 </section>
@@ -80,7 +80,7 @@ Lavoriamo con processi chiari e iterativi, riducendo il rischio e mantenendo sem
 </section>
 
 <section class="ds-stack ds-card" data-gap="sm">
-<div class="ds-card__body ds-stack" data-gap="sm">
+<section class="ds-card__body ds-stack" data-gap="sm">
 <h2 style="margin: 0">Perché Devisia</h2>
 <p class="ds-muted" style="margin: 0">Siamo il partner giusto se:</p>
 
@@ -91,7 +91,7 @@ Lavoriamo con processi chiari e iterativi, riducendo il rischio e mantenendo sem
 <li>cerchi qualità tecnica senza burocrazia inutile</li>
 </ul>
 
-</div>
+</section>
 </section>
 
 <section class="ds-stack" data-gap="sm">

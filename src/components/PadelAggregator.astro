@@ -58,18 +58,18 @@ const STRINGS =
     <p class="padel-tool__note">{STRINGS.privacy}</p>
   </header>
 
-  <div class="padel-tool__grid">
-    <div class="ds-stack" data-gap="xs">
+  <section class="padel-tool__grid">
+    <section class="ds-stack" data-gap="xs">
       <label class="ds-label" for="padel-input">{STRINGS.inputLabel}</label>
-      <div class="padel-tool__input-actions">
+      <section class="padel-tool__input-actions">
         <button class="ds-btn" data-variant="secondary" type="button" data-padel-paste>
           {STRINGS.btnPaste}
         </button>
-      </div>
+      </section>
       <textarea id="padel-input" class="padel-tool__input" data-padel-input spellcheck="false"></textarea>
-    </div>
+    </section>
 
-    <div class="padel-tool__actions" role="group" aria-label="Actions">
+    <section class="padel-tool__actions" role="group" aria-label="Actions">
       <button class="ds-btn" data-variant="primary" type="button" data-padel-analyze>
         {STRINGS.btnAnalyze}
       </button>
@@ -79,11 +79,11 @@ const STRINGS =
       <button class="ds-btn" data-variant="ghost" type="button" data-padel-clear>
         {STRINGS.btnClear}
       </button>
-    </div>
+    </section>
 
-    <div class="padel-tool__status" aria-live="polite" data-padel-status></div>
+    <section class="padel-tool__status" aria-live="polite" data-padel-status></section>
 
-    <div class="ds-stack" data-gap="xs">
+    <section class="ds-stack" data-gap="xs">
       <label class="ds-label" for="padel-output">{STRINGS.outputLabel}</label>
       <textarea
         id="padel-output"
@@ -92,22 +92,22 @@ const STRINGS =
         readonly
         spellcheck="false"
       ></textarea>
-    </div>
+    </section>
 
     <details class="padel-tool__details" data-padel-preview>
       <summary>{STRINGS.previewTitle}</summary>
-      <div class="padel-tool__details-body">
-        <div class="padel-tool__cards" data-padel-cards></div>
-      </div>
+      <section class="padel-tool__details-body">
+        <section class="padel-tool__cards" data-padel-cards></section>
+      </section>
     </details>
 
     <details class="padel-tool__details" data-padel-unrecognized>
       <summary>{STRINGS.unrecognizedTitle}</summary>
-      <div class="padel-tool__details-body">
+      <section class="padel-tool__details-body">
         <pre class="padel-tool__muted" style="margin:0; white-space: pre-wrap;" data-padel-unrecognized-body></pre>
-      </div>
+      </section>
     </details>
-  </div>
+  </section>
 </section>
 
 <script

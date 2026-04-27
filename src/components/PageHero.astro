@@ -32,7 +32,7 @@ const sectionLabel = lang === 'en' ? 'Page opening' : 'Apertura pagina';
 ---
 
 <section class="page-hero" aria-label={sectionLabel} style="container-type: inline-size">
-  <div class="page-hero__copy ds-stack" data-gap="sm">
+  <section class="page-hero__copy ds-stack" data-gap="sm">
     <p class="page-hero__eyebrow" aria-hidden="true">Devisia</p>
     <h1 class="page-hero__title">{title}</h1>
     {
@@ -45,7 +45,7 @@ const sectionLabel = lang === 'en' ? 'Page opening' : 'Apertura pagina';
 
     {
       showActions && (
-        <div class="ds-cluster page-hero__actions">
+        <section class="ds-cluster page-hero__actions">
           {primaryHref && primaryLabel && (
             <Button href={primaryHref} variant="primary">
               {primaryLabel}
@@ -56,13 +56,13 @@ const sectionLabel = lang === 'en' ? 'Page opening' : 'Apertura pagina';
               {secondaryLabel}
             </Button>
           )}
-        </div>
+        </section>
       )
     }
-  </div>
+  </section>
 
-  <div class="page-hero__media-wrap">
-    <div class="page-hero__media">
+  <section class="page-hero__media-wrap">
+    <section class="page-hero__media">
       {
         image || fallbackImage ? (
           <Image 
@@ -78,17 +78,17 @@ const sectionLabel = lang === 'en' ? 'Page opening' : 'Apertura pagina';
             sizes="(max-width: 52rem) 92vw, 42vw"
           />
         ) : (
-          <div class="page-hero__placeholder">
+          <section class="page-hero__placeholder">
             <p class="ds-muted" style="margin: 0">
               {lang === 'en'
                 ? 'Hero image placeholder. Add an image in the CMS to customize this area.'
                 : "Segnaposto immagine hero. Aggiungi un'immagine dal CMS per personalizzare questa area."}
             </p>
-          </div>
+          </section>
         )
       }
-    </div>
-  </div>
+    </section>
+  </section>
 </section>
 
 <style>

@@ -39,7 +39,7 @@ const breadcrumbs = breadcrumbListJsonLd({
   description="Approfondimenti, tutorial e aggiornamenti Devisia su tecnologia, sviluppo software e trasformazione digitale."
   structuredData={[breadcrumbs]}
 >
-  <div class="blog-container">
+  <section class="blog-container">
     <header class="blog-header">
       <h1>Blog</h1>
       <p class="blog-intro">
@@ -48,12 +48,12 @@ const breadcrumbs = breadcrumbListJsonLd({
     </header>
     
     {sortedPosts.length === 0 ? (
-      <div class="no-posts">
+      <section class="no-posts">
         <p>Nessun articolo pubblicato. Torna presto!</p>
-      </div>
+      </section>
     ) : (
       <>
-        <div
+        <section
           class="posts-grid"
           id="posts-grid"
           data-endpoint="/api/blog.json?lang=it"
@@ -67,16 +67,16 @@ const breadcrumbs = breadcrumbListJsonLd({
           {initialPosts.map((post) => (
             <article class="post-card">
               {post.data.heroImage && (
-                <div class="post-image">
+                <section class="post-image">
                   <img src={post.data.heroImage} alt={post.data.title} loading="lazy" />
-                </div>
+                </section>
               )}
 
-              <div class="post-content">
-                <div class="post-meta">
+              <section class="post-content">
+                <section class="post-meta">
                   <time datetime={post.data.pubDate.toString()}>{formatDate(post.data.pubDate)}</time>
                   <span class="post-author">by {post.data.author}</span>
-                </div>
+                </section>
 
                 <h2 class="post-title">
                   <a href={`/blog/${slugFromId(post.id)}`}>{post.data.title}</a>
@@ -85,29 +85,29 @@ const breadcrumbs = breadcrumbListJsonLd({
                 <p class="post-description">{post.data.description}</p>
 
                 {post.data.tags && post.data.tags.length > 0 && (
-                  <div class="post-tags">
+                  <section class="post-tags">
                     {post.data.tags.map((tag: string) => (
                       <span class="tag">{tag}</span>
                     ))}
-                  </div>
+                  </section>
                 )}
 
                 <a href={`/blog/${slugFromId(post.id)}`} class="read-more">
                   Leggi →
                 </a>
-              </div>
+              </section>
             </article>
           ))}
-        </div>
+        </section>
 
         {sortedPosts.length > PAGE_SIZE && (
-          <div class="load-more-wrap" aria-label="Caricamento articoli">
+          <section class="load-more-wrap" aria-label="Caricamento articoli">
             <p id="posts-status" class="load-status" aria-live="polite"></p>
             <button id="load-more" class="load-more" type="button">
               Carica altri
             </button>
-            <div id="posts-sentinel" class="load-sentinel" aria-hidden="true"></div>
-          </div>
+            <section id="posts-sentinel" class="load-sentinel" aria-hidden="true"></section>
+          </section>
         )}
       </>
     )}
@@ -120,7 +120,7 @@ const breadcrumbs = breadcrumbListJsonLd({
             <polyline points="6 9 12 15 18 9"></polyline>
           </svg>
         </summary>
-        <div class="intro-body">
+        <section class="intro-body">
           <h2 class="intro-title">Cosa trovi qui</h2>
           <p class="intro-text">
             Questo blog nasce per condividere in modo concreto come ragioniamo quando progettiamo e realizziamo software:
@@ -138,23 +138,23 @@ const breadcrumbs = breadcrumbListJsonLd({
             <a class="intro-link" href="/tools/ai-risk-checklist">AI Risk &amp; Privacy Checklist</a>.
           </p>
 
-          <div class="intro-grid" role="list">
-            <div class="intro-item" role="listitem">
+          <section class="intro-grid" role="list">
+            <article class="intro-item" role="listitem">
               <h3 class="intro-item-title">Per chi è</h3>
               <p class="intro-item-text">
                 Founder, product manager, team tech e persone non tecniche che devono prendere decisioni informate:
                 scope, roadmap, costi, scelte “buy vs build”, e cosa chiedere davvero a un fornitore o a un team interno.
               </p>
-            </div>
-            <div class="intro-item" role="listitem">
+            </article>
+            <article class="intro-item" role="listitem">
               <h3 class="intro-item-title">Come leggere gli articoli</h3>
               <p class="intro-item-text">
                 Ogni post cerca di rispondere a una domanda reale (es. “Come evito lock-in?”, “Come valido un MVP?”,
                 “Quali metriche contano?”) e termina con azioni pratiche. Se vuoi un confronto diretto, puoi
                 <a class="intro-link" href="/contatti">contattarci qui</a>.
               </p>
-            </div>
-            <div class="intro-item" role="listitem">
+            </article>
+            <article class="intro-item" role="listitem">
               <h3 class="intro-item-title">Temi ricorrenti</h3>
               <ul class="intro-list">
                 <li><strong>Architettura &amp; scalabilità</strong>: scelte semplici, evolutive, misurabili.</li>
@@ -162,8 +162,8 @@ const breadcrumbs = breadcrumbListJsonLd({
                 <li><strong>AI responsabile</strong>: valutazione rischi, privacy, logging e controlli.</li>
                 <li><strong>Delivery</strong>: rilasci piccoli, feedback rapidi, obiettivi chiari.</li>
               </ul>
-            </div>
-            <div class="intro-item" role="listitem">
+            </article>
+            <article class="intro-item" role="listitem">
               <h3 class="intro-item-title">Domande frequenti</h3>
               <p class="intro-item-text">
                 <strong>Quanto spesso pubblicate?</strong> Preferiamo qualità e utilità: pubblichiamo quando abbiamo
@@ -173,17 +173,17 @@ const breadcrumbs = breadcrumbListJsonLd({
                 <strong>Posso proporre un tema?</strong> Sì: scrivici cosa stai cercando di risolvere e quali vincoli hai.
                 Valuteremo se farne un articolo o risponderti direttamente.
               </p>
-            </div>
-          </div>
+            </article>
+          </section>
 
           <p class="intro-text intro-cta">
             Vuoi vedere cosa stiamo costruendo? Passa alla pagina
             <a class="intro-link" href="/projects">Progetti</a> per esplorare prodotti, sperimentazioni e iniziative in corso.
           </p>
-        </div>
+        </section>
       </details>
     </section>
-  </div>
+  </section>
 </Layout>
 
 <style is:global>
@@ -564,7 +564,7 @@ const breadcrumbs = breadcrumbListJsonLd({
       const article = mk('article', 'post-card');
 
       if (post.heroImage) {
-        const imgWrap = mk('div', 'post-image');
+        const imgWrap = mk('section', 'post-image');
         const img = document.createElement('img');
         img.loading = 'lazy';
         img.src = post.heroImage;
@@ -573,9 +573,9 @@ const breadcrumbs = breadcrumbListJsonLd({
         article.appendChild(imgWrap);
       }
 
-      const content = mk('div', 'post-content');
+      const content = mk('section', 'post-content');
 
-      const meta = mk('div', 'post-meta');
+      const meta = mk('section', 'post-meta');
       const time = document.createElement('time');
       time.dateTime = post.pubDate;
       time.textContent = dateFormatter.format(new Date(post.pubDate));
@@ -598,7 +598,7 @@ const breadcrumbs = breadcrumbListJsonLd({
       content.appendChild(desc);
 
       if (Array.isArray(post.tags) && post.tags.length > 0) {
-        const tagsWrap = mk('div', 'post-tags');
+        const tagsWrap = mk('section', 'post-tags');
         for (const t of post.tags) {
           const tag = mk('span', 'tag');
           tag.textContent = String(t);
