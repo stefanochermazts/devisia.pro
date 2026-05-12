@@ -31,6 +31,13 @@ export default defineConfig({
     // Allow remote image optimization for all current blog providers.
     domains: ['cdn.outrank.so', 'cdnimg.co'],
   },
+  vite: {
+    server: {
+      watch: {
+        ignored: ['**/.git/**', '**/.astro/**', '**/.netlify/**', '**/dist/**', '**/node_modules/**', '**/.artiforge/**'],
+      },
+    },
+  },
   markdown: {
     rehypePlugins: [
       [

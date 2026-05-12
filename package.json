@@ -21,15 +21,15 @@
     "@fontsource-variable/bitter": "^5.2.10",
     "@fontsource-variable/lexend": "^5.2.8",
     "@fontsource-variable/manrope": "^5.2.8",
-    "astro": "^5.16.6",
+    "astro": "^6.3.1",
     "dotenv": "^17.2.3",
     "gray-matter": "^4.0.3",
     "nodemailer": "^7.0.12",
     "rehype-external-links": "^3.0.0"
   },
   "devDependencies": {
-    "@astrojs/netlify": "^6.6.3",
-    "@astrojs/sitemap": "^3.6.0",
+    "@astrojs/netlify": "^7.0.8",
+    "@astrojs/sitemap": "^3.7.2",
     "@netlify/functions": "^5.1.2",
     "@typescript-eslint/eslint-plugin": "^6.19.0",
     "@typescript-eslint/parser": "^6.19.0",

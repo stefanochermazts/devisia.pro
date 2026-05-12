@@ -1,0 +1,176 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import SiteHero from '../../components/site/SiteHero.astro';
+import M365LaravelHeroViz from '../../components/site/M365LaravelHeroViz.astro';
+import EditorialCTA from '../../components/site/EditorialCTA.astro';
+import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
+
+const description =
+  'SharePoint, Microsoft 365, Copilot and Laravel applications: intranets, portals, automation and custom software connected to ERP, CRM and ticketing.';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/en' },
+    { name: 'SharePoint, Microsoft 365 and Laravel', url: '/en/sharepoint-microsoft-365-laravel' },
+  ],
+});
+---
+
+<Layout
+  lang="en"
+  title="SharePoint, Microsoft 365 and Laravel"
+  documentTitle="SharePoint, Microsoft 365, Copilot and Laravel | Devisia"
+  description={description}
+  structuredData={[breadcrumbs]}
+  containMain={false}
+>
+  <SiteHero
+    title="SharePoint, Microsoft 365 and Laravel for teams that need better connected work"
+    lede="We build intranets, SharePoint portals and advanced Microsoft 365 environments, with or without SPFx, integrated with ERP, CRM and ticketing through Power Automate. We prepare content, permissions and processes so Copilot can be genuinely useful. When you need a dedicated application, we build complete Laravel products with React, Vue or vanilla JavaScript frontends."
+    primaryLabel="Talk about the project"
+    primaryHref="/en/contact"
+    secondaryLabel="See our method"
+    secondaryHref="/en/method"
+  >
+    <section slot="visual" class="site-hero__viz">
+      <section class="home-hero-signal" aria-hidden="true">
+        <span>Access</span>
+        <span>Flows</span>
+        <span>Proof</span>
+      </section>
+      <M365LaravelHeroViz lang="en" />
+    </section>
+  </SiteHero>
+
+  <section class="site-section site-section--tight">
+    <section class="ds-container stack-page-intro" aria-labelledby="stack-criteria-title">
+      <h2 id="stack-criteria-title" class="site-h2">One partner for company portals, automation and custom software</h2>
+      <p class="site-lead">
+        We help organisations turn tools they already own, such as Microsoft 365, into clearer and more productive work
+        environments. When the process needs a dedicated platform, we design web applications that are solid, integrated and ready to grow.
+      </p>
+    </section>
+  </section>
+
+  <section class="site-section stack-dual" aria-labelledby="stack-offer-title">
+    <section class="ds-container">
+      <h2 id="stack-offer-title" class="sr-only">Microsoft 365 and Laravel offering</h2>
+      <section class="stack-dual__grid">
+        <article class="stack-dual__panel" aria-labelledby="m365-panel-title">
+          <p class="stack-dual__eyebrow">Microsoft 365</p>
+          <h3 id="m365-panel-title" class="stack-dual__heading">Advanced SharePoint without losing ease of use</h3>
+          <p class="stack-dual__copy">
+            We design intranets, document areas, hubs, search and approval flows that people can actually use. We use SPFx
+            when a richer experience is worth it, without adding needless complexity. Power Automate connects SharePoint to
+            the other business tools while keeping the process understandable.
+          </p>
+          <ul class="stack-dual__list">
+            <li>Portals, intranets and workspaces with clear permissions and ownership</li>
+            <li>Integrations with ERP, CRM and ticket managers</li>
+            <li>Clearer flows for approvals, requests, documents and notifications</li>
+          </ul>
+        </article>
+        <article class="stack-dual__panel stack-dual__panel--invert" aria-labelledby="laravel-panel-title">
+          <p class="stack-dual__eyebrow">Laravel full stack</p>
+          <h3 id="laravel-panel-title" class="stack-dual__heading">Complete applications when you need a custom product</h3>
+          <p class="stack-dual__copy">
+            When SharePoint is not the right fit, we build full stack Laravel applications: internal tools, customer portals,
+            operational dashboards and vertical products. The frontend can be React, Vue or vanilla JavaScript, chosen for the
+            project rather than for fashion.
+          </p>
+          <ul class="stack-dual__list">
+            <li>Business software shaped around how your teams actually work</li>
+            <li>Connections with existing systems, databases, APIs and SaaS tools</li>
+            <li>Progressive releases, maintainability and security from the start</li>
+          </ul>
+        </article>
+      </section>
+    </section>
+  </section>
+
+  <section class="site-section site-section--dark stack-copilot" aria-labelledby="copilot-title">
+    <section class="ds-container">
+      <p class="stack-copilot__mark" aria-hidden="true">M365 + AI</p>
+      <section class="stack-copilot__intro">
+        <h2 id="copilot-title" class="site-h2">Copilot works better when Microsoft 365 is designed well</h2>
+        <p class="site-lead">
+          Before asking AI to find answers, the sources need order. We design sites, libraries, permissions, content and
+          publishing rules so Copilot can consult reliable, current information that is appropriate for each role.
+        </p>
+      </section>
+      <ul class="stack-copilot__signals" aria-label="Signals of Copilot and search readiness">
+        <li>Permissions aligned with departments, functions and confidentiality levels</li>
+        <li>Content organised, current and easy to find</li>
+        <li>Clear rules for what can be consulted, archived or shared</li>
+      </ul>
+      <p class="stack-copilot__footnote">
+        For AI projects with explicit limits, controls and accountability, see <a class="ds-link" href="/en/governed-ai">Governed AI</a>.
+      </p>
+    </section>
+  </section>
+
+  <section class="site-section site-section--tint stack-pa" aria-labelledby="pa-title">
+    <section class="ds-container">
+      <h2 id="pa-title" class="site-h2">Power Automate to connect tools, teams and decisions</h2>
+      <p class="site-lead">
+        We automate repetitive steps, approvals and data exchanges between Microsoft 365 and the systems you use every day.
+        The goal is not automation for its own sake: it is less manual work, fewer errors and a clearer view of who needs to do what.
+      </p>
+      <section class="stack-pa__tracks">
+        <section class="stack-pa__track">
+          <h3 class="stack-pa__track-title">Concrete examples</h3>
+          <ul class="stack-dual__list">
+            <li>Approvals that update SharePoint, CRM or ERP records</li>
+            <li>Tickets created or updated from requests and documents</li>
+            <li>Automatic notifications when a step is blocked or needs attention</li>
+          </ul>
+        </section>
+        <section class="stack-pa__track">
+          <h3 class="stack-pa__track-title">What stays under control</h3>
+          <ul class="stack-dual__list">
+            <li>Who approves, who is notified and what happens when nobody replies</li>
+            <li>Which data moves between systems and under which rules</li>
+            <li>Where to read process status and reconstruct what happened</li>
+          </ul>
+        </section>
+      </section>
+    </section>
+  </section>
+
+  <section class="site-section stack-method" aria-labelledby="method-stack-title">
+    <section class="ds-container">
+      <h2 id="method-stack-title" class="site-h2">From process to solution, without a leap of faith</h2>
+      <p class="site-lead">
+        We first understand goals, people, data and the systems already in place. Then we decide whether the best answer lives
+        inside Microsoft 365, in a Laravel application or in a combination of both.
+      </p>
+      <ol class="stack-method__steps" aria-label="Method phases">
+        <li>
+          <span class="stack-method__code" aria-hidden="true">01</span>
+          <h3>Discovery</h3>
+          <p>We map processes, roles, data and existing tools, with attention to privacy and responsibility.</p>
+        </li>
+        <li>
+          <span class="stack-method__code" aria-hidden="true">02</span>
+          <h3>Design</h3>
+          <p>We shape portals, automation, integrations and applications with a clear and sustainable roadmap.</p>
+        </li>
+        <li>
+          <span class="stack-method__code" aria-hidden="true">03</span>
+          <h3>Release</h3>
+          <p>We start from a useful core, validate it with users and evolve it without losing control.</p>
+        </li>
+      </ol>
+    </section>
+  </section>
+
+  <EditorialCTA
+    variant="tint"
+    title="Do you have a portal, integration or application to evolve?"
+    copy="Tell us what slows the work down today, which systems need to talk to each other and what results you want. We help you choose the path that is easiest to maintain and strongest over time."
+    ctaLabel="Let’s talk"
+    ctaHref="/en/contact"
+  />
+</Layout>

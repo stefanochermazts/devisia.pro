@@ -12,6 +12,10 @@ export const localePathPairs: Record<string, { it: string; en: string }> = {
   auditready: { it: '/prodotti/auditready', en: '/en/products/auditready' },
   company: { it: '/chi-siamo', en: '/en/about' },
   contatti: { it: '/contatti', en: '/en/contact' },
+  m365Laravel: {
+    it: '/sharepoint-microsoft-365-laravel',
+    en: '/en/sharepoint-microsoft-365-laravel',
+  },
 };
 
 export function switchLocalePath(

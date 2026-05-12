@@ -1,0 +1,55 @@
+---
+export interface Props {
+  lang: 'it' | 'en';
+}
+const { lang } = Astro.props;
+const isEn = lang === 'en';
+---
+
+<section class="stack-viz" aria-hidden="true">
+  <section class="stack-viz__band">
+    <span class="stack-viz__band-label">M365</span>
+    <section class="stack-viz__cluster">
+      <p class="stack-viz__title">{isEn ? 'SharePoint surface' : 'Superficie SharePoint'}</p>
+      <p class="stack-viz__meta">{isEn ? 'Classic, modern, SPFx when needed' : 'Classic, modern, SPFx quando serve'}</p>
+    </section>
+  </section>
+
+  <section class="stack-viz__flow">
+    <span class="stack-viz__flow-line" aria-hidden="true"></span>
+    <section class="stack-viz__node stack-viz__node--auto">
+      <p class="stack-viz__node-kicker">Power Automate</p>
+      <p class="stack-viz__node-body">
+        {isEn ? 'Triggers, approvals, queues, APIs' : 'Trigger, approvazioni, code, API'}
+      </p>
+    </section>
+    <span class="stack-viz__flow-line stack-viz__flow-line--short" aria-hidden="true"></span>
+  </section>
+
+  <section class="stack-viz__rails">
+    <section class="stack-viz__rail">
+      <p class="stack-viz__rail-label">{isEn ? 'Systems of record' : 'Sistemi di riferimento'}</p>
+      <ul class="stack-viz__chips">
+        <li>{isEn ? 'ERP' : 'Gestionale'}</li>
+        <li>CRM</li>
+        <li>{isEn ? 'Tickets' : 'Ticket'}</li>
+      </ul>
+    </section>
+    <section class="stack-viz__rail stack-viz__rail--accent">
+      <p class="stack-viz__rail-label">Copilot</p>
+      <p class="stack-viz__rail-note">
+        {isEn ? 'Sources, permissions, lifecycle' : 'Fonti, permessi, ciclo di vita'}
+      </p>
+    </section>
+  </section>
+
+  <section class="stack-viz__app">
+    <p class="stack-viz__app-kicker">Laravel</p>
+    <p class="stack-viz__app-title">{isEn ? 'Full stack product' : 'Prodotto full stack'}</p>
+    <ul class="stack-viz__fe">
+      <li>React</li>
+      <li>Vue</li>
+      <li>Vanilla JS</li>
+    </ul>
+  </section>
+</section>

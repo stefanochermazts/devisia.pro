@@ -2,7 +2,7 @@ import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const optionalString = z.string().optional().nullable();
-const stringList = z.preprocess((v) => (v == null ? [] : v), z.array(z.string()));
+const stringList = z.preprocess((v: unknown) => (v == null ? [] : v), z.array(z.string()));
 
 // Schema for feature card in home page
 const featureCardSchema = z.object({

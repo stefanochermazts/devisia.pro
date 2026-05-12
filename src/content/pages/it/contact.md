@@ -1,6 +1,7 @@
 ---
-title: Parliamo del tuo sistema | Devisia
+title: Parliamo del tuo progetto | Devisia
 description: >-
-  Hai un prodotto da migliorare, un processo da governare o un caso di
-  integrazione AI? Raccontaci contesto, vincoli, rischi e prossimi passi.
+  Hai un prodotto digitale, un processo o un progetto AI da far avanzare?
+  Raccontaci obiettivi, vincoli e priorità: ti aiutiamo a capire il prossimo
+  passo.
 ---

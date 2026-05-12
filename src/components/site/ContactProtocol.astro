@@ -54,48 +54,53 @@ const isEnglish = lang === 'en';
 const copy: Copy = isEnglish
   ? {
       ariaLabel: 'Contact Devisia',
-      eyebrow: 'Contact protocol',
-      title: 'Bring the system. We will bring the controls.',
-      lede:
-        'Use this page when the work carries responsibility: a product to govern, a platform to untangle, an AI integration that must reach production without becoming opaque.',
-      status: ['Context', 'Triage', 'Reply in 24 business hours'],
+      eyebrow: 'Let us talk',
+      title: 'Tell us what you want to improve.',
+      lede: 'Whether it is a digital product, an internal process or an AI use case, we start from goals, constraints and priorities to understand the right next step.',
+      status: ['Goal', 'Priorities', 'Reply in 24 business hours'],
       mark: 'CONTACT',
-      successTitle: 'Message received. The protocol starts now.',
+      successTitle: 'Message received.',
       successText:
-        'We sent a confirmation email. We will review the context, prepare focused questions and reply within 24 business hours.',
-      formEyebrow: 'Primary channel',
-      formTitle: 'Send the context',
+        'Thank you. We will review your request and reply within 24 business hours with focused questions or a clear next step.',
+      formEyebrow: 'Request',
+      formTitle: 'Send us the context',
       formText:
-        'A perfect brief is not required. The useful first signal is where the risk, constraint or decision pressure sits.',
-      protocolTitle: 'What happens next',
+        'You do not need a complete brief. Goal, current situation and what needs to change are enough to start.',
+      protocolTitle: 'How we work after the first contact',
       protocolSteps: [
         {
           code: '01',
-          title: 'Context',
-          text: 'We read goal, current state, constraints and sensitive areas before proposing a solution.',
+          title: 'Understand the request',
+          text: 'We read goals, urgency, constraints and people involved before suggesting a direction.',
         },
         {
           code: '02',
-          title: 'Triage',
-          text: 'We identify the right next step: audit, discovery, prototype, backlog or roadmap.',
+          title: 'Frame the work',
+          text: 'We separate what can move now from what needs analysis, development or gradual improvement.',
         },
         {
           code: '03',
           title: 'Reply',
-          text: 'You receive a practical answer with focused questions, not a generic sales pitch.',
+          text: 'You receive the most sensible next step: a call, audit, estimate or work plan.',
         },
       ],
-      directTitle: 'Direct signals',
-      directText: 'Prefer a direct route? Use email or phone and reference the system you want to make governable.',
+      directTitle: 'Direct contact',
+      directText:
+        'Prefer to speak with a person right away? Email or call us with a short note about the project or problem.',
       phoneLabel: 'Phone',
       emailLabel: 'Email',
-      briefingTitle: 'Useful briefing frame',
-      briefingItems: ['Goal and success criteria', 'Users, volumes and integrations', 'Compliance, timeline and data constraints', 'What works today and what blocks progress'],
-      privacyTitle: 'AI, data and privacy',
+      briefingTitle: 'Useful details to include',
+      briefingItems: [
+        'Business goal or problem to solve',
+        'Current situation and tools involved',
+        'Timeline, priorities and main constraints',
+        'Who will use the solution and who decides',
+      ],
+      privacyTitle: 'Data and privacy',
       privacyText:
-        'Do not include sensitive data in the form. We can work from synthetic examples and define minimization, PII redaction, retention, audit logging and policy checks.',
+        'Please avoid sensitive data or confidential documents in the form. If examples are useful, we can start from simplified cases and agree how to handle information and access.',
       privacyLink: '/en/privacy',
-      checklistText: 'Start from the AI Risk & Privacy Checklist',
+      checklistText: 'Planning an AI project? Use the AI Risk & Privacy Checklist',
       checklistLink: '/en/tools/ai-risk-checklist',
       fields: {
         name: 'Name *',
@@ -103,60 +108,65 @@ const copy: Copy = isEnglish
         email: 'Email *',
         emailPlaceholder: 'you@company.com',
         subject: 'Subject (optional)',
-        subjectPlaceholder: 'New product / Govern a platform / AI and privacy',
+        subjectPlaceholder: 'New project / Improve a process / AI at work',
         message: 'Message *',
         messagePlaceholder:
           'A few lines are enough: what is happening today, what you want to change and which constraints matter.',
-        consent: 'I agree to the use of my details only to manage and reply to this request. Details:',
+        consent:
+          'I agree to the use of my details only to manage this request and reply to me. Details:',
         honeypot: 'Website',
-        submit: 'Send the context',
+        submit: 'Send request',
       },
     }
   : {
       ariaLabel: 'Contatta Devisia',
-      eyebrow: 'Protocollo di contatto',
-      title: 'Portaci il sistema. Noi portiamo i controlli.',
-      lede:
-        'Usa questa pagina quando il lavoro ha responsabilità: un prodotto da governare, una piattaforma da rimettere in ordine, un’integrazione AI da portare in produzione senza opacità.',
-      status: ['Contesto', 'Triage', 'Risposta entro 24 ore lavorative'],
+      eyebrow: 'Parliamone',
+      title: 'Raccontaci cosa vuoi migliorare.',
+      lede: 'Che si tratti di un prodotto digitale, di un processo interno o di un uso dell’AI, partiamo da obiettivi, vincoli e priorità per capire il passo giusto.',
+      status: ['Obiettivo', 'Priorità', 'Risposta entro 24 ore lavorative'],
       mark: 'CONTATTO',
-      successTitle: 'Messaggio ricevuto. Il protocollo parte ora.',
+      successTitle: 'Messaggio ricevuto.',
       successText:
-        'Ti abbiamo inviato una email di conferma. Leggiamo il contesto, prepariamo domande mirate e rispondiamo entro 24 ore lavorative.',
-      formEyebrow: 'Canale principale',
-      formTitle: 'Invia il contesto',
+        'Grazie. Leggiamo la richiesta e ti rispondiamo entro 24 ore lavorative con domande mirate o un primo passo chiaro.',
+      formEyebrow: 'Richiesta',
+      formTitle: 'Scrivici il contesto',
       formText:
-        'Non serve un brief perfetto. Il primo segnale utile è dove si trova rischio, vincolo o pressione decisionale.',
-      protocolTitle: 'Cosa succede dopo',
+        'Non serve un documento completo: bastano obiettivo, situazione attuale e ciò che deve cambiare.',
+      protocolTitle: 'Come lavoriamo dopo il primo contatto',
       protocolSteps: [
         {
           code: '01',
-          title: 'Contesto',
-          text: 'Leggiamo obiettivo, stato attuale, vincoli e aree sensibili prima di proporre una soluzione.',
+          title: 'Capire la richiesta',
+          text: 'Leggiamo obiettivi, urgenze, vincoli e persone coinvolte prima di suggerire una direzione.',
         },
         {
           code: '02',
-          title: 'Triage',
-          text: 'Identifichiamo il prossimo passo corretto: audit, discovery, prototipo, backlog o roadmap.',
+          title: 'Inquadrare il lavoro',
+          text: 'Distinguiamo ciò che può partire subito da ciò che richiede analisi, sviluppo o miglioramento progressivo.',
         },
         {
           code: '03',
           title: 'Risposta',
-          text: 'Ricevi un riscontro pratico con domande mirate, non una proposta commerciale generica.',
+          text: 'Ti proponiamo il passo successivo più sensato: call, audit, stima o piano di lavoro.',
         },
       ],
-      directTitle: 'Segnali diretti',
+      directTitle: 'Contatti diretti',
       directText:
-        'Preferisci un canale diretto? Usa email o telefono e indica il sistema che vuoi rendere governabile.',
+        'Preferisci parlare subito con una persona? Scrivici o chiamaci indicando in poche parole il progetto o il problema da affrontare.',
       phoneLabel: 'Telefono',
       emailLabel: 'Email',
-      briefingTitle: 'Brief utile',
-      briefingItems: ['Obiettivo e criteri di successo', 'Utenti, volumi e integrazioni', 'Compliance, tempi e vincoli sui dati', 'Cosa funziona oggi e cosa blocca'],
-      privacyTitle: 'AI, dati e privacy',
+      briefingTitle: 'Cosa è utile includere',
+      briefingItems: [
+        'Obiettivo di business o problema da risolvere',
+        'Stato attuale e strumenti coinvolti',
+        'Tempi, priorità e vincoli principali',
+        'Chi userà la soluzione e chi decide',
+      ],
+      privacyTitle: 'Dati e privacy',
       privacyText:
-        'Non inserire dati sensibili nel form. Possiamo lavorare su esempi sintetici e definire minimizzazione, redazione PII, retention, audit logging e controlli.',
+        'Nel form evita dati sensibili o documenti riservati. Se servono esempi, possiamo partire da casi semplificati e definire insieme come trattare informazioni e accessi.',
       privacyLink: '/privacy',
-      checklistText: 'Parti dalla AI Risk & Privacy Checklist',
+      checklistText: 'Hai un progetto AI? Consulta la checklist rischi e privacy',
       checklistLink: '/tools/ai-risk-checklist',
       fields: {
         name: 'Nome *',
@@ -164,36 +174,53 @@ const copy: Copy = isEnglish
         email: 'Email *',
         emailPlaceholder: 'nome@azienda.com',
         subject: 'Oggetto (facoltativo)',
-        subjectPlaceholder: 'Nuovo prodotto / Piattaforma da governare / AI e privacy',
+        subjectPlaceholder: 'Nuovo progetto / Processo da migliorare / AI in azienda',
         message: 'Messaggio *',
         messagePlaceholder:
           'In poche righe: cosa succede oggi, cosa vorresti cambiare e quali vincoli non possiamo ignorare.',
-        consent: 'Autorizzo l’uso dei miei dati solo per gestire questa richiesta e ricontattarmi. Dettagli:',
+        consent:
+          'Autorizzo l’uso dei miei dati solo per gestire questa richiesta e ricevere una risposta. Dettagli:',
         honeypot: 'Sito web',
-        submit: 'Invia il contesto',
+        submit: 'Invia richiesta',
       },
     };
 ---
 
 <article class="contact-protocol" aria-label={copy.ariaLabel}>
-  {isSuccess && (
-    <section class="contact-success" role="alert">
-      <svg class="contact-success__icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M20 6 9 17l-5-5"></path>
-      </svg>
-      <section>
-        <h2>{copy.successTitle}</h2>
-        <p>{copy.successText}</p>
+  {
+    isSuccess && (
+      <section class="contact-success" role="alert">
+        <svg
+          class="contact-success__icon"
+          width="28"
+          height="28"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M20 6 9 17l-5-5" />
+        </svg>
+        <section>
+          <h2>{copy.successTitle}</h2>
+          <p>{copy.successText}</p>
+        </section>
       </section>
-    </section>
-  )}
+    )
+  }
 
   <section class="contact-hero">
     <section class="contact-hero__copy">
       <p class="contact-hero__eyebrow">{copy.eyebrow}</p>
       <h1>{copy.title}</h1>
       <p class="contact-hero__lede">{copy.lede}</p>
-      <section class="contact-hero__status" aria-label={isEnglish ? 'Contact steps' : 'Passaggi del contatto'}>
+      <section
+        class="contact-hero__status"
+        aria-label={isEnglish ? 'Contact steps' : 'Passaggi del contatto'}
+      >
         {copy.status.map((item) => <span>{item}</span>)}
       </section>
     </section>
@@ -235,31 +262,72 @@ const copy: Copy = isEnglish
         <section class="form-grid">
           <section class="form-group">
             <label for="name" class="form-label">{copy.fields.name}</label>
-            <input type="text" id="name" name="name" required maxlength="120" autocomplete="name" class="form-input" placeholder={copy.fields.namePlaceholder} />
+            <input
+              type="text"
+              id="name"
+              name="name"
+              required
+              maxlength="120"
+              autocomplete="name"
+              class="form-input"
+              placeholder={copy.fields.namePlaceholder}
+            />
           </section>
 
           <section class="form-group">
             <label for="email" class="form-label">{copy.fields.email}</label>
-            <input type="email" id="email" name="email" required maxlength="254" autocomplete="email" class="form-input" placeholder={copy.fields.emailPlaceholder} />
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              maxlength="254"
+              autocomplete="email"
+              class="form-input"
+              placeholder={copy.fields.emailPlaceholder}
+            />
           </section>
         </section>
 
         <section class="form-group">
           <label for="subject" class="form-label">{copy.fields.subject}</label>
-          <input type="text" id="subject" name="subject" maxlength="200" class="form-input" placeholder={copy.fields.subjectPlaceholder} />
+          <input
+            type="text"
+            id="subject"
+            name="subject"
+            maxlength="200"
+            class="form-input"
+            placeholder={copy.fields.subjectPlaceholder}
+          />
         </section>
 
         <section class="form-group">
           <label for="message" class="form-label">{copy.fields.message}</label>
-          <textarea id="message" name="message" required maxlength="4000" rows="7" class="form-input" placeholder={copy.fields.messagePlaceholder}></textarea>
+          <textarea
+            id="message"
+            name="message"
+            required
+            maxlength="4000"
+            rows="7"
+            class="form-input"
+            placeholder={copy.fields.messagePlaceholder}></textarea>
         </section>
 
         <section class="form-group form-group--consent">
           <label class="consent-label" for="privacy_consent">
-            <input id="privacy_consent" name="privacy_consent" type="checkbox" value="true" required class="consent-checkbox" />
+            <input
+              id="privacy_consent"
+              name="privacy_consent"
+              type="checkbox"
+              value="true"
+              required
+              class="consent-checkbox"
+            />
             <span class="consent-text">
               {copy.fields.consent}
-              <a class="consent-link" href={copy.privacyLink}>{isEnglish ? 'Privacy & Cookie Policy' : 'Informativa Privacy & Cookie'}</a>
+              <a class="consent-link" href={copy.privacyLink}
+                >{isEnglish ? 'Privacy & Cookie Policy' : 'Informativa Privacy & Cookie'}</a
+              >
             </span>
           </label>
         </section>
@@ -268,19 +336,24 @@ const copy: Copy = isEnglish
       </form>
     </section>
 
-    <aside class="contact-workbench__rail" aria-label={isEnglish ? 'Contact protocol details' : 'Dettagli del protocollo di contatto'}>
+    <aside
+      class="contact-workbench__rail"
+      aria-label={isEnglish ? 'Contact protocol details' : 'Dettagli del protocollo di contatto'}
+    >
       <section class="contact-protocol-steps" aria-labelledby="contact-protocol-title">
         <h2 id="contact-protocol-title">{copy.protocolTitle}</h2>
         <ol>
-          {copy.protocolSteps.map((step) => (
-            <li>
-              <span>{step.code}</span>
-              <section>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </section>
-            </li>
-          ))}
+          {
+            copy.protocolSteps.map((step) => (
+              <li>
+                <span>{step.code}</span>
+                <section>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </section>
+              </li>
+            ))
+          }
         </ol>
       </section>
 
@@ -316,10 +389,22 @@ const copy: Copy = isEnglish
     position: relative;
     overflow: clip;
     background:
-      linear-gradient(112deg, transparent 0 58%, color-mix(in oklch, var(--ds-color-accent) 14%, transparent) 58% 60%, transparent 60%),
-      linear-gradient(90deg, color-mix(in oklch, var(--ds-color-accent-2) 10%, transparent) 1px, transparent 1px),
+      linear-gradient(
+        112deg,
+        transparent 0 58%,
+        color-mix(in oklch, var(--ds-color-accent) 14%, transparent) 58% 60%,
+        transparent 60%
+      ),
+      linear-gradient(
+        90deg,
+        color-mix(in oklch, var(--ds-color-accent-2) 10%, transparent) 1px,
+        transparent 1px
+      ),
       var(--ds-color-bg);
-    background-size: auto, clamp(3rem, 7vw, 6rem) clamp(3rem, 7vw, 6rem), auto;
+    background-size:
+      auto,
+      clamp(3rem, 7vw, 6rem) clamp(3rem, 7vw, 6rem),
+      auto;
   }
 
   .contact-hero,
@@ -408,7 +493,11 @@ const copy: Copy = isEnglish
     min-height: clamp(18rem, 30vw, 26rem);
     border: 1px solid color-mix(in oklch, var(--ds-color-accent) 36%, var(--ds-color-border));
     background:
-      linear-gradient(135deg, color-mix(in oklch, var(--ds-color-hero-tint) 92%, black), color-mix(in oklch, var(--ds-color-accent) 20%, var(--ds-color-hero-tint))),
+      linear-gradient(
+        135deg,
+        color-mix(in oklch, var(--ds-color-hero-tint) 92%, black),
+        color-mix(in oklch, var(--ds-color-accent) 20%, var(--ds-color-hero-tint))
+      ),
       var(--ds-color-hero-tint);
     color: color-mix(in oklch, white 90%, var(--ds-color-hero-tint));
     box-shadow: 0 2rem 4rem color-mix(in oklch, var(--ds-color-hero-tint) 24%, transparent);
@@ -418,7 +507,7 @@ const copy: Copy = isEnglish
   }
 
   .contact-hero__diagram::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background:
@@ -530,7 +619,7 @@ const copy: Copy = isEnglish
   }
 
   .contact-workbench__form::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0 0 auto;
     height: 0.45rem;
@@ -611,7 +700,10 @@ const copy: Copy = isEnglish
     color: var(--ds-color-text);
     font: inherit;
     font-size: var(--ds-text-md);
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease;
   }
 
   .form-input::placeholder {
@@ -672,7 +764,10 @@ const copy: Copy = isEnglish
     letter-spacing: var(--ds-tracking-caps);
     text-transform: uppercase;
     cursor: pointer;
-    transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      background-color 0.18s ease;
   }
 
   .form-submit:hover {
@@ -781,7 +876,7 @@ const copy: Copy = isEnglish
   }
 
   .contact-brief li::before {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     top: 0.65em;

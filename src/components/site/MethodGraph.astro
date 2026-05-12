@@ -13,31 +13,31 @@ const isEn = lang === 'en';
 const copy = isEn
   ? {
       summary:
-        'Method flow: observe, model, delimit, build, verify, govern, with a feedback loop from govern back to observe.',
+        'Method flow: understand, design, scope, build, verify, evolve, with a feedback loop from evolve back to understand.',
       feedback: 'Loop',
     }
   : {
       summary:
-        "Flusso del metodo: osservare, modellare, delimitare, costruire, verificare, governare, con feedback verso l'osservazione.",
+        "Flusso del metodo: capire, progettare, definire, costruire, verificare, evolvere, con ritorno verso l'analisi.",
       feedback: 'Ritorno',
     };
 
 const steps = isEn
   ? [
-      { n: '01', label: 'Observe' },
-      { n: '02', label: 'Model' },
-      { n: '03', label: 'Delimit' },
+      { n: '01', label: 'Understand' },
+      { n: '02', label: 'Design' },
+      { n: '03', label: 'Scope' },
       { n: '04', label: 'Build' },
       { n: '05', label: 'Verify' },
-      { n: '06', label: 'Govern' },
+      { n: '06', label: 'Evolve' },
     ]
   : [
-      { n: '01', label: 'Osservare' },
-      { n: '02', label: 'Modellare' },
-      { n: '03', label: 'Delimitare' },
+      { n: '01', label: 'Capire' },
+      { n: '02', label: 'Progettare' },
+      { n: '03', label: 'Definire' },
       { n: '04', label: 'Costruire' },
       { n: '05', label: 'Verificare' },
-      { n: '06', label: 'Governare' },
+      { n: '06', label: 'Evolvere' },
     ];
 ---
 
@@ -52,7 +52,11 @@ const steps = isEn
               <span class="method-graph__num">{s.n}</span>
               <span class="method-graph__label">{s.label}</span>
             </section>
-            {i < steps.length - 1 && <span class="method-graph__chev" aria-hidden="true">→</span>}
+            {i < steps.length - 1 && (
+              <span class="method-graph__chev" aria-hidden="true">
+                →
+              </span>
+            )}
           </section>
         ))
       }
