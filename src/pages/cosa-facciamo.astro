@@ -6,7 +6,7 @@ import EditorialCTA from '../components/site/EditorialCTA.astro';
 import { breadcrumbListJsonLd } from '../lib/seo/structuredData';
 
 const description =
-  'Sviluppo software su misura, sviluppo applicazioni web, sviluppo SaaS e integrazione AI nei software per processi critici e verificabili.';
+  'Sviluppo software su misura, applicazioni web, SaaS, integrazioni AI e automazioni per aziende che vogliono processi più chiari, efficienti e controllabili.';
 
 const site = Astro.site ?? new URL('https://devisia.pro');
 const breadcrumbs = breadcrumbListJsonLd({
@@ -26,13 +26,13 @@ const breadcrumbs = breadcrumbListJsonLd({
 >
   <PageIntro
     eyebrow="Cosa facciamo"
-    h1="Sviluppo software su misura per lavori digitali ad alta responsabilità"
-    lede="Costruiamo piattaforme, applicazioni web, prodotti SaaS, automazioni e integrazioni AI quando un processo deve reggere a volumi, eccezioni, audit, privacy, continuità operativa e responsabilità esplicite."
+    h1="Software su misura, AI e automazioni per far lavorare meglio l’azienda"
+    lede="Costruiamo piattaforme, applicazioni web, prodotti SaaS e integrazioni AI quando un processo è troppo importante per restare manuale, fragile o difficile da controllare. Partiamo da obiettivi, persone e sistemi esistenti, poi trasformiamo il lavoro in soluzioni digitali utili e sostenibili."
   />
 
   <p class="sr-only">
-    Diagramma sintetico: costruire software e piattaforme, integrare dati e sistemi, governare AI e controlli, con obiettivo
-    di evidenze verificabili.
+    Diagramma sintetico: costruire software e piattaforme, integrare dati e sistemi, usare AI e
+    automazioni con controllo, continuità e risultati verificabili.
   </p>
   <section class="site-section site-section--dark what-we-do-layers">
     <section class="ds-container">
@@ -50,97 +50,131 @@ const breadcrumbs = breadcrumbListJsonLd({
       </section>
     </section>
     <section>
-      <h2 id="filter-title" class="site-h2">Non costruiamo se la responsabilità non è visibile</h2>
+      <h2 id="filter-title" class="site-h2">
+        Entriamo dove il software deve semplificare, non complicare
+      </h2>
       <p class="site-lead">
-        Entriamo quando il lavoro digitale supera una soglia: dati sensibili, decisioni tracciabili, integrazioni critiche,
-        ruoli distribuiti, evidenze da produrre o sistemi che devono evolvere dopo il rilascio.
+        Siamo utili quando un processo coinvolge più persone, dati delicati, strumenti che non
+        dialogano o decisioni che devono restare chiare. In questi casi il codice da solo non basta:
+        servono metodo, integrazione e continuità dopo il rilascio.
       </p>
       <ul
         class="responsibility-filter__signals"
         aria-label="Segnali che indicano un lavoro ad alta responsabilità"
       >
-        <li>Processo con eccezioni</li>
-        <li>Decisioni da spiegare</li>
-        <li>Dati o fornitori critici</li>
-        <li>Audit o continuità</li>
+        <li>Processi lenti o frammentati</li>
+        <li>Strumenti che non comunicano</li>
+        <li>Dati, ruoli o approvazioni critiche</li>
+        <li>Bisogno di continuità e controllo</li>
       </ul>
     </section>
   </section>
 
   <section class="evidence-chain-section" aria-labelledby="chain-title">
-    <p class="evidence-chain-section__mark" aria-hidden="true">P-C-E</p>
+    <p class="evidence-chain-section__mark" aria-hidden="true">01-03</p>
     <section class="evidence-chain-section__intro">
-      <h2 id="chain-title" class="site-h2">La catena che decide se costruire</h2>
+      <h2 id="chain-title" class="site-h2">
+        Prima di costruire, rendiamo chiaro cosa deve cambiare
+      </h2>
       <p class="site-lead">
-        Ogni progetto viene letto come una sequenza verificabile. Se un passaggio non può essere controllato o dimostrato,
-        lo affrontiamo prima di scrivere codice, API o componenti AI.
+        Ogni progetto parte da tre domande semplici. Cosa oggi rallenta il lavoro? Quali regole o
+        responsabilità vanno rese esplicite? Come capiremo, dopo il rilascio, che la soluzione sta
+        funzionando davvero?
       </p>
     </section>
 
-    <ol class="evidence-chain" aria-label="Catena: problema, controllo, evidenza">
+    <ol
+      class="evidence-chain"
+      aria-label="Catena: problema reale, soluzione giusta, risultato misurabile"
+    >
       <li class="evidence-chain__item">
         <span class="evidence-chain__code" aria-hidden="true">01</span>
-        <h3>Problema</h3>
-        <p>Quale operazione oggi genera tempo perso, errori, rischi, dipendenze manuali o decisioni poco spiegabili?</p>
+        <h3>Problema reale</h3>
+        <p>Individuiamo dove si perdono tempo, dati, passaggi o responsabilità.</p>
       </li>
       <li class="evidence-chain__item">
         <span class="evidence-chain__code" aria-hidden="true">02</span>
-        <h3>Controllo</h3>
-        <p>Quali confini, ruoli, dati, policy, validazioni e responsabilità devono essere espliciti nel sistema?</p>
+        <h3>Soluzione giusta</h3>
+        <p>
+          Decidiamo cosa automatizzare, cosa integrare e cosa deve restare sotto supervisione umana.
+        </p>
       </li>
       <li class="evidence-chain__item">
         <span class="evidence-chain__code" aria-hidden="true">03</span>
-        <h3>Evidenza</h3>
-        <p>Quale traccia deve restare leggibile: log, decision record, audit trail, report, esportazione o stato operativo?</p>
+        <h3>Risultato misurabile</h3>
+        <p>
+          Definiamo quali segnali mostrano che il sistema funziona e può evolvere senza creare nuovo
+          caos.
+        </p>
       </li>
     </ol>
   </section>
 
   <section class="responsibility-matrix" aria-labelledby="matrix-title">
     <section class="responsibility-matrix__head">
-      <h2 id="matrix-title" class="site-h2">Cosa costruiamo quando la catena è chiara</h2>
+      <h2 id="matrix-title" class="site-h2">Cosa costruiamo quando il bisogno è chiaro</h2>
       <p>
-        Non separiamo software, AI e compliance in silos. Li trattiamo come parti dello stesso sistema operativo:
-        ciò che automatizza deve anche spiegare, controllare e lasciare prova.
+        Non trattiamo software, AI, integrazioni e compliance come mondi separati. Li progettiamo
+        insieme, perché un sistema utile deve semplificare il lavoro, collegare gli strumenti e
+        restare governabile nel tempo.
       </p>
     </section>
 
     <section class="responsibility-matrix__rows">
       <article class="responsibility-matrix__row">
-        <span>Costruire</span>
+        <span>Software</span>
         <h3>Sviluppo applicazioni web e piattaforme</h3>
-        <p>Applicazioni, workflow e servizi per processi con volumi, eccezioni, integrazioni o requisiti di qualità nel tempo.</p>
+        <p>
+          Applicazioni, portali e piattaforme per gestire processi aziendali che richiedono più
+          ordine, velocità e continuità.
+        </p>
         <section class="responsibility-matrix__proof">
-          <strong>Prova attesa: dominio leggibile, versioni chiare, osservabilità.</strong>
+          <strong>Valore atteso: meno lavoro manuale, più controllo sul processo.</strong>
         </section>
       </article>
       <article class="responsibility-matrix__row">
-        <span>Integrare</span>
+        <span>Integrazioni</span>
         <h3>Dati, API e sistemi esistenti</h3>
-        <p>Integrazione API AI e scambi controllati tra sistemi, con contratti, error handling, riconciliazione e diritti d'accesso allineati ai ruoli.</p>
+        <p>
+          Colleghiamo gestionali, CRM, ticket manager, Microsoft 365, SaaS e API perché le
+          informazioni non restino bloccate in silos.
+        </p>
         <section class="responsibility-matrix__proof">
-          <strong>Prova attesa: errori visibili, ownership dei dati, riconciliazioni spiegabili.</strong>
+          <strong>Valore atteso: meno copia-incolla, meno errori, più allineamento tra team.</strong
+          >
           <a class="ds-link" data-variant="muted" href="/sharepoint-microsoft-365-laravel"
             >SharePoint, Microsoft 365 e Laravel <span aria-hidden="true">→</span></a
           >
         </section>
       </article>
       <article class="responsibility-matrix__row">
-        <span>Governare</span>
+        <span>AI</span>
         <h3>Integrazione AI nei software</h3>
-        <p>Modelli, RAG, agenti e strumenti assistiti solo dove input, output, supervisione e responsabilità sono progettati.</p>
+        <p>
+          Assistant, RAG, agenti e automazioni AI dove possono aiutare davvero: ricerca, sintesi,
+          supporto operativo e controlli secondari.
+        </p>
         <section class="responsibility-matrix__proof">
-          <strong>Prova attesa: limiti, log, validazione, escalation umana.</strong>
-          <a class="ds-link" data-variant="muted" href="/ai-governata">Approfondisci AI governata <span aria-hidden="true">→</span></a>
+          <strong>Valore atteso: AI utile, con limiti chiari e supervisione dove serve.</strong>
+          <a class="ds-link" data-variant="muted" href="/ai-governata"
+            >Approfondisci AI governata <span aria-hidden="true">→</span></a
+          >
         </section>
       </article>
       <article class="responsibility-matrix__row">
-        <span>Dimostrare</span>
+        <span>Compliance</span>
         <h3>Compliance, audit e strumenti operativi</h3>
-        <p>Mappe di controlli, asset, fornitori, dashboard e report che rispondono a domande concrete dei team e degli auditor.</p>
+        <p>
+          Dashboard, report, mappe di controlli, asset e fornitori per rendere più semplice gestire
+          audit, sicurezza e responsabilità operative.
+        </p>
         <section class="responsibility-matrix__proof">
-          <strong>Prova attesa: evidenze esportabili, responsabilità assegnate, stato del sistema leggibile.</strong>
-          <a class="ds-link" data-variant="muted" href="/compliance-auditabilita">Compliance e auditabilità <span aria-hidden="true">→</span></a>
+          <strong
+            >Valore atteso: informazioni pronte quando servono, non rincorse all’ultimo minuto.</strong
+          >
+          <a class="ds-link" data-variant="muted" href="/compliance-auditabilita"
+            >Compliance e auditabilità <span aria-hidden="true">→</span></a
+          >
         </section>
       </article>
     </section>
@@ -151,17 +185,18 @@ const breadcrumbs = breadcrumbListJsonLd({
       <span aria-hidden="true">STOP</span>
       <h2 id="no-build-title">Quando non costruiamo</h2>
       <p>
-        Se manca un responsabile per l'esito, se il risultato non è verificabile, o se il software servirebbe solo a coprire
-        un processo non definito, preferiamo dirlo. Il primo output utile può essere una mappa di responsabilità, non una riga di codice.
+        Se il problema non è ancora chiaro, se nessuno può decidere o se il software servirebbe solo
+        a coprire un processo confuso, preferiamo fermarci e dirlo. A volte il primo passo utile è
+        mettere ordine, non scrivere subito codice.
       </p>
     </section>
   </section>
 
   <EditorialCTA
     variant="tint"
-    title="Descrivi il contesto, non la soluzione"
-    copy="Raccontaci processo, rischio, dati, integrazioni, persone coinvolte e prove che dovranno restare. Primo passo: capire se la catena problema, controllo ed evidenza può reggere."
-    ctaLabel="Parliamo del problema operativo"
+    title="Hai un processo, un prodotto o un’integrazione da far evolvere?"
+    copy="Raccontaci cosa oggi rallenta il lavoro, quali sistemi devono parlarsi e quali risultati vuoi ottenere. Ti aiutiamo a capire se serve software su misura, AI, automazione o una combinazione più semplice da mantenere."
+    ctaLabel="Parliamo del progetto"
     ctaHref="/contatti"
   />
 </Layout>
