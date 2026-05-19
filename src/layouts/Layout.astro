@@ -18,6 +18,7 @@ import {
   webPageJsonLd,
   type JsonLd,
 } from '../lib/seo/structuredData';
+import ChatWidget from '../components/ChatWidget.astro';
 
 export interface Props {
   title: string;
@@ -95,6 +96,7 @@ const languageSwitchHref = customLanguageSwitchHref || defaultLanguageSwitch();
 const languageSwitchAria = lang === 'en' ? 'Switch to Italian' : "Passa all'inglese";
 
 const currentPath = normalizePath(pathName);
+const showFloatingChat = currentPath !== '/chat';
 
 const isNavItemActive = (itemPath: string) => {
   const p = currentPath;
@@ -476,6 +478,8 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
       <span class="mobile-sticky-cta__label">{stickyCtaLabel}</span>
       <span class="mobile-sticky-cta__arrow" aria-hidden="true">→</span>
     </a>
+
+    {showFloatingChat && <ChatWidget lang={lang} />}
 
     <script is:inline>
       (() => {

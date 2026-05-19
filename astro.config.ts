@@ -32,6 +32,10 @@ export default defineConfig({
     domains: ['cdn.outrank.so', 'cdnimg.co'],
   },
   vite: {
+    optimizeDeps: {
+      /** Stable pre-bundling for ChatWidget marked/dompurify; reduces flaky "Outdated Optimize Dep" dev 504 */
+      include: ['marked', 'dompurify'],
+    },
     server: {
       watch: {
         ignored: ['**/.git/**', '**/.astro/**', '**/.netlify/**', '**/dist/**', '**/node_modules/**', '**/.artiforge/**'],

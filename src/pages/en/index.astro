@@ -4,6 +4,7 @@ import Layout from '../../layouts/Layout.astro';
 import SiteHero from '../../components/site/SiteHero.astro';
 import SystemLayers from '../../components/site/SystemLayers.astro';
 import EditorialCTA from '../../components/site/EditorialCTA.astro';
+import HomeChatSection from '../../components/site/HomeChatSection.astro';
 import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
 
 const title = 'Home';
@@ -125,6 +126,8 @@ const breadcrumbs = breadcrumbListJsonLd({
       </section>
     </section>
   </section>
+
+  <HomeChatSection lang="en" />
 
   <section class="site-section site-section--dark" aria-labelledby="home-ar2">
     <section class="ds-container audit-console">

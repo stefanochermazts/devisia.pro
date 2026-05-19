@@ -1,0 +1,139 @@
+---
+export interface Props {
+  lang?: 'it' | 'en';
+}
+
+const { lang = 'it' } = Astro.props;
+
+const copy =
+  lang === 'en'
+    ? {
+        eyebrow: 'Devisia Chat',
+        title: 'Ask the site. Get answers you can verify.',
+        signal: 'Grounded answers, visible boundaries, no black box.',
+        lead: 'A guided assistant helps you explore services, method and AI governance without hunting through every page. It answers only from public Devisia content and makes the technical perimeter visible: exported Markdown, indexed knowledge, Toolhouse orchestration and server guardrails.',
+        cta: 'Try the chat',
+        ctaHint: 'Open a dedicated page for longer questions, or use the floating assistant while browsing.',
+        proofLabel: 'Reliability markers',
+        proofPoints: ['Markdown source', 'Server-side proxy', 'Public perimeter'],
+        pipelineLabel: 'How it stays reliable',
+        visualWord: 'CHAT',
+        steps: [
+          {
+            id: '01',
+            title: 'Readable knowledge',
+            body: 'Public pages are exported to clean Markdown with frontmatter, so every answer starts from content that is readable, versionable and traceable.',
+          },
+          {
+            id: '02',
+            title: 'Search-ready ingestion',
+            body: 'The exported content is split into retrieval chunks, letting the assistant select relevant passages before composing a reply.',
+          },
+          {
+            id: '03',
+            title: 'Toolhouse, behind a proxy',
+            body: 'Requests pass through `/api/toolhouse-chat`: Toolhouse handles the agent flow, while credentials stay server side.',
+          },
+          {
+            id: '04',
+            title: 'Guardrails by design',
+            body: 'The chat keeps to public content, sanitises Markdown output and avoids collecting secrets or private operational data.',
+          },
+        ],
+        previewUser: 'Can you explain your AI approach in plain language?',
+        previewAssistant:
+          'Yes. We design AI systems with clear scope, governance and evidence, so teams can use them without losing control.',
+      }
+    : {
+        eyebrow: 'Chat Devisia',
+        title: 'Fai domande al sito. Ottieni risposte verificabili.',
+        signal: 'Risposte fondate, confini visibili, niente scatole nere.',
+        lead: 'Un assistente guidato ti aiuta a esplorare servizi, metodo e AI governance senza cercare pagina per pagina. Risponde solo sui contenuti pubblici Devisia e rende visibile il perimetro tecnico: Markdown esportato, knowledge indicizzata, orchestrazione Toolhouse e guardrail lato server.',
+        cta: 'Prova la chat',
+        ctaHint: 'Apri una pagina dedicata per domande più lunghe, oppure usa l’assistente flottante mentre navighi.',
+        proofLabel: 'Indicatori di affidabilità',
+        proofPoints: ['Sorgente Markdown', 'Proxy lato server', 'Perimetro pubblico'],
+        pipelineLabel: 'Come resta affidabile',
+        visualWord: 'CHAT',
+        steps: [
+          {
+            id: '01',
+            title: 'Knowledge leggibile',
+            body: 'Le pagine pubbliche vengono esportate in Markdown pulito con frontmatter, così ogni risposta parte da contenuti leggibili, versionabili e tracciabili.',
+          },
+          {
+            id: '02',
+            title: 'Ingestion pronta al retrieval',
+            body: 'I contenuti esportati vengono divisi in chunk, così l’assistente seleziona i passaggi rilevanti prima di comporre la risposta.',
+          },
+          {
+            id: '03',
+            title: 'Toolhouse dietro proxy',
+            body: 'Le richieste passano da `/api/toolhouse-chat`: Toolhouse orchestra l’agente, mentre credenziali e token restano lato server.',
+          },
+          {
+            id: '04',
+            title: 'Guardrail integrati',
+            body: 'La chat resta nel perimetro pubblico, sanitizza il Markdown in output ed evita raccolta di segreti o dati operativi privati.',
+          },
+        ],
+        previewUser: 'Mi spieghi il vostro approccio all’AI in modo semplice?',
+        previewAssistant:
+          'Sì. Progettiamo sistemi AI con perimetro, governance ed evidenze chiare, così i team possono usarli senza perdere controllo.',
+      };
+
+const chatHref = lang === 'en' ? '/en/chat' : '/chat';
+---
+
+<section
+  class="site-section site-section--tint home-chat"
+  aria-labelledby="home-chat-heading"
+  data-visual-word={copy.visualWord}
+>
+  <div class="ds-container home-chat__grid">
+    <div class="home-chat__copy">
+      <p class="site-eyebrow">{copy.eyebrow}</p>
+      <h2 id="home-chat-heading" class="site-h2 home-chat__headline">{copy.title}</h2>
+      <p class="home-chat__signal">{copy.signal}</p>
+      <p class="site-lead">{copy.lead}</p>
+      <ul class="home-chat__proof" aria-label={copy.proofLabel}>
+        {copy.proofPoints.map((point) => <li>{point}</li>)}
+      </ul>
+      <p class="home-chat__actions">
+        <a class="ds-btn" data-variant="primary" data-size="lg" href={chatHref}>
+          {copy.cta}
+        </a>
+      </p>
+      <p class="home-chat__cta-hint">{copy.ctaHint}</p>
+    </div>
+
+    <section class="home-chat__aside" aria-label={copy.pipelineLabel}>
+      <ol class="home-chat__pipeline">
+        {
+          copy.steps.map((step) => (
+            <li class="home-chat__step">
+              <span class="home-chat__step-id" aria-hidden="true">
+                {step.id}
+              </span>
+              <div>
+                <h3>{step.title}</h3>
+                <p>{step.body}</p>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+
+      <div class="home-chat__preview" aria-hidden="true">
+        <header class="home-chat__preview-top">
+          <span>{copy.eyebrow}</span>
+          <span>RAG · Toolhouse</span>
+        </header>
+        <div class="home-chat__preview-thread">
+          <p class="home-chat__preview-msg home-chat__preview-msg--user">{copy.previewUser}</p>
+          <p class="home-chat__preview-msg home-chat__preview-msg--assistant">{copy.previewAssistant}</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</section>

@@ -32,3 +32,6 @@ pnpm-debug.log*
 
 # Windows-specific files
 Thumbs.db
+
+# Local RAG export (Markdown + JSONL)
+rag-export/

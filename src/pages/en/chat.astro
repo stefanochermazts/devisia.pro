@@ -1,0 +1,13 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ChatWidget from '../../components/ChatWidget.astro';
+
+const title = 'Devisia assistant';
+const description =
+  'Chat with the Toolhouse agent using Devisia’s public-site knowledge. The API token stays on the server.';
+---
+
+<Layout title={title} {description} lang="en" containMain={false}>
+  <meta name="robots" content="noindex, follow" slot="head" />
+  <ChatWidget standalonePage lang="en" />
+</Layout>
