@@ -22,6 +22,7 @@
     "@fontsource-variable/bitter": "^5.2.10",
     "@fontsource-variable/lexend": "^5.2.8",
     "@fontsource-variable/manrope": "^5.2.8",
+    "@netlify/database": "^1.0.0",
     "astro": "^6.3.1",
     "dompurify": "^3.4.5",
     "dotenv": "^17.2.3",

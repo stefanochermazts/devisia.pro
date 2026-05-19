@@ -7,6 +7,34 @@ import { thLog } from './toolhouse-chat-debug';
 
 marked.use({ breaks: true, gfm: true });
 
+DOMPurify.addHook('afterSanitizeAttributes', (node) => {
+  if (!(node instanceof HTMLAnchorElement)) return;
+  if (node.getAttribute('target') === '_blank') {
+    node.setAttribute('rel', 'noopener noreferrer');
+  }
+});
+
+type ConsentEventType = 'accepted' | 'withdrawn';
+type ConsentLocale = 'it' | 'en';
+type ConsentSurface = 'widget' | 'standalone';
+
+interface StoredConsent {
+  consentId: string;
+  acceptedAt: string;
+  locale: ConsentLocale;
+  surface: ConsentSurface;
+  privacyPath: '/privacy' | '/en/privacy';
+  consentTextVersion: string;
+  aiDisclosureVersion: string;
+}
+
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+
+interface PendingConsentEvent {
+  eventType: ConsentEventType;
+  consentId: string;
+}
+
 function markdownToSafeHtml(markdown: string): string {
   const html = marked.parse(markdown.trimEnd(), { async: false }) as string;
   return DOMPurify.sanitize(html, {
@@ -81,6 +109,10 @@ export function initToolhouseChat(root: HTMLElement | null): void {
   const input = root.querySelector<HTMLTextAreaElement>('[data-toolhouse-chat-input]');
   const sendBtn = root.querySelector<HTMLButtonElement>('[data-toolhouse-chat-send]');
   const thread = root.querySelector<HTMLElement>('[data-toolhouse-chat-thread]');
+  const consentPanel = root.querySelector<HTMLElement>('[data-toolhouse-chat-consent]');
+  const consentCheckbox = root.querySelector<HTMLInputElement>('[data-toolhouse-chat-consent-checkbox]');
+  const consentAccept = root.querySelector<HTMLButtonElement>('[data-toolhouse-chat-consent-accept]');
+  const consentWithdraw = root.querySelector<HTMLButtonElement>('[data-toolhouse-chat-consent-withdraw]');
 
   if (!form || !input || !sendBtn || !thread) {
     const missingPieces = [];
@@ -97,6 +129,266 @@ export function initToolhouseChat(root: HTMLElement | null): void {
   const backdrop = root.querySelector<HTMLElement>('[data-toolhouse-chat-backdrop]');
   const closeBtn = root.querySelector<HTMLButtonElement>('[data-toolhouse-chat-close]');
   const widgetMode = Boolean(toggle && panel && backdrop);
+  const pageLang = (): 'it' | 'en' =>
+    document.documentElement.lang.toLowerCase().startsWith('en') ? 'en' : 'it';
+  const lang = pageLang();
+  const surface: ConsentSurface = root.dataset.chatSurface === 'standalone' ? 'standalone' : 'widget';
+  const privacyPath: StoredConsent['privacyPath'] =
+    root.dataset.privacyPath === '/en/privacy' ? '/en/privacy' : '/privacy';
+  const consentTextVersion = root.dataset.consentTextVersion || 'chat-consent-v1';
+  const aiDisclosureVersion = root.dataset.aiDisclosureVersion || 'ai-disclosure-v1';
+  const consentRequiredText =
+    root.dataset.consentRequired ||
+    (lang === 'en' ? 'Accept the privacy notice to use the chat.' : 'Accetta l’informativa privacy per usare la chat.');
+  const consentRegisteringText =
+    lang === 'en' ? 'Registering consent…' : 'Registrazione del consenso…';
+  const consentRegisterError =
+    lang === 'en'
+      ? 'Unable to register consent. Please try again.'
+      : 'Impossibile registrare il consenso. Riprova.';
+  const consentWithdrawError =
+    lang === 'en'
+      ? 'Consent was withdrawn locally, but the server log could not be updated.'
+      : 'Il consenso è stato revocato localmente, ma il registro server non è stato aggiornato.';
+  const consentKey = `devisia-toolhouse-chat-consent-v2:${lang}`;
+  const pendingConsentEventKey = `devisia-toolhouse-chat-consent-pending-v1:${lang}`;
+
+  const readStoredConsent = (): StoredConsent | null => {
+    try {
+      const raw = window.localStorage.getItem(consentKey);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw) as Partial<StoredConsent>;
+      if (
+        !parsed ||
+        !parsed.consentId ||
+        !UUID_RE.test(parsed.consentId) ||
+        parsed.locale !== lang ||
+        parsed.surface !== surface ||
+        parsed.privacyPath !== privacyPath ||
+        parsed.consentTextVersion !== consentTextVersion ||
+        parsed.aiDisclosureVersion !== aiDisclosureVersion
+      ) {
+        window.localStorage.removeItem(consentKey);
+        return null;
+      }
+      return parsed as StoredConsent;
+    } catch {
+      return null;
+    }
+  };
+
+  const storeConsent = (nextConsentId: string): void => {
+    try {
+      const value: StoredConsent = {
+        consentId: nextConsentId,
+        acceptedAt: new Date().toISOString(),
+        locale: lang,
+        surface,
+        privacyPath,
+        consentTextVersion,
+        aiDisclosureVersion,
+      };
+      window.localStorage.setItem(consentKey, JSON.stringify(value));
+    } catch {
+      // If storage is blocked, consent still holds for this page lifecycle.
+    }
+  };
+
+  const removeStoredConsent = (): void => {
+    try {
+      window.localStorage.removeItem(consentKey);
+    } catch {
+      // Storage may be blocked; the in-memory flag is still reset below.
+    }
+  };
+
+  const readPendingConsentEvent = (): PendingConsentEvent | null => {
+    try {
+      const raw = window.localStorage.getItem(pendingConsentEventKey);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw) as Partial<PendingConsentEvent>;
+      if (
+        (parsed.eventType !== 'accepted' && parsed.eventType !== 'withdrawn') ||
+        !parsed.consentId ||
+        !UUID_RE.test(parsed.consentId)
+      ) {
+        window.localStorage.removeItem(pendingConsentEventKey);
+        return null;
+      }
+      return parsed as PendingConsentEvent;
+    } catch {
+      return null;
+    }
+  };
+
+  const storePendingConsentEvent = (event: PendingConsentEvent): void => {
+    try {
+      window.localStorage.setItem(pendingConsentEventKey, JSON.stringify(event));
+    } catch {
+      // Best-effort retry support only.
+    }
+  };
+
+  const clearPendingConsentEvent = (): void => {
+    try {
+      window.localStorage.removeItem(pendingConsentEventKey);
+    } catch {
+      // Best-effort cleanup only.
+    }
+  };
+
+  const createConsentId = (): string => {
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+
+    if (typeof crypto !== 'undefined' && typeof crypto.getRandomValues === 'function') {
+      const bytes = crypto.getRandomValues(new Uint8Array(16));
+      bytes[6] = (bytes[6] & 0x0f) | 0x40;
+      bytes[8] = (bytes[8] & 0x3f) | 0x80;
+      const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, '0')).join('');
+      return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+    }
+
+    throw new Error('crypto.randomUUID is unavailable');
+  };
+
+  const registerConsentEvent = async (eventType: ConsentEventType, nextConsentId: string): Promise<void> => {
+    const response = await fetch('/api/chat-consent', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        eventType,
+        consentId: nextConsentId,
+        locale: lang,
+        surface,
+        privacyPath,
+        consentTextVersion,
+        aiDisclosureVersion,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`Consent event failed: ${response.status}`);
+    }
+  };
+
+  const flushPendingConsentEvent = (): void => {
+    const pending = readPendingConsentEvent();
+    if (!pending) return;
+
+    void registerConsentEvent(pending.eventType, pending.consentId)
+      .then(() => clearPendingConsentEvent())
+      .catch((error) => {
+        console.error('Failed to flush pending chat consent event', error);
+      });
+  };
+
+  /** Conversation id returned by Toolhouse after first POST. */
+  let runId: string | null = null;
+  let activeRequest: AbortController | null = null;
+
+  const storedConsent = consentPanel ? readStoredConsent() : null;
+  let consentId: string | null = storedConsent?.consentId ?? null;
+  let consentAccepted = consentPanel ? Boolean(storedConsent) : true;
+
+  const focusWithoutScrolling = (el: HTMLElement | null | undefined): void => {
+    if (!el) return;
+    try {
+      el.focus({ preventScroll: true });
+    } catch {
+      el.focus();
+    }
+  };
+
+  const resetConsentViewport = (alignPage = false): void => {
+    if (!consentPanel || consentAccepted) return;
+    consentPanel.scrollTop = 0;
+    if (!widgetMode && alignPage) {
+      consentPanel.scrollIntoView({ block: 'start', inline: 'nearest' });
+    }
+  };
+
+  const focusConsentIntro = (alignPage = false): void => {
+    resetConsentViewport(alignPage);
+    focusWithoutScrolling(consentPanel ?? panel);
+    resetConsentViewport();
+  };
+
+  const syncConsentUi = (): void => {
+    const needsConsent = Boolean(consentPanel);
+    if (consentPanel) consentPanel.hidden = consentAccepted;
+    if (consentCheckbox) consentCheckbox.checked = consentAccepted ? true : consentCheckbox.checked;
+    if (consentAccept) consentAccept.disabled = !consentAccepted && !consentCheckbox?.checked;
+    if (consentWithdraw) consentWithdraw.hidden = !consentAccepted;
+    thread.hidden = needsConsent && !consentAccepted;
+    input.disabled = !consentAccepted;
+    sendBtn.disabled = !consentAccepted;
+  };
+
+  syncConsentUi();
+
+  if (!widgetMode && !consentAccepted) {
+    requestAnimationFrame(() => focusConsentIntro(true));
+  }
+
+  flushPendingConsentEvent();
+
+  consentCheckbox?.addEventListener('change', () => {
+    if (consentAccept) consentAccept.disabled = !consentCheckbox.checked;
+  });
+
+  consentAccept?.addEventListener('click', async () => {
+    if (!consentCheckbox?.checked) {
+      consentCheckbox?.focus();
+      return;
+    }
+
+    const nextConsentId = consentId ?? createConsentId();
+    if (consentAccept) consentAccept.disabled = true;
+    setStatus(consentRegisteringText);
+
+    try {
+      await registerConsentEvent('accepted', nextConsentId);
+      clearPendingConsentEvent();
+      consentId = nextConsentId;
+      consentAccepted = true;
+      storeConsent(nextConsentId);
+      syncConsentUi();
+      setStatus('');
+      input.focus();
+    } catch (error) {
+      console.error('Failed to register chat consent', error);
+      consentAccepted = false;
+      if (consentAccept) consentAccept.disabled = !consentCheckbox.checked;
+      setStatus(consentRegisterError);
+    }
+  });
+
+  consentWithdraw?.addEventListener('click', () => {
+    const withdrawnConsentId = consentId;
+    consentAccepted = false;
+    consentId = null;
+    activeRequest?.abort();
+    activeRequest = null;
+    runId = null;
+    removeStoredConsent();
+    if (consentCheckbox) consentCheckbox.checked = false;
+    input.value = '';
+    thread.replaceChildren();
+    syncConsentUi();
+    setStatus('');
+    requestAnimationFrame(() => focusConsentIntro(true));
+
+    if (withdrawnConsentId) {
+      void registerConsentEvent('withdrawn', withdrawnConsentId).catch((error) => {
+        console.error('Failed to register chat consent withdrawal', error);
+        storePendingConsentEvent({ eventType: 'withdrawn', consentId: withdrawnConsentId });
+        setStatus(consentWithdrawError);
+      });
+    }
+  });
+
   thLog('widget refs', {
     widgetMode,
     toggle: Boolean(toggle),
@@ -146,7 +438,8 @@ export function initToolhouseChat(root: HTMLElement | null): void {
     setBodyLock(true);
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
-        input.focus();
+        if (consentAccepted) input.focus();
+        else focusConsentIntro();
       });
     });
   };
@@ -226,14 +519,11 @@ export function initToolhouseChat(root: HTMLElement | null): void {
     );
   }
 
-  /** Conversation id returned by Toolhouse after first POST. */
-  let runId: string | null = null;
-
   const statusEl = root.querySelector<HTMLElement>('[data-toolhouse-chat-status]');
 
   const setBusy = (busy: boolean): void => {
-    input.disabled = busy;
-    sendBtn.disabled = busy;
+    input.disabled = busy || !consentAccepted;
+    sendBtn.disabled = busy || !consentAccepted;
     form.setAttribute('aria-busy', busy ? 'true' : 'false');
   };
 
@@ -248,9 +538,6 @@ export function initToolhouseChat(root: HTMLElement | null): void {
     div.textContent = s;
     return div.innerHTML;
   };
-
-  const pageLang = (): 'it' | 'en' =>
-    document.documentElement.lang.toLowerCase().startsWith('en') ? 'en' : 'it';
 
   const appendUserMessage = (text: string): void => {
     const wrap = document.createElement('div');
@@ -288,6 +575,12 @@ export function initToolhouseChat(root: HTMLElement | null): void {
   form.addEventListener('submit', async (ev) => {
     ev.preventDefault();
 
+    if (!consentAccepted) {
+      setStatus(consentRequiredText);
+      focusConsentIntro(!widgetMode);
+      return;
+    }
+
     const text = input.value.trim();
     if (!text) return;
 
@@ -300,7 +593,6 @@ export function initToolhouseChat(root: HTMLElement | null): void {
     scrollThread();
 
     setBusy(true);
-    const lang = pageLang();
     const waitMsg = lang === 'en' ? 'Waiting for response…' : 'In attesa della risposta…';
     const streamMsg = lang === 'en' ? 'Receiving content…' : 'Ricezione contenuto…';
 
@@ -309,10 +601,15 @@ export function initToolhouseChat(root: HTMLElement | null): void {
     let accumulated = '';
 
     try {
+      activeRequest = new AbortController();
       const response = await fetch('/api/toolhouse-chat', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-devisia-chat-consent-id': consentId || '',
+        },
         body: JSON.stringify({ message: text, ...(runId ? { runId } : {}) }),
+        signal: activeRequest.signal,
       });
 
       const nextRun = response.headers.get('x-toolhouse-run-id');
@@ -337,6 +634,7 @@ export function initToolhouseChat(root: HTMLElement | null): void {
       setStatus(streamMsg);
 
       let firstChunk = true;
+      assistantBody.setAttribute('aria-live', 'polite');
       await consumeAssistantStream(response, (delta) => {
         if (firstChunk) {
           setStatus('');
@@ -348,8 +646,6 @@ export function initToolhouseChat(root: HTMLElement | null): void {
         scrollThread();
       });
 
-      assistantBody.setAttribute('aria-live', 'polite');
-
       if (!accumulated.trim()) {
         loading.remove();
         setStatus('');
@@ -357,11 +653,15 @@ export function initToolhouseChat(root: HTMLElement | null): void {
         assistantBody.innerHTML = `<p class="ds-chat-muted">${escapeText(emptyMsg)}</p>`;
       }
     } catch (e) {
+      if (e instanceof DOMException && e.name === 'AbortError' && !consentAccepted) {
+        return;
+      }
       loading.remove();
       const msg = e instanceof Error ? e.message : 'Request failed';
       assistantBody.innerHTML = `<p class="ds-chat-error">${escapeText(msg)}</p>`;
       setStatus('');
     } finally {
+      activeRequest = null;
       setBusy(false);
       setStatus('');
       scrollThread();

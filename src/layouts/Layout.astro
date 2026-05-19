@@ -96,7 +96,7 @@ const languageSwitchHref = customLanguageSwitchHref || defaultLanguageSwitch();
 const languageSwitchAria = lang === 'en' ? 'Switch to Italian' : "Passa all'inglese";
 
 const currentPath = normalizePath(pathName);
-const showFloatingChat = currentPath !== '/chat';
+const showFloatingChat = currentPath !== '/chat' && currentPath !== '/en/chat';
 
 const isNavItemActive = (itemPath: string) => {
   const p = currentPath;

@@ -24,6 +24,20 @@ const copy =
         placeholder: 'Describe your question…',
         hint: 'Enter to send • Shift+Enter newline',
         send: 'Send',
+        welcomeTitle: 'Before you start',
+        welcomeLead:
+          'This assistant is an AI system. It can help you navigate Devisia public content, but it does not replace legal, technical or compliance advice.',
+        scopeTitle: 'You can ask about',
+        scopeItems: ['Services, method and public case studies', 'Governed AI, software and operational compliance', 'Contacts, next steps and published site content'],
+        limitTitle: 'Do not send',
+        limitItems: ['Passwords, credentials or API keys', 'Confidential documents or personal data', 'Requests outside Devisia public content'],
+        privacyLabel:
+          'I have read the Privacy Policy and consent to the processing of the data I enter in the chat, including processing through Toolhouse, to receive a response.',
+        privacyLink: 'Privacy Policy',
+        privacyNewTab: 'opens in a new tab',
+        consentCta: 'Accept and start',
+        consentWithdraw: 'Withdraw consent',
+        consentRequired: 'Accept the privacy notice to use the chat.',
       }
     : {
         pageTitle: 'Assistente Devisia',
@@ -41,26 +55,92 @@ const copy =
         placeholder: 'Scrivi una domanda…',
         hint: 'Invio invia • Shift+Invio nuova riga',
         send: 'Invia',
+        welcomeTitle: 'Prima di iniziare',
+        welcomeLead:
+          'Questo assistente è un sistema di intelligenza artificiale. Può aiutarti a consultare i contenuti pubblici Devisia, ma non sostituisce consulenza legale, tecnica o compliance.',
+        scopeTitle: 'Puoi chiedere',
+        scopeItems: ['Servizi, metodo e casi pubblicati', 'AI governata, software e compliance operativa', 'Contatti, prossimi passi e contenuti pubblici del sito'],
+        limitTitle: 'Non inviare',
+        limitItems: ['Password, credenziali o chiavi API', 'Documenti riservati o dati personali', 'Richieste fuori dal perimetro pubblico Devisia'],
+        privacyLabel:
+          'Ho letto l’informativa privacy e acconsento al trattamento dei dati che inserisco nella chat, incluso il trattamento tramite Toolhouse, per ricevere una risposta.',
+        privacyLink: 'Privacy Policy',
+        privacyNewTab: 'si apre in una nuova scheda',
+        consentCta: 'Accetta e inizia',
+        consentWithdraw: 'Revoca consenso',
+        consentRequired: 'Accetta l’informativa privacy per usare la chat.',
       };
 
 const panelId = standalonePage ? 'toolhouse-chat-panel-page' : 'toolhouse-chat-panel-widget';
 const contactHref = lang === 'en' ? '/en/contact' : '/contatti';
+const privacyHref = lang === 'en' ? '/en/privacy' : '/privacy';
+const chatSurface = standalonePage ? 'standalone' : 'widget';
+const consentTextVersion = 'chat-consent-v1';
+const aiDisclosureVersion = 'ai-disclosure-v1';
 ---
 
 {
   standalonePage ? (
-    <div class="ds-chat" data-toolhouse-chat data-chat-layout="page">
+    <div
+      class="ds-chat"
+      data-toolhouse-chat
+      data-chat-layout="page"
+      data-chat-surface={chatSurface}
+      data-consent-required={copy.consentRequired}
+      data-consent-text-version={consentTextVersion}
+      data-ai-disclosure-version={aiDisclosureVersion}
+      data-privacy-path={privacyHref}
+    >
       <header class="ds-chat-header ds-container">
         <h1 class="ds-chat-title">{copy.pageTitle}</h1>
         <p class="ds-chat-lede">{copy.pageLede}</p>
       </header>
       <section class="ds-chat-main" aria-label={copy.chatWindowLabel}>
         <div class="ds-chat-thread-wrap ds-container">
+          <section
+            class="ds-chat-consent"
+            data-toolhouse-chat-consent
+            aria-labelledby="toolhouse-chat-consent-page-title"
+            tabindex="-1"
+          >
+            <p class="ds-chat-consent-kicker">{copy.widgetEyebrow}</p>
+            <h2 id="toolhouse-chat-consent-page-title" class="ds-chat-consent-title">{copy.welcomeTitle}</h2>
+            <p class="ds-chat-consent-lead">{copy.welcomeLead}</p>
+            <div class="ds-chat-consent-grid">
+              <div>
+                <h3>{copy.scopeTitle}</h3>
+                <ul>
+                  {copy.scopeItems.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+              <div>
+                <h3>{copy.limitTitle}</h3>
+                <ul>
+                  {copy.limitItems.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            </div>
+            <div class="ds-chat-consent-controls">
+              <label class="ds-chat-consent-check">
+                <input type="checkbox" data-toolhouse-chat-consent-checkbox />
+                <span>
+                  {copy.privacyLabel}{' '}
+                  <a href={privacyHref} target="_blank" rel="noopener noreferrer">
+                    {copy.privacyLink}
+                    <span class="visually-hidden"> ({copy.privacyNewTab})</span>
+                  </a>
+                </span>
+              </label>
+              <button type="button" class="ds-btn ds-chat-consent-accept" data-variant="primary" data-toolhouse-chat-consent-accept disabled>
+                {copy.consentCta}
+              </button>
+            </div>
+          </section>
           <div class="ds-chat-thread" data-toolhouse-chat-thread role="log" aria-label={copy.conversationLabel} />
         </div>
         <p class="ds-chat-status ds-container" data-toolhouse-chat-status hidden aria-live="polite" />
         <div class="ds-chat-composer ds-container">
-          <form class="ds-chat-form" data-toolhouse-chat-form>
+          <form class="ds-chat-form" data-toolhouse-chat-form novalidate>
             <label class="visually-hidden" for="toolhouse-chat-input">
               {copy.messageLabel}
             </label>
@@ -73,11 +153,15 @@ const contactHref = lang === 'en' ? '/en/contact' : '/contatti';
               maxlength={16000}
               placeholder={copy.placeholder}
               autocomplete="off"
+              disabled
               required
             />
             <div class="ds-chat-actions">
               <span class="ds-chat-hint">{copy.hint}</span>
-              <button type="submit" class="ds-btn ds-chat-send" data-variant="primary" data-toolhouse-chat-send>
+              <button type="button" class="ds-chat-consent-withdraw" data-toolhouse-chat-consent-withdraw hidden>
+                {copy.consentWithdraw}
+              </button>
+              <button type="submit" class="ds-btn ds-chat-send" data-variant="primary" data-toolhouse-chat-send disabled>
                 {copy.send}
               </button>
             </div>
@@ -86,7 +170,16 @@ const contactHref = lang === 'en' ? '/en/contact' : '/contatti';
       </section>
     </div>
   ) : (
-    <div class="ds-chat-widget-shell" data-toolhouse-chat data-chat-layout="widget">
+    <div
+      class="ds-chat-widget-shell"
+      data-toolhouse-chat
+      data-chat-layout="widget"
+      data-chat-surface={chatSurface}
+      data-consent-required={copy.consentRequired}
+      data-consent-text-version={consentTextVersion}
+      data-ai-disclosure-version={aiDisclosureVersion}
+      data-privacy-path={privacyHref}
+    >
       <div class="ds-chat-widget-backdrop" data-toolhouse-chat-backdrop hidden aria-hidden="true" />
       <div
         id={panelId}
@@ -127,6 +220,45 @@ const contactHref = lang === 'en' ? '/en/contact' : '/contatti';
         </div>
 
         <div class="ds-chat-widget-thread-wrap">
+          <section
+            class="ds-chat-consent ds-chat-widget-consent"
+            data-toolhouse-chat-consent
+            aria-labelledby="toolhouse-chat-consent-widget-title"
+            tabindex="-1"
+          >
+            <p class="ds-chat-consent-kicker">{copy.statusLine}</p>
+            <h3 id="toolhouse-chat-consent-widget-title" class="ds-chat-consent-title">{copy.welcomeTitle}</h3>
+            <p class="ds-chat-consent-lead">{copy.welcomeLead}</p>
+            <div class="ds-chat-consent-grid">
+              <div>
+                <h4>{copy.scopeTitle}</h4>
+                <ul>
+                  {copy.scopeItems.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+              <div>
+                <h4>{copy.limitTitle}</h4>
+                <ul>
+                  {copy.limitItems.map((item) => <li>{item}</li>)}
+                </ul>
+              </div>
+            </div>
+            <div class="ds-chat-consent-controls">
+              <label class="ds-chat-consent-check">
+                <input type="checkbox" data-toolhouse-chat-consent-checkbox />
+                <span>
+                  {copy.privacyLabel}{' '}
+                  <a href={privacyHref} target="_blank" rel="noopener noreferrer">
+                    {copy.privacyLink}
+                    <span class="visually-hidden"> ({copy.privacyNewTab})</span>
+                  </a>
+                </span>
+              </label>
+              <button type="button" class="ds-btn ds-chat-consent-accept" data-variant="primary" data-toolhouse-chat-consent-accept disabled>
+                {copy.consentCta}
+              </button>
+            </div>
+          </section>
           <div
             class="ds-chat-thread ds-chat-widget-thread"
             data-toolhouse-chat-thread
@@ -149,14 +281,19 @@ const contactHref = lang === 'en' ? '/en/contact' : '/contatti';
                 maxlength={16000}
                 placeholder={copy.placeholder}
                 autocomplete="off"
+                disabled
               />
               <div class="ds-chat-widget-actions">
                 <span class="ds-chat-widget-hint">{copy.hint}</span>
+                <button type="button" class="ds-chat-consent-withdraw" data-toolhouse-chat-consent-withdraw hidden>
+                  {copy.consentWithdraw}
+                </button>
                 <button
                   type="submit"
                   class="ds-btn ds-chat-widget-send"
                   data-variant="primary"
                   data-toolhouse-chat-send
+                  disabled
                 >
                   {copy.send}
                 </button>
@@ -243,6 +380,150 @@ const contactHref = lang === 'en' ? '/en/contact' : '/contatti';
     max-width: 52rem;
     margin-inline: auto;
     width: 100%;
+  }
+
+  .ds-chat-consent[hidden],
+  .ds-chat-thread[hidden] {
+    display: none;
+  }
+
+  .ds-chat-consent {
+    border: var(--ds-border-1) solid color-mix(in oklch, var(--ds-color-accent-2) 28%, var(--ds-color-border));
+    border-radius: var(--ds-radius-4);
+    background:
+      radial-gradient(120% 80% at 0% -20%, color-mix(in oklch, var(--ds-color-accent) 15%, transparent), transparent 55%),
+      linear-gradient(160deg, color-mix(in oklch, var(--ds-color-surface-2) 88%, transparent), var(--ds-color-bg));
+    box-shadow: var(--ds-shadow-1);
+    padding: clamp(1.1rem, 3vw, 1.6rem);
+    color: var(--ds-color-text);
+  }
+
+  .ds-chat-consent-kicker {
+    margin: 0 0 var(--ds-space-2);
+    font-family: var(--ds-font-ui);
+    font-size: var(--ds-text-xs);
+    font-weight: 850;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+    color: color-mix(in oklch, var(--ds-color-accent) 86%, var(--ds-color-text));
+  }
+
+  .ds-chat-consent-title {
+    margin: 0;
+    font-family: var(--ds-font-heading);
+    font-size: clamp(1.35rem, 1.16rem + 0.72vw, 1.72rem);
+    line-height: var(--ds-leading-tight);
+    letter-spacing: var(--ds-tracking-tight);
+  }
+
+  .ds-chat-consent-lead {
+    margin: var(--ds-space-3) 0 0;
+    max-width: 66ch;
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
+    color: var(--ds-color-text-muted);
+  }
+
+  .ds-chat-consent-grid {
+    display: grid;
+    gap: var(--ds-space-3);
+    margin-top: var(--ds-space-4);
+  }
+
+  @media (min-width: 42rem) {
+    .ds-chat-consent-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .ds-chat-consent-grid h3,
+  .ds-chat-consent-grid h4 {
+    margin: 0 0 var(--ds-space-2);
+    font-family: var(--ds-font-heading);
+    font-size: var(--ds-text-md);
+    line-height: var(--ds-leading-tight);
+  }
+
+  .ds-chat-consent-grid ul {
+    margin: 0;
+    padding-left: 1.15rem;
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .ds-chat-consent-controls {
+    display: grid;
+    gap: var(--ds-space-3);
+    margin-top: var(--ds-space-4);
+    padding-top: var(--ds-space-4);
+    border-top: var(--ds-border-1) solid color-mix(in oklch, var(--ds-color-border) 82%, transparent);
+  }
+
+  .ds-chat-consent-check {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: var(--ds-space-2);
+    align-items: start;
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
+    color: var(--ds-color-text-muted);
+  }
+
+  .ds-chat-consent-check input {
+    margin-top: 0.28rem;
+    width: 1.05rem;
+    height: 1.05rem;
+    accent-color: var(--ds-color-accent);
+  }
+
+  .ds-chat-consent-check input:focus-visible {
+    outline: none;
+    box-shadow: var(--ds-focus-ring);
+  }
+
+  .ds-chat-consent-check a {
+    color: var(--ds-color-link);
+    font-weight: 750;
+    text-decoration: underline;
+    text-underline-offset: 0.16em;
+  }
+
+  .ds-chat-consent-accept.ds-btn {
+    justify-self: start;
+    font-family: var(--ds-font-ui);
+    border-radius: var(--ds-radius-round);
+    min-height: 2.75rem;
+    padding-inline: var(--ds-space-5);
+    font-weight: 800 !important;
+  }
+
+  .ds-chat-consent-withdraw {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    font-family: var(--ds-font-ui);
+    font-size: var(--ds-text-xs);
+    font-weight: 750;
+    color: var(--ds-color-text-muted);
+    text-decoration: underline;
+    text-underline-offset: 0.16em;
+    cursor: pointer;
+  }
+
+  .ds-chat-consent-withdraw:hover {
+    color: var(--ds-color-link);
+  }
+
+  .ds-chat-consent-withdraw:focus-visible {
+    outline: none;
+    border-radius: var(--ds-radius-1);
+    box-shadow: var(--ds-focus-ring);
+  }
+
+  .ds-chat-consent-withdraw[hidden] {
+    display: none;
   }
 
   /** Widget shell */
@@ -479,6 +760,38 @@ const contactHref = lang === 'en' ? '/en/contact' : '/contatti';
     gap: var(--ds-space-2);
     box-sizing: border-box;
     padding-bottom: max(var(--ds-space-3), env(safe-area-inset-bottom));
+  }
+
+  .ds-chat-widget-consent {
+    flex: 1;
+    overflow: auto;
+    border-radius: var(--ds-radius-3);
+    padding: var(--ds-space-4);
+  }
+
+  .ds-chat-widget-consent .ds-chat-consent-title {
+    font-size: clamp(1.14rem, 1.02rem + 0.48vw, 1.34rem);
+  }
+
+  .ds-chat-widget-consent .ds-chat-consent-lead,
+  .ds-chat-widget-consent .ds-chat-consent-grid ul,
+  .ds-chat-widget-consent .ds-chat-consent-check {
+    font-size: clamp(0.88rem, 0.84rem + 0.12vw, 0.94rem);
+    line-height: 1.5;
+  }
+
+  .ds-chat-widget-consent .ds-chat-consent-grid {
+    gap: var(--ds-space-2);
+    margin-top: var(--ds-space-3);
+  }
+
+  .ds-chat-widget-consent .ds-chat-consent-grid h4 {
+    font-size: var(--ds-text-sm);
+  }
+
+  .ds-chat-widget-consent .ds-chat-consent-controls {
+    margin-top: var(--ds-space-3);
+    padding-top: var(--ds-space-3);
   }
 
   .ds-chat-widget-thread {
