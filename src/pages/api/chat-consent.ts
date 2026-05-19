@@ -1,5 +1,6 @@
 import { getDatabase } from '@netlify/database';
 import type { APIRoute } from 'astro';
+import { isLocalChatDevRequest } from '../../lib/chatLocalDev';
 
 export const prerender = false;
 
@@ -90,6 +91,10 @@ export const POST: APIRoute = async ({ request }) => {
 
   if (consentTextVersion !== CONSENT_TEXT_VERSION || aiDisclosureVersion !== AI_DISCLOSURE_VERSION) {
     return Response.json({ error: 'Invalid consent version' }, { status: 400 });
+  }
+
+  if (isLocalChatDevRequest(request)) {
+    return Response.json({ ok: true });
   }
 
   try {

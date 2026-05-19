@@ -1,5 +1,6 @@
 import { getDatabase } from '@netlify/database';
 import type { APIRoute } from 'astro';
+import { isLocalChatDevRequest } from '../../lib/chatLocalDev';
 
 export const prerender = false;
 
@@ -81,13 +82,15 @@ export const POST: APIRoute = async ({ request }) => {
     return Response.json({ error: 'Chat consent is required' }, { status: 403 });
   }
 
-  try {
-    if (!(await hasActiveConsent(consentId))) {
-      return Response.json({ error: 'Chat consent is not active' }, { status: 403 });
+  if (!isLocalChatDevRequest(request)) {
+    try {
+      if (!(await hasActiveConsent(consentId))) {
+        return Response.json({ error: 'Chat consent is not active' }, { status: 403 });
+      }
+    } catch (error) {
+      console.error('Failed to verify chat consent', error);
+      return Response.json({ error: 'Unable to verify chat consent' }, { status: 503 });
     }
-  } catch (error) {
-    console.error('Failed to verify chat consent', error);
-    return Response.json({ error: 'Unable to verify chat consent' }, { status: 503 });
   }
 
   let body: unknown;
