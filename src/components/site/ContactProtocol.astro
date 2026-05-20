@@ -1,4 +1,6 @@
 ---
+import ContactForm from './ContactForm.astro';
+
 interface Copy {
   ariaLabel: string;
   eyebrow: string;
@@ -8,9 +10,6 @@ interface Copy {
   mark: string;
   successTitle: string;
   successText: string;
-  formEyebrow: string;
-  formTitle: string;
-  formText: string;
   protocolTitle: string;
   protocolSteps: Array<{
     code: string;
@@ -25,22 +24,8 @@ interface Copy {
   briefingItems: string[];
   privacyTitle: string;
   privacyText: string;
-  privacyLink: string;
   checklistText: string;
   checklistLink: string;
-  fields: {
-    name: string;
-    namePlaceholder: string;
-    email: string;
-    emailPlaceholder: string;
-    subject: string;
-    subjectPlaceholder: string;
-    message: string;
-    messagePlaceholder: string;
-    consent: string;
-    honeypot: string;
-    submit: string;
-  };
 }
 
 interface Props {
@@ -62,10 +47,6 @@ const copy: Copy = isEnglish
       successTitle: 'Message received.',
       successText:
         'Thank you. We will review your request and reply within 24 business hours with focused questions or a clear next step.',
-      formEyebrow: 'Request',
-      formTitle: 'Send us the context',
-      formText:
-        'You do not need a complete brief. Goal, current situation and what needs to change are enough to start.',
       protocolTitle: 'How we work after the first contact',
       protocolSteps: [
         {
@@ -99,24 +80,8 @@ const copy: Copy = isEnglish
       privacyTitle: 'Data and privacy',
       privacyText:
         'Please avoid sensitive data or confidential documents in the form. If examples are useful, we can start from simplified cases and agree how to handle information and access.',
-      privacyLink: '/en/privacy',
       checklistText: 'Planning an AI project? Use the AI Risk & Privacy Checklist',
       checklistLink: '/en/tools/ai-risk-checklist',
-      fields: {
-        name: 'Name *',
-        namePlaceholder: 'e.g., Alex',
-        email: 'Email *',
-        emailPlaceholder: 'you@company.com',
-        subject: 'Subject (optional)',
-        subjectPlaceholder: 'New project / Improve a process / AI at work',
-        message: 'Message *',
-        messagePlaceholder:
-          'A few lines are enough: what is happening today, what you want to change and which constraints matter.',
-        consent:
-          'I agree to the use of my details only to manage this request and reply to me. Details:',
-        honeypot: 'Website',
-        submit: 'Send request',
-      },
     }
   : {
       ariaLabel: 'Contatta Devisia',
@@ -128,10 +93,6 @@ const copy: Copy = isEnglish
       successTitle: 'Messaggio ricevuto.',
       successText:
         'Grazie. Leggiamo la richiesta e ti rispondiamo entro 24 ore lavorative con domande mirate o un primo passo chiaro.',
-      formEyebrow: 'Richiesta',
-      formTitle: 'Scrivici il contesto',
-      formText:
-        'Non serve un documento completo: bastano obiettivo, situazione attuale e ciò che deve cambiare.',
       protocolTitle: 'Come lavoriamo dopo il primo contatto',
       protocolSteps: [
         {
@@ -165,24 +126,8 @@ const copy: Copy = isEnglish
       privacyTitle: 'Dati e privacy',
       privacyText:
         'Nel form evita dati sensibili o documenti riservati. Se servono esempi, possiamo partire da casi semplificati e definire insieme come trattare informazioni e accessi.',
-      privacyLink: '/privacy',
       checklistText: 'Hai un progetto AI? Consulta la checklist rischi e privacy',
       checklistLink: '/tools/ai-risk-checklist',
-      fields: {
-        name: 'Nome *',
-        namePlaceholder: 'Es. Marco',
-        email: 'Email *',
-        emailPlaceholder: 'nome@azienda.com',
-        subject: 'Oggetto (facoltativo)',
-        subjectPlaceholder: 'Nuovo progetto / Processo da migliorare / AI in azienda',
-        message: 'Messaggio *',
-        messagePlaceholder:
-          'In poche righe: cosa succede oggi, cosa vorresti cambiare e quali vincoli non possiamo ignorare.',
-        consent:
-          'Autorizzo l’uso dei miei dati solo per gestire questa richiesta e ricevere una risposta. Dettagli:',
-        honeypot: 'Sito web',
-        submit: 'Invia richiesta',
-      },
     };
 ---
 
@@ -236,104 +181,12 @@ const copy: Copy = isEnglish
 
   <section class="contact-workbench" aria-labelledby="contact-form-title">
     <section class="contact-workbench__form">
-      <section class="contact-form-heading">
-        <p>{copy.formEyebrow}</p>
-        <h2 id="contact-form-title">{copy.formTitle}</h2>
-        <p>{copy.formText}</p>
-      </section>
-
-      <form
-        name="contact"
-        method="POST"
-        data-netlify="true"
-        netlify-honeypot="bot-field"
-        action="/.netlify/functions/contact-email"
-        class="contact-form"
-      >
-        <input type="hidden" name="form-name" value="contact" />
-        <p class="hidden" aria-hidden="true">
-          <label>
-            {copy.fields.honeypot}
-            <input type="text" name="bot-field" tabindex="-1" autocomplete="off" />
-          </label>
-        </p>
-        <input type="hidden" name="lang" value={lang} />
-
-        <section class="form-grid">
-          <section class="form-group">
-            <label for="name" class="form-label">{copy.fields.name}</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              required
-              maxlength="120"
-              autocomplete="name"
-              class="form-input"
-              placeholder={copy.fields.namePlaceholder}
-            />
-          </section>
-
-          <section class="form-group">
-            <label for="email" class="form-label">{copy.fields.email}</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              required
-              maxlength="254"
-              autocomplete="email"
-              class="form-input"
-              placeholder={copy.fields.emailPlaceholder}
-            />
-          </section>
-        </section>
-
-        <section class="form-group">
-          <label for="subject" class="form-label">{copy.fields.subject}</label>
-          <input
-            type="text"
-            id="subject"
-            name="subject"
-            maxlength="200"
-            class="form-input"
-            placeholder={copy.fields.subjectPlaceholder}
-          />
-        </section>
-
-        <section class="form-group">
-          <label for="message" class="form-label">{copy.fields.message}</label>
-          <textarea
-            id="message"
-            name="message"
-            required
-            maxlength="4000"
-            rows="7"
-            class="form-input"
-            placeholder={copy.fields.messagePlaceholder}></textarea>
-        </section>
-
-        <section class="form-group form-group--consent">
-          <label class="consent-label" for="privacy_consent">
-            <input
-              id="privacy_consent"
-              name="privacy_consent"
-              type="checkbox"
-              value="true"
-              required
-              class="consent-checkbox"
-            />
-            <span class="consent-text">
-              {copy.fields.consent}
-              <a class="consent-link" href={copy.privacyLink}
-                >{isEnglish ? 'Privacy & Cookie Policy' : 'Informativa Privacy & Cookie'}</a
-              >
-            </span>
-          </label>
-        </section>
-
-        <button type="submit" class="form-submit">{copy.fields.submit}</button>
-      </form>
+      <ContactForm
+        lang={lang}
+        headingId="contact-form-title"
+        source={isEnglish ? 'contact-en' : 'contact-it'}
+        returnTo={isEnglish ? '/en/contact' : '/contatti'}
+      />
     </section>
 
     <aside
@@ -432,8 +285,7 @@ const copy: Copy = isEnglish
     z-index: 1;
   }
 
-  .contact-hero__eyebrow,
-  .contact-form-heading p {
+  .contact-hero__eyebrow {
     margin: 0 0 var(--ds-space-3);
     color: var(--ds-color-accent);
     font-size: var(--ds-text-xs);
@@ -626,162 +478,12 @@ const copy: Copy = isEnglish
     background: var(--ds-color-accent);
   }
 
-  .contact-form-heading {
-    display: grid;
-    gap: var(--ds-space-3);
-    margin-bottom: var(--ds-space-6);
-  }
-
-  .contact-form-heading h2 {
-    margin: 0;
-    font-family: var(--ds-font-display);
-    font-size: clamp(2.2rem, 1.4rem + 3vw, 4.2rem);
-    line-height: 0.95;
-    letter-spacing: -0.035em;
-    word-spacing: 0.04em;
-  }
-
-  .contact-form-heading p:last-child {
-    max-width: 52ch;
-    margin: 0;
-    color: var(--ds-color-text-muted);
-    font-size: var(--ds-text-lg);
-    line-height: var(--ds-leading-relaxed);
-  }
-
-  .contact-form {
-    display: grid;
-    gap: var(--ds-space-5);
-  }
-
-  .form-grid {
-    display: grid;
-    gap: var(--ds-space-5);
-  }
-
-  @media (min-width: 42rem) {
-    .form-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  .hidden {
-    position: absolute;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-  }
-
-  .form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.62rem;
-  }
-
-  .form-group--consent {
-    gap: 0;
-  }
-
-  .form-label {
-    color: var(--ds-color-text);
-    font-size: var(--ds-text-xs);
-    font-weight: 800;
-    letter-spacing: var(--ds-tracking-caps);
-    text-transform: uppercase;
-  }
-
-  .form-input {
-    width: 100%;
-    padding: 0.95rem 1rem;
-    border: 1px solid color-mix(in oklch, var(--ds-color-border) 80%, var(--ds-color-text));
-    border-radius: 0;
-    background-color: color-mix(in oklch, var(--ds-color-bg) 72%, var(--ds-color-surface));
-    color: var(--ds-color-text);
-    font: inherit;
-    font-size: var(--ds-text-md);
-    transition:
-      border-color 0.2s ease,
-      box-shadow 0.2s ease,
-      background-color 0.2s ease;
-  }
-
-  .form-input::placeholder {
-    color: color-mix(in oklch, var(--ds-color-text-muted) 78%, transparent);
-    opacity: 1;
-  }
-
-  .form-input:focus {
-    outline: none;
-    border-color: var(--ds-color-accent);
-    background-color: var(--ds-color-surface);
-    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ds-color-accent) 24%, transparent);
-  }
-
-  textarea.form-input {
-    min-height: 12rem;
-    resize: vertical;
-  }
-
-  .consent-label {
-    display: flex;
-    gap: 0.78rem;
-    align-items: flex-start;
-    color: var(--ds-color-text-muted);
-    font-size: var(--ds-text-sm);
-    line-height: var(--ds-leading-relaxed);
-    cursor: pointer;
-  }
-
-  .consent-checkbox {
-    flex: 0 0 auto;
-    width: 1.15rem;
-    height: 1.15rem;
-    margin-top: 0.2rem;
-    accent-color: var(--ds-color-accent);
-  }
-
-  .consent-link,
   .contact-direct a,
   .contact-privacy a {
     color: var(--ds-color-accent);
     font-weight: 800;
     text-decoration: underline;
     text-underline-offset: 3px;
-  }
-
-  .form-submit {
-    justify-self: start;
-    min-width: min(100%, 16rem);
-    padding: 1rem 1.25rem;
-    border: 1px solid var(--ds-color-accent);
-    border-radius: 0;
-    background: var(--ds-color-accent);
-    color: color-mix(in oklch, white 96%, var(--ds-color-accent));
-    font: inherit;
-    font-size: var(--ds-text-sm);
-    font-weight: 900;
-    letter-spacing: var(--ds-tracking-caps);
-    text-transform: uppercase;
-    cursor: pointer;
-    transition:
-      transform 0.18s ease,
-      box-shadow 0.18s ease,
-      background-color 0.18s ease;
-  }
-
-  .form-submit:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 1rem 2rem color-mix(in oklch, var(--ds-color-accent) 22%, transparent);
-  }
-
-  .form-submit:focus-visible {
-    outline: none;
-    box-shadow: var(--ds-focus-ring);
-  }
-
-  .form-submit:active {
-    transform: translateY(0);
   }
 
   .contact-workbench__rail {
@@ -914,8 +616,5 @@ const copy: Copy = isEnglish
       min-height: 18rem;
     }
 
-    .form-submit {
-      width: 100%;
-    }
   }
 </style>

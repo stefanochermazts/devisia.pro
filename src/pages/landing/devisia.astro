@@ -1,0 +1,997 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Button from '../../components/ui/Button.astro';
+import ContactForm from '../../components/site/ContactForm.astro';
+import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
+
+const title = 'Devisia | Software, AI and Automation Systems';
+const description =
+  'Devisia designs and develops web applications, backend systems, integrations, automations and governable AI solutions for companies.';
+
+const services = [
+  {
+    label: '01',
+    title: 'Sviluppo software su misura',
+    text: 'Applicazioni web, backend e piattaforme interne per aziende che devono rendere più stabile un processo, ridurre lavoro manuale o sostituire strumenti fragili.',
+  },
+  {
+    label: '02',
+    title: 'Sistemi AI e automazioni',
+    text: 'Assistenti AI, chatbot, workflow e integrazioni costruiti per aiutare attività precise: ricerca, sintesi, supporto operativo, controllo e passaggi ripetibili.',
+  },
+  {
+    label: '03',
+    title: 'Governance e compliance by design',
+    text: 'Architetture pensate fin dall’inizio con tracciabilità, controllo degli accessi, privacy, auditabilità e responsabilità operative leggibili.',
+  },
+];
+
+const capabilities = [
+  'Sviluppo backend Laravel',
+  'Frontend React e Next.js',
+  'Vanilla JavaScript quando la semplicità è la scelta giusta',
+  'Integrazioni API',
+  'Workflow SharePoint e Power Automate',
+  'Integrazione chatbot AI',
+  'Flussi documentali',
+  'Piattaforme interne aziendali',
+  'AI governance e sistemi collegati ad Audit Ready',
+];
+
+const methodSteps = [
+  'Capire dove il processo perde tempo, dati o controllo.',
+  'Definire architettura, flussi dati e responsabilità prima dello sviluppo.',
+  'Costruire il sistema in livelli chiari, verificabili e manutenibili.',
+  'Integrare l’AI solo dove migliora una decisione o un’attività concreta.',
+  'Lasciare visibili privacy, governance e controllo operativo anche dopo il rilascio.',
+];
+
+const qualificationSignals = [
+  'Hai un processo importante gestito ancora con fogli, email o passaggi manuali.',
+  'Vuoi integrare AI o automazioni senza perdere controllo su dati, ruoli e responsabilità.',
+  'Devi collegare sistemi esistenti e costruire qualcosa che resti manutenibile nel tempo.',
+];
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const isSuccess = Astro.url.searchParams.get('success') === 'true';
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/' },
+    { name: 'Devisia', url: '/landing/devisia' },
+  ],
+});
+---
+
+<Layout
+  title="Software, AI e automazioni"
+  documentTitle={title}
+  description={description}
+  canonical="/landing/devisia"
+  structuredData={[breadcrumbs]}
+  languageSwitchHref="/en"
+  alternatePaths={{ it: '/landing/devisia', xDefault: '/landing/devisia' }}
+  containMain={false}
+  minimalChrome
+>
+  <article class="ads-landing">
+    <section class="ads-hero" aria-labelledby="ads-hero-title">
+      <div class="ds-container ads-hero__grid">
+        <div class="ads-hero__copy">
+          <p class="ads-kicker">Devisia per aziende</p>
+          <h1 id="ads-hero-title">Quando il software deve reggere il lavoro reale.</h1>
+          <p class="ads-hero__lede">
+            Devisia progetta e sviluppa applicazioni web, sistemi backend, integrazioni, automazioni
+            e soluzioni AI per aziende che devono trasformare processi complessi in sistemi
+            affidabili, governabili e sostenibili.
+          </p>
+          <section class="ads-hero__actions" aria-label="Azioni principali">
+            <Button href="#contatto" size="lg">Parliamo del tuo progetto</Button>
+            <p>
+              Raccontaci il contesto: capiremo se serve software su misura, AI, automazione o una
+              soluzione più semplice.
+            </p>
+          </section>
+          <ul class="ads-hero__signals" aria-label="Ambiti in cui Devisia può aiutare">
+            <li>Processi critici</li>
+            <li>Integrazioni tra sistemi</li>
+            <li>AI con controllo operativo</li>
+          </ul>
+        </div>
+
+        <div class="ads-hero__system" aria-hidden="true">
+          <span class="ads-hero__system-mark">SYS</span>
+          <span class="ads-hero__axis ads-hero__axis--a"></span>
+          <span class="ads-hero__axis ads-hero__axis--b"></span>
+          <div class="ads-hero__node ads-hero__node--process">
+            <span>Processo</span>
+            <strong>regole e ruoli</strong>
+          </div>
+          <div class="ads-hero__node ads-hero__node--data">
+            <span>Dati</span>
+            <strong>flussi e API</strong>
+          </div>
+          <div class="ads-hero__node ads-hero__node--ai">
+            <span>AI</span>
+            <strong>uso controllato</strong>
+          </div>
+          <div class="ads-hero__node ads-hero__node--proof">
+            <span>Prova</span>
+            <strong>log e audit</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ads-positioning ds-container" aria-labelledby="positioning-title">
+      <aside class="ads-positioning__stack" aria-labelledby="m365-stack-title">
+        <div class="ads-positioning__stack-top">
+          <p>Microsoft 365 come infrastruttura operativa</p>
+          <span aria-hidden="true">M365</span>
+        </div>
+        <h3 id="m365-stack-title">Processi, documenti e AI nello stesso perimetro</h3>
+        <p>
+          SharePoint, OneDrive, Power Automate e Copilot possono diventare più di strumenti separati:
+          una base controllabile per flussi documentali, approvazioni, conoscenza interna e attività
+          assistite dall’AI.
+        </p>
+        <div class="ads-positioning__flow" aria-label="Livelli operativi Microsoft 365">
+          <div>
+            <span>Documenti</span>
+            <strong>SharePoint + OneDrive</strong>
+          </div>
+          <div>
+            <span>Flussi</span>
+            <strong>Power Automate</strong>
+          </div>
+          <div>
+            <span>Assistenza</span>
+            <strong>Copilot e AI</strong>
+          </div>
+        </div>
+      </aside>
+      <div class="ads-positioning__copy">
+        <h2 id="positioning-title">Tecnologia costruita per decidere meglio, non solo per aggiungere strumenti</h2>
+        <p>
+          Molte aziende arrivano con strumenti già presenti, dati distribuiti e responsabilità poco
+          visibili. Il valore non sta nel creare un’altra interfaccia, ma nel progettare un sistema
+          che colleghi processo, dati e decisioni con criteri chiari. Devisia lavora su architettura,
+          integrazioni, automazione e AI con attenzione a affidabilità, privacy e continuità nel
+          tempo.
+        </p>
+        <p>
+          Quando l’azienda usa già Microsoft 365, partiamo da ciò che esiste: documenti in SharePoint
+          o OneDrive, approvazioni via Power Automate, dati da collegare via API e casi in cui Copilot
+          o un assistente AI possono aiutare senza perdere controllo su accessi, ruoli e tracciabilità.
+        </p>
+      </div>
+    </section>
+
+    <section class="ads-fit ds-container" aria-labelledby="fit-title">
+      <div class="ads-fit__intro">
+        <span aria-hidden="true">FIT</span>
+        <h2 id="fit-title">Quando ha senso parlarci</h2>
+      </div>
+      <ul class="ads-fit__list">
+        {qualificationSignals.map((signal) => <li>{signal}</li>)}
+      </ul>
+    </section>
+
+    <section class="ads-services" aria-labelledby="services-title">
+      <div class="ds-container">
+        <div class="ads-section-head">
+          <h2 id="services-title">Cosa possiamo costruire insieme</h2>
+          <p>
+            Interveniamo quando un progetto deve produrre un sistema usabile, integrato e
+            governabile. Non partiamo dalla tecnologia da mostrare, ma dal lavoro che deve migliorare.
+          </p>
+        </div>
+
+        <section class="ads-service-grid" aria-label="Servizi principali">
+          {
+            services.map((service) => (
+              <article class="ads-service">
+                <span>{service.label}</span>
+                <h3>{service.title}</h3>
+                <p>{service.text}</p>
+              </article>
+            ))
+          }
+        </section>
+      </div>
+    </section>
+
+    <section class="ads-capabilities ds-container" aria-labelledby="capabilities-title">
+      <div class="ads-section-head ads-section-head--split">
+        <h2 id="capabilities-title">Dove lavoriamo</h2>
+        <p>
+          Stack e ambiti scelti in base al problema. Laravel, React, Next.js, Microsoft 365, API e AI
+          hanno senso solo se rendono il sistema più chiaro, utile e controllabile.
+        </p>
+      </div>
+
+      <ul class="ads-capability-list">
+        {capabilities.map((capability) => <li>{capability}</li>)}
+      </ul>
+    </section>
+
+    <section class="ads-method" aria-labelledby="method-title">
+      <div class="ds-container ads-method__grid">
+        <div>
+          <p class="ads-method__mark" aria-hidden="true">01-05</p>
+          <h2 id="method-title">Come affrontiamo i progetti</h2>
+          <p>
+            Prima di stimare o sviluppare, mettiamo ordine nel problema. Questo riduce soluzioni
+            inutilmente complesse, rende più chiare le responsabilità e aiuta a costruire sistemi che
+            possono evolvere dopo il primo rilascio.
+          </p>
+        </div>
+
+        <ol class="ads-method__steps">
+          {
+            methodSteps.map((step, index) => (
+              <li>
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <p>{step}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </section>
+
+    <section id="contatto" class="ads-contact ds-container" aria-labelledby="contact-title">
+      <div class="ads-contact__intro">
+        <h2 id="contact-title">Raccontaci il processo che vuoi rendere più solido</h2>
+        <p>
+          Se stai valutando un progetto software, un’integrazione AI o un flusso di automazione,
+          inviaci il contesto essenziale: obiettivo, situazione attuale, strumenti coinvolti e vincoli
+          da rispettare. Ti risponderemo partendo dal problema, non da una soluzione preconfezionata.
+        </p>
+      </div>
+
+      <div class="ads-contact__form">
+        {
+          isSuccess && (
+            <div class="ads-contact__success" role="alert">
+              <h3>Messaggio ricevuto.</h3>
+              <p>Grazie. Leggiamo la richiesta e ti rispondiamo con domande mirate o un primo passo chiaro.</p>
+            </div>
+          )
+        }
+        <ContactForm
+          lang="it"
+          showHeading={false}
+          source="landing-devisia"
+          returnTo="/landing/devisia"
+        />
+      </div>
+    </section>
+  </article>
+</Layout>
+
+<style>
+  .ads-landing {
+    background:
+      linear-gradient(90deg, color-mix(in oklch, var(--ds-color-accent-2) 7%, transparent) 1px, transparent 1px),
+      var(--ds-color-bg);
+    background-size: clamp(3rem, 8vw, 5.5rem) clamp(3rem, 8vw, 5.5rem);
+  }
+
+  .ads-hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(5rem, 4rem + 7vw, 10rem);
+    background:
+      radial-gradient(circle at 82% 18%, color-mix(in oklch, var(--ds-color-accent) 28%, transparent), transparent 32%),
+      linear-gradient(118deg, transparent 0 56%, color-mix(in oklch, var(--ds-color-accent-2) 18%, transparent) 56% 59%, transparent 59%),
+      var(--ds-color-hero-tint);
+    color: color-mix(in oklch, white 94%, var(--ds-color-hero-tint));
+  }
+
+  .ads-hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, color-mix(in oklch, white 10%, transparent) 1px, transparent 1px),
+      linear-gradient(0deg, color-mix(in oklch, white 9%, transparent) 1px, transparent 1px);
+    background-size: clamp(3.5rem, 7vw, 6.5rem) clamp(3.5rem, 7vw, 6.5rem);
+    mask-image: linear-gradient(90deg, black, black 72%, transparent);
+    opacity: 0.5;
+  }
+
+  .ads-hero__grid {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: clamp(3rem, 7vw, 6rem);
+    align-items: center;
+  }
+
+  @media (min-width: 62rem) {
+    .ads-hero__grid {
+      grid-template-columns: minmax(0, 1.02fr) minmax(24rem, 0.88fr);
+    }
+  }
+
+  .ads-kicker {
+    margin: 0 0 var(--ds-space-4);
+    color: color-mix(in oklch, var(--ds-color-accent-2) 78%, white);
+    font-family: var(--ds-font-ui);
+    font-size: var(--ds-text-xs);
+    font-weight: 850;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .ads-hero h1 {
+    max-width: 13.5ch;
+    margin: 0;
+    color: color-mix(in oklch, white 96%, var(--ds-color-hero-tint));
+    font-family: var(--ds-font-display);
+    font-size: clamp(2.7rem, 1.2rem + 4.8vw, 5.9rem);
+    font-weight: 820;
+    letter-spacing: -0.052em;
+    line-height: 0.98;
+    text-wrap: balance;
+  }
+
+  .ads-hero__lede {
+    max-width: 60ch;
+    margin: var(--ds-space-6) 0 0;
+    color: color-mix(in oklch, white 84%, var(--ds-color-hero-tint));
+    font-size: clamp(1.08rem, 0.75vw + 1rem, 1.35rem);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .ads-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ds-space-4);
+    align-items: center;
+    margin-top: var(--ds-space-6);
+  }
+
+  .ads-hero__actions p {
+    max-width: 36ch;
+    margin: 0;
+    color: color-mix(in oklch, white 75%, var(--ds-color-hero-tint));
+    font-family: var(--ds-font-ui);
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .ads-hero__signals {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1px;
+    width: fit-content;
+    max-width: 100%;
+    margin: var(--ds-space-6) 0 0;
+    padding: 0;
+    border: 1px solid color-mix(in oklch, var(--ds-color-accent-2) 44%, transparent);
+    background: color-mix(in oklch, var(--ds-color-accent-2) 30%, transparent);
+    list-style: none;
+  }
+
+  .ads-hero__signals li {
+    margin: 0;
+    padding: 0.72rem 0.82rem;
+    background: color-mix(in oklch, var(--ds-color-hero-tint) 92%, black);
+    color: color-mix(in oklch, white 88%, var(--ds-color-hero-tint));
+    font-family: var(--ds-font-ui);
+    font-size: var(--ds-text-xs);
+    font-weight: 850;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .ads-hero__system {
+    position: relative;
+    min-height: clamp(24rem, 38vw, 34rem);
+    border: 1px solid color-mix(in oklch, white 16%, var(--ds-color-hero-tint));
+    background:
+      radial-gradient(circle at 26% 24%, color-mix(in oklch, var(--ds-color-accent-2) 36%, transparent), transparent 30%),
+      radial-gradient(circle at 76% 76%, color-mix(in oklch, var(--ds-color-accent) 26%, transparent), transparent 32%),
+      color-mix(in oklch, white 5%, var(--ds-color-hero-tint));
+    clip-path: polygon(0 6%, 100% 0, 96% 94%, 6% 100%);
+    overflow: hidden;
+  }
+
+  .ads-hero__system::before {
+    content: "";
+    position: absolute;
+    inset: 9%;
+    border: 1px dashed color-mix(in oklch, white 22%, transparent);
+    transform: skewY(-7deg);
+  }
+
+  .ads-hero__system-mark {
+    position: absolute;
+    right: -0.15em;
+    bottom: -0.18em;
+    color: color-mix(in oklch, white 10%, transparent);
+    font-family: var(--ds-font-display);
+    font-size: clamp(6rem, 14vw, 12rem);
+    font-weight: 850;
+    letter-spacing: -0.12em;
+    line-height: 0.8;
+  }
+
+  .ads-hero__axis {
+    position: absolute;
+    background: color-mix(in oklch, white 22%, transparent);
+  }
+
+  .ads-hero__axis--a {
+    left: 12%;
+    right: 12%;
+    top: 51%;
+    height: 1px;
+    transform: rotate(-14deg);
+  }
+
+  .ads-hero__axis--b {
+    top: 13%;
+    bottom: 13%;
+    left: 52%;
+    width: 1px;
+    transform: rotate(15deg);
+  }
+
+  .ads-hero__node {
+    position: absolute;
+    display: grid;
+    gap: var(--ds-space-1);
+    width: min(12rem, 42%);
+    padding: var(--ds-space-3);
+    border: 1px solid color-mix(in oklch, white 18%, var(--ds-color-hero-tint));
+    background: color-mix(in oklch, white 7%, var(--ds-color-hero-tint));
+    box-shadow: 0 22px 46px color-mix(in oklch, var(--ds-color-hero-tint) 62%, transparent);
+  }
+
+  .ads-hero__node span {
+    color: var(--ds-color-accent-2);
+    font-size: var(--ds-text-xs);
+    font-weight: 850;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .ads-hero__node strong {
+    color: color-mix(in oklch, white 92%, var(--ds-color-hero-tint));
+    font-family: var(--ds-font-display);
+    font-size: var(--ds-text-md);
+    line-height: var(--ds-leading-tight);
+  }
+
+  .ads-hero__node--process {
+    left: 8%;
+    top: 15%;
+  }
+
+  .ads-hero__node--data {
+    right: 9%;
+    top: 25%;
+  }
+
+  .ads-hero__node--ai {
+    left: 14%;
+    bottom: 18%;
+    border-color: color-mix(in oklch, var(--ds-color-accent) 45%, transparent);
+  }
+
+  .ads-hero__node--proof {
+    right: 11%;
+    bottom: 12%;
+    background: color-mix(in oklch, var(--ds-color-accent) 32%, var(--ds-color-hero-tint));
+  }
+
+  .ads-positioning,
+  .ads-capabilities,
+  .ads-contact {
+    padding-block: clamp(4rem, 7vw, 8rem);
+  }
+
+  .ads-positioning {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4.5rem);
+    align-items: start;
+  }
+
+  @media (min-width: 62rem) {
+    .ads-positioning {
+      grid-template-columns: minmax(18rem, 0.78fr) minmax(0, 1.22fr);
+    }
+  }
+
+  .ads-method__mark {
+    margin: 0;
+    color: color-mix(in oklch, var(--ds-color-text) 11%, transparent);
+    font-size: clamp(3.8rem, 11vw, 10rem);
+    font-weight: 850;
+    line-height: 0.72;
+    letter-spacing: -0.11em;
+    text-transform: uppercase;
+  }
+
+  .ads-positioning__stack {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    gap: var(--ds-space-5);
+    min-height: 100%;
+    padding: clamp(1.35rem, 3vw, 2.25rem);
+    border: 1px solid color-mix(in oklch, var(--ds-color-accent-2) 34%, var(--ds-color-border));
+    background:
+      linear-gradient(145deg, color-mix(in oklch, var(--ds-color-accent-2) 18%, transparent), transparent 46%),
+      radial-gradient(circle at 100% 0%, color-mix(in oklch, var(--ds-color-accent) 18%, transparent), transparent 34%),
+      color-mix(in oklch, var(--ds-color-surface) 94%, var(--ds-color-accent-2));
+  }
+
+  .ads-positioning__stack::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(90deg, color-mix(in oklch, var(--ds-color-accent-2) 12%, transparent) 1px, transparent 1px),
+      linear-gradient(0deg, color-mix(in oklch, var(--ds-color-text) 7%, transparent) 1px, transparent 1px);
+    background-size: 3.2rem 3.2rem;
+    opacity: 0.7;
+    pointer-events: none;
+  }
+
+  .ads-positioning__stack > * {
+    position: relative;
+  }
+
+  .ads-positioning__stack-top {
+    display: flex;
+    gap: var(--ds-space-4);
+    align-items: start;
+    justify-content: space-between;
+    min-width: 0;
+  }
+
+  .ads-positioning__stack-top p {
+    max-width: 24ch;
+    margin: 0;
+    color: color-mix(in oklch, var(--ds-color-accent-2) 84%, var(--ds-color-text));
+    font-family: var(--ds-font-ui);
+    font-size: var(--ds-text-xs);
+    font-weight: 850;
+    letter-spacing: var(--ds-tracking-caps);
+    line-height: var(--ds-leading-tight);
+    text-transform: uppercase;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  .ads-positioning__stack-top span {
+    flex: 0 1 auto;
+    min-width: 0;
+    color: color-mix(in oklch, var(--ds-color-text) 16%, transparent);
+    font-size: clamp(3.2rem, 7vw, 7rem);
+    font-weight: 850;
+    letter-spacing: -0.14em;
+    line-height: 0.72;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 42rem) {
+    .ads-positioning__stack-top {
+      align-items: center;
+    }
+
+    .ads-positioning__stack-top p {
+      max-width: 18rem;
+      font-size: clamp(0.72rem, 2.7vw, 0.82rem);
+      letter-spacing: 0.055em;
+    }
+
+    .ads-positioning__stack-top span {
+      font-size: clamp(3rem, 18vw, 4.4rem);
+      letter-spacing: -0.12em;
+      opacity: 0.72;
+    }
+  }
+
+  .ads-positioning__stack h3 {
+    max-width: 12ch;
+    margin: 0;
+    font-family: var(--ds-font-display);
+    font-size: clamp(1.9rem, 1.1rem + 2.55vw, 3.25rem);
+    line-height: var(--ds-leading-tight);
+    letter-spacing: var(--ds-tracking-tight);
+  }
+
+  .ads-positioning__stack > p:not(:first-child) {
+    margin: 0;
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .ads-positioning__flow {
+    display: grid;
+    gap: 1px;
+    margin-top: var(--ds-space-2);
+    border: 1px solid color-mix(in oklch, var(--ds-color-accent-2) 35%, var(--ds-color-border));
+    background: color-mix(in oklch, var(--ds-color-accent-2) 30%, var(--ds-color-border));
+  }
+
+  .ads-positioning__flow div {
+    display: grid;
+    gap: var(--ds-space-1);
+    padding: 0.85rem 0.95rem;
+    background: color-mix(in oklch, var(--ds-color-surface) 96%, var(--ds-color-accent-2));
+  }
+
+  .ads-positioning__flow span {
+    color: color-mix(in oklch, var(--ds-color-accent-2) 82%, var(--ds-color-text));
+    font-family: var(--ds-font-ui);
+    font-size: var(--ds-text-xs);
+    font-weight: 800;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .ads-positioning__flow strong {
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-md);
+    line-height: var(--ds-leading-tight);
+  }
+
+  .ads-positioning h2,
+  .ads-section-head h2,
+  .ads-method h2,
+  .ads-contact h2 {
+    margin: 0;
+    font-family: var(--ds-font-display);
+    font-size: var(--ds-text-3xl);
+    font-weight: 720;
+    line-height: var(--ds-leading-tight);
+    letter-spacing: var(--ds-tracking-tight);
+    text-wrap: balance;
+  }
+
+  .ads-positioning p,
+  .ads-section-head p,
+  .ads-method p,
+  .ads-contact__intro p {
+    max-width: 66ch;
+    margin: var(--ds-space-4) 0 0;
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-lg);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .ads-positioning__copy {
+    max-width: 66ch;
+  }
+
+  .ads-positioning__copy p + p {
+    margin-top: var(--ds-space-4);
+    font-size: var(--ds-text-md);
+  }
+
+  .ads-fit {
+    display: grid;
+    gap: clamp(1.25rem, 4vw, 3rem);
+    align-items: stretch;
+    padding-bottom: clamp(4rem, 7vw, 8rem);
+  }
+
+  @media (min-width: 62rem) {
+    .ads-fit {
+      grid-template-columns: minmax(14rem, 0.52fr) minmax(0, 1.48fr);
+    }
+  }
+
+  .ads-fit__intro {
+    display: grid;
+    align-content: space-between;
+    gap: var(--ds-space-5);
+    min-height: 13rem;
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid color-mix(in oklch, var(--ds-color-accent) 36%, var(--ds-color-border));
+    background:
+      linear-gradient(135deg, color-mix(in oklch, var(--ds-color-accent) 16%, transparent), transparent 46%),
+      var(--ds-color-surface);
+  }
+
+  .ads-fit__intro span {
+    color: color-mix(in oklch, var(--ds-color-text) 18%, transparent);
+    font-size: clamp(3.8rem, 9vw, 7.5rem);
+    font-weight: 850;
+    letter-spacing: -0.12em;
+    line-height: 0.74;
+  }
+
+  .ads-fit__intro h2 {
+    max-width: 12ch;
+    margin: 0;
+    font-family: var(--ds-font-display);
+    font-size: var(--ds-text-2xl);
+    line-height: var(--ds-leading-tight);
+    letter-spacing: var(--ds-tracking-tight);
+  }
+
+  .ads-fit__list {
+    display: grid;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--ds-color-border-strong);
+    background: var(--ds-color-border);
+    list-style: none;
+  }
+
+  .ads-fit__list li {
+    display: flex;
+    align-items: center;
+    min-height: 5.25rem;
+    margin: 0;
+    padding: clamp(1rem, 2.4vw, 1.35rem);
+    background: var(--ds-color-surface);
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-md);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .ads-services,
+  .ads-method {
+    padding-block: clamp(4rem, 7vw, 8rem);
+    border-block: 1px solid var(--ds-color-border);
+    background:
+      linear-gradient(90deg, color-mix(in oklch, var(--ds-color-text) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(0deg, color-mix(in oklch, var(--ds-color-text) 6%, transparent) 1px, transparent 1px),
+      var(--ds-color-surface-2);
+    background-size: clamp(3rem, 8vw, 5.5rem) clamp(3rem, 8vw, 5.5rem);
+  }
+
+  .ads-section-head {
+    display: grid;
+    gap: var(--ds-space-4);
+    align-items: end;
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+  }
+
+  @media (min-width: 62rem) {
+    .ads-section-head--split,
+    .ads-section-head {
+      grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+    }
+  }
+
+  .ads-section-head p {
+    margin: 0;
+  }
+
+  .ads-service-grid {
+    display: grid;
+    gap: clamp(0.9rem, 2vw, 1.2rem);
+  }
+
+  @media (min-width: 56rem) {
+    .ads-service-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
+    }
+  }
+
+  .ads-service {
+    display: grid;
+    align-content: start;
+    gap: var(--ds-space-4);
+    min-height: 19rem;
+    padding: clamp(1.35rem, 3vw, 2rem);
+    border: 1px solid var(--ds-color-border);
+    background:
+      radial-gradient(circle at 88% 18%, color-mix(in oklch, var(--ds-color-accent) 12%, transparent), transparent 30%),
+      var(--ds-color-surface);
+  }
+
+  .ads-service span {
+    color: var(--ds-color-accent);
+    font-family: var(--ds-font-ui);
+    font-size: var(--ds-text-xs);
+    font-weight: 850;
+    letter-spacing: var(--ds-tracking-caps);
+  }
+
+  .ads-service h3 {
+    max-width: 13ch;
+    margin: 0;
+    font-family: var(--ds-font-display);
+    font-size: clamp(1.45rem, 2.3vw, 2rem);
+    line-height: var(--ds-leading-tight);
+  }
+
+  .ads-service p {
+    margin: 0;
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .ads-capability-list {
+    display: grid;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid var(--ds-color-border);
+    background: var(--ds-color-border);
+    list-style: none;
+  }
+
+  @media (min-width: 44rem) {
+    .ads-capability-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 70rem) {
+    .ads-capability-list {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .ads-capability-list li {
+    margin: 0;
+    padding: 1rem 1.1rem;
+    background: color-mix(in oklch, var(--ds-color-surface) 96%, var(--ds-color-accent-2));
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .ads-method {
+    background:
+      radial-gradient(circle at 18% 20%, color-mix(in oklch, var(--ds-color-accent-2) 15%, transparent), transparent 32%),
+      var(--ds-color-hero-tint);
+    color: color-mix(in oklch, white 92%, var(--ds-color-hero-tint));
+  }
+
+  .ads-method__grid {
+    display: grid;
+    gap: clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+
+  @media (min-width: 62rem) {
+    .ads-method__grid {
+      grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.22fr);
+    }
+  }
+
+  .ads-method h2 {
+    color: color-mix(in oklch, white 95%, var(--ds-color-hero-tint));
+  }
+
+  .ads-method p {
+    color: color-mix(in oklch, white 78%, var(--ds-color-hero-tint));
+  }
+
+  .ads-method__mark {
+    color: color-mix(in oklch, white 9%, transparent);
+  }
+
+  .ads-method__steps {
+    display: grid;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid color-mix(in oklch, white 15%, var(--ds-color-hero-tint));
+    background: color-mix(in oklch, white 14%, transparent);
+    list-style: none;
+  }
+
+  .ads-method__steps li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--ds-space-4);
+    align-items: start;
+    margin: 0;
+    padding: clamp(1.05rem, 2.5vw, 1.45rem);
+    background: color-mix(in oklch, white 6%, var(--ds-color-hero-tint));
+  }
+
+  .ads-method__steps span {
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    aspect-ratio: 1;
+    border: 1px solid color-mix(in oklch, var(--ds-color-accent-2) 55%, transparent);
+    border-radius: 50%;
+    color: var(--ds-color-accent-2);
+    font-size: var(--ds-text-xs);
+    font-weight: 850;
+  }
+
+  .ads-method__steps p {
+    margin: 0;
+    font-size: var(--ds-text-md);
+  }
+
+  .ads-contact {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: start;
+  }
+
+  @media (min-width: 66rem) {
+    .ads-contact {
+      grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
+    }
+  }
+
+  .ads-contact__intro {
+    position: sticky;
+    top: 6rem;
+  }
+
+  .ads-contact__form {
+    padding: clamp(1.25rem, 3vw, 2.5rem);
+    border: 1px solid color-mix(in oklch, var(--ds-color-accent) 38%, var(--ds-color-border));
+    background:
+      linear-gradient(135deg, color-mix(in oklch, var(--ds-color-accent) 12%, transparent), transparent 45%),
+      var(--ds-color-surface);
+    box-shadow: 0 2rem 5rem color-mix(in oklch, var(--ds-color-accent) 12%, transparent);
+  }
+
+  .ads-contact__success {
+    display: grid;
+    gap: var(--ds-space-2);
+    margin-bottom: var(--ds-space-5);
+    padding: var(--ds-space-4);
+    border: 1px solid color-mix(in oklch, var(--ds-color-success) 44%, var(--ds-color-border));
+    background: color-mix(in oklch, var(--ds-color-success) 12%, var(--ds-color-surface));
+  }
+
+  .ads-contact__success h3,
+  .ads-contact__success p {
+    margin: 0;
+  }
+
+  .ads-contact__success h3 {
+    font-size: var(--ds-text-xl);
+  }
+
+  .ads-contact__success p {
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  @media (max-width: 65.99rem) {
+    .ads-contact__intro {
+      position: static;
+    }
+  }
+
+  @media (max-width: 44rem) {
+    .ads-hero {
+      padding-block: clamp(4rem, 18vw, 6rem);
+    }
+
+    .ads-hero h1 {
+      font-size: clamp(2.65rem, 13vw, 4rem);
+    }
+
+    .ads-hero__system {
+      min-height: 26rem;
+    }
+
+    .ads-hero__node {
+      width: min(13rem, 54%);
+    }
+
+    .ads-hero__node--data {
+      right: 4%;
+    }
+
+    .ads-hero__node--proof {
+      right: 5%;
+    }
+  }
+</style>

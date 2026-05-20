@@ -1,0 +1,364 @@
+---
+interface Copy {
+  formEyebrow: string;
+  formTitle: string;
+  formText: string;
+  privacyLink: string;
+  fields: {
+    name: string;
+    namePlaceholder: string;
+    email: string;
+    emailPlaceholder: string;
+    subject: string;
+    subjectPlaceholder: string;
+    message: string;
+    messagePlaceholder: string;
+    consent: string;
+    honeypot: string;
+    submit: string;
+  };
+}
+
+interface Props {
+  lang?: 'it' | 'en';
+  headingId?: string;
+  showHeading?: boolean;
+  source?: string;
+  returnTo?: string;
+}
+
+const {
+  lang = 'it',
+  headingId = 'contact-form-title',
+  showHeading = true,
+  source = 'contact',
+  returnTo = lang === 'en' ? '/en/contact' : '/contatti',
+} = Astro.props;
+const isEnglish = lang === 'en';
+
+const copy: Copy = isEnglish
+  ? {
+      formEyebrow: 'Request',
+      formTitle: 'Send us the context',
+      formText:
+        'You do not need a complete brief. Goal, current situation and what needs to change are enough to start.',
+      privacyLink: '/en/privacy',
+      fields: {
+        name: 'Name *',
+        namePlaceholder: 'e.g., Alex',
+        email: 'Email *',
+        emailPlaceholder: 'you@company.com',
+        subject: 'Subject (optional)',
+        subjectPlaceholder: 'New project / Improve a process / AI at work',
+        message: 'Message *',
+        messagePlaceholder:
+          'A few lines are enough: what is happening today, what you want to change and which constraints matter.',
+        consent:
+          'I agree to the use of my details only to manage this request and reply to me. Details:',
+        honeypot: 'Website',
+        submit: 'Send request',
+      },
+    }
+  : {
+      formEyebrow: 'Richiesta',
+      formTitle: 'Scrivici il contesto',
+      formText:
+        'Non serve un documento completo: bastano obiettivo, situazione attuale e ciò che deve cambiare.',
+      privacyLink: '/privacy',
+      fields: {
+        name: 'Nome *',
+        namePlaceholder: 'Es. Marco',
+        email: 'Email *',
+        emailPlaceholder: 'nome@azienda.com',
+        subject: 'Oggetto (facoltativo)',
+        subjectPlaceholder: 'Nuovo progetto / Processo da migliorare / AI in azienda',
+        message: 'Messaggio *',
+        messagePlaceholder:
+          'In poche righe: cosa succede oggi, cosa vorresti cambiare e quali vincoli non possiamo ignorare.',
+        consent:
+          'Autorizzo l’uso dei miei dati solo per gestire questa richiesta e ricevere una risposta. Dettagli:',
+        honeypot: 'Sito web',
+        submit: 'Invia richiesta',
+      },
+    };
+---
+
+<div class="contact-form-shell">
+  {
+    showHeading && (
+      <div class="contact-form-heading">
+        <p>{copy.formEyebrow}</p>
+        <h2 id={headingId}>{copy.formTitle}</h2>
+        <p>{copy.formText}</p>
+      </div>
+    )
+  }
+
+  <form
+    name="contact"
+    method="POST"
+    data-netlify="true"
+    netlify-honeypot="bot-field"
+    action="/.netlify/functions/contact-email"
+    class="contact-form"
+  >
+    <input type="hidden" name="form-name" value="contact" />
+    <p class="hidden" aria-hidden="true">
+      <label>
+        {copy.fields.honeypot}
+        <input type="text" name="bot-field" tabindex="-1" autocomplete="off" />
+      </label>
+    </p>
+    <input type="hidden" name="lang" value={lang} />
+    <input type="hidden" name="source" value={source} />
+    <input type="hidden" name="return_to" value={returnTo} />
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="name" class="form-label">{copy.fields.name}</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          maxlength="120"
+          autocomplete="name"
+          class="form-input"
+          placeholder={copy.fields.namePlaceholder}
+        />
+      </div>
+
+      <div class="form-group">
+        <label for="email" class="form-label">{copy.fields.email}</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          maxlength="254"
+          autocomplete="email"
+          class="form-input"
+          placeholder={copy.fields.emailPlaceholder}
+        />
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="subject" class="form-label">{copy.fields.subject}</label>
+      <input
+        type="text"
+        id="subject"
+        name="subject"
+        maxlength="200"
+        class="form-input"
+        placeholder={copy.fields.subjectPlaceholder}
+      />
+    </div>
+
+    <div class="form-group">
+      <label for="message" class="form-label">{copy.fields.message}</label>
+      <textarea
+        id="message"
+        name="message"
+        required
+        maxlength="4000"
+        rows="7"
+        class="form-input"
+        placeholder={copy.fields.messagePlaceholder}></textarea>
+    </div>
+
+    <div class="form-group form-group--consent">
+      <label class="consent-label" for="privacy_consent">
+        <input
+          id="privacy_consent"
+          name="privacy_consent"
+          type="checkbox"
+          value="true"
+          required
+          class="consent-checkbox"
+        />
+        <span class="consent-text">
+          {copy.fields.consent}
+          <a class="consent-link" href={copy.privacyLink}
+            >{isEnglish ? 'Privacy & Cookie Policy' : 'Informativa Privacy & Cookie'}</a
+          >
+        </span>
+      </label>
+    </div>
+
+    <button type="submit" class="form-submit">{copy.fields.submit}</button>
+  </form>
+</div>
+
+<style>
+  .contact-form-heading {
+    display: grid;
+    gap: var(--ds-space-3);
+    margin-bottom: var(--ds-space-6);
+  }
+
+  .contact-form-heading p {
+    margin: 0 0 var(--ds-space-3);
+    color: var(--ds-color-accent);
+    font-size: var(--ds-text-xs);
+    font-weight: 800;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .contact-form-heading h2 {
+    margin: 0;
+    font-family: var(--ds-font-display);
+    font-size: clamp(2.2rem, 1.4rem + 3vw, 4.2rem);
+    line-height: 0.95;
+    letter-spacing: -0.035em;
+    word-spacing: 0.04em;
+  }
+
+  .contact-form-heading p:last-child {
+    max-width: 52ch;
+    margin: 0;
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-lg);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .contact-form {
+    display: grid;
+    gap: var(--ds-space-5);
+  }
+
+  .form-grid {
+    display: grid;
+    gap: var(--ds-space-5);
+  }
+
+  @media (min-width: 42rem) {
+    .form-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .hidden {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.62rem;
+  }
+
+  .form-group--consent {
+    gap: 0;
+  }
+
+  .form-label {
+    color: var(--ds-color-text);
+    font-size: var(--ds-text-xs);
+    font-weight: 800;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.95rem 1rem;
+    border: 1px solid color-mix(in oklch, var(--ds-color-border) 80%, var(--ds-color-text));
+    border-radius: 0;
+    background-color: color-mix(in oklch, var(--ds-color-bg) 72%, var(--ds-color-surface));
+    color: var(--ds-color-text);
+    font: inherit;
+    font-size: var(--ds-text-md);
+    transition:
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .form-input::placeholder {
+    color: color-mix(in oklch, var(--ds-color-text-muted) 78%, transparent);
+    opacity: 1;
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--ds-color-accent);
+    background-color: var(--ds-color-surface);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ds-color-accent) 24%, transparent);
+  }
+
+  textarea.form-input {
+    min-height: 12rem;
+    resize: vertical;
+  }
+
+  .consent-label {
+    display: flex;
+    gap: 0.78rem;
+    align-items: flex-start;
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
+    cursor: pointer;
+  }
+
+  .consent-checkbox {
+    flex: 0 0 auto;
+    width: 1.15rem;
+    height: 1.15rem;
+    margin-top: 0.2rem;
+    accent-color: var(--ds-color-accent);
+  }
+
+  .consent-link {
+    color: var(--ds-color-accent);
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .form-submit {
+    justify-self: start;
+    min-width: min(100%, 16rem);
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--ds-color-accent);
+    border-radius: 0;
+    background: var(--ds-color-accent);
+    color: color-mix(in oklch, white 96%, var(--ds-color-accent));
+    font: inherit;
+    font-size: var(--ds-text-sm);
+    font-weight: 900;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+    cursor: pointer;
+    transition:
+      transform 0.18s ease,
+      box-shadow 0.18s ease,
+      background-color 0.18s ease;
+  }
+
+  .form-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1rem 2rem color-mix(in oklch, var(--ds-color-accent) 22%, transparent);
+  }
+
+  .form-submit:focus-visible {
+    outline: none;
+    box-shadow: var(--ds-focus-ring);
+  }
+
+  .form-submit:active {
+    transform: translateY(0);
+  }
+
+  @media (max-width: 44rem) {
+    .form-submit {
+      width: 100%;
+    }
+  }
+</style>

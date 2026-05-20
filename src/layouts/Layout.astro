@@ -30,8 +30,15 @@ export interface Props {
   lang?: 'it' | 'en';
   structuredData?: JsonLd | JsonLd[];
   languageSwitchHref?: string;
+  alternatePaths?: {
+    it: string;
+    en?: string;
+    xDefault?: string;
+  };
   /** When false, main is full width (sections add their own .ds-container). */
   containMain?: boolean;
+  /** Minimal chrome for focused landing pages: logo-only header and no footer links. */
+  minimalChrome?: boolean;
 }
 
 const {
@@ -43,7 +50,9 @@ const {
   lang = 'it',
   structuredData,
   languageSwitchHref: customLanguageSwitchHref,
+  alternatePaths,
   containMain = true,
+  minimalChrome = false,
 } = Astro.props;
 
 const siteName = 'Devisia';
@@ -77,8 +86,9 @@ const homeHref = localePrefix || '/';
 const pathName = canonicalURL.pathname;
 
 const hreflang = getHreflangPaths(normalizePath(pathName));
-const itPathHref = hreflang.itPath;
-const enPathHref = hreflang.enPath;
+const itPathHref = alternatePaths?.it ?? hreflang.itPath;
+const enPathHref = alternatePaths ? alternatePaths.en : hreflang.enPath;
+const xDefaultPathHref = alternatePaths?.xDefault ?? itPathHref;
 
 const defaultLanguageSwitch = (): string => {
   const p = normalizePath(pathName);
@@ -96,7 +106,7 @@ const languageSwitchHref = customLanguageSwitchHref || defaultLanguageSwitch();
 const languageSwitchAria = lang === 'en' ? 'Switch to Italian' : "Passa all'inglese";
 
 const currentPath = normalizePath(pathName);
-const showFloatingChat = currentPath !== '/chat' && currentPath !== '/en/chat';
+const showFloatingChat = !minimalChrome && currentPath !== '/chat' && currentPath !== '/en/chat';
 
 const isNavItemActive = (itemPath: string) => {
   const p = currentPath;
@@ -125,7 +135,7 @@ const navItems =
 
 const contactNavPath = lang === 'en' ? '/en/contact' : '/contatti';
 const contactNavLabel = lang === 'en' ? 'Contact' : 'Contatti';
-const footerNavItems = [...navItems, { path: contactNavPath, label: contactNavLabel }];
+const footerNavItems = minimalChrome ? [] : [...navItems, { path: contactNavPath, label: contactNavLabel }];
 
 const themeToggleLabel = lang === 'en' ? 'Toggle theme' : 'Cambia tema';
 const skipLinkLabel = lang === 'en' ? 'Skip to content' : 'Vai al contenuto';
@@ -206,8 +216,8 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
 
     <!-- i18n alternates -->
     <link rel="alternate" hreflang="it" href={new URL(itPathHref, site)} />
-    <link rel="alternate" hreflang="en" href={new URL(enPathHref, site)} />
-    <link rel="alternate" hreflang="x-default" href={new URL(itPathHref, site)} />
+    {enPathHref && <link rel="alternate" hreflang="en" href={new URL(enPathHref, site)} />}
+    <link rel="alternate" hreflang="x-default" href={new URL(xDefaultPathHref, site)} />
 
     {
       (baseStructuredData.length || extraStructuredData.length) && (
@@ -280,89 +290,98 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
               fetchpriority="high"
             />
           </a>
-          {/* Inline language switcher: lives next to the wordmark, where the
-              user expects it. Removed from the primary nav so the menu can
-              stay around 6 items. */}
-          <a
-            class="brand-lang"
-            href={languageSwitchHref}
-            aria-label={languageSwitchAria}
-            title={languageSwitchAria}
-            hreflang={lang === 'en' ? 'it' : 'en'}
-            data-lang-switch
-          >
-            <span class="brand-lang__current">{lang.toUpperCase()}</span>
-            <span class="brand-lang__sep" aria-hidden="true">·</span>
-            <span class="brand-lang__alt">{lang === 'en' ? 'IT' : 'EN'}</span>
-          </a>
+          {
+            !minimalChrome && (
+              <a
+                class="brand-lang"
+                href={languageSwitchHref}
+                aria-label={languageSwitchAria}
+                title={languageSwitchAria}
+                hreflang={lang === 'en' ? 'it' : 'en'}
+                data-lang-switch
+              >
+                <span class="brand-lang__current">{lang.toUpperCase()}</span>
+                <span class="brand-lang__sep" aria-hidden="true">·</span>
+                <span class="brand-lang__alt">{lang === 'en' ? 'IT' : 'EN'}</span>
+              </a>
+            )
+          }
         </section>
 
-        <button
-          type="button"
-          class="ds-btn nav-toggle"
-          data-variant="ghost"
-          data-size="sm"
-          aria-label={lang === 'en' ? 'Open menu' : 'Apri menu'}
-          aria-controls="primary-nav"
-          aria-expanded="false"
-          data-nav-toggle
-        >
-          <svg
-            class="nav-toggle__icon nav-toggle__icon--open"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-          <svg
-            class="nav-toggle__icon nav-toggle__icon--close"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
-          <span class="nav-toggle__label">Menu</span>
-        </button>
-
-        <ul id="primary-nav" class="nav-menu nav-menu--site" data-nav-menu>
-          {navItems.map((item) => (
-            <li>
-              <a
-                href={item.path}
-                class="nav-link"
-                aria-current={isNavItemActive(item.path) ? 'page' : undefined}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))}
-          <li>
-            <a
-              href={contactNavPath}
-              class="nav-link nav-link-cta"
-              aria-current={isNavItemActive(contactNavPath) ? 'page' : undefined}
+        {
+          !minimalChrome && (
+            <button
+              type="button"
+              class="ds-btn nav-toggle"
+              data-variant="ghost"
+              data-size="sm"
+              aria-label={lang === 'en' ? 'Open menu' : 'Apri menu'}
+              aria-controls="primary-nav"
+              aria-expanded="false"
+              data-nav-toggle
             >
-              {contactNavLabel}
-            </a>
-          </li>
-        </ul>
+              <svg
+                class="nav-toggle__icon nav-toggle__icon--open"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+              <svg
+                class="nav-toggle__icon nav-toggle__icon--close"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+              <span class="nav-toggle__label">Menu</span>
+            </button>
+          )
+        }
+
+        {
+          !minimalChrome && (
+            <ul id="primary-nav" class="nav-menu nav-menu--site" data-nav-menu>
+              {navItems.map((item) => (
+                <li>
+                  <a
+                    href={item.path}
+                    class="nav-link"
+                    aria-current={isNavItemActive(item.path) ? 'page' : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+              <li>
+                <a
+                  href={contactNavPath}
+                  class="nav-link nav-link-cta"
+                  aria-current={isNavItemActive(contactNavPath) ? 'page' : undefined}
+                >
+                  {contactNavLabel}
+                </a>
+              </li>
+            </ul>
+          )
+        }
       </nav>
     </header>
 
@@ -382,34 +401,44 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
             </p>
           </section>
 
-          <section class="footer-section">
-            <h4>{footerContent.quickLinks}</h4>
-            <ul class="footer-links">
-              {footerNavItems.map((item) => (
-                <li>
-                  <a href={item.path}>{item.label}</a>
-                </li>
-              ))}
-            </ul>
-          </section>
+          {
+            !minimalChrome && (
+              <>
+                <section class="footer-section">
+                  <h4>{footerContent.quickLinks}</h4>
+                  <ul class="footer-links">
+                    {footerNavItems.map((item) => (
+                      <li>
+                        <a href={item.path}>{item.label}</a>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
 
-          <section class="footer-section">
-            <h4>{footerContent.connect}</h4>
-            <ul class="footer-links">
-              <li><a href="mailto:info@devisia.it">info@devisia.it</a></li>
-              <li>
-                <a href="https://www.linkedin.com/company/devisia-pro/" target="_blank" rel="noopener noreferrer"
-                  >LinkedIn</a>
-              </li>
-            </ul>
-          </section>
+                <section class="footer-section">
+                  <h4>{footerContent.connect}</h4>
+                  <ul class="footer-links">
+                    <li><a href="mailto:info@devisia.it">info@devisia.it</a></li>
+                    <li>
+                      <a
+                        href="https://www.linkedin.com/company/devisia-pro/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        >LinkedIn</a
+                      >
+                    </li>
+                  </ul>
+                </section>
+              </>
+            )
+          }
         </section>
 
         <section class="footer-bottom">
           <section class="footer-bottom__legal">
             <p>&copy; {new Date().getFullYear()} Devisia s.r.l. - Riva Tommaso Gulli 12 - 34123 - Trieste</p>
             <p>P.IVA: 01443020324 - PEC: devisia@namirialpec.it - REA: TS - 217091</p>
-            <p><a href={href('/privacy')}>{t('policyLink', lang)}</a></p>
+            {!minimalChrome && <p><a href={href('/privacy')}>{t('policyLink', lang)}</a></p>}
           </section>
           {/* Theme toggle moved out of the primary nav to slim the header.
               It lives quietly in the footer, where utility controls belong. */}
@@ -468,16 +497,20 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
          the user has scrolled past the hero. Hidden by default, revealed via
          data-visible attribute set by the script below. Critical-path action
          for the dominant mobile-traffic persona. -->
-    <a
-      class="mobile-sticky-cta"
-      href={contactNavPath}
-      data-mobile-sticky-cta
-      data-visible="false"
-      aria-label={stickyCtaAria}
-    >
-      <span class="mobile-sticky-cta__label">{stickyCtaLabel}</span>
-      <span class="mobile-sticky-cta__arrow" aria-hidden="true">→</span>
-    </a>
+    {
+      !minimalChrome && (
+        <a
+          class="mobile-sticky-cta"
+          href={contactNavPath}
+          data-mobile-sticky-cta
+          data-visible="false"
+          aria-label={stickyCtaAria}
+        >
+          <span class="mobile-sticky-cta__label">{stickyCtaLabel}</span>
+          <span class="mobile-sticky-cta__arrow" aria-hidden="true">→</span>
+        </a>
+      )
+    }
 
     {showFloatingChat && <ChatWidget lang={lang} />}
 

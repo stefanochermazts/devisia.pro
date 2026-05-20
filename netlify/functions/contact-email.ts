@@ -1,5 +1,11 @@
 import type { Handler } from '@netlify/functions';
 import { parse } from 'querystring';
+import {
+  contactRedirectUrl,
+  getSingleFormValue,
+  normalizeContactLang,
+  normalizeContactSource,
+} from './lib/contactRedirect';
 
 // Email templates embedded directly in the function
 // This avoids file system path issues in Netlify Functions
@@ -137,7 +143,17 @@ export const handler: Handler = async (event, _context) => {
   try {
     // Parse form data (url-encoded)
     const body = parse(event.body || '');
-    const { name, email, subject, message, lang, privacy_consent, 'bot-field': botField } = body;
+    const {
+      name,
+      email,
+      subject,
+      message,
+      lang,
+      privacy_consent,
+      source,
+      return_to: returnTo,
+      'bot-field': botField,
+    } = body;
 
     // Honeypot check - if bot-field is filled, it's spam
     if (botField) {
@@ -158,7 +174,7 @@ export const handler: Handler = async (event, _context) => {
     }
 
     // Enforce privacy consent (required by the form UI)
-    const consentValue = String(privacy_consent || '').toLowerCase();
+    const consentValue = getSingleFormValue(privacy_consent).toLowerCase();
     const hasConsent = consentValue === 'true' || consentValue === 'on' || consentValue === '1' || consentValue === 'yes';
     if (!hasConsent) {
       return {
@@ -168,7 +184,8 @@ export const handler: Handler = async (event, _context) => {
     }
 
     // Determine language (default to Italian)
-    const emailLang = (lang === 'en' ? 'en' : 'it') as 'it' | 'en';
+    const emailLang = normalizeContactLang(lang);
+    const contactSource = normalizeContactSource(source) || 'contact';
 
     // Load and prepare thank-you email template
     const userTemplate = loadTemplate(emailLang);
@@ -193,6 +210,7 @@ export const handler: Handler = async (event, _context) => {
         <p><strong>Name:</strong> ${(name as string).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
         <p><strong>Email:</strong> ${(email as string).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
         <p><strong>Privacy consent:</strong> yes</p>
+        <p><strong>Source:</strong> ${contactSource.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>
         ${subject ? `<p><strong>Subject:</strong> ${(subject as string).replace(/</g, '&lt;').replace(/>/g, '&gt;')}</p>` : ''}
         <p><strong>Message:</strong></p>
         <div style="background-color: #f9fafb; padding: 15px; border-radius: 4px; white-space: pre-wrap;">${(message as string).replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br>')}</div>
@@ -202,7 +220,7 @@ export const handler: Handler = async (event, _context) => {
         </p>
       </div>
     `;
-    const managerText = `New contact form submission\n\nName: ${String(name)}\nEmail: ${String(email)}\nPrivacy consent: yes\n${subject ? `Subject: ${String(subject)}\n` : ''}\nMessage:\n${String(message)}\n\nLanguage: ${emailLang}`;
+    const managerText = `New contact form submission\n\nName: ${String(name)}\nEmail: ${String(email)}\nPrivacy consent: yes\nSource: ${contactSource}\n${subject ? `Subject: ${String(subject)}\n` : ''}\nMessage:\n${String(message)}\n\nLanguage: ${emailLang}`;
 
     // Fire both sends in parallel; never block the redirect
     const replyToEmail = process.env.REPLY_TO_EMAIL || 'info@devisia.it';
@@ -242,7 +260,7 @@ export const handler: Handler = async (event, _context) => {
     }
 
     // Return redirect response
-    const redirectUrl = emailLang === 'en' ? '/en/contact?success=true' : '/contatti?success=true';
+    const redirectUrl = contactRedirectUrl(emailLang, returnTo);
     
     return {
       statusCode: 303,
