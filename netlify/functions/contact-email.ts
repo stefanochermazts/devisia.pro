@@ -37,7 +37,7 @@ const EMAIL_TEMPLATES = {
                 Abbiamo ricevuto il tuo messaggio e ti risponderemo al più presto. Di solito rispondiamo entro 24-48 ore lavorative.
               </p>
               <p style="margin: 0; color: #4b5563; font-size: 16px; line-height: 1.6;">
-                Nel frattempo, se hai domande urgenti, puoi contattarci direttamente all'indirizzo <a href="mailto:info@devisia.pro" style="color: #1fa2a6; text-decoration: none;">info@devisia.pro</a>.
+                Nel frattempo, se hai domande urgenti, puoi contattarci direttamente all'indirizzo <a href="mailto:info@devisia.it" style="color: #1fa2a6; text-decoration: none;">info@devisia.it</a>.
               </p>
             </td>
           </tr>
@@ -85,7 +85,7 @@ const EMAIL_TEMPLATES = {
                 We have received your message and will get back to you as soon as possible. We typically respond within 24-48 business hours.
               </p>
               <p style="margin: 0; color: #4b5563; font-size: 16px; line-height: 1.6;">
-                In the meantime, if you have urgent questions, you can contact us directly at <a href="mailto:info@devisia.pro" style="color: #1fa2a6; text-decoration: none;">info@devisia.pro</a>.
+                In the meantime, if you have urgent questions, you can contact us directly at <a href="mailto:info@devisia.it" style="color: #1fa2a6; text-decoration: none;">info@devisia.it</a>.
               </p>
             </td>
           </tr>
