@@ -73,6 +73,7 @@ const breadcrumbs = breadcrumbListJsonLd({
   alternatePaths={{ it: '/landing/devisia', xDefault: '/landing/devisia' }}
   containMain={false}
   minimalChrome
+  showChatWidget
 >
   <article class="ads-landing">
     <section class="ads-hero" aria-labelledby="ads-hero-title">
@@ -124,6 +125,21 @@ const breadcrumbs = breadcrumbListJsonLd({
     </section>
 
     <section class="ads-positioning ds-container" aria-labelledby="positioning-title">
+      <div class="ads-positioning__copy">
+        <h2 id="positioning-title">Tecnologia costruita per decidere meglio, non solo per aggiungere strumenti</h2>
+        <p>
+          Molte aziende arrivano con strumenti già presenti, dati distribuiti e responsabilità poco
+          visibili. Il valore non sta nel creare un’altra interfaccia, ma nel progettare un sistema
+          che colleghi processo, dati e decisioni con criteri chiari. Devisia lavora su architettura,
+          integrazioni, automazione e AI con attenzione a affidabilità, privacy e continuità nel
+          tempo.
+        </p>
+        <p>
+          Quando l’azienda usa già Microsoft 365, partiamo da ciò che esiste: documenti in SharePoint
+          o OneDrive, approvazioni via Power Automate, dati da collegare via API e casi in cui Copilot
+          o un assistente AI possono aiutare senza perdere controllo su accessi, ruoli e tracciabilità.
+        </p>
+      </div>
       <aside class="ads-positioning__stack" aria-labelledby="m365-stack-title">
         <div class="ads-positioning__stack-top">
           <p>Microsoft 365 come infrastruttura operativa</p>
@@ -150,21 +166,6 @@ const breadcrumbs = breadcrumbListJsonLd({
           </div>
         </div>
       </aside>
-      <div class="ads-positioning__copy">
-        <h2 id="positioning-title">Tecnologia costruita per decidere meglio, non solo per aggiungere strumenti</h2>
-        <p>
-          Molte aziende arrivano con strumenti già presenti, dati distribuiti e responsabilità poco
-          visibili. Il valore non sta nel creare un’altra interfaccia, ma nel progettare un sistema
-          che colleghi processo, dati e decisioni con criteri chiari. Devisia lavora su architettura,
-          integrazioni, automazione e AI con attenzione a affidabilità, privacy e continuità nel
-          tempo.
-        </p>
-        <p>
-          Quando l’azienda usa già Microsoft 365, partiamo da ciò che esiste: documenti in SharePoint
-          o OneDrive, approvazioni via Power Automate, dati da collegare via API e casi in cui Copilot
-          o un assistente AI possono aiutare senza perdere controllo su accessi, ruoli e tracciabilità.
-        </p>
-      </div>
     </section>
 
     <section class="ads-fit ds-container" aria-labelledby="fit-title">
@@ -253,7 +254,7 @@ const breadcrumbs = breadcrumbListJsonLd({
       <div class="ads-contact__form">
         {
           isSuccess && (
-            <div class="ads-contact__success" role="alert">
+            <div id="contact-success" class="ads-contact__success" role="status" tabindex="-1">
               <h3>Messaggio ricevuto.</h3>
               <p>Grazie. Leggiamo la richiesta e ti rispondiamo con domande mirate o un primo passo chiaro.</p>
             </div>
@@ -503,6 +504,17 @@ const breadcrumbs = breadcrumbListJsonLd({
   @media (min-width: 62rem) {
     .ads-positioning {
       grid-template-columns: minmax(18rem, 0.78fr) minmax(0, 1.22fr);
+    }
+
+    /* Keep the h2 first in the DOM while preserving the original desktop composition. */
+    .ads-positioning__stack {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .ads-positioning__copy {
+      grid-column: 2;
+      grid-row: 1;
     }
   }
 
@@ -995,3 +1007,20 @@ const breadcrumbs = breadcrumbListJsonLd({
     }
   }
 </style>
+
+{
+  isSuccess && (
+    <script is:inline>
+      requestAnimationFrame(() => {
+        const success = document.getElementById('contact-success');
+        if (!success) return;
+
+        try {
+          success.focus({ preventScroll: true });
+        } catch {
+          success.focus();
+        }
+      });
+    </script>
+  )
+}

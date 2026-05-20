@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { contactRedirectUrl, normalizeContactLang, normalizeContactSource } from './contactRedirect';
+import {
+  contactRedirectUrl,
+  normalizeContactLang,
+  normalizeContactSource,
+} from '../../netlify/functions/lib/contactRedirect';
 
 describe('contactRedirectUrl', () => {
   it('keeps landing submissions on the landing page', () => {

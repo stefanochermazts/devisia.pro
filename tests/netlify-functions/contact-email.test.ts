@@ -1,8 +1,8 @@
 import type { HandlerEvent } from '@netlify/functions';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import { handler } from './contact-email';
+import { handler } from '../../netlify/functions/contact-email';
 
-vi.mock('./lib/mailtrap', () => ({
+vi.mock('../../netlify/functions/lib/mailtrap', () => ({
   sendViaMailtrapApi: vi.fn(() => Promise.reject(new Error('Email disabled in test'))),
 }));
 

@@ -39,6 +39,8 @@ export interface Props {
   containMain?: boolean;
   /** Minimal chrome for focused landing pages: logo-only header and no footer links. */
   minimalChrome?: boolean;
+  /** Overrides the default floating chat visibility. */
+  showChatWidget?: boolean;
 }
 
 const {
@@ -53,6 +55,7 @@ const {
   alternatePaths,
   containMain = true,
   minimalChrome = false,
+  showChatWidget,
 } = Astro.props;
 
 const siteName = 'Devisia';
@@ -106,7 +109,8 @@ const languageSwitchHref = customLanguageSwitchHref || defaultLanguageSwitch();
 const languageSwitchAria = lang === 'en' ? 'Switch to Italian' : "Passa all'inglese";
 
 const currentPath = normalizePath(pathName);
-const showFloatingChat = !minimalChrome && currentPath !== '/chat' && currentPath !== '/en/chat';
+const showFloatingChat =
+  (showChatWidget ?? !minimalChrome) && currentPath !== '/chat' && currentPath !== '/en/chat';
 
 const isNavItemActive = (itemPath: string) => {
   const p = currentPath;

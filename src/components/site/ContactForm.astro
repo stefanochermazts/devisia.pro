@@ -103,10 +103,10 @@ const copy: Copy = isEnglish
     class="contact-form"
   >
     <input type="hidden" name="form-name" value="contact" />
-    <p class="hidden" aria-hidden="true">
+    <p class="hidden" aria-hidden="true" inert>
       <label>
         {copy.fields.honeypot}
-        <input type="text" name="bot-field" tabindex="-1" autocomplete="off" />
+        <input type="text" name="bot-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
       </label>
     </p>
     <input type="hidden" name="lang" value={lang} />
