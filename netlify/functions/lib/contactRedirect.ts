@@ -5,6 +5,10 @@ const FALLBACK_REDIRECTS: Record<ContactLang, string> = {
   en: '/en/contact',
 };
 
+const SUCCESS_ANCHORS: Record<string, string> = {
+  '/landing/devisia': '#contatto',
+};
+
 const ALLOWED_RETURN_PATHS = new Set([
   '/contatti',
   '/en/contact',
@@ -30,5 +34,5 @@ export const contactRedirectUrl = (
 ): string => {
   const returnTo = getSingleFormValue(returnToValue);
   const path = ALLOWED_RETURN_PATHS.has(returnTo) ? returnTo : FALLBACK_REDIRECTS[lang];
-  return `${path}?success=true`;
+  return `${path}?success=true${SUCCESS_ANCHORS[path] ?? ''}`;
 };

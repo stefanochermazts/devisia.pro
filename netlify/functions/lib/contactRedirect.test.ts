@@ -3,7 +3,7 @@ import { contactRedirectUrl, normalizeContactLang, normalizeContactSource } from
 
 describe('contactRedirectUrl', () => {
   it('keeps landing submissions on the landing page', () => {
-    expect(contactRedirectUrl('it', '/landing/devisia')).toBe('/landing/devisia?success=true');
+    expect(contactRedirectUrl('it', '/landing/devisia')).toBe('/landing/devisia?success=true#contatto');
   });
 
   it('falls back to the localized contact page when returnTo is missing', () => {

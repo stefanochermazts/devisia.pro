@@ -108,7 +108,7 @@ const EMAIL_TEMPLATES = {
 </html>`,
 };
 
-import { getEnv, sendViaMailtrapApi } from './lib/mailtrap';
+import { sendViaMailtrapApi } from './lib/mailtrap';
 
 // Load email template
 const loadTemplate = (lang: 'it' | 'en'): string => {
@@ -224,7 +224,7 @@ export const handler: Handler = async (event, _context) => {
 
     // Fire both sends in parallel; never block the redirect
     const replyToEmail = process.env.REPLY_TO_EMAIL || 'info@devisia.it';
-    const siteManagerEmail = getEnv('SITE_MANAGER_EMAIL');
+    const siteManagerEmail = process.env.SITE_MANAGER_EMAIL;
     const [thankYouResult, managerResult] = await Promise.allSettled([
       sendViaMailtrapApi({
         to: email as string,
@@ -235,16 +235,18 @@ export const handler: Handler = async (event, _context) => {
         text: thankYouText,
         timeoutMs: 8000,
       }),
-      sendViaMailtrapApi({
-        to: siteManagerEmail,
-        // Let the manager reply directly to the submitter.
-        replyToEmail: String(email),
-        replyToName: String(name || ''),
-        subject: managerSubject,
-        html: managerHtml,
-        text: managerText,
-        timeoutMs: 8000,
-      }),
+      siteManagerEmail
+        ? sendViaMailtrapApi({
+            to: siteManagerEmail,
+            // Let the manager reply directly to the submitter.
+            replyToEmail: String(email),
+            replyToName: String(name || ''),
+            subject: managerSubject,
+            html: managerHtml,
+            text: managerText,
+            timeoutMs: 8000,
+          })
+        : Promise.reject(new Error('SITE_MANAGER_EMAIL is not configured; manager notification skipped')),
     ]);
 
     if (thankYouResult.status === 'rejected') {
