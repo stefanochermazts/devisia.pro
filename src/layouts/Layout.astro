@@ -182,6 +182,7 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
 
 const cookiebotId = import.meta.env.PUBLIC_COOKIEBOT_ID || '';
 const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
+const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
 ---
 
 <!doctype html>
@@ -678,6 +679,77 @@ const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
 
         const onConsentReady = () => {
           if (hasConsent()) loadWhenIdle();
+        };
+
+        window.addEventListener('CookiebotOnConsentReady', onConsentReady);
+        window.addEventListener('CookiebotOnAccept', onConsentReady);
+
+        onConsentReady();
+      })();
+    </script>
+
+    <script is:inline define:vars={{ googleAdsId }}>
+      (() => {
+        const id = googleAdsId;
+        if (!id) return;
+
+        let loaded = false;
+        const alreadyConfigured = () =>
+          Boolean(document.querySelector('script[data-provider="gtag-ads"][data-id="' + id + '"]'));
+
+        const ensureGtag = () => {
+          window.dataLayer = window.dataLayer || [];
+          window.gtag =
+            window.gtag ||
+            function gtag() {
+              window.dataLayer.push(arguments);
+            };
+        };
+
+        const inject = () => {
+          if (loaded || alreadyConfigured()) return;
+          loaded = true;
+
+          ensureGtag();
+
+          const gtagSrc =
+            'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+          const existingLoader = document.querySelector('script[src="' + gtagSrc + '"]');
+
+          if (!existingLoader) {
+            const s = document.createElement('script');
+            s.async = true;
+            s.src = gtagSrc;
+            s.dataset.provider = 'gtag-ads';
+            s.dataset.id = id;
+            document.head.appendChild(s);
+          }
+
+          window.gtag('js', new Date());
+          window.gtag('config', id);
+        };
+
+        const loadWhenIdle = () => {
+          if ('requestIdleCallback' in window) {
+            // @ts-expect-error requestIdleCallback may not be in typings depending on TS lib config
+            window.requestIdleCallback(inject, { timeout: 2000 });
+          } else {
+            setTimeout(inject, 0);
+          }
+        };
+
+        const hasMarketingConsent = () => {
+          try {
+            // @ts-expect-error Cookiebot is a global injected by the CMP script
+            const c = window.Cookiebot && window.Cookiebot.consent;
+            return Boolean(c && c.marketing);
+          } catch {
+            return false;
+          }
+        };
+
+        const onConsentReady = () => {
+          if (hasMarketingConsent()) loadWhenIdle();
         };
 
         window.addEventListener('CookiebotOnConsentReady', onConsentReady);

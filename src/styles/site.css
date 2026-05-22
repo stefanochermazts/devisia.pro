@@ -158,18 +158,11 @@
   }
 
   .site-section--dark {
+    /* Accents tuned for dark bands in light theme (global ember/pine are too dark here). */
+    --ds-on-dark-accent: oklch(0.85 0.12 49);
+    --ds-on-dark-accent-2: oklch(0.87 0.08 198);
     background: var(--ds-color-hero-tint);
     color: color-mix(in oklch, white 94%, var(--ds-color-hero-tint));
-  }
-
-  .site-section--dark h2,
-  .site-section--dark h3 {
-    color: white;
-  }
-
-  .site-section--dark p,
-  .site-section--dark .site-lead {
-    color: color-mix(in oklch, white 82%, var(--ds-color-hero-tint));
   }
 
   .site-eyebrow {
@@ -198,6 +191,31 @@
     color: var(--ds-color-text-muted);
     max-width: 62ch;
     margin: 0 0 var(--ds-space-5);
+  }
+
+  /* Dark bands: typography must follow .site-lead (same specificity, later wins). */
+  .site-section.site-section--dark :where(h2, h3, .site-h2) {
+    color: white;
+  }
+
+  .site-section.site-section--dark :where(p, .site-lead) {
+    color: color-mix(in oklch, white 82%, var(--ds-color-hero-tint));
+  }
+
+  .site-section.site-section--dark .site-eyebrow {
+    color: color-mix(in oklch, white 72%, var(--ds-color-hero-tint));
+  }
+
+  .site-section.site-section--dark .audit-console__row span:nth-child(2) {
+    color: color-mix(in oklch, white 88%, var(--ds-color-hero-tint));
+  }
+
+  .site-section.site-section--dark .audit-console__row span:first-child {
+    color: var(--ds-on-dark-accent-2);
+  }
+
+  .site-section.site-section--dark .audit-console__row span:last-child {
+    color: var(--ds-on-dark-accent);
   }
 
   .site-pillar {
