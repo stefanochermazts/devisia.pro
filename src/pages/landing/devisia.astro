@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import Button from '../../components/ui/Button.astro';
 import ContactForm from '../../components/site/ContactForm.astro';
+import GoogleAdsLeadConversion from '../../components/site/GoogleAdsLeadConversion.astro';
 import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
 
 const title = 'Devisia | Software, AI and Automation Systems';
@@ -75,6 +76,7 @@ const breadcrumbs = breadcrumbListJsonLd({
   minimalChrome
   showChatWidget
 >
+  {isSuccess && <GoogleAdsLeadConversion slot="head" />}
   <article class="ads-landing">
     <section class="ads-hero" aria-labelledby="ads-hero-title">
       <div class="ds-container ads-hero__grid">

@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import ContactProtocol from '../../components/site/ContactProtocol.astro';
+import GoogleAdsLeadConversion from '../../components/site/GoogleAdsLeadConversion.astro';
 import { getEntry, render } from 'astro:content';
 import { type CollectionEntry } from 'astro:content';
 import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
@@ -28,6 +29,7 @@ const breadcrumbs = breadcrumbListJsonLd({
 ---
 
 <Layout title={data.title} description={data.description} lang="en" structuredData={[breadcrumbs]}>
+  {isSuccess && <GoogleAdsLeadConversion slot="head" />}
   <Content />
   <ContactProtocol lang="en" isSuccess={isSuccess} />
 </Layout>

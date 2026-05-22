@@ -1,0 +1,43 @@
+---
+const sendTo =
+  import.meta.env.PUBLIC_GOOGLE_ADS_LEAD_CONVERSION || 'AW-17995423794/qpmdCJyIiZAcELLA8YRD';
+---
+
+<!-- Event snippet for Invio modulo per i lead conversion page -->
+<script is:inline define:vars={{ sendTo }}>
+  (() => {
+    let fired = false;
+
+    const hasMarketingConsent = () => {
+      try {
+        // @ts-expect-error Cookiebot is a global injected by the CMP script
+        const c = window.Cookiebot && window.Cookiebot.consent;
+        return Boolean(c && c.marketing);
+      } catch {
+        return false;
+      }
+    };
+
+    const fireConversion = () => {
+      if (fired || typeof window.gtag !== 'function') return false;
+
+      window.gtag('event', 'conversion', {
+        send_to: sendTo,
+        value: 1.0,
+        currency: 'EUR',
+      });
+      fired = true;
+      return true;
+    };
+
+    const tryFire = () => {
+      if (!hasMarketingConsent()) return;
+      if (fireConversion()) return;
+      window.setTimeout(tryFire, 200);
+    };
+
+    window.addEventListener('CookiebotOnConsentReady', tryFire);
+    window.addEventListener('CookiebotOnAccept', tryFire);
+    tryFire();
+  })();
+</script>
