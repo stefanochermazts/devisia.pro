@@ -45,6 +45,11 @@ jobs:
         # Translation script only needs gray-matter; avoid full npm ci (lockfile/Node drift).
         run: npm install gray-matter@4.0.3 --no-package-lock
 
+      - name: Configure git
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
       - name: Detect changed EN posts
         id: changed
         run: |
@@ -78,19 +83,18 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-5.4-mini
           ONLY_TRANSLATE: ${{ steps.changed.outputs.only }}
+          COMMIT_EACH: "1"
         run: node scripts/translate-blog-en-to-it.js
 
-      - name: Commit changes (if any)
+      - name: Commit remaining changes (if any)
+        if: always()
         run: |
-          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
           git add -A src/content/blog/it
           if git diff --cached --quiet; then
-            echo "No changes to commit."
+            echo "No remaining changes to commit."
             exit 0
           fi
-          git commit -m "auto: translate blog posts EN->IT"
-          # main may advance while this job is running; retry a few times.
+          git commit -m "auto: translate blog posts EN->IT (batch remainder)"
           for attempt in 1 2 3; do
             if git push origin HEAD:main; then
               exit 0

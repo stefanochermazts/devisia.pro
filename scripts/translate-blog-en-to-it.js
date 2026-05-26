@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 import crypto from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 import matter from 'gray-matter';
 
 try {
@@ -32,7 +33,80 @@ function isMarkdownFile(filename) {
 async function readMarkdownFile(filePath) {
   const raw = await fs.readFile(filePath, 'utf8');
   const parsed = matter(raw);
+  parsed.content = normalizeMarkdownBody(parsed.content);
   return { raw, parsed };
+}
+
+function normalizeMarkdownBody(content) {
+  return String(content ?? '').replace(/^\s*---\s*(?:\r?\n|$)/, '').trimStart();
+}
+
+function sanitizeFrontmatterString(value) {
+  return String(value ?? '')
+    .replace(/\r\n/g, '\n')
+    .replace(/\n+/g, ' ')
+    .trim();
+}
+
+function buildItalianMarkdown({ frontmatter, body }) {
+  const safeFrontmatter = {
+    ...frontmatter,
+    title: sanitizeFrontmatterString(frontmatter.title),
+    description: sanitizeFrontmatterString(frontmatter.description),
+  };
+  const safeBody = normalizeMarkdownBody(body);
+  const raw = matter.stringify(safeBody, safeFrontmatter);
+
+  try {
+    matter(raw);
+  } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    throw new Error(`Generated invalid markdown frontmatter: ${message}`);
+  }
+
+  return raw;
+}
+
+function isCommitEachEnabled() {
+  return process.env.COMMIT_EACH === '1' || process.env.COMMIT_EACH === 'true';
+}
+
+function runGit(args) {
+  execFileSync('git', args, {
+    cwd: REPO_ROOT,
+    stdio: 'inherit',
+  });
+}
+
+function gitCommitEach({ enSlug, itSlug, itPath }) {
+  if (!isCommitEachEnabled()) return;
+
+  const relPath = path.relative(REPO_ROOT, itPath).replace(/\\/g, '/');
+  runGit(['add', '--', relPath]);
+
+  try {
+    execFileSync('git', ['diff', '--cached', '--quiet'], { cwd: REPO_ROOT, stdio: 'ignore' });
+    console.log(`No git changes to commit for ${relPath}.`);
+    return;
+  } catch {
+    // staged changes exist
+  }
+
+  runGit(['commit', '-m', `auto: translate blog ${enSlug} -> ${itSlug}`]);
+
+  for (let attempt = 1; attempt <= 3; attempt++) {
+    try {
+      runGit(['push', 'origin', 'HEAD:main']);
+      console.log(`Committed and pushed: ${relPath}`);
+      return;
+    } catch {
+      console.warn(`Push rejected. Rebasing onto origin/main (attempt ${attempt}/3)…`);
+      runGit(['fetch', 'origin', 'main']);
+      runGit(['rebase', 'origin/main']);
+    }
+  }
+
+  throw new Error(`Failed to push ${relPath} after 3 attempts.`);
 }
 
 async function ensureDir(dir) {
@@ -405,9 +479,13 @@ async function main() {
         translationSourceHash: sourceHash,
       };
 
-      const itRaw = matter.stringify(translatedBody, itFrontmatter);
+      const itRaw = buildItalianMarkdown({
+        frontmatter: itFrontmatter,
+        body: translatedBody,
+      });
       await fs.writeFile(itPath, itRaw, 'utf8');
       updated.push(itPath);
+      gitCommitEach({ enSlug, itSlug, itPath });
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       failures.push(`EN post "${enSlug}" -> "${itSlug}": ${message}`);

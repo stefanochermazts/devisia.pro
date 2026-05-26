@@ -8,7 +8,6 @@ tags: ["the agent models", "ai agents", "agentic ai", "ai governance", "system a
 translationSlug: "the-agent-models"
 autoTranslateToIt: true
 ---
----
 A familiar pattern is playing out in many product and engineering teams right now. Someone bought or built an LLM feature. The demo looked strong. It answered questions fluently, summarised documents, and handled broad prompts with confidence.
 
 Then the system met a real workflow.
