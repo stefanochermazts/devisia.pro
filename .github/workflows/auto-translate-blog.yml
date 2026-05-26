@@ -45,10 +45,39 @@ jobs:
         # Translation script only needs gray-matter; avoid full npm ci (lockfile/Node drift).
         run: npm install gray-matter@4.0.3 --no-package-lock
 
+      - name: Detect changed EN posts
+        id: changed
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "only=" >> "$GITHUB_OUTPUT"
+            echo "mode=all pending/missing (workflow_dispatch)"
+            exit 0
+          fi
+
+          BEFORE="${{ github.event.before }}"
+          if [ -z "$BEFORE" ] || [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            echo "only=" >> "$GITHUB_OUTPUT"
+            echo "mode=all (initial push)"
+            exit 0
+          fi
+
+          mapfile -t CHANGED < <(git diff --name-only "$BEFORE" "${{ github.sha }}" -- 'src/content/blog/en/*.md' | sed 's|.*/||' | sed 's|\.md$||')
+          if [ "${#CHANGED[@]}" -eq 0 ]; then
+            echo "only=" >> "$GITHUB_OUTPUT"
+            echo "mode=none"
+            exit 0
+          fi
+
+          ONLY=$(printf '%s,' "${CHANGED[@]}")
+          ONLY="${ONLY%,}"
+          echo "only=$ONLY" >> "$GITHUB_OUTPUT"
+          echo "mode=changed (${#CHANGED[@]} post(s)): $ONLY"
+
       - name: Translate posts
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           OPENAI_MODEL: gpt-5-mini
+          ONLY_TRANSLATE: ${{ steps.changed.outputs.only }}
         run: node scripts/translate-blog-en-to-it.js
 
       - name: Commit changes (if any)

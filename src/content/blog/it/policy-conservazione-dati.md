@@ -14,7 +14,7 @@ tags:
   - privacy by design
   - soc 2
   - data governance
-translationSlug: policy-conservazione-dati
+translationSlug: data-retention-policies
 translationSourceHash: b8c9b71bed6b85b1856a159bff1c4a5a518fb75757f92876fa3a265d3ccece49
 ---
 Una politica di conservazione dei dati è più di un documento legale che definisce per quanto tempo la tua organizzazione conserva i dati. È un vincolo architetturale fondamentale che influisce direttamente sulle prestazioni del sistema, sulla sicurezza, sulla conformità e sui costi operativi. Una politica ben progettata è il regolamento che impedisce ai tuoi sistemi di accumulare una passività di dati infinita, costosa e ad alto rischio.

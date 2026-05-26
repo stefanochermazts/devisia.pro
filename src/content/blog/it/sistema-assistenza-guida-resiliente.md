@@ -14,7 +14,7 @@ tags:
   - iso 26262
   - sensor fusion
   - automotive ai
-translationSlug: sistema-assistenza-guida-resiliente
+translationSlug: advanced-driver-assistance-system
 translationSourceHash: 58c152ab7360d825144abb6d824a0a16ed6cef573f288b2913de80c2e1ee6144
 ---
 Un **Sistema avanzato di assistenza alla guida** (ADAS) non è una singola tecnologia ma un complesso insieme di funzioni progettate per migliorare la sicurezza del veicolo e ridurre il carico sul conducente. Questi sistemi operano come un copilota digitale, utilizzando sensori come telecamere e radar per monitorare l'ambiente del veicolo e compensare i ritardi di reazione umana di frazioni di secondo dove si originano la maggior parte degli incidenti.

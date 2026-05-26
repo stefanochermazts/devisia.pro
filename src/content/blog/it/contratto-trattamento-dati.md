@@ -14,7 +14,7 @@ tags:
   - data privacy
   - saas contracts
   - technical compliance
-translationSlug: contratto-trattamento-dati
+translationSlug: data-processing-agreement
 translationSourceHash: 18a0c2a67047a749b34340487337a3f2e46de538bec1cf2e170a19c7e12d81cb
 ---
 Un **accordo sul trattamento dei dati (DPA)** non è semplicemente un documento legale da firmare e archiviare. Per i leader tecnici e di prodotto, è una specifica architetturale critica per qualsiasi sistema software che tratta dati personali. È un contratto vincolante tra un titolare del trattamento (la tua organizzazione) e un responsabile del trattamento (un fornitore), che definisce responsabilità precise per la protezione dei dati degli utenti in tutto il tuo stack tecnologico.

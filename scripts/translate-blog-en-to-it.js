@@ -4,6 +4,13 @@ import process from 'node:process';
 import crypto from 'node:crypto';
 import matter from 'gray-matter';
 
+try {
+  const dotenv = await import('dotenv');
+  dotenv.config();
+} catch {
+  // dotenv is optional outside local dev
+}
+
 const REPO_ROOT = process.cwd();
 const EN_DIR = path.join(REPO_ROOT, 'src', 'content', 'blog', 'en');
 const IT_DIR = path.join(REPO_ROOT, 'src', 'content', 'blog', 'it');
@@ -51,35 +58,117 @@ function buildChatCompletionBody({ model, messages }) {
   });
 }
 
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function isRetryableOpenAIStatus(status) {
+  return status === 429 || status === 500 || status === 502 || status === 503 || status === 504 || (status >= 520 && status <= 524);
+}
+
+function summarizeOpenAIErrorBody(text) {
+  const trimmed = String(text ?? '').trim();
+  if (!trimmed) return '';
+  if (trimmed.startsWith('<!DOCTYPE') || trimmed.startsWith('<html')) {
+    const titleMatch = trimmed.match(/<title>([^<]+)<\/title>/i);
+    return titleMatch ? titleMatch[1].trim() : 'HTML error page';
+  }
+  return trimmed.length > 500 ? `${trimmed.slice(0, 500)}…` : trimmed;
+}
+
+function parseOnlyTranslateFilter() {
+  const raw = String(process.env.ONLY_TRANSLATE ?? '').trim();
+  if (!raw) return null;
+  return new Set(
+    raw
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean)
+  );
+}
+
+function normalizeComparableText(text) {
+  return String(text ?? '')
+    .toLowerCase()
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
+function looksUntranslated({ source, translated }) {
+  const src = normalizeComparableText(source);
+  const out = normalizeComparableText(translated);
+  if (!src || !out) return true;
+  if (src === out) return true;
+
+  const srcWords = src.split(' ').filter(Boolean);
+  const outWords = new Set(out.split(' ').filter(Boolean));
+  if (srcWords.length < 40) return false;
+
+  let overlap = 0;
+  for (const word of srcWords) {
+    if (outWords.has(word)) overlap++;
+  }
+  return overlap / srcWords.length > 0.82;
+}
+
 async function callOpenAIChatCompletions({ model, messages }) {
   const apiKey = requireEnv('OPENAI_API_KEY');
+  const maxAttempts = Number.parseInt(process.env.OPENAI_MAX_RETRIES ?? '5', 10);
 
-  const res = await fetch('https://api.openai.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${apiKey}`,
-    },
-    body: buildChatCompletionBody({ model, messages }),
-  });
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const res = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${apiKey}`,
+        },
+        body: buildChatCompletionBody({ model, messages }),
+      });
 
-  if (!res.ok) {
-    const text = await res.text().catch(() => '');
-    throw new Error(`OpenAI API error (${res.status}): ${text || res.statusText}`);
+      if (!res.ok) {
+        const text = await res.text().catch(() => '');
+        const summary = summarizeOpenAIErrorBody(text) || res.statusText;
+
+        if (isRetryableOpenAIStatus(res.status) && attempt < maxAttempts) {
+          const delayMs = Math.min(60_000, 2_000 * 2 ** (attempt - 1));
+          console.warn(
+            `OpenAI API ${res.status} (${summary}). Retry ${attempt}/${maxAttempts - 1} in ${Math.round(delayMs / 1000)}s…`
+          );
+          await sleep(delayMs);
+          continue;
+        }
+
+        throw new Error(`OpenAI API error (${res.status}): ${summary}`);
+      }
+
+      const data = await res.json();
+      const content = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
+      if (!content) throw new Error('OpenAI API returned an unexpected payload (missing message content).');
+
+      let parsed;
+      try {
+        parsed = JSON.parse(content);
+      } catch (e) {
+        throw new Error(`OpenAI did not return valid JSON. Raw: ${String(content).slice(0, 500)}`);
+      }
+
+      return parsed;
+    } catch (err) {
+      const isNetworkError = err instanceof TypeError;
+      if (isNetworkError && attempt < maxAttempts) {
+        const delayMs = Math.min(60_000, 2_000 * 2 ** (attempt - 1));
+        console.warn(
+          `OpenAI request failed (${err.message}). Retry ${attempt}/${maxAttempts - 1} in ${Math.round(delayMs / 1000)}s…`
+        );
+        await sleep(delayMs);
+        continue;
+      }
+      throw err;
+    }
   }
 
-  const data = await res.json();
-  const content = data && data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content;
-  if (!content) throw new Error('OpenAI API returned an unexpected payload (missing message content).');
-
-  let parsed;
-  try {
-    parsed = JSON.parse(content);
-  } catch (e) {
-    throw new Error(`OpenAI did not return valid JSON. Raw: ${String(content).slice(0, 500)}`);
-  }
-
-  return parsed;
+  throw new Error('OpenAI API failed after retries.');
 }
 
 async function translateMetaWithOpenAI({ title, meta_description }) {
@@ -225,6 +314,7 @@ async function translateMarkdownInChunks(content_markdown) {
 async function main() {
   const files = await fs.readdir(EN_DIR);
   const markdownFiles = files.filter(isMarkdownFile).sort((a, b) => a.localeCompare(b));
+  const onlyFilter = parseOnlyTranslateFilter();
 
   if (markdownFiles.length === 0) {
     console.log('No EN blog posts found.');
@@ -234,11 +324,14 @@ async function main() {
   await ensureDir(IT_DIR);
 
   const problems = [];
+  const failures = [];
   const updated = [];
   const force = process.env.FORCE_TRANSLATE === '1' || process.env.FORCE_TRANSLATE === 'true';
 
   for (const filename of markdownFiles) {
     const enSlug = stripExt(filename);
+    if (onlyFilter && !onlyFilter.has(enSlug)) continue;
+
     const enPath = path.join(EN_DIR, filename);
 
     const { parsed } = await readMarkdownFile(enPath);
@@ -283,18 +376,6 @@ async function main() {
           console.log(`Skipping (up-to-date): ${enSlug} -> ${itSlug}`);
           continue;
         }
-
-        // Migration: if the IT file already exists but doesn't have a source hash yet,
-        // set it without re-translating (prevents daily churn on unchanged EN posts).
-        // We only do this when the IT file is linked to this EN post.
-        if (!itData.translationSourceHash && itData.translationSlug === enSlug) {
-          const nextFrontmatter = { ...itData, translationSourceHash: sourceHash };
-          const nextRaw = matter.stringify(itParsed.content, nextFrontmatter);
-          await fs.writeFile(itPath, nextRaw, 'utf8');
-          updated.push(itPath);
-          console.log(`Marked as up-to-date (hash added): ${enSlug} -> ${itSlug}`);
-          continue;
-        }
       } catch {
         // Missing IT file is fine; we'll create it.
       }
@@ -302,30 +383,36 @@ async function main() {
 
     console.log(`Translating EN -> IT: ${enSlug} -> ${itSlug}`);
 
-    const translatedMeta = await translateMetaWithOpenAI({
-      title,
-      meta_description: description,
-    });
-    const translatedBody = await translateMarkdownInChunks(parsed.content);
+    try {
+      const translatedMeta = await translateMetaWithOpenAI({
+        title,
+        meta_description: description,
+      });
+      const translatedBody = await translateMarkdownInChunks(parsed.content);
 
-    const itFrontmatter = {
-      title: translatedMeta.title,
-      description: translatedMeta.meta_description,
-      pubDate,
-      heroImage,
-      author,
-      tags,
-      translationSlug: enSlug,
-      translationSourceHash: sourceHash,
-    };
+      if (looksUntranslated({ source: parsed.content, translated: translatedBody })) {
+        throw new Error('Translated body still looks like English source text.');
+      }
 
-    // IMPORTANT: Do not carry autoTranslateToIt into IT files.
-    const itBody = translatedBody;
+      const itFrontmatter = {
+        title: translatedMeta.title,
+        description: translatedMeta.meta_description,
+        pubDate,
+        heroImage,
+        author,
+        tags,
+        translationSlug: enSlug,
+        translationSourceHash: sourceHash,
+      };
 
-    const itRaw = matter.stringify(itBody, itFrontmatter);
-
-    await fs.writeFile(itPath, itRaw, 'utf8');
-    updated.push(itPath);
+      const itRaw = matter.stringify(translatedBody, itFrontmatter);
+      await fs.writeFile(itPath, itRaw, 'utf8');
+      updated.push(itPath);
+    } catch (err) {
+      const message = err instanceof Error ? err.message : String(err);
+      failures.push(`EN post "${enSlug}" -> "${itSlug}": ${message}`);
+      console.error(`Failed: ${enSlug} -> ${itSlug}: ${message}`);
+    }
   }
 
   if (problems.length) {
@@ -333,6 +420,11 @@ async function main() {
   }
 
   console.log(`Done. Updated/created ${updated.length} IT post(s).`);
+
+  if (failures.length) {
+    console.error('Translation failures:\n' + failures.map((f) => `- ${f}`).join('\n'));
+    process.exit(1);
+  }
 }
 
 main().catch((err) => {

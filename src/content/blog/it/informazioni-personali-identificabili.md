@@ -14,7 +14,7 @@ tags:
   - privacy by design
   - GDPR compliance
   - secure architecture
-translationSlug: informazioni-personali-identificabili
+translationSlug: personal-identifiable-information
 translationSourceHash: 6a028ffb071148941e648b4e2a3d5e162ae041dcc84a1c6acf61161d966473c1
 ---
 Per i leader tecnici, **Informazioni personali identificabili (PII)** non sono semplicemente un termine di conformità; rappresentano una classificazione dei dati fondamentale che detta l'architettura dei sistemi, i protocolli di sicurezza e le procedure di gestione dei dati. Una cattiva gestione delle PII introduce debito tecnico significativo, vulnerabilità di sicurezza e rischi normativi.

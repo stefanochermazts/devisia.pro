@@ -14,7 +14,7 @@ tags:
   - business continuity
   - cloud architecture
   - system resilience
-translationSlug: disaster-recovery-nel-cloud
+translationSlug: disaster-recovery-and-cloud-computing
 translationSourceHash: 22a078a4b933b0d471479d931d395f715d489f2da1543e7adde5b95fedeeb6d7
 ---
 Ad esempio, il gruppo di auto-scaling di produzione potrebbe eseguire dieci grandi istanze, mentre la regione di warm standby opera con sole due istanze piccole. Al momento del failover, il traffico viene reindirizzato e l'infrastruttura standby viene immediatamente scalata per gestire l'intero carico di produzione. Questa transizione è molto più rapida rispetto al Pilot Light perché l'applicazione è già in esecuzione.

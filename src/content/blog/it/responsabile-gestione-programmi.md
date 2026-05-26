@@ -14,7 +14,7 @@ tags:
   - software delivery
   - strategic planning
   - AI projects
-translationSlug: responsabile-gestione-programmi
+translationSlug: program-management-officer
 translationSourceHash: a3c0698cbd1de3e0213682123c2edddbb47c723c210a9d25ba2a029459595f63
 ---
 Un **Responsabile della gestione dei programmi (PMO)** non è un ulteriore livello di burocrazia gestionale. In un'azienda tecnologica moderna, questo ruolo fornisce la governance strategica necessaria per collegare più progetti di ingegneria complessi ai risultati aziendali fondamentali.

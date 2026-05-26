@@ -14,7 +14,7 @@ tags:
   - AI governance
   - IP protection
   - software NDA
-translationSlug: modello-accordo-riservatezza-nda
+translationSlug: confidentiality-agreement-template
 translationSourceHash: c2ba7838305335c686e32a1a3dc7380ecd8382b549072bb451077876e41deea7
 ---
 Usare un **modello di accordo di riservatezza** generico preso da internet è una scorciatoia comune per le aziende tecnologiche, ma è una pratica piena di rischi. I classici accordi di non divulgazione (NDA) spesso non sono allineati con le realtà dello sviluppo agile, delle architetture basate su API e dei flussi di dati su larga scala insiti nei sistemi di IA. Per i fondatori, i CTO e i responsabili della conformità, questo disallineamento introduce responsabilità significative e spesso trascurate.

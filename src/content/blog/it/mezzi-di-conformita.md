@@ -14,7 +14,7 @@ tags:
   - ai governance
   - privacy by design
   - software architecture
-translationSlug: mezzi-di-conformita
+translationSlug: means-of-compliance
 translationSourceHash: f4e1b0219a915b866672beab9e54ad7c59e64eff55ca8fe96a1a665dfc0ec31e
 ---
 **Mezzi di Conformità (MOC)** sono gli artefatti concreti e specifici che dimostrano che i vostri sistemi soddisfano i requisiti normativi. Non sono pratiche burocratiche, ma i progetti architetturali, i file di configurazione e i log operativi dei vostri prodotti digitali. Dimostrano come regole legali astratte siano soddisfatte con prove ingegneristiche concrete.

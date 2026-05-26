@@ -14,7 +14,7 @@ tags:
   - data governance
   - customer data platform
   - ai data integration
-translationSlug: strategia-dati-first-party
+translationSlug: first-party-data
 translationSourceHash: a330e5920d86e7b99df6deaf480e768e02797c54afd51b9e0a3f8c33feb1f667
 ---
 **Dati di prima parte** sono le informazioni che la tua organizzazione raccoglie direttamente dagli utenti tramite le proprie applicazioni, siti web e sistemi digitali, con il loro consenso. Questa relazione diretta li rende l'asset di dati più accurato, affidabile e conforme disponibile.

@@ -14,7 +14,7 @@ tags:
   - data governance
   - ai document processing
   - enterprise software
-translationSlug: software-gestione-documenti
+translationSlug: document-management-system
 translationSourceHash: cdf3b88ad95a0997cc87bee8e3957f338082f26d355aa403bf65400b1ccc5257
 ---
 Un moderno sistema di gestione documentale (DMS) non è un armadietto digitale per l'archiviazione. È l'architettura fondamentale per la sicurezza, la resilienza operativa e le capacità di automazione di un'organizzazione. Un DMS progettato correttamente fornisce controllo delle versioni immutabile, gestione degli accessi granulare e flussi di lavoro verificabili—trasformando file statici in asset strategici.
