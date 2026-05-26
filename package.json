@@ -19,6 +19,7 @@
     "lint": "eslint . --ext .js,.ts,.astro",
     "export:rag:it": "node scripts/export-rag-content.mjs --base https://devisia.pro --out rag-export/it",
     "blog:audit-translations": "node scripts/audit-blog-translations.mjs",
+    "blog:audit-english-residue": "node scripts/audit-blog-english-residue.mjs",
     "blog:fix-slugs": "node scripts/fix-it-translation-slugs.mjs",
     "blog:translate": "node scripts/translate-blog-en-to-it.js",
     "test": "vitest",

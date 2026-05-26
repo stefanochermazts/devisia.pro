@@ -4,6 +4,7 @@ import process from 'node:process';
 import crypto from 'node:crypto';
 import { execFileSync } from 'node:child_process';
 import matter from 'gray-matter';
+import { needsItalianTranslation, findEnglishResidue, stripMarkdown } from './lib/blog-translation-audit.mjs';
 
 try {
   const dotenv = await import('dotenv');
@@ -295,10 +296,12 @@ async function translateMarkdownChunkWithOpenAI({ content_markdown, attempt }) {
 Translate the following Markdown content from English to Italian.
 Rules:
 1. Maintain the exact same Markdown structure, headings, bolding, lists, and links.
-2. Do NOT translate image URLs. Do NOT change any URLs.
-3. Preserve code blocks exactly (do not translate code).
-4. Do NOT output the original English text. Output must be Italian.
-5. Return the result as a JSON object with this key: "content_markdown".`;
+2. Do NOT translate image URLs or link URLs. Do NOT change any URLs.
+3. DO translate image alt text inside markdown images: ![alt text here](url)
+4. DO translate markdown table headers and cell text. Keep table layout, pipes, and alignment rows unchanged.
+5. Preserve code blocks, inline code, iframe embeds, and HTML tags exactly (do not translate code or URLs inside them).
+6. Do NOT output the original English text. Output must be Italian.
+7. Return the result as a JSON object with this key: "content_markdown".`;
 
   // NOTE: Do not JSON.stringify the markdown input: the escaping (\n, \") makes long posts
   // much harder to translate and may cause the model to "echo" the input content_markdown.
@@ -446,16 +449,36 @@ async function main() {
       try {
         const { parsed: itParsed } = await readMarkdownFile(itPath);
         const itData = itParsed.data || {};
-        if (typeof itData.translationSourceHash === 'string' && itData.translationSourceHash === sourceHash) {
-          console.log(`Skipping (up-to-date): ${enSlug} -> ${itSlug}`);
+        const hashMatches =
+          typeof itData.translationSourceHash === 'string' && itData.translationSourceHash === sourceHash;
+        const verdict = needsItalianTranslation({
+          enTitle: title,
+          enDescription: description,
+          enBody: parsed.content,
+          itExists: true,
+          itTitle: itData.title,
+          itDescription: itData.description,
+          itBody: itParsed.content,
+        });
+
+        if (hashMatches && !verdict.needed) {
+          console.log(`Skipping (Italian OK): ${enSlug} -> ${itSlug}`);
           continue;
         }
-      } catch {
-        // Missing IT file is fine; we'll create it.
-      }
-    }
 
-    console.log(`Translating EN -> IT: ${enSlug} -> ${itSlug}`);
+        if (verdict.needed) {
+          console.log(
+            `Translating EN -> IT: ${enSlug} -> ${itSlug} (${verdict.reasons.join(', ')})`
+          );
+        } else {
+          console.log(`Translating EN -> IT: ${enSlug} -> ${itSlug} (source changed)`);
+        }
+      } catch {
+        console.log(`Translating EN -> IT: ${enSlug} -> ${itSlug} (missing IT file)`);
+      }
+    } else {
+      console.log(`Translating EN -> IT: ${enSlug} -> ${itSlug} (force)`);
+    }
 
     try {
       const translatedMeta = await translateMetaWithOpenAI({
@@ -466,6 +489,13 @@ async function main() {
 
       if (looksUntranslated({ source: parsed.content, translated: translatedBody })) {
         throw new Error('Translated body still looks like English source text.');
+      }
+
+      const residue = findEnglishResidue(translatedBody);
+      if (residue.prose.length > 0) {
+        throw new Error(
+          `Translated body still contains ${residue.prose.length} English prose block(s). Sample: ${stripMarkdown(residue.prose[0]).slice(0, 120)}…`
+        );
       }
 
       const itFrontmatter = {

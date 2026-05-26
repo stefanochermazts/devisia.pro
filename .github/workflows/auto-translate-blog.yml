@@ -54,8 +54,9 @@ jobs:
         id: changed
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "only=" >> "$GITHUB_OUTPUT"
-            echo "mode=all pending/missing (workflow_dispatch)"
+            ONLY="$(node scripts/audit-blog-translations.mjs --print-only-translate 2>/dev/null || true)"
+            echo "only=$ONLY" >> "$GITHUB_OUTPUT"
+            echo "mode=needs-translation (${ONLY:-none})"
             exit 0
           fi
 

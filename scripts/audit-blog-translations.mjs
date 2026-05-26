@@ -1,142 +1,106 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import matter from 'gray-matter';
+import { needsItalianTranslation, findEnglishResidue } from './lib/blog-translation-audit.mjs';
 
 const EN_DIR = path.join(process.cwd(), 'src/content/blog/en');
 const IT_DIR = path.join(process.cwd(), 'src/content/blog/it');
-
-const EN_PHRASES = [
-  ' in the ',
-  ' of the ',
-  ' and the ',
-  ' with the ',
-  ' for the ',
-  ' you can ',
-  ' you should ',
-  ' this is ',
-  ' that is ',
-  ' however ',
-  ' therefore ',
-  ' moreover ',
-  ' in order to ',
-  ' as well as ',
-  ' such as ',
-  ' according to ',
-  ' data protection ',
-  ' software development ',
-  ' cloud computing ',
-];
-
-function stripMarkdown(text) {
-  return String(text)
-    .replace(/```[\s\S]*?```/g, ' ')
-    .replace(/`[^`]+`/g, ' ')
-    .replace(/!\[[^\]]*\]\([^)]+\)/g, ' ')
-    .replace(/\[[^\]]*\]\([^)]+\)/g, ' ')
-    .replace(/[#>*_~-]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
-}
-
-function countPhrases(text) {
-  const lower = stripMarkdown(text).toLowerCase();
-  let count = 0;
-  for (const phrase of EN_PHRASES) {
-    let idx = 0;
-    while ((idx = lower.indexOf(phrase, idx)) !== -1) {
-      count++;
-      idx += phrase.length;
-    }
-  }
-  return count;
-}
-
-function sameTitle(a, b) {
-  return String(a ?? '').trim().toLowerCase() === String(b ?? '').trim().toLowerCase();
-}
 
 async function listMarkdown(dir) {
   const files = await fs.readdir(dir);
   return files.filter((f) => /\.mdx?$/i.test(f)).sort();
 }
 
-async function main() {
+async function main({ printOnlyTranslate = false } = {}) {
+  const log = printOnlyTranslate ? (...args) => console.error(...args) : console.log.bind(console);
   const enFiles = await listMarkdown(EN_DIR);
   const itFiles = new Set(await listMarkdown(IT_DIR));
 
-  const issues = [];
+  const needsTranslation = [];
+  const ok = [];
+  const configIssues = [];
 
   for (const file of enFiles) {
     const enSlug = file.replace(/\.mdx?$/i, '');
-    const enParsed = matter(await fs.readFile(path.join(EN_DIR, file), 'utf8'));
+    const enRaw = await fs.readFile(path.join(EN_DIR, file), 'utf8');
+    const enParsed = matter(enRaw);
     if (!enParsed.data.autoTranslateToIt) continue;
 
     const itSlug = String(enParsed.data.translationSlug ?? '').trim();
     if (!itSlug) {
-      issues.push({ enSlug, itSlug, kind: 'missing-slug' });
+      configIssues.push({ enSlug, reasons: ['missing-translationSlug'] });
       continue;
     }
 
     const itPath = path.join(IT_DIR, `${itSlug}.md`);
-    if (!itFiles.has(`${itSlug}.md`)) {
-      issues.push({ enSlug, itSlug, kind: 'missing-it' });
-      continue;
+    const itExists = itFiles.has(`${itSlug}.md`);
+    let itParsed = { data: {}, content: '' };
+    if (itExists) {
+      itParsed = matter(await fs.readFile(itPath, 'utf8'));
     }
 
-    const itParsed = matter(await fs.readFile(itPath, 'utf8'));
-    const enBody = stripMarkdown(enParsed.content);
-    const itBody = stripMarkdown(itParsed.content);
-    const enPhrases = countPhrases(enParsed.content);
-    const itPhrases = countPhrases(itParsed.content);
-    const lenRatio = itBody.length / Math.max(enBody.length, 1);
-    const titleMatch = sameTitle(enParsed.data.title, itParsed.data.title);
+    const verdict = needsItalianTranslation({
+      enTitle: enParsed.data.title,
+      enDescription: enParsed.data.description,
+      enBody: enParsed.content,
+      itExists,
+      itTitle: itParsed.data.title,
+      itDescription: itParsed.data.description,
+      itBody: itParsed.content,
+    });
 
-    const flags = [];
-    if (titleMatch) flags.push('same-title');
-    if (itPhrases >= 5) flags.push(`english-phrases:${itPhrases}`);
-    if (lenRatio < 0.55) flags.push(`short-body:${Math.round(lenRatio * 100)}%`);
-    if (lenRatio > 1.45) flags.push(`long-body:${Math.round(lenRatio * 100)}%`);
-    if (enSlug === itSlug && itPhrases >= 3) flags.push('same-slug-english');
+    const residue = itExists ? findEnglishResidue(itParsed.content) : { prose: [], tables: [], alts: [] };
 
-    if (flags.length) {
-      issues.push({
-        enSlug,
-        itSlug,
-        kind: 'suspect',
-        flags,
-        enTitle: enParsed.data.title,
-        itTitle: itParsed.data.title,
-        hasHash: Boolean(itParsed.data.translationSourceHash),
-      });
-    }
+    const row = {
+      enSlug,
+      itSlug,
+      reasons: verdict.reasons,
+      prose: residue.prose.length,
+      tables: residue.tables.length,
+      alts: residue.alts.length,
+      hasHash: Boolean(itParsed.data?.translationSourceHash),
+      enTitle: enParsed.data.title,
+      itTitle: itParsed.data?.title,
+    };
+
+    if (verdict.needed) needsTranslation.push(row);
+    else ok.push(row);
   }
 
-  const missingIt = issues.filter((i) => i.kind === 'missing-it');
-  const missingSlug = issues.filter((i) => i.kind === 'missing-slug');
-  const suspect = issues.filter((i) => i.kind === 'suspect');
+  log(`Auto-translate EN posts: ${needsTranslation.length + ok.length + configIssues.length}`);
+  log(`Needs Italian translation: ${needsTranslation.length}`);
+  log(`Looks translated OK: ${ok.length}`);
+  log(`Config issues: ${configIssues.length}`);
+  log('');
 
-  console.log(`Total issues: ${issues.length}`);
-  console.log(`Missing IT: ${missingIt.length}`);
-  console.log(`Missing slug: ${missingSlug.length}`);
-  console.log(`Suspect translations: ${suspect.length}`);
-  console.log('');
+  if (configIssues.length) {
+    log('=== CONFIG ISSUES ===');
+    for (const row of configIssues) {
+      log(`- ${row.enSlug}: ${row.reasons.join(', ')}`);
+    }
+    log('');
+  }
 
-  for (const row of issues) {
-    if (row.kind === 'missing-it') {
-      console.log(`MISSING  ${row.enSlug} -> ${row.itSlug}`);
-      continue;
+  if (needsTranslation.length) {
+    log('=== NEEDS TRANSLATION ===');
+    for (const row of needsTranslation) {
+      log(`- ${row.enSlug} -> ${row.itSlug} [${row.reasons.join(', ')}] hash=${row.hasHash}`);
+      if (row.prose || row.tables || row.alts) {
+        log(`  residue: prose=${row.prose}, tables=${row.tables}, alts=${row.alts}`);
+      }
+      log(`  EN: ${row.enTitle}`);
+      log(`  IT: ${row.itTitle ?? '(missing)'}`);
     }
-    if (row.kind === 'missing-slug') {
-      console.log(`NO SLUG ${row.enSlug}`);
-      continue;
+    log('');
+    const only = needsTranslation.map((r) => r.enSlug).join(',');
+    log('ONLY_TRANSLATE=' + only);
+    if (printOnlyTranslate) {
+      process.stdout.write(only);
     }
-    console.log(`SUSPECT  ${row.enSlug} -> ${row.itSlug} [${row.flags.join(', ')}] hash=${row.hasHash}`);
-    console.log(`         EN: ${row.enTitle}`);
-    console.log(`         IT: ${row.itTitle}`);
   }
 }
 
-main().catch((err) => {
+main({ printOnlyTranslate: process.argv.includes('--print-only-translate') }).catch((err) => {
   console.error(err);
   process.exit(1);
 });
