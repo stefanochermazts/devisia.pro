@@ -8,7 +8,7 @@
   publish = "dist"
   
   # Node version (should match .nvmrc)
-  environment = { NODE_VERSION = "20" }
+  environment = { NODE_VERSION = "22" }
 
 # Redirects and rewrites
 # Note: Specific files like config.yml should be served directly, not redirected
