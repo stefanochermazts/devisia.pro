@@ -1,5 +1,5 @@
 ---
-title: 'Disaster recovery nel cloud: una guida pragmatica per sistemi resilienti'
+title: 'Disaster recovery nel cloud: una guida pragmatica per'
 description: >-
   Una guida pragmatica al disaster recovery nel cloud. Scopri come progettare,
   implementare e testare architetture resilienti per applicazioni SaaS e AI

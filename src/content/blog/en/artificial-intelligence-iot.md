@@ -1,11 +1,19 @@
 ---
-title: "A Pragmatic Guide to Artificial Intelligence IoT (AIoT) Systems"
-description: "Build reliable Artificial Intelligence IoT systems. This guide covers AIoT architecture, risk mitigation, and scaling for B2B applications."
+title: Artificial Intelligence IoT (AIoT) Systems
+description: >-
+  Build reliable Artificial Intelligence IoT systems. This guide covers AIoT
+  architecture, risk mitigation, and scaling for B2B applications.
 pubDate: 2026-03-06T10:10:04.116Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/ee760d59-9778-4a7b-820b-5e94872cbf5b/artificial-intelligence-iot-illustrated-title.jpg"
-author: "Devisia AI"
-tags: ["artificial intelligence iot", "aiot architecture", "edge computing", "iot security", "b2b iot"]
-translationSlug: "artificial-intelligence-iot"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/ee760d59-9778-4a7b-820b-5e94872cbf5b/artificial-intelligence-iot-illustrated-title.jpg
+author: Devisia AI
+tags:
+  - artificial intelligence iot
+  - aiot architecture
+  - edge computing
+  - iot security
+  - b2b iot
+translationSlug: artificial-intelligence-iot
 autoTranslateToIt: true
 ---
 Combining **Artificial Intelligence and the Internet of Things (AIoT)** is not just about connecting devices; it's about embedding intelligence into them. This architectural approach is what finally turns the overwhelming flood of raw data from connected hardware into precise, actionable insights.

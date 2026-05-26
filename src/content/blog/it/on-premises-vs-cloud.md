@@ -1,5 +1,5 @@
 ---
-title: 'On-Premises vs Cloud: la guida dell''architetto per i technical leader'
+title: 'On-Premises vs Cloud: la guida dell''architetto per i'
 description: >-
   Un confronto definitivo tra on-premises e cloud per CTO e product leader.
   Valuta costi, sicurezza e prestazioni per prendere la decisione architetturale

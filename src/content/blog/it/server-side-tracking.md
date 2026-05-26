@@ -125,7 +125,7 @@ Questo controllo centralizzato ti permette di:
 
 Questo trasforma la tua raccolta dati da potenziale responsabilità a un asset sicuro e conforme. Hai autorità totale su quali informazioni lasciano il tuo ecosistema, rendendo la privacy una scelta architetturale, non un ripensamento.
 
-Questo focus sulla costruzione con **dati di prima parte** è una pietra angolare dei sistemi moderni orientati alla privacy. Puoi approfondire questo tema nella nostra guida su [sfruttare strategie sui dati di prima parte](https://devisia.pro/blog/first-party-data).
+Questo focus sulla costruzione con **dati di prima parte** è una pietra angolare dei sistemi moderni orientati alla privacy. Puoi approfondire questo tema nella nostra guida su [sfruttare strategie sui dati di prima parte](https://devisia.pro/blog/strategia-dati-first-party).
 
 ## Scegliere il modello di implementazione e l'architettura
 

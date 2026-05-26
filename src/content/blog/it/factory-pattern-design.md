@@ -1,5 +1,5 @@
 ---
-title: 'Factory Pattern: guida alla creazione disaccoppiata di oggetti'
+title: 'Factory Pattern: guida alla creazione disaccoppiata di'
 description: >-
   Scopri il factory pattern per disaccoppiare la creazione di oggetti,
   migliorare la manutenibilità e costruire sistemi software scalabili ed

@@ -373,7 +373,7 @@ A serious system should have all of the following before broad rollout:
 -   **Testing with adversarial cases**. Include malformed input, conflicting evidence, stale records, and partial outages.
 -   **Compliance mapping**. Control evidence should align with frameworks such as GDPR, NIS2, and DORA where relevant.
 
-For teams formalising those controls, it helps to treat them as part of the wider [means of compliance in digital systems](https://devisia.pro/blog/means-of-compliance), not as an AI-specific side topic.
+For teams formalising those controls, it helps to treat them as part of the wider [means of compliance in digital systems](https://devisia.pro/blog/mezzi-di-conformita), not as an AI-specific side topic.
 
 > An agent without observability is hard to trust. An agent with broad access and weak controls is hard to justify.
 

@@ -1,11 +1,19 @@
 ---
-title: "A Pragmatic Guide to Article 14 GDPR for Software Systems"
-description: "A pragmatic B2B guide to Article 14 GDPR. Learn the technical requirements for indirectly collected data and how to implement compliance in software systems."
+title: Article 14 GDPR for Software Systems
+description: >-
+  A pragmatic B2B guide to Article 14 GDPR. Learn the technical requirements for
+  indirectly collected data and how to implement compliance in software systems.
 pubDate: 2026-03-02T08:10:54.164Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/d229821d-06c6-4bd0-aa52-d9ec267ff512/article-14-gdpr-software-guide.jpg"
-author: "Devisia AI"
-tags: ["article 14 gdpr", "gdpr compliance", "privacy by design", "data protection", "software engineering"]
-translationSlug: "article-14-gdpr"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/d229821d-06c6-4bd0-aa52-d9ec267ff512/article-14-gdpr-software-guide.jpg
+author: Devisia AI
+tags:
+  - article 14 gdpr
+  - gdpr compliance
+  - privacy by design
+  - data protection
+  - software engineering
+translationSlug: article-14-gdpr
 autoTranslateToIt: true
 ---
 Article 14 of the GDPR specifies the information you must provide to data subjects when you process their personal data *without* obtaining it directly from them. This right to information is the cornerstone of transparency whenever you acquire data from third-party sources, such as partner APIs, data enrichment services, or public databases. It ensures individuals are aware of who is processing their data and for what purpose.

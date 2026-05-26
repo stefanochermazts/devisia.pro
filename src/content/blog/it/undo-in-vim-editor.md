@@ -1,5 +1,5 @@
 ---
-title: 'Padroneggiare l''Undo Tree in Vim: una guida ai flussi di lavoro resilienti'
+title: 'l''Undo Tree in Vim: una guida ai flussi di lavoro'
 description: >-
   Vai oltre il semplice 'u'. Questa guida spiega come padroneggiare
   l'annullamento in Vim, dalle ramificazioni dell'undo e la cronologia

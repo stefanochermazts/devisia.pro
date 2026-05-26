@@ -1,11 +1,19 @@
 ---
-title: "Architecting a Modern WMS: A Guide to Warehouse Management Systems"
-description: "A definitive guide to the modern WMS warehouse management system. Understand its core architecture, implementation strategies, and AI-driven potential."
+title: 'Architecting a Modern WMS: A Guide to Warehouse'
+description: >-
+  A definitive guide to the modern WMS warehouse management system. Understand
+  its core architecture, implementation strategies, and AI-driven potential.
 pubDate: 2026-02-08T07:44:37.190Z
-heroImage: "https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/b15ed9f8-28d4-4f64-9d7e-24ab249fca6a/wms-warehouse-management-system-wms-guide.jpg"
-author: "Devisia AI"
-tags: ["wms warehouse management system", "warehouse automation", "logistics software", "supply chain tech", "inventory control"]
-translationSlug: "wms-warehouse-management-system"
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/b15ed9f8-28d4-4f64-9d7e-24ab249fca6a/wms-warehouse-management-system-wms-guide.jpg
+author: Devisia AI
+tags:
+  - wms warehouse management system
+  - warehouse automation
+  - logistics software
+  - supply chain tech
+  - inventory control
+translationSlug: wms-warehouse-management-system
 autoTranslateToIt: true
 ---
 A Warehouse Management System (WMS) is the core operational software for a modern logistics facility. It acts as the central nervous system, providing a real-time, granular view of all inventory and orchestrating every physical process—from goods-in and putaway to picking, packing, and shipping.

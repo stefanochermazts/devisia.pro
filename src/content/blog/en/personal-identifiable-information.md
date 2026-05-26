@@ -5,7 +5,7 @@ pubDate: 2026-02-16T09:36:35.582Z
 heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/182f6171-700c-4334-a67d-27423dc27abc/personal-identifiable-information-concept-diagram.jpg"
 author: "Devisia AI"
 tags: ["personal identifiable information", "data privacy", "privacy by design", "GDPR compliance", "secure architecture"]
-translationSlug: "personal-identifiable-information"
+translationSlug: "informazioni-personali-identificabili"
 autoTranslateToIt: true
 ---
 For technical leaders, **Personal Identifiable Information (PII)** is not merely a compliance term; it is a critical data classification that dictates system architecture, security protocols, and data handling procedures. Mismanagement of PII introduces significant technical debt, security vulnerabilities, and regulatory risk.

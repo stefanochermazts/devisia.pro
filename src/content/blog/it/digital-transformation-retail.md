@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica alla trasformazione digitale nel retail per leader tecnici
+title: la trasformazione digitale nel retail per leader
 description: >-
   Scopri una guida pragmatica alla trasformazione digitale nel retail, con
   architetture pratiche, casi d'uso IA ad alto impatto e roadmap a fasi per

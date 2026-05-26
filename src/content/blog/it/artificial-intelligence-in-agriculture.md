@@ -1,7 +1,5 @@
 ---
-title: >-
-  Guida pragmatica per il CTO alla costruzione di sistemi di intelligenza
-  artificiale in agricoltura
+title: il CTO alla costruzione di sistemi di intelligenza
 description: >-
   Sblocca il futuro dell'agricoltura con l'intelligenza artificiale. Questa
   guida pratica per CTO esplora strategie di implementazione e successo nel

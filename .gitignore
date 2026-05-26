@@ -35,3 +35,6 @@ Thumbs.db
 
 # Local RAG export (Markdown + JSONL)
 rag-export/
+
+# Local SEO audit exports (Semrush / crawler CSV)
+seo-audit/

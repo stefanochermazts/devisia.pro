@@ -21,9 +21,13 @@ const pageUrl = new URL(`/blog/${slug}/`, site).toString();
 const published =
   entry.data.pubDate instanceof Date ? entry.data.pubDate.toISOString() : new Date(entry.data.pubDate).toISOString();
 
-const languageSwitchHref = entry.data.translationSlug 
-  ? `/en/blog/${entry.data.translationSlug}`
-  : undefined;
+let languageSwitchHref: string | undefined;
+if (entry.data.translationSlug) {
+  const enEntry = await getEntry('blogEn', `en/${entry.data.translationSlug}`);
+  if (enEntry) {
+    languageSwitchHref = `/en/blog/${entry.data.translationSlug}`;
+  }
+}
 
 const breadcrumbs = breadcrumbListJsonLd({
   site,

@@ -1,7 +1,5 @@
 ---
-title: >-
-  Guida pragmatica alla privacy by design nel software e nell'intelligenza
-  artificiale
+title: la privacy by design nel software e nell'intelligenza
 description: >-
   Implementa la privacy by design nei tuoi software e nei sistemi di
   intelligenza artificiale con questa guida sui pattern architetturali, le

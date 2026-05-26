@@ -1,6 +1,8 @@
 ---
-title: 'Codice di Condotta: una guida pratica per team di ingegneria e AI'
-description: Impara a predisporre un codice di condotta pratico per il tuo team software ed AI.
+title: 'Codice di Condotta: una guida pratica per team di'
+description: >-
+  Impara a predisporre un codice di condotta pratico per il tuo team software ed
+  AI.
 translationSlug: code-of-conduct-a-practical-guide-for-engineering-and-ai-teams
 pubDate: 2026-01-18T16:45:44.575Z
 author: Stefano Chermaz

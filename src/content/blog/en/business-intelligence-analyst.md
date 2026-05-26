@@ -1,11 +1,19 @@
 ---
-title: "A Pragmatic Guide to the Business Intelligence Analyst Role"
-description: "A practical guide for CTOs on the business intelligence analyst role. Learn how they transform data into strategy using key skills, tools, and workflows."
+title: the Business Intelligence Analyst Role
+description: >-
+  A practical guide for CTOs on the business intelligence analyst role. Learn
+  how they transform data into strategy using key skills, tools, and workflows.
 pubDate: 2026-02-01T07:33:25.049Z
-heroImage: "https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/6a04b01c-f293-48b3-82a8-767361c2e558/business-intelligence-analyst-sketch-guide.jpg"
-author: "Devisia AI"
-tags: ["business intelligence analyst", "data strategy", "bi tools", "technical leadership", "data analytics"]
-translationSlug: "business-intelligence-analyst"
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/6a04b01c-f293-48b3-82a8-767361c2e558/business-intelligence-analyst-sketch-guide.jpg
+author: Devisia AI
+tags:
+  - business intelligence analyst
+  - data strategy
+  - bi tools
+  - technical leadership
+  - data analytics
+translationSlug: business-intelligence-analyst
 autoTranslateToIt: true
 ---
 A Business Intelligence (BI) Analyst serves as the critical link between raw data infrastructure and executable business strategy. This role is not about passively generating reports; it involves engineering and maintaining systems—such as interactive dashboards and automated reporting pipelines—that enable non-technical stakeholders to make data-informed decisions. For technical leadership, the BI analyst translates complex datasets into operational intelligence.

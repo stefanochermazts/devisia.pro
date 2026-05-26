@@ -5,7 +5,7 @@ pubDate: 2026-04-04T09:34:23.342Z
 heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/760027b3-cd81-427b-b176-641c216079e5/travel-artificial-intelligence-title-slide.jpg"
 author: "Devisia AI"
 tags: ["travel artificial intelligence", "ai in travel", "llm integration", "ai governance", "software architecture"]
-translationSlug: "travel-artificial-intelligence"
+translationSlug: "intelligenza-artificiale-travel"
 autoTranslateToIt: true
 ---
 For a long time, travel artificial intelligence felt more like a future concept than a present-day necessity. That’s changed. Today, it represents a **critical architectural upgrade**—one that's essential for survival and growth.

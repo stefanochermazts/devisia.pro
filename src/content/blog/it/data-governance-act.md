@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica al Data Governance Act dell'UE per gli engineering leader
+title: Data Governance Act dell'UE per gli engineering leader
 description: >-
   Comprendi il Data Governance Act dell'UE e come influisce sulla conformità,
   sulla condivisione dei dati e sull'architettura per team di sviluppo software
@@ -115,7 +115,7 @@ Queste condizioni includeranno probabilmente:
 
 *   **Non discriminazione:** Gli enti pubblici devono stabilire termini per il riutilizzo dei dati equi, trasparenti e non discriminatori.
 *   **Conformità ai termini:** Devi utilizzare i dati solo per le finalità concordate e rispettare eventuali vincoli tecnici, ad esempio utilizzandoli solo all'interno di un ambiente di elaborazione sicuro fornito dall'ente pubblico.
-*   **Riservatezza:** Se un set di dati contiene informazioni commercialmente sensibili (es. segreti aziendali), sei legalmente tenuto a proteggere la sua riservatezza. Ciò comporta tipicamente un formale **Accordo sul trattamento dei dati (DPA)** che governa come i dati vengono gestiti. Per uno sguardo più dettagliato, **[consulta la nostra guida sugli Accordi sul trattamento dei dati](https://devisia.pro/blog/data-processing-agreement)**.
+*   **Riservatezza:** Se un set di dati contiene informazioni commercialmente sensibili (es. segreti aziendali), sei legalmente tenuto a proteggere la sua riservatezza. Ciò comporta tipicamente un formale **Accordo sul trattamento dei dati (DPA)** che governa come i dati vengono gestiti. Per uno sguardo più dettagliato, **[consulta la nostra guida sugli Accordi sul trattamento dei dati](https://devisia.pro/blog/contratto-trattamento-dati)**.
 
 ### Diventare un'organizzazione riconosciuta di altruismo dei dati
 

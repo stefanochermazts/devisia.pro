@@ -1,11 +1,20 @@
 ---
-title: "Pragmatic Marketing Performance Indicators for B2B Tech Systems"
-description: "A guide for tech leaders on marketing performance indicators that drive business value. Learn to move beyond vanity metrics and measure what truly matters."
+title: Pragmatic Marketing Performance Indicators for B2B
+description: >-
+  A guide for tech leaders on marketing performance indicators that drive
+  business value. Learn to move beyond vanity metrics and measure what truly
+  matters.
 pubDate: 2026-03-08T08:13:35.195Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/a79914ea-9e10-43d8-b460-87e79bdf9691/marketing-performance-indicators-title.jpg"
-author: "Devisia AI"
-tags: ["marketing performance indicators", "b2b marketing metrics", "kpi dashboard", "data-driven marketing", "tech marketing"]
-translationSlug: "marketing-performance-indicators"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/a79914ea-9e10-43d8-b460-87e79bdf9691/marketing-performance-indicators-title.jpg
+author: Devisia AI
+tags:
+  - marketing performance indicators
+  - b2b marketing metrics
+  - kpi dashboard
+  - data-driven marketing
+  - tech marketing
+translationSlug: marketing-performance-indicators
 autoTranslateToIt: true
 ---
 For technical leaders in SaaS and custom software, marketing success isn't defined by website traffic or social media engagement. It's measured by a quantifiable contribution to revenue and sustainable growth. The problem is that many organisations operate in a “Marketing Data Mirage”—a state where dashboards glow green with positive metrics while business goals are consistently missed.

@@ -1,11 +1,19 @@
 ---
-title: "A Pragmatic Guide to the EU Data Governance Act for Technical Leaders"
-description: "Understand the data governance act and how it shapes compliance, data sharing, and architecture for B2B software teams."
+title: the EU Data Governance Act for Technical Leaders
+description: >-
+  Understand the data governance act and how it shapes compliance, data sharing,
+  and architecture for B2B software teams.
 pubDate: 2026-03-03T08:45:44.859Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/3d3b1ac3-12da-4a1c-b2da-71cbf3cd2bdc/data-governance-act-compliance-guide.jpg"
-author: "Devisia AI"
-tags: ["data governance act", "EU data regulation", "data sharing", "saas compliance", "privacy by design"]
-translationSlug: "data-governance-act"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/3d3b1ac3-12da-4a1c-b2da-71cbf3cd2bdc/data-governance-act-compliance-guide.jpg
+author: Devisia AI
+tags:
+  - data governance act
+  - EU data regulation
+  - data sharing
+  - saas compliance
+  - privacy by design
+translationSlug: data-governance-act
 autoTranslateToIt: true
 ---
 The EU's **Data Governance Act (DGA)** is not just another compliance regulation. It's a pragmatic framework designed to solve a critical problem: making it safe and technically feasible for organizations to share data.
@@ -106,7 +114,7 @@ These conditions will likely include:
 
 *   **Non-Discrimination:** Public bodies must establish fair, transparent, and non-discriminatory terms for data re-use.
 *   **Compliance with Terms:** You must only use the data for the agreed-upon purposes and respect any technical constraints, such as using it only within a secure processing environment provided by the public body.
-*   **Confidentiality:** If a dataset contains commercially sensitive information (e.g., business secrets), you are legally required to protect its confidentiality. This typically involves a formal **Data Processing Agreement (DPA)** that governs how data is handled. For a closer look, **[check out our guide on Data Processing Agreements](https://devisia.pro/blog/data-processing-agreement)**.
+*   **Confidentiality:** If a dataset contains commercially sensitive information (e.g., business secrets), you are legally required to protect its confidentiality. This typically involves a formal **Data Processing Agreement (DPA)** that governs how data is handled. For a closer look, **[check out our guide on Data Processing Agreements](https://devisia.pro/blog/contratto-trattamento-dati)**.
 
 ### Becoming a Recognised Data Altruism Organisation
 

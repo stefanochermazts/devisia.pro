@@ -1,5 +1,5 @@
 ---
-title: Architettura di sistemi di intelligenza artificiale per il settore dei viaggi
+title: Architettura di sistemi di intelligenza artificiale
 description: >-
   Una guida per i CTO su come progettare sistemi di intelligenza artificiale
   affidabili per il settore dei viaggi: casi d'uso, pattern di integrazione,
@@ -14,7 +14,7 @@ tags:
   - llm integration
   - ai governance
   - software architecture
-translationSlug: travel-artificial-intelligence
+translationSlug: intelligenza-artificiale-travel
 translationSourceHash: 822c794eb1d09adffb097d128763389ed0c78d359c0098708e11bb94b8869dfc
 ---
 Per molto tempo, l'intelligenza artificiale per i viaggi sembrava più un concetto futuro che una necessità attuale. Questo è cambiato. Oggi rappresenta un **aggiornamento architetturale critico**—uno essenziale per la sopravvivenza e la crescita.

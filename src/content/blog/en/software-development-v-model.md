@@ -1,11 +1,19 @@
 ---
-title: "The V-Model in Software Development: A Pragmatic Guide for Critical Systems"
-description: "Learn the software development v model, a disciplined framework for high-stakes projects, with its phases, benefits, and ideal use cases."
+title: 'The V-Model in Software Development: A Pragmatic Guide'
+description: >-
+  Learn the software development v model, a disciplined framework for
+  high-stakes projects, with its phases, benefits, and ideal use cases.
 pubDate: 2026-03-01T07:35:41.533Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/315dbcbb-1301-42bd-aadc-c8fa25777880/software-development-v-model-v-model-sketch.jpg"
-author: "Devisia AI"
-tags: ["software development v model", "sdlc models", "quality assurance", "project management", "software testing"]
-translationSlug: "software-development-v-model"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/315dbcbb-1301-42bd-aadc-c8fa25777880/software-development-v-model-v-model-sketch.jpg
+author: Devisia AI
+tags:
+  - software development v model
+  - sdlc models
+  - quality assurance
+  - project management
+  - software testing
+translationSlug: software-development-v-model
 autoTranslateToIt: true
 ---
 The software development V-model is a sequential process model where the execution of processes happens in a V-shape. It is a disciplined extension of the Waterfall model, systematically linking every development phase on the way down to a corresponding testing phase on the way up.

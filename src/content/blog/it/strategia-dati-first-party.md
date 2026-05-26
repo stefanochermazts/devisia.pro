@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica alla strategia dei dati di prima parte per sistemi B2B
+title: la strategia dei dati di prima parte per sistemi B2B
 description: >-
   Guida pratica per i leader B2B su come costruire una strategia per i dati di
   prima parte: impara a progettare l'architettura, governare e integrare i dati
@@ -14,7 +14,7 @@ tags:
   - data governance
   - customer data platform
   - ai data integration
-translationSlug: first-party-data
+translationSlug: strategia-dati-first-party
 translationSourceHash: a330e5920d86e7b99df6deaf480e768e02797c54afd51b9e0a3f8c33feb1f667
 ---
 **Dati di prima parte** sono le informazioni che la tua organizzazione raccoglie direttamente dagli utenti tramite le proprie applicazioni, siti web e sistemi digitali, con il loro consenso. Questa relazione diretta li rende l'asset di dati più accurato, affidabile e conforme disponibile.

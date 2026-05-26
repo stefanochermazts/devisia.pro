@@ -1,5 +1,5 @@
 ---
-title: Guida pratica al ruolo dell'analista di business intelligence
+title: Guida pratica al ruolo dell'analista di business
 description: >-
   Una guida pratica per i CTO sul ruolo dell'analista di business intelligence.
   Scopri come questi professionisti trasformano i dati in strategia attraverso

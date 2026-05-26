@@ -1,5 +1,5 @@
 ---
-title: 'Il moderno IT Project Manager: una guida per fondatori all''esecuzione tecnica'
+title: 'IT Project Manager: una guida per fondatori'
 description: >-
   Guida pragmatica per fondatori e CTO sul moderno IT Project Manager:
   responsabilità chiave, competenze essenziali e quando assumere per avere
@@ -79,7 +79,7 @@ Il modo più semplice per differenziare questi ruoli è per la domanda primaria 
 Un quadro pratico è il seguente:
 *   Un **Project Manager IT** possiede il **“come”** e il **“quando”**. Il loro dominio è l'esecuzione—gestire risorse, tempistiche e budget per consegnare un risultato specifico e definito.
 *   Un **Responsabile Prodotto** possiede il **“cosa”** e il **“perché”**. Il loro focus è il prodotto stesso—definirne le funzionalità basandosi su analisi di mercato e bisogni degli utenti per risolvere un problema specifico.
-*   Un **Responsabile di Programma** sovrintende all'**allineamento strategico**. Gestisce un portfolio di progetti interconnessi per garantire che collettivamente raggiungano un obiettivo aziendale più ampio. Puoi esplorare ulteriormente questo ruolo nella nostra guida al [Program Management Officer](https://devisia.pro/en/blog/program-management-officer).
+*   Un **Responsabile di Programma** sovrintende all'**allineamento strategico**. Gestisce un portfolio di progetti interconnessi per garantire che collettivamente raggiungano un obiettivo aziendale più ampio. Puoi esplorare ulteriormente questo ruolo nella nostra guida al [Program Management Officer](https://devisia.pro/en/blog/responsabile-gestione-programmi).
 
 Questo diagramma di flusso illustra i domini principali che un Project Manager IT comanda all'interno di un singolo progetto.
 

@@ -36,7 +36,7 @@ Viewing a data management platform as a strategic architectural component shifts
 
 For example, by resolving user identities from different touchpoints, a DMP ensures a single customer profile is recognized across platforms—whether a user is browsing the website, using a mobile application, or interacting with a support chatbot.
 
-This centralisation enables effective data integrity and governance. Universal policies for data access, consent management, and retention can be applied system-wide, embedding compliance into the architecture by design. For technical leaders, this represents a shift from a reactive, patchwork approach to a proactive, structured one. For a deeper analysis of the legal framework, our guide to understanding the [Data Processing Agreement](https://devisia.pro/blog/data-processing-agreement) offers valuable context.
+This centralisation enables effective data integrity and governance. Universal policies for data access, consent management, and retention can be applied system-wide, embedding compliance into the architecture by design. For technical leaders, this represents a shift from a reactive, patchwork approach to a proactive, structured one. For a deeper analysis of the legal framework, our guide to understanding the [Data Processing Agreement](https://devisia.pro/blog/contratto-trattamento-dati) offers valuable context.
 
 Ultimately, a well-architected data management platform becomes the backbone for all data-driven activities within an organization.
 

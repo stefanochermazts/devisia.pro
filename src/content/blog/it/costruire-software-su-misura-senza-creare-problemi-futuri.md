@@ -1,8 +1,12 @@
 ---
-title: Costruire software su misura senza creare problemi futuri
-description: 'Il software su misura può diventare un vantaggio competitivo oppure un problema nel tempo. In questo articolo raccontiamo come affrontiamo lo sviluppo software su misura in Devisia: riducendo la complessità e applicando principi di sicurezza ai.'
+title: Costruire software su misura senza creare problemi
+description: >-
+  Il software su misura può diventare un vantaggio competitivo oppure un
+  problema nel tempo. In questo articolo raccontiamo come affrontiamo lo
+  sviluppo software su misura in Devisia: riducendo la complessità e applicando
+  principi di sicurezza ai.
 translationSlug: building-custom-software-without-building-future-problems
-pubDate: 2026-01-04
+pubDate: 2026-01-04T00:00:00.000Z
 author: Stefano Chermaz
 heroImage: /uploads/Custom software can be a competitive advantage.png
 tags:

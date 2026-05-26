@@ -1,8 +1,10 @@
 ---
-title: 'Code of conduct: A Practical Guide for Engineering and AI Teams'
-description: Learn how to build a practical code of conduct for your software and AI teams. Go beyond templates with actionable ethics principles.
+title: 'Code of conduct: A Practical Guide for Engineering and'
+description: >-
+  Learn how to build a practical code of conduct for your software and AI teams.
+  Go beyond templates with actionable ethics principles.
 translationSlug: codice-di-condotta
-pubDate: 2026-01-18
+pubDate: 2026-01-18T00:00:00.000Z
 author: Stefano Chermaz
 heroImage: /uploads/code-of-conduct-guide.jpg
 tags:

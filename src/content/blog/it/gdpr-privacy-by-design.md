@@ -1,5 +1,5 @@
 ---
-title: Guida pratica al Privacy by Design del GDPR per engineering leader
+title: Guida pratica al Privacy by Design del GDPR per
 description: >-
   Una guida pratica al Privacy by Design nel contesto del GDPR. Scopri come
   implementare controlli tecnici, pattern architetturali e governance dell'IA

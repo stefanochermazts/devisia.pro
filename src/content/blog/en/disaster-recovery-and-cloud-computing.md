@@ -1,11 +1,19 @@
 ---
-title: "Pragmatic Disaster Recovery in the Cloud: From Strategy to Execution"
-description: "A practical guide to disaster recovery and cloud computing. Explore architectural patterns, trade-offs, and compliance for resilient systems."
+title: 'Pragmatic Disaster Recovery in the Cloud: From'
+description: >-
+  A practical guide to disaster recovery and cloud computing. Explore
+  architectural patterns, trade-offs, and compliance for resilient systems.
 pubDate: 2026-02-21T10:20:07.975Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/7bd3ac99-ce98-4481-8f6d-81d263933853/disaster-recovery-and-cloud-computing-tech-sketch.jpg"
-author: "Devisia AI"
-tags: ["disaster recovery", "cloud computing", "business continuity", "cloud architecture", "system resilience"]
-translationSlug: "disaster-recovery-and-cloud-computing"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/7bd3ac99-ce98-4481-8f6d-81d263933853/disaster-recovery-and-cloud-computing-tech-sketch.jpg
+author: Devisia AI
+tags:
+  - disaster recovery
+  - cloud computing
+  - business continuity
+  - cloud architecture
+  - system resilience
+translationSlug: disaster-recovery-nel-cloud
 autoTranslateToIt: true
 ---
 Disaster recovery in cloud computing is not about backups. It's about designing entire systems architected to withstand significant failure and resume operations with minimal business disruption. A robust strategy moves beyond simple data replication to answer two critical questions: *how quickly* must the system be restored (Recovery Time Objective), and *how much data* can the business afford to lose (Recovery Point Objective)?

@@ -1,11 +1,20 @@
 ---
-title: "The Modern IT Project Manager: A Founder's Guide to Technical Execution"
-description: "A pragmatic guide for founders and CTOs on the modern IT project manager. Understand core responsibilities, essential skills, and when to hire for success."
+title: 'IT Project Manager: A Founder''s Guide to Technical'
+description: >-
+  A pragmatic guide for founders and CTOs on the modern IT project manager.
+  Understand core responsibilities, essential skills, and when to hire for
+  success.
 pubDate: 2026-01-27T07:10:35.825Z
-heroImage: "https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/f60f8266-53dd-471c-9e53-4bc8d0f14630/it-project-manager-project-management.jpg"
-author: "Devisia AI"
-tags: ["it project manager", "technical project management", "software development", "agile leadership", "tech team building"]
-translationSlug: "it-project-manager"
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/f60f8266-53dd-471c-9e53-4bc8d0f14630/it-project-manager-project-management.jpg
+author: Devisia AI
+tags:
+  - it project manager
+  - technical project management
+  - software development
+  - agile leadership
+  - tech team building
+translationSlug: it-project-manager
 autoTranslateToIt: true
 ---
 An IT project manager ensures complex software projects are delivered on schedule, within budget, and to specification. Their role extends beyond task tracking; they are the strategic bridge between business objectives and technical implementation, managing scope, risk, and communication to prevent project failure.
@@ -70,7 +79,7 @@ The simplest way to differentiate these roles is by the primary question they ar
 A practical framework is as follows:
 *   An **IT Project Manager** owns the **‘how’** and the **‘when’**. Their domain is execution—managing resources, timelines, and budgets to deliver a specific, defined outcome.
 *   A **Product Manager** owns the **‘what’** and the **‘why’**. Their focus is the product itself—defining its features based on market analysis and user needs to solve a specific problem.
-*   A **Program Manager** oversees **‘strategic alignment’**. They manage a portfolio of interconnected projects to ensure they collectively achieve a larger business objective. You can explore this role further in our guide to the [Program Management Officer](https://devisia.pro/en/blog/program-management-officer).
+*   A **Program Manager** oversees **‘strategic alignment’**. They manage a portfolio of interconnected projects to ensure they collectively achieve a larger business objective. You can explore this role further in our guide to the [Program Management Officer](https://devisia.pro/en/blog/responsabile-gestione-programmi).
 
 This flowchart illustrates the primary domains an IT Project Manager commands within a single project.
 

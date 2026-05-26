@@ -1,11 +1,19 @@
 ---
-title: "The Program Management Officer: A Technical Leader’s Guide to Strategic Execution"
-description: "Discover the essential role of a Program Management Officer in driving success for complex software and AI programs. A practical guide for technical leaders."
+title: 'The Program Management Officer: A Technical Leader’s'
+description: >-
+  Discover the essential role of a Program Management Officer in driving success
+  for complex software and AI programs. A practical guide for technical leaders.
 pubDate: 2026-01-23T07:04:32.554Z
-heroImage: "https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/78ed009d-6e3b-4f7f-9d3e-d96431709e68/program-management-officer-playbook-title.jpg"
-author: "Devisia AI"
-tags: ["program management officer", "program governance", "software delivery", "strategic planning", "AI projects"]
-translationSlug: "program-management-officer"
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/78ed009d-6e3b-4f7f-9d3e-d96431709e68/program-management-officer-playbook-title.jpg
+author: Devisia AI
+tags:
+  - program management officer
+  - program governance
+  - software delivery
+  - strategic planning
+  - AI projects
+translationSlug: responsabile-gestione-programmi
 autoTranslateToIt: true
 ---
 A **Program Management Officer** is not another layer of management bureaucracy. In a modern tech company, this role provides the strategic governance required to connect multiple, complex engineering projects to core business outcomes.

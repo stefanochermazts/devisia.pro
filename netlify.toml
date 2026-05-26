@@ -100,3 +100,100 @@
 
 [context.branch-deploy]
   command = "npm run build"
+
+# SEO audit slug redirects (301)
+
+[[redirects]]
+  from = "/blog/advanced-driver-assistance-system"
+  to = "/blog/sistema-assistenza-guida-resiliente/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/confidentiality-agreement-template"
+  to = "/blog/modello-accordo-riservatezza-nda/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/consent-management-platform"
+  to = "/blog/piattaforma-gestione-consenso/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/cyber-security-consultancies"
+  to = "/blog/consulenza-cybersecurity-pragmatica/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/data-processing-agreement"
+  to = "/blog/contratto-trattamento-dati/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/data-processing-agreements"
+  to = "/blog/accordi-trattamento-dati/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/data-retention-policies"
+  to = "/blog/policy-conservazione-dati/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/disaster-recovery-and-cloud-computing"
+  to = "/blog/disaster-recovery-nel-cloud/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/document-management-system"
+  to = "/blog/software-gestione-documenti/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/first-party-data"
+  to = "/blog/strategia-dati-first-party/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/internet-of-things-automotive"
+  to = "/blog/iot-settore-automotive/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/means-of-compliance"
+  to = "/blog/mezzi-di-conformita/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/personal-identifiable-information"
+  to = "/blog/informazioni-personali-identificabili/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/program-management-officer"
+  to = "/blog/responsabile-gestione-programmi/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/solutions-for-iot"
+  to = "/blog/soluzioni-iot-scalabili/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/travel-artificial-intelligence"
+  to = "/blog/intelligenza-artificiale-travel/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/progetti-kaizen-cosa-sono-e-perché-funzionano-nel-mantenimento-dei-sistemi-esistenti"
+  to = "/blog/progetti-kaizen-cosa-sono-e-perche-funzionano-nel-mantenimento-dei-sistemi-esistenti/"
+  status = 301
+
+[[redirects]]
+  from = "/blog/progetti-kaizen-cosa-sono-e-perch%C3%A9-funzionano-nel-mantenimento-dei-sistemi-esistenti"
+  to = "/blog/progetti-kaizen-cosa-sono-e-perche-funzionano-nel-mantenimento-dei-sistemi-esistenti/"
+  status = 301
+
+[[redirects]]
+  from = "/en/blog/costruire-software-su-misura-senza-creare-problemi-futuri"
+  to = "/en/blog/building-custom-software-without-building-future-problems/"
+  status = 301

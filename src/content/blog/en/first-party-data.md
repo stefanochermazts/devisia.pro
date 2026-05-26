@@ -1,11 +1,19 @@
 ---
-title: "A Pragmatic Guide to First-Party Data Strategy for B2B Systems"
-description: "A practical guide for B2B leaders on building a first party data strategy. Learn to architect, govern, and integrate data for reliable systems and AI."
+title: First-Party Data Strategy for B2B Systems
+description: >-
+  A practical guide for B2B leaders on building a first party data strategy.
+  Learn to architect, govern, and integrate data for reliable systems and AI.
 pubDate: 2026-03-14T08:17:45.686Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/453b0ad5-db04-41ec-8b47-3b166fdb8003/first-party-data-strategy-illustration.jpg"
-author: "Devisia AI"
-tags: ["first party data", "data architecture", "data governance", "customer data platform", "ai data integration"]
-translationSlug: "first-party-data"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/453b0ad5-db04-41ec-8b47-3b166fdb8003/first-party-data-strategy-illustration.jpg
+author: Devisia AI
+tags:
+  - first party data
+  - data architecture
+  - data governance
+  - customer data platform
+  - ai data integration
+translationSlug: strategia-dati-first-party
 autoTranslateToIt: true
 ---
 **First-party data** is the information your organization collects directly from users through your own applications, websites, and digital systems, with their consent. This direct relationship makes it the most accurate, reliable, and compliant data asset available.

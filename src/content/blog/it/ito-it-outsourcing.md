@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica all'outsourcing IT (ITO) per leader tecnici nel 2026
+title: l'outsourcing IT (ITO) per leader tecnici nel 2026
 description: >-
   Guida all'outsourcing IT (ITO) per i CTO. Scopri come scegliere i partner,
   gestire i rischi e realizzare software affidabile tramite un outsourcing
@@ -206,7 +206,7 @@ Approfondisci il loro ciclo di vita dello sviluppo:
 
 *   **Come gestiscono i requisiti?** Vuoi vedere un processo di discovery strutturato, non solo una vaga promessa di costruire ciò che chiedi.
 *   **Com'è effettivamente il loro loop di feedback?** Tengono demo regolari? Come raccolgono e integrano il feedback? Il loop deve essere stretto e coerente.
-*   **Come gestiscono il trasferimento della conoscenza?** Un partner strategico pianifica la documentazione fin dal primo giorno. Lavora per prevenire silos di conoscenza e assicurarsi che il tuo team possa prendere in carico in futuro. Proteggere questa conoscenza è anche una questione legale. Per saperne di più, vedi il nostro articolo su perché hai bisogno di un [modello completo di accordo di riservatezza](https://devisia.pro/en/blog/confidentiality-agreement-template).
+*   **Come gestiscono il trasferimento della conoscenza?** Un partner strategico pianifica la documentazione fin dal primo giorno. Lavora per prevenire silos di conoscenza e assicurarsi che il tuo team possa prendere in carico in futuro. Proteggere questa conoscenza è anche una questione legale. Per saperne di più, vedi il nostro articolo su perché hai bisogno di un [modello completo di accordo di riservatezza](https://devisia.pro/en/blog/modello-accordo-riservatezza-nda).
 
 ### Postura di sicurezza e storico di conformità
 

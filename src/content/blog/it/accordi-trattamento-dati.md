@@ -1,5 +1,5 @@
 ---
-title: Guida per tech leader agli accordi sul trattamento dei dati
+title: tech leader agli accordi sul trattamento dei dati
 description: >-
   Guida pragmatica agli accordi sul trattamento dei dati (DPA) per tech leader.
   Comprendi le clausole chiave, il GDPR, la gestione dei sub-responsabili e i
@@ -14,7 +14,7 @@ tags:
   - data privacy
   - saas compliance
   - ai governance
-translationSlug: data-processing-agreements
+translationSlug: contratto-trattamento-datis
 translationSourceHash: 4c986a8f514ea317bea40a59dc6765ba83f9f651bc2408db133ed1e183d588eb
 ---
 Un Accordo sul trattamento dei dati (DPA) è un contratto legalmente vincolante che specifica le regole, le responsabilità e le misure tecniche per la gestione dei dati personali. Per i responsabili tecnici incaricati dei sistemi software, un DPA è il piano operativo che governa come i fornitori terzi — dai provider cloud agli strumenti SaaS — elaborano i dati degli utenti per conto della tua azienda. Obbliga contrattualmente questi soggetti ad agire soltanto secondo le tue istruzioni e ad aderire agli standard di sicurezza e conformità specificati.

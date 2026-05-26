@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica ai sistemi AIoT (Intelligenza Artificiale e IoT)
+title: sistemi AIoT (Intelligenza Artificiale e IoT)
 description: >-
   Costruisci sistemi AIoT affidabili. Questa guida tratta l'architettura AIoT,
   la mitigazione dei rischi e la scalabilità per applicazioni B2B.

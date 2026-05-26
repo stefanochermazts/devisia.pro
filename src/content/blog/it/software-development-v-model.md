@@ -1,7 +1,5 @@
 ---
-title: >-
-  Il modello a V nello sviluppo software: una guida pragmatica per sistemi
-  critici
+title: 'Il modello a V nello sviluppo software: una guida'
 description: >-
   Scopri il modello a V per lo sviluppo software, una metodologia rigorosa per
   progetti ad alta criticità: fasi, vantaggi e casi d'uso ideali.

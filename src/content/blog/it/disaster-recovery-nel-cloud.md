@@ -1,5 +1,5 @@
 ---
-title: 'Ripristino di emergenza pragmatico nel cloud: dalla strategia all''esecuzione'
+title: 'Ripristino di emergenza pragmatico nel cloud: dalla'
 description: >-
   Una guida pratica al ripristino di emergenza e al cloud computing. Esplora
   pattern architetturali, compromessi e aspetti di conformità per sistemi
@@ -14,7 +14,7 @@ tags:
   - business continuity
   - cloud architecture
   - system resilience
-translationSlug: disaster-recovery-and-cloud-computing
+translationSlug: disaster-recovery-nel-cloud
 translationSourceHash: 22a078a4b933b0d471479d931d395f715d489f2da1543e7adde5b95fedeeb6d7
 ---
 Ad esempio, il gruppo di auto-scaling di produzione potrebbe eseguire dieci grandi istanze, mentre la regione di warm standby opera con sole due istanze piccole. Al momento del failover, il traffico viene reindirizzato e l'infrastruttura standby viene immediatamente scalata per gestire l'intero carico di produzione. Questa transizione è molto più rapida rispetto al Pilot Light perché l'applicazione è già in esecuzione.

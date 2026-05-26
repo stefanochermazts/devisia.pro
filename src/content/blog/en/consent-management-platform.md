@@ -1,11 +1,19 @@
 ---
-title: "A Guide to Your Consent Management Platform: An Architectural Deep-Dive"
-description: "A definitive 2026 guide to your consent management platform. Learn how to navigate data privacy, ensure compliance, and build lasting user trust."
+title: 'Your Consent Management Platform: An Architectural'
+description: >-
+  A definitive 2026 guide to your consent management platform. Learn how to
+  navigate data privacy, ensure compliance, and build lasting user trust.
 pubDate: 2026-03-29T09:33:29.856Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/50bb7f73-366d-4c72-a0e9-cca2cd1ea140/consent-management-platform-office-supplies.jpg"
-author: "Devisia AI"
-tags: ["consent management platform", "data privacy", "gdpr compliance", "privacy by design", "software architecture"]
-translationSlug: "consent-management-platform"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/50bb7f73-366d-4c72-a0e9-cca2cd1ea140/consent-management-platform-office-supplies.jpg
+author: Devisia AI
+tags:
+  - consent management platform
+  - data privacy
+  - gdpr compliance
+  - privacy by design
+  - software architecture
+translationSlug: piattaforma-gestione-consenso
 autoTranslateToIt: true
 ---
 A consent management platform (CMP) is the software system responsible for requesting, recording, and enforcing user consent for data processing. It is the critical architectural layer that mediates between your digital product's data operations and the legal requirements of regulations like **GDPR** and **CCPA**, ensuring user choices are respected and auditable.

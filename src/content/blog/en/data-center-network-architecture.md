@@ -1,11 +1,20 @@
 ---
-title: "A CTO's Guide to Data Center Network Architecture in 2026"
-description: "Explore modern data center network architecture. This guide covers spine-leaf, SDN, and VXLAN to build scalable, resilient networks for AI and cloud workloads."
+title: 'CTO guide: Data Center Network Architecture in 2026'
+description: >-
+  Explore modern data center network architecture. This guide covers spine-leaf,
+  SDN, and VXLAN to build scalable, resilient networks for AI and cloud
+  workloads.
 pubDate: 2026-03-31T10:50:09.686Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/85dbf340-1efc-4755-9822-e1fdf7cf43ad/data-center-network-architecture-guide-sketch.jpg"
-author: "Devisia AI"
-tags: ["data center network architecture", "spine-leaf", "software-defined networking", "network design", "cloud infrastructure"]
-translationSlug: "data-center-network-architecture"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/85dbf340-1efc-4755-9822-e1fdf7cf43ad/data-center-network-architecture-guide-sketch.jpg
+author: Devisia AI
+tags:
+  - data center network architecture
+  - spine-leaf
+  - software-defined networking
+  - network design
+  - cloud infrastructure
+translationSlug: data-center-network-architecture
 autoTranslateToIt: true
 ---
 Data center network architecture is not a mere technical diagram; it is the strategic blueprint defining how data moves between servers, storage, and external systems. This architecture dictates the speed, resilience, and security of your applications, forming the foundation of your digital operations.

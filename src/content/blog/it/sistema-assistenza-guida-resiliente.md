@@ -1,7 +1,5 @@
 ---
-title: >-
-  Progettare un sistema avanzato di assistenza alla guida resiliente: guida
-  all'architettura
+title: Progettare un sistema avanzato di assistenza alla
 description: >-
   Guida al sistema avanzato di assistenza alla guida per CTO e product leader:
   architettura, modelli di intelligenza artificiale, conformità alle normative
@@ -16,7 +14,7 @@ tags:
   - iso 26262
   - sensor fusion
   - automotive ai
-translationSlug: advanced-driver-assistance-system
+translationSlug: sistema-assistenza-guida-resiliente
 translationSourceHash: 58c152ab7360d825144abb6d824a0a16ed6cef573f288b2913de80c2e1ee6144
 ---
 Un **Sistema avanzato di assistenza alla guida** (ADAS) non è una singola tecnologia ma un complesso insieme di funzioni progettate per migliorare la sicurezza del veicolo e ridurre il carico sul conducente. Questi sistemi operano come un copilota digitale, utilizzando sensori come telecamere e radar per monitorare l'ambiente del veicolo e compensare i ritardi di reazione umana di frazioni di secondo dove si originano la maggior parte degli incidenti.
@@ -43,7 +41,7 @@ L'adozione di mercato riflette il valore di questi sistemi. Entro il 2026, funzi
 
 > Nel suo nucleo, un ADAS è un esercizio di mitigazione del rischio applicata. Il sistema calcola continuamente la probabilità di eventi avversi — una collisione, una deviazione dalla corsia — e agisce per ridurre quel rischio. La sua efficacia non è determinata da un singolo algoritmo, ma dall'affidabilità dell'intera catena hardware e software.
 
-Questa rapida integrazione è un aspetto chiave dell'[Internet delle Cose nel settore automobilistico](https://devisia.pro/blog/internet-of-things-automotive), dove i sistemi connessi sono ormai parte integrante della funzione e della sicurezza del veicolo.
+Questa rapida integrazione è un aspetto chiave dell'[Internet delle Cose nel settore automobilistico](https://devisia.pro/blog/iot-settore-automotive), dove i sistemi connessi sono ormai parte integrante della funzione e della sicurezza del veicolo.
 
 ### Livelli SAE di automazione della guida
 

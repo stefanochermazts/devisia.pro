@@ -1,7 +1,5 @@
 ---
-title: >-
-  Guida alla tua piattaforma di gestione del consenso: un approfondimento
-  architetturale
+title: 'la tua piattaforma di gestione del consenso: un'
 description: >-
   Guida definitiva per il 2026 alla tua piattaforma di gestione del consenso.
   Scopri come gestire la privacy dei dati, assicurare la conformità e costruire
@@ -16,7 +14,7 @@ tags:
   - gdpr compliance
   - privacy by design
   - software architecture
-translationSlug: consent-management-platform
+translationSlug: piattaforma-gestione-consenso
 translationSourceHash: 0f27a4b59d491303b5f1ea78e19bcf059b30b44ed714c79a719d1ec18b46269b
 ---
 Una piattaforma di gestione del consenso (CMP) è il sistema software responsabile della richiesta, registrazione e applicazione del consenso degli utenti per il trattamento dei dati. È lo strato architetturale critico che media tra le operazioni sui dati del tuo prodotto digitale e i requisiti legali di normative come **GDPR** e **CCPA**, assicurando che le scelte degli utenti vengano rispettate e siano verificabili.

@@ -1,5 +1,5 @@
 ---
-title: 'Soluzioni per l''IoT: una guida all''architettura per sistemi scalabili e sicuri'
+title: 'Soluzioni per l''IoT: una guida all''architettura per'
 description: >-
   Scopri soluzioni per l'IoT che semplificano l'architettura, rafforzano la
   sicurezza e consentono approfondimenti potenziati dall'IA per implementazioni
@@ -14,7 +14,7 @@ tags:
   - IoT security
   - enterprise iot
   - ai in iot
-translationSlug: solutions-for-iot
+translationSlug: soluzioni-iot-scalabili
 translationSourceHash: dfc687659d6bcba418481baf6bf6ff074fe15ee289fc55441925c56dfead2e41
 ---
 Troppi progetti IoT falliscono per una ragione semplice: partono dalla tecnologia, non dal problema. L'attrattiva di un nuovo sensore o di una nuova piattaforma può essere potente, ma le iniziative di successo si basano su risultati aziendali tangibili, come ridurre i costi operativi del 15% o aumentare la disponibilità degli asset con manutenzione predittiva.

@@ -301,7 +301,7 @@ The useful mindset shift is that AI systems need privacy architecture, not just 
 
 If you want to be ready for Article 58 powers, don’t start with templates. Start with the system. The goal is to make the product explainable, auditable, and containable under pressure.
 
-For teams trying to make that operational, [Devisia’s guide to means of compliance](https://devisia.pro/blog/means-of-compliance) is a useful companion to the checklist below.
+For teams trying to make that operational, [Devisia’s guide to means of compliance](https://devisia.pro/blog/mezzi-di-conformita) is a useful companion to the checklist below.
 
 ### Keep a living data map
 

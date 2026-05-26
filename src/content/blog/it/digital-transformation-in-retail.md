@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica alla trasformazione digitale nel retail
+title: la trasformazione digitale nel retail
 description: >-
   Guida per CTO alla trasformazione digitale nel retail. Scopri architettura
   pragmatica, integrazione dell'IA e rilascio incrementale per sistemi scalabili

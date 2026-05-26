@@ -1,5 +1,5 @@
 ---
-title: 'Software per Governance, Risk e Compliance: guida tecnica per l''ingegneria'
+title: 'Software per Governance, Risk e Compliance: guida'
 description: >-
   Esplora il software per governance, risk e compliance dal punto di vista
   dell'ingegneria. Scopri come scegliere, integrare e sfruttare le piattaforme
@@ -76,7 +76,7 @@ Queste capacità non sono concetti aziendali astratti; hanno un impatto diretto 
 
 Questa è la base. Il modulo di **governance e gestione delle policy** funge da repository definitivo per tutte le policy interne, le normative esterne e gli standard di settore. Più di un semplice archivio di file, è un database strutturato dove le policy sono controllate nelle versioni, assegnate a responsabili e collegate direttamente ai controlli tecnici che le applicano.
 
-Per un'organizzazione software, qui è dove colleghi una policy interna di cifratura dei dati a riposo a una specifica implementazione architetturale. Per esempio, una regola che afferma "tutti i PII a riposo devono essere cifrati" può essere collegata direttamente alla configurazione AWS RDS che la applica, creando una linea chiara e tracciabile dalla policy alla prova. Per un approfondimento su questo approccio strutturato, consulta la nostra guida sulla [scelta di un sistema di gestione documentale](https://devisia.pro/blog/document-management-system).
+Per un'organizzazione software, qui è dove colleghi una policy interna di cifratura dei dati a riposo a una specifica implementazione architetturale. Per esempio, una regola che afferma "tutti i PII a riposo devono essere cifrati" può essere collegata direttamente alla configurazione AWS RDS che la applica, creando una linea chiara e tracciabile dalla policy alla prova. Per un approfondimento su questo approccio strutturato, consulta la nostra guida sulla [scelta di un sistema di gestione documentale](https://devisia.pro/blog/software-gestione-documenti).
 
 ### Gestione del rischio
 
@@ -189,7 +189,7 @@ Seleziona un'area in cui il dolore operativo è elevato e dove è possibile otte
 
 > Concentrandoti su un singolo dominio, puoi ottenere una vittoria rapida e visibile. Centralizzare le policy crea chiarezza immediata e stabilisce la piattaforma GRC come fonte unica di verità, ponendo fine al caos delle versioni di documenti in conflitto.
 
-Questa fase stabilisce anche modelli riutilizzabili per futuri rollout. Coinvolgere gli stakeholder chiave, come un [Program Management Officer che guida iniziative strategiche](https://devisia.pro/blog/program-management-officer), garantisce l'allineamento con obiettivi aziendali più ampi.
+Questa fase stabilisce anche modelli riutilizzabili per futuri rollout. Coinvolgere gli stakeholder chiave, come un [Program Management Officer che guida iniziative strategiche](https://devisia.pro/blog/responsabile-gestione-programmi), garantisce l'allineamento con obiettivi aziendali più ampi.
 
 ### Fase 2: Monitoraggio automatizzato dei controlli e valutazione del rischio
 

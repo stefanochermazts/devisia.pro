@@ -5,7 +5,7 @@ pubDate: 2026-03-26T08:08:34.751Z
 heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/41ecfa54-eeb4-4c57-ad6a-2e9842f906b4/means-of-compliance-business-guide.jpg"
 author: "Devisia AI"
 tags: ["means of compliance", "regulatory compliance", "ai governance", "privacy by design", "software architecture"]
-translationSlug: "means-of-compliance"
+translationSlug: "mezzi-di-conformita"
 autoTranslateToIt: true
 ---
 **Means of Compliance (MOC)** are the specific, tangible artifacts that prove your systems meet regulatory requirements. They are not bureaucratic paperwork, but the architectural blueprints, configuration files, and operational logs for your digital products. They demonstrate how abstract legal rules are met with concrete engineering evidence.

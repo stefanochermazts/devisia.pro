@@ -1,5 +1,5 @@
 ---
-title: 'Architettura di un WMS moderno: guida ai sistemi di gestione del magazzino'
+title: 'Architettura di un WMS moderno: guida ai sistemi di'
 description: >-
   Guida definitiva al moderno sistema di gestione del magazzino (WMS). Scopri
   l'architettura fondamentale, le strategie di implementazione e le potenzialità

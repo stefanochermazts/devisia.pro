@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica al Digital Markets Act (DMA) per i leader tecnologici
+title: Digital Markets Act (DMA) per i leader tecnologici
 description: >-
   Guida pragmatica per CTO e fondatori sul Digital Markets Act (DMA). Scopri le
   implicazioni tecniche, i rischi di compliance e le opportunità strategiche.
@@ -175,7 +175,7 @@ Considera una piattaforma logistica potenziata dall'IA. Prima del DMA, potresti 
 *   Integrare più piattaforme di comunicazione per inviare aggiornamenti agli autisti.
 *   Sfruttare potenti modelli linguistici open-source per chatbot di assistenza clienti ed eseguirli sull'infrastruttura che preferisci.
 
-Questo approccio modulare non solo migliora le prestazioni, ma aumenta anche la resilienza del sistema e la sua economicità. Progettando con una mentalità "privacy-first", costruisci anche fiducia, in linea con i principi discussi nella nostra guida per [costruire una strategia sui dati di prima parte](https://devisia.pro/en/blog/first-party-data). Per i product leader, l'obiettivo è chiaro: sfruttare queste nuove aperture per costruire prodotti digitali più scalabili, manutenibili e competitivi.
+Questo approccio modulare non solo migliora le prestazioni, ma aumenta anche la resilienza del sistema e la sua economicità. Progettando con una mentalità "privacy-first", costruisci anche fiducia, in linea con i principi discussi nella nostra guida per [costruire una strategia sui dati di prima parte](https://devisia.pro/en/blog/strategia-dati-first-party). Per i product leader, l'obiettivo è chiaro: sfruttare queste nuove aperture per costruire prodotti digitali più scalabili, manutenibili e competitivi.
 
 ## Conclusione: costruire la tua azienda per un mondo post-DMA
 

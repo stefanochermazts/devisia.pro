@@ -1,7 +1,5 @@
 ---
-title: >-
-  Guida pragmatica all'integrazione dei sistemi IT per l'architettura digitale
-  moderna
+title: l'integrazione dei sistemi IT per l'architettura
 description: >-
   Esplora l'integrazione dei sistemi IT con questa guida pensata per leader B2B.
   Scopri pattern architetturali, gestione dei rischi e migliori pratiche per la

@@ -1,5 +1,5 @@
 ---
-title: 'Guida al SOA per CTO: l''architettura orientata ai servizi spiegata'
+title: 'SOA per CTO: l''architettura orientata ai servizi'
 description: >-
   Guida pratica al SOA (Service-Oriented Architecture) per CTO: scopri i
   principi fondamentali, i pattern e il valore strategico per costruire sistemi

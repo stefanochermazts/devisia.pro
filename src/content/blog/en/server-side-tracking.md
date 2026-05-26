@@ -116,7 +116,7 @@ This centralized control allows you to:
 
 This transforms your data collection from a potential liability into a secure, compliant asset. You have total authority over what information leaves your ecosystem, making privacy an architectural choice, not an afterthought.
 
-This focus on building with **first-party data** is a cornerstone of modern, privacy-first systems. You can explore this further in our guide on [leveraging first-party data strategies](https://devisia.pro/blog/first-party-data).
+This focus on building with **first-party data** is a cornerstone of modern, privacy-first systems. You can explore this further in our guide on [leveraging first-party data strategies](https://devisia.pro/blog/strategia-dati-first-party).
 
 ## Choosing Your Implementation Model And Architecture
 

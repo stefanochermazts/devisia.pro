@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica alla trasformazione digitale del retail
+title: la trasformazione digitale del retail
 description: >-
   Guida pragmatica alla trasformazione digitale del retail. Scopri come creare
   sistemi retail manutenibili con IA, architettura headless e solide analisi dei

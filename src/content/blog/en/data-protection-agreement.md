@@ -350,7 +350,7 @@ A CTO should be ready to answer questions like these:
 - what can be deleted immediately and what follows a scheduled retention cycle
 - what evidence the team can produce after an incident, deletion request, or vendor audit
 
-Retention terms deserve special attention because they often look precise on paper and remain messy in production. If policy says data is deleted after contract termination, the system needs matching rules for databases, object storage, backups, caches, search indexes, and derived artifacts. This guide to [setting data retention policies that match system behavior](https://devisia.pro/blog/data-retention-policies) is a useful reference when tightening those clauses.
+Retention terms deserve special attention because they often look precise on paper and remain messy in production. If policy says data is deleted after contract termination, the system needs matching rules for databases, object storage, backups, caches, search indexes, and derived artifacts. This guide to [setting data retention policies that match system behavior](https://devisia.pro/blog/policy-conservazione-dati) is a useful reference when tightening those clauses.
 
 A good negotiation position is operational clarity. Vendors can resist preference-based edits. It is much harder to dismiss a clause change tied to a specific processor, a specific data flow, and a specific failure mode in the system.
 

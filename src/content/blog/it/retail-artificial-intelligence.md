@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica ai sistemi di intelligenza artificiale per il retail
+title: sistemi di intelligenza artificiale per il retail
 description: >-
   Scopri come l'intelligenza artificiale per il retail incrementa il ROI grazie
   a strategie pratiche per personalizzazione, previsioni e scalabilità dell'IA.
@@ -131,7 +131,7 @@ I requisiti non funzionali chiave includono:
 1.  **Osservabilità robusta:** Non si può gestire ciò che non si misura. Il sistema richiede logging e monitoraggio completi per tracciare le prestazioni dei modelli (accuratezza, drift), le metriche operative (latenza, tassi di errore) e i costi. Dashboard che correlano le chiamate API a specifiche funzioni aziendali sono essenziali per la governance finanziaria.
 2.  **Caching strategico:** Molte query guidate dall'AI sono ripetitive. Memorizzare in cache le risposte a richieste comuni — come raccomandazioni per un prodotto popolare o un riepilogo delle sue recensioni — riduce drasticamente le chiamate API, la latenza e i costi operativi.
 3.  **Fallback resilienti:** Quando un servizio basato su AI fallisce, il sistema deve degradare con grazia, non andare in crash. Per esempio, se una ricerca potenziata dall'AI va offline, il sistema dovrebbe riportarsi automaticamente a un algoritmo di ricerca più semplice e basato su regole.
-4.  **Privacy by Design:** Questo principio impone che la privacy sia una scelta architetturale, non una funzione aggiunta successivamente. Tecniche come la **anonimizzazione dei dati** (rimozione degli identificatori prima dell'elaborazione) e la **minimizzazione dei dati** (raccogliere solo i dati necessari) sono fondamentali per la conformità a regolamenti come il GDPR. Costruire su una solida [strategia dei dati di prima parte](https://devisia.pro/blog/first-party-data) è cruciale.
+4.  **Privacy by Design:** Questo principio impone che la privacy sia una scelta architetturale, non una funzione aggiunta successivamente. Tecniche come la **anonimizzazione dei dati** (rimozione degli identificatori prima dell'elaborazione) e la **minimizzazione dei dati** (raccogliere solo i dati necessari) sono fondamentali per la conformità a regolamenti come il GDPR. Costruire su una solida [strategia dei dati di prima parte](https://devisia.pro/blog/strategia-dati-first-party) è cruciale.
 5.  **Sicurezza specifica per l'AI:** I modelli stessi sono asset che possono essere attaccati. La tua architettura deve difendersi da minacce come gli **attacchi di inversione del modello** (dove un attaccante retro-ingegna i dati di training) e il **data poisoning** (dove vengono iniettati dati dannosi per corrompere il comportamento del modello). Questo richiede rigidi controlli di accesso sui dati di training e monitoraggio continuo degli output del modello per rilevare anomalie.
 
 Incorporare questi principi nell'architettura AI sin dal primo giorno crea un sistema non solo potente, ma anche pratico, sicuro e finanziariamente sostenibile.

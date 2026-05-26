@@ -1,11 +1,14 @@
 ---
-title: 'Mastering the CI/CD Pipeline: A Pragmatic Guide to Modern Software Delivery'
-description: Learn how pipeline ci cd can streamline modern software delivery with practical stages, patterns, security tips, and common pitfalls to avoid.
+title: 'CI/CD Pipeline: A Pragmatic Guide to Modern Software'
+description: >-
+  Learn how pipeline ci cd can streamline modern software delivery with
+  practical stages, patterns, security tips, and common pitfalls to avoid.
 translationSlug: pipeline-ci-cd
 autoTranslateToIt: true
 pubDate: 2026-01-19T11:07:46.817Z
 author: Stefano Chermaz
-heroImage: https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/555983ff-8ade-4e76-8ad6-290f2cedd663/pipeline-ci-cd-book-cover.jpg
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/555983ff-8ade-4e76-8ad6-290f2cedd663/pipeline-ci-cd-book-cover.jpg
 tags:
   - pipeline ci cd
   - devops strategy

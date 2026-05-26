@@ -1,5 +1,5 @@
 ---
-title: Guida pratica per i team di sviluppo software all'articolo 30 del GDPR (RoPA)
+title: Guida pratica per i team di sviluppo software
 description: >-
   Padroneggia l'articolo 30 del GDPR con la nostra guida per team di sviluppo
   software. Impara a creare e mantenere il tuo Registro delle attività di

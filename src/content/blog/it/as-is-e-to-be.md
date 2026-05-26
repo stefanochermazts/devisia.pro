@@ -1,5 +1,5 @@
 ---
-title: 'Analisi As-Is/To-Be: Un piano pragmatico per la modernizzazione dei sistemi'
+title: 'Analisi As-Is/To-Be: Un piano pragmatico per la'
 description: >-
   Analisi As-Is e To-Be: mappa il tuo stato attuale, progetta un'architettura
   pronta per il futuro e accelera la modernizzazione dei sistemi. Guida concisa

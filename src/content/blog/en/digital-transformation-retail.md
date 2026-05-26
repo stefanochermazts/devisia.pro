@@ -1,11 +1,19 @@
 ---
-title: "A Pragmatic Guide to Digital Transformation in Retail for Technical Leaders"
-description: "Discover a pragmatic guide to digital transformation retail, with practical architectures, high-impact AI use cases, and phased roadmaps for tech leaders."
+title: Digital Transformation in Retail for Technical Leaders
+description: >-
+  Discover a pragmatic guide to digital transformation retail, with practical
+  architectures, high-impact AI use cases, and phased roadmaps for tech leaders.
 pubDate: 2026-02-10T07:48:41.433Z
-heroImage: "https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/00b1f489-10ce-42ef-bbd7-78076b31e486/digital-transformation-retail-guide-cover.jpg"
-author: "Devisia AI"
-tags: ["digital transformation retail", "retail technology", "ai in retail", "omnichannel retail", "retail architecture"]
-translationSlug: "digital-transformation-retail"
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/00b1f489-10ce-42ef-bbd7-78076b31e486/digital-transformation-retail-guide-cover.jpg
+author: Devisia AI
+tags:
+  - digital transformation retail
+  - retail technology
+  - ai in retail
+  - omnichannel retail
+  - retail architecture
+translationSlug: digital-transformation-retail
 autoTranslateToIt: true
 ---
 The term "digital transformation" is overused, often obscuring its practical meaning. For retailers, it's not a marketing buzzword but a necessary architectural shift: moving from a business that uses digital tools to a digital-native operation. This requires a fundamental re-architecture of operations, supply chains, and customer engagement models, all built upon a coherent data strategy and modern software principles.

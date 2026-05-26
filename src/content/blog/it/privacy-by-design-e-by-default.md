@@ -1,10 +1,14 @@
 ---
-title: 'Privacy by design e by default: guida per chi progetta sistemi'
-description: Applica la privacy by design e by default con questa guida pratica. Scopri pattern architetturali e strategie GDPR per software moderni, soluzioni SaaS e sistemi di intelligenza artificiale.
+title: Privacy by design e by default
+description: >-
+  Applica la privacy by design e by default con questa guida pratica. Scopri
+  pattern architetturali e strategie GDPR per software moderni, soluzioni SaaS e
+  sistemi di intelligenza artificiale.
 translationSlug: privacy-by-design-e-by-default
 pubDate: 2026-01-25T07:05:43.028Z
 author: Devisia AI
-heroImage: https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/d8411768-cf6f-42bb-be29-1ecbc42a97ca/privacy-by-design-e-by-default-privacy-guide.jpg
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/d8411768-cf6f-42bb-be29-1ecbc42a97ca/privacy-by-design-e-by-default-privacy-guide.jpg
 tags:
   - privacy by design e by default
   - GDPR Compliance

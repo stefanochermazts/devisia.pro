@@ -1,5 +1,5 @@
 ---
-title: 'GDPR Art. 37: guida al DPO per engineering leader e tech lead'
+title: 'GDPR Art. 37: guida al DPO per engineering leader e'
 description: >-
   Guida pragmatica al GDPR Art. 37 per engineering leader e tech lead. Scopri
   quando è necessario nominare un DPO, comprendi i rischi e attua un framework
@@ -195,7 +195,7 @@ Punti di integrazione chiave includono:
 1.  **Software Development Lifecycle (SDLC):** Coinvolgere il DPO precocemente, durante i workshop privacy-by-design e la pianificazione delle funzionalità, *prima* che il codice venga scritto.
 2.  **Change Management:** Qualsiasi cambiamento significativo ai sistemi, all'architettura o ai fornitori che impatti i dati personali richiede la revisione del DPO.
 3.  **Incident Response:** Il DPO deve essere membro centrale del team di risposta agli incidenti per guidare gli obblighi di notifica delle violazioni ai sensi degli Articoli 33 e 34.
-4.  **Gestione del rischio dei fornitori:** Il DPO dovrebbe revisionare e consigliare sui contratti con terze parti, in particolare il [Accordo sul trattamento dei dati](https://devisia.pro/en/blog/data-processing-agreement), per garantirne la conformità al GDPR.
+4.  **Gestione del rischio dei fornitori:** Il DPO dovrebbe revisionare e consigliare sui contratti con terze parti, in particolare il [Accordo sul trattamento dei dati](https://devisia.pro/en/blog/contratto-trattamento-dati), per garantirne la conformità al GDPR.
 
 ### 5. Comunicare il ruolo e il mandato
 

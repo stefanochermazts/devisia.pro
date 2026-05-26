@@ -1,11 +1,20 @@
 ---
-title: "A CTO's Guide to SOA: Service-Oriented Architecture Explained"
-description: "A practical guide to SOA Service Oriented Architecture for CTOs. Learn core principles, patterns, and strategic value for building scalable enterprise systems."
+title: 'CTO guide: SOA: Service-Oriented Architecture Explained'
+description: >-
+  A practical guide to SOA Service Oriented Architecture for CTOs. Learn core
+  principles, patterns, and strategic value for building scalable enterprise
+  systems.
 pubDate: 2026-02-24T10:32:04.664Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/cf6a63c1-1a78-44cb-843a-34cc1f308e57/soa-service-oriented-architecture-guide-illustration.jpg"
-author: "Devisia AI"
-tags: ["soa service oriented architecture", "enterprise architecture", "system integration", "microservices vs soa", "scalable systems"]
-translationSlug: "soa-service-oriented-architecture"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/cf6a63c1-1a78-44cb-843a-34cc1f308e57/soa-service-oriented-architecture-guide-illustration.jpg
+author: Devisia AI
+tags:
+  - soa service oriented architecture
+  - enterprise architecture
+  - system integration
+  - microservices vs soa
+  - scalable systems
+translationSlug: soa-service-oriented-architecture
 autoTranslateToIt: true
 ---
 **Service-Oriented Architecture (SOA)** is an architectural method for organizing and building software systems. The core principle is to decompose a system's functionality into a collection of distinct, independent business services that communicate over a network.

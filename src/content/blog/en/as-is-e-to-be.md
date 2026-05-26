@@ -1,11 +1,19 @@
 ---
-title: "As-Is To-Be Analysis: A Pragmatic Blueprint for System Modernization"
-description: "as is e to be analysis: map your current state, design a future-ready architecture, and accelerate system modernization. A concise CTO guide."
+title: 'As-Is To-Be Analysis: A Pragmatic Blueprint for System'
+description: >-
+  as is e to be analysis: map your current state, design a future-ready
+  architecture, and accelerate system modernization. A concise CTO guide.
 pubDate: 2026-01-31T07:15:06.279Z
-heroImage: "https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/5d3ed553-775e-4e2f-b002-a58985b1ad33/as-is-e-to-be-analysis-blueprint.jpg"
-author: "Devisia AI"
-tags: ["as is and to be", "system architecture", "legacy modernization", "product discovery", "change management"]
-translationSlug: "as-is-e-to-be"
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/5d3ed553-775e-4e2f-b002-a58985b1ad33/as-is-e-to-be-analysis-blueprint.jpg
+author: Devisia AI
+tags:
+  - as is and to be
+  - system architecture
+  - legacy modernization
+  - product discovery
+  - change management
+translationSlug: as-is-e-to-be
 autoTranslateToIt: true
 ---
 Every significant technology initiative, from legacy system modernization to integrating AI capabilities, begins with two fundamental questions: *Where are we now?* and *Where do we need to be?* The **As-Is To-Be** analysis provides a disciplined framework to answer these questions, translating abstract strategic goals into a concrete, executable roadmap.

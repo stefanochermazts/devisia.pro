@@ -1,11 +1,20 @@
 ---
-title: "A Modern Guide to Data Protection and Privacy in Software"
-description: "A pragmatic guide to data protection and privacy for B2B leaders. Learn to implement privacy by design, navigate regulations, and secure modern AI systems."
+title: A Modern Guide to Data Protection and Privacy in
+description: >-
+  A pragmatic guide to data protection and privacy for B2B leaders. Learn to
+  implement privacy by design, navigate regulations, and secure modern AI
+  systems.
 pubDate: 2026-03-20T09:03:51.163Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/774676bf-e743-407e-ac3b-154af780ddc5/data-protection-and-privacy-abstract-design.jpg"
-author: "Devisia AI"
-tags: ["data protection and privacy", "privacy by design", "gdpr compliance", "ai data privacy", "secure software"]
-translationSlug: "data-protection-and-privacy"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/774676bf-e743-407e-ac3b-154af780ddc5/data-protection-and-privacy-abstract-design.jpg
+author: Devisia AI
+tags:
+  - data protection and privacy
+  - privacy by design
+  - gdpr compliance
+  - ai data privacy
+  - secure software
+translationSlug: data-protection-and-privacy
 autoTranslateToIt: true
 ---
 For too long, **data protection and privacy** have been treated as compliance checkboxes. This view is a technical and strategic error. For B2B leaders, they are deliberate engineering choices that define modern, resilient software systems.
@@ -134,7 +143,7 @@ Securing your tech stack means moving from abstract principles to concrete, tech
 
 > An effective incident response plan is not a document that gathers dust. It is a battle-tested playbook that your team drills regularly. It must define clear roles, communication channels, and technical steps for isolating systems, preserving evidence, and recovering services. When a breach occurs, confusion is your enemy.
 
-Implementing these controls demands a fundamental shift in mindset. Security is not a separate phase tacked on at the end of development; it is an integral part of writing high-quality, reliable code. If you need expert guidance, engaging with specialised [cybersecurity consultancies](https://devisia.pro/en/blog/cyber-security-consultancies) can bring in the expertise needed to assess your risks and implement the right controls. A secure tech stack is the bedrock upon which genuine data protection and privacy are built.
+Implementing these controls demands a fundamental shift in mindset. Security is not a separate phase tacked on at the end of development; it is an integral part of writing high-quality, reliable code. If you need expert guidance, engaging with specialised [cybersecurity consultancies](https://devisia.pro/en/blog/consulenza-cybersecurity-pragmatica) can bring in the expertise needed to assess your risks and implement the right controls. A secure tech stack is the bedrock upon which genuine data protection and privacy are built.
 
 ## Practical Data Protection for AI and LLM Systems
 

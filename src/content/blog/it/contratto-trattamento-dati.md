@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica ai contratti di trattamento dei dati (DPA)
+title: contratti di trattamento dei dati (DPA)
 description: >-
   Una guida pragmatica al contratto di trattamento dei dati (DPA). Comprendi le
   clausole cruciali, le normative GDPR e CCPA e i passaggi concreti da mettere
@@ -14,7 +14,7 @@ tags:
   - data privacy
   - saas contracts
   - technical compliance
-translationSlug: data-processing-agreement
+translationSlug: contratto-trattamento-dati
 translationSourceHash: 18a0c2a67047a749b34340487337a3f2e46de538bec1cf2e170a19c7e12d81cb
 ---
 Un **accordo sul trattamento dei dati (DPA)** non è semplicemente un documento legale da firmare e archiviare. Per i leader tecnici e di prodotto, è una specifica architetturale critica per qualsiasi sistema software che tratta dati personali. È un contratto vincolante tra un titolare del trattamento (la tua organizzazione) e un responsabile del trattamento (un fornitore), che definisce responsabilità precise per la protezione dei dati degli utenti in tutto il tuo stack tecnologico.
@@ -93,7 +93,7 @@ Senza controlli espliciti nel tuo DPA, perdi visibilità e controllo su dove i d
 
 ![Diagramma che mostra un SaaS connesso a CDN, backup, analytics e SCC, che coinvolge un flusso di approvazione dei sub-responsabili.](https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/7eeedc49-d3d6-4405-bd0e-d7bb6edb9da5/data-processing-agreement-saas-architecture.jpg)
 
-La proliferazione dell'outsourcing per tutto, dal payroll all'hosting cloud, è un fattore chiave dell'importanza dei DPA. Ogni anello di questa catena di servizi deve essere disciplinato contrattualmente. Puoi ottenere un'analisi più approfondita di come [l'outsourcing ha plasmato la necessità dei DPA su dataguard.com](https://www.dataguard.com/blog/data-processing-agreement).
+La proliferazione dell'outsourcing per tutto, dal payroll all'hosting cloud, è un fattore chiave dell'importanza dei DPA. Ogni anello di questa catena di servizi deve essere disciplinato contrattualmente. Puoi ottenere un'analisi più approfondita di come [l'outsourcing ha plasmato la necessità dei DPA su dataguard.com](https://www.dataguard.com/blog/contratto-trattamento-dati).
 
 ### Gestire la catena dei sub-responsabili
 

@@ -1,8 +1,10 @@
 ---
-title: 'Kaizen Projects: What They Are and Why They Are So Effective in Maintaining Existing Systems'
-description: |-
-  In the software world, attention is often focused on the initial development phase. However, the real complexity emerges after go-live, especially in SaaS development and when integrating responsible AI systems.
-pubDate: 2026-01-05
+title: 'Kaizen Projects: What They Are and Why They Are So'
+description: >-
+  In the software world, attention is often focused on the initial development
+  phase. However, the real complexity emerges after go-live, especially in SaaS
+  development and when integrating responsible AI systems.
+pubDate: 2026-01-05T00:00:00.000Z
 author: Stefano Chermaz
 heroImage: /uploads/progetti-kaizen.png
 tags:
@@ -12,7 +14,7 @@ tags:
   - System Evolution
   - IT Project Management
   - Long-Term Value
-translationSlug: progetti-kaizen-cosa-sono-e-perché-funzionano-nel-mantenimento-dei-sistemi-esistenti
+translationSlug: progetti-kaizen-cosa-sono-e-perche-funzionano-nel-mantenimento-dei-sistemi-esistenti
 ---
 In the software and digital product world, attention is often focused on the **initial development phase**. However, the real complexity — and long-term value — emerges **after** go-live, particularly in modern **SaaS development**.
 

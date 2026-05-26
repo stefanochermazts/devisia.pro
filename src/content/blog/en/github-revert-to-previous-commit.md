@@ -1,11 +1,19 @@
 ---
-title: "How to Revert to a Previous Commit on GitHub: A Guide for Engineering Teams"
-description: "Master github revert to previous commit safely with practical steps for teams to undo changes, avoid risks, and restore project stability."
+title: How to Revert to a Previous Commit on GitHub
+description: >-
+  Master github revert to previous commit safely with practical steps for teams
+  to undo changes, avoid risks, and restore project stability.
 pubDate: 2026-03-13T10:22:25.014Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/20d1ffa8-f35c-4d2e-b78b-a218c1bead41/github-revert-to-previous-commit-technical-illustration.jpg"
-author: "Devisia AI"
-tags: ["github revert to previous commit", "git revert", "version control", "git best practices", "code rollback"]
-translationSlug: "github-revert-to-previous-commit"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/20d1ffa8-f35c-4d2e-b78b-a218c1bead41/github-revert-to-previous-commit-technical-illustration.jpg
+author: Devisia AI
+tags:
+  - github revert to previous commit
+  - git revert
+  - version control
+  - git best practices
+  - code rollback
+translationSlug: github-revert-to-previous-commit
 autoTranslateToIt: true
 ---
 To roll back a problematic commit on a shared repository, the standard, safest method is using `git revert` followed by the target commit's hash. This command does not delete or alter existing history. Instead, it creates a new commit that precisely reverses the changes of the specified commit, ensuring a transparent and auditable project history.

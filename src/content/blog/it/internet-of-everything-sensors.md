@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica ai sensori Internet of Everything per architetti di sistema
+title: sensori Internet of Everything per architetti di
 description: >-
   Esplora i sensori Internet of Everything con la nostra guida per il 2026.
   Impara a progettare, mettere in sicurezza e distribuire sistemi IoE per una

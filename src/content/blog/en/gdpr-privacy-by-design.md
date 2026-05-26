@@ -1,11 +1,19 @@
 ---
-title: "A Practical Guide to GDPR Privacy by Design for Engineering Leaders"
-description: "A practical guide to GDPR Privacy by Design. Learn to implement engineering controls, architectural patterns, and AI governance for lasting compliance."
+title: GDPR Privacy by Design for Engineering Leaders
+description: >-
+  A practical guide to GDPR Privacy by Design. Learn to implement engineering
+  controls, architectural patterns, and AI governance for lasting compliance.
 pubDate: 2026-02-22T10:51:12.813Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/0536c422-deec-4977-bbc8-1f0a656790fe/gdpr-privacy-by-design-doodle-sign.jpg"
-author: "Devisia AI"
-tags: ["gdpr privacy by design", "privacy engineering", "gdpr for ctos", "secure architecture", "ai compliance"]
-translationSlug: "gdpr-privacy-by-design"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/0536c422-deec-4977-bbc8-1f0a656790fe/gdpr-privacy-by-design-doodle-sign.jpg
+author: Devisia AI
+tags:
+  - gdpr privacy by design
+  - privacy engineering
+  - gdpr for ctos
+  - secure architecture
+  - ai compliance
+translationSlug: gdpr-privacy-by-design
 autoTranslateToIt: true
 ---
 Under the GDPR, **privacy by design is a legal requirement**, not a best-practice recommendation. For CTOs, architects, and product leaders, this mandate transforms privacy from a last-minute compliance checkbox into a foundational engineering principle. It dictates that data protection must be embedded into the architecture of software systems from the very beginning of the development lifecycle.

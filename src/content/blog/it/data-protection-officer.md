@@ -1,7 +1,5 @@
 ---
-title: >-
-  Il Data Protection Officer (DPO): guida all'architettura per la leadership
-  tecnica
+title: 'Il Data Protection Officer (DPO): guida'
 description: >-
   Guida pratica per fondatori e CTO sul ruolo del Data Protection Officer (DPO),
   quando serve e come integrarlo nella governance dell'ingegneria e dell'IA.

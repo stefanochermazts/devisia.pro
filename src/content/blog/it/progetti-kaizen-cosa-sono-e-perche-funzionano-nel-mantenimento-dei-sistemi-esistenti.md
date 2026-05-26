@@ -1,5 +1,5 @@
 ---
-title: 'Progetti Kaizen: cosa sono e perché funzionano nel mantenimento dei sistemi esistenti'
+title: 'Progetti Kaizen: miglioramento continuo software'
 description: |-
   Nel mondo del software e dei prodotti digitali, l’attenzione è spesso concentrata sulla fase di sviluppo iniziale. Ma la vera complessità emerge dopo il go-live, specialmente nello sviluppo SaaS e nell'integrazione di sistemi di AI responsabile.
 pubDate: 2026-01-05

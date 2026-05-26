@@ -178,7 +178,7 @@ A practical reporting line should include:
 | Decision visibility | Privacy risk included in executive review packs | Privacy issues buried in legal or security backlogs |
 | Follow-up | Clear ownership of remediation actions | Verbal acknowledgement with no tracked decisions |
 
-A useful companion concept is the broader [means of compliance approach](https://devisia.pro/blog/means-of-compliance), where legal requirements are translated into specific operational controls rather than broad promises.
+A useful companion concept is the broader [means of compliance approach](https://devisia.pro/blog/mezzi-di-conformita), where legal requirements are translated into specific operational controls rather than broad promises.
 
 ### Provide access to processing operations
 

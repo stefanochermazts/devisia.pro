@@ -1,7 +1,5 @@
 ---
-title: >-
-  Software moderno per sistemi informativi geospaziali: una guida
-  all'architettura
+title: Software moderno per sistemi informativi geospaziali
 description: >-
   Una guida pragmatica per i leader sui moderni software per sistemi informativi
   geospaziali. Scopri architetture cloud, GeoAI e come decidere se sviluppare

@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica alle informazioni personali identificabili (PII)
+title: le informazioni personali identificabili (PII)
 description: >-
   Comprendi le informazioni personali identificabili (PII) da una prospettiva
   ingegneristica. Impara a gestire i rischi, garantire la conformità e costruire
@@ -14,7 +14,7 @@ tags:
   - privacy by design
   - GDPR compliance
   - secure architecture
-translationSlug: personal-identifiable-information
+translationSlug: informazioni-personali-identificabili
 translationSourceHash: 6a028ffb071148941e648b4e2a3d5e162ae041dcc84a1c6acf61161d966473c1
 ---
 Per i leader tecnici, **Informazioni personali identificabili (PII)** non sono semplicemente un termine di conformità; rappresentano una classificazione dei dati fondamentale che detta l'architettura dei sistemi, i protocolli di sicurezza e le procedure di gestione dei dati. Una cattiva gestione delle PII introduce debito tecnico significativo, vulnerabilità di sicurezza e rischi normativi.

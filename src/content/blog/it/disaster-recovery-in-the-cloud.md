@@ -1,10 +1,13 @@
 ---
-title: 'Disaster recovery e resilienza nel cloud: guida pratica per decision maker tecnici'
-description: Scopri il ripristino di emergenza nel cloud con una guida pratica alle architetture, ai compromessi RTO/RPO e alla resilienza automatizzata.
+title: 'Disaster recovery e resilienza nel cloud: guida'
+description: >-
+  Scopri il ripristino di emergenza nel cloud con una guida pratica alle
+  architetture, ai compromessi RTO/RPO e alla resilienza automatizzata.
 translationSlug: disaster-recovery-in-the-cloud
 pubDate: 2026-01-26T06:52:07.684Z
 author: Devisia AI
-heroImage: https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/db523752-488d-4043-a4b9-01d38ffbc404/disaster-recovery-in-the-cloud-cloud-resilience.jpg
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/db523752-488d-4043-a4b9-01d38ffbc404/disaster-recovery-in-the-cloud-cloud-resilience.jpg
 tags:
   - disaster recovery in the cloud
   - cloud resilience

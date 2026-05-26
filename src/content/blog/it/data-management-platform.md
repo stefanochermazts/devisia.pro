@@ -44,7 +44,7 @@ Considerare una piattaforma di gestione dei dati come un componente architettura
 
 Per esempio, risolvendo le identità degli utenti dai diversi touchpoint, una DMP garantisce che un profilo cliente unico sia riconosciuto attraverso le piattaforme—che un utente stia navigando il sito web, usando un'app mobile o interagendo con un chatbot di supporto.
 
-Questa centralizzazione abilita un'efficace integrità e governance dei dati. Politiche universali per l'accesso ai dati, la gestione del consenso e la conservazione possono essere applicate a livello di sistema, incorporando la conformità nell'architettura fin dalla progettazione. Per i leader tecnici, questo rappresenta uno spostamento da un approccio reattivo e a toppe a uno proattivo e strutturato. Per un'analisi più approfondita del quadro legale, la nostra guida per comprendere il [Data Processing Agreement](https://devisia.pro/blog/data-processing-agreement) offre un contesto prezioso.
+Questa centralizzazione abilita un'efficace integrità e governance dei dati. Politiche universali per l'accesso ai dati, la gestione del consenso e la conservazione possono essere applicate a livello di sistema, incorporando la conformità nell'architettura fin dalla progettazione. Per i leader tecnici, questo rappresenta uno spostamento da un approccio reattivo e a toppe a uno proattivo e strutturato. Per un'analisi più approfondita del quadro legale, la nostra guida per comprendere il [Data Processing Agreement](https://devisia.pro/blog/contratto-trattamento-dati) offre un contesto prezioso.
 
 In ultima analisi, una piattaforma di gestione dei dati ben progettata diventa la spina dorsale per tutte le attività guidate dai dati all'interno di un'organizzazione.
 

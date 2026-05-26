@@ -1,5 +1,5 @@
 ---
-title: 'Guida pragmatica a git revert: tornare a uno specifico commit'
+title: 'Guida pragmatica a git revert: tornare a uno specifico'
 description: >-
   Scopri come usare in modo sicuro git revert per tornare a uno specifico
   commit. Guida ai comandi, alle migliori pratiche e alla gestione dei commit

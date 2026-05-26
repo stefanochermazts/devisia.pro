@@ -1,5 +1,5 @@
 ---
-title: Una guida pragmatica all'articolo 7 del GDPR per i sistemi software
+title: l'articolo 7 del GDPR per i sistemi software
 description: >-
   Una guida all'articolo 7 del GDPR per gli engineering leader. Scopri come
   progettare e implementare meccanismi di consenso conformi nei tuoi sistemi

@@ -1,5 +1,5 @@
 ---
-title: 'Architettura delle app di mobile banking: una guida ingegneristica pragmatica'
+title: 'Architettura delle app di mobile banking: una guida'
 description: >-
   Scopri la nostra guida al mobile banking. Impara a realizzare app finanziarie
   sicure, conformi e scalabili, con indicazioni architetturali di esperti per

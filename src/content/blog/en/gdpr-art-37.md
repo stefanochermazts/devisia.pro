@@ -186,7 +186,7 @@ Key integration points include:
 1.  **Software Development Lifecycle (SDLC):** Involve the DPO early, during privacy-by-design workshops and feature planning, *before* code is written.
 2.  **Change Management:** Any significant change to systems, architecture, or vendors that affects personal data requires DPO review.
 3.  **Incident Response:** The DPO must be a core member of your incident response team to guide breach notification obligations under Articles 33 and 34.
-4.  **Vendor Risk Management:** The DPO should review and advise on third-party contracts, particularly the [Data Processing Agreement](https://devisia.pro/en/blog/data-processing-agreement), to ensure they meet GDPR standards.
+4.  **Vendor Risk Management:** The DPO should review and advise on third-party contracts, particularly the [Data Processing Agreement](https://devisia.pro/en/blog/contratto-trattamento-dati), to ensure they meet GDPR standards.
 
 ### 5. Communicate the Role and Mandate
 

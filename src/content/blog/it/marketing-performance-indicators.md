@@ -1,5 +1,5 @@
 ---
-title: Indicatori di performance di marketing pragmatici per sistemi tech B2B
+title: Indicatori di performance di marketing pragmatici per
 description: >-
   Una guida per i tech leader sugli indicatori di performance di marketing che
   generano valore di business. Scopri come andare oltre le vanity metrics e

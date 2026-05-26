@@ -1,5 +1,5 @@
 ---
-title: 'Modello di accordo di riservatezza (NDA): guida per sistemi software e IA'
+title: Modello di accordo di riservatezza (NDA)
 description: >-
   Scarica il nostro modello di accordo di riservatezza (NDA), collaudato per
   progetti software e IA. Proteggi la tua proprietà intellettuale e i dati
@@ -14,7 +14,7 @@ tags:
   - AI governance
   - IP protection
   - software NDA
-translationSlug: confidentiality-agreement-template
+translationSlug: modello-accordo-riservatezza-nda
 translationSourceHash: c2ba7838305335c686e32a1a3dc7380ecd8382b549072bb451077876e41deea7
 ---
 Usare un **modello di accordo di riservatezza** generico preso da internet è una scorciatoia comune per le aziende tecnologiche, ma è una pratica piena di rischi. I classici accordi di non divulgazione (NDA) spesso non sono allineati con le realtà dello sviluppo agile, delle architetture basate su API e dei flussi di dati su larga scala insiti nei sistemi di IA. Per i fondatori, i CTO e i responsabili della conformità, questo disallineamento introduce responsabilità significative e spesso trascurate.
@@ -222,7 +222,7 @@ Un workflow è efficace solo se il team lo rispetta. Durante l'onboarding, ingeg
 
 Questa rigore operativo è sempre più critico con l'ascesa dell'AI. Molte organizzazioni ora aggiungono clausole di trasparenza nei contratti per specificare come l'AI è usata per il trattamento dei dati. Poiché la fuoriuscita di dati da AI generativa diventa una delle principali preoccupazioni per la sicurezza, i modelli di riservatezza devono evolvere per includere termini su governance dell'AI, controlli human-in-the-loop e osservabilità dei sistemi per gestire efficacemente il rischio.
 
-Un approccio disciplinato trasforma un documento legale statico in un componente dinamico delle vostre operazioni tecniche. Per uno sguardo più approfondito sui contratti correlati, consultate la nostra guida sui [fondamentali di un Data Processing Agreement](https://devisia.pro/blog/data-processing-agreement).
+Un approccio disciplinato trasforma un documento legale statico in un componente dinamico delle vostre operazioni tecniche. Per uno sguardo più approfondito sui contratti correlati, consultate la nostra guida sui [fondamentali di un Data Processing Agreement](https://devisia.pro/blog/contratto-trattamento-dati).
 
 ## FAQ sugli accordi di riservatezza in ambito tecnologico
 

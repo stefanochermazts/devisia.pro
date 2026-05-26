@@ -1,7 +1,5 @@
 ---
-title: >-
-  Padroneggiare la pipeline CI/CD: una guida pragmatica alla consegna del
-  software moderno
+title: 'la pipeline CI/CD: una guida pragmatica alla consegna'
 description: >-
   Scopri come la pipeline CI/CD può semplificare la consegna del software
   moderno: fasi pratiche, pattern operativi, consigli di sicurezza e gli errori

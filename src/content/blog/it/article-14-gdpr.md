@@ -1,5 +1,5 @@
 ---
-title: Una guida pragmatica all'articolo 14 del GDPR per i sistemi software
+title: Articolo 14 GDPR per sistemi software
 description: >-
   Una guida B2B pragmatica all'articolo 14 del GDPR. Scopri i requisiti tecnici
   per i dati raccolti indirettamente e come implementare la conformità nei

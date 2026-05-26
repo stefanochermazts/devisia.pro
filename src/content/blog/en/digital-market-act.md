@@ -1,11 +1,19 @@
 ---
-title: "A Pragmatic Guide to the Digital Market Act for Technology Leaders"
-description: "A pragmatic guide for CTOs and founders on the Digital Market Act. Understand its technical implications, compliance risks, and strategic opportunities."
+title: the Digital Market Act for Technology Leaders
+description: >-
+  A pragmatic guide for CTOs and founders on the Digital Market Act. Understand
+  its technical implications, compliance risks, and strategic opportunities.
 pubDate: 2026-03-19T10:11:46.217Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/5e8c34c9-c250-49c6-8432-595bf8d5838d/digital-market-act-guide.jpg"
-author: "Devisia AI"
-tags: ["digital market act", "EU regulation", "tech compliance", "B2B software", "API economy"]
-translationSlug: "digital-market-act"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/5e8c34c9-c250-49c6-8432-595bf8d5838d/digital-market-act-guide.jpg
+author: Devisia AI
+tags:
+  - digital market act
+  - EU regulation
+  - tech compliance
+  - B2B software
+  - API economy
+translationSlug: digital-market-act
 autoTranslateToIt: true
 ---
 The **Digital Market Act (DMA)** is not just another EU regulation; it is a structural redesign of the digital economy's core rules, engineered to create fairer, more open markets.
@@ -167,7 +175,7 @@ Consider an AI-powered logistics platform. Before the DMA, you might have been l
 *   Integrate with multiple communication platforms to send driver updates.
 *   Leverage powerful open-source language models for customer service chatbots and run them on your preferred infrastructure.
 
-This modular approach not only improves performance but also enhances system resilience and cost-effectiveness. By architecting with a privacy-first mindset, you also build trust, which aligns with the principles discussed in our guide to [building a first-party data strategy](https://devisia.pro/en/blog/first-party-data). For product leaders, the objective is clear: use these new openings to build more scalable, maintainable, and competitive digital products.
+This modular approach not only improves performance but also enhances system resilience and cost-effectiveness. By architecting with a privacy-first mindset, you also build trust, which aligns with the principles discussed in our guide to [building a first-party data strategy](https://devisia.pro/en/blog/strategia-dati-first-party). For product leaders, the objective is clear: use these new openings to build more scalable, maintainable, and competitive digital products.
 
 ## Conclusion: Building Your Business For A Post-DMA World
 

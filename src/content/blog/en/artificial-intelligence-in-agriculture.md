@@ -1,11 +1,20 @@
 ---
-title: "A Pragmatic CTO's Guide to Building AI Systems in Agriculture"
-description: "Unlock the future of farming with artificial intelligence in agriculture. This practical CTO's guide explores strategies for implementation and success in 2026."
+title: A Pragmatic CTO's Guide to Building AI Systems in
+description: >-
+  Unlock the future of farming with artificial intelligence in agriculture. This
+  practical CTO's guide explores strategies for implementation and success in
+  2026.
 pubDate: 2026-04-03T09:16:21.084Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/5b0a7894-e4e9-4213-a2b8-b0da96194758/artificial-intelligence-in-agriculture-agriculture-guide.jpg"
-author: "Devisia AI"
-tags: ["artificial intelligence in agriculture", "agritech", "precision farming", "ai systems", "software architecture"]
-translationSlug: "artificial-intelligence-in-agriculture"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/5b0a7894-e4e9-4213-a2b8-b0da96194758/artificial-intelligence-in-agriculture-agriculture-guide.jpg
+author: Devisia AI
+tags:
+  - artificial intelligence in agriculture
+  - agritech
+  - precision farming
+  - ai systems
+  - software architecture
+translationSlug: artificial-intelligence-in-agriculture
 autoTranslateToIt: true
 ---
 When building systems for agriculture, **artificial intelligence** is not a futuristic concept; it is a tool for solving urgent operational problems. It enables a move past traditional methods that cannot meet modern food demands, regulatory pressures, and razor-thin margins. The focus is not on "doing AI" but on using data-driven software to address concrete business challenges.

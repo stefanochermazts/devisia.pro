@@ -189,7 +189,7 @@ Inizia con due metriche ad alto impatto:
 
 ### Collegare le metriche alla salute sistemica
 
-Queste metriche sono indicatori anticipatori dell'agilità e della salute operativa del tuo team. Un aumento del Tempo di Risoluzione dei Blocker, ad esempio, può indicare dipendenze esterne che richiedono l'intervento della leadership senior. Comprendere la funzione di un [Program Management Officer](https://devisia.pro/en/blog/program-management-officer) può fornire contesto per la gestione di tali dipendenze cross-team.
+Queste metriche sono indicatori anticipatori dell'agilità e della salute operativa del tuo team. Un aumento del Tempo di Risoluzione dei Blocker, ad esempio, può indicare dipendenze esterne che richiedono l'intervento della leadership senior. Comprendere la funzione di un [Program Management Officer](https://devisia.pro/en/blog/responsabile-gestione-programmi) può fornire contesto per la gestione di tali dipendenze cross-team.
 
 Analogamente, un'elevata Età Media degli Elementi di Lavoro suggerisce che il team potrebbe violare i limiti di Work-In-Progress (WIP) — una causa comune di contest switching e ridotto throughput. La stand-up è il forum ideale per affrontare ciò spostando il focus dall'*iniziare* il lavoro al *completare* il lavoro.
 

@@ -1,11 +1,20 @@
 ---
-title: "Mobile Banking App Architecture: A Pragmatic Engineering Guide"
-description: "Explore our guide on mobile apps banking. Learn to build secure, compliant, and scalable financial apps with expert architectural insights for B2B leaders."
+title: 'Mobile Banking App Architecture: A Pragmatic'
+description: >-
+  Explore our guide on mobile apps banking. Learn to build secure, compliant,
+  and scalable financial apps with expert architectural insights for B2B
+  leaders.
 pubDate: 2026-02-03T07:10:34.302Z
-heroImage: "https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/5bd365ab-9789-4fce-9127-51ba472a0777/mobile-apps-banking-banking-architecture.jpg"
-author: "Devisia AI"
-tags: ["mobile apps banking", "fintech architecture", "secure mobile banking", "financial compliance", "app development"]
-translationSlug: "mobile-apps-banking"
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/5bd365ab-9789-4fce-9127-51ba472a0777/mobile-apps-banking-banking-architecture.jpg
+author: Devisia AI
+tags:
+  - mobile apps banking
+  - fintech architecture
+  - secure mobile banking
+  - financial compliance
+  - app development
+translationSlug: mobile-apps-banking
 autoTranslateToIt: true
 ---
 Mobile banking applications are no longer a supplementary channel; they are the primary interface between a financial institution and its customers. For technical leaders, this shift elevates the mobile platform from a feature to a core engine for business growth, influencing everything from operational resilience to customer retention.

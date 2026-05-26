@@ -341,7 +341,7 @@ Organizations typically choose among three models.
 | Commercial CMP | Teams that need faster rollout and standard controls | Weak integration if treated as a plug-in rather than part of the app |
 | Hybrid approach | SaaS platforms with custom event pipelines and standardised consent UI | Split ownership between product, marketing, and engineering |
 
-A consent management platform can help, but only if it’s wired into enforcement points. One option is [Devisia’s consent management platform](https://devisia.pro/blog/consent-management-platform), which captures user choices, stores consent preferences in first-party cookies, and validates consent state before requests or third-party processing proceed. That kind of tooling is useful when it acts as a system control, not merely a banner generator.
+A consent management platform can help, but only if it’s wired into enforcement points. One option is [Devisia’s consent management platform](https://devisia.pro/blog/piattaforma-gestione-consenso), which captures user choices, stores consent preferences in first-party cookies, and validates consent state before requests or third-party processing proceed. That kind of tooling is useful when it acts as a system control, not merely a banner generator.
 
 ### A practical implementation pattern
 

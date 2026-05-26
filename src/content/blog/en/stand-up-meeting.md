@@ -1,11 +1,19 @@
 ---
-title: "How to Run a Stand Up Meeting That Drives Technical Momentum"
-description: "Transform your daily stand up meeting from a status report into a high-impact agile ritual. A pragmatic guide for software and product teams. No fluff."
+title: How to Run a Stand Up Meeting That Drives Technical
+description: >-
+  Transform your daily stand up meeting from a status report into a high-impact
+  agile ritual. A pragmatic guide for software and product teams. No fluff.
 pubDate: 2026-02-05T07:47:04.515Z
-heroImage: "https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/17adf0ff-c807-4977-916d-67589a48e37f/stand-up-meeting-workspace.jpg"
-author: "Devisia AI"
-tags: ["stand up meeting", "agile development", "scrum meetings", "team productivity", "software engineering"]
-translationSlug: "stand-up-meeting"
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/17adf0ff-c807-4977-916d-67589a48e37f/stand-up-meeting-workspace.jpg
+author: Devisia AI
+tags:
+  - stand up meeting
+  - agile development
+  - scrum meetings
+  - team productivity
+  - software engineering
+translationSlug: stand-up-meeting
 autoTranslateToIt: true
 ---
 The **stand up meeting**, or Daily Scrum, is a daily synchronization point for a software development team. Its purpose is to identify and resolve impediments quickly, ensuring the team's work aligns with sprint objectives. However, many teams find their stand ups devolve into rote status reporting, draining energy instead of creating focus. This guide provides a pragmatic approach for technical leaders to implement a stand up meeting that actively drives project momentum.
@@ -180,7 +188,7 @@ Start with two high-impact metrics:
 
 ### Connecting Metrics to Systemic Health
 
-These metrics are leading indicators of your team's agility and operational health. A rising Blocker Resolution Time, for example, may indicate external dependencies that require intervention from senior leadership. Understanding the function of a [Program Management Officer](https://devisia.pro/en/blog/program-management-officer) can provide context for managing such cross-team dependencies.
+These metrics are leading indicators of your team's agility and operational health. A rising Blocker Resolution Time, for example, may indicate external dependencies that require intervention from senior leadership. Understanding the function of a [Program Management Officer](https://devisia.pro/en/blog/responsabile-gestione-programmi) can provide context for managing such cross-team dependencies.
 
 Similarly, a high average Work Item Age suggests the team may be violating Work-In-Progress (WIP) limits—a common cause of context switching and reduced throughput. The stand up is the ideal forum to address this by shifting the focus from *starting* work to *finishing* work.
 

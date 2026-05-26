@@ -114,7 +114,7 @@ That’s the business outcome. The engineering implication is straightforward. O
 
 A common anti-pattern is sending all raw telemetry to the central platform and hoping analytics will sort it out later. That creates storage waste, noisy alerts, and weak incident response.
 
-For teams working on vehicle intelligence, ADAS integration, or roadside coordination, safety and software architecture meet. The interface between perception, decision support, and user-facing systems needs disciplined contracts. The design concerns in [advanced driver assistance system engineering](https://devisia.pro/en/blog/advanced-driver-assistance-system) are closely related to the broader mobility stack, especially around latency, fallback behaviour, and traceability.
+For teams working on vehicle intelligence, ADAS integration, or roadside coordination, safety and software architecture meet. The interface between perception, decision support, and user-facing systems needs disciplined contracts. The design concerns in [advanced driver assistance system engineering](https://devisia.pro/en/blog/sistema-assistenza-guida-resiliente) are closely related to the broader mobility stack, especially around latency, fallback behaviour, and traceability.
 
 ### MaaS fails when orchestration is treated as aggregation
 

@@ -1,5 +1,5 @@
 ---
-title: 'Cloud Computing vs On-Premise: guida architetturale per leader tecnici'
+title: 'Cloud Computing vs On-Premise: guida architetturale'
 description: >-
   Guida pragmatica al cloud computing vs on-premise per i CTO: confronta TCO,
   sicurezza, scalabilità e conformità per scegliere l'infrastruttura più adatta.

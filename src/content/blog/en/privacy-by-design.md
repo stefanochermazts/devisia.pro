@@ -1,11 +1,19 @@
 ---
-title: "A Pragmatic Guide to Privacy by Design in Software and AI"
-description: "Implement privacy by design in your software and AI systems with this guide to architectural patterns, process changes, and governance checklists."
+title: Privacy by Design in Software and AI
+description: >-
+  Implement privacy by design in your software and AI systems with this guide to
+  architectural patterns, process changes, and governance checklists.
 pubDate: 2026-01-30T07:15:09.362Z
-heroImage: "https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/8c20ce26-1b9c-456c-b9de-848a852bafdd/privacy-by-design-guide-cover.jpg"
-author: "Devisia AI"
-tags: ["privacy by design", "software architecture", "gdpr compliance", "ai governance", "secure development"]
-translationSlug: "privacy-by-design"
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/8c20ce26-1b9c-456c-b9de-848a852bafdd/privacy-by-design-guide-cover.jpg
+author: Devisia AI
+tags:
+  - privacy by design
+  - software architecture
+  - gdpr compliance
+  - ai governance
+  - secure development
+translationSlug: privacy-by-design
 autoTranslateToIt: true
 ---
 Privacy by Design is not a compliance exercise; it is an engineering discipline for building data protection into the core architecture of systems and products. It treats privacy as a fundamental requirement, not an optional feature bolted on before deployment.

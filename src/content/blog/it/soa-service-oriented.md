@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica all'architettura orientata ai servizi (SOA)
+title: l'architettura orientata ai servizi (SOA)
 description: >-
   Scopri come la SOA (architettura orientata ai servizi) può semplificare
   l'integrazione, confrontala con i microservizi e inizia oggi a sviluppare

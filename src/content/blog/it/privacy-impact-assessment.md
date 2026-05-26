@@ -1,5 +1,5 @@
 ---
-title: Guida pratica alla valutazione d'impatto sulla privacy (PIA)
+title: Guida pratica alla valutazione d'impatto sulla privacy
 description: >-
   Una guida passo dopo passo per condurre una valutazione d'impatto sulla
   privacy (PIA) per software e intelligenza artificiale. Scopri come integrare

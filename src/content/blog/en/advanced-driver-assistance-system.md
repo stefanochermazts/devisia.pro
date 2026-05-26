@@ -1,11 +1,19 @@
 ---
-title: "Building a Resilient Advanced Driver Assistance System: An Architectural Guide"
-description: "A guide to the Advanced Driver Assistance System for CTOs and product leaders. Explore architecture, AI models, safety compliance, and real-world trade-offs."
+title: Building a Resilient Advanced Driver Assistance System
+description: >-
+  A guide to the Advanced Driver Assistance System for CTOs and product leaders.
+  Explore architecture, AI models, safety compliance, and real-world trade-offs.
 pubDate: 2026-04-05T09:32:53.891Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/b448af3e-f848-4fbd-bcdd-fa4112454e5c/advanced-driver-assistance-system-guide.jpg"
-author: "Devisia AI"
-tags: ["advanced driver assistance system", "automotive software", "iso 26262", "sensor fusion", "automotive ai"]
-translationSlug: "advanced-driver-assistance-system"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/b448af3e-f848-4fbd-bcdd-fa4112454e5c/advanced-driver-assistance-system-guide.jpg
+author: Devisia AI
+tags:
+  - advanced driver assistance system
+  - automotive software
+  - iso 26262
+  - sensor fusion
+  - automotive ai
+translationSlug: sistema-assistenza-guida-resiliente
 autoTranslateToIt: true
 ---
 An **Advanced Driver Assistance System** (ADAS) is not a single technology but a complex assembly of functions engineered to improve vehicle safety and reduce driver workload. These systems operate as a digital co-pilot, using sensors like cameras and radar to monitor the vehicle's environment and compensate for the split-second delays in human reaction where most accidents originate.
@@ -32,7 +40,7 @@ Market adoption reflects the value of these systems. By 2026, features like forw
 
 > At its core, an ADAS is an exercise in applied risk mitigation. The system continuously calculates the probability of adverse events—a collision, a lane departure—and acts to reduce that risk. Its effectiveness is determined not by a single algorithm, but by the reliability of the entire hardware and software chain.
 
-This rapid integration is a key aspect of the [Internet of Things in the automotive sector](https://devisia.pro/blog/internet-of-things-automotive), where connected systems are now integral to vehicle function and safety.
+This rapid integration is a key aspect of the [Internet of Things in the automotive sector](https://devisia.pro/blog/iot-settore-automotive), where connected systems are now integral to vehicle function and safety.
 
 ### SAE Levels of Driving Automation
 

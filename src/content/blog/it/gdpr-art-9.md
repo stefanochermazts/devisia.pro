@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica all'Art. 9 del GDPR per sistemi software
+title: l'Art. 9 del GDPR per sistemi software
 description: >-
   Padroneggia la conformità all'Art. 9 del GDPR sui dati di categorie
   particolari in ambito AI e software. Guida pratica per CTO e product leader su
@@ -144,7 +144,7 @@ Questo vault ha regole rigorose:
 *   **Controlli di accesso rigorosi:** solo un numero ristretto di servizi o ruoli altamente privilegiati possono accedere al vault. I servizi applicativi standard che gestiscono i profili utente non dovrebbero avere credenziali o permessi per vedere questi dati isolati.
 *   **Audit intensivo:** ogni operazione di lettura o scrittura che coinvolge il vault è registrata in una traccia di audit immutabile, annotando chi ha accesso a cosa, da dove e perché.
 
-Questo approccio garantisce che anche se una parte meno critica dell'applicazione viene violata, i tuoi dati più sensibili rimangono protetti. Per approfondire, esplora i [mezzi di conformità per il software moderno](https://devisia.pro/en/blog/means-of-compliance).
+Questo approccio garantisce che anche se una parte meno critica dell'applicazione viene violata, i tuoi dati più sensibili rimangono protetti. Per approfondire, esplora i [mezzi di conformità per il software moderno](https://devisia.pro/en/blog/mezzi-di-conformita).
 
 ### Implementare la minimizzazione dei dati in pratica
 

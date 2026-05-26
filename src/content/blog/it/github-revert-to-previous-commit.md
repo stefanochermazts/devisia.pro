@@ -1,5 +1,5 @@
 ---
-title: 'Come annullare un commit precedente su GitHub: guida per i team di ingegneria'
+title: Come annullare un commit precedente su GitHub
 description: >-
   Scopri come annullare in modo sicuro un commit precedente su GitHub: passaggi
   pratici per i team di ingegneria per invertire le modifiche, ridurre i rischi

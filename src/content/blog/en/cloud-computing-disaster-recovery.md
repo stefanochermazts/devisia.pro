@@ -1,11 +1,20 @@
 ---
-title: "Cloud Computing Disaster Recovery: A Pragmatic Guide to Resilient Systems"
-description: "A pragmatic guide to cloud computing disaster recovery. Learn to design, implement, and test resilient architectures for modern SaaS and AI applications."
+title: 'Cloud Computing Disaster Recovery: A Pragmatic Guide'
+description: >-
+  A pragmatic guide to cloud computing disaster recovery. Learn to design,
+  implement, and test resilient architectures for modern SaaS and AI
+  applications.
 pubDate: 2026-02-25T09:32:36.225Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/40f71004-ef00-4f71-b837-a091575ad5eb/cloud-computing-disaster-recovery-tech-illustration.jpg"
-author: "Devisia AI"
-tags: ["cloud computing disaster recovery", "business continuity plan", "RTO and RPO", "resilient architecture", "SaaS reliability"]
-translationSlug: "cloud-computing-disaster-recovery"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/40f71004-ef00-4f71-b837-a091575ad5eb/cloud-computing-disaster-recovery-tech-illustration.jpg
+author: Devisia AI
+tags:
+  - cloud computing disaster recovery
+  - business continuity plan
+  - RTO and RPO
+  - resilient architecture
+  - SaaS reliability
+translationSlug: cloud-computing-disaster-recovery
 autoTranslateToIt: true
 ---
 Cloud computing disaster recovery is not an IT insurance policy; it is a strategic engineering discipline. The objective is to leverage cloud infrastructure to restore data, applications, and core business functions after a catastrophic failure. Instead of relying on a secondary physical data centre, you replicate systems and data to a remote cloud environment. This approach is designed to maintain business continuity with minimal, predictable disruption and data loss, offering a significant advantage over the cost and rigidity of traditional on-premises solutions.

@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica alla tua informativa sulla privacy e sui cookie
+title: la tua informativa sulla privacy e sui cookie
 description: >-
   Crea un'informativa robusta su privacy e cookie per il tuo prodotto SaaS o
   sistema di intelligenza artificiale. La guida tratta GDPR, governance dell'AI
@@ -72,7 +72,7 @@ Alcuni regolamenti chiave fissano lo standard globale. Le loro richieste fondame
 *   **GDPR (Regolamento Generale sulla Protezione dei Dati):** La legge di riferimento dell'UE richiede un consenso chiaro e opt-in per la raccolta di dati non essenziali, impone la protezione dei dati by design e ha regole rigide per il trasferimento di dati fuori dall'UE. Per gli ingegneri, ciò significa implementare controlli di consenso granulari e garantire che qualsiasi dato inviato a un servizio non appartenente all'UE (per es., un cloud provider con sede negli USA) sia coperto da un meccanismo di trasferimento valido come le Clausole Contrattuali Standard (SCC).
 *   **CCPA/CPRA (California Consumer Privacy Act / California Privacy Rights Act):** Questo quadro dà ai residenti della California il diritto di sapere quali dati vengono raccolti e di opporti alla loro "vendita" o condivisione—un termine ampio che può includere attività come la pubblicità mirata. Dal punto di vista tecnico, ciò richiede sistemi che possano tracciare in modo affidabile e onorare le richieste di opt-out su tutto il tuo ecosistema dati.
 
-La sfida per l'ingegneria è tradurre queste regole legali variegate in un insieme coerente di controlli tecnici. Una soluzione pratica è astrare funzioni comuni—come la gestione del consenso e le richieste di cancellazione dei dati—in un livello di conformità unificato all'interno della tua architettura. La nostra guida sui [mezzi pratici di conformità](https://devisia.pro/blog/means-of-compliance) esplora questo approccio architetturale.
+La sfida per l'ingegneria è tradurre queste regole legali variegate in un insieme coerente di controlli tecnici. Una soluzione pratica è astrare funzioni comuni—come la gestione del consenso e le richieste di cancellazione dei dati—in un livello di conformità unificato all'interno della tua architettura. La nostra guida sui [mezzi pratici di conformità](https://devisia.pro/blog/mezzi-di-conformita) esplora questo approccio architetturale.
 
 ## Redigere le clausole essenziali per la tua policy
 

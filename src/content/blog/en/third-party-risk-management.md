@@ -414,7 +414,7 @@ Examples:
 | Access governance | Least privilege, role review, token rotation, logging |
 | Auditability | Retained evidence, review history, ownership records |
 
-A useful way to think about this is through the organisation’s overall [means of compliance](https://devisia.pro/en/blog/means-of-compliance). Third party risk management is one component of that system, not a separate administrative island.
+A useful way to think about this is through the organisation’s overall [means of compliance](https://devisia.pro/en/blog/mezzi-di-conformita). Third party risk management is one component of that system, not a separate administrative island.
 
 > Regulators rarely care that a vendor caused the issue. They care whether you selected, governed, and monitored that vendor with appropriate diligence.
 

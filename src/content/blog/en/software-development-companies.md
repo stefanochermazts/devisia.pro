@@ -45,7 +45,7 @@ These decisions define whether custom software becomes an asset or a future liab
 
 Off-the-shelf tools are still useful. They’re often the right answer for standard processes such as payroll, commodity ticketing, or basic internal collaboration. Custom development becomes the better choice when the business depends on a workflow, control model, or product experience that generic software can’t support cleanly.
 
-That’s also why a company should think beyond launch-day requirements. Building software around today’s workaround usually creates tomorrow’s legacy problem. A better approach is to shape the system around stable business capabilities and keep delivery incremental. Devisia’s article on [building custom software without creating future problems](https://devisia.pro/en/blog/costruire-software-su-misura-senza-creare-problemi-futuri) is useful reading if you’re trying to avoid that common mistake.
+That’s also why a company should think beyond launch-day requirements. Building software around today’s workaround usually creates tomorrow’s legacy problem. A better approach is to shape the system around stable business capabilities and keep delivery incremental. Devisia’s article on [building custom software without creating future problems](https://devisia.pro/en/blog/building-custom-software-without-building-future-problems) is useful reading if you’re trying to avoid that common mistake.
 
 ## Decoding Provider Types and Engagement Models
 

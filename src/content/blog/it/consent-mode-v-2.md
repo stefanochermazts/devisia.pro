@@ -1,5 +1,5 @@
 ---
-title: Guida pragmatica a Google Consent Mode v2 per engineering leader
+title: Guida pragmatica a Google Consent Mode v2 per
 description: >-
   Una guida pragmatica per i CTO su Google Consent Mode v2. Comprendere la sua
   architettura, le scelte di implementazione e come mantenere la conformità al
@@ -220,7 +220,7 @@ Gestire questo rischio richiede governance proattiva:
 
 Consent Mode v2 è parte integrante del più ampio spostamento architetturale verso una strategia di dati first-party e orientata alla privacy. Il vantaggio competitivo a lungo termine apparterrà alle aziende che costruiscono sistemi basati sulla fiducia e sulla trasparenza dell'utente.
 
-Ciò richiede l'adozione di una filosofia "privacy by design". Una solida governance dei dati, supportata da un chiaro [Accordo sul trattamento dei dati](https://devisia.pro/blog/data-processing-agreement), costituisce la base di questa strategia. Costruendo sistemi che rispettano la scelta dell'utente, non stai solo rispettando un requisito legale; stai costruendo un'azienda più resiliente e di valore.
+Ciò richiede l'adozione di una filosofia "privacy by design". Una solida governance dei dati, supportata da un chiaro [Accordo sul trattamento dei dati](https://devisia.pro/blog/contratto-trattamento-dati), costituisce la base di questa strategia. Costruendo sistemi che rispettano la scelta dell'utente, non stai solo rispettando un requisito legale; stai costruendo un'azienda più resiliente e di valore.
 
 ## Domande frequenti su Consent Mode V2
 

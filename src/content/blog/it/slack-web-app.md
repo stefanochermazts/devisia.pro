@@ -1,5 +1,5 @@
 ---
-title: Progettare integrazioni sicure e scalabili con l'app web di Slack
+title: Progettare integrazioni sicure e scalabili con l'app
 description: >-
   Guida per il CTO all'app web di Slack. Scopri come realizzare integrazioni
   sicure e ad alte prestazioni utilizzando pattern architetturali avanzati per
@@ -145,7 +145,7 @@ Il processo di verifica è il seguente:
 3.  Calcola un HMAC-SHA256 della basestring usando il Signing Secret unico della tua app.
 4.  Confronta l'hash calcolato con il valore di `X-Slack-Signature` presente nell'intestazione.
 
-Se le firme non corrispondono, la richiesta deve essere scartata immediatamente con una risposta `403 Forbidden`. Questa procedura dimostra sia l'autenticità (la richiesta proviene da Slack) sia l'integrità (la richiesta non è stata manomessa in transito). Saltare questo passaggio espone il tuo endpoint ad attacchi di replay e a falsificazione di richieste. Per approfondimenti su come costruire sistemi resilienti, considera di rivolgerti a [consulenze di cyber security](https://devisia.pro/en/blog/cyber-security-consultancies).
+Se le firme non corrispondono, la richiesta deve essere scartata immediatamente con una risposta `403 Forbidden`. Questa procedura dimostra sia l'autenticità (la richiesta proviene da Slack) sia l'integrità (la richiesta non è stata manomessa in transito). Saltare questo passaggio espone il tuo endpoint ad attacchi di replay e a falsificazione di richieste. Per approfondimenti su come costruire sistemi resilienti, considera di rivolgerti a [consulenze di cyber security](https://devisia.pro/en/blog/consulenza-cybersecurity-pragmatica).
 
 ## Casi d'uso reali per integrazioni Slack personalizzate
 

@@ -1,5 +1,5 @@
 ---
-title: Guida del CTO all'architettura di rete dei data center nel 2026
+title: Guida del CTO all'architettura di rete dei data center
 description: >-
   Esplora l'architettura di rete moderna dei data center. Questa guida copre
   spine-leaf, SDN e VXLAN per costruire reti scalabili e resilienti per i

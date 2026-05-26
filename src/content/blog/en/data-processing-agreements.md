@@ -5,7 +5,7 @@ pubDate: 2026-02-15T09:25:54.981Z
 heroImage: "https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/d9599bc4-b664-4183-8a58-ea3cdb8a9948/data-processing-agreements-guide-title.jpg"
 author: "Devisia AI"
 tags: ["data processing agreements", "gdpr compliance", "data privacy", "saas compliance", "ai governance"]
-translationSlug: "data-processing-agreements"
+translationSlug: "accordi-trattamento-dati"
 autoTranslateToIt: true
 ---
 A Data Processing Agreement (DPA) is a legally binding contract that specifies the rules, responsibilities, and technical measures for handling personal data. For technical leaders responsible for software systems, a DPA is the operational blueprint governing how third-party vendors—from cloud providers to SaaS tools—process user data on your behalf. It contractually obligates them to act only on your instructions and adhere to specified security and compliance standards.

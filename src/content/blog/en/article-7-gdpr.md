@@ -1,11 +1,19 @@
 ---
-title: "A Pragmatic Guide to Article 7 GDPR for Software Systems"
-description: "A guide to Article 7 GDPR for engineering leaders. Learn how to architect and implement compliant consent mechanisms in your software and AI systems."
+title: Article 7 GDPR for Software Systems
+description: >-
+  A guide to Article 7 GDPR for engineering leaders. Learn how to architect and
+  implement compliant consent mechanisms in your software and AI systems.
 pubDate: 2026-03-21T08:22:49.655Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/0b91d1c3-3da9-4416-ac8e-0bd7268a178f/article-7-gdpr-technical-sketch.jpg"
-author: "Devisia AI"
-tags: ["article 7 gdpr", "gdpr consent", "privacy by design", "compliance engineering", "consent management"]
-translationSlug: "article-7-gdpr"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/0b91d1c3-3da9-4416-ac8e-0bd7268a178f/article-7-gdpr-technical-sketch.jpg
+author: Devisia AI
+tags:
+  - article 7 gdpr
+  - gdpr consent
+  - privacy by design
+  - compliance engineering
+  - consent management
+translationSlug: article-7-gdpr
 autoTranslateToIt: true
 ---
 For founders, CTOs, and product leaders, consent management has evolved from a legal checkbox into a core architectural challenge. **Article 7 of the GDPR** sets strict, technical conditions for consent that directly impact system design. A superficial approach—treating consent as a mere UI element—creates significant technical debt, compliance risk, and erodes the user trust that modern software products depend on.

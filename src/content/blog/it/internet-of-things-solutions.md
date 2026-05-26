@@ -1,5 +1,5 @@
 ---
-title: Una guida pratica per creare soluzioni Internet of Things ad alto valore
+title: Una guida pratica per creare soluzioni Internet of
 description: >-
   Esplora la nostra guida alle soluzioni Internet of Things (IoT). Impara a
   realizzare sistemi IoT affidabili, scalabili e sicuri con architetture
@@ -47,7 +47,7 @@ Questo approccio a livello di sistema garantisce che ogni componente lavori in c
 
 Per CTO e product leader, l'obiettivo non è solo connettere i dispositivi. È progettare un'infrastruttura dati scalabile e sicura che offra un vantaggio competitivo sostenibile. L'architettura deve essere pianificata per durare nel tempo, anticipando la crescita futura della flotta di dispositivi e l'evoluzione delle minacce alla sicurezza.
 
-Puoi approfondire come questi principi si applicano nel mondo reale esplorando il nostro lavoro su [IoT nel settore automobilistico](https://devisia.pro/en/blog/internet-of-things-automotive).
+Puoi approfondire come questi principi si applicano nel mondo reale esplorando il nostro lavoro su [IoT nel settore automobilistico](https://devisia.pro/en/blog/iot-settore-automotive).
 
 ## Progettare per scalabilità e resilienza
 

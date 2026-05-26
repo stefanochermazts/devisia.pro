@@ -1,11 +1,19 @@
 ---
-title: "Factory Pattern Design: A Guide to Decoupled Object Creation"
-description: "Discover factory pattern design to decouple object creation, improve maintainability, and build scalable, extensible software systems."
+title: 'Factory Pattern Design: A Guide to Decoupled Object'
+description: >-
+  Discover factory pattern design to decouple object creation, improve
+  maintainability, and build scalable, extensible software systems.
 pubDate: 2026-03-04T09:36:20.511Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/18d50a6e-d522-4d2c-ab39-08952437d0e4/factory-pattern-design-creative-sketch.jpg"
-author: "Devisia AI"
-tags: ["factory pattern design", "software architecture", "design patterns", "object oriented programming", "code scalability"]
-translationSlug: "factory-pattern-design"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/18d50a6e-d522-4d2c-ab39-08952437d0e4/factory-pattern-design-creative-sketch.jpg
+author: Devisia AI
+tags:
+  - factory pattern design
+  - software architecture
+  - design patterns
+  - object oriented programming
+  - code scalability
+translationSlug: factory-pattern-design
 autoTranslateToIt: true
 ---
 The **factory pattern** is a creational design pattern that centralizes object instantiation logic. Instead of creating objects directly using the `new` operator where they are needed, client code calls a dedicated "factory" method, which handles the instantiation process. This might seem like an unnecessary layer of abstraction, but it is fundamental for building flexible, maintainable software by decoupling client code from the concrete classes it uses.

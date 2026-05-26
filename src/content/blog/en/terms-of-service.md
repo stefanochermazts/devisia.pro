@@ -387,7 +387,7 @@ For example, terms of service can:
 
 That alignment becomes more important as software estates grow more interconnected. A SaaS platform with cloud hosting, external identity, payment processors, observability tooling, and AI providers has multiple operational dependencies. Terms that pretend the provider controls every layer create false expectations. Terms that disclaim everything create procurement friction and trust problems.
 
-A more balanced view of legal and technical obligations in regulated environments appears in https://devisia.pro/en/blog/means-of-compliance, especially for teams translating control frameworks into operational responsibilities.
+A more balanced view of legal and technical obligations in regulated environments appears in https://devisia.pro/en/blog/mezzi-di-conformita, especially for teams translating control frameworks into operational responsibilities.
 
 ### Real scenarios that expose weak drafting
 

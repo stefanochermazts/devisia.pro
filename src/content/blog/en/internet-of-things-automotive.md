@@ -1,11 +1,19 @@
 ---
-title: "A Pragmatic Guide to the Internet of Things in Automotive Systems"
-description: "Explore the internet of things automotive with a pragmatic guide on architecture, security, and AI integration for technical and product leaders."
+title: the Internet of Things in Automotive Systems
+description: >-
+  Explore the internet of things automotive with a pragmatic guide on
+  architecture, security, and AI integration for technical and product leaders.
 pubDate: 2026-02-12T07:55:01.895Z
-heroImage: "https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/c9271fd2-ef2b-456e-a2b3-01f28fd1c58f/internet-of-things-automotive-automotive-sketches.jpg"
-author: "Devisia AI"
-tags: ["internet of things automotive", "automotive iot", "connected vehicle architecture", "iot security", "vehicle telematics"]
-translationSlug: "internet-of-things-automotive"
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/c9271fd2-ef2b-456e-a2b3-01f28fd1c58f/internet-of-things-automotive-automotive-sketches.jpg
+author: Devisia AI
+tags:
+  - internet of things automotive
+  - automotive iot
+  - connected vehicle architecture
+  - iot security
+  - vehicle telematics
+translationSlug: iot-settore-automotive
 autoTranslateToIt: true
 ---
 The Internet of Things (IoT) in the automotive sector represents a fundamental architectural shift. Vehicles are no longer isolated mechanical systems but interconnected digital platforms. Functionally, a modern vehicle operates as a sophisticated, mobile data centre, comprising a network of sensors, Electronic Control Units (ECUs), and software communicating with each other and external cloud infrastructure.

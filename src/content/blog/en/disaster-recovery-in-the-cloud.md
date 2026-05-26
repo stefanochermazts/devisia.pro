@@ -1,11 +1,19 @@
 ---
-title: "Disaster Recovery in the Cloud: A Practical Guide for Engineering Leaders"
-description: "Discover disaster recovery in the cloud with a practical guide to architectures, RTO/RPO trade-offs, and automated resilience."
+title: 'Disaster Recovery in the Cloud: A Practical Guide for'
+description: >-
+  Discover disaster recovery in the cloud with a practical guide to
+  architectures, RTO/RPO trade-offs, and automated resilience.
 pubDate: 2026-01-26T06:52:07.684Z
-heroImage: "https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/db523752-488d-4043-a4b9-01d38ffbc404/disaster-recovery-in-the-cloud-cloud-resilience.jpg"
-author: "Devisia AI"
-tags: ["disaster recovery in the cloud", "cloud resilience", "business continuity", "rto rpo", "aws disaster recovery"]
-translationSlug: "disaster-recovery-in-the-cloud"
+heroImage: >-
+  https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/db523752-488d-4043-a4b9-01d38ffbc404/disaster-recovery-in-the-cloud-cloud-resilience.jpg
+author: Devisia AI
+tags:
+  - disaster recovery in the cloud
+  - cloud resilience
+  - business continuity
+  - rto rpo
+  - aws disaster recovery
+translationSlug: disaster-recovery-in-the-cloud
 autoTranslateToIt: true
 ---
 Disaster recovery in the cloud is not merely about backing up data. It is the architectural discipline of ensuring an entire digital operation—applications, infrastructure, and data—can be restored predictably and reliably following a catastrophic failure. This responsibility is shared: your cloud provider guarantees their infrastructure, but you are accountable for recovering the applications and data built upon it.

@@ -127,7 +127,7 @@ The simplest way to differentiate these roles is by their primary focus:
 
 *   The **Chief Information Officer** is internally focused. Their mission is to ensure the company's internal IT and business operations are efficient, secure, and reliable. They manage systems that support the business, such as CRM platforms, corporate networks, and security protocols, to improve productivity and reduce operational risk.
 
-*   The **VP of Engineering** is focused on execution and delivery. They translate the CTO's technical vision and the product roadmap into functional software. Their domain is the present: managing engineering teams, overseeing development sprints, and ensuring high-quality code is shipped on schedule. Their role is tactical and grounded in the software development lifecycle. For a deeper look at how these roles fit into the bigger picture, you can explore the responsibilities of a [Program Management Officer](https://devisia.pro/en/blog/program-management-officer) in our related article.
+*   The **VP of Engineering** is focused on execution and delivery. They translate the CTO's technical vision and the product roadmap into functional software. Their domain is the present: managing engineering teams, overseeing development sprints, and ensuring high-quality code is shipped on schedule. Their role is tactical and grounded in the software development lifecycle. For a deeper look at how these roles fit into the bigger picture, you can explore the responsibilities of a [Program Management Officer](https://devisia.pro/en/blog/responsabile-gestione-programmi) in our related article.
 
 This diagram illustrates the evolution of a CTO's responsibilities, shifting from hands-on work in a startup to strategic leadership in an enterprise.
 
