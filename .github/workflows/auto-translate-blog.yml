@@ -76,7 +76,7 @@ jobs:
       - name: Translate posts
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          OPENAI_MODEL: gpt-5-mini
+          OPENAI_MODEL: gpt-5.4-mini
           ONLY_TRANSLATE: ${{ steps.changed.outputs.only }}
         run: node scripts/translate-blog-en-to-it.js
 
