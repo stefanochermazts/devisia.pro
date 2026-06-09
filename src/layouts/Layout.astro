@@ -19,6 +19,7 @@ import {
   type JsonLd,
 } from '../lib/seo/structuredData';
 import ChatWidget from '../components/ChatWidget.astro';
+import LinkedInInsightTag from '../components/site/LinkedInInsightTag.astro';
 
 export interface Props {
   title: string;
@@ -497,6 +498,8 @@ const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
         </section>
       </section>
     </footer>
+
+    <LinkedInInsightTag />
 
     <!-- Mobile sticky CTA: only renders on narrow viewports and only after
          the user has scrolled past the hero. Hidden by default, revealed via
