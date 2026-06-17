@@ -2882,6 +2882,23 @@
     margin-top: var(--ds-space-6);
   }
 
+  .case-study-hero__actions .ds-btn[data-variant="primary"] {
+    --_bg: color-mix(in oklch, var(--ds-hooplytics-orange) 14%, var(--ds-color-hero-tint));
+    --_bd: var(--ds-hooplytics-orange);
+    --_fg: color-mix(in oklch, white 96%, var(--ds-color-hero-tint));
+    border-width: 2px;
+  }
+
+  .case-study-hero__actions .ds-btn[data-variant="primary"]:hover {
+    --_bg: color-mix(in oklch, var(--ds-hooplytics-orange) 24%, var(--ds-color-hero-tint));
+    --_bd: color-mix(in oklch, var(--ds-hooplytics-orange) 78%, white);
+  }
+
+  .case-study-hero__actions .ds-btn[data-variant="primary"]:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ds-hooplytics-orange) 42%, transparent);
+  }
+
   .case-study-hero__meta dd a {
     color: color-mix(in oklch, white 90%, var(--ds-color-hero-tint));
     text-decoration: underline;
