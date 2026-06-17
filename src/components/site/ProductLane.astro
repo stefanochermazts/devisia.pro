@@ -1,0 +1,85 @@
+---
+export type HooplyticsSwatch = 'indigo' | 'orange';
+
+export interface BrandChip {
+  name: string;
+  swatch: HooplyticsSwatch;
+}
+
+export interface Props {
+  code: string;
+  mark: string;
+  title: string;
+  description: string;
+  href: string;
+  status: string;
+  statusLines?: string[];
+  tags?: string[];
+  brandChips?: BrandChip[];
+  ctaLabel?: string;
+  variant?: 'proof' | 'sport';
+}
+
+const {
+  code,
+  mark,
+  title,
+  description,
+  href,
+  status,
+  statusLines = [],
+  tags = [],
+  brandChips,
+  ctaLabel = 'Scopri',
+  variant = 'proof',
+} = Astro.props;
+---
+
+<article class="product-lane" data-variant={variant}>
+  <p class="product-lane__mark" aria-hidden="true">{mark}</p>
+  <section class="product-lane__inner">
+    <span class="product-lane__code" aria-hidden="true">{code}</span>
+    <section class="product-lane__main">
+      <h2 class="product-lane__title">
+        <a href={href}>{title}</a>
+      </h2>
+      <p class="product-lane__desc">{description}</p>
+      {
+        tags.length ? (
+          <ul class="product-lane__tags" aria-label="Tag">
+            {tags.map((tag) => (
+              <li>{tag}</li>
+            ))}
+          </ul>
+        ) : null
+      }
+      <a class="ds-btn product-lane__cta" data-variant="primary" data-size="lg" href={href}>
+        {ctaLabel}
+      </a>
+    </section>
+    <aside class="product-lane__aside" aria-label={`Stato ${title}`}>
+      <section class="product-lane__status">
+        <span>{title}</span>
+        <span>{status}</span>
+        {statusLines.map((line) => (
+          <span>{line}</span>
+        ))}
+      </section>
+      {
+        brandChips?.length ? (
+          <section class="product-lane__brand" aria-label="Colori del prodotto">
+            {brandChips.map((chip) => (
+              <span class="product-lane__brand-item">
+                <span
+                  class={`product-lane__swatch hooplytics-swatch--${chip.swatch}`}
+                  aria-hidden="true"
+                />
+                {chip.name}
+              </span>
+            ))}
+          </section>
+        ) : null
+      }
+    </aside>
+  </section>
+</article>

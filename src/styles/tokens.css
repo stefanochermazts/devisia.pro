@@ -93,6 +93,10 @@
     --ds-color-success: oklch(0.5 0.12 150);
     --ds-color-info: oklch(0.48 0.12 250);
 
+    /* Hooplytics product brand (mockups and chips only, not page theme) */
+    --ds-hooplytics-indigo: oklch(0.45 0.18 277);
+    --ds-hooplytics-orange: oklch(0.63 0.19 45);
+
     color-scheme: light;
   }
 

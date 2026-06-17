@@ -1,12 +1,12 @@
 ---
-import { AUDITREADY_SITE_URL } from '../../../lib/auditready';
 import Layout from '../../../layouts/Layout.astro';
 import PageIntro from '../../../components/site/PageIntro.astro';
+import ProductLane from '../../../components/site/ProductLane.astro';
 import EditorialCTA from '../../../components/site/EditorialCTA.astro';
 import { breadcrumbListJsonLd } from '../../../lib/seo/structuredData';
 
 const description =
-  'Devisia products turn method, controls, AI by design and evidence into operational tools. AuditReady organises audit packs.';
+  'Devisia products: platforms built when an operational problem reveals a repeatable pattern. AuditReady for evidence and compliance, Hooplytics for basketball tournaments and statistics.';
 
 const site = Astro.site ?? new URL('https://devisia.pro');
 const breadcrumbs = breadcrumbListJsonLd({
@@ -22,102 +22,38 @@ const breadcrumbs = breadcrumbListJsonLd({
   <PageIntro
     eyebrow="Products"
     h1="Products that turn control and evidence into operations"
-    lede="We build products only when an operational problem reveals a repeatable pattern: controls to map, evidence to validate, accountability to make readable. AuditReady is the first place where that logic becomes an interface."
+    lede="We build products only when an operational problem reveals a repeatable pattern: controls to map, evidence to validate, accountability to make readable — or data to manage courtside with control over what goes public."
   />
 
-  <section class="product-proof-layer" aria-labelledby="product-proof-title">
-    <section class="product-proof-layer__intro">
-      <p class="product-proof-layer__mark" aria-hidden="true">PROOF</p>
-      <section>
-        <h2 id="product-proof-title" class="site-h2">AuditReady is not a document shelf</h2>
-        <p class="site-lead">
-          It is an operating system for preparing proof: it gathers requests, connects controls, validates accountability and produces readable packs when an audit arrives.
-        </p>
-      </section>
-      <section class="product-proof-layer__status" aria-label="Product coordinates">
-        <span>AuditReady</span>
-        <span>Evidence OS</span>
-        <span>Controlled beta</span>
-      </section>
-    </section>
-
-    <ol class="product-flow" aria-label="AuditReady operating model">
-      <li class="product-flow__item">
-        <span class="product-flow__code" aria-hidden="true">01</span>
-        <h3>Requests</h3>
-        <p>Audits, controls, frameworks, tickets, assets and suppliers enter a declared perimeter.</p>
-      </li>
-      <li class="product-flow__item">
-        <span class="product-flow__code" aria-hidden="true">02</span>
-        <h3>Controls</h3>
-        <p>Each piece of evidence is connected to ownership, source, status, deadline and validation criteria.</p>
-      </li>
-      <li class="product-flow__item">
-        <span class="product-flow__code" aria-hidden="true">03</span>
-        <h3>Validation</h3>
-        <p>The system separates what is ready, what is missing and what needs human intervention.</p>
-      </li>
-      <li class="product-flow__item">
-        <span class="product-flow__code" aria-hidden="true">04</span>
-        <h3>Export</h3>
-        <p>The work becomes an evidence pack, audit trail and readable operational state.</p>
-      </li>
-    </ol>
-  </section>
-
-  <section class="product-role-lanes" aria-labelledby="product-roles-title">
-    <section class="product-role-lanes__head">
-      <h2 id="product-roles-title" class="site-h2">What each role checks</h2>
-      <p>
-        AuditReady does not promise magic. It reduces work scattered across spreadsheets, email and folders by making clear what is needed, who owns it and what proof remains.
-      </p>
-    </section>
-
-    <section class="product-role-lanes__grid">
-      <article class="product-role-lanes__item" aria-labelledby="product-role-leadership">
-        <span>Leadership</span>
-        <h3 id="product-role-leadership">Risk and progress</h3>
-        <p>See where the process is blocked, which controls are uncovered and which decisions need escalation.</p>
-      </article>
-      <article class="product-role-lanes__item" aria-labelledby="product-role-operations">
-        <span>Operations and product</span>
-        <h3 id="product-role-operations">Workflow and ownership</h3>
-        <p>Turn recurring requests into assigned, verifiable work connected to real systems.</p>
-      </article>
-      <article class="product-role-lanes__item" aria-labelledby="product-role-compliance">
-        <span>Compliance and security</span>
-        <h3 id="product-role-compliance">Audit trail and accountability</h3>
-        <p>Prepare evidence, control status and exportable packs without rebuilding everything at the end.</p>
-      </article>
-    </section>
-  </section>
-
-  <section class="product-beta-panel" aria-labelledby="product-beta-title">
-    <section>
-      <span class="product-beta-panel__label">Controlled beta</span>
-      <h2 id="product-beta-title">Clear perimeter before access</h2>
-    </section>
-    <section class="product-beta-panel__body">
-      <p>
-        AuditReady is oriented to DORA, NIS2, control requests, recurring evidence and clear accountability. It does not replace internal governance, method or ownership: it makes them more visible and easier to maintain.
-      </p>
-      <section class="product-beta-panel__scope">
-        <article>
-          <strong>Included</strong>
-          <p>Perimeter, owners, control status, linked evidence and exportable packs.</p>
-        </article>
-        <article>
-          <strong>Not promised</strong>
-          <p>Automatic governance, magic compliance or accountability delegated to software.</p>
-        </article>
-      </section>
-      <section class="product-beta-panel__actions">
-        <a class="ds-btn" data-variant="primary" data-size="lg" href={AUDITREADY_SITE_URL} target="_blank" rel="noopener noreferrer">
-          Open AuditReady
-        </a>
-        <a class="ds-link" data-variant="muted" href="/en/contact">Check whether it fits your context <span aria-hidden="true">→</span></a>
-      </section>
-    </section>
+  <section class="products-catalog" aria-label="Devisia product catalog">
+    <ProductLane
+      code="01"
+      mark="PROOF"
+      variant="proof"
+      title="AuditReady"
+      description="An operating system for preparing proof: it gathers requests, connects controls, validates accountability and produces readable packs when an audit arrives."
+      href="/en/products/auditready"
+      status="Controlled beta"
+      statusLines={['Evidence OS', 'DORA · NIS2']}
+      tags={['compliance', 'audit', 'evidence']}
+      ctaLabel="Explore AuditReady"
+    />
+    <ProductLane
+      code="02"
+      mark="COURT"
+      variant="sport"
+      title="Hooplytics"
+      description="Platform to manage basketball tournaments, games and statistics with controlled publishing: whoever runs it decides what becomes public."
+      href="/en/products/hooplytics"
+      status="Delivered project"
+      statusLines={['Web + PWA', 'Offline-first']}
+      tags={['basketball', 'tournaments', 'statistics']}
+        brandChips={[
+          { name: 'Indigo', swatch: 'indigo' },
+          { name: 'Orange', swatch: 'orange' },
+        ]}
+      ctaLabel="Explore Hooplytics"
+    />
   </section>
 
   <aside class="product-future-note" aria-label="Criterion for future products">

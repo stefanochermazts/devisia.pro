@@ -1,4 +1,5 @@
 ---
+import { AUDITREADY_SITE_URL } from '../../../lib/auditready';
 import Layout from '../../../layouts/Layout.astro';
 import PageIntro from '../../../components/site/PageIntro.astro';
 import EditorialCTA from '../../../components/site/EditorialCTA.astro';
@@ -26,36 +27,109 @@ const breadcrumbs = breadcrumbListJsonLd({
   structuredData={[breadcrumbs]}
 >
   <PageIntro
+    eyebrow="Products"
     h1="AuditReady prepares evidence before it is requested"
     lede="A Devisia product to collect, structure, validate and export evidence tied to controls, audits, cybersecurity and suppliers, with traceability and export packs, without replacing or certifying your compliance posture."
   />
 
-  <section class="ds-stack ds-reading" data-gap="lg" style="margin-bottom: var(--ds-space-8)">
-    <h2>The problem</h2>
-    <p>Evidence exists but is not in one place, in one shape, or linked to accountability the way auditors or counterparties ask.</p>
+  <section class="product-proof-layer" aria-labelledby="product-proof-title">
+    <section class="product-proof-layer__intro">
+      <p class="product-proof-layer__mark" aria-hidden="true">PROOF</p>
+      <section>
+        <h2 id="product-proof-title" class="site-h2">AuditReady is not a document shelf</h2>
+        <p class="site-lead">
+          It is an operating system for preparing proof: it gathers requests, connects controls, validates accountability and produces readable packs when an audit arrives.
+        </p>
+      </section>
+      <section class="product-proof-layer__status" aria-label="Product coordinates">
+        <span>AuditReady</span>
+        <span>Evidence OS</span>
+        <span>Controlled beta</span>
+      </section>
+    </section>
 
-    <h2>For whom</h2>
-    <p>IT, compliance, DPOs, consultants and security operations teams that must bring concrete material to reviews, not a story deck.</p>
-
-    <h2>What it does</h2>
-    <ul>
-      <li>Orders evidence and ties it to controls and states.</li>
-      <li>Makes ownership and review visible.</li>
-      <li>Builds export bundles for audit days or third-party requests.</li>
-      <li>Aligns with references such as GDPR, NIS2, DORA, ISO 27001 at the level of organisation, not product certification.</li>
-    </ul>
-
-    <h2>AI in AuditReady</h2>
-    <p>Assistance for appropriate tasks, with limits, logs and human gates, not outputs that substitute your accountability.</p>
-
-    <h2>Status</h2>
-    <p>Product in <strong>beta</strong> with a deliberately narrow functional surface.</p>
-
-    <p>
-      Public site: <a href="https://audit-ready.eu" rel="noopener noreferrer" target="_blank">audit-ready.eu</a>
-    </p>
-    <p>Regulatory framing: <a href="/en/compliance-auditability">Compliance &amp; auditability</a></p>
+    <ol class="product-flow" aria-label="AuditReady operating model">
+      <li class="product-flow__item">
+        <span class="product-flow__code" aria-hidden="true">01</span>
+        <h3>Requests</h3>
+        <p>Audits, controls, frameworks, tickets, assets and suppliers enter a declared perimeter.</p>
+      </li>
+      <li class="product-flow__item">
+        <span class="product-flow__code" aria-hidden="true">02</span>
+        <h3>Controls</h3>
+        <p>Each piece of evidence is connected to ownership, source, status, deadline and validation criteria.</p>
+      </li>
+      <li class="product-flow__item">
+        <span class="product-flow__code" aria-hidden="true">03</span>
+        <h3>Validation</h3>
+        <p>The system separates what is ready, what is missing and what needs human intervention.</p>
+      </li>
+      <li class="product-flow__item">
+        <span class="product-flow__code" aria-hidden="true">04</span>
+        <h3>Export</h3>
+        <p>The work becomes an evidence pack, audit trail and readable operational state.</p>
+      </li>
+    </ol>
   </section>
+
+  <section class="product-role-lanes" aria-labelledby="product-roles-title">
+    <section class="product-role-lanes__head">
+      <h2 id="product-roles-title" class="site-h2">What each role checks</h2>
+      <p>
+        AuditReady does not promise magic. It reduces work scattered across spreadsheets, email and folders by making clear what is needed, who owns it and what proof remains.
+      </p>
+    </section>
+
+    <section class="product-role-lanes__grid">
+      <article class="product-role-lanes__item" aria-labelledby="product-role-leadership">
+        <span>Leadership</span>
+        <h3 id="product-role-leadership">Risk and progress</h3>
+        <p>See where the process is blocked, which controls are uncovered and which decisions need escalation.</p>
+      </article>
+      <article class="product-role-lanes__item" aria-labelledby="product-role-operations">
+        <span>Operations and product</span>
+        <h3 id="product-role-operations">Workflow and ownership</h3>
+        <p>Turn recurring requests into assigned, verifiable work connected to real systems.</p>
+      </article>
+      <article class="product-role-lanes__item" aria-labelledby="product-role-compliance">
+        <span>Compliance and security</span>
+        <h3 id="product-role-compliance">Audit trail and accountability</h3>
+        <p>Prepare evidence, control status and exportable packs without rebuilding everything at the end.</p>
+      </article>
+    </section>
+  </section>
+
+  <section class="product-beta-panel" aria-labelledby="product-beta-title">
+    <section>
+      <span class="product-beta-panel__label">Controlled beta</span>
+      <h2 id="product-beta-title">Clear perimeter before access</h2>
+    </section>
+    <section class="product-beta-panel__body">
+      <p>
+        AuditReady is oriented to DORA, NIS2, control requests, recurring evidence and clear accountability. It does not replace internal governance, method or ownership: it makes them more visible and easier to maintain.
+      </p>
+      <section class="product-beta-panel__scope">
+        <article>
+          <strong>Included</strong>
+          <p>Perimeter, owners, control status, linked evidence and exportable packs.</p>
+        </article>
+        <article>
+          <strong>Not promised</strong>
+          <p>Automatic governance, magic compliance or accountability delegated to software.</p>
+        </article>
+      </section>
+      <section class="product-beta-panel__actions">
+        <a class="ds-btn" data-variant="primary" data-size="lg" href={AUDITREADY_SITE_URL} target="_blank" rel="noopener noreferrer">
+          Open AuditReady
+        </a>
+        <a class="ds-link" data-variant="muted" href="/en/contact">Check whether it fits your context <span aria-hidden="true">→</span></a>
+      </section>
+    </section>
+  </section>
+
+  <aside class="product-future-note" aria-label="Regulatory framing">
+    Regulatory framing: <a href="/en/compliance-auditability">Compliance &amp; auditability</a>
+  </aside>
 
   <EditorialCTA
     variant="tint"

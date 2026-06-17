@@ -1,12 +1,12 @@
 ---
-import { AUDITREADY_SITE_URL } from '../../lib/auditready';
 import Layout from '../../layouts/Layout.astro';
 import PageIntro from '../../components/site/PageIntro.astro';
+import ProductLane from '../../components/site/ProductLane.astro';
 import EditorialCTA from '../../components/site/EditorialCTA.astro';
 import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
 
 const description =
-  'Prodotti Devisia per trasformare metodo, controlli, AI by design ed evidenze in strumenti operativi. AuditReady organizza pacchetti audit.';
+  'Prodotti Devisia: piattaforme costruite quando un problema operativo mostra un pattern ripetibile. AuditReady per evidenze e compliance, Hooplytics per tornei e statistiche di basket.';
 
 const site = Astro.site ?? new URL('https://devisia.pro');
 const breadcrumbs = breadcrumbListJsonLd({
@@ -22,102 +22,38 @@ const breadcrumbs = breadcrumbListJsonLd({
   <PageIntro
     eyebrow="Prodotti"
     h1="Prodotti per trasformare controllo ed evidenze in operatività"
-    lede="Costruiamo prodotti solo quando un problema operativo mostra un pattern ripetibile: controlli da mappare, evidenze da validare, responsabilità da rendere leggibili. AuditReady è il primo punto in cui questa logica diventa interfaccia."
+    lede="Costruiamo prodotti solo quando un problema operativo mostra un pattern ripetibile: controlli da mappare, evidenze da validare, responsabilità da rendere leggibili — o dati da gestire a bordocampo con controllo su cosa diventa pubblico."
   />
 
-  <section class="product-proof-layer" aria-labelledby="product-proof-title">
-    <section class="product-proof-layer__intro">
-      <p class="product-proof-layer__mark" aria-hidden="true">PROOF</p>
-      <section>
-        <h2 id="product-proof-title" class="site-h2">AuditReady non è uno scaffale documentale</h2>
-        <p class="site-lead">
-          È un sistema operativo per preparare prove: raccoglie richieste, collega controlli, valida responsabilità e produce pacchetti leggibili quando arriva un audit.
-        </p>
-      </section>
-      <section class="product-proof-layer__status" aria-label="Coordinate prodotto">
-        <span>AuditReady</span>
-        <span>Evidence OS</span>
-        <span>Beta controllata</span>
-      </section>
-    </section>
-
-    <ol class="product-flow" aria-label="Modello operativo AuditReady">
-      <li class="product-flow__item">
-        <span class="product-flow__code" aria-hidden="true">01</span>
-        <h3>Richieste</h3>
-        <p>Audit, controlli, framework, ticket, asset e fornitori entrano in un perimetro dichiarato e verificabile.</p>
-      </li>
-      <li class="product-flow__item">
-        <span class="product-flow__code" aria-hidden="true">02</span>
-        <h3>Controlli</h3>
-        <p>Ogni evidenza viene collegata a responsabilità, fonte, stato, scadenza e criterio di validazione.</p>
-      </li>
-      <li class="product-flow__item">
-        <span class="product-flow__code" aria-hidden="true">03</span>
-        <h3>Validazione</h3>
-        <p>Il sistema separa ciò che è pronto, ciò che manca e ciò che richiede intervento umano.</p>
-      </li>
-      <li class="product-flow__item">
-        <span class="product-flow__code" aria-hidden="true">04</span>
-        <h3>Export</h3>
-        <p>Il lavoro diventa pacchetto di evidenze, audit trail e stato operativo leggibile.</p>
-      </li>
-    </ol>
-  </section>
-
-  <section class="product-role-lanes" aria-labelledby="product-roles-title">
-    <section class="product-role-lanes__head">
-      <h2 id="product-roles-title" class="site-h2">Cosa controlla ogni ruolo</h2>
-      <p>
-        AuditReady non promette scorciatoie. Riduce il lavoro disperso tra fogli, email e cartelle, rendendo chiaro cosa serve, chi lo possiede e quale prova resta.
-      </p>
-    </section>
-
-    <section class="product-role-lanes__grid">
-      <article class="product-role-lanes__item" aria-labelledby="product-role-leadership">
-        <span>Leadership</span>
-        <h3 id="product-role-leadership">Rischio e avanzamento</h3>
-        <p>Vede dove il processo è fermo, quali controlli sono scoperti e quali decisioni richiedono escalation.</p>
-      </article>
-      <article class="product-role-lanes__item" aria-labelledby="product-role-operations">
-        <span>Operations e product</span>
-        <h3 id="product-role-operations">Workflow e ownership</h3>
-        <p>Trasforma richieste ricorrenti in attività assegnate, verificabili e collegate a sistemi reali.</p>
-      </article>
-      <article class="product-role-lanes__item" aria-labelledby="product-role-compliance">
-        <span>Compliance e security</span>
-        <h3 id="product-role-compliance">Audit trail e responsabilità</h3>
-        <p>Prepara evidenze, stato dei controlli e pacchetti esportabili senza ricostruire tutto a fine percorso.</p>
-      </article>
-    </section>
-  </section>
-
-  <section class="product-beta-panel" aria-labelledby="product-beta-title">
-    <section>
-      <span class="product-beta-panel__label">Beta controllata</span>
-      <h2 id="product-beta-title">Perimetro chiaro prima dell’accesso</h2>
-    </section>
-    <section class="product-beta-panel__body">
-      <p>
-        AuditReady è orientato a GDPR, NIS2, Modello 231 e ODV, DORA e AI-ACT: richieste di controlli, evidenze ricorrenti e responsabilità chiare. Non sostituisce governance interna, metodo o ownership: li rende più visibili e più facili da mantenere.
-      </p>
-      <section class="product-beta-panel__scope">
-        <article>
-          <strong>Incluso</strong>
-          <p>Perimetro, owner, stato dei controlli, evidenze collegate, pacchetti esportabili.</p>
-        </article>
-        <article>
-          <strong>Non promette</strong>
-          <p>Governance automatica, compliance magica, responsabilità delegate al software.</p>
-        </article>
-      </section>
-      <section class="product-beta-panel__actions">
-        <a class="ds-btn" data-variant="primary" data-size="lg" href={AUDITREADY_SITE_URL} target="_blank" rel="noopener noreferrer">
-          Apri AuditReady
-        </a>
-        <a class="ds-link" data-variant="muted" href="/contatti">Capisci se è adatto al tuo contesto <span aria-hidden="true">→</span></a>
-      </section>
-    </section>
+  <section class="products-catalog" aria-label="Catalogo prodotti Devisia">
+    <ProductLane
+      code="01"
+      mark="PROOF"
+      variant="proof"
+      title="AuditReady"
+      description="Sistema operativo per preparare prove: raccoglie richieste, collega controlli, valida responsabilità e produce pacchetti leggibili quando arriva un audit."
+      href="/prodotti/auditready"
+      status="Beta controllata"
+      statusLines={['Evidence OS', 'DORA · NIS2']}
+      tags={['compliance', 'audit', 'evidenze']}
+      ctaLabel="Scopri AuditReady"
+    />
+    <ProductLane
+      code="02"
+      mark="COURT"
+      variant="sport"
+      title="Hooplytics"
+      description="Piattaforma per gestire tornei, partite e statistiche di basket con pubblicazione controllata: chi gestisce decide cosa diventa pubblico."
+      href="/prodotti/hooplytics"
+      status="Progetto realizzato"
+      statusLines={['Web + PWA', 'Offline-first']}
+      tags={['basket', 'tornei', 'statistiche']}
+        brandChips={[
+          { name: 'Indigo', swatch: 'indigo' },
+          { name: 'Arancio', swatch: 'orange' },
+        ]}
+      ctaLabel="Scopri Hooplytics"
+    />
   </section>
 
   <aside class="product-future-note" aria-label="Criterio per futuri prodotti">

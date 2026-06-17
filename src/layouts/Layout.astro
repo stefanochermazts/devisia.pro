@@ -20,6 +20,7 @@ import {
 } from '../lib/seo/structuredData';
 import ChatWidget from '../components/ChatWidget.astro';
 import LinkedInInsightTag from '../components/site/LinkedInInsightTag.astro';
+import MatomoTag from '../components/site/MatomoTag.astro';
 
 export interface Props {
   title: string;
@@ -263,6 +264,7 @@ const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
         }
       })();
     </script>
+    <MatomoTag cookiebotEnabled={Boolean(cookiebotId)} />
     <slot name="head" />
   </head>
 

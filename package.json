@@ -30,7 +30,7 @@
     "@fontsource-variable/lexend": "^5.2.8",
     "@fontsource-variable/manrope": "^5.2.8",
     "@netlify/database": "^1.0.0",
-    "astro": "^6.3.1",
+    "astro": "^6.4.7",
     "dompurify": "^3.4.5",
     "dotenv": "^17.2.3",
     "gray-matter": "^4.0.3",
@@ -39,8 +39,8 @@
     "rehype-external-links": "^3.0.0"
   },
   "devDependencies": {
-    "@astrojs/netlify": "^7.0.8",
-    "@astrojs/sitemap": "^3.7.2",
+    "@astrojs/netlify": "^7.0.13",
+    "@astrojs/sitemap": "^3.7.3",
     "@netlify/functions": "^5.1.2",
     "@types/dompurify": "^3.0.5",
     "@typescript-eslint/eslint-plugin": "^6.19.0",

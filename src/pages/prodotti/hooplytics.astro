@@ -1,0 +1,211 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import EditorialCTA from '../../components/site/EditorialCTA.astro';
+import { HOOPLYTICS_SITE_URL } from '../../lib/hooplytics';
+import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
+
+const description =
+  'Hooplytics: piattaforma Devisia per tornei, partite e statistiche di basket con pubblicazione controllata. PWA offline-first per società sportive e organizzatori.';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/' },
+    { name: 'Prodotti', url: '/prodotti' },
+    { name: 'Hooplytics', url: '/prodotti/hooplytics' },
+  ],
+});
+---
+
+<Layout title="Hooplytics: tornei e statistiche di basket" description={description} structuredData={[breadcrumbs]}>
+  <header class="case-study-hero">
+    <p class="case-study-hero__eyebrow">
+      <a href="/prodotti">Prodotti</a> · Case study
+    </p>
+    <section class="case-study-hero__grid">
+      <section>
+        <p class="case-study-hero__mark" aria-hidden="true">HOOP</p>
+        <h1>Hooplytics</h1>
+        <p class="case-study-hero__lede">
+          Gestione di tornei, partite e statistiche di basket con pubblicazione controllata.
+        </p>
+        <section class="case-study-hero__actions">
+          <a
+            class="ds-btn"
+            data-variant="primary"
+            data-size="lg"
+            href={HOOPLYTICS_SITE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Apri Hooplytics
+          </a>
+        </section>
+      </section>
+      <aside class="case-study-hero__meta">
+        <dl>
+          <div>
+            <dt>Ruolo Devisia</dt>
+            <dd>Prodotto full-stack</dd>
+          </div>
+          <div>
+            <dt>Tipo</dt>
+            <dd>Piattaforma web + PWA</dd>
+          </div>
+          <!-- TODO: anno progetto -->
+          <div>
+            <dt>Link</dt>
+            <dd>
+              <a href={HOOPLYTICS_SITE_URL} target="_blank" rel="noopener noreferrer">hooplytics.app</a>
+            </dd>
+          </div>
+        </dl>
+        <section class="case-study-hero__brand" aria-label="Colori del brand Hooplytics">
+          <span class="case-study-hero__brand-item">
+            <span class="case-study-hero__swatch hooplytics-swatch--indigo" aria-hidden="true"></span>
+            Indigo
+          </span>
+          <span class="case-study-hero__brand-item">
+            <span class="case-study-hero__swatch hooplytics-swatch--orange" aria-hidden="true"></span>
+            Arancio
+          </span>
+        </section>
+      </aside>
+    </section>
+  </header>
+
+  <section class="case-narrative" aria-labelledby="problema-title">
+    <article>
+      <h2 id="problema-title">Il problema</h2>
+      <p>
+        Una società di basket gestisce squadre, roster, calendario e statistiche per tutta la stagione o il torneo. Spesso il lavoro avviene a bordocampo, da telefono, con poco tempo e bisogno di inserire dati in fretta e senza errori.
+      </p>
+      <p>
+        Fogli condivisi, chat e strumenti generici non coprono gironi, playoff, tabellini e classifiche con la terminologia del basket.
+      </p>
+    </article>
+    <article class="case-narrative__solution" aria-labelledby="soluzione-title">
+      <h2 id="soluzione-title">La soluzione</h2>
+      <p>
+        Hooplytics organizza tornei, genera calendari, gironi e playoff, raccoglie statistiche in tempo reale e produce tabellini, classifiche e roster.
+      </p>
+      <p>
+        Chi gestisce decide cosa pubblicare e cosa tenere interno — incluse situazioni con minori. La privacy è una scelta esplicita, non un default automatico.
+      </p>
+    </article>
+  </section>
+
+  <section class="product-proof-layer" aria-labelledby="funzionalita-title">
+    <section class="product-proof-layer__intro">
+      <p class="product-proof-layer__mark" aria-hidden="true">LIVE</p>
+      <section>
+        <h2 id="funzionalita-title" class="site-h2">Funzionalità chiave</h2>
+        <p class="site-lead">
+          Quattro capacità concrete, dalla struttura del torneo alla pubblicazione controllata dei risultati.
+        </p>
+      </section>
+      <section class="product-proof-layer__status" aria-label="Coordinate prodotto">
+        <span>Hooplytics</span>
+        <span>Basket OS</span>
+        <span>Progetto realizzato</span>
+      </section>
+    </section>
+
+    <ol class="product-flow" aria-label="Funzionalità Hooplytics">
+      <li class="product-flow__item">
+        <span class="product-flow__code" aria-hidden="true">01</span>
+        <h3>Competizioni e calendari</h3>
+        <p>Struttura tornei e campionati, genera gironi, calendari e tabelloni playoff con la logica del basket.</p>
+      </li>
+      <li class="product-flow__item">
+        <span class="product-flow__code" aria-hidden="true">02</span>
+        <h3>Rilevazione live offline-first</h3>
+        <p>App PWA per statistiche in partita: funziona senza connessione a bordocampo e sincronizza quando la rete torna.</p>
+      </li>
+      <li class="product-flow__item">
+        <span class="product-flow__code" aria-hidden="true">03</span>
+        <h3>Tabellini, classifiche e roster</h3>
+        <p>Produce tabellini di gara, classifiche aggiornate e roster squadra pronti per chi segue la competizione.</p>
+      </li>
+      <li class="product-flow__item">
+        <span class="product-flow__code" aria-hidden="true">04</span>
+        <h3>Pubblicazione controllata</h3>
+        <p>Si pubblica solo ciò che si sceglie. Privacy e rispetto dei dati come decisione esplicita, mai come default.</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="site-section site-section--tint" aria-labelledby="gallery-title">
+    <h2 id="gallery-title" class="site-h2">Mostra il prodotto</h2>
+    <section class="case-gallery case-gallery--mosaic">
+      <!-- TODO asset: public/uploads/hooplytics/calendario.png -->
+      <figure class="case-gallery__item">
+        <div
+          class="case-gallery__placeholder"
+          role="img"
+          aria-label="Anteprima placeholder: schermata calendario torneo con partite e gironi"
+        ></div>
+        <figcaption>Calendario torneo con gironi e partite programmate</figcaption>
+      </figure>
+      <!-- TODO asset: public/uploads/hooplytics/tabellino.png -->
+      <figure class="case-gallery__item">
+        <div
+          class="case-gallery__placeholder"
+          role="img"
+          aria-label="Anteprima placeholder: tabellino di gara con statistiche giocatori"
+        ></div>
+        <figcaption>Tabellino di gara con statistiche individuali</figcaption>
+      </figure>
+      <!-- TODO asset: public/uploads/hooplytics/classifica.png -->
+      <figure class="case-gallery__item">
+        <div
+          class="case-gallery__placeholder"
+          role="img"
+          aria-label="Anteprima placeholder: classifica aggiornata del torneo"
+        ></div>
+        <figcaption>Classifica aggiornata con risultati e posizioni</figcaption>
+      </figure>
+      <!-- TODO asset: public/uploads/hooplytics/rilevazione.png -->
+      <figure class="case-gallery__item">
+        <div
+          class="case-gallery__placeholder"
+          role="img"
+          aria-label="Anteprima placeholder: schermata rilevazione statistiche a bordocampo su mobile"
+        ></div>
+        <figcaption>Rilevazione statistiche a bordocampo su mobile</figcaption>
+      </figure>
+    </section>
+  </section>
+
+  <section class="site-section" aria-labelledby="tech-title">
+    <h2 id="tech-title" class="site-h2">Dietro le quinte</h2>
+    <p class="site-lead">Come l'abbiamo costruito, con attenzione a contesto d'uso reale e manutenibilità nel tempo.</p>
+    <section class="case-tech-grid">
+      <article class="case-tech-grid__item">
+        <strong>Monorepo Nuxt / Vue 3</strong>
+        <p>Architettura con più app: area amministrazione gestionale e app di rilevazione separata.</p>
+      </article>
+      <article class="case-tech-grid__item">
+        <strong>PWA offline-first</strong>
+        <p>App di rilevazione pensata per l'uso a bordocampo, senza dipendere dalla connessione in ogni momento.</p>
+      </article>
+      <article class="case-tech-grid__item">
+        <strong>Internazionalizzazione</strong>
+        <p>Interfaccia in italiano, inglese e sloveno.</p>
+      </article>
+      <article class="case-tech-grid__item">
+        <strong>Accessibilità WCAG 2.1 AA</strong>
+        <p>Contrasto, navigazione da tastiera e struttura semantica integrate nel design.</p>
+      </article>
+    </section>
+  </section>
+
+  <EditorialCTA
+    variant="tint"
+    title="Vuoi un prodotto così?"
+    ctaLabel="Parliamone"
+    ctaHref="/contatti"
+    copy="Se avete un dominio verticale, un flusso operativo ricorrente o un bisogno di controllo su dati e pubblicazione, possiamo valutare insieme se ha senso costruire una piattaforma dedicata."
+  />
+</Layout>
