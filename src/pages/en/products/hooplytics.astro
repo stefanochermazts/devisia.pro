@@ -1,6 +1,7 @@
 ---
 import Layout from '../../../layouts/Layout.astro';
 import EditorialCTA from '../../../components/site/EditorialCTA.astro';
+import CaseStudyCarousel from '../../../components/site/CaseStudyCarousel.astro';
 import { HOOPLYTICS_SITE_URL } from '../../../lib/hooplytics';
 import { breadcrumbListJsonLd } from '../../../lib/seo/structuredData';
 
@@ -142,47 +143,7 @@ const breadcrumbs = breadcrumbListJsonLd({
     </ol>
   </section>
 
-  <section class="site-section site-section--tint" aria-labelledby="gallery-title">
-    <h2 id="gallery-title" class="site-h2">See the product</h2>
-    <section class="case-gallery case-gallery--mosaic">
-      <!-- TODO asset: public/uploads/hooplytics/calendario.png -->
-      <figure class="case-gallery__item">
-        <div
-          class="case-gallery__placeholder"
-          role="img"
-          aria-label="Placeholder preview: tournament schedule screen with games and groups"
-        ></div>
-        <figcaption>Tournament schedule with groups and scheduled games</figcaption>
-      </figure>
-      <!-- TODO asset: public/uploads/hooplytics/tabellino.png -->
-      <figure class="case-gallery__item">
-        <div
-          class="case-gallery__placeholder"
-          role="img"
-          aria-label="Placeholder preview: game box score with player statistics"
-        ></div>
-        <figcaption>Game box score with individual statistics</figcaption>
-      </figure>
-      <!-- TODO asset: public/uploads/hooplytics/classifica.png -->
-      <figure class="case-gallery__item">
-        <div
-          class="case-gallery__placeholder"
-          role="img"
-          aria-label="Placeholder preview: updated tournament standings"
-        ></div>
-        <figcaption>Updated standings with results and positions</figcaption>
-      </figure>
-      <!-- TODO asset: public/uploads/hooplytics/rilevazione.png -->
-      <figure class="case-gallery__item">
-        <div
-          class="case-gallery__placeholder"
-          role="img"
-          aria-label="Placeholder preview: courtside statistics tracking screen on mobile"
-        ></div>
-        <figcaption>Courtside statistics tracking on mobile</figcaption>
-      </figure>
-    </section>
-  </section>
+  <CaseStudyCarousel lang="en" />
 
   <section class="site-section" aria-labelledby="tech-title">
     <h2 id="tech-title" class="site-h2">Behind the scenes</h2>

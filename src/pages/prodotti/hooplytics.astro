@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import EditorialCTA from '../../components/site/EditorialCTA.astro';
+import CaseStudyCarousel from '../../components/site/CaseStudyCarousel.astro';
 import { HOOPLYTICS_SITE_URL } from '../../lib/hooplytics';
 import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
 
@@ -136,47 +137,7 @@ const breadcrumbs = breadcrumbListJsonLd({
     </ol>
   </section>
 
-  <section class="site-section site-section--tint" aria-labelledby="gallery-title">
-    <h2 id="gallery-title" class="site-h2">Mostra il prodotto</h2>
-    <section class="case-gallery case-gallery--mosaic">
-      <!-- TODO asset: public/uploads/hooplytics/calendario.png -->
-      <figure class="case-gallery__item">
-        <div
-          class="case-gallery__placeholder"
-          role="img"
-          aria-label="Anteprima placeholder: schermata calendario torneo con partite e gironi"
-        ></div>
-        <figcaption>Calendario torneo con gironi e partite programmate</figcaption>
-      </figure>
-      <!-- TODO asset: public/uploads/hooplytics/tabellino.png -->
-      <figure class="case-gallery__item">
-        <div
-          class="case-gallery__placeholder"
-          role="img"
-          aria-label="Anteprima placeholder: tabellino di gara con statistiche giocatori"
-        ></div>
-        <figcaption>Tabellino di gara con statistiche individuali</figcaption>
-      </figure>
-      <!-- TODO asset: public/uploads/hooplytics/classifica.png -->
-      <figure class="case-gallery__item">
-        <div
-          class="case-gallery__placeholder"
-          role="img"
-          aria-label="Anteprima placeholder: classifica aggiornata del torneo"
-        ></div>
-        <figcaption>Classifica aggiornata con risultati e posizioni</figcaption>
-      </figure>
-      <!-- TODO asset: public/uploads/hooplytics/rilevazione.png -->
-      <figure class="case-gallery__item">
-        <div
-          class="case-gallery__placeholder"
-          role="img"
-          aria-label="Anteprima placeholder: schermata rilevazione statistiche a bordocampo su mobile"
-        ></div>
-        <figcaption>Rilevazione statistiche a bordocampo su mobile</figcaption>
-      </figure>
-    </section>
-  </section>
+  <CaseStudyCarousel lang="it" />
 
   <section class="site-section" aria-labelledby="tech-title">
     <h2 id="tech-title" class="site-h2">Dietro le quinte</h2>

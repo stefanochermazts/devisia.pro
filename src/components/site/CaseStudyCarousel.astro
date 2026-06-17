@@ -1,0 +1,198 @@
+---
+import {
+  caseStudyCarouselLabels,
+  hooplyticsShowcase,
+  type ShowcaseSlide,
+} from '../../data/hooplytics/showcase';
+
+export interface Props {
+  lang?: 'it' | 'en';
+  carouselId?: string;
+  sectionTitle?: string;
+  slides?: ShowcaseSlide[];
+}
+
+const {
+  lang = 'it',
+  carouselId = 'hooplytics-showcase',
+  sectionTitle,
+  slides = hooplyticsShowcase.slides,
+} = Astro.props;
+
+const labels = caseStudyCarouselLabels[lang];
+const title = sectionTitle ?? hooplyticsShowcase.sectionTitle[lang];
+const headingId = `${carouselId}-title`;
+const trackId = `${carouselId}-track`;
+---
+
+<section class="site-section site-section--tint case-carousel-section" aria-labelledby={headingId}>
+  <h2 id={headingId} class="site-h2 case-carousel-section__title">{title}</h2>
+
+  {
+    slides.length ? (
+      <section
+        class="case-carousel"
+        data-case-carousel
+        id={carouselId}
+        tabindex="0"
+        aria-roledescription="carousel"
+        aria-label={labels.region}
+        data-status-template={labels.status}
+        data-slide-count={slides.length}
+      >
+        <section class="case-carousel__viewport" aria-atomic="false" aria-live="polite">
+          <ul class="case-carousel__track" id={trackId}>
+            {slides.map((slide, index) => (
+              <li
+                class:list={['case-carousel__slide', { 'is-active': index === 0 }]}
+                data-case-carousel-slide
+                data-title={slide.title[lang]}
+                id={`${carouselId}-slide-${index + 1}`}
+                aria-hidden={index === 0 ? 'false' : 'true'}
+                hidden={index === 0 ? undefined : true}
+              >
+                <figure class="case-carousel__figure">
+                  {
+                    slide.image ? (
+                      <img
+                        class="case-carousel__image"
+                        src={slide.image}
+                        alt={slide.imageAlt[lang]}
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                        decoding="async"
+                      />
+                    ) : (
+                      <div
+                        class="case-carousel__placeholder"
+                        role="img"
+                        aria-label={slide.imageAlt[lang]}
+                      />
+                    )
+                  }
+                  <figcaption class="case-carousel__caption">
+                    <h3 class="case-carousel__title">{slide.title[lang]}</h3>
+                    <p class="case-carousel__desc">{slide.description[lang]}</p>
+                  </figcaption>
+                </figure>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        {
+          slides.length > 1 ? (
+            <section class="case-carousel__controls" aria-label={labels.region}>
+              <button
+                type="button"
+                class="ds-btn case-carousel__nav"
+                data-variant="secondary"
+                data-size="lg"
+                data-case-carousel-prev
+                aria-controls={trackId}
+              >
+                <span aria-hidden="true">←</span>
+                <span class="case-carousel__nav-label">{labels.previous}</span>
+              </button>
+
+              <section
+                class="case-carousel__dots"
+                role="tablist"
+                aria-label={labels.chooseSlide}
+              >
+                {slides.map((slide, index) => (
+                  <button
+                    type="button"
+                    class="case-carousel__dot"
+                    role="tab"
+                    data-case-carousel-tab
+                    id={`${carouselId}-tab-${index + 1}`}
+                    aria-controls={`${carouselId}-slide-${index + 1}`}
+                    aria-selected={index === 0 ? 'true' : 'false'}
+                    tabindex={index === 0 ? 0 : -1}
+                    aria-label={`${labels.chooseSlide} ${index + 1}: ${slide.title[lang]}`}
+                  >
+                    <span class="case-carousel__dot-mark" aria-hidden="true" />
+                  </button>
+                ))}
+              </section>
+
+              <button
+                type="button"
+                class="ds-btn case-carousel__nav"
+                data-variant="secondary"
+                data-size="lg"
+                data-case-carousel-next
+                aria-controls={trackId}
+              >
+                <span class="case-carousel__nav-label">{labels.next}</span>
+                <span aria-hidden="true">→</span>
+              </button>
+            </section>
+          ) : null
+        }
+
+        <p class="case-carousel__status sr-only" data-case-carousel-status />
+      </section>
+    ) : null
+  }
+</section>
+
+<script is:inline>
+  (() => {
+    const roots = document.querySelectorAll('[data-case-carousel]');
+    if (!roots.length) return;
+
+    roots.forEach((root) => {
+      const slides = [...root.querySelectorAll('[data-case-carousel-slide]')];
+      const tabs = [...root.querySelectorAll('[data-case-carousel-tab]')];
+      const prev = root.querySelector('[data-case-carousel-prev]');
+      const next = root.querySelector('[data-case-carousel-next]');
+      const status = root.querySelector('[data-case-carousel-status]');
+      const template = root.getAttribute('data-status-template') || '';
+      let index = 0;
+
+      const goTo = (nextIndex) => {
+        if (!slides.length) return;
+        index = (nextIndex + slides.length) % slides.length;
+
+        slides.forEach((slide, i) => {
+          const active = i === index;
+          slide.classList.toggle('is-active', active);
+          slide.toggleAttribute('hidden', !active);
+          slide.setAttribute('aria-hidden', String(!active));
+        });
+
+        tabs.forEach((tab, i) => {
+          const selected = i === index;
+          tab.setAttribute('aria-selected', String(selected));
+          tab.tabIndex = selected ? 0 : -1;
+        });
+
+        if (status && template) {
+          const title = slides[index].getAttribute('data-title') || '';
+          status.textContent = template
+            .replace('{n}', String(index + 1))
+            .replace('{total}', String(slides.length))
+            .replace('{title}', title);
+        }
+      };
+
+      prev?.addEventListener('click', () => goTo(index - 1));
+      next?.addEventListener('click', () => goTo(index + 1));
+      tabs.forEach((tab, i) => tab.addEventListener('click', () => goTo(i)));
+
+      root.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+          event.preventDefault();
+          goTo(index - 1);
+        }
+        if (event.key === 'ArrowRight') {
+          event.preventDefault();
+          goTo(index + 1);
+        }
+      });
+
+      goTo(0);
+    });
+  })();
+</script>
