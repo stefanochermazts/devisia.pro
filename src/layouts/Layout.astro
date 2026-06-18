@@ -8,7 +8,6 @@ import '../styles/site.css';
 import '@fontsource-variable/lexend/wght.css';
 import '@fontsource-variable/manrope/wght.css';
 import '@fontsource-variable/bitter/wght.css';
-import lexendLatinWoff2 from '@fontsource-variable/lexend/files/lexend-latin-wght-normal.woff2';
 import manropeLatinWoff2 from '@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2';
 import bitterLatinWoff2 from '@fontsource-variable/bitter/files/bitter-latin-wght-normal.woff2';
 import { t } from '../lib/i18n';
@@ -184,6 +183,8 @@ const extraStructuredData: JsonLd[] = Array.isArray(structuredData)
 
 const cookiebotId = import.meta.env.PUBLIC_COOKIEBOT_ID || '';
 const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-N7JP6BWG';
+/** When true, inject gtag/Ads in Layout in addition to GTM (usually redundant). */
+const googleAdsInline = import.meta.env.PUBLIC_GOOGLE_ADS_INLINE === 'true';
 const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
 ---
 
@@ -197,7 +198,6 @@ const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
     <link rel="icon" type="image/png" href="/images/favicon-light.png" />
     <link rel="preload" href={bitterLatinWoff2} as="font" type="font/woff2" crossorigin />
     <link rel="preload" href={manropeLatinWoff2} as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href={lexendLatinWoff2} as="font" type="font/woff2" crossorigin />
     <meta name="generator" content={Astro.generator} />
 
     <!-- Primary Meta Tags -->
@@ -279,23 +279,24 @@ const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
       <nav class="nav-container ds-container" aria-label="Primary">
         <section class="nav-brand" aria-label="Brand">
           <a href={homeHref} class="logo" aria-label="DEVISIA">
-            <img 
-              class="logo-img logo-img--word logo-img--light" 
-              src="/images/logo-light.png" 
-              alt="" 
+            <img
+              class="logo-img logo-img--word logo-img--light"
+              src="/images/logo.svg"
+              alt=""
               width="220"
               height="44"
               decoding="async"
               fetchpriority="high"
             />
-            <img 
-              class="logo-img logo-img--word logo-img--dark" 
-              src="/images/logo-dark.png" 
-              alt="" 
+            <img
+              class="logo-img logo-img--word logo-img--dark"
+              src="/images/logo-dark.svg"
+              alt=""
               width="220"
               height="44"
               decoding="async"
-              fetchpriority="high"
+              loading="lazy"
+              fetchpriority="low"
             />
           </a>
           {
@@ -693,75 +694,79 @@ const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
       })();
     </script>
 
-    <script is:inline define:vars={{ googleAdsId }}>
-      (() => {
-        const id = googleAdsId;
-        if (!id) return;
+    {
+      googleAdsInline && (
+        <script is:inline define:vars={{ googleAdsId }}>
+          (() => {
+            const id = googleAdsId;
+            if (!id) return;
 
-        let loaded = false;
-        const alreadyConfigured = () =>
-          Boolean(document.querySelector('script[data-provider="gtag-ads"][data-id="' + id + '"]'));
+            let loaded = false;
+            const alreadyConfigured = () =>
+              Boolean(document.querySelector('script[data-provider="gtag-ads"][data-id="' + id + '"]'));
 
-        const ensureGtag = () => {
-          window.dataLayer = window.dataLayer || [];
-          window.gtag =
-            window.gtag ||
-            function gtag() {
-              window.dataLayer.push(arguments);
+            const ensureGtag = () => {
+              window.dataLayer = window.dataLayer || [];
+              window.gtag =
+                window.gtag ||
+                function gtag() {
+                  window.dataLayer.push(arguments);
+                };
             };
-        };
 
-        const inject = () => {
-          if (loaded || alreadyConfigured()) return;
-          loaded = true;
+            const inject = () => {
+              if (loaded || alreadyConfigured()) return;
+              loaded = true;
 
-          ensureGtag();
+              ensureGtag();
 
-          const gtagSrc =
-            'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
-          const existingLoader = document.querySelector('script[src="' + gtagSrc + '"]');
+              const gtagSrc =
+                'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(id);
+              const existingLoader = document.querySelector('script[src="' + gtagSrc + '"]');
 
-          if (!existingLoader) {
-            const s = document.createElement('script');
-            s.async = true;
-            s.src = gtagSrc;
-            s.dataset.provider = 'gtag-ads';
-            s.dataset.id = id;
-            document.head.appendChild(s);
-          }
+              if (!existingLoader) {
+                const s = document.createElement('script');
+                s.async = true;
+                s.src = gtagSrc;
+                s.dataset.provider = 'gtag-ads';
+                s.dataset.id = id;
+                document.head.appendChild(s);
+              }
 
-          window.gtag('js', new Date());
-          window.gtag('config', id);
-        };
+              window.gtag('js', new Date());
+              window.gtag('config', id);
+            };
 
-        const loadWhenIdle = () => {
-          if ('requestIdleCallback' in window) {
-            // @ts-expect-error requestIdleCallback may not be in typings depending on TS lib config
-            window.requestIdleCallback(inject, { timeout: 2000 });
-          } else {
-            setTimeout(inject, 0);
-          }
-        };
+            const loadWhenIdle = () => {
+              if ('requestIdleCallback' in window) {
+                // @ts-expect-error requestIdleCallback may not be in typings depending on TS lib config
+                window.requestIdleCallback(inject, { timeout: 2000 });
+              } else {
+                setTimeout(inject, 0);
+              }
+            };
 
-        const hasMarketingConsent = () => {
-          try {
-            // @ts-expect-error Cookiebot is a global injected by the CMP script
-            const c = window.Cookiebot && window.Cookiebot.consent;
-            return Boolean(c && c.marketing);
-          } catch {
-            return false;
-          }
-        };
+            const hasMarketingConsent = () => {
+              try {
+                // @ts-expect-error Cookiebot is a global injected by the CMP script
+                const c = window.Cookiebot && window.Cookiebot.consent;
+                return Boolean(c && c.marketing);
+              } catch {
+                return false;
+              }
+            };
 
-        const onConsentReady = () => {
-          if (hasMarketingConsent()) loadWhenIdle();
-        };
+            const onConsentReady = () => {
+              if (hasMarketingConsent()) loadWhenIdle();
+            };
 
-        window.addEventListener('CookiebotOnConsentReady', onConsentReady);
-        window.addEventListener('CookiebotOnAccept', onConsentReady);
+            window.addEventListener('CookiebotOnConsentReady', onConsentReady);
+            window.addEventListener('CookiebotOnAccept', onConsentReady);
 
-        onConsentReady();
-      })();
-    </script>
+            onConsentReady();
+          })();
+        </script>
+      )
+    }
 </body>
 </html>
