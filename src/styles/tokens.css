@@ -68,6 +68,8 @@
     --ds-container-max: 75rem;
     --ds-container-pad: clamp(1rem, 0.4rem + 2.2vw, 2rem);
     --ds-reading-max: 68ch;
+    /* Sticky offsets below the site header (logo + nav bar block). */
+    --ds-site-header-offset: 4rem;
 
     /* Light semantic */
     --ds-color-bg: var(--ds-brand-ivory);

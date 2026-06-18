@@ -20,7 +20,7 @@ export const hooplyticsShowcase = {
   /** Slide del carousel: lunghezza libera (1, 3, 10…). Aggiungi o rimuovi oggetti qui. */
   slides: [
     {
-      image: '/public/uploads/hooplytics/calendario.png',
+      image: '/uploads/hooplytics/calendario.png',
       imageAlt: {
         it: 'Schermata calendario torneo con partite e gironi',
         en: 'Tournament schedule screen with games and groups',
@@ -35,7 +35,7 @@ export const hooplyticsShowcase = {
       },
     },
     {
-      image: '/public/uploads/hooplytics/statistiche.jpg',
+      image: '/uploads/hooplytics/statistiche.jpg',
       imageAlt: {
         it: 'Tabellino di gara con statistiche individuali dei giocatori',
         en: 'Game box score with individual player statistics',
@@ -50,7 +50,7 @@ export const hooplyticsShowcase = {
       },
     },
     {
-      image: '/public/uploads/hooplytics/classifiche.jpg',
+      image: '/uploads/hooplytics/classifiche.jpg',
       imageAlt: {
         it: 'Classifica aggiornata del torneo con risultati e posizioni',
         en: 'Updated tournament standings with results and positions',
@@ -65,7 +65,7 @@ export const hooplyticsShowcase = {
       },
     },
     {
-      image: '/public/uploads/hooplytics/app-rilevazione-poster.png',
+      image: '/uploads/hooplytics/app-rilevazione-poster.png',
       imageAlt: {
         it: 'Schermata rilevazione statistiche a bordocampo su mobile',
         en: 'Courtside statistics tracking screen on mobile',
@@ -80,7 +80,7 @@ export const hooplyticsShowcase = {
       },
     },
     {
-      image: '/public/uploads/hooplytics/admin-roster-import.webp',
+      image: '/uploads/hooplytics/admin-roster-import.webp',
       imageAlt: {
         it: 'Schermata gestione roster e anagrafica giocatori',
         en: 'Roster and player profile management screen',

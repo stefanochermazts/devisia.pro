@@ -22,13 +22,13 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--ds-space-3);
-    padding-block: var(--ds-space-2);
+    padding-block: 0.35rem;
   }
 
   /* Compact header on mobile */
   @media (max-width: 48rem) {
     .nav-container {
-      padding-block: var(--ds-space-1);
+      padding-block: 0.25rem;
     }
   }
 
@@ -50,7 +50,7 @@
     align-items: center;
     gap: var(--ds-space-2);
     padding: 0;
-    margin: var(--ds-space-2);
+    margin: var(--ds-space-1);
     /* Hide any text content when images are present */
     font-size: 0;
     line-height: 0;
@@ -99,21 +99,21 @@
   }
 
   .logo-img {
-    height: 3.5rem;
+    height: 2.75rem;
     width: auto;
     display: block;
   }
 
   /* Monogram icon next to wordmark */
   .logo-img--mark {
-    height: 3rem;
-    width: 3rem;
+    height: 2.5rem;
+    width: 2.5rem;
     aspect-ratio: 1 / 1;
     border-radius: var(--ds-radius-2);
   }
 
   .logo-img--word {
-    height: 5rem;
+    height: 2.75rem;
   }
 
   /* Prevent nav items from breaking into multiple lines */
@@ -211,7 +211,7 @@
 
     .nav-menu--site .nav-link {
       font-size: var(--ds-text-sm);
-      min-height: 2.5rem;
+      min-height: 2.35rem;
     }
   }
 
@@ -246,7 +246,7 @@
   .nav-link {
     display: inline-flex;
     align-items: center;
-    min-height: 2.75rem;
+    min-height: 2.35rem;
     color: var(--ds-color-text);
     text-decoration: none;
     font-weight: 560;

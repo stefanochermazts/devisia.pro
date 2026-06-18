@@ -73,10 +73,12 @@ const breadcrumbs = breadcrumbListJsonLd({
   languageSwitchHref="/en"
   alternatePaths={{ it: '/landing/devisia', xDefault: '/landing/devisia' }}
   containMain={false}
-  showChatWidget
+  showChatWidget={false}
 >
   {isSuccess && <GoogleAdsLeadConversion slot="head" />}
-  <article class="ads-landing">
+  <div class="ads-landing-shell">
+    <div class="ads-landing-shell__main">
+      <article class="ads-landing">
     <section class="ads-hero" aria-labelledby="ads-hero-title">
       <div class="ds-container ads-hero__grid">
         <div class="ads-hero__copy">
@@ -88,7 +90,7 @@ const breadcrumbs = breadcrumbListJsonLd({
             affidabili, governabili e sostenibili.
           </p>
           <section class="ads-hero__actions" aria-label="Azioni principali">
-            <Button href="#contatto" size="lg">Parliamo del tuo progetto</Button>
+            <Button href="#ads-form" size="lg" data-ads-form-cta>Parliamo del tuo progetto</Button>
             <p>
               Raccontaci il contesto: capiremo se serve software su misura, AI, automazione o una
               soluzione più semplice.
@@ -242,37 +244,87 @@ const breadcrumbs = breadcrumbListJsonLd({
       </div>
     </section>
 
-    <section id="contatto" class="ads-contact ds-container" aria-labelledby="contact-title">
-      <div class="ads-contact__intro">
-        <h2 id="contact-title">Raccontaci il processo che vuoi rendere più solido</h2>
-        <p>
-          Se stai valutando un progetto software, un’integrazione AI o un flusso di automazione,
-          inviaci il contesto essenziale: obiettivo, situazione attuale, strumenti coinvolti e vincoli
-          da rispettare. Ti risponderemo partendo dal problema, non da una soluzione preconfezionata.
-        </p>
-      </div>
+      </article>
+    </div>
 
-      <div class="ads-contact__form">
-        {
-          isSuccess && (
-            <div id="contact-success" class="ads-contact__success" role="status" tabindex="-1">
-              <h3>Messaggio ricevuto.</h3>
-              <p>Grazie. Leggiamo la richiesta e ti rispondiamo con domande mirate o un primo passo chiaro.</p>
-            </div>
-          )
-        }
-        <ContactForm
-          lang="it"
-          showHeading={false}
-          source="landing-devisia"
-          returnTo="/landing/devisia"
-        />
-      </div>
-    </section>
-  </article>
+    <aside
+      id="ads-form"
+      class="ads-form-panel"
+      data-ads-form-panel
+      aria-labelledby="ads-form-title"
+    >
+    <div class="ads-form-panel__inner">
+      <header class="ads-form-panel__header">
+        <p class="ads-form-panel__eyebrow">Richiesta</p>
+        <h2 id="ads-form-title">Raccontaci il contesto</h2>
+        <p class="ads-form-panel__lede">
+          Bastano obiettivo, situazione attuale e cosa vuoi cambiare.
+        </p>
+        <button
+          type="button"
+          class="ads-form-panel__close"
+          data-form-close
+          aria-label="Chiudi modulo"
+        >
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path
+              d="M18 6L6 18M6 6l12 12"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"></path>
+          </svg>
+        </button>
+      </header>
+      {
+        isSuccess && (
+          <div id="contact-success" class="ads-form-panel__success" role="status" tabindex="-1">
+            <h3>Messaggio ricevuto.</h3>
+            <p>Grazie. Leggiamo la richiesta e ti rispondiamo con domande mirate o un primo passo chiaro.</p>
+          </div>
+        )
+      }
+      <ContactForm
+        lang="it"
+        showHeading={false}
+        source="landing-devisia"
+        returnTo="/landing/devisia"
+      />
+    </div>
+    </aside>
+  </div>
+
+  <button
+    type="button"
+    class="ads-form-dock"
+    data-form-dock
+    aria-controls="ads-form"
+    aria-expanded="false"
+  >
+    <span class="ads-form-dock__label">Raccontaci il contesto</span>
+    <span class="ads-form-dock__chevron" aria-hidden="true">↑</span>
+  </button>
+
+  <div class="ads-form-backdrop" data-form-backdrop hidden aria-hidden="true"></div>
 </Layout>
 
+<style is:global>
+  .mobile-sticky-cta {
+    display: none !important;
+  }
+</style>
+
 <style>
+  .ads-landing-shell {
+    width: 100%;
+    --ads-edge: var(--ds-container-pad);
+    --ads-gap: clamp(1.5rem, 2.5vw, 2.5rem);
+    --ads-rail: clamp(24rem, 24vw, 26rem);
+  }
+
+  .ads-landing-shell__main {
+    min-width: 0;
+  }
+
   .ads-landing {
     background:
       linear-gradient(90deg, color-mix(in oklch, var(--ds-color-accent-2) 7%, transparent) 1px, transparent 1px),
@@ -491,8 +543,7 @@ const breadcrumbs = breadcrumbListJsonLd({
   }
 
   .ads-positioning,
-  .ads-capabilities,
-  .ads-contact {
+  .ads-capabilities {
     padding-block: clamp(4rem, 7vw, 8rem);
   }
 
@@ -659,7 +710,7 @@ const breadcrumbs = breadcrumbListJsonLd({
   .ads-positioning h2,
   .ads-section-head h2,
   .ads-method h2,
-  .ads-contact h2 {
+  .ads-form-panel__header h2 {
     margin: 0;
     font-family: var(--ds-font-display);
     font-size: var(--ds-text-3xl);
@@ -671,8 +722,7 @@ const breadcrumbs = breadcrumbListJsonLd({
 
   .ads-positioning p,
   .ads-section-head p,
-  .ads-method p,
-  .ads-contact__intro p {
+  .ads-method p {
     max-width: 66ch;
     margin: var(--ds-space-4) 0 0;
     color: var(--ds-color-text-muted);
@@ -927,33 +977,68 @@ const breadcrumbs = breadcrumbListJsonLd({
     font-size: var(--ds-text-md);
   }
 
-  .ads-contact {
-    display: grid;
-    gap: clamp(2rem, 5vw, 4rem);
-    align-items: start;
-  }
-
-  @media (min-width: 66rem) {
-    .ads-contact {
-      grid-template-columns: minmax(0, 0.62fr) minmax(0, 1fr);
-    }
-  }
-
-  .ads-contact__intro {
-    position: sticky;
-    top: 6rem;
-  }
-
-  .ads-contact__form {
-    padding: clamp(1.25rem, 3vw, 2.5rem);
+  .ads-form-panel__inner {
+    padding: clamp(1.25rem, 3vw, 1.75rem);
     border: 1px solid color-mix(in oklch, var(--ds-color-accent) 38%, var(--ds-color-border));
     background:
       linear-gradient(135deg, color-mix(in oklch, var(--ds-color-accent) 12%, transparent), transparent 45%),
       var(--ds-color-surface);
-    box-shadow: 0 2rem 5rem color-mix(in oklch, var(--ds-color-accent) 12%, transparent);
+    box-shadow: var(--ds-shadow-2);
   }
 
-  .ads-contact__success {
+  .ads-form-panel__header {
+    position: relative;
+    display: grid;
+    gap: var(--ds-space-2);
+    margin-bottom: var(--ds-space-5);
+    padding-right: 2.5rem;
+  }
+
+  .ads-form-panel__eyebrow {
+    margin: 0;
+    color: var(--ds-color-accent);
+    font-family: var(--ds-font-ui);
+    font-size: var(--ds-text-xs);
+    font-weight: 800;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .ads-form-panel__header h2 {
+    margin: 0;
+    font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem);
+  }
+
+  .ads-form-panel__lede {
+    margin: 0;
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-sm);
+    line-height: var(--ds-leading-relaxed);
+  }
+
+  .ads-form-panel__close {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0;
+    border: 1px solid var(--ds-color-border);
+    background: var(--ds-color-surface);
+    color: var(--ds-color-text);
+    cursor: pointer;
+    transition: background-color var(--ds-motion-fast) var(--ds-ease-standard);
+  }
+
+  .ads-form-panel__close:focus-visible {
+    outline: none;
+    box-shadow: var(--ds-focus-ring);
+  }
+
+  .ads-form-panel__success {
     display: grid;
     gap: var(--ds-space-2);
     margin-bottom: var(--ds-space-5);
@@ -962,23 +1047,210 @@ const breadcrumbs = breadcrumbListJsonLd({
     background: color-mix(in oklch, var(--ds-color-success) 12%, var(--ds-color-surface));
   }
 
-  .ads-contact__success h3,
-  .ads-contact__success p {
+  .ads-form-panel__success h3,
+  .ads-form-panel__success p {
     margin: 0;
   }
 
-  .ads-contact__success h3 {
+  .ads-form-panel__success h3 {
     font-size: var(--ds-text-xl);
   }
 
-  .ads-contact__success p {
+  .ads-form-panel__success p {
     color: var(--ds-color-text-muted);
     line-height: var(--ds-leading-relaxed);
   }
 
-  @media (max-width: 65.99rem) {
-    .ads-contact__intro {
-      position: static;
+  .ads-form-dock {
+    display: none;
+  }
+
+  .ads-form-backdrop {
+    display: none;
+  }
+
+  @media (min-width: 75rem) {
+    .ads-landing-shell {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) var(--ads-rail);
+      gap: var(--ads-gap);
+      align-items: start;
+      padding-inline: var(--ads-edge);
+    }
+
+    /* Dark, dramatic sections bleed edge-to-edge again: the background spans the
+       full viewport via negative margins, while the inner .ds-container is held
+       to the left content lane (padding recreates the column boundary), so text
+       never sits under the sticky form. */
+    .ads-landing .ads-hero,
+    .ads-landing .ads-services,
+    .ads-landing .ads-method {
+      margin-left: calc(-1 * var(--ads-edge));
+      margin-right: calc(-1 * (var(--ads-edge) + var(--ads-gap) + var(--ads-rail)));
+      padding-left: var(--ads-edge);
+      padding-right: calc(var(--ads-edge) + var(--ads-gap) + var(--ads-rail));
+    }
+
+    .ads-form-panel {
+      position: sticky;
+      top: var(--ds-site-header-offset);
+      z-index: 2;
+      align-self: start;
+      scroll-margin-top: var(--ds-site-header-offset);
+      max-height: calc(100dvh - var(--ds-site-header-offset) - 1.5rem);
+      overflow: auto;
+      overscroll-behavior: contain;
+    }
+
+    .ads-form-panel__inner {
+      box-shadow: var(--ds-shadow-2);
+    }
+
+    /* Compact the panel form so it fits a laptop viewport without an internal
+       scrollbar. Scoped to this panel only (not the shared ContactForm used on
+       other pages); overflow stays as a safety net for very short windows. */
+    .ads-form-panel__inner {
+      padding: clamp(1rem, 1.4vw, 1.25rem);
+    }
+
+    .ads-form-panel__header {
+      gap: var(--ds-space-1);
+      margin-bottom: var(--ds-space-4);
+    }
+
+    .ads-form-panel__lede {
+      font-size: var(--ds-text-xs);
+    }
+
+    .ads-form-panel :global(.contact-form),
+    .ads-form-panel :global(.form-grid) {
+      gap: var(--ds-space-3);
+    }
+
+    .ads-form-panel :global(.form-group) {
+      gap: 0.45rem;
+    }
+
+    .ads-form-panel :global(.form-input) {
+      padding: 0.5rem 0.7rem;
+    }
+
+    .ads-form-panel :global(.form-input::placeholder) {
+      font-size: var(--ds-text-sm);
+    }
+
+    .ads-form-panel :global(textarea.form-input) {
+      min-height: 6rem;
+    }
+  }
+
+  @media (max-width: 74.99rem) {
+    .ads-landing {
+      padding-bottom: calc(4.25rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    .ads-form-panel {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 51;
+      max-height: 85dvh;
+      overflow: auto;
+      overscroll-behavior: contain;
+      transform: translateY(100%);
+      transition: transform var(--ds-motion-base) var(--ds-ease-standard);
+      will-change: transform;
+    }
+
+    .ads-form-panel[data-open] {
+      transform: translateY(0);
+    }
+
+    .ads-form-panel__inner {
+      border-bottom: 0;
+      border-top-left-radius: var(--ds-radius-3);
+      border-top-right-radius: var(--ds-radius-3);
+    }
+
+    .ads-form-panel__close {
+      display: inline-flex;
+    }
+
+    .ads-form-dock {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--ds-space-3);
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 50;
+      min-height: 3.25rem;
+      padding: 0.85rem clamp(1rem, 4vw, 1.5rem);
+      padding-bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));
+      border: 0;
+      border-top: 1px solid color-mix(in oklch, var(--ds-color-accent) 40%, var(--ds-color-border));
+      background: var(--ds-color-primary);
+      color: color-mix(in oklch, white 96%, var(--ds-color-primary));
+      font-family: var(--ds-font-ui);
+      font-size: var(--ds-text-sm);
+      font-weight: 700;
+      letter-spacing: var(--ds-tracking-caps);
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 -4px 24px color-mix(in oklch, var(--ds-color-text) 12%, transparent);
+    }
+
+    .ads-form-dock:focus-visible {
+      outline: none;
+      box-shadow: var(--ds-focus-ring);
+    }
+
+    .ads-form-dock__chevron {
+      font-size: var(--ds-text-lg);
+      line-height: 1;
+      transition: transform var(--ds-motion-fast) var(--ds-ease-standard);
+    }
+
+    .ads-form-dock[aria-expanded='true'] .ads-form-dock__chevron {
+      transform: rotate(180deg);
+    }
+
+    .ads-form-backdrop {
+      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      border: 0;
+      background: color-mix(in oklch, var(--ds-color-text) 42%, transparent);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--ds-motion-base) var(--ds-ease-standard);
+    }
+
+    .ads-form-backdrop[data-visible] {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  @media (max-width: 74.99rem) and (prefers-reduced-motion: reduce) {
+    .ads-form-panel {
+      transform: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--ds-motion-fast) linear;
+    }
+
+    .ads-form-panel[data-open] {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .ads-form-dock__chevron {
+      transition: none;
     }
   }
 
@@ -1009,10 +1281,107 @@ const breadcrumbs = breadcrumbListJsonLd({
   }
 </style>
 
-{
-  isSuccess && (
-    <script is:inline>
+<script is:inline define:vars={{ isSuccess }}>
+  (() => {
+    const panel = document.querySelector('[data-ads-form-panel]');
+    const dock = document.querySelector('[data-form-dock]');
+    const backdrop = document.querySelector('[data-form-backdrop]');
+    const closeBtn = document.querySelector('[data-form-close]');
+    const heroCta = document.querySelector('[data-ads-form-cta]');
+
+    if (!panel || !dock) return;
+
+    const desktopQuery = window.matchMedia('(min-width: 75rem)');
+    const isDesktop = () => desktopQuery.matches;
+
+    const focusFirstField = () => {
+      const firstInput = panel.querySelector('#name');
+      if (firstInput && typeof firstInput.focus === 'function') {
+        try {
+          firstInput.focus({ preventScroll: true });
+        } catch {
+          firstInput.focus();
+        }
+      }
+    };
+
+    const setOpen = (open) => {
+      if (isDesktop()) return;
+
+      panel.toggleAttribute('data-open', open);
+      panel.setAttribute('aria-modal', open ? 'true' : 'false');
+      dock.setAttribute('aria-expanded', String(open));
+      panel.inert = !open;
+
+      if (backdrop) {
+        backdrop.toggleAttribute('data-visible', open);
+        backdrop.hidden = !open;
+        backdrop.setAttribute('aria-hidden', String(!open));
+      }
+
+      document.body.style.overflow = open ? 'hidden' : '';
+    };
+
+    const resetMobileState = () => {
+      panel.removeAttribute('data-open');
+      panel.setAttribute('aria-modal', 'false');
+      panel.inert = false;
+      dock.setAttribute('aria-expanded', 'false');
+      if (backdrop) {
+        backdrop.removeAttribute('data-visible');
+        backdrop.hidden = true;
+        backdrop.setAttribute('aria-hidden', 'true');
+      }
+      document.body.style.overflow = '';
+    };
+
+    dock.addEventListener('click', () => {
+      const open = panel.hasAttribute('data-open');
+      setOpen(!open);
+      if (!open) focusFirstField();
+    });
+
+    closeBtn?.addEventListener('click', () => {
+      setOpen(false);
+      dock.focus();
+    });
+
+    backdrop?.addEventListener('click', () => {
+      setOpen(false);
+      dock.focus();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      if (isDesktop() || !panel.hasAttribute('data-open')) return;
+      setOpen(false);
+      dock.focus();
+    });
+
+    heroCta?.addEventListener('click', (e) => {
+      if (isDesktop()) {
+        e.preventDefault();
+        focusFirstField();
+        return;
+      }
+      e.preventDefault();
+      setOpen(true);
+      requestAnimationFrame(focusFirstField);
+    });
+
+    desktopQuery.addEventListener('change', () => {
+      if (isDesktop()) resetMobileState();
+    });
+
+    if (!isDesktop()) {
+      panel.inert = true;
+      panel.setAttribute('aria-modal', 'false');
+    }
+
+    if (isSuccess) {
       requestAnimationFrame(() => {
+        if (!isDesktop()) setOpen(true);
+
         const success = document.getElementById('contact-success');
         if (!success) return;
 
@@ -1022,6 +1391,6 @@ const breadcrumbs = breadcrumbListJsonLd({
           success.focus();
         }
       });
-    </script>
-  )
-}
+    }
+  })();
+</script>
