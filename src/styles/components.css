@@ -574,6 +574,34 @@
     font-size: var(--ds-text-md);
   }
 
+  /* Primary CTA on dark hero surfaces: ink-deep primary disappears on hero-tint. */
+  :where(.ds-btn[data-surface="hero"]) {
+    font-family: var(--ds-font-ui);
+    font-weight: 750;
+    letter-spacing: -0.012em;
+    border-width: var(--ds-border-2);
+    min-height: 3.2rem;
+    --_padY: 0.95rem;
+    --_padX: 1.4rem;
+  }
+
+  :where(.ds-btn[data-surface="hero"][data-variant="primary"]) {
+    --_bg: color-mix(in oklch, var(--ds-color-accent) 78%, white);
+    --_fg: oklch(0.99 0.006 90);
+    --_bd: color-mix(in oklch, var(--ds-color-accent) 62%, white);
+  }
+
+  :where(.ds-btn[data-surface="hero"][data-variant="primary"]:hover):not([aria-disabled="true"], :disabled) {
+    --_bg: color-mix(in oklch, var(--ds-color-accent) 68%, white);
+    --_bd: color-mix(in oklch, var(--ds-color-accent) 72%, white);
+    transform: translateY(-2px);
+  }
+
+  :where(.ds-btn[data-surface="hero"][data-variant="primary"]:focus-visible) {
+    outline: none;
+    box-shadow: var(--ds-focus-ring);
+  }
+
   :where(.ds-link) {
     color: var(--ds-color-accent);
     font-weight: 500;

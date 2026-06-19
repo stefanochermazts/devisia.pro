@@ -83,18 +83,13 @@ const breadcrumbs = breadcrumbListJsonLd({
       <div class="ds-container ads-hero__grid">
         <div class="ads-hero__copy">
           <p class="ads-kicker">Devisia per aziende</p>
-          <h1 id="ads-hero-title">Quando il software deve reggere il lavoro reale.</h1>
+          <h1 id="ads-hero-title">Un partner che tiene insieme software, AI e controllo operativo.</h1>
           <p class="ads-hero__lede">
-            Devisia progetta e sviluppa applicazioni web, sistemi backend, integrazioni, automazioni
-            e soluzioni AI per aziende che devono trasformare processi complessi in sistemi
-            affidabili, governabili e sostenibili.
+            Descrivete il processo critico: vi aiutiamo a capire architettura, priorità e prossimo
+            passo concreto — senza partire da soluzioni preconfezionate.
           </p>
           <section class="ads-hero__actions" aria-label="Azioni principali">
-            <Button href="#ads-form" size="lg" data-ads-form-cta>Parliamo del tuo progetto</Button>
-            <p>
-              Raccontaci il contesto: capiremo se serve software su misura, AI, automazione o una
-              soluzione più semplice.
-            </p>
+            <Button href="#ads-form" size="lg" data-surface="hero" data-ads-form-cta>Parliamo del vostro processo</Button>
           </section>
           <ul class="ads-hero__signals" aria-label="Ambiti in cui Devisia può aiutare">
             <li>Processi critici</li>
@@ -335,7 +330,8 @@ const breadcrumbs = breadcrumbListJsonLd({
   .ads-hero {
     position: relative;
     overflow: hidden;
-    padding-block: clamp(5rem, 4rem + 7vw, 10rem);
+    padding-top: var(--ds-hero-padding-top);
+    padding-bottom: var(--ds-hero-padding-bottom);
     background:
       radial-gradient(circle at 82% 18%, color-mix(in oklch, var(--ds-color-accent) 28%, transparent), transparent 32%),
       linear-gradient(118deg, transparent 0 56%, color-mix(in oklch, var(--ds-color-accent-2) 18%, transparent) 56% 59%, transparent 59%),
@@ -380,14 +376,14 @@ const breadcrumbs = breadcrumbListJsonLd({
   }
 
   .ads-hero h1 {
-    max-width: 13.5ch;
+    max-width: min(var(--ds-hero-title-max), 100%);
     margin: 0;
     color: color-mix(in oklch, white 96%, var(--ds-color-hero-tint));
     font-family: var(--ds-font-display);
-    font-size: clamp(2.7rem, 1.2rem + 4.8vw, 5.9rem);
+    font-size: var(--ds-hero-title-size);
     font-weight: 820;
-    letter-spacing: -0.052em;
-    line-height: 0.98;
+    letter-spacing: var(--ds-hero-title-tracking);
+    line-height: var(--ds-hero-title-leading);
     text-wrap: balance;
   }
 
@@ -405,6 +401,10 @@ const breadcrumbs = breadcrumbListJsonLd({
     gap: var(--ds-space-4);
     align-items: center;
     margin-top: var(--ds-space-6);
+  }
+
+  .ads-hero__actions :global(.ds-btn[data-surface="hero"]) {
+    font-size: clamp(1rem, 0.92rem + 0.35vw, 1.12rem);
   }
 
   .ads-hero__actions p {
@@ -1091,6 +1091,10 @@ const breadcrumbs = breadcrumbListJsonLd({
       padding-right: calc(var(--ads-edge) + var(--ads-gap) + var(--ads-rail));
     }
 
+    .ads-hero {
+      padding-top: var(--ds-hero-padding-top-dense);
+    }
+
     .ads-form-panel {
       position: sticky;
       top: var(--ds-site-header-offset);
@@ -1256,11 +1260,12 @@ const breadcrumbs = breadcrumbListJsonLd({
 
   @media (max-width: 44rem) {
     .ads-hero {
-      padding-block: clamp(4rem, 18vw, 6rem);
+      padding-top: clamp(1.75rem, 6vw, 2.5rem);
+      padding-bottom: clamp(2.5rem, 12vw, 4rem);
     }
 
     .ads-hero h1 {
-      font-size: clamp(2.65rem, 13vw, 4rem);
+      font-size: var(--ds-hero-title-size-mobile);
     }
 
     .ads-hero__system {

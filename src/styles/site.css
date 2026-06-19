@@ -2,7 +2,8 @@
   /* New marketing sections (devisia redesign) */
   .site-hero {
     position: relative;
-    padding-block: clamp(5rem, 3rem + 8vw, 11rem);
+    padding-top: var(--ds-hero-padding-top);
+    padding-bottom: var(--ds-hero-padding-bottom);
     background: var(--ds-color-hero-tint);
     color: color-mix(in oklch, white 95%, var(--ds-color-hero-tint));
     overflow: hidden;
@@ -59,16 +60,14 @@
   .site-hero h1,
   .site-hero__title {
     font-family: var(--ds-font-display);
-    /* Cap smaller than before so copy stays in its column beside SystemLayers. */
-    font-size: clamp(2.2rem, 0.75rem + 4.5vw, 5.35rem);
+    font-size: var(--ds-hero-title-size);
     font-weight: 800;
-    line-height: 0.93;
+    line-height: var(--ds-hero-title-leading);
     margin: 0 0 var(--ds-space-6);
     text-wrap: balance;
     color: color-mix(in oklch, white 96%, var(--ds-color-hero-tint));
-    /* Was -0.085em (cramped); slightly open for long Italian lines. */
-    letter-spacing: -0.028em;
-    max-width: min(9.25ch, 100%);
+    letter-spacing: var(--ds-hero-title-tracking);
+    max-width: min(var(--ds-hero-title-max), 100%);
   }
 
   .site-hero__lede,
@@ -83,8 +82,20 @@
   .site-hero__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--ds-space-3);
+    gap: var(--ds-space-4);
     align-items: center;
+    margin-top: var(--ds-space-6);
+  }
+
+  .site-hero__actions .ds-link[data-variant="muted"] {
+    color: color-mix(in oklch, white 84%, var(--ds-color-hero-tint));
+    font-family: var(--ds-font-ui);
+    font-size: var(--ds-text-sm);
+    font-weight: 650;
+  }
+
+  .site-hero__actions .ds-link[data-variant="muted"]:hover {
+    color: color-mix(in oklch, var(--ds-color-accent) 38%, white);
   }
 
   .site-hero__grid {
@@ -102,6 +113,10 @@
   @media (min-width: 56rem) {
     .site-hero__grid {
       grid-template-columns: minmax(0, 1.06fr) minmax(22rem, 0.94fr);
+    }
+
+    .site-hero {
+      padding-top: var(--ds-hero-padding-top-dense);
     }
   }
 
@@ -142,6 +157,18 @@
   .site-hero__viz .site-layers__row--process {
     width: min(15.5rem, calc(100% - 10.25rem));
     max-width: calc(100% - 10.25rem);
+  }
+
+  @media (max-width: 44rem) {
+    .site-hero {
+      padding-top: clamp(1.75rem, 6vw, 2.5rem);
+      padding-bottom: clamp(2.5rem, 12vw, 4rem);
+    }
+
+    .site-hero h1,
+    .site-hero__title {
+      font-size: var(--ds-hero-title-size-mobile);
+    }
   }
 
   .site-section {
@@ -795,10 +822,10 @@
   }
 
   .home-chat__headline {
-    max-width: 10ch;
-    font-size: clamp(2.6rem, 1.55rem + 5vw, 5.45rem);
-    line-height: 0.96;
-    letter-spacing: -0.055em;
+    max-width: min(20ch, 100%);
+    font-size: var(--ds-hero-title-size);
+    line-height: var(--ds-hero-title-leading);
+    letter-spacing: var(--ds-hero-title-tracking);
   }
 
   .home-chat__signal {
@@ -1312,7 +1339,10 @@
   }
 
   .site-pg-hero h1 {
-    font-size: var(--ds-text-4xl);
+    max-width: min(var(--ds-hero-title-max), 100%);
+    font-size: var(--ds-hero-title-size);
+    line-height: var(--ds-hero-title-leading);
+    letter-spacing: var(--ds-hero-title-tracking);
     margin-bottom: var(--ds-space-3);
   }
 
@@ -2857,10 +2887,10 @@
   .case-study-hero h1 {
     margin: 0 0 var(--ds-space-4);
     font-family: var(--ds-font-display);
-    font-size: clamp(2.4rem, 1.4rem + 3.5vw, 4.2rem);
+    font-size: var(--ds-hero-title-size);
     font-weight: 800;
-    line-height: 0.95;
-    letter-spacing: -0.03em;
+    line-height: var(--ds-hero-title-leading);
+    letter-spacing: var(--ds-hero-title-tracking);
     text-wrap: balance;
     color: color-mix(in oklch, white 96%, var(--ds-color-hero-tint));
   }

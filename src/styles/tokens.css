@@ -26,6 +26,16 @@
     --ds-text-4xl: clamp(2.65rem, 1.9rem + 2.8vw, 3.75rem);
     --ds-text-display: clamp(2.75rem, 1.75rem + 3.5vw, 4.2rem);
 
+    /* Compact marketing hero titles (home, landing, contact, case study). */
+    --ds-hero-title-size: clamp(1.95rem, 0.85rem + 2.6vw, 3.25rem);
+    --ds-hero-title-size-mobile: clamp(1.75rem, 6.5vw, 2.35rem);
+    --ds-hero-title-max: 18ch;
+    --ds-hero-title-leading: 1.04;
+    --ds-hero-title-tracking: -0.032em;
+    --ds-hero-padding-top: clamp(2rem, 1.25rem + 2vw, 3rem);
+    --ds-hero-padding-bottom: clamp(3rem, 2rem + 4vw, 5.5rem);
+    --ds-hero-padding-top-dense: clamp(1.5rem, 0.75rem + 1.2vw, 2.25rem);
+
     --ds-leading-tight: 1.12;
     --ds-leading-base: 1.62;
     --ds-leading-relaxed: 1.78;

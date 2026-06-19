@@ -114,12 +114,12 @@ const sectionLabel = lang === 'en' ? 'Page opening' : 'Apertura pagina';
 
   .page-hero__title {
     margin: 0;
-    max-width: 11ch;
+    max-width: min(var(--ds-hero-title-max), 100%);
     font-family: var(--ds-font-heading);
-    font-size: var(--ds-text-4xl);
+    font-size: var(--ds-hero-title-size);
     font-weight: 760;
-    line-height: 1.08;
-    letter-spacing: -0.028em;
+    line-height: var(--ds-hero-title-leading);
+    letter-spacing: var(--ds-hero-title-tracking);
     text-wrap: balance;
   }
 
