@@ -21,12 +21,73 @@ const structuredData = {
 ---
 
 <Layout
-  title="LinkedIn Post Formatter: format posts in English"
-  description="Privacy-first LinkedIn post formatter: improve readability, line breaks, bullets, spacing, hook and tone. Runs in your browser."
+  title="LinkedIn Post Formatter: format LinkedIn posts"
+  description="Format a LinkedIn post in English: improve line breaks, spacing, bullets, hook and mobile readability. Privacy-first tool that runs in your browser."
   lang="en"
   structuredData={structuredData}
 >
   <section class="ds-container" style="margin-top: var(--ds-space-6)">
     <LinkedInPostFormatter lang="en" />
   </section>
+
+  <section class="ds-container li-seo-copy" aria-labelledby="linkedin-format-guide">
+    <div class="li-seo-copy__grid">
+      <article>
+        <h2 id="linkedin-format-guide">Format LinkedIn posts for mobile reading</h2>
+        <p>
+          LinkedIn formatting is not about decorating a post. It is about making the idea easier to scan:
+          clear line breaks, useful spacing, readable bullets and a hook that gives people a reason to keep reading.
+        </p>
+        <p>
+          This LinkedIn post formatter keeps the work practical. Paste your draft, clean up the structure,
+          review the preview and copy the formatted text back to LinkedIn.
+        </p>
+        <p>
+          Looking for the Italian version? Use the
+          <a class="ds-link" href="/tools/linkedin-post-formatter">LinkedIn Post Formatter in italiano</a>.
+        </p>
+      </article>
+
+      <article>
+        <h2>Use it when</h2>
+        <ul>
+          <li>The post is useful, but it reads like a wall of text.</li>
+          <li>You want cleaner LinkedIn formatting before publishing.</li>
+          <li>You need a quick check on hook, spacing and tone.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
 </Layout>
+
+<style>
+  .li-seo-copy {
+    margin-top: var(--ds-space-6);
+    margin-bottom: var(--ds-space-7);
+  }
+
+  .li-seo-copy__grid {
+    display: grid;
+    gap: var(--ds-space-4);
+    padding: var(--ds-space-5);
+    border: var(--ds-border-1) solid var(--ds-color-border);
+    border-radius: var(--ds-radius-3);
+    background: var(--ds-color-surface);
+  }
+
+  @media (min-width: 52rem) {
+    .li-seo-copy__grid {
+      grid-template-columns: minmax(0, 1.35fr) minmax(18rem, 0.65fr);
+    }
+  }
+
+  .li-seo-copy h2 {
+    margin-top: 0;
+  }
+
+  .li-seo-copy p,
+  .li-seo-copy li {
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+  }
+</style>

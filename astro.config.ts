@@ -21,7 +21,6 @@ function isExternalHref(href: string): boolean {
 }
 
 // https://astro.build/config
-// Using server output to enable middleware for language detection
 export default defineConfig({
   output: 'server',
   adapter: netlify(),
