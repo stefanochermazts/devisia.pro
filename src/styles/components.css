@@ -22,13 +22,13 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--ds-space-3);
-    padding-block: 0.35rem;
+    padding-block: 0.5rem;
   }
 
   /* Compact header on mobile */
   @media (max-width: 48rem) {
     .nav-container {
-      padding-block: 0.25rem;
+      padding-block: 0.4rem;
     }
   }
 
@@ -50,7 +50,7 @@
     align-items: center;
     gap: var(--ds-space-2);
     padding: 0;
-    margin: var(--ds-space-1);
+    margin: 0;
     /* Hide any text content when images are present */
     font-size: 0;
     line-height: 0;
@@ -123,9 +123,10 @@
   }
 
   .logo-img {
-    height: 2.75rem;
+    height: 3.25rem;
     width: auto;
     display: block;
+    object-fit: contain;
   }
 
   /* Monogram icon next to wordmark */
@@ -137,8 +138,28 @@
   }
 
   .logo-img--word {
-    height: 3rem;
-    max-width: min(18rem, 42vw);
+    height: 3.75rem;
+    max-width: min(22rem, 54vw);
+  }
+
+  /* Header wordmark: slightly larger and punchier than inline defaults */
+  .nav-brand .logo-img--word {
+    height: 3.75rem;
+    max-width: min(22rem, 54vw);
+  }
+
+  .nav-brand .logo-img--light {
+    filter: contrast(1.14) saturate(1.18);
+  }
+
+  :root[data-theme="dark"] .nav-brand .logo-img--dark {
+    filter: contrast(1.06) brightness(1.12);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) .nav-brand .logo-img--dark {
+      filter: contrast(1.06) brightness(1.12);
+    }
   }
 
   /* Prevent nav items from breaking into multiple lines */
@@ -514,10 +535,12 @@
       justify-content: flex-start;
     }
     .logo-img {
-      height: 2.5rem;
+      height: 3rem;
     }
-    .logo-img--word {
-      max-width: min(14rem, 52vw);
+    .logo-img--word,
+    .nav-brand .logo-img--word {
+      max-width: min(17rem, 60vw);
+      height: 3rem;
       width: auto;
     }
     /* Ensure monogram maintains square aspect ratio on mobile */
@@ -527,16 +550,17 @@
     }
     @media (max-width: 36rem) {
       .logo-img {
-        height: 2.15rem;
+        height: 2.65rem;
       }
-      .logo-img--word {
-        height: auto;
-        width: min(12rem, 48vw);
+      .logo-img--word,
+      .nav-brand .logo-img--word {
+        height: 2.65rem;
+        width: min(15rem, 64vw);
         max-width: 100%;
       }
       .logo-img--mark {
-        height: 2.15rem;
-        width: 2.15rem;
+        height: 2.65rem;
+        width: 2.65rem;
       }
     }
     .footer-content {
