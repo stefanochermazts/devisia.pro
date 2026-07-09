@@ -407,8 +407,27 @@ const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
     <footer class="site-footer">
       <section class="footer-container ds-container" aria-label={lang === 'en' ? 'Site footer' : 'Piè di pagina'}>
         <section class="footer-content">
-          <section class="footer-section">
-            <h3>Devisia</h3>
+          <section class="footer-section footer-section--brand">
+            <a href={homeHref} class="footer-logo" aria-label="DEVISIA">
+              <img
+                class="logo-img logo-img--word logo-img--light footer-logo__img"
+                src="/images/logo-light.png"
+                alt=""
+                width="384"
+                height="128"
+                decoding="async"
+                loading="lazy"
+              />
+              <img
+                class="logo-img logo-img--word logo-img--dark footer-logo__img"
+                src="/images/logo-dark.png"
+                alt=""
+                width="384"
+                height="128"
+                decoding="async"
+                loading="lazy"
+              />
+            </a>
             <p>
               {footerContent.tagline}
             </p>
