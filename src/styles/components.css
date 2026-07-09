@@ -98,6 +98,30 @@
     border-bottom-color: var(--ds-color-accent);
   }
 
+  .brand-tools {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ds-space-1);
+    flex-shrink: 0;
+  }
+
+  .brand-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2rem;
+    min-height: 2rem;
+    padding: 0.35rem;
+    color: var(--ds-color-text-muted);
+    border-radius: var(--ds-radius-1);
+  }
+
+  .brand-theme-toggle:hover,
+  .brand-theme-toggle:focus-visible {
+    color: var(--ds-color-text);
+    background: var(--ds-color-surface-2);
+  }
+
   .logo-img {
     height: 2.75rem;
     width: auto;

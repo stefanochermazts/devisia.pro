@@ -18,6 +18,7 @@ import {
   type JsonLd,
 } from '../lib/seo/structuredData';
 import ChatWidget from '../components/ChatWidget.astro';
+import ThemeToggle from '../components/ui/ThemeToggle.astro';
 import LinkedInInsightTag from '../components/site/LinkedInInsightTag.astro';
 import MatomoTag from '../components/site/MatomoTag.astro';
 
@@ -281,19 +282,19 @@ const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
           <a href={homeHref} class="logo" aria-label="DEVISIA">
             <img
               class="logo-img logo-img--word logo-img--light"
-              src="/images/logo-light.jpg"
+              src="/images/logo-light.png"
               alt=""
-              width="300"
-              height="72"
+              width="384"
+              height="128"
               decoding="async"
               fetchpriority="high"
             />
             <img
               class="logo-img logo-img--word logo-img--dark"
-              src="/images/logo-dark.jpg"
+              src="/images/logo-dark.png"
               alt=""
-              width="300"
-              height="72"
+              width="384"
+              height="128"
               decoding="async"
               loading="lazy"
               fetchpriority="low"
@@ -301,18 +302,21 @@ const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
           </a>
           {
             !minimalChrome && (
-              <a
-                class="brand-lang"
-                href={languageSwitchHref}
-                aria-label={languageSwitchAria}
-                title={languageSwitchAria}
-                hreflang={lang === 'en' ? 'it' : 'en'}
-                data-lang-switch
-              >
-                <span class="brand-lang__current">{lang.toUpperCase()}</span>
-                <span class="brand-lang__sep" aria-hidden="true">·</span>
-                <span class="brand-lang__alt">{lang === 'en' ? 'IT' : 'EN'}</span>
-              </a>
+              <div class="brand-tools">
+                <a
+                  class="brand-lang"
+                  href={languageSwitchHref}
+                  aria-label={languageSwitchAria}
+                  title={languageSwitchAria}
+                  hreflang={lang === 'en' ? 'it' : 'en'}
+                  data-lang-switch
+                >
+                  <span class="brand-lang__current">{lang.toUpperCase()}</span>
+                  <span class="brand-lang__sep" aria-hidden="true">·</span>
+                  <span class="brand-lang__alt">{lang === 'en' ? 'IT' : 'EN'}</span>
+                </a>
+                <ThemeToggle label={themeToggleLabel} variant="header" />
+              </div>
             )
           }
         </section>
@@ -449,55 +453,8 @@ const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
             <p>P.IVA: 01443020324 - PEC: devisia@namirialpec.it - REA: TS - 217091</p>
             {!minimalChrome && <p><a href={href('/privacy')}>{t('policyLink', lang)}</a></p>}
           </section>
-          {/* Theme toggle moved out of the primary nav to slim the header.
-              It lives quietly in the footer, where utility controls belong. */}
-          <button
-            type="button"
-            class="ds-btn footer-theme-toggle"
-            data-variant="ghost"
-            data-size="sm"
-            data-theme-toggle
-            aria-label={themeToggleLabel}
-            title={themeToggleLabel}
-          >
-            <svg
-              class="theme-icon theme-icon--light"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <circle cx="12" cy="12" r="5"></circle>
-              <line x1="12" y1="1" x2="12" y2="3"></line>
-              <line x1="12" y1="21" x2="12" y2="23"></line>
-              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-              <line x1="1" y1="12" x2="3" y2="12"></line>
-              <line x1="21" y1="12" x2="23" y2="12"></line>
-              <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-              <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-            </svg>
-            <svg
-              class="theme-icon theme-icon--dark"
-              width="18"
-              height="18"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
-            <span class="footer-theme-toggle__label">{themeToggleLabel}</span>
-          </button>
+          {/* Theme toggle also available in the header beside the language switch. */}
+          <ThemeToggle label={themeToggleLabel} variant="footer" />
         </section>
       </section>
     </footer>
@@ -529,8 +486,8 @@ const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
       (() => {
         const key = 'ds-theme';
         const root = document.documentElement;
-        const btn = document.querySelector('[data-theme-toggle]');
-        if (!btn) return;
+        const buttons = document.querySelectorAll('[data-theme-toggle]');
+        if (!buttons.length) return;
 
         const get = () => root.getAttribute('data-theme');
         const set = (t) => {
@@ -538,15 +495,17 @@ const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
           else root.setAttribute('data-theme', t);
         };
 
-        btn.addEventListener('click', () => {
-          const current = get();
-          const next = current === 'dark' ? 'light' : 'dark';
-          set(next);
-          try {
-            localStorage.setItem(key, next);
-          } catch {
-            /* noop */
-          }
+        buttons.forEach((btn) => {
+          btn.addEventListener('click', () => {
+            const current = get();
+            const next = current === 'dark' ? 'light' : 'dark';
+            set(next);
+            try {
+              localStorage.setItem(key, next);
+            } catch {
+              /* noop */
+            }
+          });
         });
       })();
     </script>
