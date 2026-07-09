@@ -950,6 +950,7 @@
   :where(.blog-post .post-content table) {
     width: 100%;
     max-width: 100%;
+    min-width: 0;
     border-collapse: collapse;
     border: var(--ds-border-1) solid var(--ds-color-border);
     border-radius: var(--ds-radius-2);

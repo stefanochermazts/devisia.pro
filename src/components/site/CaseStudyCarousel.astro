@@ -190,6 +190,14 @@ const trackId = `${carouselId}-track`;
           event.preventDefault();
           goTo(index + 1);
         }
+        if (event.key === 'Home') {
+          event.preventDefault();
+          goTo(0);
+        }
+        if (event.key === 'End') {
+          event.preventDefault();
+          goTo(slides.length - 1);
+        }
       });
 
       goTo(0);

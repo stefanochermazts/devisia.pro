@@ -18,6 +18,7 @@ export interface Props {
   brandChips?: BrandChip[];
   ctaLabel?: string;
   variant?: 'proof' | 'sport';
+  lang?: 'it' | 'en';
 }
 
 const {
@@ -32,7 +33,13 @@ const {
   brandChips,
   ctaLabel = 'Scopri',
   variant = 'proof',
+  lang = 'it',
 } = Astro.props;
+
+const isEn = lang === 'en';
+const statusAria = isEn ? `Status ${title}` : `Stato ${title}`;
+const tagsAria = isEn ? 'Tags' : 'Tag';
+const brandAria = isEn ? 'Product colours' : 'Colori del prodotto';
 ---
 
 <article class="product-lane" data-variant={variant}>
@@ -46,7 +53,7 @@ const {
       <p class="product-lane__desc">{description}</p>
       {
         tags.length ? (
-          <ul class="product-lane__tags" aria-label="Tag">
+          <ul class="product-lane__tags" aria-label={tagsAria}>
             {tags.map((tag) => (
               <li>{tag}</li>
             ))}
@@ -57,7 +64,7 @@ const {
         {ctaLabel}
       </a>
     </section>
-    <aside class="product-lane__aside" aria-label={`Stato ${title}`}>
+    <aside class="product-lane__aside" aria-label={statusAria}>
       <section class="product-lane__status">
         <span>{title}</span>
         <span>{status}</span>
@@ -67,7 +74,7 @@ const {
       </section>
       {
         brandChips?.length ? (
-          <section class="product-lane__brand" aria-label="Colori del prodotto">
+          <section class="product-lane__brand" aria-label={brandAria}>
             {brandChips.map((chip) => (
               <span class="product-lane__brand-item">
                 <span

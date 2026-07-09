@@ -137,13 +137,16 @@ const breadcrumbs = breadcrumbListJsonLd({
           umano sempre presente. È il nostro modo di trasformare metodo e governance in prodotto operativo.
         </p>
         <a
-          class="ds-btn"
+          class="ds-btn audit-console__cta"
           data-variant="primary"
           data-size="lg"
           href={AUDITREADY_SITE_URL}
           target="_blank"
           rel="noopener noreferrer"
-          style="margin-top: var(--ds-space-2)">Scopri AuditReady</a>
+        >
+          Scopri AuditReady
+          <span class="sr-only"> (si apre in una nuova scheda)</span>
+        </a>
       </section>
       <section class="audit-console__panel" aria-hidden="true">
         <section class="audit-console__header"><span>AuditReady</span><span>evidence stream</span></section>
@@ -168,6 +171,7 @@ const breadcrumbs = breadcrumbListJsonLd({
   </section>
 
   <EditorialCTA
+    headingId="home-editorial-cta"
     title="Se il sistema deve reggere, partiamo da ciò che deve dimostrare"
     copy="Raccontaci processo, dati, rischi, vincoli e persone coinvolte. Il primo obiettivo è allineare contesto, confini e criteri di successo, non vendere un pacchetto pronto."
     ctaLabel="Avvia un confronto"

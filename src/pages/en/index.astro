@@ -138,13 +138,16 @@ const breadcrumbs = breadcrumbListJsonLd({
           control always. It is how we turn method and governance into an operational product.
         </p>
         <a
-          class="ds-btn"
+          class="ds-btn audit-console__cta"
           data-variant="primary"
           data-size="lg"
           href={AUDITREADY_SITE_URL}
           target="_blank"
           rel="noopener noreferrer"
-          style="margin-top: var(--ds-space-2)">Explore AuditReady</a>
+        >
+          Explore AuditReady
+          <span class="sr-only"> (opens in a new tab)</span>
+        </a>
       </section>
       <section class="audit-console__panel" aria-hidden="true">
         <section class="audit-console__header"><span>AuditReady</span><span>evidence stream</span></section>
@@ -169,6 +172,7 @@ const breadcrumbs = breadcrumbListJsonLd({
   </section>
 
   <EditorialCTA
+    headingId="home-editorial-cta"
     title="If the system must hold, we start from what it must prove"
     copy="Share process, data, risk, constraints and people involved. The first goal is to align context, boundaries and success criteria, not to sell a ready-made bundle."
     ctaLabel="Start a conversation"

@@ -47,6 +47,7 @@ const breadcrumbs = breadcrumbListJsonLd({
             rel="noopener noreferrer"
           >
             Open Hooplytics
+            <span class="sr-only"> (opens in a new tab)</span>
           </a>
         </section>
       </section>
@@ -64,7 +65,10 @@ const breadcrumbs = breadcrumbListJsonLd({
           <div>
             <dt>Link</dt>
             <dd>
-              <a href={HOOPLYTICS_SITE_URL} target="_blank" rel="noopener noreferrer">hooplytics.app</a>
+              <a href={HOOPLYTICS_SITE_URL} target="_blank" rel="noopener noreferrer">
+                hooplytics.app
+                <span class="sr-only"> (opens in a new tab)</span>
+              </a>
             </dd>
           </div>
         </dl>
@@ -82,9 +86,9 @@ const breadcrumbs = breadcrumbListJsonLd({
     </section>
   </header>
 
-  <section class="case-narrative" aria-labelledby="problem-title">
+  <section class="case-narrative" aria-labelledby="hooplytics-problem-title">
     <article>
-      <h2 id="problem-title">The problem</h2>
+      <h2 id="hooplytics-problem-title">The problem</h2>
       <p>
         A basketball club manages teams, rosters, schedules and statistics across a season or tournament. Much of the work happens courtside, on a phone, with little time and a need to enter data quickly and without mistakes.
       </p>
@@ -92,8 +96,8 @@ const breadcrumbs = breadcrumbListJsonLd({
         Shared spreadsheets, chat threads and generic tools do not cover groups, playoffs, box scores and standings with proper basketball terminology.
       </p>
     </article>
-    <article class="case-narrative__solution" aria-labelledby="solution-title">
-      <h2 id="solution-title">The solution</h2>
+    <article class="case-narrative__solution" aria-labelledby="hooplytics-solution-title">
+      <h2 id="hooplytics-solution-title">The solution</h2>
       <p>
         Hooplytics structures tournaments, generates schedules, groups and playoffs, collects live statistics and produces box scores, standings and rosters.
       </p>
@@ -103,11 +107,11 @@ const breadcrumbs = breadcrumbListJsonLd({
     </article>
   </section>
 
-  <section class="product-proof-layer" aria-labelledby="features-title">
+  <section class="product-proof-layer" aria-labelledby="hooplytics-features-title">
     <section class="product-proof-layer__intro">
       <p class="product-proof-layer__mark" aria-hidden="true">LIVE</p>
       <section>
-        <h2 id="features-title" class="site-h2">Key features</h2>
+        <h2 id="hooplytics-features-title" class="site-h2">Key features</h2>
         <p class="site-lead">
           Four concrete capabilities, from tournament structure to controlled publishing of results.
         </p>
@@ -143,10 +147,10 @@ const breadcrumbs = breadcrumbListJsonLd({
     </ol>
   </section>
 
-  <CaseStudyCarousel lang="en" />
+  <CaseStudyCarousel lang="en" carouselId="hooplytics-showcase-en" />
 
-  <section class="site-section" aria-labelledby="tech-title">
-    <h2 id="tech-title" class="site-h2">Behind the scenes</h2>
+  <section class="site-section" aria-labelledby="hooplytics-tech-title">
+    <h2 id="hooplytics-tech-title" class="site-h2">Behind the scenes</h2>
     <p class="site-lead">How we built it, with attention to real use context and long-term maintainability.</p>
     <section class="case-tech-grid">
       <article class="case-tech-grid__item">
@@ -169,6 +173,7 @@ const breadcrumbs = breadcrumbListJsonLd({
   </section>
 
   <EditorialCTA
+    headingId="hooplytics-editorial-cta"
     variant="tint"
     title="Want a product like this?"
     ctaLabel="Let's talk"

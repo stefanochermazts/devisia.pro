@@ -41,6 +41,7 @@ const breadcrumbs = breadcrumbListJsonLd({
             rel="noopener noreferrer"
           >
             Apri Hooplytics
+            <span class="sr-only"> (si apre in una nuova scheda)</span>
           </a>
         </section>
       </section>
@@ -58,7 +59,10 @@ const breadcrumbs = breadcrumbListJsonLd({
           <div>
             <dt>Link</dt>
             <dd>
-              <a href={HOOPLYTICS_SITE_URL} target="_blank" rel="noopener noreferrer">hooplytics.app</a>
+              <a href={HOOPLYTICS_SITE_URL} target="_blank" rel="noopener noreferrer">
+                hooplytics.app
+                <span class="sr-only"> (si apre in una nuova scheda)</span>
+              </a>
             </dd>
           </div>
         </dl>
@@ -76,9 +80,9 @@ const breadcrumbs = breadcrumbListJsonLd({
     </section>
   </header>
 
-  <section class="case-narrative" aria-labelledby="problema-title">
+  <section class="case-narrative" aria-labelledby="hooplytics-problema-title">
     <article>
-      <h2 id="problema-title">Il problema</h2>
+      <h2 id="hooplytics-problema-title">Il problema</h2>
       <p>
         Una società di basket gestisce squadre, roster, calendario e statistiche per tutta la stagione o il torneo. Spesso il lavoro avviene a bordocampo, da telefono, con poco tempo e bisogno di inserire dati in fretta e senza errori.
       </p>
@@ -86,8 +90,8 @@ const breadcrumbs = breadcrumbListJsonLd({
         Fogli condivisi, chat e strumenti generici non coprono gironi, playoff, tabellini e classifiche con la terminologia del basket.
       </p>
     </article>
-    <article class="case-narrative__solution" aria-labelledby="soluzione-title">
-      <h2 id="soluzione-title">La soluzione</h2>
+    <article class="case-narrative__solution" aria-labelledby="hooplytics-soluzione-title">
+      <h2 id="hooplytics-soluzione-title">La soluzione</h2>
       <p>
         Hooplytics organizza tornei, genera calendari, gironi e playoff, raccoglie statistiche in tempo reale e produce tabellini, classifiche e roster.
       </p>
@@ -97,11 +101,11 @@ const breadcrumbs = breadcrumbListJsonLd({
     </article>
   </section>
 
-  <section class="product-proof-layer" aria-labelledby="funzionalita-title">
+  <section class="product-proof-layer" aria-labelledby="hooplytics-funzionalita-title">
     <section class="product-proof-layer__intro">
       <p class="product-proof-layer__mark" aria-hidden="true">LIVE</p>
       <section>
-        <h2 id="funzionalita-title" class="site-h2">Funzionalità chiave</h2>
+        <h2 id="hooplytics-funzionalita-title" class="site-h2">Funzionalità chiave</h2>
         <p class="site-lead">
           Quattro capacità concrete, dalla struttura del torneo alla pubblicazione controllata dei risultati.
         </p>
@@ -137,10 +141,10 @@ const breadcrumbs = breadcrumbListJsonLd({
     </ol>
   </section>
 
-  <CaseStudyCarousel lang="it" />
+  <CaseStudyCarousel lang="it" carouselId="hooplytics-showcase-it" />
 
-  <section class="site-section" aria-labelledby="tech-title">
-    <h2 id="tech-title" class="site-h2">Dietro le quinte</h2>
+  <section class="site-section" aria-labelledby="hooplytics-tech-title">
+    <h2 id="hooplytics-tech-title" class="site-h2">Dietro le quinte</h2>
     <p class="site-lead">Come l'abbiamo costruito, con attenzione a contesto d'uso reale e manutenibilità nel tempo.</p>
     <section class="case-tech-grid">
       <article class="case-tech-grid__item">
@@ -163,6 +167,7 @@ const breadcrumbs = breadcrumbListJsonLd({
   </section>
 
   <EditorialCTA
+    headingId="hooplytics-editorial-cta"
     variant="tint"
     title="Vuoi un prodotto così?"
     ctaLabel="Parliamone"

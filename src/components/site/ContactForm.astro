@@ -22,6 +22,7 @@ interface Copy {
 interface Props {
   lang?: 'it' | 'en';
   headingId?: string;
+  fieldIdPrefix?: string;
   showHeading?: boolean;
   source?: string;
   returnTo?: string;
@@ -30,11 +31,20 @@ interface Props {
 const {
   lang = 'it',
   headingId = 'contact-form-title',
+  fieldIdPrefix = 'contact-',
   showHeading = true,
   source = 'contact',
   returnTo = lang === 'en' ? '/en/contact' : '/contatti',
 } = Astro.props;
 const isEnglish = lang === 'en';
+
+const fieldIds = {
+  name: `${fieldIdPrefix}name`,
+  email: `${fieldIdPrefix}email`,
+  subject: `${fieldIdPrefix}subject`,
+  message: `${fieldIdPrefix}message`,
+  consent: `${fieldIdPrefix}privacy-consent`,
+};
 
 const copy: Copy = isEnglish
   ? {
@@ -83,7 +93,7 @@ const copy: Copy = isEnglish
     };
 ---
 
-<div class="contact-form-shell">
+<div class="contact-form-shell" data-contact-form>
   {
     showHeading && (
       <div class="contact-form-heading">
@@ -115,10 +125,10 @@ const copy: Copy = isEnglish
 
     <div class="form-grid">
       <div class="form-group">
-        <label for="name" class="form-label">{copy.fields.name}</label>
+        <label for={fieldIds.name} class="form-label">{copy.fields.name}</label>
         <input
           type="text"
-          id="name"
+          id={fieldIds.name}
           name="name"
           required
           maxlength="120"
@@ -129,14 +139,15 @@ const copy: Copy = isEnglish
       </div>
 
       <div class="form-group">
-        <label for="email" class="form-label">{copy.fields.email}</label>
+        <label for={fieldIds.email} class="form-label">{copy.fields.email}</label>
         <input
           type="email"
-          id="email"
+          id={fieldIds.email}
           name="email"
           required
           maxlength="254"
           autocomplete="email"
+          inputmode="email"
           class="form-input"
           placeholder={copy.fields.emailPlaceholder}
         />
@@ -144,10 +155,10 @@ const copy: Copy = isEnglish
     </div>
 
     <div class="form-group">
-      <label for="subject" class="form-label">{copy.fields.subject}</label>
+      <label for={fieldIds.subject} class="form-label">{copy.fields.subject}</label>
       <input
         type="text"
-        id="subject"
+        id={fieldIds.subject}
         name="subject"
         maxlength="200"
         class="form-input"
@@ -156,21 +167,22 @@ const copy: Copy = isEnglish
     </div>
 
     <div class="form-group">
-      <label for="message" class="form-label">{copy.fields.message}</label>
+      <label for={fieldIds.message} class="form-label">{copy.fields.message}</label>
       <textarea
-        id="message"
+        id={fieldIds.message}
         name="message"
         required
         maxlength="4000"
         rows="7"
+        dir="auto"
         class="form-input"
         placeholder={copy.fields.messagePlaceholder}></textarea>
     </div>
 
     <div class="form-group form-group--consent">
-      <label class="consent-label" for="privacy_consent">
+      <label class="consent-label" for={fieldIds.consent}>
         <input
-          id="privacy_consent"
+          id={fieldIds.consent}
           name="privacy_consent"
           type="checkbox"
           value="true"
@@ -186,11 +198,34 @@ const copy: Copy = isEnglish
       </label>
     </div>
 
-    <button type="submit" class="form-submit">{copy.fields.submit}</button>
+    <button type="submit" class="form-submit" data-contact-submit>
+      {copy.fields.submit}
+    </button>
   </form>
 </div>
 
+<script>
+  document.querySelectorAll('[data-contact-form]').forEach((shell) => {
+    const form = shell.querySelector('form.contact-form');
+    const submit = shell.querySelector('[data-contact-submit]');
+
+    if (!(form instanceof HTMLFormElement) || !(submit instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    form.addEventListener('submit', () => {
+      if (submit.disabled) return;
+      submit.disabled = true;
+      submit.setAttribute('aria-busy', 'true');
+    });
+  });
+</script>
+
 <style>
+  .contact-form-shell {
+    min-width: 0;
+  }
+
   .contact-form-heading {
     display: grid;
     gap: var(--ds-space-3);
@@ -212,6 +247,8 @@ const copy: Copy = isEnglish
     font-size: var(--ds-text-2xl);
     line-height: var(--ds-leading-tight);
     letter-spacing: -0.022em;
+    text-wrap: balance;
+    overflow-wrap: break-word;
   }
 
   .contact-form-heading p:last-child {
@@ -220,16 +257,20 @@ const copy: Copy = isEnglish
     color: var(--ds-color-text-muted);
     font-size: var(--ds-text-lg);
     line-height: var(--ds-leading-relaxed);
+    text-wrap: pretty;
+    overflow-wrap: break-word;
   }
 
   .contact-form {
     display: grid;
     gap: var(--ds-space-5);
+    min-width: 0;
   }
 
   .form-grid {
     display: grid;
     gap: var(--ds-space-5);
+    min-width: 0;
   }
 
   @media (min-width: 42rem) {
@@ -250,6 +291,7 @@ const copy: Copy = isEnglish
     display: flex;
     flex-direction: column;
     gap: 0.62rem;
+    min-width: 0;
   }
 
   .form-group--consent {
@@ -262,10 +304,12 @@ const copy: Copy = isEnglish
     font-weight: 800;
     letter-spacing: var(--ds-tracking-caps);
     text-transform: uppercase;
+    overflow-wrap: break-word;
   }
 
   .form-input {
     width: 100%;
+    min-width: 0;
     padding: 0.95rem 1rem;
     border: 1px solid color-mix(in oklch, var(--ds-color-border) 80%, var(--ds-color-text));
     border-radius: 0;
@@ -304,6 +348,13 @@ const copy: Copy = isEnglish
     font-size: var(--ds-text-xs);
     line-height: 1.45;
     cursor: pointer;
+    min-width: 0;
+  }
+
+  .consent-text {
+    min-width: 0;
+    overflow-wrap: break-word;
+    text-wrap: pretty;
   }
 
   .consent-checkbox {
@@ -324,6 +375,7 @@ const copy: Copy = isEnglish
   .form-submit {
     justify-self: start;
     min-width: min(100%, 16rem);
+    max-width: 100%;
     padding: 1rem 1.25rem;
     border: 1px solid var(--ds-color-accent);
     border-radius: 0;
@@ -358,6 +410,18 @@ const copy: Copy = isEnglish
   @media (max-width: 44rem) {
     .form-submit {
       width: 100%;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .form-input,
+    .form-submit {
+      transition: none;
+    }
+
+    .form-submit:hover,
+    .form-submit:active {
+      transform: none;
     }
   }
 </style>

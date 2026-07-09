@@ -59,6 +59,7 @@ const breadcrumbs = breadcrumbListJsonLd({
           data-locale="en-US"
           data-url-prefix="/en/blog"
           data-read-more-label="Read more →"
+          data-author-prefix="by "
           data-offset={initialPosts.length}
           data-total={sortedPosts.length}
           data-page-size={PAGE_SIZE}
@@ -179,340 +180,6 @@ const breadcrumbs = breadcrumbListJsonLd({
   </section>
 </Layout>
 
-<style is:global>
-  :where(.blog-container, .blog-post) {
-    max-width: 98vw;
-    margin: 0 auto;
-    padding-block: var(--ds-space-6);    
-  }
-
-  @media (min-width: 48rem) {
-    .blog-container {
-      max-width: 90vw;
-    }
-  }
-
-  .blog-header {
-    text-align: center;
-    margin-bottom: 3rem;
-  }
-
-  .blog-header h1 {
-    font-size: var(--ds-hero-title-size);
-    margin-bottom: 1rem;
-  }
-
-  .blog-intro {
-    font-size: 1.2rem;
-    color: var(--ds-color-text-muted);
-    max-width: 98vw;
-    margin: 0 auto;
-  }
-
-  .page-intro {
-    margin: 2.5rem auto 0;
-    max-width: 98vw;
-  }
-
-  @media (min-width: 48rem) {
-    .blog-intro,
-    .page-intro {
-      max-width: 90vw;
-    }
-  }
-
-  .intro-details {
-    background: var(--ds-color-surface);
-    border: var(--ds-border-1) solid var(--ds-color-border);
-    border-radius: var(--ds-radius-3);
-    padding: var(--ds-space-4);
-  }
-
-  .intro-details[open] {
-    padding: var(--ds-space-6);
-  }
-
-  .intro-summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--ds-space-4);
-    cursor: pointer;
-    list-style: none;
-  }
-
-  .intro-summary-title {
-    font-weight: 700;
-    color: var(--ds-color-text);
-    font-size: var(--ds-text-lg);
-  }
-
-  .intro-summary::-webkit-details-marker {
-    display: none;
-  }
-
-  .intro-summary:focus-visible {
-    outline: none;
-    box-shadow: var(--ds-focus-ring);
-    border-radius: var(--ds-radius-2);
-  }
-
-  .intro-chevron {
-    color: var(--ds-color-text-muted);
-    flex: 0 0 auto;
-    transition: transform var(--ds-motion-base) var(--ds-ease-standard);
-  }
-
-  .intro-details[open] .intro-chevron {
-    transform: rotate(180deg);
-  }
-
-  .intro-body {
-    margin-top: var(--ds-space-4);
-  }
-
-  .intro-title {
-    margin: 0;
-    color: var(--ds-color-text);
-    font-size: var(--ds-text-xl);
-    font-weight: 700;
-  }
-
-  .intro-text {
-    margin: 0 0 var(--ds-space-3);
-    color: var(--ds-color-text);
-    line-height: var(--ds-leading-relaxed);
-  }
-
-  .intro-cta {
-    margin-top: var(--ds-space-4);
-    color: var(--ds-color-text-muted);
-  }
-
-  .intro-link {
-    color: var(--ds-color-accent);
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  .intro-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--ds-space-5);
-    margin: var(--ds-space-5) 0 var(--ds-space-4);
-  }
-
-  .intro-item {
-    background: var(--ds-color-surface-2);
-    border: var(--ds-border-1) solid var(--ds-color-border);
-    border-radius: var(--ds-radius-2);
-    padding: var(--ds-space-4);
-  }
-
-  .intro-item-title {
-    margin: 0 0 var(--ds-space-2);
-    color: var(--ds-color-text);
-    font-size: var(--ds-text-md);
-    font-weight: 700;
-  }
-
-  .intro-item-text {
-    margin: 0 0 var(--ds-space-2);
-    color: var(--ds-color-text-muted);
-    line-height: var(--ds-leading-relaxed);
-  }
-
-  .intro-list {
-    margin: 0;
-    padding-left: 1.15rem;
-    color: var(--ds-color-text-muted);
-    line-height: var(--ds-leading-relaxed);
-  }
-
-  .intro-list li + li {
-    margin-top: 0.35rem;
-  }
-
-  @media (max-width: 768px) {
-    .intro-details {
-      padding: var(--ds-space-4);
-    }
-
-    .intro-details[open] {
-      padding: var(--ds-space-5);
-    }
-
-    .intro-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
-  .no-posts {
-    text-align: center;
-    padding: 4rem 2rem;
-    color: var(--ds-color-text-muted);
-  }
-
-  .posts-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 2rem;
-  }
-
-  .load-more-wrap {
-    margin-top: 1.75rem;
-    display: grid;
-    place-items: center;
-    gap: 0.75rem;
-  }
-
-  .load-status {
-    margin: 0;
-    color: var(--ds-color-text-muted);
-    min-height: 1.25rem;
-  }
-
-  .load-more {
-    appearance: none;
-    border: var(--ds-border-1) solid var(--ds-color-border);
-    background: var(--ds-color-surface);
-    color: var(--ds-color-text);
-    padding: 0.75rem 1rem;
-    border-radius: var(--ds-radius-2);
-    font-weight: 600;
-    cursor: pointer;
-    transition: transform var(--ds-motion-base), box-shadow var(--ds-motion-base);
-  }
-
-  .load-more:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--ds-shadow-1);
-  }
-
-  .load-more:focus-visible {
-    outline: none;
-    box-shadow: var(--ds-focus-ring);
-  }
-
-  .load-more[disabled] {
-    opacity: 0.6;
-    cursor: not-allowed;
-    transform: none;
-    box-shadow: none;
-  }
-
-  .load-sentinel {
-    width: 100%;
-    height: 1px;
-  }
-
-  .post-card {
-    background: var(--ds-color-surface);
-    border: var(--ds-border-1) solid var(--ds-color-border);
-    border-radius: var(--ds-radius-3);
-    overflow: hidden;
-    transition: transform var(--ds-motion-base), box-shadow var(--ds-motion-base);
-  }
-
-  .post-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--ds-shadow-2);
-  }
-
-  .post-image {
-    width: 100%;
-    height: 200px;
-    overflow: hidden;
-    background-color: var(--ds-color-surface-2);
-  }
-
-  .post-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-
-  .post-content {
-    padding: 1.5rem;
-  }
-
-  .post-meta {
-    display: flex;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    color: var(--ds-color-text-muted);
-    margin-bottom: 0.75rem;
-  }
-
-  .post-author {
-    font-weight: 500;
-  }
-
-  .post-title {
-    margin: 0 0 0.75rem 0;
-    font-size: 1.5rem;
-    line-height: 1.3;
-  }
-
-  .post-title a {
-    color: var(--ds-color-text);
-    text-decoration: none;
-    transition: color var(--ds-motion-base);
-  }
-
-  .post-title a:hover {
-    color: var(--ds-color-accent);
-  }
-
-  .post-description {
-    color: var(--ds-color-text-muted);
-    margin-bottom: 1rem;
-    line-height: var(--ds-leading-relaxed);
-  }
-
-  .post-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .tag {
-    display: inline-block;
-    padding: 0.25rem 0.75rem;
-    background-color: color-mix(in srgb, var(--ds-color-accent) 15%, var(--ds-color-surface-2));
-    color: var(--ds-color-accent);
-    border-radius: var(--ds-radius-1);
-    font-size: 0.875rem;
-    font-weight: 500;
-    border: var(--ds-border-1) solid color-mix(in srgb, var(--ds-color-accent) 30%, var(--ds-color-border));
-  }
-
-  .read-more {
-    color: var(--ds-color-accent);
-    text-decoration: none;
-    font-weight: 600;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.25rem;
-    transition: gap var(--ds-motion-base);
-  }
-
-  .read-more:hover {
-    gap: 0.5rem;
-  }
-
-  @media (max-width: 768px) {
-    .blog-header h1 {
-      font-size: var(--ds-hero-title-size-mobile);
-    }
-
-    .posts-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-</style>
-
 <script is:inline>
   (() => {
     const grid = document.getElementById('posts-grid');
@@ -522,6 +189,7 @@ const breadcrumbs = breadcrumbListJsonLd({
     const locale = grid.dataset.locale || 'en-US';
     const urlPrefix = grid.dataset.urlPrefix || '/en/blog';
     const readMoreLabel = grid.dataset.readMoreLabel || 'Read more →';
+    const authorPrefix = grid.dataset.authorPrefix || 'by ';
 
     const statusEl = document.getElementById('posts-status');
     const buttonEl = document.getElementById('load-more');
@@ -576,7 +244,7 @@ const breadcrumbs = breadcrumbListJsonLd({
       meta.appendChild(time);
 
       const author = mk('span', 'post-author');
-      author.textContent = `by ${post.author}`;
+      author.textContent = `${authorPrefix}${post.author}`;
       meta.appendChild(author);
       content.appendChild(meta);
 
@@ -618,6 +286,7 @@ const breadcrumbs = breadcrumbListJsonLd({
       if (loading || done) return;
       loading = true;
       buttonEl.disabled = true;
+      buttonEl.setAttribute('aria-busy', 'true');
       setStatus('Loading…');
 
       try {
@@ -652,6 +321,7 @@ const breadcrumbs = breadcrumbListJsonLd({
         buttonEl.disabled = false;
       } finally {
         loading = false;
+        buttonEl.removeAttribute('aria-busy');
       }
     };
 

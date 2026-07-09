@@ -1,5 +1,6 @@
 import { defineConfig } from 'astro/config';
 import netlify from '@astrojs/netlify';
+import { unified } from '@astrojs/markdown-remark';
 import rehypeExternalLinks from 'rehype-external-links';
 import type { Element } from 'hast';
 
@@ -42,18 +43,20 @@ export default defineConfig({
     },
   },
   markdown: {
-    rehypePlugins: [
-      [
-        rehypeExternalLinks,
-        {
-          target: '_blank',
-          rel: ['noopener', 'noreferrer'],
-          test: (node: Element) => {
-            const href = node.properties?.href;
-            return typeof href === 'string' && isExternalHref(href);
+    processor: unified({
+      rehypePlugins: [
+        [
+          rehypeExternalLinks,
+          {
+            target: '_blank',
+            rel: ['noopener', 'noreferrer'],
+            test: (node: Element) => {
+              const href = node.properties?.href;
+              return typeof href === 'string' && isExternalHref(href);
+            },
           },
-        },
+        ],
       ],
-    ],
+    }),
   },
 });
