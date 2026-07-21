@@ -21,7 +21,13 @@ Cartella configurabile (default relativamente a cwd), struttura tipica:
 ## Utilizzo
 
 ```bash
-# Produzione (default dello script npm)
+# Corpus unico Markdown (pagine + blog + progetti) per chatbot
+npm run export:chatbot:it
+
+# Solo file locali, senza scaricare HTML dal sito
+node scripts/export-chatbot-corpus-it.mjs --offline --out rag-export/it/devisia-corpus-it-local.md
+
+# Produzione (export RAG multi-file, senza blog)
 npm run export:rag:it
 ```
 

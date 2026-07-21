@@ -11,7 +11,7 @@ const copy =
         eyebrow: 'Devisia Chat',
         title: 'Ask the site. Get answers you can verify.',
         signal: 'Grounded answers, visible boundaries, no black box.',
-        lead: 'A guided assistant helps you explore services, method and AI governance without hunting through every page. It answers only from public Devisia content and makes the technical perimeter visible: exported Markdown, indexed knowledge, Toolhouse orchestration and server guardrails.',
+        lead: 'A guided assistant helps you explore services, method and AI governance without hunting through every page. It answers only from public Devisia content and makes the technical perimeter visible: exported Markdown, indexed knowledge, RAG orchestration and server guardrails.',
         cta: 'Try the chat',
         ctaHint: 'Open a dedicated page for longer questions, or use the floating assistant while browsing.',
         proofLabel: 'Reliability markers',
@@ -31,8 +31,8 @@ const copy =
           },
           {
             id: '03',
-            title: 'Toolhouse, behind a proxy',
-            body: 'Requests pass through `/api/toolhouse-chat`: Toolhouse handles the agent flow, while credentials stay server side.',
+            title: 'RAG, behind a proxy',
+            body: 'Requests pass through a server-side proxy: the RAG stack orchestrates the agent, while credentials and tokens stay server side.',
           },
           {
             id: '04',
@@ -48,7 +48,7 @@ const copy =
         eyebrow: 'Chat Devisia',
         title: 'Fai domande al sito. Ottieni risposte verificabili.',
         signal: 'Risposte fondate, confini visibili, niente scatole nere.',
-        lead: 'Un assistente guidato ti aiuta a esplorare servizi, metodo e AI governance senza cercare pagina per pagina. Risponde solo sui contenuti pubblici Devisia e rende visibile il perimetro tecnico: Markdown esportato, knowledge indicizzata, orchestrazione Toolhouse e guardrail lato server.',
+        lead: 'Un assistente guidato ti aiuta a esplorare servizi, metodo e AI governance senza cercare pagina per pagina. Risponde solo sui contenuti pubblici Devisia e rende visibile il perimetro tecnico: Markdown esportato, knowledge indicizzata, orchestrazione RAG e guardrail lato server.',
         cta: 'Prova la chat',
         ctaHint: 'Apri una pagina dedicata per domande più lunghe, oppure usa l’assistente flottante mentre navighi.',
         proofLabel: 'Indicatori di affidabilità',
@@ -68,8 +68,8 @@ const copy =
           },
           {
             id: '03',
-            title: 'Toolhouse dietro proxy',
-            body: 'Le richieste passano da `/api/toolhouse-chat`: Toolhouse orchestra l’agente, mentre credenziali e token restano lato server.',
+            title: 'RAG dietro proxy',
+            body: 'Le richieste passano da un proxy lato server: il sistema RAG orchestra l’agente, mentre credenziali e token restano protetti.',
           },
           {
             id: '04',
@@ -127,7 +127,7 @@ const chatHref = lang === 'en' ? '/en/chat' : '/chat';
       <div class="home-chat__preview" aria-hidden="true">
         <header class="home-chat__preview-top">
           <span>{copy.eyebrow}</span>
-          <span>RAG · Toolhouse</span>
+          <span>RAG</span>
         </header>
         <div class="home-chat__preview-thread">
           <p class="home-chat__preview-msg home-chat__preview-msg--user">{copy.previewUser}</p>

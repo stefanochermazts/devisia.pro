@@ -18,6 +18,7 @@
     "format:check": "prettier --check .",
     "lint": "eslint . --ext .js,.ts,.astro",
     "export:rag:it": "node scripts/export-rag-content.mjs --base https://devisia.pro --out rag-export/it",
+    "export:chatbot:it": "node scripts/export-chatbot-corpus-it.mjs --base https://devisia.pro --out rag-export/it/devisia-corpus-it.md",
     "blog:audit-translations": "node scripts/audit-blog-translations.mjs",
     "blog:audit-english-residue": "node scripts/audit-blog-english-residue.mjs",
     "blog:fix-slugs": "node scripts/fix-it-translation-slugs.mjs",
