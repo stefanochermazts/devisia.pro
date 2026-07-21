@@ -663,13 +663,14 @@
 
   :where(.ds-btn[data-surface="hero"][data-variant="primary"]) {
     --_bg: color-mix(in oklch, var(--ds-color-accent) 78%, white);
-    --_fg: oklch(0.99 0.006 90);
+    --_fg: var(--ds-color-on-accent);
     --_bd: color-mix(in oklch, var(--ds-color-accent) 62%, white);
   }
 
   :where(.ds-btn[data-surface="hero"][data-variant="primary"]:hover):not([aria-disabled="true"], :disabled) {
     --_bg: color-mix(in oklch, var(--ds-color-accent) 68%, white);
     --_bd: color-mix(in oklch, var(--ds-color-accent) 72%, white);
+    --_fg: var(--ds-color-on-accent);
     transform: translateY(-2px);
   }
 

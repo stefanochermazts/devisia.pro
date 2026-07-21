@@ -1,0 +1,37 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ThankYouView from '../components/site/ThankYouView.astro';
+import GoogleAdsLeadConversion from '../components/site/GoogleAdsLeadConversion.astro';
+import { getThankYouCopy, normalizeReturnPath, normalizeThankYouSource } from '../lib/thankYou';
+import { breadcrumbListJsonLd } from '../lib/seo/structuredData';
+
+const source = normalizeThankYouSource(Astro.url.searchParams.get('source'));
+const returnPath = normalizeReturnPath(Astro.url.searchParams.get('from'), 'it');
+const copy = getThankYouCopy({ lang: 'it', source });
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/' },
+    { name: 'Grazie', url: '/grazie' },
+  ],
+});
+---
+
+<Layout
+  title="Grazie"
+  documentTitle={copy.documentTitle}
+  description={copy.lede}
+  canonical="/grazie"
+  lang="it"
+  languageSwitchHref="/en/thank-you"
+  alternatePaths={{ it: '/grazie', en: '/en/thank-you', xDefault: '/grazie' }}
+  structuredData={[breadcrumbs]}
+  containMain={false}
+  showChatWidget={false}
+>
+  <meta slot="head" name="robots" content="noindex, follow" />
+  <GoogleAdsLeadConversion slot="head" />
+  <ThankYouView copy={copy} returnPath={returnPath} homePath="/" />
+</Layout>

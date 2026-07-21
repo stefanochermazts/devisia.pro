@@ -1,0 +1,86 @@
+---
+import Button from '../ui/Button.astro';
+import type { ThankYouCopy } from '../../lib/thankYou';
+
+interface Props {
+  copy: ThankYouCopy;
+  returnPath: string;
+  homePath: string;
+}
+
+const { copy, returnPath, homePath } = Astro.props;
+---
+
+<article class="thank-you" aria-labelledby="thank-you-title">
+  <div class="thank-you__inner">
+    <p class="thank-you__eyebrow">{copy.eyebrow}</p>
+    <h1 id="thank-you-title">{copy.title}</h1>
+    <p class="thank-you__lede">{copy.lede}</p>
+    <p class="thank-you__next">{copy.nextStep}</p>
+
+    <div class="thank-you__actions">
+      <Button href={returnPath} size="lg">{copy.backLabel}</Button>
+      <Button href={homePath} variant="ghost" size="lg">{copy.homeLabel}</Button>
+    </div>
+  </div>
+</article>
+
+<style>
+  .thank-you {
+    min-height: min(70vh, 42rem);
+    display: grid;
+    align-items: center;
+    padding-block: clamp(3rem, 2rem + 4vw, 6rem);
+  }
+
+  .thank-you__inner {
+    width: min(100%, 42rem);
+    margin-inline: auto;
+    padding-inline: var(--ds-container-pad);
+    display: grid;
+    gap: var(--ds-space-5);
+  }
+
+  .thank-you__eyebrow {
+    margin: 0;
+    color: var(--ds-color-accent);
+    font-family: var(--ds-font-ui);
+    font-size: var(--ds-text-xs);
+    font-weight: 800;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .thank-you h1 {
+    margin: 0;
+    max-width: 18ch;
+    font-family: var(--ds-font-display);
+    font-size: var(--ds-text-3xl);
+    font-weight: 760;
+    line-height: var(--ds-leading-tight);
+    letter-spacing: -0.022em;
+    text-wrap: balance;
+  }
+
+  .thank-you__lede,
+  .thank-you__next {
+    margin: 0;
+    max-width: 58ch;
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-lg);
+    line-height: var(--ds-leading-relaxed);
+    text-wrap: pretty;
+  }
+
+  .thank-you__next {
+    padding-top: var(--ds-space-2);
+    border-top: 1px solid var(--ds-color-border);
+  }
+
+  .thank-you__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ds-space-3);
+    margin-top: var(--ds-space-3);
+  }
+</style>

@@ -142,9 +142,8 @@ const copy: Copy = isEnglish
   data-form-variant={variant}
   data-tracking-source={trackingSource}
   data-page-path={pagePath}
+  data-thank-you-path={isEnglish ? '/en/thank-you' : '/grazie'}
   data-submitting-label={copy.fields.submitting}
-  data-success-title={copy.successTitle}
-  data-success-text={copy.successText}
   data-error-title={isEnglish ? 'Submission error' : 'Errore di invio'}
   data-generic-error={copy.genericError}
 >
@@ -337,24 +336,6 @@ const copy: Copy = isEnglish
     });
   };
 
-  const fireGoogleAdsConversion = () => {
-    try {
-      // @ts-expect-error Cookiebot/gtag globals
-      const consent = window.Cookiebot && window.Cookiebot.consent;
-      if (!consent || !consent.marketing) return;
-      // @ts-expect-error gtag global
-      if (typeof window.gtag !== 'function') return;
-      // @ts-expect-error gtag global
-      window.gtag('event', 'conversion', {
-        send_to: 'AW-17995423794/qpmdCJyIiZAcELLA8YRD',
-        value: 1.0,
-        currency: 'EUR',
-      });
-    } catch {
-      // ignore conversion failures
-    }
-  };
-
   document.querySelectorAll('[data-contact-form]').forEach((shell) => {
     if (!(shell instanceof HTMLElement)) return;
 
@@ -378,14 +359,14 @@ const copy: Copy = isEnglish
 
     const trackingSource = shell.dataset.trackingSource || '';
     const pagePath = shell.dataset.pagePath || '';
+    const thankYouPath = shell.dataset.thankYouPath || '/grazie';
     const defaultSubmitLabel = submit.textContent || '';
     const submittingLabel = shell.dataset.submittingLabel || defaultSubmitLabel;
-    const successTitle = shell.dataset.successTitle || '';
-    const successText = shell.dataset.successText || '';
     const errorTitle = shell.dataset.errorTitle || '';
     const genericError = shell.dataset.genericError || '';
     let started = false;
     let busy = false;
+    let redirecting = false;
 
     const clearErrors = () => {
       shell.querySelectorAll('[data-error-for]').forEach((node) => {
@@ -504,15 +485,18 @@ const copy: Copy = isEnglish
           return;
         }
 
-        form.hidden = true;
-        setStatus('success', successTitle, payload.message || successText);
-
         trackLeadEvent({
           event: 'lead_submit_success',
           source: trackingSource,
           pagePath,
         });
-        fireGoogleAdsConversion();
+
+        redirecting = true;
+        const thankYouUrl = new URL(thankYouPath, window.location.origin);
+        if (trackingSource) thankYouUrl.searchParams.set('source', trackingSource);
+        if (pagePath) thankYouUrl.searchParams.set('from', pagePath);
+        window.location.assign(thankYouUrl.toString());
+        return;
       } catch {
         setStatus('error', errorTitle, genericError);
         trackLeadEvent({
@@ -522,10 +506,12 @@ const copy: Copy = isEnglish
         });
         submissionIdInput.value = createSubmissionId();
       } finally {
-        busy = false;
-        submit.disabled = false;
-        submit.removeAttribute('aria-busy');
-        submit.textContent = defaultSubmitLabel;
+        if (!redirecting) {
+          busy = false;
+          submit.disabled = false;
+          submit.removeAttribute('aria-busy');
+          submit.textContent = defaultSubmitLabel;
+        }
       }
     });
   });
@@ -698,10 +684,10 @@ const copy: Copy = isEnglish
     min-width: min(100%, 16rem);
     max-width: 100%;
     padding: 1rem 1.25rem;
-    border: 1px solid var(--ds-color-accent);
+    border: 1px solid color-mix(in oklch, var(--ds-color-primary) 78%, black);
     border-radius: 0;
-    background: var(--ds-color-accent);
-    color: color-mix(in oklch, white 96%, var(--ds-color-accent));
+    background: var(--ds-color-primary);
+    color: color-mix(in oklch, white 96%, var(--ds-color-primary));
     font: inherit;
     font-size: var(--ds-text-sm);
     font-weight: 900;
@@ -716,7 +702,8 @@ const copy: Copy = isEnglish
 
   .form-submit:hover {
     transform: translateY(-2px);
-    box-shadow: 0 1rem 2rem color-mix(in oklch, var(--ds-color-accent) 22%, transparent);
+    background: color-mix(in oklch, var(--ds-color-primary) 88%, white);
+    box-shadow: 0 1rem 2rem color-mix(in oklch, var(--ds-color-primary) 22%, transparent);
   }
 
   .form-submit:focus-visible {
