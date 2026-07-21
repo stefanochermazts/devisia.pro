@@ -190,8 +190,11 @@ const copy: Copy = isEnglish
         lang={lang}
         headingId="contact-form-title"
         fieldIdPrefix={isEnglish ? 'contact-en-' : 'contact-it-'}
-        source={isEnglish ? 'contact-en' : 'contact-it'}
-        returnTo={isEnglish ? '/en/contact' : '/contatti'}
+        source="website_contact"
+        trackingSource="website_contact"
+        formId={isEnglish ? 'website-contact-en' : 'website-contact-it'}
+        pagePath={isEnglish ? '/en/contact' : '/contatti'}
+        variant="contact"
       />
     </section>
 

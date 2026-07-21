@@ -1,6 +1,15 @@
 # Environment Variables
 
-This document describes the environment variables required for the contact form email functionality.
+This document describes the environment variables required for contact/lead form email functionality and related server-side features.
+
+## Lead submissions
+
+Contact forms and LinkedIn landing forms POST to `/.netlify/functions/submit-lead`.
+
+- Submissions are stored in the Netlify Database table `lead_submissions` (see `netlify/database/migrations/`).
+- Confirmation and manager notification emails reuse the Mailtrap variables below.
+- The chat consent table (`chat_consent_events`) is separate and must not be used for leads.
+- No database credentials are exposed to the browser; `@netlify/database` runs only server-side.
 
 ## Required Variables
 
@@ -62,3 +71,27 @@ In production, these variables must be configured in the Netlify dashboard:
 ## Testing
 
 For local testing, you can use Mailtrap's sandbox environment which captures all emails without actually sending them. This is perfect for development and testing.
+
+### Lead form / landing checklist
+
+```powershell
+cd C:\laragon\www\devisia.pro
+npm run test:run
+npm run build
+netlify dev
+```
+
+Then open:
+
+- `http://localhost:8888/landing/sistemi-spiegabili`
+- `http://localhost:8888/landing/governance-ai`
+- `http://localhost:8888/landing/processi-prima-automazione`
+- `http://localhost:8888/landing/evidenze-audit`
+
+Submit a form with UTM query params (example: `?utm_source=linkedin&utm_campaign=test`) and verify:
+
+1. inline success message appears
+2. a row is created in `lead_submissions`
+3. confirmation email arrives in Mailtrap
+4. manager notification arrives when `SITE_MANAGER_EMAIL` is set
+5. a second identical `submission_id` does not create a second row

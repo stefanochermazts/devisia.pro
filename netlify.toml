@@ -89,6 +89,9 @@
 [functions.contact-email]
   timeout = 26
 
+[functions.submit-lead]
+  timeout = 26
+
 [functions.outrank-webhook]
   timeout = 60
 

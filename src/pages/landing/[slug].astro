@@ -1,0 +1,46 @@
+---
+import { existsSync } from 'node:fs';
+import { join } from 'node:path';
+import Layout from '../../layouts/Layout.astro';
+import CampaignLanding from '../../components/landing/CampaignLanding.astro';
+import { getLandingPage } from '../../data/landing/pages';
+import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
+
+export const prerender = false;
+
+const slug = Astro.params.slug ?? '';
+const config = getLandingPage(slug);
+
+if (!config) {
+  throw new Response(null, { status: 404, statusText: 'Not found' });
+}
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const imagePath = join(process.cwd(), 'public', config.seo.heroImage.replace(/^\//, ''));
+const imageAvailable = existsSync(imagePath);
+
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/' },
+    { name: config.hero.eyebrow, url: config.path },
+  ],
+});
+---
+
+<Layout
+  title={config.hero.title}
+  documentTitle={config.seo.documentTitle}
+  description={config.seo.description}
+  canonical={config.path}
+  heroImage={imageAvailable ? config.seo.heroImage : undefined}
+  structuredData={[breadcrumbs]}
+  languageSwitchHref="/en"
+  alternatePaths={{ it: config.path, xDefault: config.path }}
+  containMain={false}
+  minimalChrome={true}
+  showChatWidget={false}
+  lang="it"
+>
+  <CampaignLanding config={config} imageAvailable={imageAvailable} />
+</Layout>

@@ -18,6 +18,7 @@ const copy =
         proofPoints: ['Markdown source', 'Server-side proxy', 'Public perimeter'],
         pipelineLabel: 'How it stays reliable',
         visualWord: 'CHAT',
+        previewBadge: 'RAG',
         steps: [
           {
             id: '01',
@@ -46,40 +47,41 @@ const copy =
       }
     : {
         eyebrow: 'Chat Devisia',
-        title: 'Fai domande al sito. Ottieni risposte verificabili.',
-        signal: 'Risposte fondate, confini visibili, niente scatole nere.',
-        lead: 'Un assistente guidato ti aiuta a esplorare servizi, metodo e AI governance senza cercare pagina per pagina. Risponde solo sui contenuti pubblici Devisia e rende visibile il perimetro tecnico: Markdown esportato, knowledge indicizzata, orchestrazione RAG e guardrail lato server.',
+        title: 'Hai una domanda? Chiedila direttamente al sito.',
+        signal: 'Risposte chiare, basate su ciò che abbiamo pubblicato.',
+        lead: 'Scrivi la tua domanda come se la stessi facendo a una persona del team. La chat cerca nelle pagine Devisia e riunisce le informazioni utili in una risposta semplice. Così puoi capire più velocemente come lavoriamo, cosa possiamo fare per la tua azienda e se siamo il partner giusto.',
         cta: 'Prova la chat',
-        ctaHint: 'Apri una pagina dedicata per domande più lunghe, oppure usa l’assistente flottante mentre navighi.',
-        proofLabel: 'Indicatori di affidabilità',
-        proofPoints: ['Sorgente Markdown', 'Proxy lato server', 'Perimetro pubblico'],
-        pipelineLabel: 'Come resta affidabile',
+        ctaHint: 'Puoi aprire la chat completa oppure usare l’assistente mentre navighi.',
+        proofLabel: 'Come risponde la chat',
+        proofPoints: ['Solo contenuti pubblici', 'Risposte basate sulle fonti', 'Dati protetti'],
+        pipelineLabel: 'Come funziona la chat',
         visualWord: 'CHAT',
+        previewBadge: 'FONTI DEL SITO',
         steps: [
           {
             id: '01',
-            title: 'Knowledge leggibile',
-            body: 'Le pagine pubbliche vengono esportate in Markdown pulito con frontmatter, così ogni risposta parte da contenuti leggibili, versionabili e tracciabili.',
+            title: 'Legge ciò che pubblichiamo',
+            body: 'La chat usa i contenuti pubblici del sito: servizi, metodo, progetti e approfondimenti scritti dal team Devisia.',
           },
           {
             id: '02',
-            title: 'Ingestion pronta al retrieval',
-            body: 'I contenuti esportati vengono divisi in chunk, così l’assistente seleziona i passaggi rilevanti prima di comporre la risposta.',
+            title: 'Trova le informazioni utili',
+            body: 'Quando fai una domanda, individua nelle nostre pagine i passaggi più pertinenti, senza costringerti a cercarli uno per uno.',
           },
           {
             id: '03',
-            title: 'RAG dietro proxy',
-            body: 'Le richieste passano da un proxy lato server: il sistema RAG orchestra l’agente, mentre credenziali e token restano protetti.',
+            title: 'Prepara una risposta chiara',
+            body: 'Riunisce le informazioni trovate e le traduce in una risposta diretta, basata sulle pagine del sito.',
           },
           {
             id: '04',
-            title: 'Guardrail integrati',
-            body: 'La chat resta nel perimetro pubblico, sanitizza il Markdown in output ed evita raccolta di segreti o dati operativi privati.',
+            title: 'Rispetta confini e dati',
+            body: 'Risponde solo su informazioni pubbliche e non richiede password, accessi ai sistemi o dati riservati della tua azienda.',
           },
         ],
-        previewUser: 'Mi spieghi il vostro approccio all’AI in modo semplice?',
+        previewUser: 'Come potete aiutarci a introdurre l’AI senza perdere il controllo?',
         previewAssistant:
-          'Sì. Progettiamo sistemi AI con perimetro, governance ed evidenze chiare, così i team possono usarli senza perdere controllo.',
+          'Partiamo da un obiettivo concreto, definiamo dove l’AI può essere utile e fissiamo regole chiare su dati e responsabilità. Così il sistema resta sotto il controllo del tuo team.',
       };
 
 const chatHref = lang === 'en' ? '/en/chat' : '/chat';
@@ -127,7 +129,7 @@ const chatHref = lang === 'en' ? '/en/chat' : '/chat';
       <div class="home-chat__preview" aria-hidden="true">
         <header class="home-chat__preview-top">
           <span>{copy.eyebrow}</span>
-          <span>RAG</span>
+          <span>{copy.previewBadge}</span>
         </header>
         <div class="home-chat__preview-thread">
           <p class="home-chat__preview-msg home-chat__preview-msg--user">{copy.previewUser}</p>

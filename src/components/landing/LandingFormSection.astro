@@ -1,0 +1,33 @@
+---
+import ContactForm from '../site/ContactForm.astro';
+import type { LandingPageConfig } from '../../data/landing/types';
+
+interface Props {
+  config: LandingPageConfig;
+}
+
+const { config } = Astro.props;
+---
+
+<section
+  id="contatto"
+  class="campaign-landing__section campaign-landing__section--form"
+  aria-labelledby="campaign-form-title"
+>
+  <div class="campaign-landing__inner campaign-form-section__inner">
+    <ContactForm
+      lang="it"
+      headingId="campaign-form-title"
+      fieldIdPrefix={`${config.slug}-`}
+      showHeading={true}
+      source={config.source}
+      trackingSource={config.source}
+      formId={config.formId}
+      pagePath={config.path}
+      variant="landing"
+      formTitle={config.form.title}
+      formText={config.form.text}
+      submitLabel={config.form.submitLabel}
+    />
+  </div>
+</section>

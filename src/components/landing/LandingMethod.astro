@@ -1,0 +1,25 @@
+---
+import type { LandingPageConfig } from '../../data/landing/types';
+
+interface Props {
+  config: LandingPageConfig;
+}
+
+const { config } = Astro.props;
+---
+
+<section class="campaign-landing__section" aria-labelledby="campaign-method-title">
+  <div class="campaign-landing__inner">
+    <h2 id="campaign-method-title" class="campaign-landing__section-title">{config.method.title}</h2>
+    <ol class="campaign-method">
+      {
+        config.method.steps.map((step) => (
+          <li class="campaign-method__step">
+            <h3 class="campaign-method__label">{step.label}</h3>
+            <p class="campaign-method__text">{step.text}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

@@ -1,0 +1,26 @@
+---
+import type { LandingPageConfig } from '../../data/landing/types';
+
+interface Props {
+  config: LandingPageConfig;
+}
+
+const { config } = Astro.props;
+const { checklist } = config;
+---
+
+<section class="campaign-landing__section campaign-landing__section--surface" aria-labelledby="campaign-checklist-title">
+  <div class="campaign-landing__inner">
+    <h2 id="campaign-checklist-title" class="campaign-landing__section-title">{checklist.title}</h2>
+    <ol class="campaign-register" data-kind={checklist.kind}>
+      {
+        checklist.items.map((item, index) => (
+          <li class="campaign-register__item">
+            <span class="campaign-register__index">{String(index + 1).padStart(2, '0')}</span>
+            <p class="campaign-register__text">{item}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

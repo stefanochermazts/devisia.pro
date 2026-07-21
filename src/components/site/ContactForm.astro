@@ -4,11 +4,18 @@ interface Copy {
   formTitle: string;
   formText: string;
   privacyLink: string;
+  successTitle: string;
+  successText: string;
+  genericError: string;
   fields: {
     name: string;
     namePlaceholder: string;
     email: string;
     emailPlaceholder: string;
+    company: string;
+    companyPlaceholder: string;
+    role: string;
+    rolePlaceholder: string;
     subject: string;
     subjectPlaceholder: string;
     message: string;
@@ -16,16 +23,24 @@ interface Copy {
     consent: string;
     honeypot: string;
     submit: string;
+    submitting: string;
   };
 }
 
-interface Props {
+export interface Props {
   lang?: 'it' | 'en';
   headingId?: string;
   fieldIdPrefix?: string;
   showHeading?: boolean;
+  /** Logical source label for analytics only; server resolves authoritative source. */
   source?: string;
-  returnTo?: string;
+  formId: string;
+  pagePath: string;
+  variant?: 'contact' | 'landing';
+  submitLabel?: string;
+  formTitle?: string;
+  formText?: string;
+  trackingSource?: string;
 }
 
 const {
@@ -34,13 +49,23 @@ const {
   fieldIdPrefix = 'contact-',
   showHeading = true,
   source = 'contact',
-  returnTo = lang === 'en' ? '/en/contact' : '/contatti',
+  formId,
+  pagePath,
+  variant = 'contact',
+  submitLabel,
+  formTitle,
+  formText,
+  trackingSource = source,
 } = Astro.props;
+
 const isEnglish = lang === 'en';
+const isLandingVariant = variant === 'landing';
 
 const fieldIds = {
   name: `${fieldIdPrefix}name`,
   email: `${fieldIdPrefix}email`,
+  company: `${fieldIdPrefix}company`,
+  role: `${fieldIdPrefix}role`,
   subject: `${fieldIdPrefix}subject`,
   message: `${fieldIdPrefix}message`,
   consent: `${fieldIdPrefix}privacy-consent`,
@@ -49,15 +74,23 @@ const fieldIds = {
 const copy: Copy = isEnglish
   ? {
       formEyebrow: 'Request',
-      formTitle: 'Send us the context',
+      formTitle: formTitle || 'Send us the context',
       formText:
+        formText ||
         'You do not need a complete brief. Goal, current situation and what needs to change are enough to start.',
       privacyLink: '/en/privacy',
+      successTitle: 'Request received',
+      successText: 'We will contact you using the details you provided.',
+      genericError: 'We could not save your request. Please try again in a moment.',
       fields: {
         name: 'Name *',
         namePlaceholder: 'e.g., Alex',
-        email: 'Email *',
+        email: 'Work email *',
         emailPlaceholder: 'you@company.com',
+        company: 'Company *',
+        companyPlaceholder: 'Company name',
+        role: 'Role (optional)',
+        rolePlaceholder: 'e.g., Product, IT, Compliance',
         subject: 'Subject (optional)',
         subjectPlaceholder: 'New project / Improve a process / AI at work',
         message: 'Message *',
@@ -66,20 +99,29 @@ const copy: Copy = isEnglish
         consent:
           'I agree to the use of my details only to manage this request and reply to me. Details:',
         honeypot: 'Website',
-        submit: 'Send request',
+        submit: submitLabel || 'Send request',
+        submitting: 'Sending…',
       },
     }
   : {
       formEyebrow: 'Richiesta',
-      formTitle: 'Scrivici il contesto',
+      formTitle: formTitle || 'Scrivici il contesto',
       formText:
+        formText ||
         'Non serve un documento completo: bastano obiettivo, situazione attuale e ciò che deve cambiare.',
       privacyLink: '/privacy',
+      successTitle: 'Richiesta ricevuta',
+      successText: 'Ti contatteremo utilizzando i riferimenti indicati nel form.',
+      genericError: 'Non siamo riusciti a salvare la richiesta. Riprova tra poco.',
       fields: {
-        name: 'Nome *',
-        namePlaceholder: 'Es. Marco',
-        email: 'Email *',
+        name: 'Nome e cognome *',
+        namePlaceholder: 'Es. Marco Rossi',
+        email: 'Email di lavoro *',
         emailPlaceholder: 'nome@azienda.com',
+        company: 'Azienda *',
+        companyPlaceholder: 'Nome azienda',
+        role: 'Ruolo (facoltativo)',
+        rolePlaceholder: 'Es. Product, IT, Compliance',
         subject: 'Oggetto (facoltativo)',
         subjectPlaceholder: 'Nuovo progetto / Processo da migliorare / AI in azienda',
         message: 'Messaggio *',
@@ -88,12 +130,24 @@ const copy: Copy = isEnglish
         consent:
           'Autorizzo l’uso dei miei dati solo per gestire questa richiesta e ricevere una risposta. Dettagli:',
         honeypot: 'Sito web',
-        submit: 'Invia richiesta',
+        submit: submitLabel || 'Invia richiesta',
+        submitting: 'Invio in corso…',
       },
     };
 ---
 
-<div class="contact-form-shell" data-contact-form>
+<div
+  class="contact-form-shell"
+  data-contact-form
+  data-form-variant={variant}
+  data-tracking-source={trackingSource}
+  data-page-path={pagePath}
+  data-submitting-label={copy.fields.submitting}
+  data-success-title={copy.successTitle}
+  data-success-text={copy.successText}
+  data-error-title={isEnglish ? 'Submission error' : 'Errore di invio'}
+  data-generic-error={copy.genericError}
+>
   {
     showHeading && (
       <div class="contact-form-heading">
@@ -104,24 +158,35 @@ const copy: Copy = isEnglish
     )
   }
 
+  <div class="contact-form-status" data-contact-status aria-live="polite" aria-atomic="true"></div>
+
   <form
     name="contact"
     method="POST"
-    data-netlify="true"
-    netlify-honeypot="bot-field"
-    action="/.netlify/functions/contact-email"
+    action="/.netlify/functions/submit-lead"
     class="contact-form"
+    novalidate
+    data-contact-form-el
   >
-    <input type="hidden" name="form-name" value="contact" />
     <p class="hidden" aria-hidden="true" inert>
       <label>
         {copy.fields.honeypot}
         <input type="text" name="bot-field" tabindex="-1" autocomplete="off" aria-hidden="true" />
       </label>
     </p>
+
     <input type="hidden" name="lang" value={lang} />
     <input type="hidden" name="source" value={source} />
-    <input type="hidden" name="return_to" value={returnTo} />
+    <input type="hidden" name="form_id" value={formId} />
+    <input type="hidden" name="page_path" value={pagePath} />
+    <input type="hidden" name="submission_id" value="" data-submission-id />
+    <input type="hidden" name="form_loaded_at" value="" data-form-loaded-at />
+    <input type="hidden" name="utm_source" value="" data-utm="utm_source" />
+    <input type="hidden" name="utm_medium" value="" data-utm="utm_medium" />
+    <input type="hidden" name="utm_campaign" value="" data-utm="utm_campaign" />
+    <input type="hidden" name="utm_content" value="" data-utm="utm_content" />
+    <input type="hidden" name="utm_term" value="" data-utm="utm_term" />
+    <input type="hidden" name="referrer" value="" data-referrer />
 
     <div class="form-grid">
       <div class="form-group">
@@ -135,7 +200,9 @@ const copy: Copy = isEnglish
           autocomplete="name"
           class="form-input"
           placeholder={copy.fields.namePlaceholder}
+          data-field="full_name"
         />
+        <p class="form-field-error" data-error-for="full_name" hidden></p>
       </div>
 
       <div class="form-group">
@@ -150,21 +217,68 @@ const copy: Copy = isEnglish
           inputmode="email"
           class="form-input"
           placeholder={copy.fields.emailPlaceholder}
+          data-field="email"
         />
+        <p class="form-field-error" data-error-for="email" hidden></p>
       </div>
     </div>
 
-    <div class="form-group">
-      <label for={fieldIds.subject} class="form-label">{copy.fields.subject}</label>
-      <input
-        type="text"
-        id={fieldIds.subject}
-        name="subject"
-        maxlength="200"
-        class="form-input"
-        placeholder={copy.fields.subjectPlaceholder}
-      />
-    </div>
+    {
+      isLandingVariant ? (
+        <div class="form-grid">
+          <div class="form-group">
+            <label for={fieldIds.company} class="form-label">
+              {copy.fields.company}
+            </label>
+            <input
+              type="text"
+              id={fieldIds.company}
+              name="company"
+              required
+              maxlength="160"
+              autocomplete="organization"
+              class="form-input"
+              placeholder={copy.fields.companyPlaceholder}
+              data-field="company"
+            />
+            <p class="form-field-error" data-error-for="company" hidden></p>
+          </div>
+
+          <div class="form-group">
+            <label for={fieldIds.role} class="form-label">
+              {copy.fields.role}
+            </label>
+            <input
+              type="text"
+              id={fieldIds.role}
+              name="role"
+              maxlength="120"
+              autocomplete="organization-title"
+              class="form-input"
+              placeholder={copy.fields.rolePlaceholder}
+              data-field="role"
+            />
+            <p class="form-field-error" data-error-for="role" hidden></p>
+          </div>
+        </div>
+      ) : (
+        <div class="form-group">
+          <label for={fieldIds.subject} class="form-label">
+            {copy.fields.subject}
+          </label>
+          <input
+            type="text"
+            id={fieldIds.subject}
+            name="subject"
+            maxlength="200"
+            class="form-input"
+            placeholder={copy.fields.subjectPlaceholder}
+            data-field="subject"
+          />
+          <p class="form-field-error" data-error-for="subject" hidden></p>
+        </div>
+      )
+    }
 
     <div class="form-group">
       <label for={fieldIds.message} class="form-label">{copy.fields.message}</label>
@@ -176,7 +290,9 @@ const copy: Copy = isEnglish
         rows="7"
         dir="auto"
         class="form-input"
-        placeholder={copy.fields.messagePlaceholder}></textarea>
+        placeholder={copy.fields.messagePlaceholder}
+        data-field="message"></textarea>
+      <p class="form-field-error" data-error-for="message" hidden></p>
     </div>
 
     <div class="form-group form-group--consent">
@@ -188,6 +304,7 @@ const copy: Copy = isEnglish
           value="true"
           required
           class="consent-checkbox"
+          data-field="privacy_consent"
         />
         <span class="consent-text">
           {copy.fields.consent}
@@ -196,6 +313,7 @@ const copy: Copy = isEnglish
           >
         </span>
       </label>
+      <p class="form-field-error" data-error-for="privacy_consent" hidden></p>
     </div>
 
     <button type="submit" class="form-submit" data-contact-submit>
@@ -205,18 +323,210 @@ const copy: Copy = isEnglish
 </div>
 
 <script>
-  document.querySelectorAll('[data-contact-form]').forEach((shell) => {
-    const form = shell.querySelector('form.contact-form');
-    const submit = shell.querySelector('[data-contact-submit]');
+  import { captureUtmFromLocation } from '../../lib/utm';
+  import { trackLeadEvent } from '../../lib/leadTracking';
 
-    if (!(form instanceof HTMLFormElement) || !(submit instanceof HTMLButtonElement)) {
+  const createSubmissionId = () => {
+    if (typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function') {
+      return crypto.randomUUID();
+    }
+    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (char) => {
+      const rand = (Math.random() * 16) | 0;
+      const value = char === 'x' ? rand : (rand & 0x3) | 0x8;
+      return value.toString(16);
+    });
+  };
+
+  const fireGoogleAdsConversion = () => {
+    try {
+      // @ts-expect-error Cookiebot/gtag globals
+      const consent = window.Cookiebot && window.Cookiebot.consent;
+      if (!consent || !consent.marketing) return;
+      // @ts-expect-error gtag global
+      if (typeof window.gtag !== 'function') return;
+      // @ts-expect-error gtag global
+      window.gtag('event', 'conversion', {
+        send_to: 'AW-17995423794/qpmdCJyIiZAcELLA8YRD',
+        value: 1.0,
+        currency: 'EUR',
+      });
+    } catch {
+      // ignore conversion failures
+    }
+  };
+
+  document.querySelectorAll('[data-contact-form]').forEach((shell) => {
+    if (!(shell instanceof HTMLElement)) return;
+
+    const form = shell.querySelector('[data-contact-form-el]');
+    const submit = shell.querySelector('[data-contact-submit]');
+    const status = shell.querySelector('[data-contact-status]');
+    const submissionIdInput = shell.querySelector('[data-submission-id]');
+    const loadedAtInput = shell.querySelector('[data-form-loaded-at]');
+    const referrerInput = shell.querySelector('[data-referrer]');
+
+    if (
+      !(form instanceof HTMLFormElement) ||
+      !(submit instanceof HTMLButtonElement) ||
+      !(status instanceof HTMLElement) ||
+      !(submissionIdInput instanceof HTMLInputElement) ||
+      !(loadedAtInput instanceof HTMLInputElement) ||
+      !(referrerInput instanceof HTMLInputElement)
+    ) {
       return;
     }
 
-    form.addEventListener('submit', () => {
-      if (submit.disabled) return;
+    const trackingSource = shell.dataset.trackingSource || '';
+    const pagePath = shell.dataset.pagePath || '';
+    const defaultSubmitLabel = submit.textContent || '';
+    const submittingLabel = shell.dataset.submittingLabel || defaultSubmitLabel;
+    const successTitle = shell.dataset.successTitle || '';
+    const successText = shell.dataset.successText || '';
+    const errorTitle = shell.dataset.errorTitle || '';
+    const genericError = shell.dataset.genericError || '';
+    let started = false;
+    let busy = false;
+
+    const clearErrors = () => {
+      shell.querySelectorAll('[data-error-for]').forEach((node) => {
+        if (!(node instanceof HTMLElement)) return;
+        node.hidden = true;
+        node.textContent = '';
+      });
+      shell.querySelectorAll('[data-field]').forEach((node) => {
+        if (node instanceof HTMLElement) node.removeAttribute('aria-invalid');
+      });
+    };
+
+    const setFieldError = (field: string, message: string) => {
+      const errorNode = shell.querySelector(`[data-error-for="${field}"]`);
+      const fieldNode = shell.querySelector(`[data-field="${field}"]`);
+      if (errorNode instanceof HTMLElement) {
+        errorNode.hidden = false;
+        errorNode.textContent = message;
+      }
+      if (fieldNode instanceof HTMLElement) {
+        fieldNode.setAttribute('aria-invalid', 'true');
+      }
+    };
+
+    const setStatus = (kind: 'idle' | 'error' | 'success', title = '', text = '') => {
+      status.dataset.state = kind;
+      if (kind === 'idle') {
+        status.innerHTML = '';
+        return;
+      }
+      status.innerHTML = `<div class="contact-form-status__card" data-kind="${kind}"><strong>${title}</strong><p>${text}</p></div>`;
+    };
+
+    const hydrateMeta = () => {
+      if (!submissionIdInput.value) submissionIdInput.value = createSubmissionId();
+      if (!loadedAtInput.value) loadedAtInput.value = String(Date.now());
+      referrerInput.value = typeof document !== 'undefined' ? document.referrer.slice(0, 500) : '';
+
+      const utm = captureUtmFromLocation();
+      shell.querySelectorAll('[data-utm]').forEach((node) => {
+        if (!(node instanceof HTMLInputElement)) return;
+        const key = node.dataset.utm;
+        if (!key) return;
+        node.value = utm[key as keyof typeof utm] || '';
+      });
+    };
+
+    hydrateMeta();
+
+    form.addEventListener(
+      'input',
+      () => {
+        if (started) return;
+        started = true;
+        trackLeadEvent({
+          event: 'lead_form_start',
+          source: trackingSource,
+          pagePath,
+        });
+      },
+      { once: true }
+    );
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      if (busy) return;
+
+      hydrateMeta();
+      clearErrors();
+      setStatus('idle');
+
+      busy = true;
       submit.disabled = true;
       submit.setAttribute('aria-busy', 'true');
+      submit.textContent = submittingLabel;
+
+      try {
+        const params = new URLSearchParams();
+        new FormData(form).forEach((value, key) => {
+          if (typeof value === 'string') params.append(key, value);
+        });
+
+        const response = await fetch(form.action, {
+          method: 'POST',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+          },
+          body: params,
+        });
+
+        const payload = (await response.json().catch(() => ({}))) as {
+          ok?: boolean;
+          message?: string;
+          error?: string;
+          fieldErrors?: Record<string, string>;
+        };
+
+        if (!response.ok || !payload.ok) {
+          const fieldErrors = payload.fieldErrors || {};
+          Object.entries(fieldErrors).forEach(([field, message]) => {
+            if (field === 'form') return;
+            setFieldError(field, message);
+          });
+
+          const message = fieldErrors.form || payload.error || genericError;
+          setStatus('error', errorTitle, message);
+
+          trackLeadEvent({
+            event: 'lead_submit_error',
+            source: trackingSource,
+            pagePath,
+          });
+
+          submissionIdInput.value = createSubmissionId();
+          return;
+        }
+
+        form.hidden = true;
+        setStatus('success', successTitle, payload.message || successText);
+
+        trackLeadEvent({
+          event: 'lead_submit_success',
+          source: trackingSource,
+          pagePath,
+        });
+        fireGoogleAdsConversion();
+      } catch {
+        setStatus('error', errorTitle, genericError);
+        trackLeadEvent({
+          event: 'lead_submit_error',
+          source: trackingSource,
+          pagePath,
+        });
+        submissionIdInput.value = createSubmissionId();
+      } finally {
+        busy = false;
+        submit.disabled = false;
+        submit.removeAttribute('aria-busy');
+        submit.textContent = defaultSubmitLabel;
+      }
     });
   });
 </script>
@@ -295,7 +605,7 @@ const copy: Copy = isEnglish
   }
 
   .form-group--consent {
-    gap: 0;
+    gap: 0.5rem;
   }
 
   .form-label {
@@ -318,9 +628,9 @@ const copy: Copy = isEnglish
     font: inherit;
     font-size: var(--ds-text-md);
     transition:
-      border-color 0.2s ease,
-      box-shadow 0.2s ease,
-      background-color 0.2s ease;
+      border-color var(--ds-motion-base) var(--ds-ease-standard),
+      box-shadow var(--ds-motion-base) var(--ds-ease-standard),
+      background-color var(--ds-motion-base) var(--ds-ease-standard);
   }
 
   .form-input::placeholder {
@@ -335,9 +645,20 @@ const copy: Copy = isEnglish
     box-shadow: 0 0 0 3px color-mix(in oklch, var(--ds-color-accent) 24%, transparent);
   }
 
+  .form-input[aria-invalid='true'] {
+    border-color: var(--ds-color-danger);
+  }
+
   textarea.form-input {
     min-height: 12rem;
     resize: vertical;
+  }
+
+  .form-field-error {
+    margin: 0;
+    color: var(--ds-color-danger);
+    font-size: var(--ds-text-xs);
+    line-height: 1.4;
   }
 
   .consent-label {
@@ -388,9 +709,9 @@ const copy: Copy = isEnglish
     text-transform: uppercase;
     cursor: pointer;
     transition:
-      transform 0.18s ease,
-      box-shadow 0.18s ease,
-      background-color 0.18s ease;
+      transform var(--ds-motion-base) var(--ds-ease-standard),
+      box-shadow var(--ds-motion-base) var(--ds-ease-standard),
+      background-color var(--ds-motion-base) var(--ds-ease-standard);
   }
 
   .form-submit:hover {
@@ -405,6 +726,50 @@ const copy: Copy = isEnglish
 
   .form-submit:active {
     transform: translateY(0);
+  }
+
+  .form-submit[aria-busy='true'] {
+    opacity: 0.78;
+    cursor: progress;
+  }
+
+  .contact-form-status {
+    min-height: 0;
+  }
+
+  .contact-form-status:not(:empty) {
+    margin-bottom: var(--ds-space-5);
+  }
+
+  .contact-form-status__card {
+    padding: var(--ds-space-5);
+    border: 1px solid var(--ds-color-border-strong);
+    background: var(--ds-color-surface);
+  }
+
+  .contact-form-status__card[data-kind='success'] {
+    border-color: color-mix(in oklch, var(--ds-color-success) 45%, var(--ds-color-border));
+    background: color-mix(in oklch, var(--ds-color-success) 8%, var(--ds-color-surface));
+  }
+
+  .contact-form-status__card[data-kind='error'] {
+    border-color: color-mix(in oklch, var(--ds-color-danger) 45%, var(--ds-color-border));
+    background: color-mix(in oklch, var(--ds-color-danger) 8%, var(--ds-color-surface));
+  }
+
+  .contact-form-status__card strong {
+    display: block;
+    margin-bottom: var(--ds-space-2);
+    font-family: var(--ds-font-heading);
+    font-size: var(--ds-text-lg);
+  }
+
+  .contact-form-status__card p {
+    margin: 0;
+    max-width: 52ch;
+    color: var(--ds-color-text-muted);
+    line-height: var(--ds-leading-relaxed);
+    text-wrap: pretty;
   }
 
   @media (max-width: 44rem) {

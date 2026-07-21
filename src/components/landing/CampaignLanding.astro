@@ -1,0 +1,46 @@
+---
+import LandingHero from './LandingHero.astro';
+import LandingProblem from './LandingProblem.astro';
+import LandingChecklist from './LandingChecklist.astro';
+import LandingMethod from './LandingMethod.astro';
+import LandingResults from './LandingResults.astro';
+import LandingFormSection from './LandingFormSection.astro';
+import type { LandingPageConfig } from '../../data/landing/types';
+import '../../styles/landing.css';
+
+interface Props {
+  config: LandingPageConfig;
+  imageAvailable?: boolean;
+}
+
+const { config, imageAvailable = true } = Astro.props;
+---
+
+<article class="campaign-landing" data-landing-page data-landing-source={config.source} data-landing-path={config.path}>
+  <LandingHero config={config} imageAvailable={imageAvailable} />
+  <LandingProblem config={config} />
+  <LandingChecklist config={config} />
+  <LandingMethod config={config} />
+  <LandingResults config={config} />
+  <LandingFormSection config={config} />
+</article>
+
+<script>
+  import { trackLeadEvent } from '../../lib/leadTracking';
+  import { captureUtmFromLocation } from '../../lib/utm';
+
+  const page = document.querySelector('[data-landing-page]');
+  if (page instanceof HTMLElement) {
+    const source = page.dataset.landingSource || '';
+    const pagePath = page.dataset.landingPath || '';
+
+    captureUtmFromLocation();
+    trackLeadEvent({ event: 'landing_view', source, pagePath });
+
+    page.querySelectorAll('[data-landing-hero-cta]').forEach((node) => {
+      node.addEventListener('click', () => {
+        trackLeadEvent({ event: 'hero_cta_click', source, pagePath });
+      });
+    });
+  }
+</script>

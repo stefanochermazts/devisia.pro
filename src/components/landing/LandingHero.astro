@@ -1,0 +1,58 @@
+---
+import Button from '../ui/Button.astro';
+import type { LandingPageConfig } from '../../data/landing/types';
+
+interface Props {
+  config: LandingPageConfig;
+  imageAvailable?: boolean;
+}
+
+const { config, imageAvailable = true } = Astro.props;
+const { hero, seo } = config;
+---
+
+<section class="campaign-hero campaign-landing__section" aria-labelledby="campaign-hero-title">
+  <div class="campaign-landing__inner campaign-hero__grid">
+    <div class="campaign-hero__copy">
+      <p class="campaign-landing__eyebrow">{hero.eyebrow}</p>
+      <h1 id="campaign-hero-title" class="campaign-landing__title">{hero.title}</h1>
+      <p class="campaign-landing__lede">{hero.lede}</p>
+      <div class="campaign-hero__actions">
+        <Button href="#contatto" size="lg" data-surface="hero" data-landing-hero-cta>
+          {hero.ctaLabel}
+        </Button>
+      </div>
+    </div>
+
+    {
+      imageAvailable && (
+        <div class="campaign-hero__visual">
+          <img
+            src={seo.heroImage}
+            alt={hero.imageAlt}
+            width="900"
+            height="1200"
+            loading="eager"
+            decoding="async"
+            data-landing-hero-image
+          />
+        </div>
+      )
+    }
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll('[data-landing-hero-image]').forEach((node) => {
+    if (!(node instanceof HTMLImageElement)) return;
+    const visual = node.closest('.campaign-hero__visual');
+    if (!(visual instanceof HTMLElement)) return;
+
+    const hide = () => {
+      visual.hidden = true;
+    };
+
+    node.addEventListener('error', hide, { once: true });
+    if (node.complete && node.naturalWidth === 0) hide();
+  });
+</script>
