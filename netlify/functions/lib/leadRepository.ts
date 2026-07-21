@@ -19,14 +19,19 @@ const asLeadRows = (value: unknown): LeadRow[] => {
   });
 };
 
+const summarizeError = (error: unknown): string => {
+  if (!(error instanceof Error)) return 'unknown_db_error';
+  return `${error.name}: ${error.message}`.slice(0, 220);
+};
+
 export async function insertLeadSubmission(data: ParsedLeadPayload): Promise<LeadInsertResult> {
   try {
     const db = getDatabase();
     const privacyAcceptedAt = new Date().toISOString();
-    const metadata = JSON.stringify({
+    const metadata = {
       form_loaded_at: data.formLoadedAt,
       variant: data.sourceConfig.variant,
-    });
+    };
 
     const inserted = await db.sql<LeadRow>`
       INSERT INTO lead_submissions (
@@ -55,7 +60,7 @@ export async function insertLeadSubmission(data: ParsedLeadPayload): Promise<Lea
         confirmation_email_status
       )
       VALUES (
-        ${data.submissionId}::uuid,
+        ${data.submissionId},
         ${data.sourceConfig.source},
         ${data.formId},
         ${data.pagePath},
@@ -67,7 +72,7 @@ export async function insertLeadSubmission(data: ParsedLeadPayload): Promise<Lea
         ${data.subject},
         ${data.message},
         ${data.privacyAccepted},
-        ${privacyAcceptedAt}::timestamptz,
+        ${privacyAcceptedAt},
         ${data.marketingAccepted},
         ${data.utmSource},
         ${data.utmMedium},
@@ -75,12 +80,12 @@ export async function insertLeadSubmission(data: ParsedLeadPayload): Promise<Lea
         ${data.utmContent},
         ${data.utmTerm},
         ${data.referrer},
-        'new',
-        ${metadata}::jsonb,
-        'pending'
+        ${'new'},
+        ${JSON.stringify(metadata)}::jsonb,
+        ${'pending'}
       )
       ON CONFLICT (submission_id) DO NOTHING
-      RETURNING id
+      RETURNING id::text AS id
     `;
 
     const rows = asLeadRows(inserted);
@@ -89,18 +94,20 @@ export async function insertLeadSubmission(data: ParsedLeadPayload): Promise<Lea
     }
 
     const existing = await db.sql<LeadRow>`
-      SELECT id
+      SELECT id::text AS id
       FROM lead_submissions
-      WHERE submission_id = ${data.submissionId}::uuid
+      WHERE submission_id = ${data.submissionId}
       LIMIT 1
     `;
     const existingRows = asLeadRows(existing);
     return { kind: 'duplicate', id: existingRows[0]?.id ?? null };
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'unknown_db_error';
     console.error('lead_submissions insert failed', {
       code: 'db_insert_failed',
-      detail: message.slice(0, 180),
+      detail: summarizeError(error),
+      source: data.sourceConfig.source,
+      formId: data.formId,
+      pagePath: data.pagePath,
     });
     return { kind: 'error', code: 'db_insert_failed' };
   }
@@ -120,15 +127,15 @@ export async function updateConfirmationEmailStatus(params: {
       UPDATE lead_submissions
       SET
         confirmation_email_status = ${params.status},
-        confirmation_email_sent_at = ${sentAt}::timestamptz,
+        confirmation_email_sent_at = ${sentAt},
         confirmation_email_error = ${errorCode}
-      WHERE submission_id = ${params.submissionId}::uuid
+      WHERE submission_id = ${params.submissionId}
     `;
   } catch (error) {
-    const message = error instanceof Error ? error.message : 'unknown_db_error';
     console.error('lead_submissions email status update failed', {
       code: 'db_email_status_failed',
-      detail: message.slice(0, 180),
+      detail: summarizeError(error),
+      submissionId: params.submissionId,
     });
   }
 }

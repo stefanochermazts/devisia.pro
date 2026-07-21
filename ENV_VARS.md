@@ -4,7 +4,7 @@ This document describes the environment variables required for contact/lead form
 
 ## Lead submissions
 
-Contact forms and LinkedIn landing forms POST to `/.netlify/functions/submit-lead`.
+Contact forms and LinkedIn landing forms POST to `/api/submit-lead` (Astro API route on the Netlify SSR function). A compatibility Netlify Function remains at `/.netlify/functions/submit-lead`.
 
 - Submissions are stored in the Netlify Database table `lead_submissions` (see `netlify/database/migrations/`).
 - Confirmation and manager notification emails reuse the Mailtrap variables below.

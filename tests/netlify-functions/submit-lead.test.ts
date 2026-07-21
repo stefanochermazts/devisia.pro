@@ -16,6 +16,7 @@ vi.mock('../../netlify/functions/lib/mailtrap', () => ({
   sendViaMailtrapApi,
 }));
 
+import { handleSubmitLeadRequest } from '../../netlify/functions/lib/submitLeadHandler';
 import { handler } from '../../netlify/functions/submit-lead';
 
 const postEvent = (body: string): HandlerEvent =>
@@ -28,7 +29,7 @@ const postEvent = (body: string): HandlerEvent =>
     body,
   }) as HandlerEvent;
 
-describe('submit-lead function', () => {
+describe('submit-lead handler', () => {
   beforeEach(() => {
     vi.clearAllMocks();
     process.env.SITE_MANAGER_EMAIL = 'manager@example.com';
@@ -87,11 +88,15 @@ describe('submit-lead function', () => {
       form_loaded_at: String(Date.now() - 5000),
     }).toString();
 
-    const response = await handler(postEvent(body), {} as never, undefined as never);
-    const payload = JSON.parse(response.body || '{}');
+    const result = await handleSubmitLeadRequest({
+      method: 'POST',
+      contentType: 'application/x-www-form-urlencoded',
+      rawBody: body,
+      clientKey: '127.0.0.1',
+    });
 
-    expect(response.statusCode).toBe(200);
-    expect(payload.ok).toBe(true);
+    expect(result.status).toBe(200);
+    expect(result.body.ok).toBe(true);
     expect(updateConfirmationEmailStatus).toHaveBeenCalledWith(
       expect.objectContaining({ status: 'failed', errorCode: 'email_send_failed' })
     );
