@@ -8,14 +8,21 @@ interface Props {
 const { config } = Astro.props;
 ---
 
-<section class="campaign-landing__section campaign-landing__section--surface" aria-labelledby="campaign-results-title">
+<section
+  class="campaign-landing__section campaign-landing__section--surface"
+  aria-labelledby="campaign-results-title"
+>
   <div class="campaign-landing__inner">
-    <h2 id="campaign-results-title" class="campaign-landing__section-title">{config.results.title}</h2>
-    <ul class="campaign-results">
+    <h2 id="campaign-results-title" class="campaign-landing__section-title">
+      {config.results.title}
+    </h2>
+    <ul class="campaign-results" role="list">
       {
         config.results.items.map((item) => (
           <li class="campaign-results__item">
-            <span class="campaign-results__mark" aria-hidden="true"></span>
+            <span class="campaign-results__mark" aria-hidden="true">
+              ↗
+            </span>
             <p class="campaign-results__text">{item}</p>
           </li>
         ))

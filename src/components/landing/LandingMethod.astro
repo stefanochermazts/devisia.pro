@@ -10,11 +10,14 @@ const { config } = Astro.props;
 
 <section class="campaign-landing__section" aria-labelledby="campaign-method-title">
   <div class="campaign-landing__inner">
-    <h2 id="campaign-method-title" class="campaign-landing__section-title">{config.method.title}</h2>
+    <h2 id="campaign-method-title" class="campaign-landing__section-title">
+      {config.method.title}
+    </h2>
     <ol class="campaign-method">
       {
-        config.method.steps.map((step) => (
+        config.method.steps.map((step, index) => (
           <li class="campaign-method__step">
+            <span class="campaign-method__index">{String(index + 1).padStart(2, '0')}</span>
             <h3 class="campaign-method__label">{step.label}</h3>
             <p class="campaign-method__text">{step.text}</p>
           </li>

@@ -9,18 +9,22 @@ const { config } = Astro.props;
 const { checklist } = config;
 ---
 
-<section class="campaign-landing__section campaign-landing__section--surface" aria-labelledby="campaign-checklist-title">
+<section
+  class="campaign-landing__section campaign-landing__section--surface"
+  aria-labelledby="campaign-checklist-title"
+>
   <div class="campaign-landing__inner">
-    <h2 id="campaign-checklist-title" class="campaign-landing__section-title">{checklist.title}</h2>
-    <ol class="campaign-register" data-kind={checklist.kind}>
+    <h2 id="campaign-checklist-title" class="campaign-landing__section-title">
+      {checklist.title}
+    </h2>
+    <ul class="campaign-register" data-kind={checklist.kind} role="list">
       {
-        checklist.items.map((item, index) => (
+        checklist.items.map((item) => (
           <li class="campaign-register__item">
-            <span class="campaign-register__index">{String(index + 1).padStart(2, '0')}</span>
             <p class="campaign-register__text">{item}</p>
           </li>
         ))
       }
-    </ol>
+    </ul>
   </div>
 </section>

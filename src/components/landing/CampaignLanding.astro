@@ -16,7 +16,12 @@ interface Props {
 const { config, imageAvailable = true } = Astro.props;
 ---
 
-<article class="campaign-landing" data-landing-page data-landing-source={config.source} data-landing-path={config.path}>
+<article
+  class="campaign-landing"
+  data-landing-page
+  data-landing-source={config.source}
+  data-landing-path={config.path}
+>
   <LandingHero config={config} imageAvailable={imageAvailable} />
   <LandingProblem config={config} />
   <LandingChecklist config={config} />

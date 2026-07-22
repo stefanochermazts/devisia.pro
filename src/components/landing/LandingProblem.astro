@@ -10,7 +10,11 @@ const { config } = Astro.props;
 
 <section class="campaign-landing__section" aria-labelledby="campaign-problem-title">
   <div class="campaign-landing__inner">
-    <h2 id="campaign-problem-title" class="campaign-landing__section-title">{config.problem.title}</h2>
-    <p class="campaign-landing__prose">{config.problem.text}</p>
+    <div class="campaign-problem__content">
+      <h2 id="campaign-problem-title" class="campaign-landing__section-title">
+        {config.problem.title}
+      </h2>
+      <p class="campaign-landing__prose">{config.problem.text}</p>
+    </div>
   </div>
 </section>
