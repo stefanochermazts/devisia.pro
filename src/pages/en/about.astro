@@ -5,7 +5,7 @@ import EditorialCTA from '../../components/site/EditorialCTA.astro';
 import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
 
 const description =
-  'Devisia is a software development company for products, responsible AI and operational compliance where control, architecture and traceability matter.';
+  'Devisia designs and builds governable digital systems: custom software, AI with a clear perimeter, and operational compliance with evidence.';
 
 const site = Astro.site ?? new URL('https://devisia.pro');
 const breadcrumbs = breadcrumbListJsonLd({
@@ -17,44 +17,50 @@ const breadcrumbs = breadcrumbListJsonLd({
 });
 ---
 
-<Layout lang="en" title="About Devisia: custom software development" description={description} structuredData={[breadcrumbs]}>
+<Layout lang="en" title="About Devisia: partner for governable systems" description={description} structuredData={[breadcrumbs]}>
   <PageIntro
-    h1="A software development company for systems that must stay under control"
-    lede="Devisia brings together platform development, responsible AI, data governance and operational compliance for real problems of process, security, audit and accountability."
+    eyebrow="Sheet · About"
+    h1="The partner that brings order before accelerating"
+    lede="Devisia joins custom software, governed AI and operational compliance for teams that already have something to lose: continuity, reputation, data, audit."
   />
 
   <section class="ds-stack ds-reading" data-gap="lg" style="margin-bottom: var(--ds-space-8)">
     <h2>Why we exist</h2>
     <p>
-      To prevent digital work from becoming fragile stacks, buried requirements, ungoverned models in production and scattered evidence when you must prove
-      something. We work with teams that have something to lose: reputation, continuity, regulation, customers, data.
+      So “digital” does not become a fragile stack, buried requirements, models without criteria, or
+      scattered evidence when you must prove something. We put process, boundaries and proof on the
+      sheet — then we build.
     </p>
 
     <h2>Problems we tackle</h2>
     <ul>
-      <li>Processes and data misaligned across business units, systems and suppliers.</li>
-      <li>Software that grows by accretion and becomes opaque to operators and auditors.</li>
-      <li>AI used where boundaries, validation or trace are missing.</li>
-      <li>Compliance asks that are not supported by tools, logs, exports and clear ownership.</li>
+      <li>Processes and data misaligned across units, systems and suppliers.</li>
+      <li>Software grown by accretion, opaque to operators and auditors.</li>
+      <li>AI introduced where perimeter, validation or trail are missing.</li>
+      <li>Compliance asks unsupported by tools, logs, exports and ownership.</li>
     </ul>
 
     <h2>How we think</h2>
-    <p>Architecture and accountability before code and automation, once the perimeter is clear. Evidence, not theatre.</p>
+    <p>Schema and accountability first; code and automation once guardrails are clear. Evidence, not theatre.</p>
 
     <h2>Products</h2>
     <p>
-      We ship <a href="/en/products">vertical products</a> when the repeatable pain is clear. AuditReady is the current public product.
+      We ship <a href="/en/products">vertical products</a> when the best fix is to make operational
+      what otherwise stays in spreadsheets: order, export, tracking.
     </p>
 
     <h2>What we are not</h2>
-    <p>Not a generic full-service agency, not a slide vendor. If you want transformation without touching process, we are misaligned.</p>
+    <p>
+      Not a generic full-service agency, not a slide vendor. If you want transformation without
+      touching process, we are misaligned.
+    </p>
   </section>
 
   <EditorialCTA
     variant="tint"
-    title="If your next constraint is serious, treat it with competence, not slogans"
-    ctaLabel="Get to know your context"
+    title="If the next constraint is serious, treat it with competence"
+    ctaLabel="Share your context"
     ctaHref="/en/contact"
-    copy="First touch: understand facts, constraints, ownership and acceptance criteria, without forcing a stack or vendor choice."
+    copy="First contact: facts, constraints, ownership and acceptance criteria — without forcing a stack or vendor."
   />
 </Layout>

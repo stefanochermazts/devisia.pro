@@ -1,0 +1,28 @@
+{
+  "title": "Composizione home — Schema di processo",
+  "question": "Tre concept della home nello stesso mondo. Quale costruire? Puoi chiedere un mix nello steer.",
+  "options": [
+    {
+      "id": "comp-a-split",
+      "label": "Cucitura opaco / governato",
+      "kicker": "STAGING ASSEGNATO",
+      "body": "Primo viewport a due facce: flusso confuso a sinistra, schema con cancelli a destra, maniglia sulla cucitura, CTA sotto, cartiglio in basso. Dimostra il meccanismo in un colpo. Rischio: la maniglia va resa accessibile da tastiera.",
+      "hero": ".impeccable/comps/comp-a-split-schema.png"
+    },
+    {
+      "id": "comp-b-fullsheet",
+      "label": "Foglio P&ID a tre flussi",
+      "body": "L'intero hero e' un foglio di disegno: Software / AI / Compliance passano cancelli e convergono in Sistema leggibile; legenda a sinistra; cartiglio e CTA a timbro. Massima densita' di prova. Rischio: troppo denso su mobile se non si re-scheda.",
+      "hero": ".impeccable/comps/comp-b-fullsheet-pid.png"
+    },
+    {
+      "id": "comp-c-pipeline",
+      "label": "Colonna a cancelli",
+      "body": "Pipeline verticale Contesto→Confini→Costruzione→Prove→Continuita' con valvole ember/pine, headline a sinistra, CTA a destra, note TAG sul margine. Chiaro sul metodo. Rischio: meno contrasto immediato problema/soluzione rispetto allo split.",
+      "hero": ".impeccable/comps/comp-c-vertical-pipeline.png"
+    }
+  ],
+  "reroll": false,
+  "canon": false,
+  "steer": true
+}

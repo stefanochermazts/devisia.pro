@@ -1,0 +1,260 @@
+---
+/**
+ * THESIS: Home reads as a P&ID drawing sheet — three flows through guardrails into one readable system; refuses SaaS hero metrics and control-room dashboards.
+ * OWN-WORLD: Ivory sheet, ink linework, ember risk / pine verified, legend rail, title block; Bitter / Manrope / Lexend locked.
+ * STORY: Visitor sees Software + Governed AI + Compliance converge, believes Devisia designs before automating, acts on method/contact.
+ * FIRST VIEWPORT: Full-sheet schema with legend, three parallel flows, guardrail diamonds, merge vessel, stamp CTA, cartiglio.
+ * FORM: Schema di processo (#4, seed a3ccc5dc); staging fullsheet (comp-b); term guardrail.
+ */
+export interface Props {
+  lang: 'it' | 'en';
+}
+
+const { lang } = Astro.props;
+const isEn = lang === 'en';
+
+const copy = isEn
+  ? {
+      drawingNo: 'DE-VD-001',
+      sheet: 'SHEET 01 OF 01',
+      title: 'Three flows. One system. Clear guardrails.',
+      lede: 'Software, governed AI, compliance: integrated processes. Verified decisions.',
+      legendTitle: 'Legend & tags',
+      instruments: 'Instrumentation',
+      symbols: 'Process symbols',
+      colors: 'Colour codes',
+      note: 'Lines are orientative. Guardrails mark decision points with evidence.',
+      flowSoftware: 'Software',
+      flowAi: 'Governed AI',
+      flowCompliance: 'Compliance',
+      g1: 'Guardrail 1 · Code quality',
+      g2: 'Guardrail 2 · AI validation',
+      g3: 'Guardrail 3 · Regulatory fit',
+      ok: 'Evidence OK',
+      anomaly: 'Anomaly',
+      vessel: 'Readable system',
+      vesselSub: 'Single operative truth — traceable, verified, accountable.',
+      cta: 'See our approach',
+      ctaHref: '/en/method',
+      secondary: 'Talk to us',
+      secondaryHref: '/en/contact',
+      firm: 'B2B consultancy for complex systems',
+      drawn: 'Drawn',
+      verified: 'Verified',
+      approved: 'Approved',
+      inkBlue: 'Main flow',
+      inkEmber: 'Risk / exception',
+      inkPine: 'Control / verification',
+      outcomeTitle: 'Guardrail outcomes',
+      pass: 'Pass → evidence exportable',
+      block: 'Block → anomaly logged',
+      fic: 'Flow',
+      pic: 'Pressure',
+      ait: 'Analytic',
+      process: 'Process',
+      system: 'System',
+    }
+  : {
+      drawingNo: 'DE-VD-001',
+      sheet: 'FOGLIO 01 DI 01',
+      title: 'Tre flussi. Un sistema. Guardrail chiari.',
+      lede: 'Software, AI governata, compliance: processi integrati. Decisioni verificate.',
+      legendTitle: 'Legenda e tag',
+      instruments: 'Strumentazione',
+      symbols: 'Simboli di processo',
+      colors: 'Codici colore',
+      note: 'Le linee sono orientative. I guardrail segnano i punti di decisione con evidenza.',
+      flowSoftware: 'Software',
+      flowAi: 'AI governata',
+      flowCompliance: 'Compliance',
+      g1: 'Guardrail 1 · Qualità del codice',
+      g2: 'Guardrail 2 · Validazione AI',
+      g3: 'Guardrail 3 · Conformità regolatoria',
+      ok: 'Evidenza OK',
+      anomaly: 'Anomalia',
+      vessel: 'Sistema leggibile',
+      vesselSub: 'Unica verità operativa — tracciabile, verificata, responsabilizzata.',
+      cta: 'Scopri il nostro approccio',
+      ctaHref: '/metodo',
+      secondary: 'Parliamone',
+      secondaryHref: '/contatti',
+      firm: 'Consulenza B2B per sistemi complessi',
+      drawn: 'Disegnato',
+      verified: 'Verificato',
+      approved: 'Approvato',
+      inkBlue: 'Flusso principale',
+      inkEmber: 'Rischio / eccezione',
+      inkPine: 'Controllo / verifica',
+      outcomeTitle: 'Esiti guardrail',
+      pass: 'Pass → evidenza esportabile',
+      block: 'Block → anomalia registrata',
+      fic: 'Portata',
+      pic: 'Pressione',
+      ait: 'Analitica',
+      process: 'Processo',
+      system: 'Sistema',
+    };
+
+const flows = [
+  { id: 'sw', label: copy.flowSoftware, gate: copy.g1, tags: ['FIC', 'PIC'] as const },
+  { id: 'ai', label: copy.flowAi, gate: copy.g2, tags: ['PIC', 'AIT'] as const },
+  { id: 'cp', label: copy.flowCompliance, gate: copy.g3, tags: ['AIT', 'FIC'] as const },
+];
+---
+
+<section class="process-sheet" data-hero aria-labelledby="process-sheet-title">
+  <section class="process-sheet__marks" aria-hidden="true">
+    <span class="process-sheet__reticle"></span>
+    <span class="process-sheet__reticle"></span>
+    <span class="process-sheet__reticle"></span>
+    <span class="process-sheet__reticle"></span>
+  </section>
+
+  <header class="process-sheet__meta">
+    <p class="process-sheet__drawing-no">{copy.drawingNo}</p>
+    <p class="process-sheet__sheet-no">{copy.sheet}</p>
+  </header>
+
+  <section class="process-sheet__head">
+    <p class="process-sheet__wordmark">Devisia</p>
+    <h1 id="process-sheet-title" class="process-sheet__title">{copy.title}</h1>
+    <p class="process-sheet__lede">{copy.lede}</p>
+  </section>
+
+  <section class="process-sheet__body">
+    <aside class="process-sheet__legend" aria-label={copy.legendTitle}>
+      <p class="process-sheet__legend-title">{copy.legendTitle}</p>
+      <section class="process-sheet__legend-block">
+        <p class="process-sheet__legend-k">{copy.instruments}</p>
+        <ul>
+          <li>
+            <span class="process-sheet__bubble" aria-hidden="true">FIC</span>
+            <span class="process-sheet__leader" aria-hidden="true"></span>
+            {copy.fic}
+          </li>
+          <li>
+            <span class="process-sheet__bubble" aria-hidden="true">PIC</span>
+            <span class="process-sheet__leader" aria-hidden="true"></span>
+            {copy.pic}
+          </li>
+          <li>
+            <span class="process-sheet__bubble" aria-hidden="true">AIT</span>
+            <span class="process-sheet__leader" aria-hidden="true"></span>
+            {copy.ait}
+          </li>
+        </ul>
+      </section>
+      <section class="process-sheet__legend-block">
+        <p class="process-sheet__legend-k">{copy.symbols}</p>
+        <ul>
+          <li>
+            <span class="process-sheet__sym process-sheet__sym--line" aria-hidden="true"></span>
+            <span class="process-sheet__leader" aria-hidden="true"></span>
+            {copy.process}
+          </li>
+          <li>
+            <span class="process-sheet__sym process-sheet__sym--gate" aria-hidden="true"></span>
+            <span class="process-sheet__leader" aria-hidden="true"></span>
+            Guardrail
+          </li>
+          <li>
+            <span class="process-sheet__sym process-sheet__sym--vessel" aria-hidden="true"></span>
+            <span class="process-sheet__leader" aria-hidden="true"></span>
+            {copy.system}
+          </li>
+        </ul>
+      </section>
+      <section class="process-sheet__legend-block">
+        <p class="process-sheet__legend-k">{copy.colors}</p>
+        <ul>
+          <li><span class="process-sheet__swatch process-sheet__swatch--ink" aria-hidden="true"></span> {copy.inkBlue}</li>
+          <li><span class="process-sheet__swatch process-sheet__swatch--ember" aria-hidden="true"></span> {copy.inkEmber}</li>
+          <li><span class="process-sheet__swatch process-sheet__swatch--pine" aria-hidden="true"></span> {copy.inkPine}</li>
+        </ul>
+      </section>
+      <p class="process-sheet__legend-note">{copy.note}</p>
+    </aside>
+
+    <section class="process-sheet__schema" aria-label={isEn ? 'Process schema' : 'Schema di processo'}>
+      {
+        flows.map((flow) => (
+          <article class={`process-sheet__flow process-sheet__flow--${flow.id}`}>
+            <header class="process-sheet__flow-label">
+              <span>{flow.label}</span>
+            </header>
+            <section class="process-sheet__pipe" aria-hidden="true">
+              {flow.tags.map((tag) => (
+                <span class="process-sheet__bubble">{tag}</span>
+              ))}
+              <span class="process-sheet__valve"></span>
+            </section>
+            <section class="process-sheet__gate-block">
+              <p class="process-sheet__gate-name">
+                <span class="process-sheet__diamond" aria-hidden="true"></span>
+                {flow.gate}
+              </p>
+              <section class="process-sheet__branches" aria-label={flow.gate}>
+                <p class="process-sheet__status process-sheet__status--ok">
+                  <span class="process-sheet__bubble process-sheet__bubble--sm" aria-hidden="true">AIT</span>
+                  {copy.ok}
+                </p>
+                <p class="process-sheet__status process-sheet__status--risk">{copy.anomaly}</p>
+              </section>
+            </section>
+            <section class="process-sheet__join" aria-hidden="true"></section>
+          </article>
+        ))
+      }
+
+      <section class="process-sheet__vessel">
+        <section class="process-sheet__vessel-ports" aria-hidden="true">
+          <span>PI</span>
+          <span>AIT</span>
+          <span>FI</span>
+        </section>
+        <h2 class="process-sheet__vessel-title">{copy.vessel}</h2>
+        <p>{copy.vesselSub}</p>
+        <section class="process-sheet__vessel-arrow" aria-hidden="true">↓</section>
+      </section>
+    </section>
+  </section>
+
+  <footer class="process-sheet__foot">
+    <section class="process-sheet__outcomes" aria-label={copy.outcomeTitle}>
+      <p class="process-sheet__outcomes-title">{copy.outcomeTitle}</p>
+      <ul>
+        <li class="process-sheet__outcomes-pass">{copy.pass}</li>
+        <li class="process-sheet__outcomes-block">{copy.block}</li>
+      </ul>
+      <section class="process-sheet__actions">
+        <a class="process-sheet__stamp" data-surface="hero" href={copy.ctaHref}>
+          {copy.cta} <span aria-hidden="true">→</span>
+        </a>
+        <a class="ds-link" data-variant="muted" href={copy.secondaryHref}>{copy.secondary}</a>
+      </section>
+    </section>
+
+    <section class="process-sheet__titleblock">
+      <p class="process-sheet__brand">Devisia</p>
+      <p class="process-sheet__firm">{copy.firm}</p>
+      <dl class="process-sheet__approvals">
+        <div>
+          <dt>{copy.drawn}</dt>
+          <dd>Devisia</dd>
+        </div>
+        <div>
+          <dt>{copy.verified}</dt>
+          <dd>Assurance</dd>
+        </div>
+        <div>
+          <dt>{copy.approved}</dt>
+          <dd>Direzione</dd>
+        </div>
+        <div>
+          <dt>Rev</dt>
+          <dd>A</dd>
+        </div>
+      </dl>
+    </section>
+  </footer>
+</section>

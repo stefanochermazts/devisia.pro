@@ -72,128 +72,99 @@ components:
 
 ## Overview
 
-**Creative North Star: "La sala controllo leggibile"**
+**Creative North Star: "Schema di processo"**
 
-Il sistema visivo del sito Devisia nasce da un manuale tecnico caldo e da una regia a contrasto: fondali avorio e carta, inchiostro blu-freddo, accenti arancio-terra (ember) e verde-blu (pine) per segnalare controlli e struttura. La superficie non e' decorazione: ogni sezione segue un flusso riconoscibile (contesto, problema, metodo, prova, azione) come chiede il prodotto. L'utente percepisce ordine, continuita' e possibilita' di verifica, non "tech hype".
+Il sito brand parla la grammatica di un foglio P&ID: linee di flusso, nodi, cancelli (gate), bolle di strumento, legenda e cartiglio. Non e' una "sala controllo" ne' un dashboard SaaS: e' un disegno di processo dove software, AI governata e compliance convergono in un sistema leggibile, con responsabilita' ed evidenze sui cancelli. Palette e tipografia restano quelle gia' bloccate (ink / ivory / ember / pine; Bitter / Lexend / Manrope); cambia il mondo formale, non i token.
 
-Il codice sorgente dei token e' in `src/styles/tokens.css` (OKLCH). I valori qui e nel frontmatter allineano quei token; per il lavoro giornaliero gli agenti devono riferirsi a `--ds-*` nel CSS, non duplicare costanti in prose con valori diversi.
+Il codice sorgente dei token e' in `src/styles/tokens.css` (OKLCH). Per il lavoro giornaliero riferirsi a `--ds-*` nel CSS.
 
 **Key Characteristics:**
 
-- Tre famiglie: **Bitter Variable** (titoli e display marketing), **Manrope Variable** (header, footer, UI chrome), **Lexend Variable** (corpo e lettura continua).
-- Committed ma non "drenched": hero scuri (hero-tint) e superfici carta, senza glassmorphism come default.
-- Profondita' con ombre leggere (due livelli) e bordi 1px/2px, non strisce laterali colorate su card o liste.
-- Stati interattivi con transizione rapida (120ms) o base (180ms) e `ease-standard`, senza rimbalzi.
+- Tre famiglie tipografiche invariate: **Bitter** (titoli), **Manrope** (chrome, tag, legende), **Lexend** (corpo).
+- Composizione a foglio: margini da disegno, leader lines, cartiglio (title block), legenda laterale o inferiore — non griglie di card marketing.
+- Ember = percorso a rischio / cancello non verificato; pine = percorso verificato / evidenza ok; ink = linee di processo e testo.
+- Interazione firma: focus/hover su un cancello rivela owner, limite e tipo di prova. Motion sobrio (120–180ms), niente rimbalzi.
+- Hero tint resta disponibile per bande dense, ma il default marketing e' ivory/paper da foglio, non "control room" scura.
 
 ## Colors
 
-Le chiavi semantiche in `tokens.css` mappano ruoli, non nomi "palette generic": testo, superficie, confini, focus, pericolo, successo, informazione. Light e' il default; dark e' ottenuto con `[data-theme="dark"]` e `prefers-color-scheme` senza forzare il viola o il neon.
+Token invariati. Ruoli nel mondo Schema:
 
-### Primary
+- **Ink / ink-deep:** linee di processo, testo, cartiglio, CTA primaria.
+- **Ivory / paper / surface:** campo del foglio e strati (legenda, note, pannelli).
+- **Ember:** anomalia, rischio, cancello aperto/non verificato, hot path.
+- **Pine:** verificato, evidenza ok, cold path controllato.
+- **Hero tint:** solo dove serve un blocco invertito (raro); non e' il default del primo viewport.
 
-- **Inchiostro (ink)** (`oklch(0.22 0.02 250)`): testo principale, gerarchia di lettura, legato al blu notturno, non nero puro.
-- **Inchiostro profondo (ink-deep)** (`oklch(0.18 0.025 255)`): primary UI (bottoni pieni, barre dense), CTA in header.
+Light e' il default. Dark via `[data-theme="dark"]` / `prefers-color-scheme` senza neon.
 
-### Secondary (accents)
-
-- **Ember (accent)** (`oklch(0.45 0.1 30)`): collegamenti, accento caldo, sottigliezze sotto CTA, stati "caldi" controllati.
-- **Pine (accent-2)** (`oklch(0.45 0.08 195)`): seconda coda cromatica (griglie hero, linee, numeri di sezione), freddo ma non "tech turquoise" da startup.
-
-### Neutral
-
-- **Ivory (bg)** (`oklch(0.98 0.01 90)`): sfondo di pagina, base calda.
-- **Paper (surface-2)** (`oklch(0.96 0.012 85)`): strati, blocchi, citazioni, input su superficie.
-- **Surface** (`oklch(0.99 0.006 90)`): card e contenitori rialzati rispetto al bg.
-- **Hero tint** (`oklch(0.2 0.028 255)`): sezioni hero e blocchi "control room" a testo chiaro, gradienti locali in componenti (es. `site-hero`).
-
-**The OKLCH Source Rule.** I valori normativi per colore stanno in `:root` come OKLCH. Se serve hex per un export (Figma, Stitch), convertire da li', non scrivere un secondo "colore ufficiale" in markdown che diverge.
+**The OKLCH Source Rule.** Valori normativi in `:root` come OKLCH.
 
 ## Typography
 
-**Display / titoli:** Bitter Variable (con fallback Source Serif, Georgia, `ui-serif`).
+Invariata: Bitter display/titoli, Lexend body, Manrope UI/legenda/nav, mono di sistema per tag tipo `FIC-101` / audit trail.
 
-**Body:** Lexend Variable (con fallback system-ui).
+**The Three-Family Rule.** Non mescolare i ruoli.
 
-**UI chrome (nav, footer, CTA fissa mobile):** Manrope Variable.
+Nei diagrammi, le micro-label Manrope in caps con tracking elevato fungono da tag di strumento; i titoli Bitter restano fuori dalle bolle ISA.
 
-**Mono:** stack di sistema (`ui-monospace`, ...), per codice e audit trail in contenuti.
+## Layout
 
-**Character:** coppia slab + sans geometrica: i titoli hanno presenza editoriale, il corpo resta neutro e leggibile a lungo, l'interfaccia e' compatta e diretta. Nessun seriffato nel menu: Manrope mantiene la voce "strumento" separata dalla voce "manifesto" dei titoli.
+- Pagina come foglio: contenitore con respiro da margine di disegno; sezioni come fogli o zone di un unico schema.
+- Flusso narrativo fisso: contesto → problema (flusso opaco) → metodo (cancelli) → prova → azione.
+- Primo viewport preferito: argomento a due facce (opaco vs governato) con cucitura, oppure schema a tre flussi che convergono — mai hero metriche + tre card.
+- Landing campaign (`/landing/*`) sono fuori da questo mondo fino a un lavoro dedicato; non ereditano automaticamente i nuovi componenti schema.
 
-### Hierarchy
+## Elevation & Depth
 
-- **Display (Bitter, ~h1, hero):** 780, `var(--ds-text-4xl)` o hero piu' grande, `line-height: var(--ds-leading-tight)` (1.12), interlettera compatta.
-- **Headline (Bitter, h2):** 720, `var(--ds-text-3xl)`.
-- **Title (Bitter, h3-h4):** 680-640, `var(--ds-text-2xl)` / `var(--ds-text-xl)`.
-- **Section minor (Bitter, h5-h6):** 640-620, con interlettera che si avvicina a zero su h6.
-- **Body (Lexend, 450):** `var(--ds-text-md)`, `line-height: 1.62`, `max-width` su paragrafi ~65ch.
-- **Label / nav (Manrope, 500-700 per contesto):** link nav ~560, caps per eyebrow e micro-label con `letter-spacing: var(--ds-tracking-caps)` dove gia' definito.
+Superfici piatte a differenza tonale (ivory / paper / surface). Ombre solo dove il foglio "si solleva" (header scrolled, overlay). Niente glass di default.
 
-### Named Rules
+Motion: `--ds-motion-fast` / `--ds-motion-base` / `--ds-ease-standard`. Misregister o "tremolio stampa" vietati in questo mondo; i cancelli si aprono/chiudono con trasformazioni minime.
 
-**The Three-Family Rule.** Non mescolare Bitter nel corpo lungo o Manrope nei titoli `h1-h6` salvo casi gia' codificati (es. componenti legacy): tre ruoli, tre stack.
+## Shapes
 
-## Elevation
-
-Il sistema e' ibrido: superfici piatte a riposo con differenza tonale (ivory, paper, surface), piu' ombre a bassa diffusione per rialzo (header in scroll, card, pannelli) e ombra piu' ampia solo dove serve enfatizzare un overlay (es. `ds-shadow-2`).
-
-**The No-Default-Glass Rule.** Niente `backdrop-filter` o vetro come estetica di default; se usato, e' un caso eccezionale e motivato in componente, non in landing generica. Coerente con l'anti-reference "SaaS generica" in PRODUCT.md.
-
-### Shadow Vocabulary
-
-- **Sombra 1** (`0 1px 2px oklch(0.2 0.02 250 / 0.07)` in light): separazione leggera, header dopo scroll, card discrete.
-- **Sombra 2** (`0 8px 24px ... / 0.1` in light, equivalente piu' scuro in dark): modali, toast, pannelli che stanno "sopra" il flusso.
-
-Movimento: durate `--ds-motion-fast` (120ms), `--ds-motion-base` (180ms), `--ds-ease-standard` (cubic-bezier(0.2, 0, 0, 1)). Transizioni su `color`, `background`, `transform` dove gia' definito, non su `height` o layout strutturale.
+Raggi esistenti (`--ds-radius-*`). Bolle di strumento e diamanti di gate sono SVG/CSS a tratto ink, non pillole marketing `rounded-full` come pattern dominante. Bordi 1px/2px; niente bande laterali colorate >1px su card o liste.
 
 ## Components
 
 ### Buttons (`.ds-btn`)
 
-- **Shape:** raggio `var(--ds-radius-2)` (0.5rem), bordo 1px.
-- **Primary:** sfondo `var(--ds-color-primary)` (ink-deep), testo bianco, bordo scurito rispetto al fill; hover `translateY(-1px)` e schiarimento dello sfondo, senza ombre finte 3D.
-- **Secondary:** superficie e bordo strong; **Ghost:** trasparente, senza bordo visibile a riposo.
-- **Focus:** anello tramite stili di focus su `:focus-visible` a livello base (e token focus), non ring colorati casuali.
-- **Padding:** `0.7rem 0.95rem` default; `data-size="sm"|"lg"` riduce o aumenta padding e altezza minima.
+Invariati nei token: primary ink-deep, secondary bordo, ghost trasparente. Nella voce Schema possono apparire come "timbro" rettangolare vicino al cartiglio, senza ombre 3D.
 
-### Cards (`.ds-card`)
+### Cards
 
-- Raggio `var(--ds-radius-3)` (0.75rem), bordo `var(--ds-color-border)`, ombra `var(--ds-shadow-1)`, padding `var(--ds-space-6)` nel body, immagine 16/9 in testa se presente.
-
-### Inputs (`.ds-input`, `.ds-textarea`, `.ds-select`)
-
-- Sfondo surface, bordo colore bordo, raggio 2, focus con bordo piu' accent e `var(--ds-focus-ring)` dove applicato; invalidazione con mix verso `danger`.
+Usare con parsimonia. Preferire zone di foglio, righe di legenda, nodi di schema. Se compare una card, e' un contenitore di interazione, non il ritmo di default della pagina.
 
 ### Navigation
 
-- Header sticky, font **Manrope**; link con peso intermedio, `min-height` 2.75rem, stato `aria-current` con tinta accento in superficie, CTA "Contatti" in variante piena (primary) in header.
-- Mobile: hamburger, menu a colonna, stessi pesi; CTA sticky in basso (Manrope) su `max-width: 48rem` quando visibile.
-- **Language switcher** accanto al wordmark, caps, spaziatura lettere elevata, non e' un ottavo elemento del menu principale: resta a ridosso del brand.
+Header sticky Manrope; language switcher presso il wordmark; CTA Contatti primary. Su mobile: menu a colonna + CTA sticky dove gia' previsto.
 
-### Componenti distintivi di marketing
+### Componenti distintivi Schema
 
-- **Site hero / site layers** (`src/styles/site.css`, `SystemLayers.astro`, `WhatWeDoLayers.astro`): pannelli "control room", assi, nodi numerati, niente griglia di 6 card identiche come unica struttura narrativa.
-- **Method graph** (pagina Metodo): flusso a nodi in scheda, linea "Ritorno" per il loop, stile "carta" separato dal diagramma home.
+- **Process split / schema hero:** confronto opaco vs governato, o tre linee (Software / AI / Compliance) verso un header "sistema leggibile".
+- **Gate reveal:** pannello o popover accessibile su focus che espone ruolo, limite, evidenza.
+- **Title block / cartiglio:** metadati di foglio (rev, data, sheet) come chiusura di sezione o footer di blocco — non decorazione vuota.
+- **Legend rail:** definizioni simbolo/colore in Manrope, non icon row SaaS.
 
 ## Do's and Don'ts
 
-Riferimenti espliciti a **Anti-references** e **Design Principles** in [PRODUCT.md](PRODUCT.md).
+Allineati a PRODUCT.md (Anti-references e Design Principles).
 
 ### Do:
 
-- **Do** mantenere un flusso per sezione: contesto, problema, metodo, prova, prossima azione.
-- **Do** usare i token `--ds-*` e variabili gia' definite per colore, spazio, raggio e ombra.
-- **Do** rispettare WCAG AA come baseline e puntare a AAA dove non rovina la gerarchia, come da PRODUCT.
-- **Do** trattare messaggi su AI con perimetro, limiti, supervisione, auditabilita' (principio 5 in PRODUCT), anche in scelta visiva (nessun "magico" da hero stock).
+- **Do** mostrare il meccanismo (flussi, cancelli, evidenze), non solo dichiararlo.
+- **Do** usare ember/pine solo con significato di stato nel diagramma.
+- **Do** mantenere claim fattuali veri; riscrivere voce e gerarchia liberamente nel perimetro brand.
+- **Do** WCAG AA (AAA dove non rompe la gerarchia); `prefers-reduced-motion` ferma aperture decorative dei cancelli.
 
 ### Don't:
 
-- **Don't** lasciare la pagina disordinata, con gerarchie confuse o sezioni equivalenti impilate senza ritmo, come in Anti-references.
-- **Don't** usare l'estetica SaaS generica: gradienti vistosi ovunque, metriche da hero template, griglie infinite di icone+ titolo+ testo, promesse AI rumorose, consulenza corporate fredda in stock language: tutto esplicitamente vietato in Anti-references.
-- **Don't** usare bordo sinistro o destro spesso come unica cifra su card o voci di lista: bande laterali >1px come accento, vietate (legge condivisa del progetto / skill).
-- **Don't** usare `background-clip: text` con gradiente per enfasi: enfasi con peso, dimensione, spazio, non finta metallizzazione.
-- **Don't** reintrodurre il pieno "hero metric" (numero enorme, label piccola, quattro stat, gradient dietro) come pattern di home.
+- **Don't** tornare a "sala controllo", glassmorphism, metriche hero, griglie di 6 card identiche.
+- **Don't** far sembrare il sito un prodotto SCADA o un dashboard di monitoraggio.
+- **Don't** usare gradient text, bande laterali spesse, neon, viola di default.
+- **Don't** toccare le landing campaign in questo ciclo.
+- **Don't** inventare clienti, prezzi, benchmark o capacita' non vere.
 
 ---
 
-_Aggiorna questo file con `$impeccable document` (scan mode) dopo significativi cambi a token o componenti. Frontmatter: valori allineati a `src/styles/tokens.css`._
+_Aggiorna con `$impeccable document` (scan mode) dopo il build. Frontmatter allineato a `src/styles/tokens.css`. Seed direzione: Schema di processo (key `a3ccc5dc`, assigned index 4)._

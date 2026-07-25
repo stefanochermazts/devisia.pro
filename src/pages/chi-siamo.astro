@@ -5,7 +5,7 @@ import EditorialCTA from '../components/site/EditorialCTA.astro';
 import { breadcrumbListJsonLd } from '../lib/seo/structuredData';
 
 const description =
-  'Devisia è una società sviluppo software per prodotti, AI responsabile e compliance operativa, dove contano controllo, architettura e tracciabilità.';
+  'Devisia progetta e costruisce sistemi digitali governabili: software su misura, AI con perimetro e compliance operativa con evidenze.';
 
 const site = Astro.site ?? new URL('https://devisia.pro');
 const breadcrumbs = breadcrumbListJsonLd({
@@ -17,43 +17,52 @@ const breadcrumbs = breadcrumbListJsonLd({
 });
 ---
 
-<Layout title="Chi siamo: società sviluppo software su misura" description={description} structuredData={[breadcrumbs]}>
+<Layout title="Chi siamo: partner per sistemi governabili" description={description} structuredData={[breadcrumbs]}>
   <PageIntro
-    h1="Una società sviluppo software per sistemi che devono restare sotto controllo"
-    lede="Devisia unisce sviluppo di piattaforme, AI responsabile, governance dei dati e compliance operativa per problemi concreti di processo, sicurezza, audit e responsabilità."
+    eyebrow="Foglio · Chi siamo"
+    h1="Il partner che mette ordine prima di accelerare"
+    lede="Devisia unisce software su misura, AI governata e compliance operativa per team che hanno già qualcosa da perdere: continuità, reputazione, dati, audit."
   />
 
   <section class="ds-stack ds-reading" data-gap="lg" style="margin-bottom: var(--ds-space-8)">
     <h2>Perché esistiamo</h2>
     <p>
-      Per evitare che digitale significhi stack fragile, requisiti sommersi, modelli in produzione senza criteri o evidenze
-      sparse quando serve dimostrare. Lavoriamo con team che hanno già qualcosa da perdere: reputazione, continuità,
-      regole, clienti, dati.
+      Perché “digitale” non diventi stack fragile, requisiti sommersi, modelli senza criteri o evidenze
+      sparse quando serve dimostrare. Mettiamo su foglio processi, confini e prove — poi costruiamo.
     </p>
 
     <h2>Problemi che affrontiamo</h2>
     <ul>
-      <li>Processi e dati poco allineati tra reparti, sistemi e fornitori.</li>
-      <li>Software che cresce per accumulo e diventa opaco a chi lo deve usare o verificare.</li>
-      <li>Intelligenza artificiale usata dove mancano confini, validazione o traccia.</li>
-      <li>Richieste di compliance che non trovano supporto in strumenti, log, export e responsabilità chiare.</li>
+      <li>Processi e dati disallineati tra reparti, sistemi e fornitori.</li>
+      <li>Software cresciuto per accumulo, opaco a chi lo usa o lo verifica.</li>
+      <li>AI introdotta dove mancano perimetro, validazione o traccia.</li>
+      <li>Compliance che non trova supporto in strumenti, log, export e responsabilità.</li>
     </ul>
 
     <h2>Come ragioniamo</h2>
-    <p>Architettura e responsabilità prima, codice e automazioni quando il perimetro è chiaro. Evidenze, non teatro.</p>
+    <p>
+      Schema e responsabilità prima; codice e automazioni quando i guardrail sono chiari. Evidenze,
+      non teatro.
+    </p>
 
     <h2>Prodotti</h2>
-    <p>Costruiamo <a href="/prodotti">prodotti</a> verticali perché talvolta il modo migliore per risolvere è rendere operativo ciò che altrimenti resta un foglio di calcolo. Non per sostituirvi: per darvi spazio, ordine, export e tracciamento.</p>
+    <p>
+      Costruiamo <a href="/prodotti">prodotti</a> verticali quando il modo migliore per risolvere è
+      rendere operativo ciò che altrimenti resta in fogli di calcolo: ordine, export, tracciamento.
+    </p>
 
     <h2>Cosa non siamo</h2>
-    <p>Non siamo una generica agenzia full-service, né un fornitore di slide. Se cercate un partner che prometta trasformazione senza toccare processi, non siamo allineati.</p>
+    <p>
+      Non siamo un’agenzia full-service generica, né un fornitore di slide. Se cercate trasformazione
+      senza toccare processi, non siamo allineati.
+    </p>
   </section>
 
   <EditorialCTA
     variant="tint"
-    title="Se il vostro prossimo vincolo è serio, trattatelo con competenza, non con slogan"
+    title="Se il prossimo vincolo è serio, trattatelo con competenza"
     ctaLabel="Conosciamo il tuo contesto"
     ctaHref="/contatti"
-    copy="Primo contatto: capire fatti, vincoli, responsabilità e criteri di accettazione, senza forzare una scelta su stack o vendor."
+    copy="Primo contatto: fatti, vincoli, responsabilità e criteri di accettazione — senza forzare stack o vendor."
   />
 </Layout>

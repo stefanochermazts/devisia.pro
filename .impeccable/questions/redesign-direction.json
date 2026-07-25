@@ -1,0 +1,32 @@
+{
+  "title": "Nuova identità Devisia",
+  "question": "Colori e font restano bloccati. Il roll assegna Schema di processo. Tieni questa direzione, prendi un'alternativa, oppure re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "Schema di processo",
+      "kicker": "THE ROLL",
+      "lineage": "Notazione P&ID / diagrammi di processo industriali",
+      "body": "Il meccanismo Devisia — software, AI governata e compliance come un solo flusso con cancelli, responsabilità ed evidenze — diventa la grammatica della pagina. Superfici avorio/carta, linee ink, ember per i percorsi a rischio, pine per i nodi verificati; Bitter per i titoli-etichetta, Manrope per legende e chrome, Lexend per il corpo. Primo viewport: argomento a due facce (processo opaco vs schema governato) con cucitura trascinabile che si chiude sulla CTA. Interazione firma: ogni cancello rivela ruolo, limite e prova. Rischio: troppo freddo se il copy non resta umano; non deve sembrare un prodotto SCADA."
+    },
+    {
+      "id": "challenger-daylight-section",
+      "label": "Sezione di luce",
+      "lineage": "Sezione architettonica / daylight section",
+      "body": "Fuso: il sito si legge come una sezione continua dove il 'raggio utile' (ember) attraversa i piani software → AI → compliance su fondale ivory e poche ink. Annotazioni orarie e quote in Manrope; titoli Bitter inclinati come lettering da tavolo. Prima vista: un taglio del sistema con fascio che illumina il tavolo decisionale; scroll = ore della giornata operativa. Più caldo e architettonico; meno letterale sui cancelli di governance.",
+      "hero": ".impeccable/quality-bars/architecture-inhabitable-space-daylight-section-hero.webp",
+      "board": ".impeccable/quality-bars/architecture-inhabitable-space-daylight-section.webp"
+    },
+    {
+      "id": "challenger-risograph",
+      "label": "Sistema risograph",
+      "lineage": "Stampa Riso a due/tre tinte",
+      "body": "Fuso: ivory come carta tozza; ember e pine come spot ink con leggero fuori-registro al hover; grain e retino SVG. Titoli Bitter a blocco tinta piatta. Porta mestiere e calore tipografico, ma rischia di ammorbidire la chiarezza di perimetro AI/compliance per un pubblico executive.",
+      "hero": ".impeccable/quality-bars/risograph-web-system-hero.webp",
+      "board": ".impeccable/quality-bars/risograph-web-system.webp"
+    }
+  ],
+  "reroll": true,
+  "canon": true,
+  "steer": true
+}

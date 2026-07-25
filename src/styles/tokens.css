@@ -1,6 +1,6 @@
 @layer tokens {
   :root {
-    /* Brand: warm technical manual + control-room accents (OKLCH) */
+    /* Brand: warm process-sheet / P&ID accents (OKLCH) — ink, ivory, ember, pine */
     --ds-brand-ink: oklch(0.22 0.02 250);
     --ds-brand-ink-deep: oklch(0.18 0.025 255);
     --ds-brand-ivory: oklch(0.98 0.01 90);

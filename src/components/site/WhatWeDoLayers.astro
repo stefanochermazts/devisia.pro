@@ -1,57 +1,33 @@
 ---
-/**
- * "Cosa facciamo / What we do" diagram: same visual language as home SystemLayers,
- * different copy synthesising build, integrate, govern, evidence.
- */
 export interface Props {
   lang: 'it' | 'en';
 }
 const { lang } = Astro.props;
 const isEn = lang === 'en';
+
+const rows = isEn
+  ? [
+      { tag: 'SW', title: 'Build', body: 'Platforms and applications designed to last, integrate and stay maintainable.' },
+      { tag: 'IN', title: 'Integrate', body: 'Data, systems and ownership made explicit before automation multiplies them.' },
+      { tag: 'AI', title: 'Govern AI', body: 'Models inside clear perimeters: logging, validation, human oversight.' },
+      { tag: 'EV', title: 'Prove', body: 'Evidence that shows what ran, who decided, and what can be exported.' },
+    ]
+  : [
+      { tag: 'SW', title: 'Costruire', body: 'Piattaforme e applicazioni pensate per durare, integrarsi e restare manutenibili.' },
+      { tag: 'IN', title: 'Integrare', body: 'Dati, sistemi e responsabilità espliciti prima che l’automazione li moltiplichi.' },
+      { tag: 'AI', title: 'Governare AI', body: 'Modelli dentro perimetri chiari: logging, validazione, supervisione umana.' },
+      { tag: 'EV', title: 'Dimostrare', body: 'Evidenze su cosa è corso, chi ha deciso e cosa si può esportare.' },
+    ];
 ---
 
-<section class="site-layers" aria-hidden="true">
-  <section class="site-layers__frame site-layers__frame--whatwedo">
-    <section class="site-layers__axis site-layers__axis--x"></section>
-    <section class="site-layers__axis site-layers__axis--y"></section>
-    <section class="site-layers__node site-layers__node--process">01</section>
-    <section class="site-layers__node site-layers__node--data">02</section>
-    <section class="site-layers__node site-layers__node--system">03</section>
-    <section class="site-layers__node site-layers__node--proof">
-      {isEn ? 'result' : 'risultato'}
-    </section>
-  </section>
+<section class="sheet-rail what-we-do-sheet" aria-hidden="true">
   {
-    isEn ? (
-      <>
-        <section class="site-layers__row site-layers__row--process">
-          <span class="site-layers__label">01</span>
-          <span>Build: applications, portals, digital products</span>
-        </section>
-        <section class="site-layers__row site-layers__row--data">
-          <span class="site-layers__label">02</span>
-          <span>Integrate: data, systems and workflows</span>
-        </section>
-        <section class="site-layers__row site-layers__row--system">
-          <span class="site-layers__label">03</span>
-          <span>Improve: AI, automation, operations and compliance</span>
-        </section>
-      </>
-    ) : (
-      <>
-        <section class="site-layers__row site-layers__row--process">
-          <span class="site-layers__label">01</span>
-          <span>Costruire: applicazioni, portali, prodotti digitali</span>
-        </section>
-        <section class="site-layers__row site-layers__row--data">
-          <span class="site-layers__label">02</span>
-          <span>Integrare: dati, sistemi e flussi di lavoro</span>
-        </section>
-        <section class="site-layers__row site-layers__row--system">
-          <span class="site-layers__label">03</span>
-          <span>Migliorare: AI, automazioni, operatività e compliance</span>
-        </section>
-      </>
-    )
+    rows.map((row) => (
+      <article class="sheet-rail__item">
+        <span class="sheet-rail__tag">TAG · {row.tag}</span>
+        <h3>{row.title}</h3>
+        <p>{row.body}</p>
+      </article>
+    ))
   }
 </section>

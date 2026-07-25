@@ -1,0 +1,25 @@
+{
+  "title": "Redesign sito brand — conferma",
+  "question": "Colori e font restano. Landing pages fuori scope. Scegli il perimetro e la libertà sul copy: questo guida la nuova identità.",
+  "options": [
+    {
+      "id": "core-free-copy",
+      "label": "Core brand + copy libero",
+      "kicker": "CONSIGLIATO",
+      "body": "Home, Cosa facciamo, Metodo, Chi siamo, Contatti, pagine AI/compliance (IT+EN). Copy riscritto in voce nuova; fatti, offerte e claim commerciali restano veri. Prodotti, progetti, blog e tool: allineamento leggero o dopo."
+    },
+    {
+      "id": "full-site-free-copy",
+      "label": "Tutto il sito brand + copy libero",
+      "body": "Come sopra, più Prodotti, Progetti, Blog index e layout condivisi. Sempre fuori: landing campaign. Copy riscritto; claim fattuali intatti."
+    },
+    {
+      "id": "core-structure-only",
+      "label": "Core brand, copy più cauto",
+      "body": "Stesso perimetro core, ma copy: ritocca tono e gerarchia senza riscrivere messaggi chiave. Identità visiva nuova; testo resta riconosciibile."
+    }
+  ],
+  "reroll": false,
+  "canon": false,
+  "steer": true
+}
