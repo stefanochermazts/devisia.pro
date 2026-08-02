@@ -682,9 +682,11 @@
   .sheet-titleblock {
     display: grid;
     gap: var(--ds-space-2);
-    border: 1px solid var(--ds-brand-ink);
+    border: 1px solid var(--ds-color-border-strong);
     padding: var(--ds-space-4);
-    background: var(--ds-brand-paper);
+    /* Semantic surfaces only: brand paper/ivory stay light under dark theme. */
+    background: var(--ds-color-surface-2);
+    color: var(--ds-color-text);
     font-family: var(--ds-font-ui);
   }
 
@@ -698,7 +700,12 @@
     margin-block: var(--ds-space-6) var(--ds-space-7);
     padding: var(--ds-space-5);
     border: 1px solid var(--ds-color-border);
-    background: linear-gradient(180deg, var(--ds-brand-ivory), var(--ds-brand-paper));
+    background: linear-gradient(
+      180deg,
+      var(--ds-color-surface),
+      var(--ds-color-surface-2)
+    );
+    color: var(--ds-color-text);
   }
 
   .site-pg-hero.page-intro .site-eyebrow {
