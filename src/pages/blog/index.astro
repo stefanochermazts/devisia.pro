@@ -2,6 +2,7 @@
 import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
+import '../../styles/blog.css';
 
 // Get all blog posts
 const allPosts = await getCollection('blogIt');
