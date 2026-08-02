@@ -451,6 +451,22 @@
     text-decoration: none;
   }
 
+  .footer-contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--ds-space-2);
+    width: fit-content;
+  }
+
+  .footer-contact-link svg {
+    flex: 0 0 auto;
+    width: 1.05em;
+    height: 1.05em;
+    stroke: currentColor;
+    stroke-width: 1.75;
+    fill: none;
+  }
+
   .footer-links a:hover {
     color: var(--ds-color-text);
     text-decoration: underline;
