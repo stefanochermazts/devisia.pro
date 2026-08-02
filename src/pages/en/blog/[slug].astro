@@ -4,6 +4,7 @@ import { getEntry, render } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import { blogPostingJsonLd, breadcrumbListJsonLd } from '../../../lib/seo/structuredData';
 import { Image } from 'astro:assets';
+import '../../../styles/blog.css';
 
 const slug = Astro.params.slug;
 if (!slug) {

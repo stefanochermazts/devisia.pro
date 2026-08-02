@@ -1371,5 +1371,27 @@ const aiDisclosureVersion = 'ai-disclosure-v1';
 </style>
 
 <script>
-  import '../scripts/boot-toolhouse-chat.ts';
+  const root = document.querySelector<HTMLElement>('[data-toolhouse-chat]');
+  let initialized = false;
+
+  const initialize = async () => {
+    if (!root || initialized) return;
+    initialized = true;
+
+    const { initToolhouseChat } = await import('../scripts/toolhouse-chat-ui');
+    initToolhouseChat(root);
+  };
+
+  if (root?.dataset.chatLayout === 'page') {
+    void initialize();
+  } else {
+    const toggle = root?.querySelector<HTMLButtonElement>('[data-toolhouse-chat-toggle]');
+    toggle?.addEventListener(
+      'click',
+      () => {
+        void initialize().then(() => toggle.click());
+      },
+      { once: true }
+    );
+  }
 </script>
