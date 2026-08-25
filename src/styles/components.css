@@ -35,7 +35,7 @@
   .nav-brand {
     display: inline-flex;
     align-items: center;
-    gap: var(--ds-space-3);
+    gap: var(--ds-space-5);
   }
 
   .nav-brand .logo {
@@ -62,7 +62,8 @@
   .brand-lang {
     display: inline-flex;
     align-items: baseline;
-    gap: 0.35rem;
+    gap: var(--ds-space-2);
+    padding-inline: var(--ds-space-1);
     font-size: var(--ds-text-xs);
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -101,7 +102,7 @@
   .brand-tools {
     display: inline-flex;
     align-items: center;
-    gap: var(--ds-space-1);
+    gap: var(--ds-space-3);
     flex-shrink: 0;
   }
 
@@ -565,6 +566,9 @@
       width: 2.5rem;
     }
     @media (max-width: 36rem) {
+      .nav-brand {
+        gap: var(--ds-space-4);
+      }
       .logo-img {
         height: 2.65rem;
       }

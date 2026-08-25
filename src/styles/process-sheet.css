@@ -3,7 +3,10 @@
   .process-sheet {
     --ps-line: color-mix(in oklch, var(--ds-brand-ink) 72%, transparent);
     position: relative;
-    margin: 0 var(--ds-container-pad);
+    /* Drawing sheet sits on the page measure — not viewport-wide on large screens. */
+    width: min(100% - 2 * var(--ds-container-pad), var(--ds-container-max));
+    max-width: var(--ds-container-max);
+    margin-inline: auto;
     margin-top: var(--ds-space-4);
     padding: clamp(1.25rem, 1rem + 1.5vw, 2rem);
     background:
@@ -263,7 +266,8 @@
 
   .process-sheet__flow {
     display: grid;
-    grid-template-columns: minmax(6.5rem, 8.5rem) minmax(5rem, 1fr) minmax(12rem, 1.5fr) auto;
+    /* Pipe stays a short run of instruments; leftover width goes to the guardrail. */
+    grid-template-columns: minmax(6.5rem, 8.5rem) minmax(5rem, 9rem) minmax(12rem, 1fr) auto;
     gap: var(--ds-space-3);
     align-items: center;
     padding: var(--ds-space-3) var(--ds-space-4);
@@ -737,6 +741,8 @@
 
   @media (max-width: 40rem) {
     .process-sheet {
+      width: 100%;
+      max-width: none;
       margin-inline: 0;
       border-inline: 0;
     }
