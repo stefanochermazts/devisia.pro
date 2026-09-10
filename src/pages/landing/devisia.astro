@@ -3,48 +3,41 @@ import Layout from '../../layouts/Layout.astro';
 import Button from '../../components/ui/Button.astro';
 import ContactForm from '../../components/site/ContactForm.astro';
 import GoogleAdsLeadConversion from '../../components/site/GoogleAdsLeadConversion.astro';
+import { resolveDevisiaHero } from '../../data/landing/devisiaHero';
 import { breadcrumbListJsonLd } from '../../lib/seo/structuredData';
 
-const title = 'Devisia | Software, AI and Automation Systems';
+const documentTitle = 'Devisia | Software, AI e automazioni per le imprese del FVG';
 const description =
-  'Devisia designs and develops web applications, backend systems, integrations, automations and governable AI solutions for companies.';
+  'Devisia progetta software, integrazioni, automazioni e sistemi AI governabili per le imprese del Friuli Venezia Giulia.';
 
-const services = [
+const LANDING_SOURCE = 'landing_devisia';
+const LANDING_PATH = '/landing/devisia';
+const CTA_LABEL = 'Descrivi il tuo processo';
+const PHONE_NUMBER = '040 9777468';
+const PHONE_HREF = 'tel:+390409777468';
+
+/** Server-resolved from the LinkedIn creative, so the variant ships in the first HTML response. */
+const hero = resolveDevisiaHero(Astro.url.searchParams.get('utm_content'));
+
+const interventions = [
   {
-    label: '01',
-    title: 'Sviluppo software su misura',
-    text: 'Applicazioni web, backend e piattaforme interne per aziende che devono rendere più stabile un processo, ridurre lavoro manuale o sostituire strumenti fragili.',
+    title: 'ERP e Microsoft 365',
+    text: 'Collegamento tra sistemi gestionali, SharePoint, documenti e processi approvativi, evitando duplicazioni e passaggi manuali.',
   },
   {
-    label: '02',
-    title: 'Sistemi AI e automazioni',
-    text: 'Assistenti AI, chatbot, workflow e integrazioni costruiti per aiutare attività precise: ricerca, sintesi, supporto operativo, controllo e passaggi ripetibili.',
+    title: 'Workflow e applicazioni interne',
+    text: 'Software e automazioni per sostituire fogli fragili, email non tracciate e attività che dipendono dalla conoscenza di una sola persona.',
   },
   {
-    label: '03',
-    title: 'Governance e compliance by design',
-    text: 'Architetture pensate fin dall’inizio con tracciabilità, controllo degli accessi, privacy, auditabilità e responsabilità operative leggibili.',
+    title: 'AI con controllo operativo',
+    text: 'Assistenti e funzioni AI integrati nei processi aziendali mantenendo visibili dati, accessi, responsabilità e log.',
   },
 ];
 
-const capabilities = [
-  'Sviluppo backend Laravel',
-  'Frontend React e Next.js',
-  'Vanilla JavaScript quando la semplicità è la scelta giusta',
-  'Integrazioni API',
-  'Workflow SharePoint e Power Automate',
-  'Integrazione chatbot AI',
-  'Flussi documentali',
-  'Piattaforme interne aziendali',
-  'AI governance e sistemi collegati ad Audit Ready',
-];
-
-const methodSteps = [
-  'Capire dove il processo perde tempo, dati o controllo.',
-  'Definire architettura, flussi dati e responsabilità prima dello sviluppo.',
-  'Costruire il sistema in livelli chiari, verificabili e manutenibili.',
-  'Integrare l’AI solo dove migliora una decisione o un’attività concreta.',
-  'Lasciare visibili privacy, governance e controllo operativo anche dopo il rilascio.',
+const m365Layers = [
+  { label: 'Documenti', value: 'SharePoint e OneDrive' },
+  { label: 'Flussi', value: 'Power Automate' },
+  { label: 'Assistenza', value: 'Copilot e AI' },
 ];
 
 const qualificationSignals = [
@@ -53,264 +46,284 @@ const qualificationSignals = [
   'Devi collegare sistemi esistenti e costruire qualcosa che resti manutenibile nel tempo.',
 ];
 
+const services = [
+  {
+    label: '01',
+    title: 'Sviluppo software su misura',
+    text: 'Applicazioni web, backend e piattaforme interne pensate per reggere l’uso quotidiano: requisiti verificabili, dati coerenti e margine per evolvere dopo il primo rilascio.',
+  },
+  {
+    label: '02',
+    title: 'Integrazioni e automazioni',
+    text: 'Collegamenti tra gestionali, Microsoft 365, API e servizi esterni, progettati anche per errori ed eccezioni, non solo per il percorso ideale.',
+  },
+  {
+    label: '03',
+    title: 'Privacy, tracciabilità e governance',
+    text: 'Controllo degli accessi, log delle attività, responsabilità esplicite e auditabilità previsti nell’architettura fin dall’inizio, non aggiunti alla fine.',
+  },
+];
+
+const methodSteps = [
+  'Capire dove il tuo processo perde tempo, dati o controllo.',
+  'Definire architettura, flussi dati e responsabilità prima dello sviluppo.',
+  'Costruire il sistema in livelli chiari, verificabili e manutenibili.',
+  'Integrare l’AI solo dove migliora una decisione o un’attività concreta.',
+  'Lasciare visibili privacy, governance e controllo operativo anche dopo il rilascio.',
+];
+
 const site = Astro.site ?? new URL('https://devisia.pro');
 const isSuccess = Astro.url.searchParams.get('success') === 'true';
 const breadcrumbs = breadcrumbListJsonLd({
   site,
   items: [
     { name: 'Home', url: '/' },
-    { name: 'Devisia', url: '/landing/devisia' },
+    { name: 'Devisia', url: LANDING_PATH },
   ],
 });
 ---
 
 <Layout
   title="Software, AI e automazioni"
-  documentTitle={title}
+  documentTitle={documentTitle}
   description={description}
-  canonical="/landing/devisia"
+  canonical={LANDING_PATH}
+  lang="it"
   structuredData={[breadcrumbs]}
-  languageSwitchHref="/en"
-  alternatePaths={{ it: '/landing/devisia', xDefault: '/landing/devisia' }}
+  alternatePaths={{ it: LANDING_PATH, xDefault: LANDING_PATH }}
   containMain={false}
+  minimalChrome={true}
   showChatWidget={false}
 >
   {isSuccess && <GoogleAdsLeadConversion slot="head" />}
-  <div class="ads-landing-shell">
+
+  <Fragment slot="header-actions">
+    <a
+      class="nav-landing-contact"
+      href={PHONE_HREF}
+      aria-label={`Chiama Devisia allo ${PHONE_NUMBER}`}
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path
+          d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.78.62 2.64a2 2 0 0 1-.45 2.11L8 9.75a16 16 0 0 0 6 6l1.28-1.28a2 2 0 0 1 2.11-.45c.86.29 1.74.5 2.64.62A2 2 0 0 1 22 16.92Z"
+        ></path>
+      </svg>
+      <span class="nav-landing-contact__label">{PHONE_NUMBER}</span>
+    </a>
+    <Button href="#ads-form" size="sm" data-ads-form-cta>{CTA_LABEL}</Button>
+  </Fragment>
+
+  <div
+    class="ads-landing-shell"
+    data-ads-landing
+    data-landing-source={LANDING_SOURCE}
+    data-landing-path={LANDING_PATH}
+    data-landing-success={isSuccess ? 'true' : 'false'}
+  >
     <div class="ads-landing-shell__main">
       <article class="ads-landing">
-    <section class="ads-hero" aria-labelledby="ads-hero-title">
-      <div class="ds-container ads-hero__grid">
-        <div class="ads-hero__copy">
-          <p class="ads-kicker">Devisia per aziende</p>
-          <h1 id="ads-hero-title">Un partner che tiene insieme software, AI e controllo operativo.</h1>
-          <p class="ads-hero__lede">
-            Descrivete il processo critico: vi aiutiamo a capire architettura, priorità e prossimo
-            passo concreto — senza partire da soluzioni preconfezionate.
-          </p>
-          <section class="ads-hero__actions" aria-label="Azioni principali">
-            <Button href="#ads-form" size="lg" data-surface="hero" data-ads-form-cta>Parliamo del vostro processo</Button>
-          </section>
-          <ul class="ads-hero__signals" aria-label="Ambiti in cui Devisia può aiutare">
-            <li>Processi critici</li>
-            <li>Integrazioni tra sistemi</li>
-            <li>AI con controllo operativo</li>
-          </ul>
-        </div>
+        <section class="ads-hero" aria-labelledby="ads-hero-title">
+          <div class="ds-container ads-hero__grid">
+            <div class="ads-hero__copy">
+              <p class="ads-kicker">Devisia · Trieste · Friuli Venezia Giulia</p>
+              <h1 id="ads-hero-title">{hero.title}</h1>
+              <p class="ads-hero__lede">{hero.lede}</p>
+              <div class="ads-hero__actions">
+                <Button href="#ads-form" size="lg" data-surface="hero" data-ads-form-cta>
+                  {CTA_LABEL}
+                </Button>
+              </div>
+            </div>
 
-        <div class="ads-hero__system" aria-hidden="true">
-          <span class="ads-hero__system-mark">SYS</span>
-          <span class="ads-hero__axis ads-hero__axis--a"></span>
-          <span class="ads-hero__axis ads-hero__axis--b"></span>
-          <div class="ads-hero__node ads-hero__node--process">
-            <span>Processo</span>
-            <strong>regole e ruoli</strong>
+            <div class="ads-hero__system" aria-hidden="true">
+              <span class="ads-hero__system-mark">SYS</span>
+              <span class="ads-hero__axis ads-hero__axis--a"></span>
+              <span class="ads-hero__axis ads-hero__axis--b"></span>
+              <div class="ads-hero__node ads-hero__node--process">
+                <span>Processo</span>
+                <strong>regole e ruoli</strong>
+              </div>
+              <div class="ads-hero__node ads-hero__node--data">
+                <span>Dati</span>
+                <strong>flussi e API</strong>
+              </div>
+              <div class="ads-hero__node ads-hero__node--ai">
+                <span>AI</span>
+                <strong>uso controllato</strong>
+              </div>
+              <div class="ads-hero__node ads-hero__node--proof">
+                <span>Prova</span>
+                <strong>log e audit</strong>
+              </div>
+            </div>
           </div>
-          <div class="ads-hero__node ads-hero__node--data">
-            <span>Dati</span>
-            <strong>flussi e API</strong>
-          </div>
-          <div class="ads-hero__node ads-hero__node--ai">
-            <span>AI</span>
-            <strong>uso controllato</strong>
-          </div>
-          <div class="ads-hero__node ads-hero__node--proof">
-            <span>Prova</span>
-            <strong>log e audit</strong>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ads-positioning ds-container" aria-labelledby="positioning-title">
-      <div class="ads-positioning__copy">
-        <h2 id="positioning-title">Tecnologia costruita per decidere meglio, non solo per aggiungere strumenti</h2>
-        <p>
-          Molte aziende arrivano con strumenti già presenti, dati distribuiti e responsabilità poco
-          visibili. Il valore non sta nel creare un’altra interfaccia, ma nel progettare un sistema
-          che colleghi processo, dati e decisioni con criteri chiari. Devisia lavora su architettura,
-          integrazioni, automazione e AI con attenzione a affidabilità, privacy e continuità nel
-          tempo.
-        </p>
-        <p>
-          Quando l’azienda usa già Microsoft 365, partiamo da ciò che esiste: documenti in SharePoint
-          o OneDrive, approvazioni via Power Automate, dati da collegare via API e casi in cui Copilot
-          o un assistente AI possono aiutare senza perdere controllo su accessi, ruoli e tracciabilità.
-        </p>
-      </div>
-      <aside class="ads-positioning__stack" aria-labelledby="m365-stack-title">
-        <div class="ads-positioning__stack-top">
-          <p>Microsoft 365 come infrastruttura operativa</p>
-          <span aria-hidden="true">M365</span>
-        </div>
-        <h3 id="m365-stack-title">Processi, documenti e AI nello stesso perimetro</h3>
-        <p>
-          SharePoint, OneDrive, Power Automate e Copilot possono diventare più di strumenti separati:
-          una base controllabile per flussi documentali, approvazioni, conoscenza interna e attività
-          assistite dall’AI.
-        </p>
-        <div class="ads-positioning__flow" aria-label="Livelli operativi Microsoft 365">
-          <div>
-            <span>Documenti</span>
-            <strong>SharePoint + OneDrive</strong>
-          </div>
-          <div>
-            <span>Flussi</span>
-            <strong>Power Automate</strong>
-          </div>
-          <div>
-            <span>Assistenza</span>
-            <strong>Copilot e AI</strong>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <section class="ads-fit ds-container" aria-labelledby="fit-title">
-      <div class="ads-fit__intro">
-        <span aria-hidden="true">FIT</span>
-        <h2 id="fit-title">Quando ha senso parlarci</h2>
-      </div>
-      <ul class="ads-fit__list">
-        {qualificationSignals.map((signal) => <li>{signal}</li>)}
-      </ul>
-    </section>
-
-    <section class="ads-services" aria-labelledby="services-title">
-      <div class="ds-container">
-        <div class="ads-section-head">
-          <h2 id="services-title">Cosa possiamo costruire insieme</h2>
-          <p>
-            Interveniamo quando un progetto deve produrre un sistema usabile, integrato e
-            governabile. Non partiamo dalla tecnologia da mostrare, ma dal lavoro che deve migliorare.
-          </p>
-        </div>
-
-        <section class="ads-service-grid" aria-label="Servizi principali">
-          {
-            services.map((service) => (
-              <article class="ads-service">
-                <span>{service.label}</span>
-                <h3>{service.title}</h3>
-                <p>{service.text}</p>
-              </article>
-            ))
-          }
         </section>
-      </div>
-    </section>
 
-    <section class="ads-capabilities ds-container" aria-labelledby="capabilities-title">
-      <div class="ads-section-head ads-section-head--split">
-        <h2 id="capabilities-title">Dove lavoriamo</h2>
-        <p>
-          Stack e ambiti scelti in base al problema. Laravel, React, Next.js, Microsoft 365, API e AI
-          hanno senso solo se rendono il sistema più chiaro, utile e controllabile.
-        </p>
-      </div>
+        <section class="ads-local ds-container" aria-labelledby="local-title">
+          <div class="ads-local__card">
+            <p class="ads-local__eyebrow">Sede</p>
+            <p class="ads-local__address">
+              Riva Tommaso Gulli 12<br />34123 Trieste
+            </p>
+            <a class="ads-local__phone" href={PHONE_HREF}>{PHONE_NUMBER}</a>
+          </div>
+          <div class="ads-local__copy">
+            <h2 id="local-title">Tecnologia costruita vicino all’impresa</h2>
+            <p>
+              Devisia ha sede a Trieste e lavora con imprese del Friuli Venezia Giulia su software,
+              Microsoft 365, integrazioni, automazioni e sistemi AI. La vicinanza non sostituisce il
+              metodo, ma rende più semplice capire processi, responsabilità e vincoli operativi.
+            </p>
+          </div>
+        </section>
 
-      <ul class="ads-capability-list">
-        {capabilities.map((capability) => <li>{capability}</li>)}
-      </ul>
-    </section>
+        <section class="ads-examples ds-container" aria-labelledby="examples-title">
+          <div class="ads-section-head">
+            <h2 id="examples-title">Esempi di intervento</h2>
+            <p>
+              Non partiamo da un prodotto da collocare, ma dal punto in cui il processo perde tempo,
+              dati o controllo.
+            </p>
+          </div>
 
-    <section class="ads-method" aria-labelledby="method-title">
-      <div class="ds-container ads-method__grid">
-        <div>
-          <p class="ads-method__mark" aria-hidden="true">01-05</p>
-          <h2 id="method-title">Come affrontiamo i progetti</h2>
-          <p>
-            Prima di stimare o sviluppare, mettiamo ordine nel problema. Questo riduce soluzioni
-            inutilmente complesse, rende più chiare le responsabilità e aiuta a costruire sistemi che
-            possono evolvere dopo il primo rilascio.
-          </p>
-        </div>
+          <div class="ads-example-grid">
+            {
+              interventions.map((item) => (
+                <article class="ads-example">
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))
+            }
+          </div>
 
-        <ol class="ads-method__steps">
-          {
-            methodSteps.map((step, index) => (
-              <li>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <p>{step}</p>
-              </li>
-            ))
-          }
-        </ol>
-      </div>
-    </section>
+          <div class="ads-m365">
+            <p class="ads-m365__caption" id="m365-caption">
+              Il perimetro Microsoft 365 su cui interveniamo più spesso
+            </p>
+            <ul class="ads-m365__flow" aria-labelledby="m365-caption">
+              {
+                m365Layers.map((layer) => (
+                  <li>
+                    <span>{layer.label}</span>
+                    <strong>{layer.value}</strong>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </section>
 
+        <section class="ads-fit ds-container" aria-labelledby="fit-title">
+          <div class="ads-fit__intro">
+            <span aria-hidden="true">FIT</span>
+            <h2 id="fit-title">Quando ha senso parlarci</h2>
+          </div>
+          <ul class="ads-fit__list">
+            {qualificationSignals.map((signal) => <li>{signal}</li>)}
+          </ul>
+        </section>
+
+        <section class="ads-services" aria-labelledby="services-title">
+          <div class="ds-container">
+            <div class="ads-section-head">
+              <h2 id="services-title">Cosa possiamo costruire</h2>
+              <p>
+                Tre aree di lavoro ricorrenti. Quale ti serve davvero si decide dopo aver guardato
+                il processo, non prima.
+              </p>
+            </div>
+
+            <div class="ads-service-grid">
+              {
+                services.map((service) => (
+                  <article class="ads-service">
+                    <span>{service.label}</span>
+                    <h3>{service.title}</h3>
+                    <p>{service.text}</p>
+                  </article>
+                ))
+              }
+            </div>
+          </div>
+        </section>
+
+        <section class="ads-method" aria-labelledby="method-title">
+          <div class="ds-container ads-method__grid">
+            <div>
+              <p class="ads-method__mark" aria-hidden="true">01-05</p>
+              <h2 id="method-title">Come affrontiamo i progetti</h2>
+              <p>
+                Prima di stimare o sviluppare mettiamo ordine nel problema: meno soluzioni
+                complicate senza motivo, responsabilità più chiare e decisioni tecniche che restano
+                valide anche dopo il rilascio.
+              </p>
+            </div>
+
+            <ol class="ads-method__steps">
+              {
+                methodSteps.map((step, index) => (
+                  <li>
+                    <span>{String(index + 1).padStart(2, '0')}</span>
+                    <p>{step}</p>
+                  </li>
+                ))
+              }
+            </ol>
+          </div>
+        </section>
       </article>
     </div>
 
-    <aside
-      id="ads-form"
-      class="ads-form-panel"
-      data-ads-form-panel
-      aria-labelledby="ads-form-title"
-    >
-    <div class="ads-form-panel__inner">
-      <header class="ads-form-panel__header">
-        <p class="ads-form-panel__eyebrow">Richiesta</p>
-        <h2 id="ads-form-title">Parliamo del vostro processo</h2>
-        <p class="ads-form-panel__lede">
-          Bastano obiettivo, situazione attuale e cosa vuoi cambiare.
-        </p>
-        <button
-          type="button"
-          class="ads-form-panel__close"
-          data-form-close
-          aria-label="Chiudi modulo"
-        >
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path
-              d="M18 6L6 18M6 6l12 12"
-              stroke="currentColor"
-              stroke-width="2"
-              stroke-linecap="round"></path>
-          </svg>
-        </button>
-      </header>
-      {
-        isSuccess && (
-          <div id="contact-success" class="ads-form-panel__success" role="status" tabindex="-1">
-            <h3>Messaggio ricevuto.</h3>
-            <p>Grazie. Leggiamo la richiesta e ti rispondiamo con domande mirate o un primo passo chiaro.</p>
-          </div>
-        )
-      }
-      <ContactForm
-        lang="it"
-        showHeading={false}
-        fieldIdPrefix="landing-"
-        source="landing_devisia"
-        trackingSource="landing_devisia"
-        formId="landing-devisia"
-        pagePath="/landing/devisia"
-        variant="contact"
-      />
-    </div>
+    <aside id="ads-form" class="ads-form-panel" data-ads-form-panel aria-labelledby="ads-form-title">
+      <div class="ads-form-panel__inner">
+        <header class="ads-form-panel__header">
+          <p class="ads-form-panel__eyebrow">Richiesta</p>
+          <h2 id="ads-form-title" tabindex="-1">Parliamo del tuo processo</h2>
+          <p class="ads-form-panel__lede">
+            Bastano tre righe: situazione attuale, obiettivo e vincoli da considerare.
+          </p>
+        </header>
+        {
+          isSuccess && (
+            <div id="contact-success" class="ads-form-panel__success" role="status" tabindex="-1">
+              <h3>Messaggio ricevuto.</h3>
+              <p>
+                Grazie. Leggiamo la richiesta e ti rispondiamo con domande mirate o un primo passo
+                chiaro.
+              </p>
+            </div>
+          )
+        }
+        <ContactForm
+          lang="it"
+          showHeading={false}
+          fieldIdPrefix="landing-"
+          source={LANDING_SOURCE}
+          trackingSource={LANDING_SOURCE}
+          formId="landing-devisia"
+          pagePath={LANDING_PATH}
+          variant="contact"
+          submitLabel="Invia la richiesta"
+          fieldCopy={{
+            name: 'Nome e cognome',
+            email: 'Email di lavoro',
+            subject: 'Oggetto, facoltativo',
+            message: 'Messaggio',
+            messagePlaceholder:
+              'Descrivi cosa succede oggi, cosa vorresti cambiare e quali vincoli non possiamo ignorare.',
+          }}
+        />
+      </div>
     </aside>
   </div>
 
-  <button
-    type="button"
-    class="ads-form-dock"
-    data-form-dock
-    aria-controls="ads-form"
-    aria-expanded="false"
-  >
-    <span class="ads-form-dock__label">Raccontaci il contesto</span>
-    <span class="ads-form-dock__chevron" aria-hidden="true">↑</span>
-  </button>
-
-  <div class="ads-form-backdrop" data-form-backdrop hidden aria-hidden="true"></div>
+  <div class="ads-form-dock-bar" data-form-dock-bar data-visible="false">
+    <button type="button" class="ads-form-dock" data-form-dock aria-controls="ads-form">
+      {CTA_LABEL}
+    </button>
+  </div>
 </Layout>
-
-<style is:global>
-  .mobile-sticky-cta {
-    display: none !important;
-  }
-</style>
 
 <style>
   .ads-landing-shell {
@@ -326,10 +339,16 @@ const breadcrumbs = breadcrumbListJsonLd({
 
   .ads-landing {
     background:
-      linear-gradient(90deg, color-mix(in oklch, var(--ds-color-accent-2) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(
+          90deg,
+          color-mix(in oklch, var(--ds-color-accent-2) 7%, transparent) 1px,
+          transparent 1px
+        ),
       var(--ds-color-bg);
     background-size: clamp(3rem, 8vw, 5.5rem) clamp(3rem, 8vw, 5.5rem);
   }
+
+  /* ---------------------------------------------------------------- Hero */
 
   .ads-hero {
     position: relative;
@@ -337,14 +356,23 @@ const breadcrumbs = breadcrumbListJsonLd({
     padding-top: var(--ds-hero-padding-top);
     padding-bottom: var(--ds-hero-padding-bottom);
     background:
-      radial-gradient(circle at 82% 18%, color-mix(in oklch, var(--ds-color-accent) 28%, transparent), transparent 32%),
-      linear-gradient(118deg, transparent 0 56%, color-mix(in oklch, var(--ds-color-accent-2) 18%, transparent) 56% 59%, transparent 59%),
+      radial-gradient(
+        circle at 82% 18%,
+        color-mix(in oklch, var(--ds-color-accent) 28%, transparent),
+        transparent 32%
+      ),
+      linear-gradient(
+        118deg,
+        transparent 0 56%,
+        color-mix(in oklch, var(--ds-color-accent-2) 18%, transparent) 56% 59%,
+        transparent 59%
+      ),
       var(--ds-color-hero-tint);
     color: color-mix(in oklch, white 94%, var(--ds-color-hero-tint));
   }
 
   .ads-hero::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     background:
@@ -377,6 +405,7 @@ const breadcrumbs = breadcrumbListJsonLd({
     font-weight: 850;
     letter-spacing: var(--ds-tracking-caps);
     text-transform: uppercase;
+    text-wrap: balance;
   }
 
   .ads-hero h1 {
@@ -397,6 +426,7 @@ const breadcrumbs = breadcrumbListJsonLd({
     color: color-mix(in oklch, white 84%, var(--ds-color-hero-tint));
     font-size: clamp(1.08rem, 0.75vw + 1rem, 1.35rem);
     line-height: var(--ds-leading-relaxed);
+    text-wrap: pretty;
   }
 
   .ads-hero__actions {
@@ -407,42 +437,8 @@ const breadcrumbs = breadcrumbListJsonLd({
     margin-top: var(--ds-space-6);
   }
 
-  .ads-hero__actions :global(.ds-btn[data-surface="hero"]) {
+  .ads-hero__actions :global(.ds-btn[data-surface='hero']) {
     font-size: clamp(1rem, 0.92rem + 0.35vw, 1.12rem);
-  }
-
-  .ads-hero__actions p {
-    max-width: 36ch;
-    margin: 0;
-    color: color-mix(in oklch, white 75%, var(--ds-color-hero-tint));
-    font-family: var(--ds-font-ui);
-    font-size: var(--ds-text-sm);
-    line-height: var(--ds-leading-relaxed);
-  }
-
-  .ads-hero__signals {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1px;
-    width: fit-content;
-    max-width: 100%;
-    margin: var(--ds-space-6) 0 0;
-    padding: 0;
-    border: 1px solid color-mix(in oklch, var(--ds-color-accent-2) 44%, transparent);
-    background: color-mix(in oklch, var(--ds-color-accent-2) 30%, transparent);
-    list-style: none;
-  }
-
-  .ads-hero__signals li {
-    margin: 0;
-    padding: 0.72rem 0.82rem;
-    background: color-mix(in oklch, var(--ds-color-hero-tint) 92%, black);
-    color: color-mix(in oklch, white 88%, var(--ds-color-hero-tint));
-    font-family: var(--ds-font-ui);
-    font-size: var(--ds-text-xs);
-    font-weight: 850;
-    letter-spacing: var(--ds-tracking-caps);
-    text-transform: uppercase;
   }
 
   .ads-hero__system {
@@ -450,15 +446,23 @@ const breadcrumbs = breadcrumbListJsonLd({
     min-height: clamp(24rem, 38vw, 34rem);
     border: 1px solid color-mix(in oklch, white 16%, var(--ds-color-hero-tint));
     background:
-      radial-gradient(circle at 26% 24%, color-mix(in oklch, var(--ds-color-accent-2) 36%, transparent), transparent 30%),
-      radial-gradient(circle at 76% 76%, color-mix(in oklch, var(--ds-color-accent) 26%, transparent), transparent 32%),
+      radial-gradient(
+        circle at 26% 24%,
+        color-mix(in oklch, var(--ds-color-accent-2) 36%, transparent),
+        transparent 30%
+      ),
+      radial-gradient(
+        circle at 76% 76%,
+        color-mix(in oklch, var(--ds-color-accent) 26%, transparent),
+        transparent 32%
+      ),
       color-mix(in oklch, white 5%, var(--ds-color-hero-tint));
     clip-path: polygon(0 6%, 100% 0, 96% 94%, 6% 100%);
     overflow: hidden;
   }
 
   .ads-hero__system::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 9%;
     border: 1px dashed color-mix(in oklch, white 22%, transparent);
@@ -546,157 +550,121 @@ const breadcrumbs = breadcrumbListJsonLd({
     background: color-mix(in oklch, var(--ds-color-accent) 32%, var(--ds-color-hero-tint));
   }
 
-  .ads-positioning,
-  .ads-capabilities {
-    padding-block: clamp(4rem, 7vw, 8rem);
-  }
+  /* ------------------------------------------------------ Local presence */
 
-  .ads-positioning {
+  .ads-local {
     display: grid;
-    gap: clamp(2rem, 5vw, 4.5rem);
-    align-items: start;
+    gap: clamp(1.25rem, 4vw, 3rem);
+    align-items: stretch;
+    padding-block: clamp(3rem, 6vw, 5.5rem);
   }
 
   @media (min-width: 62rem) {
-    .ads-positioning {
-      grid-template-columns: minmax(18rem, 0.78fr) minmax(0, 1.22fr);
-    }
-
-    /* Keep the h2 first in the DOM while preserving the original desktop composition. */
-    .ads-positioning__stack {
-      grid-column: 1;
-      grid-row: 1;
-    }
-
-    .ads-positioning__copy {
-      grid-column: 2;
-      grid-row: 1;
+    .ads-local {
+      grid-template-columns: minmax(14rem, 0.52fr) minmax(0, 1.48fr);
     }
   }
 
-  .ads-method__mark {
-    margin: 0;
-    color: color-mix(in oklch, var(--ds-color-text) 11%, transparent);
-    font-size: clamp(3.8rem, 11vw, 10rem);
-    font-weight: 850;
-    line-height: 0.72;
-    letter-spacing: -0.11em;
-    text-transform: uppercase;
-  }
-
-  .ads-positioning__stack {
-    position: relative;
-    overflow: hidden;
+  .ads-local__card {
     display: grid;
-    gap: var(--ds-space-5);
-    min-height: 100%;
-    padding: clamp(1.35rem, 3vw, 2.25rem);
-    border: 1px solid color-mix(in oklch, var(--ds-color-accent-2) 34%, var(--ds-color-border));
+    align-content: start;
+    gap: var(--ds-space-3);
+    padding: clamp(1.25rem, 3vw, 2rem);
+    border: 1px solid color-mix(in oklch, var(--ds-color-accent-2) 38%, var(--ds-color-border));
     background:
-      linear-gradient(145deg, color-mix(in oklch, var(--ds-color-accent-2) 18%, transparent), transparent 46%),
-      radial-gradient(circle at 100% 0%, color-mix(in oklch, var(--ds-color-accent) 18%, transparent), transparent 34%),
-      color-mix(in oklch, var(--ds-color-surface) 94%, var(--ds-color-accent-2));
+      linear-gradient(
+        135deg,
+        color-mix(in oklch, var(--ds-color-accent-2) 14%, transparent),
+        transparent 48%
+      ),
+      var(--ds-color-surface);
   }
 
-  .ads-positioning__stack::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background:
-      linear-gradient(90deg, color-mix(in oklch, var(--ds-color-accent-2) 12%, transparent) 1px, transparent 1px),
-      linear-gradient(0deg, color-mix(in oklch, var(--ds-color-text) 7%, transparent) 1px, transparent 1px);
-    background-size: 3.2rem 3.2rem;
-    opacity: 0.7;
-    pointer-events: none;
-  }
-
-  .ads-positioning__stack > * {
-    position: relative;
-  }
-
-  .ads-positioning__stack-top {
-    display: flex;
-    gap: var(--ds-space-4);
-    align-items: start;
-    justify-content: space-between;
-    min-width: 0;
-  }
-
-  .ads-positioning__stack-top p {
-    max-width: 24ch;
+  .ads-local__eyebrow {
     margin: 0;
     color: color-mix(in oklch, var(--ds-color-accent-2) 84%, var(--ds-color-text));
     font-family: var(--ds-font-ui);
     font-size: var(--ds-text-xs);
     font-weight: 850;
     letter-spacing: var(--ds-tracking-caps);
-    line-height: var(--ds-leading-tight);
     text-transform: uppercase;
-    word-break: normal;
-    overflow-wrap: normal;
   }
 
-  .ads-positioning__stack-top span {
-    flex: 0 1 auto;
-    min-width: 0;
-    color: color-mix(in oklch, var(--ds-color-text) 16%, transparent);
-    font-size: clamp(3.2rem, 7vw, 7rem);
-    font-weight: 850;
-    letter-spacing: -0.14em;
-    line-height: 0.72;
-    white-space: nowrap;
+  .ads-local__address {
+    margin: 0;
+    color: var(--ds-color-text);
+    font-family: var(--ds-font-display);
+    font-size: var(--ds-text-lg);
+    line-height: var(--ds-leading-tight);
   }
 
-  @media (max-width: 42rem) {
-    .ads-positioning__stack-top {
-      align-items: center;
-    }
+  .ads-local__phone {
+    justify-self: start;
+    margin: 0;
+    padding: 0;
+    color: var(--ds-color-accent);
+    font-family: var(--ds-font-ui);
+    font-size: var(--ds-text-sm);
+    font-weight: 800;
+    letter-spacing: var(--ds-tracking-caps);
+  }
 
-    .ads-positioning__stack-top p {
-      max-width: 18rem;
-      font-size: clamp(0.72rem, 2.7vw, 0.82rem);
-      letter-spacing: 0.055em;
-    }
+  .ads-local__copy {
+    max-width: 68ch;
+  }
 
-    .ads-positioning__stack-top span {
-      font-size: clamp(3rem, 18vw, 4.4rem);
-      letter-spacing: -0.12em;
-      opacity: 0.72;
+  /* ---------------------------------------------- Intervention examples */
+
+  .ads-examples {
+    padding-bottom: clamp(3rem, 6vw, 5.5rem);
+  }
+
+  .ads-example-grid,
+  .ads-service-grid {
+    display: grid;
+    gap: clamp(0.9rem, 2vw, 1.2rem);
+  }
+
+  @media (min-width: 56rem) {
+    .ads-example-grid,
+    .ads-service-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      align-items: stretch;
     }
   }
 
-  .ads-positioning__stack h3 {
-    max-width: 12ch;
+  .ads-example {
+    display: grid;
+    align-content: start;
+    gap: var(--ds-space-3);
+    padding: clamp(1.25rem, 3vw, 1.85rem);
+    border: 1px solid var(--ds-color-border);
+    border-top: 2px solid color-mix(in oklch, var(--ds-color-accent-2) 70%, var(--ds-color-border));
+    background: var(--ds-color-surface);
+  }
+
+  .ads-example h3 {
     margin: 0;
     font-family: var(--ds-font-display);
-    font-size: clamp(1.9rem, 1.1rem + 2.55vw, 3.25rem);
+    font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem);
     line-height: var(--ds-leading-tight);
-    letter-spacing: var(--ds-tracking-tight);
+    text-wrap: balance;
   }
 
-  .ads-positioning__stack > p:not(:first-child) {
+  .ads-example p {
     margin: 0;
     color: var(--ds-color-text-muted);
-    font-size: var(--ds-text-sm);
+    font-size: var(--ds-text-md);
     line-height: var(--ds-leading-relaxed);
+    text-wrap: pretty;
   }
 
-  .ads-positioning__flow {
-    display: grid;
-    gap: 1px;
-    margin-top: var(--ds-space-2);
-    border: 1px solid color-mix(in oklch, var(--ds-color-accent-2) 35%, var(--ds-color-border));
-    background: color-mix(in oklch, var(--ds-color-accent-2) 30%, var(--ds-color-border));
+  .ads-m365 {
+    margin-top: clamp(1.25rem, 3vw, 2rem);
   }
 
-  .ads-positioning__flow div {
-    display: grid;
-    gap: var(--ds-space-1);
-    padding: 0.85rem 0.95rem;
-    background: color-mix(in oklch, var(--ds-color-surface) 96%, var(--ds-color-accent-2));
-  }
-
-  .ads-positioning__flow span {
+  .ads-m365__caption {
+    margin: 0 0 var(--ds-space-3);
     color: color-mix(in oklch, var(--ds-color-accent-2) 82%, var(--ds-color-text));
     font-family: var(--ds-font-ui);
     font-size: var(--ds-text-xs);
@@ -705,43 +673,46 @@ const breadcrumbs = breadcrumbListJsonLd({
     text-transform: uppercase;
   }
 
-  .ads-positioning__flow strong {
+  .ads-m365__flow {
+    display: grid;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid color-mix(in oklch, var(--ds-color-accent-2) 35%, var(--ds-color-border));
+    background: color-mix(in oklch, var(--ds-color-accent-2) 30%, var(--ds-color-border));
+    list-style: none;
+  }
+
+  @media (min-width: 44rem) {
+    .ads-m365__flow {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .ads-m365__flow li {
+    display: grid;
+    gap: var(--ds-space-1);
+    margin: 0;
+    padding: 0.85rem 0.95rem;
+    background: color-mix(in oklch, var(--ds-color-surface) 96%, var(--ds-color-accent-2));
+  }
+
+  .ads-m365__flow span {
+    color: color-mix(in oklch, var(--ds-color-accent-2) 82%, var(--ds-color-text));
+    font-family: var(--ds-font-ui);
+    font-size: var(--ds-text-xs);
+    font-weight: 800;
+    letter-spacing: var(--ds-tracking-caps);
+    text-transform: uppercase;
+  }
+
+  .ads-m365__flow strong {
     color: var(--ds-color-text);
     font-size: var(--ds-text-md);
     line-height: var(--ds-leading-tight);
   }
 
-  .ads-positioning h2,
-  .ads-section-head h2,
-  .ads-method h2,
-  .ads-form-panel__header h2 {
-    margin: 0;
-    font-family: var(--ds-font-display);
-    font-size: var(--ds-text-3xl);
-    font-weight: 720;
-    line-height: var(--ds-leading-tight);
-    letter-spacing: var(--ds-tracking-tight);
-    text-wrap: balance;
-  }
-
-  .ads-positioning p,
-  .ads-section-head p,
-  .ads-method p {
-    max-width: 66ch;
-    margin: var(--ds-space-4) 0 0;
-    color: var(--ds-color-text-muted);
-    font-size: var(--ds-text-lg);
-    line-height: var(--ds-leading-relaxed);
-  }
-
-  .ads-positioning__copy {
-    max-width: 66ch;
-  }
-
-  .ads-positioning__copy p + p {
-    margin-top: var(--ds-space-4);
-    font-size: var(--ds-text-md);
-  }
+  /* ------------------------------------------------------------ Fit list */
 
   .ads-fit {
     display: grid;
@@ -764,7 +735,11 @@ const breadcrumbs = breadcrumbListJsonLd({
     padding: clamp(1.25rem, 3vw, 2rem);
     border: 1px solid color-mix(in oklch, var(--ds-color-accent) 36%, var(--ds-color-border));
     background:
-      linear-gradient(135deg, color-mix(in oklch, var(--ds-color-accent) 16%, transparent), transparent 46%),
+      linear-gradient(
+        135deg,
+        color-mix(in oklch, var(--ds-color-accent) 16%, transparent),
+        transparent 46%
+      ),
       var(--ds-color-surface);
   }
 
@@ -807,6 +782,8 @@ const breadcrumbs = breadcrumbListJsonLd({
     line-height: var(--ds-leading-relaxed);
   }
 
+  /* --------------------------------------------------- Services & method */
+
   .ads-services,
   .ads-method {
     padding-block: clamp(4rem, 7vw, 8rem);
@@ -826,26 +803,37 @@ const breadcrumbs = breadcrumbListJsonLd({
   }
 
   @media (min-width: 62rem) {
-    .ads-section-head--split,
     .ads-section-head {
       grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
     }
   }
 
-  .ads-section-head p {
+  .ads-section-head h2,
+  .ads-method h2,
+  .ads-local h2,
+  .ads-form-panel__header h2 {
     margin: 0;
+    font-family: var(--ds-font-display);
+    font-size: var(--ds-text-3xl);
+    font-weight: 720;
+    line-height: var(--ds-leading-tight);
+    letter-spacing: var(--ds-tracking-tight);
+    text-wrap: balance;
   }
 
-  .ads-service-grid {
-    display: grid;
-    gap: clamp(0.9rem, 2vw, 1.2rem);
+  .ads-section-head p,
+  .ads-method p,
+  .ads-local p:not(.ads-local__eyebrow):not(.ads-local__address) {
+    max-width: 66ch;
+    margin: 0;
+    color: var(--ds-color-text-muted);
+    font-size: var(--ds-text-lg);
+    line-height: var(--ds-leading-relaxed);
+    text-wrap: pretty;
   }
 
-  @media (min-width: 56rem) {
-    .ads-service-grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      align-items: stretch;
-    }
+  .ads-local__copy p {
+    margin-top: var(--ds-space-4);
   }
 
   .ads-service {
@@ -856,7 +844,11 @@ const breadcrumbs = breadcrumbListJsonLd({
     padding: clamp(1.35rem, 3vw, 2rem);
     border: 1px solid var(--ds-color-border);
     background:
-      radial-gradient(circle at 88% 18%, color-mix(in oklch, var(--ds-color-accent) 12%, transparent), transparent 30%),
+      radial-gradient(
+        circle at 88% 18%,
+        color-mix(in oklch, var(--ds-color-accent) 12%, transparent),
+        transparent 30%
+      ),
       var(--ds-color-surface);
   }
 
@@ -869,7 +861,7 @@ const breadcrumbs = breadcrumbListJsonLd({
   }
 
   .ads-service h3 {
-    max-width: 13ch;
+    max-width: 15ch;
     margin: 0;
     font-family: var(--ds-font-display);
     font-size: clamp(1.45rem, 2.3vw, 2rem);
@@ -880,42 +872,16 @@ const breadcrumbs = breadcrumbListJsonLd({
     margin: 0;
     color: var(--ds-color-text-muted);
     line-height: var(--ds-leading-relaxed);
-  }
-
-  .ads-capability-list {
-    display: grid;
-    gap: 1px;
-    margin: 0;
-    padding: 0;
-    border: 1px solid var(--ds-color-border);
-    background: var(--ds-color-border);
-    list-style: none;
-  }
-
-  @media (min-width: 44rem) {
-    .ads-capability-list {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-
-  @media (min-width: 70rem) {
-    .ads-capability-list {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-
-  .ads-capability-list li {
-    margin: 0;
-    padding: 1rem 1.1rem;
-    background: color-mix(in oklch, var(--ds-color-surface) 96%, var(--ds-color-accent-2));
-    color: var(--ds-color-text);
-    font-size: var(--ds-text-sm);
-    line-height: var(--ds-leading-relaxed);
+    text-wrap: pretty;
   }
 
   .ads-method {
     background:
-      radial-gradient(circle at 18% 20%, color-mix(in oklch, var(--ds-color-accent-2) 15%, transparent), transparent 32%),
+      radial-gradient(
+        circle at 18% 20%,
+        color-mix(in oklch, var(--ds-color-accent-2) 15%, transparent),
+        transparent 32%
+      ),
       var(--ds-color-hero-tint);
     color: color-mix(in oklch, white 92%, var(--ds-color-hero-tint));
   }
@@ -941,7 +907,13 @@ const breadcrumbs = breadcrumbListJsonLd({
   }
 
   .ads-method__mark {
+    margin: 0;
     color: color-mix(in oklch, white 9%, transparent);
+    font-size: clamp(3.8rem, 11vw, 10rem);
+    font-weight: 850;
+    line-height: 0.72;
+    letter-spacing: -0.11em;
+    text-transform: uppercase;
   }
 
   .ads-method__steps {
@@ -981,21 +953,29 @@ const breadcrumbs = breadcrumbListJsonLd({
     font-size: var(--ds-text-md);
   }
 
+  /* -------------------------------------------------------------- Form */
+
+  .ads-form-panel {
+    scroll-margin-top: calc(var(--ds-site-header-offset) + 0.75rem);
+  }
+
   .ads-form-panel__inner {
     padding: clamp(1.25rem, 3vw, 1.75rem);
     border: 1px solid color-mix(in oklch, var(--ds-color-accent) 38%, var(--ds-color-border));
     background:
-      linear-gradient(135deg, color-mix(in oklch, var(--ds-color-accent) 12%, transparent), transparent 45%),
+      linear-gradient(
+        135deg,
+        color-mix(in oklch, var(--ds-color-accent) 12%, transparent),
+        transparent 45%
+      ),
       var(--ds-color-surface);
     box-shadow: var(--ds-shadow-2);
   }
 
   .ads-form-panel__header {
-    position: relative;
     display: grid;
     gap: var(--ds-space-2);
     margin-bottom: var(--ds-space-5);
-    padding-right: 2.5rem;
   }
 
   .ads-form-panel__eyebrow {
@@ -1013,33 +993,16 @@ const breadcrumbs = breadcrumbListJsonLd({
     font-size: clamp(1.35rem, 1.1rem + 0.8vw, 1.75rem);
   }
 
+  .ads-form-panel__header h2:focus-visible {
+    outline: none;
+    box-shadow: var(--ds-focus-ring);
+  }
+
   .ads-form-panel__lede {
     margin: 0;
     color: var(--ds-color-text-muted);
     font-size: var(--ds-text-sm);
     line-height: var(--ds-leading-relaxed);
-  }
-
-  .ads-form-panel__close {
-    display: none;
-    position: absolute;
-    top: 0;
-    right: 0;
-    align-items: center;
-    justify-content: center;
-    width: 2.75rem;
-    height: 2.75rem;
-    padding: 0;
-    border: 1px solid var(--ds-color-border);
-    background: var(--ds-color-surface);
-    color: var(--ds-color-text);
-    cursor: pointer;
-    transition: background-color var(--ds-motion-fast) var(--ds-ease-standard);
-  }
-
-  .ads-form-panel__close:focus-visible {
-    outline: none;
-    box-shadow: var(--ds-focus-ring);
   }
 
   .ads-form-panel__success {
@@ -1065,13 +1028,7 @@ const breadcrumbs = breadcrumbListJsonLd({
     line-height: var(--ds-leading-relaxed);
   }
 
-  .ads-form-dock {
-    display: none;
-  }
-
-  .ads-form-backdrop {
-    display: none;
-  }
+  /* --------------------------------------------- Desktop: sticky form rail */
 
   @media (min-width: 75rem) {
     .ads-landing-shell {
@@ -1104,14 +1061,9 @@ const breadcrumbs = breadcrumbListJsonLd({
       top: var(--ds-site-header-offset);
       z-index: 2;
       align-self: start;
-      scroll-margin-top: var(--ds-site-header-offset);
       max-height: calc(100dvh - var(--ds-site-header-offset) - 1.5rem);
       overflow: auto;
       overscroll-behavior: contain;
-    }
-
-    .ads-form-panel__inner {
-      box-shadow: var(--ds-shadow-2);
     }
 
     /* Compact the panel form so it fits a laptop viewport without an internal
@@ -1152,113 +1104,91 @@ const breadcrumbs = breadcrumbListJsonLd({
     }
   }
 
+  /* ------------------------- Mobile & tablet: form in the document flow */
+
   @media (max-width: 74.99rem) {
-    .ads-landing {
-      padding-bottom: calc(4.25rem + env(safe-area-inset-bottom, 0px));
+    .ads-form-panel {
+      display: block;
+      padding-inline: var(--ds-container-pad);
+      padding-block: clamp(3rem, 7vw, 5rem);
+      /* Room for the sticky CTA while it is still on screen. */
+      padding-bottom: calc(clamp(3rem, 7vw, 5rem) + 5rem + env(safe-area-inset-bottom, 0px));
+      border-top: 1px solid var(--ds-color-border);
+      background: var(--ds-color-bg);
     }
 
-    .ads-form-panel {
+    .ads-form-panel__inner {
+      width: 100%;
+      max-width: var(--ds-container-max);
+      margin-inline: auto;
+    }
+  }
+
+  /* -------------------------------------------------- Mobile sticky CTA */
+
+  .ads-form-dock-bar {
+    display: none;
+  }
+
+  @media (max-width: 74.99rem) {
+    .ads-form-dock-bar {
+      display: block;
       position: fixed;
       left: 0;
       right: 0;
       bottom: 0;
-      z-index: 51;
-      max-height: 85dvh;
-      overflow: auto;
-      overscroll-behavior: contain;
+      /* Above page content, below the sticky header (50) and far below any
+         consent dialog, so the cookie banner always wins. */
+      z-index: 45;
+      padding: 0.7rem clamp(0.85rem, 4vw, 1.5rem);
+      padding-bottom: calc(0.7rem + env(safe-area-inset-bottom, 0px));
+      border-top: 1px solid var(--ds-color-border-strong);
+      background: var(--ds-color-bg);
+      box-shadow: 0 -8px 24px color-mix(in oklch, var(--ds-color-text) 12%, transparent);
+      opacity: 0;
       transform: translateY(100%);
-      transition: transform var(--ds-motion-base) var(--ds-ease-standard);
-      will-change: transform;
+      pointer-events: none;
+      transition:
+        opacity var(--ds-motion-base) var(--ds-ease-standard),
+        transform var(--ds-motion-base) var(--ds-ease-standard);
     }
 
-    .ads-form-panel[data-open] {
-      transform: translateY(0);
-    }
-
-    .ads-form-panel__inner {
-      border-bottom: 0;
-      border-top-left-radius: var(--ds-radius-3);
-      border-top-right-radius: var(--ds-radius-3);
-    }
-
-    .ads-form-panel__close {
-      display: inline-flex;
+    .ads-form-dock-bar[data-visible='true'] {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
     }
 
     .ads-form-dock {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: var(--ds-space-3);
-      position: fixed;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      z-index: 50;
+      justify-content: center;
+      width: 100%;
       min-height: 3.25rem;
-      padding: 0.85rem clamp(1rem, 4vw, 1.5rem);
-      padding-bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));
-      border: 0;
-      border-top: 1px solid color-mix(in oklch, var(--ds-color-accent) 40%, var(--ds-color-border));
-      background: var(--ds-color-primary);
-      color: color-mix(in oklch, white 96%, var(--ds-color-primary));
+      padding: 0.8rem 1rem;
+      border: 1px solid color-mix(in oklch, var(--ds-color-accent) 72%, black);
+      border-radius: 0;
+      background: var(--ds-color-accent);
+      color: var(--ds-color-on-accent);
       font-family: var(--ds-font-ui);
-      font-size: var(--ds-text-sm);
-      font-weight: 700;
-      letter-spacing: var(--ds-tracking-caps);
-      text-transform: uppercase;
+      font-size: clamp(1rem, 0.95rem + 0.25vw, 1.1rem);
+      font-weight: 800;
+      line-height: 1.2;
+      text-align: center;
+      text-wrap: balance;
       cursor: pointer;
-      box-shadow: 0 -4px 24px color-mix(in oklch, var(--ds-color-text) 12%, transparent);
     }
 
     .ads-form-dock:focus-visible {
-      outline: none;
-      box-shadow: var(--ds-focus-ring);
-    }
-
-    .ads-form-dock__chevron {
-      font-size: var(--ds-text-lg);
-      line-height: 1;
-      transition: transform var(--ds-motion-fast) var(--ds-ease-standard);
-    }
-
-    .ads-form-dock[aria-expanded='true'] .ads-form-dock__chevron {
-      transform: rotate(180deg);
-    }
-
-    .ads-form-backdrop {
-      display: block;
-      position: fixed;
-      inset: 0;
-      z-index: 50;
-      border: 0;
-      background: color-mix(in oklch, var(--ds-color-text) 42%, transparent);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity var(--ds-motion-base) var(--ds-ease-standard);
-    }
-
-    .ads-form-backdrop[data-visible] {
-      opacity: 1;
-      pointer-events: auto;
+      outline: 3px solid var(--ds-color-primary);
+      outline-offset: 3px;
     }
   }
 
   @media (max-width: 74.99rem) and (prefers-reduced-motion: reduce) {
-    .ads-form-panel {
+    .ads-form-dock-bar {
       transform: none;
-      opacity: 0;
-      pointer-events: none;
       transition: opacity var(--ds-motion-fast) linear;
-    }
-
-    .ads-form-panel[data-open] {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .ads-form-dock__chevron {
-      transition: none;
     }
   }
 
@@ -1288,118 +1218,127 @@ const breadcrumbs = breadcrumbListJsonLd({
       right: 5%;
     }
   }
+
+  @media (max-width: 26rem) {
+    /* 320-415px: the diagram nodes would otherwise collide. */
+    .ads-hero__system {
+      min-height: 22rem;
+    }
+
+    .ads-hero__node {
+      width: min(11rem, 60%);
+      padding: var(--ds-space-2);
+    }
+
+    .ads-hero__node strong {
+      font-size: var(--ds-text-sm);
+    }
+  }
 </style>
 
-<script is:inline define:vars={{ isSuccess }}>
-  (() => {
-    const panel = document.querySelector('[data-ads-form-panel]');
+<script>
+  import { captureUtmFromLocation } from '../../lib/utm';
+  import { trackLeadEvent } from '../../lib/leadTracking';
+
+  const shell = document.querySelector('[data-ads-landing]');
+  const panel = document.querySelector('[data-ads-form-panel]');
+
+  if (shell instanceof HTMLElement && panel instanceof HTMLElement) {
+    const source = shell.dataset.landingSource || '';
+    const pagePath = shell.dataset.landingPath || '';
+
+    // Persists the LinkedIn UTMs for the session even if the visitor moves
+    // around before opening the form; the form hydrates its hidden fields
+    // from the same store.
+    captureUtmFromLocation();
+    trackLeadEvent({ event: 'landing_view', source, pagePath });
+
+    const heading = panel.querySelector('#ads-form-title');
+    const firstField = panel.querySelector('#landing-name');
+    const dockBar = document.querySelector('[data-form-dock-bar]');
     const dock = document.querySelector('[data-form-dock]');
-    const backdrop = document.querySelector('[data-form-backdrop]');
-    const closeBtn = document.querySelector('[data-form-close]');
-    const heroCta = document.querySelector('[data-ads-form-cta]');
+    const railQuery = window.matchMedia('(min-width: 75rem)');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-    if (!panel || !dock) return;
-
-    const desktopQuery = window.matchMedia('(min-width: 75rem)');
-    const isDesktop = () => desktopQuery.matches;
-
-    const focusFirstField = () => {
-      const firstInput = panel.querySelector('#name');
-      if (firstInput && typeof firstInput.focus === 'function') {
-        try {
-          firstInput.focus({ preventScroll: true });
-        } catch {
-          firstInput.focus();
-        }
+    const focusWithoutScroll = (node: unknown) => {
+      if (!(node instanceof HTMLElement)) return;
+      try {
+        node.focus({ preventScroll: true });
+      } catch {
+        node.focus();
       }
     };
 
-    const setOpen = (open) => {
-      if (isDesktop()) return;
-
-      panel.toggleAttribute('data-open', open);
-      panel.setAttribute('aria-modal', open ? 'true' : 'false');
-      dock.setAttribute('aria-expanded', String(open));
-      panel.inert = !open;
-
-      if (backdrop) {
-        backdrop.toggleAttribute('data-visible', open);
-        backdrop.hidden = !open;
-        backdrop.setAttribute('aria-hidden', String(!open));
-      }
-
-      document.body.style.overflow = open ? 'hidden' : '';
-    };
-
-    const resetMobileState = () => {
-      panel.removeAttribute('data-open');
-      panel.setAttribute('aria-modal', 'false');
-      panel.inert = false;
-      dock.setAttribute('aria-expanded', 'false');
-      if (backdrop) {
-        backdrop.removeAttribute('data-visible');
-        backdrop.hidden = true;
-        backdrop.setAttribute('aria-hidden', 'true');
-      }
-      document.body.style.overflow = '';
-    };
-
-    dock.addEventListener('click', () => {
-      const open = panel.hasAttribute('data-open');
-      setOpen(!open);
-      if (!open) focusFirstField();
-    });
-
-    closeBtn?.addEventListener('click', () => {
-      setOpen(false);
-      dock.focus();
-    });
-
-    backdrop?.addEventListener('click', () => {
-      setOpen(false);
-      dock.focus();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key !== 'Escape') return;
-      if (isDesktop() || !panel.hasAttribute('data-open')) return;
-      setOpen(false);
-      dock.focus();
-    });
-
-    heroCta?.addEventListener('click', (e) => {
-      if (isDesktop()) {
-        e.preventDefault();
-        focusFirstField();
+    const goToForm = () => {
+      // On wide screens the form is already pinned beside the content, so
+      // scrolling would be disorienting: jump straight into the first field.
+      if (railQuery.matches) {
+        focusWithoutScroll(firstField);
         return;
       }
-      e.preventDefault();
-      setOpen(true);
-      requestAnimationFrame(focusFirstField);
+      panel.scrollIntoView({
+        behavior: reducedMotion.matches ? 'auto' : 'smooth',
+        block: 'start',
+      });
+      focusWithoutScroll(heading);
+    };
+
+    document.querySelectorAll('[data-ads-form-cta]').forEach((node) => {
+      node.addEventListener('click', (event) => {
+        event.preventDefault();
+        trackLeadEvent({ event: 'hero_cta_click', source, pagePath });
+        goToForm();
+      });
     });
 
-    desktopQuery.addEventListener('change', () => {
-      if (isDesktop()) resetMobileState();
-    });
+    if (dock instanceof HTMLButtonElement && dockBar instanceof HTMLElement) {
+      dock.addEventListener('click', () => {
+        trackLeadEvent({ event: 'hero_cta_click', source, pagePath });
+        goToForm();
+      });
 
-    if (!isDesktop()) {
-      panel.inert = true;
-      panel.setAttribute('aria-modal', 'false');
+      // The CTA is a shortcut, not a permanent overlay: it stays out of the way
+      // while the hero's own CTA is on screen, and steps aside as soon as the
+      // form or the footer is reachable, so it never covers them.
+      const hero = shell.querySelector('.ads-hero');
+      const footer = document.querySelector('.site-footer');
+      const blockers = new Set();
+
+      const sync = () => {
+        dockBar.dataset.visible = String(!railQuery.matches && blockers.size === 0);
+      };
+
+      if ('IntersectionObserver' in window) {
+        const observe = (target: Element | null, rootMargin: string) => {
+          if (!target) return;
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) blockers.add(entry.target);
+                else blockers.delete(entry.target);
+              });
+              sync();
+            },
+            { rootMargin }
+          );
+          observer.observe(target);
+        };
+
+        // The negative bottom margin encodes "substantially visible": the form
+        // only counts once it reaches the upper three quarters of the viewport.
+        observe(panel, '0px 0px -25% 0px');
+        observe(footer, '0px');
+        observe(hero, '0px');
+      }
+
+      railQuery.addEventListener('change', sync);
+      sync();
     }
 
-    if (isSuccess) {
+    if (shell.dataset.landingSuccess === 'true') {
       requestAnimationFrame(() => {
-        if (!isDesktop()) setOpen(true);
-
-        const success = document.getElementById('contact-success');
-        if (!success) return;
-
-        try {
-          success.focus({ preventScroll: true });
-        } catch {
-          success.focus();
-        }
+        focusWithoutScroll(document.getElementById('contact-success'));
       });
     }
-  })();
+  }
 </script>

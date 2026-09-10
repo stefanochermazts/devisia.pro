@@ -323,6 +323,14 @@ const googleAdsId = import.meta.env.PUBLIC_GOOGLE_ADS_ID || 'AW-17995423794';
         </section>
 
         {
+          minimalChrome && (
+            <div class="nav-landing-actions">
+              <slot name="header-actions" />
+            </div>
+          )
+        }
+
+        {
           !minimalChrome && (
             <button
               type="button"
