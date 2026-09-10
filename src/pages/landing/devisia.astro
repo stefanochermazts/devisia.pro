@@ -443,7 +443,9 @@ const breadcrumbs = breadcrumbListJsonLd({
 
   .ads-hero__system {
     position: relative;
-    min-height: clamp(24rem, 38vw, 34rem);
+    /* Tall enough that the two node bands still clear each other when the
+       column narrows around 1024px and the labels wrap to two lines. */
+    min-height: clamp(26rem, 40vw, 34rem);
     border: 1px solid color-mix(in oklch, white 16%, var(--ds-color-hero-tint));
     background:
       radial-gradient(
@@ -528,25 +530,28 @@ const breadcrumbs = breadcrumbListJsonLd({
     line-height: var(--ds-leading-tight);
   }
 
+  /* The four nodes are stacked in two vertical bands so that a narrow lane
+     (mobile, or the desktop column left of the form rail) can never make one
+     node cover another's label. */
   .ads-hero__node--process {
     left: 8%;
-    top: 15%;
+    top: 12%;
   }
 
   .ads-hero__node--data {
     right: 9%;
-    top: 25%;
+    top: 30%;
   }
 
   .ads-hero__node--ai {
-    left: 14%;
-    bottom: 18%;
+    left: 8%;
+    bottom: 34%;
     border-color: color-mix(in oklch, var(--ds-color-accent) 45%, transparent);
   }
 
   .ads-hero__node--proof {
-    right: 11%;
-    bottom: 12%;
+    right: 9%;
+    bottom: 8%;
     background: color-mix(in oklch, var(--ds-color-accent) 32%, var(--ds-color-hero-tint));
   }
 
@@ -1117,9 +1122,11 @@ const breadcrumbs = breadcrumbListJsonLd({
       background: var(--ds-color-bg);
     }
 
+    /* Full container width would stretch the message field past 900px on a
+       tablet, which reads as a wall rather than a form. */
     .ads-form-panel__inner {
       width: 100%;
-      max-width: var(--ds-container-max);
+      max-width: 46rem;
       margin-inline: auto;
     }
   }
@@ -1206,19 +1213,11 @@ const breadcrumbs = breadcrumbListJsonLd({
     }
 
     .ads-hero__system {
-      min-height: 26rem;
+      min-height: 27rem;
     }
 
     .ads-hero__node {
-      width: min(13rem, 54%);
-    }
-
-    .ads-hero__node--data {
-      right: 4%;
-    }
-
-    .ads-hero__node--proof {
-      right: 5%;
+      width: min(13rem, 56%);
     }
   }
 
