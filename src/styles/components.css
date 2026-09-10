@@ -160,9 +160,9 @@
     }
   }
 
-  @media (max-width: 48rem) {
+  @media (max-width: 47.99rem) {
     /* No room beside the wordmark on a phone, and the sticky bottom CTA already
-       carries the same action there. */
+       carries the same action there. Tablets from 768px up keep it. */
     .nav-landing-actions .ds-btn {
       display: none;
     }

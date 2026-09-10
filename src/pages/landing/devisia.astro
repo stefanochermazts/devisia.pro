@@ -1179,8 +1179,11 @@ const breadcrumbs = breadcrumbListJsonLd({
       cursor: pointer;
     }
 
+    /* The global focus ring is ember, which would vanish on an ember fill, and
+       `primary` collapses into the background in dark theme. Text colour is the
+       only token guaranteed to contrast with the bar in both themes. */
     .ads-form-dock:focus-visible {
-      outline: 3px solid var(--ds-color-primary);
+      outline: 3px solid var(--ds-color-text);
       outline-offset: 3px;
     }
   }
