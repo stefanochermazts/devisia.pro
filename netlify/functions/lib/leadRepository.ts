@@ -31,6 +31,7 @@ export async function insertLeadSubmission(data: ParsedLeadPayload): Promise<Lea
     const metadata = {
       form_loaded_at: data.formLoadedAt,
       variant: data.sourceConfig.variant,
+      ...(data.interests.length > 0 ? { interests: data.interests } : {}),
     };
 
     const inserted = await db.sql<LeadRow>`

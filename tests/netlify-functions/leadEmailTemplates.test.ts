@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   renderContactConfirmationEmail,
   renderLandingConfirmationEmail,
+  renderManagerNotificationEmail,
 } from '../../netlify/functions/lib/leadEmailRender';
 import { getLeadEmailTemplate } from '../../netlify/functions/lib/leadEmailTemplates';
 
@@ -47,5 +48,43 @@ describe('lead email templates', () => {
 
     expect(email.subject).toBe('Grazie per averci contattato');
     expect(email.text).toContain('Nuovo progetto');
+  });
+
+  it('adapts the brochure confirmation to the chosen interests', () => {
+    const render = (interests: Array<'processi' | 'auditready'>) =>
+      renderLandingConfirmationEmail({ source: 'landing_brochure', fullName: 'Mario Rossi', interests });
+
+    const processi = render(['processi']);
+    const audit = render(['auditready']);
+    const both = render(['processi', 'auditready']);
+
+    expect(processi?.text).toContain('processi e Microsoft 365');
+    expect(processi?.text).not.toContain('AuditReady');
+    expect(audit?.text).toContain('AuditReady');
+    expect(audit?.text).not.toContain('Microsoft 365');
+    expect(both?.text).toContain('entrambe le aree');
+    expect(both?.subject).toBe('Abbiamo ricevuto la tua richiesta');
+    expect(both?.html).toContain('https://devisia.pro/privacy');
+  });
+
+  it('adds the interest line to the manager notification only when present', () => {
+    const base = {
+      fullName: 'Mario Rossi',
+      email: 'mario@example.com',
+      source: 'landing_brochure',
+      lang: 'it' as const,
+      company: 'Acme SpA',
+      role: null,
+      subject: null,
+      message: 'Ciao',
+      pagePath: '/brochure',
+    };
+
+    const withInterest = renderManagerNotificationEmail({ ...base, interests: ['processi', 'auditready'] });
+    expect(withInterest.text).toContain('Interest: Processi e Microsoft 365 + AuditReady');
+    expect(withInterest.html).toContain('<strong>Interest:</strong>');
+
+    const without = renderManagerNotificationEmail(base);
+    expect(without.text).not.toContain('Interest:');
   });
 });

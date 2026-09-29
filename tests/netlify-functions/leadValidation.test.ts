@@ -93,4 +93,47 @@ describe('validateLeadPayload', () => {
     expect(result.data.sourceConfig.source).toBe('website_contact');
     expect(result.data.company).toBeNull();
   });
+
+  describe('brochure interests', () => {
+    const brochureBody = {
+      ...validLandingBody,
+      form_id: 'landing-brochure',
+      page_path: '/brochure',
+    };
+
+    it('rejects a brochure lead without any interest', () => {
+      const result = validateLeadPayload(parseLeadBody(brochureBody));
+
+      expect(result.ok).toBe(false);
+      if (result.ok) return;
+      expect(result.fieldErrors.interest).toBeTruthy();
+    });
+
+    it('accepts a single interest', () => {
+      const result = validateLeadPayload(parseLeadBody({ ...brochureBody, interest_auditready: 'true' }));
+
+      expect(result.ok).toBe(true);
+      if (!result.ok) return;
+      expect(result.data.sourceConfig.source).toBe('landing_brochure');
+      expect(result.data.interests).toEqual(['auditready']);
+    });
+
+    it('accepts both interests in canonical order', () => {
+      const result = validateLeadPayload(
+        parseLeadBody({ ...brochureBody, interest_auditready: 'true', interest_processi: 'true' })
+      );
+
+      expect(result.ok).toBe(true);
+      if (!result.ok) return;
+      expect(result.data.interests).toEqual(['processi', 'auditready']);
+    });
+
+    it('ignores interest fields on sources that do not require them', () => {
+      const result = validateLeadPayload(parseLeadBody({ ...validLandingBody, interest_processi: 'true' }));
+
+      expect(result.ok).toBe(true);
+      if (!result.ok) return;
+      expect(result.data.interests).toEqual([]);
+    });
+  });
 });

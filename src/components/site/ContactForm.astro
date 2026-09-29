@@ -206,6 +206,8 @@ if (fieldCopy) {
     <input type="hidden" name="utm_term" value="" data-utm="utm_term" />
     <input type="hidden" name="referrer" value="" data-referrer />
 
+    <slot name="fields-extra" />
+
     <div class="form-grid">
       <div class="form-group">
         <label for={fieldIds.name} class="form-label">{copy.fields.name}</label>

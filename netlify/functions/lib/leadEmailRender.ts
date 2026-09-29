@@ -4,6 +4,11 @@ import {
   getLeadEmailTemplate,
   type LeadEmailTemplate,
 } from './leadEmailTemplates';
+import {
+  formatInterests,
+  selectionFromInterests,
+  type LeadInterest,
+} from './leadInterests';
 import type { LeadSource } from './leadSources';
 
 const SITE_URL = 'https://devisia.pro';
@@ -125,12 +130,22 @@ const renderShellText = (params: {
 export const renderLandingConfirmationEmail = (params: {
   source: LeadSource;
   fullName: string;
+  interests?: readonly LeadInterest[];
 }): RenderedEmail | null => {
   const template = getLeadEmailTemplate(params.source);
   if (!template) return null;
 
   const greeting = greetingFor(params.fullName, 'it');
-  const paragraphs = [...template.bodyParagraphs, template.nextStepText];
+  const selection = selectionFromInterests(params.interests ?? []);
+  const interestParagraph =
+    selection && template.interestParagraphs ? template.interestParagraphs[selection] : null;
+  const [intro, ...rest] = template.bodyParagraphs;
+  const paragraphs = [
+    intro,
+    ...(interestParagraph ? [interestParagraph] : []),
+    ...rest,
+    template.nextStepText,
+  ];
   const closingLines = [template.closingName, template.closingOrg];
 
   return {
@@ -189,7 +204,9 @@ export const renderManagerNotificationEmail = (params: {
   subject: string | null;
   message: string;
   pagePath: string;
+  interests?: readonly LeadInterest[];
 }): RenderedEmail => {
+  const interest = params.interests?.length ? formatInterests(params.interests) : null;
   const subject = `New lead submission (${params.source})`;
   const lines = [
     `Name: ${params.fullName}`,
@@ -199,6 +216,7 @@ export const renderManagerNotificationEmail = (params: {
     `Language: ${params.lang}`,
     params.company ? `Company: ${params.company}` : null,
     params.role ? `Role: ${params.role}` : null,
+    interest ? `Interest: ${interest}` : null,
     params.subject ? `Subject: ${params.subject}` : null,
     '',
     'Message:',
@@ -215,6 +233,7 @@ export const renderManagerNotificationEmail = (params: {
       <p><strong>Privacy consent:</strong> yes</p>
       ${params.company ? `<p><strong>Company:</strong> ${escapeHtml(params.company)}</p>` : ''}
       ${params.role ? `<p><strong>Role:</strong> ${escapeHtml(params.role)}</p>` : ''}
+      ${interest ? `<p><strong>Interest:</strong> ${escapeHtml(interest)}</p>` : ''}
       ${params.subject ? `<p><strong>Subject:</strong> ${escapeHtml(params.subject)}</p>` : ''}
       <p><strong>Message:</strong></p>
       <div style="background-color: #f9fafb; padding: 15px; border-radius: 4px; white-space: pre-wrap;">${escapeHtml(params.message).replace(/\n/g, '<br>')}</div>

@@ -4,6 +4,7 @@ export type LeadSource =
   | 'landing_process_automation'
   | 'landing_audit_evidence'
   | 'landing_devisia'
+  | 'landing_brochure'
   | 'website_contact';
 
 export type LeadFormVariant = 'contact' | 'landing';
@@ -14,6 +15,8 @@ export type LeadSourceConfig = {
   paths: readonly string[];
   variant: LeadFormVariant;
   lang: 'it' | 'en';
+  /** The form asks which Devisia area the visitor is interested in; at least one is required. */
+  requiresInterest?: boolean;
 };
 
 const LEAD_SOURCE_CONFIGS: readonly LeadSourceConfig[] = [
@@ -51,6 +54,14 @@ const LEAD_SOURCE_CONFIGS: readonly LeadSourceConfig[] = [
     paths: ['/landing/devisia'],
     variant: 'contact',
     lang: 'it',
+  },
+  {
+    source: 'landing_brochure',
+    formId: 'landing-brochure',
+    paths: ['/brochure'],
+    variant: 'landing',
+    lang: 'it',
+    requiresInterest: true,
   },
   {
     source: 'website_contact',

@@ -1,3 +1,4 @@
+import type { LeadInterestSelection } from './leadInterests';
 import type { LeadSource } from './leadSources';
 
 export type LeadEmailTemplate = {
@@ -7,6 +8,8 @@ export type LeadEmailTemplate = {
   nextStepText: string;
   closingName: string;
   closingOrg: string;
+  /** Inserted after the first paragraph, chosen from the area(s) the visitor selected. */
+  interestParagraphs?: Record<LeadInterestSelection, string>;
 };
 
 const sharedFooterNote =
@@ -64,6 +67,22 @@ export const leadEmailTemplates: Partial<Record<LeadSource, LeadEmailTemplate>> 
     ],
     nextStepText:
       'Esamineremo il contesto indicato e ti contatteremo utilizzando i riferimenti presenti nel form.',
+    closingName: 'Stefano Chermaz',
+    closingOrg: 'Devisia',
+  },
+  landing_brochure: {
+    subject: 'Abbiamo ricevuto la tua richiesta',
+    heading: 'Partiamo da quello che ci hai scritto',
+    bodyParagraphs: ['Abbiamo ricevuto la tua richiesta dalla brochure Devisia.'],
+    interestParagraphs: {
+      processi:
+        'Ci hai indicato l’interesse per processi e Microsoft 365. Il primo passo è capire come lavora oggi il processo, tra passaggi, ruoli, dati e vincoli, prima di decidere se serve Microsoft 365, un’integrazione o software su misura.',
+      auditready:
+        'Ci hai indicato l’interesse per AuditReady. Il primo passo è capire quale audit o framework devi affrontare e dove si trovano oggi evidenze, controlli e responsabilità.',
+      both: 'Ci hai indicato l’interesse per entrambe le aree. Partiremo da come lavora oggi il processo e da dove si trovano evidenze e responsabilità, per capire da dove ha più senso cominciare.',
+    },
+    nextStepText:
+      'Esamineremo la richiesta e ti contatteremo utilizzando i riferimenti che hai indicato nel form.',
     closingName: 'Stefano Chermaz',
     closingOrg: 'Devisia',
   },
