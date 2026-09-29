@@ -149,4 +149,74 @@ describe('submit-lead handler', () => {
     expect(payload.ok).toBe(false);
     expect(sendViaMailtrapApi).not.toHaveBeenCalled();
   });
+
+  describe('brochure landing', () => {
+    const brochureBody = (extra: Record<string, string>) =>
+      new URLSearchParams({
+        submission_id: '77777777-7777-4777-8777-777777777777',
+        form_id: 'landing-brochure',
+        page_path: '/brochure',
+        lang: 'it',
+        name: 'Giulia Verdi',
+        email: 'giulia@example.com',
+        company: 'Omega Srl',
+        message: 'Ho visto la brochure e vorrei capire da dove partire.',
+        privacy_consent: 'true',
+        form_loaded_at: String(Date.now() - 5000),
+        utm_source: 'brochure',
+        utm_medium: 'qr',
+        ...extra,
+      }).toString();
+
+    it('stores both interests and mentions them in both emails', async () => {
+      insertLeadSubmission.mockResolvedValue({ kind: 'inserted', id: 'row-b1' });
+      updateConfirmationEmailStatus.mockResolvedValue(undefined);
+
+      const response = await handler(
+        postEvent(brochureBody({ interest_processi: 'true', interest_auditready: 'true' })),
+        {} as never,
+        undefined as never
+      );
+
+      expect(response.statusCode).toBe(200);
+      expect(insertLeadSubmission).toHaveBeenCalledWith(
+        expect.objectContaining({
+          interests: ['processi', 'auditready'],
+          sourceConfig: expect.objectContaining({ source: 'landing_brochure' }),
+        })
+      );
+
+      const payloads = sendViaMailtrapApi.mock.calls.map((call) => JSON.stringify(call));
+      expect(sendViaMailtrapApi).toHaveBeenCalledTimes(2);
+      expect(payloads.some((p) => p.includes('Interest: Processi e Microsoft 365 + AuditReady'))).toBe(true);
+      expect(payloads.some((p) => p.includes('entrambe le aree'))).toBe(true);
+    });
+
+    it('stores a single interest', async () => {
+      insertLeadSubmission.mockResolvedValue({ kind: 'inserted', id: 'row-b2' });
+      updateConfirmationEmailStatus.mockResolvedValue(undefined);
+
+      const response = await handler(
+        postEvent(brochureBody({ interest_auditready: 'true' })),
+        {} as never,
+        undefined as never
+      );
+
+      expect(response.statusCode).toBe(200);
+      expect(insertLeadSubmission).toHaveBeenCalledWith(
+        expect.objectContaining({ interests: ['auditready'] })
+      );
+    });
+
+    it('rejects a brochure lead without interest before touching the database', async () => {
+      const response = await handler(postEvent(brochureBody({})), {} as never, undefined as never);
+      const payload = JSON.parse(response.body || '{}');
+
+      expect(response.statusCode).toBe(400);
+      expect(payload.ok).toBe(false);
+      expect(payload.fieldErrors?.interest).toBeTruthy();
+      expect(insertLeadSubmission).not.toHaveBeenCalled();
+      expect(sendViaMailtrapApi).not.toHaveBeenCalled();
+    });
+  });
 });

@@ -30,4 +30,13 @@ describe('resolveLeadSource', () => {
       expect.objectContaining({ source: 'landing_devisia' })
     );
   });
+
+  it('resolves the brochure landing and rejects spoofed pairings', () => {
+    expect(resolveLeadSource('landing-brochure', '/brochure')).toEqual(
+      expect.objectContaining({ source: 'landing_brochure', variant: 'landing', requiresInterest: true })
+    );
+    expect(resolveLeadSource('landing-brochure', '/brochure/')?.source).toBe('landing_brochure');
+    expect(resolveLeadSource('landing-brochure', '/landing/devisia')).toBeNull();
+    expect(resolveLeadSource('landing-devisia', '/brochure')).toBeNull();
+  });
 });
