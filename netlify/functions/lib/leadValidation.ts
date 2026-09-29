@@ -1,4 +1,5 @@
 import { getSingleFormValue } from './contactRedirect';
+import { LEAD_INTERESTS, LEAD_INTEREST_FIELDS, type LeadInterest } from './leadInterests';
 import { resolveLeadSource, type LeadSourceConfig } from './leadSources';
 
 export const LEAD_MIN_SUBMIT_MS = 3000;
@@ -21,7 +22,10 @@ const UUID_RE =
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export type LeadFieldErrors = Partial<
-  Record<'full_name' | 'email' | 'company' | 'role' | 'message' | 'privacy_consent' | 'form', string>
+  Record<
+    'full_name' | 'email' | 'company' | 'role' | 'message' | 'privacy_consent' | 'interest' | 'form',
+    string
+  >
 >;
 
 export type ParsedLeadPayload = {
@@ -38,6 +42,7 @@ export type ParsedLeadPayload = {
   message: string;
   privacyAccepted: boolean;
   marketingAccepted: boolean;
+  interests: LeadInterest[];
   utmSource: string | null;
   utmMedium: string | null;
   utmCampaign: string | null;
@@ -73,6 +78,7 @@ const messages = {
     email: 'Inserisci un’email di lavoro valida.',
     privacy: 'Il consenso privacy è obbligatorio.',
     company: 'Indica l’azienda.',
+    interest: 'Scegli almeno un’area di interesse.',
     form: 'La richiesta non è valida.',
     tooFast: 'Attendi un momento e riprova.',
   },
@@ -81,6 +87,7 @@ const messages = {
     email: 'Enter a valid work email.',
     privacy: 'Privacy consent is required.',
     company: 'Please enter your company.',
+    interest: 'Choose at least one area of interest.',
     form: 'This request is not valid.',
     tooFast: 'Please wait a moment and try again.',
   },
@@ -144,6 +151,10 @@ export const validateLeadPayload = (body: RawLeadBody): LeadValidationResult => 
   const message = readString(body, 'message').trim().slice(0, LEAD_LIMITS.message);
   const privacyAccepted = hasConsent(readString(body, 'privacy_consent'));
   const marketingAccepted = hasConsent(readString(body, 'marketing_consent'));
+  // Read only where the form asks for it, so other sources cannot be tagged by a crafted request.
+  const interests: LeadInterest[] = sourceConfig.requiresInterest
+    ? LEAD_INTERESTS.filter((key) => hasConsent(readString(body, LEAD_INTEREST_FIELDS[key])))
+    : [];
 
   const fieldErrors: LeadFieldErrors = {};
   if (!fullName) fieldErrors.full_name = copy.missing;
@@ -152,6 +163,7 @@ export const validateLeadPayload = (body: RawLeadBody): LeadValidationResult => 
   if (!message) fieldErrors.message = copy.missing;
   if (!privacyAccepted) fieldErrors.privacy_consent = copy.privacy;
   if (sourceConfig.variant === 'landing' && !company) fieldErrors.company = copy.company;
+  if (sourceConfig.requiresInterest && interests.length === 0) fieldErrors.interest = copy.interest;
 
   if (Object.keys(fieldErrors).length > 0) {
     return {
@@ -187,6 +199,7 @@ export const validateLeadPayload = (body: RawLeadBody): LeadValidationResult => 
       message,
       privacyAccepted,
       marketingAccepted,
+      interests,
       utmSource: trimToNull(readString(body, 'utm_source'), LEAD_LIMITS.utm),
       utmMedium: trimToNull(readString(body, 'utm_medium'), LEAD_LIMITS.utm),
       utmCampaign: trimToNull(readString(body, 'utm_campaign'), LEAD_LIMITS.utm),

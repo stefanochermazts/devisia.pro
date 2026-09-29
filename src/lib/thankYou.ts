@@ -19,6 +19,7 @@ const ALLOWED_RETURN_PATHS = new Set([
   '/landing/governance-ai',
   '/landing/processi-prima-automazione',
   '/landing/evidenze-audit',
+  '/brochure',
 ]);
 
 const SOURCE_COPY: Record<
@@ -85,6 +86,18 @@ const SOURCE_COPY: Record<
     en: {
       title: 'Message received',
       lede: 'Thank you. We will review your request and reply with focused questions or a clear next step.',
+      nextStep: 'We will contact you using the details you provided in the form.',
+    },
+  },
+  landing_brochure: {
+    it: {
+      title: 'Richiesta ricevuta',
+      lede: 'Grazie. Leggiamo la richiesta e ti rispondiamo con un primo passo chiaro, a partire dall’area che ci hai indicato.',
+      nextStep: 'Ti contatteremo utilizzando i riferimenti indicati nel form.',
+    },
+    en: {
+      title: 'Request received',
+      lede: 'Thank you. We will review your request and reply with a clear first step, starting from the area you selected.',
       nextStep: 'We will contact you using the details you provided in the form.',
     },
   },

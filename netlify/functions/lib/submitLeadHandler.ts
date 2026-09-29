@@ -28,6 +28,7 @@ async function sendConfirmationEmail(data: ParsedLeadPayload): Promise<'sent' | 
   const landingEmail = renderLandingConfirmationEmail({
     source: data.sourceConfig.source,
     fullName: data.fullName,
+    interests: data.interests,
   });
 
   const confirmation =
@@ -78,6 +79,7 @@ async function sendManagerNotification(data: ParsedLeadPayload): Promise<void> {
     subject: data.subject,
     message: data.message,
     pagePath: data.pagePath,
+    interests: data.interests,
   });
 
   try {
