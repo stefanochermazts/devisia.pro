@@ -4,6 +4,7 @@ import Layout from '../layouts/Layout.astro';
 import ProcessSheet from '../components/site/ProcessSheet.astro';
 import EditorialCTA from '../components/site/EditorialCTA.astro';
 import HomeChatSection from '../components/site/HomeChatSection.astro';
+import HomeToolsSection from '../components/site/HomeToolsSection.astro';
 import { breadcrumbListJsonLd } from '../lib/seo/structuredData';
 
 const title = 'Home';
@@ -114,6 +115,8 @@ const breadcrumbs = breadcrumbListJsonLd({
       </p>
     </section>
   </section>
+
+  <HomeToolsSection lang="it" />
 
   <section class="ds-container sheet-section" aria-labelledby="home-perche">
     <p class="sheet-section__kicker">Criteri di foglio</p>

@@ -1,0 +1,327 @@
+---
+/**
+ * THESIS: /tools hub reads as a calibrated P&ID instrument rack and blueprint ledger — refusing generic SaaS app-store card grids in favour of explicit input/guardrail/output specifications.
+ * OWN-WORLD: Ivory/paper/surface layers, 1px ink rules, ISA instrument tags (AIT-01..BVB-10), pine verified perimeter status, Bitter headings, Manrope labels, Lexend body.
+ * STORY: Visitor filters or inspects free micro-tools by operational flow, runs an active tool in-browser with zero lock-in, or previews upcoming governance/architecture utilities.
+ * FIRST VIEWPORT: PageIntro header + interactive P&ID workbench with flow filter bar, live counter, and 4-column instrument rows.
+ * FORM: Schema di processo (#5 Banco strumenti e registro di foglio, staging fullsheet workbench, seed 18f395e0).
+ */
+import PageIntro from './PageIntro.astro';
+import EditorialCTA from './EditorialCTA.astro';
+import {
+  getMicroTools,
+  getUpcomingMicroTools,
+  getToolCategories,
+} from '../../lib/tools';
+
+export interface Props {
+  lang?: 'it' | 'en';
+}
+
+const { lang = 'it' } = Astro.props;
+const isEn = lang === 'en';
+
+const tools = getMicroTools(lang);
+const upcomingTools = getUpcomingMicroTools(lang);
+const categories = getToolCategories(lang);
+
+const copy = isEn
+  ? {
+      eyebrow: 'Sheet · Free Micro-Tools',
+      h1: 'Operational instruments with declared guardrails',
+      lede: 'Free interactive tools, checklists and utilities designed to clarify architecture, AI risk, regulatory compliance and daily workflows — with transparent boundaries and zero hidden data lock-in.',
+      drawingNo: 'DE-TL-001',
+      sheetNo: 'WORKBENCH · REV A',
+      filterAria: 'Filter tools by process flow',
+      activeHeading: 'Active instruments ready to use',
+      activeLead:
+        'Each tool runs in your browser or inside a declared perimeter. Select a flow to filter the instrument rack.',
+      countSuffix: 'active instruments',
+      inputLabel: 'Input',
+      guardrailLabel: 'Guardrail',
+      outputLabel: 'Output',
+      relatedLabel: 'Related flow:',
+      criteriaKicker: 'Workbench rules',
+      criteriaTitle: 'Why we release free micro-tools',
+      criteriaLead:
+        'Before writing custom software or integrating AI, teams need clarity on scope, data sensitivity and operational rules. These micro-tools turn recurring preliminary checks into immediate, self-service instruments.',
+      criteriaItems: [
+        {
+          tag: 'RULE · 01',
+          title: 'Privacy by default',
+          body: 'Checklists, formatters and parsers run client-side in your browser. Where an API is involved, boundaries and exclusions are stated up front.',
+        },
+        {
+          tag: 'RULE · 02',
+          title: 'Decision before automation',
+          body: 'Every tool is built to answer a concrete architectural, governance or operational question in under three minutes.',
+        },
+        {
+          tag: 'RULE · 03',
+          title: 'Exportable clarity',
+          body: 'Outputs are structured so you can bring them directly into a technical review, a DPO alignment or a project brief.',
+        },
+      ],
+      upcomingKicker: 'Design queue · Upcoming tools',
+      upcomingTitle: 'Next instruments on the drawing board',
+      upcomingLead:
+        'This hub grows alongside our work on governed AI, operational compliance (GDPR, NIS2, DORA, AI Act) and Microsoft 365 / Laravel architectures. Here are the next micro-tools scheduled for release.',
+      upcomingBadge: 'In blueprint',
+      intentLabel: 'Target check',
+      previewLabel: 'Expected output',
+      pillarLabel: 'Pillar:',
+      proposeTitle: 'Need a specific diagnostic tool or custom workflow?',
+      proposeCopy:
+        'Tell us which check, assessment or operational bottleneck your team repeats every week. We can prioritize it as a free micro-tool or design a dedicated internal instrument for your organization.',
+      proposeCta: 'Propose a tool or discuss your context',
+      proposeHref: '/en/contact',
+    }
+  : {
+      eyebrow: 'Foglio · Micro-strumenti gratuiti',
+      h1: 'Strumenti operativi con perimetro e guardrail dichiarati',
+      lede: 'Checklist interattive, analizzatori di struttura e utility gratuite progettate per chiarire architettura, rischio AI, compliance normativa e flussi operativi — senza lock-in e senza raccolta opaca di dati.',
+      drawingNo: 'DE-TL-001',
+      sheetNo: 'BANCO STRUMENTI · REV A',
+      filterAria: 'Filtra gli strumenti per linea di processo',
+      activeHeading: 'Strumenti attivi pronti all’uso',
+      activeLead:
+        'Ogni strumento opera direttamente nel browser o dentro un perimetro tecnico esplicito. Filtra per linea di processo o avvia subito una verifica.',
+      countSuffix: 'strumenti attivi',
+      inputLabel: 'Input',
+      guardrailLabel: 'Guardrail',
+      outputLabel: 'Output',
+      relatedLabel: 'Linea collegata:',
+      criteriaKicker: 'Criteri del banco',
+      criteriaTitle: 'Perché rilasciamo micro-strumenti gratuiti',
+      criteriaLead:
+        'Prima di costruire software su misura o integrare modelli AI, serve chiarezza su perimetro, sensibilità dei dati e regole operative. Questi micro-tool trasformano le verifiche preliminari più frequenti in strumenti immediati e self-service.',
+      criteriaItems: [
+        {
+          tag: 'CRITERIO · 01',
+          title: 'Privacy by default',
+          body: 'Checklist, formatter e parser eseguono i calcoli nel browser senza salvare i tuoi dati. Dove interviene un modello, i limiti sono dichiarati prima dell’invio.',
+        },
+        {
+          tag: 'CRITERIO · 02',
+          title: 'Prima lo schema, poi il codice',
+          body: 'Ogni strumento nasce per rispondere in meno di tre minuti a una domanda reale di architettura, governance AI o operatività.',
+        },
+        {
+          tag: 'CRITERIO · 03',
+          title: 'Output utilizzabile subito',
+          body: 'Il risultato non è uno slogan promozionale: è una lista di salvaguardie, una struttura di dominio o un testo ordinato pronto da condividere con il team.',
+        },
+      ],
+      upcomingKicker: 'Coda di progettazione · Prossimi rilasci',
+      upcomingTitle: 'Strumenti in cantiere per oggi e per il futuro',
+      upcomingLead:
+        'Questa pagina raccoglie tutti i micro-tool Devisia attivi e quelli in lavorazione sui nostri pilastri principali: AI governata, compliance operativa (GDPR, NIS2, DORA, AI Act) e architetture Microsoft 365 e Laravel.',
+      upcomingBadge: 'In progettazione',
+      intentLabel: 'Verifica obiettivo',
+      previewLabel: 'Output previsto',
+      pillarLabel: 'Pilastro:',
+      proposeTitle: 'Ti serve una verifica specifica o uno strumento verticale per il tuo team?',
+      proposeCopy:
+        'Raccontaci quale controllo, valutazione di rischio o passaggio manuale ripetete ogni settimana. Possiamo dare priorità al rilascio del micro-tool gratuito o progettare uno strumento dedicato per il vostro processo.',
+      proposeCta: 'Proponi uno strumento o parlaci del contesto',
+      proposeHref: '/contatti',
+    };
+---
+
+<PageIntro eyebrow={copy.eyebrow} h1={copy.h1} lede={copy.lede} />
+
+<section class="tools-hub-sheet" aria-labelledby="tools-active-heading">
+  <header class="tools-hub-sheet__meta">
+    <span>{copy.drawingNo}</span>
+    <span>{copy.sheetNo}</span>
+  </header>
+
+  <div class="tools-hub-sheet__head">
+    <div>
+      <h2 id="tools-active-heading" class="site-h2">{copy.activeHeading}</h2>
+      <p class="site-lead" style="margin-bottom: 0">{copy.activeLead}</p>
+    </div>
+
+    <div class="tools-filter-bar" role="toolbar" aria-label={copy.filterAria} data-tools-filter-bar>
+      {
+        categories.map((cat, idx) => (
+          <button
+            type="button"
+            class="tools-filter-btn"
+            data-filter-cat={cat.id}
+            aria-pressed={idx === 0 ? 'true' : 'false'}
+          >
+            <span class="tools-filter-btn__tag" aria-hidden="true">{cat.tag}</span>
+            <span>{cat.label}</span>
+          </button>
+        ))
+      }
+      <p class="tools-filter-count" aria-live="polite">
+        <strong data-tools-visible-count>{tools.length}</strong> / {tools.length} {copy.countSuffix}
+      </p>
+    </div>
+  </div>
+
+  <section class="tools-bench" data-tools-active-list aria-label={copy.activeHeading}>
+    {
+      tools.map((tool) => (
+        <article class="tools-bench__row" data-tool-category={tool.category}>
+          <div class="tools-bench__id">
+            <span class="tools-bench__code" aria-hidden="true">{tool.code}</span>
+            <span class="tools-bench__bubble" aria-hidden="true">{tool.instrumentTag}</span>
+            <span class="tools-bench__cat">{tool.categoryLabel}</span>
+          </div>
+
+          <div class="tools-bench__main">
+            <h3 class="tools-bench__title">
+              <a href={tool.href}>{tool.title}</a>
+            </h3>
+            <p class="tools-bench__desc">{tool.description}</p>
+            <div class="tools-bench__meta-row">
+              <p class="tools-bench__perimeter">
+                <span class="tools-bench__perimeter-dot" aria-hidden="true"></span>
+                {tool.perimeterBadge}
+              </p>
+              <p class="tools-bench__related">
+                <span>{copy.relatedLabel}</span>{' '}
+                <a class="ds-link" data-variant="muted" href={tool.relatedServiceHref}>
+                  {tool.relatedServiceLabel} <span aria-hidden="true">→</span>
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <dl class="tools-bench__trace">
+            <div>
+              <dt>{copy.inputLabel}</dt>
+              <dd>{tool.inputSpec}</dd>
+            </div>
+            <div>
+              <dt>{copy.guardrailLabel}</dt>
+              <dd>{tool.guardrailSpec}</dd>
+            </div>
+            <div>
+              <dt>{copy.outputLabel}</dt>
+              <dd>{tool.outputSpec}</dd>
+            </div>
+          </dl>
+
+          <div class="tools-bench__action">
+            <a class="ds-btn" data-variant="primary" data-size="lg" href={tool.href}>
+              {tool.ctaLabel} <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </article>
+      ))
+    }
+  </section>
+</section>
+
+<section class="sheet-section" aria-labelledby="tools-criteria-heading">
+  <p class="sheet-section__kicker">{copy.criteriaKicker}</p>
+  <h2 id="tools-criteria-heading" class="site-h2">{copy.criteriaTitle}</h2>
+  <p class="site-lead">{copy.criteriaLead}</p>
+  <section class="sheet-rail">
+    {
+      copy.criteriaItems.map((item) => (
+        <article class="sheet-rail__item">
+          <span class="sheet-rail__tag">{item.tag}</span>
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+        </article>
+      ))
+    }
+  </section>
+</section>
+
+<section class="sheet-section tools-upcoming-section" aria-labelledby="tools-upcoming-heading">
+  <p class="sheet-section__kicker">{copy.upcomingKicker}</p>
+  <h2 id="tools-upcoming-heading" class="site-h2">{copy.upcomingTitle}</h2>
+  <p class="site-lead">{copy.upcomingLead}</p>
+
+  <section class="tools-blueprint-grid" data-tools-upcoming-list aria-label={copy.upcomingTitle}>
+    {
+      upcomingTools.map((item) => (
+        <article class="tools-blueprint-item" data-tool-category={item.category}>
+          <header class="tools-blueprint-item__top">
+            <span class="tools-bench__bubble" aria-hidden="true">{item.instrumentTag}</span>
+            <span class="tools-blueprint-item__cat">{item.categoryLabel}</span>
+            <span class="tools-blueprint-item__status">{copy.upcomingBadge}</span>
+          </header>
+          <h3 class="tools-blueprint-item__title">{item.title}</h3>
+          <p class="tools-blueprint-item__desc">{item.description}</p>
+          <dl class="tools-blueprint-item__specs">
+            <div>
+              <dt>{copy.intentLabel}</dt>
+              <dd>{item.targetIntent}</dd>
+            </div>
+            <div>
+              <dt>{copy.previewLabel}</dt>
+              <dd>{item.outputPreview}</dd>
+            </div>
+          </dl>
+          <footer class="tools-blueprint-item__foot">
+            <span>{copy.pillarLabel}</span>
+            <a class="ds-link" data-variant="muted" href={item.relatedPillarHref}>
+              {item.relatedPillarLabel} <span aria-hidden="true">→</span>
+            </a>
+          </footer>
+        </article>
+      ))
+    }
+  </section>
+</section>
+
+<EditorialCTA
+  headingId="tools-editorial-cta"
+  variant="tint"
+  title={copy.proposeTitle}
+  copy={copy.proposeCopy}
+  ctaLabel={copy.proposeCta}
+  ctaHref={copy.proposeHref}
+/>
+
+<script is:inline>
+  (() => {
+    const bar = document.querySelector('[data-tools-filter-bar]');
+    if (!bar) return;
+
+    const buttons = bar.querySelectorAll('[data-filter-cat]');
+    const activeRows = document.querySelectorAll('[data-tools-active-list] [data-tool-category]');
+    const upcomingRows = document.querySelectorAll('[data-tools-upcoming-list] [data-tool-category]');
+    const countEl = bar.querySelector('[data-tools-visible-count]');
+
+    const applyFilter = (selectedCat) => {
+      let visibleCount = 0;
+
+      activeRows.forEach((row) => {
+        const cat = row.getAttribute('data-tool-category');
+        const show = selectedCat === 'all' || cat === selectedCat;
+        row.toggleAttribute('hidden', !show);
+        if (show) visibleCount += 1;
+      });
+
+      upcomingRows.forEach((row) => {
+        const cat = row.getAttribute('data-tool-category');
+        const show = selectedCat === 'all' || cat === selectedCat;
+        row.toggleAttribute('hidden', !show);
+      });
+
+      if (countEl) {
+        countEl.textContent = String(visibleCount);
+      }
+
+      buttons.forEach((btn) => {
+        const isCurrent = btn.getAttribute('data-filter-cat') === selectedCat;
+        btn.setAttribute('aria-pressed', String(isCurrent));
+      });
+    };
+
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const cat = btn.getAttribute('data-filter-cat') || 'all';
+        applyFilter(cat);
+      });
+    });
+  })();
+</script>
