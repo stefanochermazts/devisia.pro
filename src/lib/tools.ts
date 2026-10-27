@@ -94,26 +94,6 @@ const toolsIt: MicroTool[] = [
     relatedServiceLabel: 'Guida rapida formattazione',
     featuredOnHome: true,
   },
-  {
-    id: 'padel-aggregator',
-    code: '04',
-    instrumentTag: 'AGR-04',
-    category: 'operations',
-    categoryLabel: 'Operatività e Testo',
-    title: 'Padel – Aggregatore richieste WhatsApp',
-    shortTitle: 'Aggregatore richieste Padel',
-    description:
-      'Incolla messaggi sparsi da chat di gruppo, estrae e ordina automaticamente partite per data e ora e genera un riepilogo pulito pronto da condividere.',
-    href: '/tools/padel',
-    perimeterBadge: '100% nel browser · Zero server',
-    inputSpec: 'Messaggi grezzi copiati da chat WhatsApp',
-    guardrailSpec: 'Parser locale date/orari e normalizzazione slot',
-    outputSpec: 'Lista eventi ordinata cronologicamente pronta da incollare',
-    ctaLabel: 'Usa l’aggregatore',
-    relatedServiceHref: '/cosa-facciamo',
-    relatedServiceLabel: 'Cosa facciamo',
-    featuredOnHome: true,
-  },
 ];
 
 const toolsEn: MicroTool[] = [
@@ -175,26 +155,6 @@ const toolsEn: MicroTool[] = [
     ctaLabel: 'Format a post',
     relatedServiceHref: '/en/blog',
     relatedServiceLabel: 'Insights',
-    featuredOnHome: true,
-  },
-  {
-    id: 'padel-aggregator',
-    code: '04',
-    instrumentTag: 'AGR-04',
-    category: 'operations',
-    categoryLabel: 'Operations & Copy',
-    title: 'Padel – WhatsApp request aggregator',
-    shortTitle: 'Padel Request Aggregator',
-    description:
-      'Paste scattered group chat messages, automatically parse and sort match requests by date and time, and generate a clean summary for the group.',
-    href: '/en/tools/padel',
-    perimeterBadge: '100% in-browser · Zero server',
-    inputSpec: 'Raw messages copied from WhatsApp chats',
-    guardrailSpec: 'Local date/time parser and slot normalization',
-    outputSpec: 'Chronologically sorted event list ready to paste',
-    ctaLabel: 'Open aggregator',
-    relatedServiceHref: '/en/what-we-do',
-    relatedServiceLabel: 'What we do',
     featuredOnHome: true,
   },
 ];

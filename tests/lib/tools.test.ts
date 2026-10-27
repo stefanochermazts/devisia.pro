@@ -12,12 +12,13 @@ describe('micro-tools catalog and SEO hub configuration', () => {
     const itTools = getMicroTools('it');
     const enTools = getMicroTools('en');
 
-    expect(itTools).toHaveLength(4);
-    expect(enTools).toHaveLength(4);
+    expect(itTools).toHaveLength(3);
+    expect(enTools).toHaveLength(3);
 
     expect(itTools.map((t) => t.id)).toEqual(enTools.map((t) => t.id));
-    expect(itTools.map((t) => t.instrumentTag)).toEqual(['AIT-01', 'RIC-02', 'FMT-03', 'AGR-04']);
-    expect(enTools.map((t) => t.instrumentTag)).toEqual(['AIT-01', 'RIC-02', 'FMT-03', 'AGR-04']);
+    expect(itTools.map((t) => t.id)).not.toContain('padel-aggregator');
+    expect(itTools.map((t) => t.instrumentTag)).toEqual(['AIT-01', 'RIC-02', 'FMT-03']);
+    expect(enTools.map((t) => t.instrumentTag)).toEqual(['AIT-01', 'RIC-02', 'FMT-03']);
   });
 
   it('ensures all Italian tools use root paths and English tools use /en paths', () => {
@@ -38,8 +39,9 @@ describe('micro-tools catalog and SEO hub configuration', () => {
   });
 
   it('returns featured tools for the home page section', () => {
-    expect(getHomeFeaturedTools('it').length).toBeGreaterThanOrEqual(4);
-    expect(getHomeFeaturedTools('en').length).toBeGreaterThanOrEqual(4);
+    expect(getHomeFeaturedTools('it')).toHaveLength(3);
+    expect(getHomeFeaturedTools('en')).toHaveLength(3);
+    expect(getHomeFeaturedTools('it').map((t) => t.id)).not.toContain('padel-aggregator');
   });
 
   it('exposes upcoming SEO blueprint tools with bilingual parity', () => {
