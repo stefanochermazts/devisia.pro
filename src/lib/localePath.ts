@@ -9,6 +9,7 @@ export const localePathPairs: Record<string, { it: string; en: string }> = {
   ai: { it: '/ai-governata', en: '/en/governed-ai' },
   compliance: { it: '/compliance-auditabilita', en: '/en/compliance-auditability' },
   prodotti: { it: '/prodotti', en: '/en/products' },
+  tools: { it: '/tools', en: '/en/tools' },
   auditready: { it: '/prodotti/auditready', en: '/en/products/auditready' },
   company: { it: '/chi-siamo', en: '/en/about' },
   contatti: { it: '/contatti', en: '/en/contact' },

@@ -132,3 +132,26 @@ export function softwareApplicationJsonLd(params: {
   };
 }
 
+export function itemListJsonLd(params: {
+  site: URL;
+  name: string;
+  description?: string;
+  items: Array<{ name: string; url: string; description?: string }>;
+}): JsonLd {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: params.name,
+    description: params.description,
+    numberOfItems: params.items.length,
+    itemListElement: params.items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      description: item.description,
+      url: absUrl(params.site, item.url) ?? item.url,
+    })),
+  };
+}
+
+

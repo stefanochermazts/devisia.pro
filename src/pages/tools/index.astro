@@ -1,0 +1,40 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ToolsHubView from '../../components/site/ToolsHubView.astro';
+import { getMicroTools } from '../../lib/tools';
+import { breadcrumbListJsonLd, itemListJsonLd } from '../../lib/seo/structuredData';
+
+const description =
+  'Strumenti gratuiti Devisia per AI governata, valutazione rischi privacy, architettura software e operatività: checklist interattive e utility privacy-first nel browser.';
+
+const site = Astro.site ?? new URL('https://devisia.pro');
+const tools = getMicroTools('it');
+
+const breadcrumbs = breadcrumbListJsonLd({
+  site,
+  items: [
+    { name: 'Home', url: '/' },
+    { name: 'Strumenti gratuiti', url: '/tools' },
+  ],
+});
+
+const toolsListLd = itemListJsonLd({
+  site,
+  name: 'Strumenti operativi gratuiti Devisia',
+  description,
+  items: tools.map((tool) => ({
+    name: tool.title,
+    url: tool.href,
+    description: tool.description,
+  })),
+});
+---
+
+<Layout
+  title="Strumenti gratuiti per AI, privacy, compliance e software"
+  documentTitle="Strumenti gratuiti per AI, privacy e architettura software | Devisia"
+  description={description}
+  structuredData={[breadcrumbs, toolsListLd]}
+>
+  <ToolsHubView lang="it" />
+</Layout>

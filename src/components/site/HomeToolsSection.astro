@@ -1,0 +1,132 @@
+---
+/**
+ * THESIS: Home micro-tools section stages Devisia's free tools as a P&ID test bench — proving method and guardrails through interactive instruments rather than promotional claims.
+ * OWN-WORLD: Semantic sheet surfaces, ink borders, Manrope ISA tags (AIT-01..FMT-03), pine verified perimeter badges, Bitter headings, Lexend copy.
+ * STORY: Visitor sees concrete free tools with explicit input/guardrail/output traces, tries one immediately, or opens the full /tools hub.
+ * FIRST VIEWPORT: Section header with sheet kicker + 3-row instrument ledger + titleblock footer linking to /tools.
+ * FORM: Schema di processo (#5 Banco strumenti, seed 18f395e0).
+ */
+import { getHomeFeaturedTools } from '../../lib/tools';
+
+export interface Props {
+  lang?: 'it' | 'en';
+}
+
+const { lang = 'it' } = Astro.props;
+const isEn = lang === 'en';
+const tools = getHomeFeaturedTools(lang);
+const hubHref = isEn ? '/en/tools' : '/tools';
+
+const copy = isEn
+  ? {
+      kicker: 'Test bench · Free micro-tools',
+      title: 'Test structure, risk and readability before writing code',
+      lead: 'We release free operational micro-tools built with the same criteria as our client systems: declared perimeter, explicit guardrails, and zero hidden data collection.',
+      ledgerLabel: 'Active Devisia micro-tools',
+      colTag: 'Tag',
+      colTool: 'Instrument & purpose',
+      colTrace: 'Input → Guardrail → Output',
+      colAction: 'Action',
+      inputLabel: 'In',
+      guardrailLabel: 'Guardrail',
+      outputLabel: 'Out',
+      cartiglioTitle: 'Full instrument rack & upcoming releases',
+      cartiglioBody:
+        'Explore all active utilities and the upcoming SEO & governance tools on the dedicated sheet.',
+      hubCta: 'Open all tools',
+      sheetCode: 'DE-TL-HUB',
+    }
+  : {
+      kicker: 'Banco di prova · Micro-strumenti gratuiti',
+      title: 'Valuta struttura, rischi e leggibilità prima di scrivere codice',
+      lead: 'Rilasciamo micro-strumenti operativi gratuiti progettati con gli stessi criteri dei nostri sistemi: perimetro dichiarato, guardrail espliciti e nessuna raccolta nascosta di dati.',
+      ledgerLabel: 'Micro-strumenti Devisia attivi',
+      colTag: 'Tag',
+      colTool: 'Strumento e scopo',
+      colTrace: 'Input → Guardrail → Output',
+      colAction: 'Azione',
+      inputLabel: 'In',
+      guardrailLabel: 'Guardrail',
+      outputLabel: 'Out',
+      cartiglioTitle: 'Catalogo completo e prossimi rilasci',
+      cartiglioBody:
+        'Esplora tutti gli strumenti attivi e la coda di nuovi micro-tool su AI Act, GDPR, NIS2 e architettura nella pagina dedicata.',
+      hubCta: 'Esplora tutti gli strumenti',
+      sheetCode: 'DE-TL-HUB',
+    };
+---
+
+<section class="site-section site-section--tint home-tools-band" aria-labelledby="home-tools-heading">
+  <section class="ds-container">
+    <header class="home-tools-band__head">
+      <div>
+        <p class="sheet-section__kicker">{copy.kicker}</p>
+        <h2 id="home-tools-heading" class="site-h2">{copy.title}</h2>
+        <p class="site-lead">{copy.lead}</p>
+      </div>
+      <p class="home-tools-band__head-cta">
+        <a class="ds-btn" data-variant="secondary" href={hubHref}>
+          {copy.hubCta} <span aria-hidden="true">→</span>
+        </a>
+      </p>
+    </header>
+
+    <section class="tools-bench" aria-label={copy.ledgerLabel}>
+      {
+        tools.map((tool) => (
+          <article class="tools-bench__row">
+            <div class="tools-bench__id">
+              <span class="tools-bench__bubble" aria-hidden="true">{tool.instrumentTag}</span>
+              <span class="tools-bench__cat">{tool.categoryLabel}</span>
+            </div>
+
+            <div class="tools-bench__main">
+              <h3 class="tools-bench__title">
+                <a href={tool.href}>{tool.shortTitle}</a>
+              </h3>
+              <p class="tools-bench__desc">{tool.description}</p>
+              <p class="tools-bench__perimeter">
+                <span class="tools-bench__perimeter-dot" aria-hidden="true"></span>
+                {tool.perimeterBadge}
+              </p>
+            </div>
+
+            <dl class="tools-bench__trace">
+              <div>
+                <dt>{copy.inputLabel}</dt>
+                <dd>{tool.inputSpec}</dd>
+              </div>
+              <div>
+                <dt>{copy.guardrailLabel}</dt>
+                <dd>{tool.guardrailSpec}</dd>
+              </div>
+              <div>
+                <dt>{copy.outputLabel}</dt>
+                <dd>{tool.outputSpec}</dd>
+              </div>
+            </dl>
+
+            <div class="tools-bench__action">
+              <a class="ds-btn" data-variant="primary" href={tool.href}>
+                {tool.ctaLabel} <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </section>
+
+    <footer class="sheet-titleblock home-tools-band__foot">
+      <div class="home-tools-band__foot-copy">
+        <p class="sheet-section__kicker" style="margin: 0">{copy.sheetCode}</p>
+        <strong>{copy.cartiglioTitle}</strong>
+        <p style="margin: 0; color: var(--ds-color-text-muted)">{copy.cartiglioBody}</p>
+      </div>
+      <div class="home-tools-band__foot-actions">
+        <a class="ds-btn" data-variant="primary" data-size="lg" href={hubHref}>
+          {copy.hubCta} <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </footer>
+  </section>
+</section>
