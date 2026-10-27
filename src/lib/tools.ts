@@ -94,6 +94,26 @@ const toolsIt: MicroTool[] = [
     relatedServiceLabel: 'Guida rapida formattazione',
     featuredOnHome: true,
   },
+  {
+    id: 'prompt-pii-sanitizer',
+    code: '04',
+    instrumentTag: 'PII-06',
+    category: 'ai',
+    categoryLabel: 'AI e Architettura',
+    title: 'Sanitizzatore prompt e redazione PII',
+    shortTitle: 'Sanitizzatore prompt',
+    description:
+      'Sostituisce nel browser email, codici fiscali, P.IVA, IBAN, telefoni, chiavi, indirizzi e nomi prima di incollare un testo in un LLM.',
+    href: '/tools/prompt-sanitizer',
+    perimeterBadge: '100% nel browser · Legenda solo in memoria',
+    inputSpec: 'Prompt, log o ticket incollato',
+    guardrailSpec: 'Rilevatori locali e segnaposto stabili, senza invio',
+    outputSpec: 'Testo redatto + legenda ripristinabile in questa scheda',
+    ctaLabel: 'Apri il sanitizzatore',
+    relatedServiceHref: '/ai-governata',
+    relatedServiceLabel: 'AI governata',
+    featuredOnHome: true,
+  },
 ];
 
 const toolsEn: MicroTool[] = [
@@ -157,6 +177,26 @@ const toolsEn: MicroTool[] = [
     relatedServiceLabel: 'Insights',
     featuredOnHome: true,
   },
+  {
+    id: 'prompt-pii-sanitizer',
+    code: '04',
+    instrumentTag: 'PII-06',
+    category: 'ai',
+    categoryLabel: 'AI & Architecture',
+    title: 'Local prompt sanitizer and PII redactor',
+    shortTitle: 'Prompt sanitizer',
+    description:
+      'Replace emails, tax IDs, IBANs, phone numbers, secrets, addresses and names in the browser before pasting text into an LLM.',
+    href: '/en/tools/prompt-sanitizer',
+    perimeterBadge: '100% in-browser · Legend stays in memory',
+    inputSpec: 'Pasted prompt, log or ticket',
+    guardrailSpec: 'Local detectors and stable placeholders, nothing sent',
+    outputSpec: 'Redacted text plus a legend you can restore in this tab',
+    ctaLabel: 'Open the sanitizer',
+    relatedServiceHref: '/en/governed-ai',
+    relatedServiceLabel: 'Governed AI',
+    featuredOnHome: true,
+  },
 ];
 
 const upcomingToolsIt: UpcomingMicroTool[] = [
@@ -170,19 +210,6 @@ const upcomingToolsIt: UpcomingMicroTool[] = [
       'Verifica rapida per capire se un caso d’uso AI rientra tra pratiche vietate, alto rischio (Allegato III), obblighi di trasparenza (Art. 50) o rischio minimo.',
     targetIntent: 'Classificazione AI Act e obblighi documentali',
     outputPreview: 'Fascia normativa + checklist di evidenze richieste',
-    relatedPillarHref: '/ai-governata',
-    relatedPillarLabel: 'AI governata',
-  },
-  {
-    id: 'prompt-pii-sanitizer',
-    instrumentTag: 'PII-06',
-    category: 'ai',
-    categoryLabel: 'AI e Architettura',
-    title: 'Sanitizzatore Prompt e Redazione PII (Locale)',
-    description:
-      'Rileva e maschera nel browser email, codici fiscali, P.IVA, IBAN, numeri di telefono e chiavi API prima di incollare un testo o un log in un LLM.',
-    targetIntent: 'Prevenzione data leak e minimizzazione GDPR nei prompt',
-    outputPreview: 'Testo pseudonimizzato con segnaposto coerenti ([EMAIL_1], [CF_1])',
     relatedPillarHref: '/ai-governata',
     relatedPillarLabel: 'AI governata',
   },
@@ -251,19 +278,6 @@ const upcomingToolsEn: UpcomingMicroTool[] = [
       'Quick assessment to check whether an AI use case falls under prohibited practices, high-risk (Annex III), transparency obligations (Art. 50) or minimal risk.',
     targetIntent: 'EU AI Act classification and documentation readiness',
     outputPreview: 'Regulatory tier + required evidence checklist',
-    relatedPillarHref: '/en/governed-ai',
-    relatedPillarLabel: 'Governed AI',
-  },
-  {
-    id: 'prompt-pii-sanitizer',
-    instrumentTag: 'PII-06',
-    category: 'ai',
-    categoryLabel: 'AI & Architecture',
-    title: 'Local Prompt Sanitizer & PII Redactor',
-    description:
-      'Detect and mask emails, tax IDs, IBANs, phone numbers and API keys directly in your browser before pasting text or logs into an external LLM.',
-    targetIntent: 'Prompt data-leak prevention and GDPR data minimization',
-    outputPreview: 'Pseudonymized text with consistent placeholders ([EMAIL_1], [ID_1])',
     relatedPillarHref: '/en/governed-ai',
     relatedPillarLabel: 'Governed AI',
   },

@@ -1,0 +1,175 @@
+---
+export interface Props {
+  lang?: 'it' | 'en';
+}
+
+const { lang = 'it' } = Astro.props;
+const isEn = lang === 'en';
+
+const copy = isEn
+  ? {
+      kicker: 'PII-06 · In the browser',
+      title: 'Sanitize a prompt before it leaves the page',
+      lead: 'Paste a draft, a log or a ticket. Emails, tax IDs, IBANs, phones, secrets, street addresses and given-name plus surname are replaced as you type. The legend stays in this tab.',
+      warn: 'The legend still contains the original values. It is not saved and it is not sent. Refresh or Reset clears it. Copy only the redacted text.',
+      inputLabel: 'Text to redact',
+      outputLabel: 'Redacted text',
+      legendLabel: 'Local legend',
+      empty: 'No personal data recognized yet.',
+      restore: 'Restore',
+      copy: 'Copy redacted text',
+      copied: 'Copied',
+      reset: 'Reset',
+      count: '{n} items redacted',
+      none: 'No personal data recognized',
+      limit:
+        'Names need a listed given name plus a surname. Unusual addresses and single first names can remain. This is a local check, not a guarantee that the text is anonymous.',
+    }
+  : {
+      kicker: 'PII-06 · Nel browser',
+      title: 'Sanitizza un prompt prima che esca dalla pagina',
+      lead: 'Incolla una bozza, un log o un ticket. Email, codici fiscali, partite IVA, IBAN, telefoni, segreti, indirizzi e coppie nome-cognome vengono sostituiti mentre scrivi. La legenda resta in questa scheda.',
+      warn: 'La legenda contiene ancora i valori originali. Non viene salvata e non viene inviata. Refresh o Reset la cancellano. Copia solo il testo redatto.',
+      inputLabel: 'Testo da redigere',
+      outputLabel: 'Testo redatto',
+      legendLabel: 'Legenda locale',
+      empty: 'Nessun dato personale riconosciuto, per ora.',
+      restore: 'Ripristina',
+      copy: 'Copia il testo redatto',
+      copied: 'Copiato',
+      reset: 'Reset',
+      count: '{n} elementi redatti',
+      none: 'Nessun dato personale riconosciuto',
+      limit:
+        'I nomi richiedono un nome di battesimo in lista più un cognome. Indirizzi insoliti e nomi singoli possono restare. È un controllo locale, non una garanzia che il testo sia anonimo.',
+    };
+---
+
+<section
+  class="pii-sheet"
+  data-pii-root
+  data-restore-label={copy.restore}
+  data-copy-label={copy.copy}
+  data-copied-label={copy.copied}
+  data-count-label={copy.count}
+  data-none-label={copy.none}
+>
+  <p class="site-eyebrow">{copy.kicker}</p>
+  <h1 class="pii-sheet__title">{copy.title}</h1>
+  <p class="site-lead">{copy.lead}</p>
+  <p class="pii-sheet__warn" role="note">{copy.warn}</p>
+
+  <div class="pii-sheet__grid">
+    <label class="pii-sheet__field">
+      <span class="ds-label">{copy.inputLabel}</span>
+      <textarea class="ds-textarea" data-pii-input rows="12" spellcheck="false"></textarea>
+    </label>
+    <label class="pii-sheet__field">
+      <span class="ds-label">{copy.outputLabel}</span>
+      <textarea class="ds-textarea" data-pii-output rows="12" readonly spellcheck="false"></textarea>
+    </label>
+  </div>
+
+  <p class="pii-sheet__status" data-pii-status aria-live="polite"></p>
+
+  <section class="pii-sheet__legend" aria-labelledby="pii-legend-heading">
+    <h2 id="pii-legend-heading" class="pii-sheet__legend-title">{copy.legendLabel}</h2>
+    <p class="ds-hint" data-pii-empty>{copy.empty}</p>
+    <ul data-pii-legend hidden></ul>
+  </section>
+
+  <div class="pii-sheet__actions">
+    <button class="ds-btn" data-variant="primary" data-size="lg" type="button" data-pii-copy>
+      {copy.copy}
+    </button>
+    <button class="ds-btn" data-variant="ghost" type="button" data-pii-reset>{copy.reset}</button>
+  </div>
+  <p class="ds-hint">{copy.limit}</p>
+</section>
+
+<script>
+  import { sanitizePrompt } from '../lib/promptSanitizer';
+
+  const root = document.querySelector('[data-pii-root]');
+  if (root) {
+    const input = root.querySelector('[data-pii-input]');
+    const output = root.querySelector('[data-pii-output]');
+    const legend = root.querySelector('[data-pii-legend]');
+    const empty = root.querySelector('[data-pii-empty]');
+    const status = root.querySelector('[data-pii-status]');
+    const copyBtn = root.querySelector('[data-pii-copy]');
+    const resetBtn = root.querySelector('[data-pii-reset]');
+    const suppressed = new Set();
+    const labels = {
+      restore: root.dataset.restoreLabel ?? 'Ripristina',
+      copy: root.dataset.copyLabel ?? 'Copia',
+      copied: root.dataset.copiedLabel ?? 'Copiato',
+      count: root.dataset.countLabel ?? '{n}',
+      none: root.dataset.noneLabel ?? '',
+    };
+
+    const render = () => {
+      if (!input || !output || !legend || !empty || !status) return;
+      const result = sanitizePrompt(input.value, [...suppressed]);
+      output.value = result.text;
+      legend.replaceChildren();
+      const hasRows = result.legend.length > 0;
+      empty.hidden = hasRows;
+      legend.hidden = !hasRows;
+      if (!input.value.trim()) status.textContent = '';
+      else if (hasRows) status.textContent = labels.count.replace('{n}', String(result.legend.length));
+      else status.textContent = labels.none;
+
+      for (const entry of result.legend) {
+        legend.append(legendRow(entry));
+      }
+    };
+
+    const legendRow = (entry) => {
+      const item = document.createElement('li');
+      item.className = 'pii-sheet__row';
+      const token = document.createElement('code');
+      token.textContent = entry.placeholder;
+      const value = document.createElement('span');
+      value.className = 'pii-sheet__value';
+      value.textContent = entry.value;
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'ds-btn';
+      button.dataset.variant = 'ghost';
+      button.dataset.size = 'sm';
+      button.textContent = labels.restore;
+      button.setAttribute('aria-label', `${labels.restore} ${entry.placeholder}`);
+      button.addEventListener('click', () => {
+        suppressed.add(entry.value);
+        render();
+      });
+      item.append(token, value, button);
+      return item;
+    };
+
+    input?.addEventListener('input', render);
+    resetBtn?.addEventListener('click', () => {
+      if (!input) return;
+      input.value = '';
+      suppressed.clear();
+      render();
+      input.focus();
+    });
+    copyBtn?.addEventListener('click', async () => {
+      if (!output?.value || !copyBtn) return;
+      try {
+        await navigator.clipboard.writeText(output.value);
+        copyBtn.textContent = labels.copied;
+        window.setTimeout(() => {
+          copyBtn.textContent = labels.copy;
+        }, 1600);
+      } catch {
+        output.focus();
+        output.select();
+      }
+    });
+
+    render();
+  }
+</script>
