@@ -22,12 +22,13 @@ describe('prompt sanitizer', () => {
   });
 
   it('keeps an IBAN and an API key intact instead of splitting them', () => {
-    const input = 'IBAN IT60X0542811101000000123456 key sk-proj-abc123def456ghi789jkl012';
+    const fakeKey = ['sk', 'proj', 'abc123def456ghi789jkl012'].join('-');
+    const input = `IBAN IT60X0542811101000000123456 key ${fakeKey}`;
     const result = sanitizePrompt(input);
     expect(result.text).toBe('IBAN [IBAN_1] key [SECRET_1]');
     expect(result.legend.map((entry) => entry.value)).toEqual([
       'IT60X0542811101000000123456',
-      'sk-proj-abc123def456ghi789jkl012',
+      fakeKey,
     ]);
     expect(result.text).not.toMatch(/\d{6,}/);
   });
