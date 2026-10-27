@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import PromptSanitizer from '../../components/PromptSanitizer.astro';
+import '../../styles/prompt-sanitizer.css';
+
+const description =
+  'Sanitizza prompt, log e ticket nel browser: email, codice fiscale, P.IVA, IBAN, telefoni, chiavi API, indirizzi e nomi vengono sostituiti prima di incollarli in un LLM.';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Sanitizzatore prompt e redazione PII',
+  description,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'EUR',
+  },
+  url: 'https://devisia.pro/tools/prompt-sanitizer',
+};
+---
+
+<Layout
+  title="Sanitizzatore prompt e redazione PII"
+  documentTitle="Sanitizzatore prompt: redigi PII nel browser | Devisia"
+  description={description}
+  lang="it"
+  structuredData={structuredData}
+>
+  <section class="ds-container">
+    <PromptSanitizer lang="it" />
+  </section>
+
+  <section class="ds-container pii-seo" aria-labelledby="pii-why">
+    <div class="pii-seo__grid">
+      <article>
+        <h2 id="pii-why">A cosa serve prima di un modello</h2>
+        <p>
+          Un prompt, un log o un ticket copiati in una chat esterna portano spesso email, telefoni, codici fiscali e chiavi.
+          Questo strumento li sostituisce con segnaposto stabili, <code>[EMAIL_1]</code> o <code>[CF_1]</code>, senza inviare il testo.
+        </p>
+        <p>
+          La legenda resta nella scheda e serve a controllare i match. Se un nome o un indirizzo è un falso positivo, Ripristina rimette il valore originale nel testo redatto.
+        </p>
+        <p>
+          La versione in inglese è il
+          <a class="ds-link" href="/en/tools/prompt-sanitizer">Local Prompt Sanitizer</a>.
+          Il perimetro più ampio è nella pagina <a class="ds-link" href="/ai-governata">AI governata</a>.
+        </p>
+      </article>
+      <article>
+        <h2>Cosa non garantisce</h2>
+        <ul>
+          <li>Non riconosce ogni nome singolo, soprannome o indirizzo scritto in forma libera.</li>
+          <li>Non è una DPIA e non sostituisce una revisione umana prima di un invio.</li>
+          <li>Non conserva il testo: al refresh la legenda sparisce.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+</Layout>

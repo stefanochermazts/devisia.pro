@@ -1,0 +1,63 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import PromptSanitizer from '../../../components/PromptSanitizer.astro';
+import '../../../styles/prompt-sanitizer.css';
+
+const description =
+  'Sanitize prompts, logs and tickets in the browser: emails, tax IDs, IBANs, phone numbers, API keys, addresses and names are replaced before you paste them into an LLM.';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Local Prompt Sanitizer and PII Redactor',
+  description,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'EUR',
+  },
+  url: 'https://devisia.pro/en/tools/prompt-sanitizer',
+};
+---
+
+<Layout
+  title="Local prompt sanitizer and PII redactor"
+  documentTitle="Prompt sanitizer: redact PII in the browser | Devisia"
+  description={description}
+  lang="en"
+  structuredData={structuredData}
+>
+  <section class="ds-container">
+    <PromptSanitizer lang="en" />
+  </section>
+
+  <section class="ds-container pii-seo" aria-labelledby="pii-why">
+    <div class="pii-seo__grid">
+      <article>
+        <h2 id="pii-why">What to do before a model sees the text</h2>
+        <p>
+          Prompts, logs and tickets copied into an external chat often carry emails, phone numbers, tax identifiers and keys.
+          This tool replaces them with stable placeholders, <code>[EMAIL_1]</code> or <code>[CF_1]</code>, and does not send the text anywhere.
+        </p>
+        <p>
+          The legend stays in the tab so you can check each match. Restore puts a false positive back into the redacted text.
+        </p>
+        <p>
+          The Italian page is the
+          <a class="ds-link" href="/tools/prompt-sanitizer">sanitizzatore prompt</a>.
+          The wider boundary is on <a class="ds-link" href="/en/governed-ai">Governed AI</a>.
+        </p>
+      </article>
+      <article>
+        <h2>What it does not guarantee</h2>
+        <ul>
+          <li>It does not catch every single first name, nickname or free-form address.</li>
+          <li>It is not a DPIA and it does not replace a human review before you send anything.</li>
+          <li>It does not store the text: a refresh drops the legend.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,110 @@
+.pii-sheet {
+  display: grid;
+  gap: var(--ds-space-4);
+  margin-top: var(--ds-space-6);
+  margin-bottom: var(--ds-space-6);
+}
+
+.pii-sheet__title {
+  margin: 0;
+  font-family: var(--ds-font-display, inherit);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: var(--ds-tracking-tight, -0.02em);
+  line-height: 1.1;
+}
+
+.pii-sheet__warn {
+  margin: 0;
+  padding: var(--ds-space-3) var(--ds-space-4);
+  border: 1px solid var(--ds-color-border);
+  background: var(--ds-color-surface-2, var(--ds-color-surface));
+  color: var(--ds-color-text);
+  font-size: var(--ds-text-sm);
+}
+
+.pii-sheet__grid {
+  display: grid;
+  gap: var(--ds-space-4);
+}
+
+@media (min-width: 60rem) {
+  .pii-sheet__grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: start;
+  }
+}
+
+.pii-sheet__field {
+  display: grid;
+  gap: var(--ds-space-2);
+}
+
+.pii-sheet__status {
+  min-height: 1.25rem;
+  margin: 0;
+  font-size: var(--ds-text-sm);
+  color: var(--ds-color-text-muted);
+}
+
+.pii-sheet__legend-title {
+  margin: 0 0 var(--ds-space-3);
+  font-size: var(--ds-text-lg, 1.15rem);
+}
+
+.pii-sheet__legend ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--ds-space-2);
+}
+
+.pii-sheet__row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--ds-space-3);
+  align-items: center;
+  padding: var(--ds-space-2) var(--ds-space-3);
+  border: 1px solid var(--ds-color-border);
+  background: var(--ds-color-surface);
+}
+
+.pii-sheet__row code {
+  font-family: var(--ds-font-mono, ui-monospace, monospace);
+  font-size: var(--ds-text-sm);
+}
+
+.pii-sheet__value {
+  overflow-wrap: anywhere;
+  font-size: var(--ds-text-sm);
+}
+
+.pii-sheet__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-space-3);
+  align-items: center;
+}
+
+.pii-seo {
+  margin-top: var(--ds-space-6);
+  margin-bottom: var(--ds-space-7);
+}
+
+.pii-seo__grid {
+  display: grid;
+  gap: var(--ds-space-4);
+  padding: var(--ds-space-5);
+  border: var(--ds-border-1) solid var(--ds-color-border);
+  background: var(--ds-color-surface);
+}
+
+.pii-seo h2 {
+  margin-top: 0;
+}
+
+@media (max-width: 40rem) {
+  .pii-sheet__row {
+    grid-template-columns: 1fr;
+  }
+}

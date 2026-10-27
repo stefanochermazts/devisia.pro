@@ -8,17 +8,18 @@ import {
 import { getHreflangPaths, switchLocalePath } from '../../src/lib/localePath';
 
 describe('micro-tools catalog and SEO hub configuration', () => {
-  it('exposes the 4 active micro-tools in both Italian and English with matching IDs and tags', () => {
+  it('exposes the active micro-tools in both Italian and English with matching IDs and tags', () => {
     const itTools = getMicroTools('it');
     const enTools = getMicroTools('en');
 
-    expect(itTools).toHaveLength(3);
-    expect(enTools).toHaveLength(3);
+    expect(itTools).toHaveLength(4);
+    expect(enTools).toHaveLength(4);
 
     expect(itTools.map((t) => t.id)).toEqual(enTools.map((t) => t.id));
     expect(itTools.map((t) => t.id)).not.toContain('padel-aggregator');
-    expect(itTools.map((t) => t.instrumentTag)).toEqual(['AIT-01', 'RIC-02', 'FMT-03']);
-    expect(enTools.map((t) => t.instrumentTag)).toEqual(['AIT-01', 'RIC-02', 'FMT-03']);
+    expect(itTools.map((t) => t.id)).toContain('prompt-pii-sanitizer');
+    expect(itTools.map((t) => t.instrumentTag)).toEqual(['AIT-01', 'RIC-02', 'FMT-03', 'PII-06']);
+    expect(enTools.map((t) => t.instrumentTag)).toEqual(['AIT-01', 'RIC-02', 'FMT-03', 'PII-06']);
   });
 
   it('ensures all Italian tools use root paths and English tools use /en paths', () => {
@@ -39,8 +40,8 @@ describe('micro-tools catalog and SEO hub configuration', () => {
   });
 
   it('returns featured tools for the home page section', () => {
-    expect(getHomeFeaturedTools('it')).toHaveLength(3);
-    expect(getHomeFeaturedTools('en')).toHaveLength(3);
+    expect(getHomeFeaturedTools('it')).toHaveLength(4);
+    expect(getHomeFeaturedTools('en')).toHaveLength(4);
     expect(getHomeFeaturedTools('it').map((t) => t.id)).not.toContain('padel-aggregator');
   });
 
@@ -48,7 +49,8 @@ describe('micro-tools catalog and SEO hub configuration', () => {
     const itUpcoming = getUpcomingMicroTools('it');
     const enUpcoming = getUpcomingMicroTools('en');
 
-    expect(itUpcoming.length).toBeGreaterThanOrEqual(6);
+    expect(itUpcoming.length).toBeGreaterThanOrEqual(5);
+    expect(itUpcoming.map((t) => t.id)).not.toContain('prompt-pii-sanitizer');
     expect(itUpcoming.map((t) => t.id)).toEqual(enUpcoming.map((t) => t.id));
     expect(itUpcoming.map((t) => t.instrumentTag)).toEqual(enUpcoming.map((t) => t.instrumentTag));
   });
