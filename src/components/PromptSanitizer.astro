@@ -8,40 +8,110 @@ const isEn = lang === 'en';
 
 const copy = isEn
   ? {
-      kicker: 'PII-06 · In the browser',
-      title: 'Sanitize a prompt before it leaves the page',
-      lead: 'Paste a draft, a log or a ticket. Emails, tax IDs, IBANs, phones, secrets, street addresses and given-name plus surname are replaced as you type. The legend stays in this tab.',
-      warn: 'The legend still contains the original values. It is not saved and it is not sent. Refresh or Reset clears it. Copy only the redacted text.',
-      inputLabel: 'Text to redact',
-      outputLabel: 'Redacted text',
-      legendLabel: 'Local legend',
-      empty: 'No personal data recognized yet.',
-      restore: 'Restore',
-      copy: 'Copy redacted text',
-      copied: 'Copied',
+      title: 'Sanitize a prompt, send it to the model, and restore the reply',
+      lead: 'Replace personal and corporate identifiers in your browser before pasting into ChatGPT, Claude or Gemini, then paste the reply back to restore the original values from the local legend.',
+      warn: 'Everything runs in this tab. The local legend holds the original values in memory only: it is never stored or transmitted, and Refresh or Reset clears it.',
+      tryExample: 'Load full example (Prompt → LLM → Reply)',
       reset: 'Reset',
-      count: '{n} items redacted',
-      none: 'No personal data recognized',
+      step1Badge: 'STEP 01 · OUTBOUND',
+      step1Title: 'Prepare and redact the prompt',
+      step1Lead:
+        'Write or paste your request with real data on the left. On the right you get the prompt ready to paste into ChatGPT, Claude or Gemini.',
+      inputLabel: '1A. Your prompt with real data',
+      inputPlaceholder:
+        'Example: Write a formal reply to James Bond (james.bond@example.com, +14155552671) to confirm contract delivery to 123 Main Street...',
+      outputLabel: '1B. Prompt ready for ChatGPT, Claude or Gemini',
+      includeInstructionLabel:
+        'Include format rule so the LLM keeps [NAME_1], [EMAIL_1]... markers in its reply',
+      copy: 'Copy prompt for the LLM',
+      copied: 'Copied',
+      count: '{n} items protected',
+      none: 'No personal data recognized in the prompt',
       limit:
-        'Names need a listed given name plus a surname. Unusual addresses and single first names can remain. This is a local check, not a guarantee that the text is anonymous.',
+        'Names require a listed given name plus a surname. Unusual addresses and single first names can remain. Always review the prompt before sending.',
+      step2Badge: 'STEP 02 · LOCAL BRIDGE',
+      legendLabel: 'Local legend and match control',
+      legendLead:
+        'Now paste the copied prompt into ChatGPT, Claude or Gemini. If a match below is a false positive, click Restore to put the original text back. When the model replies keeping the markers, move to Step 03.',
+      empty: 'No personal data recognized yet. Paste a prompt in Step 01 or load the full example.',
+      restore: 'Restore',
+      step3Badge: 'STEP 03 · INBOUND',
+      replyTitle: 'Paste the LLM reply and restore real data',
+      replyLead:
+        'Paste the response from ChatGPT, Claude or Gemini on the left. Every marker still in the legend is replaced with its original value on the right.',
+      replyLabel: '3A. Paste the reply from ChatGPT / Claude / Gemini',
+      replyPlaceholder:
+        'Paste the model reply that still contains [NAME_1], [EMAIL_1], [ADDR_1]...',
+      replyOutLabel: '3B. Final result with original values restored',
+      copyReply: 'Copy final result',
+      replyCount: '{n} markers restored in the reply',
+      replyNone: 'No legend markers found in the reply yet',
+      replyEmpty: 'Markers that are not in the legend stay as written.',
+      instruction:
+        'Format rule: keep all bracket placeholders exactly as written ([NAME_1], [EMAIL_1], [PHONE_1], [ADDR_1], [PIVA_1], [IBAN_1] and similar). Do not translate them, do not remove them, and do not replace them with invented data.',
+      sample:
+        'Write a short formal email to James Bond (james.bond@example.com, phone +14155552671) to confirm that we will ship the signed contract to 123 Main Street and ask him to verify IBAN IT60X0542811101000000123456 before countersigning.',
+      sampleReply: `Subject: Contract shipment and details verification
+
+Dear [NAME_1],
+
+we confirm that the contractual documentation will be sent to [ADDR_1].
+Before countersigning, please verify that IBAN [IBAN_1] is accurate.
+
+We remain available at [EMAIL_1] or by phone at [PHONE_1].`,
     }
   : {
-      kicker: 'PII-06 · Nel browser',
-      title: 'Sanitizza un prompt prima che esca dalla pagina',
-      lead: 'Incolla una bozza, un log o un ticket. Email, codici fiscali, partite IVA, IBAN, telefoni, segreti, indirizzi e coppie nome-cognome vengono sostituiti mentre scrivi. La legenda resta in questa scheda.',
-      warn: 'La legenda contiene ancora i valori originali. Non viene salvata e non viene inviata. Refresh o Reset la cancellano. Copia solo il testo redatto.',
-      inputLabel: 'Testo da redigere',
-      outputLabel: 'Testo redatto',
-      legendLabel: 'Legenda locale',
-      empty: 'Nessun dato personale riconosciuto, per ora.',
-      restore: 'Ripristina',
-      copy: 'Copia il testo redatto',
-      copied: 'Copiato',
+      title: 'Sanitizza il prompt, invialo al modello e ripristina la risposta',
+      lead: 'Sostituisci dati personali e identificativi aziendali nel browser prima di incollarli su ChatGPT, Claude o Gemini, poi incolla la risposta per rimettere i valori reali dalla legenda locale.',
+      warn: 'Tutto avviene in questa scheda. La legenda locale tiene i valori originali solo in memoria: non viene salvata né inviata, e Refresh o Reset la azzerano.',
+      tryExample: 'Carica esempio completo (Prompt → LLM → Risposta)',
       reset: 'Reset',
-      count: '{n} elementi redatti',
-      none: 'Nessun dato personale riconosciuto',
+      step1Badge: 'PASSO 01 · ANDATA',
+      step1Title: 'Prepara e redigi il prompt',
+      step1Lead:
+        'Scrivi o incolla a sinistra la richiesta con i dati reali. A destra ottieni il prompt già pronto da incollare su ChatGPT, Claude o Gemini.',
+      inputLabel: '1A. Il tuo prompt con i dati reali',
+      inputPlaceholder:
+        'Es.: Scrivi una breve email formale a Mario Rossi (mario.rossi@devisia.it, tel. 333 123 4567) per confermare l’invio del contratto in Via Roma 12, 20121 Milano...',
+      outputLabel: '1B. Prompt pronto per ChatGPT, Claude o Gemini',
+      includeInstructionLabel:
+        'Includi istruzione per mantenere i marcatori [NAME_1], [EMAIL_1]... nella risposta',
+      copy: 'Copia prompt per l’LLM',
+      copied: 'Copiato',
+      count: '{n} elementi protetti',
+      none: 'Nessun dato personale riconosciuto nel prompt',
       limit:
-        'I nomi richiedono un nome di battesimo in lista più un cognome. Indirizzi insoliti e nomi singoli possono restare. È un controllo locale, non una garanzia che il testo sia anonimo.',
+        'I nomi richiedono un nome di battesimo in lista più un cognome. Indirizzi insoliti e nomi singoli possono restare. Rivedi sempre il prompt prima dell’invio.',
+      step2Badge: 'PASSO 02 · PONTE LOCALE',
+      legendLabel: 'Legenda locale e controllo dei match',
+      legendLead:
+        'Ora incolla il prompt copiato su ChatGPT, Claude o Gemini. Se una voce qui sotto è un falso positivo, premi Ripristina per rimetterla nel testo. Quando il modello ti risponde mantenendo i marcatori, passa al Passo 03.',
+      empty: 'Nessun dato personale riconosciuto, per ora. Incolla un prompt nel Passo 01 oppure carica l’esempio completo.',
+      restore: 'Ripristina',
+      step3Badge: 'PASSO 03 · RITORNO',
+      replyTitle: 'Incolla la risposta dell’LLM e rimetti i dati reali',
+      replyLead:
+        'Incolla a sinistra la risposta di ChatGPT, Claude o Gemini. Tutti i marcatori presenti nella legenda vengono sostituiti a destra con i valori originali.',
+      replyLabel: '3A. Incolla la risposta di ChatGPT / Claude / Gemini',
+      replyPlaceholder:
+        'Incolla qui la risposta del modello che contiene ancora [NAME_1], [EMAIL_1], [ADDR_1]...',
+      replyOutLabel: '3B. Risultato finale con i dati originali ripristinati',
+      copyReply: 'Copia risultato finale',
+      replyCount: '{n} marcatori ripristinati nella risposta',
+      replyNone: 'Nessun marcatore della legenda trovato nella risposta',
+      replyEmpty: 'I marcatori che non sono in legenda restano come sono scritti.',
+      instruction:
+        'Istruzioni di formato: mantieni tutti i segnaposto tra parentesi quadre esattamente come sono ([NAME_1], [EMAIL_1], [PHONE_1], [ADDR_1], [PIVA_1], [IBAN_1] e simili). Non tradurli, non rimuoverli e non sostituirli con dati inventati.',
+      sample:
+        'Scrivi una breve email formale di risposta a Mario Rossi (mario.rossi@devisia.it, tel. 333 123 4567) per confermare che invieremo il contratto in Via Roma 12, 20121 Milano e chiedigli di verificare P.IVA 12345678903 e IBAN IT60X0542811101000000123456 prima della firma.',
+      sampleReply: `Oggetto: Conferma invio contratto e verifica dati
+
+Gentile [NAME_1],
+
+ti confermiamo che la documentazione contrattuale sarà spedita all'indirizzo [ADDR_1].
+Prima di procedere con la firma, ti chiediamo di verificare che la P.IVA [PIVA_1] e l'IBAN [IBAN_1] siano corretti.
+
+Restiamo a disposizione all'indirizzo [EMAIL_1] o al numero [PHONE_1].`,
     };
 ---
 
@@ -53,65 +123,212 @@ const copy = isEn
   data-copied-label={copy.copied}
   data-count-label={copy.count}
   data-none-label={copy.none}
+  data-copy-reply-label={copy.copyReply}
+  data-reply-count-label={copy.replyCount}
+  data-reply-none-label={copy.replyNone}
 >
-  <p class="site-eyebrow">{copy.kicker}</p>
-  <h1 class="pii-sheet__title">{copy.title}</h1>
-  <p class="site-lead">{copy.lead}</p>
-  <p class="pii-sheet__warn" role="note">{copy.warn}</p>
+  <header class="pii-sheet__header">
+    <h1 class="pii-sheet__title">{copy.title}</h1>
+    <p class="site-lead">{copy.lead}</p>
+  </header>
 
-  <div class="pii-sheet__grid">
-    <label class="pii-sheet__field">
-      <span class="ds-label">{copy.inputLabel}</span>
-      <textarea class="ds-textarea" data-pii-input rows="12" spellcheck="false"></textarea>
-    </label>
-    <label class="pii-sheet__field">
-      <span class="ds-label">{copy.outputLabel}</span>
-      <textarea class="ds-textarea" data-pii-output rows="12" readonly spellcheck="false"></textarea>
-    </label>
+  <div class="pii-sheet__demobar" role="region" aria-label={copy.tryExample}>
+    <p class="pii-sheet__warn" role="note">{copy.warn}</p>
+    <div class="pii-sheet__demobar-actions">
+      <button class="ds-btn" data-variant="primary" type="button" data-pii-try>
+        {copy.tryExample}
+      </button>
+      <button class="ds-btn" data-variant="ghost" type="button" data-pii-reset>
+        {copy.reset}
+      </button>
+    </div>
+    <p hidden data-pii-instruction>{copy.instruction}</p>
+    <p hidden data-pii-sample>{copy.sample}</p>
+    <pre hidden data-pii-sample-reply>{copy.sampleReply}</pre>
   </div>
 
-  <p class="pii-sheet__status" data-pii-status aria-live="polite"></p>
+  <section class="pii-step" aria-labelledby="pii-step1-heading">
+    <header class="pii-step__head">
+      <span class="pii-step__tag">{copy.step1Badge}</span>
+      <h2 id="pii-step1-heading" class="pii-step__title">{copy.step1Title}</h2>
+      <p class="pii-step__lead">{copy.step1Lead}</p>
+    </header>
 
-  <section class="pii-sheet__legend" aria-labelledby="pii-legend-heading">
-    <h2 id="pii-legend-heading" class="pii-sheet__legend-title">{copy.legendLabel}</h2>
-    <p class="ds-hint" data-pii-empty>{copy.empty}</p>
-    <ul data-pii-legend hidden></ul>
+    <div class="pii-sheet__grid">
+      <div class="pii-sheet__pane">
+        <label class="pii-sheet__field" for="pii-input-textarea">
+          <span class="ds-label">{copy.inputLabel}</span>
+        </label>
+        <textarea
+          id="pii-input-textarea"
+          class="ds-textarea"
+          data-pii-input
+          rows="11"
+          placeholder={copy.inputPlaceholder}
+          spellcheck="false"></textarea>
+        <p class="ds-hint">{copy.limit}</p>
+      </div>
+
+      <div class="pii-sheet__pane">
+        <div class="pii-sheet__pane-top">
+          <label class="ds-label" for="pii-output-textarea">{copy.outputLabel}</label>
+          <label class="ds-check pii-sheet__toggle">
+            <input type="checkbox" checked data-pii-include-instruction />
+            <span>{copy.includeInstructionLabel}</span>
+          </label>
+        </div>
+        <textarea
+          id="pii-output-textarea"
+          class="ds-textarea"
+          data-pii-output
+          rows="11"
+          readonly
+          spellcheck="false"></textarea>
+        <div class="pii-sheet__bar">
+          <button class="ds-btn" data-variant="primary" data-size="lg" type="button" data-pii-copy>
+            {copy.copy}
+          </button>
+          <p class="pii-sheet__status" data-pii-status aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <div class="pii-sheet__actions">
-    <button class="ds-btn" data-variant="primary" data-size="lg" type="button" data-pii-copy>
-      {copy.copy}
-    </button>
-    <button class="ds-btn" data-variant="ghost" type="button" data-pii-reset>{copy.reset}</button>
-  </div>
-  <p class="ds-hint">{copy.limit}</p>
+  <section class="pii-step pii-step--bridge" aria-labelledby="pii-legend-heading">
+    <header class="pii-step__head">
+      <span class="pii-step__tag">{copy.step2Badge}</span>
+      <h2 id="pii-legend-heading" class="pii-step__title">{copy.legendLabel}</h2>
+      <p class="pii-step__lead">{copy.legendLead}</p>
+    </header>
+
+    <p class="ds-hint" data-pii-empty>{copy.empty}</p>
+    <ul class="pii-sheet__legend-grid" data-pii-legend hidden></ul>
+  </section>
+
+  <section class="pii-step" aria-labelledby="pii-reply-heading">
+    <header class="pii-step__head">
+      <span class="pii-step__tag">{copy.step3Badge}</span>
+      <h2 id="pii-reply-heading" class="pii-step__title">{copy.replyTitle}</h2>
+      <p class="pii-step__lead">{copy.replyLead}</p>
+    </header>
+
+    <div class="pii-sheet__grid">
+      <div class="pii-sheet__pane">
+        <label class="pii-sheet__field" for="pii-reply-textarea">
+          <span class="ds-label">{copy.replyLabel}</span>
+        </label>
+        <textarea
+          id="pii-reply-textarea"
+          class="ds-textarea"
+          data-pii-reply
+          rows="9"
+          placeholder={copy.replyPlaceholder}
+          spellcheck="false"></textarea>
+        <p class="ds-hint">{copy.replyEmpty}</p>
+      </div>
+
+      <div class="pii-sheet__pane">
+        <label class="pii-sheet__field" for="pii-reply-out-textarea">
+          <span class="ds-label">{copy.replyOutLabel}</span>
+        </label>
+        <textarea
+          id="pii-reply-out-textarea"
+          class="ds-textarea"
+          data-pii-reply-out
+          rows="9"
+          readonly
+          spellcheck="false"></textarea>
+        <div class="pii-sheet__bar">
+          <button
+            class="ds-btn"
+            data-variant="primary"
+            data-size="lg"
+            type="button"
+            data-pii-copy-reply
+          >
+            {copy.copyReply}
+          </button>
+          <p class="pii-sheet__status" data-pii-reply-status aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </section>
 </section>
 
 <script>
-  import { sanitizePrompt } from '../lib/promptSanitizer';
+  import { applyLegendDetailed, buildLlmPrompt, sanitizePrompt } from '../lib/promptSanitizer';
 
   const root = document.querySelector('[data-pii-root]');
   if (root) {
     const input = root.querySelector('[data-pii-input]');
     const output = root.querySelector('[data-pii-output]');
+    const includeInstruction = root.querySelector('[data-pii-include-instruction]');
     const legend = root.querySelector('[data-pii-legend]');
     const empty = root.querySelector('[data-pii-empty]');
     const status = root.querySelector('[data-pii-status]');
     const copyBtn = root.querySelector('[data-pii-copy]');
     const resetBtn = root.querySelector('[data-pii-reset]');
+    const reply = root.querySelector('[data-pii-reply]');
+    const replyOut = root.querySelector('[data-pii-reply-out]');
+    const replyStatus = root.querySelector('[data-pii-reply-status]');
+    const copyReplyBtn = root.querySelector('[data-pii-copy-reply]');
+    const tryBtn = root.querySelector('[data-pii-try]');
+    const instructionEl = root.querySelector('[data-pii-instruction]');
+    const sampleEl = root.querySelector('[data-pii-sample]');
+    const sampleReplyEl = root.querySelector('[data-pii-sample-reply]');
     const suppressed = new Set();
+    let currentLegend = [];
     const labels = {
       restore: root.dataset.restoreLabel ?? 'Ripristina',
       copy: root.dataset.copyLabel ?? 'Copia',
       copied: root.dataset.copiedLabel ?? 'Copiato',
       count: root.dataset.countLabel ?? '{n}',
       none: root.dataset.noneLabel ?? '',
+      copyReply: root.dataset.copyReplyLabel ?? 'Copia',
+      replyCount: root.dataset.replyCountLabel ?? '{n}',
+      replyNone: root.dataset.replyNoneLabel ?? '',
+    };
+
+    const flash = (button, next) => {
+      button.textContent = labels.copied;
+      window.setTimeout(() => {
+        button.textContent = next;
+      }, 1600);
+    };
+
+    const copyText = async (value, button, label, fallbackTextarea) => {
+      if (!value || !button) return;
+      try {
+        await navigator.clipboard.writeText(value);
+        flash(button, label);
+      } catch {
+        if (fallbackTextarea) {
+          fallbackTextarea.focus();
+          fallbackTextarea.select();
+        }
+      }
+    };
+
+    const renderReply = () => {
+      if (!reply || !replyOut || !replyStatus) return;
+      const detailed = applyLegendDetailed(reply.value, currentLegend);
+      replyOut.value = detailed.text;
+      if (!reply.value.trim()) {
+        replyStatus.textContent = '';
+      } else if (detailed.replacedCount > 0) {
+        replyStatus.textContent = labels.replyCount.replace('{n}', String(detailed.replacedCount));
+      } else {
+        replyStatus.textContent = labels.replyNone;
+      }
     };
 
     const render = () => {
       if (!input || !output || !legend || !empty || !status) return;
       const result = sanitizePrompt(input.value, [...suppressed]);
-      output.value = result.text;
+      currentLegend = result.legend;
+      const instructionText = instructionEl?.textContent?.trim() ?? '';
+      const withRule = includeInstruction ? includeInstruction.checked : true;
+      output.value = buildLlmPrompt(result.text, instructionText, withRule);
       legend.replaceChildren();
       const hasRows = result.legend.length > 0;
       empty.hidden = hasRows;
@@ -123,6 +340,7 @@ const copy = isEn
       for (const entry of result.legend) {
         legend.append(legendRow(entry));
       }
+      renderReply();
     };
 
     const legendRow = (entry) => {
@@ -149,25 +367,32 @@ const copy = isEn
     };
 
     input?.addEventListener('input', render);
+    includeInstruction?.addEventListener('change', render);
+    reply?.addEventListener('input', renderReply);
+
     resetBtn?.addEventListener('click', () => {
       if (!input) return;
       input.value = '';
+      if (reply) reply.value = '';
       suppressed.clear();
       render();
       input.focus();
     });
-    copyBtn?.addEventListener('click', async () => {
-      if (!output?.value || !copyBtn) return;
-      try {
-        await navigator.clipboard.writeText(output.value);
-        copyBtn.textContent = labels.copied;
-        window.setTimeout(() => {
-          copyBtn.textContent = labels.copy;
-        }, 1600);
-      } catch {
-        output.focus();
-        output.select();
-      }
+
+    tryBtn?.addEventListener('click', () => {
+      if (!input || !reply) return;
+      input.value = sampleEl?.textContent?.trim() ?? '';
+      reply.value = sampleReplyEl?.textContent?.trim() ?? '';
+      suppressed.clear();
+      render();
+    });
+
+    copyBtn?.addEventListener('click', () => {
+      copyText(output?.value ?? '', copyBtn, labels.copy, output);
+    });
+
+    copyReplyBtn?.addEventListener('click', () => {
+      copyText(replyOut?.value ?? '', copyReplyBtn, labels.copyReply, replyOut);
     });
 
     render();
