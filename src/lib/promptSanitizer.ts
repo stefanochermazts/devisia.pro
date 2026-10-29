@@ -305,14 +305,43 @@ function escapeRegExp(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-/** Put legend values back into a model reply. Unknown markers stay as written. */
-export function applyLegend(text: string, legend: readonly LegendEntry[]): string {
+export interface ApplyLegendResult {
+  text: string;
+  replacedCount: number;
+}
+
+/** Put legend values back into a model reply and count how many markers matched. */
+export function applyLegendDetailed(text: string, legend: readonly LegendEntry[]): ApplyLegendResult {
   const map = new Map<string, string>();
   for (const entry of legend) {
     if (entry.placeholder) map.set(entry.placeholder, entry.value);
   }
   const keys = [...map.keys()].sort((a, b) => b.length - a.length);
-  if (keys.length === 0) return text;
+  if (keys.length === 0) return { text, replacedCount: 0 };
+  let replacedCount = 0;
   const pattern = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
-  return text.replace(pattern, (token) => map.get(token) ?? token);
+  const out = text.replace(pattern, (token) => {
+    const mapped = map.get(token);
+    if (mapped === undefined) return token;
+    replacedCount += 1;
+    return mapped;
+  });
+  return { text: out, replacedCount };
+}
+
+/** Put legend values back into a model reply. Unknown markers stay as written. */
+export function applyLegend(text: string, legend: readonly LegendEntry[]): string {
+  return applyLegendDetailed(text, legend).text;
+}
+
+/** Combine the format instruction and the redacted prompt when requested. */
+export function buildLlmPrompt(
+  redactedText: string,
+  instruction: string,
+  includeInstruction = true,
+): string {
+  const body = redactedText.trim();
+  if (!body) return '';
+  if (!includeInstruction || !instruction.trim()) return redactedText;
+  return `${instruction.trim()}\n\n---\n\n${redactedText}`;
 }

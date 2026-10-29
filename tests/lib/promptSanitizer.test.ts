@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest';
-import { applyLegend, sanitizePrompt } from '../../src/lib/promptSanitizer';
+import {
+  applyLegend,
+  applyLegendDetailed,
+  buildLlmPrompt,
+  sanitizePrompt,
+} from '../../src/lib/promptSanitizer';
 
 describe('prompt sanitizer', () => {
   it('reuses one placeholder for the same email', () => {
@@ -76,6 +81,40 @@ describe('prompt sanitizer', () => {
       { placeholder: '[EMAIL_10]', value: 'c@d.co', kind: 'email' as const },
     ];
     expect(applyLegend('x [EMAIL_10] y [EMAIL_1]', legend)).toBe('x c@d.co y a@b.co');
+  });
+
+  it('builds a ready-to-copy LLM prompt with or without the marker instruction', () => {
+    const instruction = 'Mantieni i segnaposto tra parentesi quadre.';
+    const redacted = 'Scrivi a [NAME_1] ([EMAIL_1]).';
+    expect(buildLlmPrompt('', instruction, true)).toBe('');
+    expect(buildLlmPrompt(redacted, instruction, false)).toBe(redacted);
+    expect(buildLlmPrompt(redacted, instruction, true)).toBe(
+      `${instruction}\n\n---\n\n${redacted}`,
+    );
+  });
+
+  it('completes the full round-trip example and counts restored markers', () => {
+    const prompt =
+      'Scrivi una breve email formale di risposta a Mario Rossi (mario.rossi@devisia.it, tel. 333 123 4567) per confermare che invieremo il contratto in Via Roma 12, 20121 Milano e chiedigli di verificare P.IVA 12345678903 e IBAN IT60X0542811101000000123456 prima della firma.';
+    const { text: redacted, legend } = sanitizePrompt(prompt);
+    expect(legend.map((entry) => entry.placeholder)).toEqual([
+      '[NAME_1]',
+      '[EMAIL_1]',
+      '[PHONE_1]',
+      '[ADDR_1]',
+      '[PIVA_1]',
+      '[IBAN_1]',
+    ]);
+    expect(redacted).toContain('[NAME_1]');
+    expect(redacted).toContain('[IBAN_1]');
+
+    const simulatedReply =
+      "Gentile [NAME_1], invieremo il contratto in [ADDR_1]. Verifica P.IVA [PIVA_1] e IBAN [IBAN_1]. Contatti: [EMAIL_1], [PHONE_1].";
+    const detailed = applyLegendDetailed(simulatedReply, legend);
+    expect(detailed.replacedCount).toBe(6);
+    expect(detailed.text).toBe(
+      "Gentile Mario Rossi, invieremo il contratto in Via Roma 12, 20121 Milano. Verifica P.IVA 12345678903 e IBAN IT60X0542811101000000123456. Contatti: mario.rossi@devisia.it, 333 123 4567.",
+    );
   });
 
   it('leaves text without personal data unchanged', () => {
