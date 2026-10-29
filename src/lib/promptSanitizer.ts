@@ -300,3 +300,19 @@ export function sanitizePrompt(input: string, suppressedValues: readonly string[
 
   return { text, legend };
 }
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+/** Put legend values back into a model reply. Unknown markers stay as written. */
+export function applyLegend(text: string, legend: readonly LegendEntry[]): string {
+  const map = new Map<string, string>();
+  for (const entry of legend) {
+    if (entry.placeholder) map.set(entry.placeholder, entry.value);
+  }
+  const keys = [...map.keys()].sort((a, b) => b.length - a.length);
+  if (keys.length === 0) return text;
+  const pattern = new RegExp(keys.map(escapeRegExp).join('|'), 'g');
+  return text.replace(pattern, (token) => map.get(token) ?? token);
+}

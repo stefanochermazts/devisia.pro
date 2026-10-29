@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { sanitizePrompt } from '../../src/lib/promptSanitizer';
+import { applyLegend, sanitizePrompt } from '../../src/lib/promptSanitizer';
 
 describe('prompt sanitizer', () => {
   it('reuses one placeholder for the same email', () => {
@@ -59,6 +59,23 @@ describe('prompt sanitizer', () => {
     const restored = sanitizePrompt(input, ['Mario Rossi']);
     expect(restored.text).toBe('Mario Rossi scrive a [EMAIL_1]. Copia per Mario Rossi.');
     expect(restored.legend.map((entry) => entry.kind)).toEqual(['email']);
+  });
+
+  it('puts legend markers back into a model reply and leaves unknown markers', () => {
+    const source = 'Mario Rossi (mario.rossi@devisia.it, 333 123 4567) abita in Via Roma 12, 20121 Milano';
+    const { legend } = sanitizePrompt(source);
+    const reply = 'Bozza per [NAME_1]: conferma [ADDR_1] e scrivi a [EMAIL_1] o al [PHONE_1]. Resta [UNKNOWN_9].';
+    expect(applyLegend(reply, legend)).toBe(
+      'Bozza per Mario Rossi: conferma Via Roma 12, 20121 Milano e scrivi a mario.rossi@devisia.it o al 333 123 4567. Resta [UNKNOWN_9].',
+    );
+  });
+
+  it('replaces a longer placeholder before a shorter one', () => {
+    const legend = [
+      { placeholder: '[EMAIL_1]', value: 'a@b.co', kind: 'email' as const },
+      { placeholder: '[EMAIL_10]', value: 'c@d.co', kind: 'email' as const },
+    ];
+    expect(applyLegend('x [EMAIL_10] y [EMAIL_1]', legend)).toBe('x c@d.co y a@b.co');
   });
 
   it('leaves text without personal data unchanged', () => {

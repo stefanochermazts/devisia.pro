@@ -10,7 +10,7 @@ const copy = isEn
   ? {
       kicker: 'PII-06 · In the browser',
       title: 'Sanitize a prompt before it leaves the page',
-      lead: 'Paste a draft, a log or a ticket. Emails, tax IDs, IBANs, phones, secrets, street addresses and given-name plus surname are replaced as you type. The legend stays in this tab.',
+      lead: 'Paste a draft, a log or a ticket. Emails, tax IDs, IBANs, phones, secrets, street addresses and given-name plus surname are replaced as you type. The legend stays in this tab, and you can paste the model reply back to restore those markers.',
       warn: 'The legend still contains the original values. It is not saved and it is not sent. Refresh or Reset clears it. Copy only the redacted text.',
       inputLabel: 'Text to redact',
       outputLabel: 'Redacted text',
@@ -24,11 +24,29 @@ const copy = isEn
       none: 'No personal data recognized',
       limit:
         'Names need a listed given name plus a surname. Unusual addresses and single first names can remain. This is a local check, not a guarantee that the text is anonymous.',
+      replyTitle: 'Put the markers back into the model reply',
+      replyLead:
+        'Paste this instruction into the model together with the redacted text, so it keeps the bracket markers. Then paste the reply here: markers that are still in the legend become the original values, only in this tab.',
+      instructionLabel: 'Instruction to paste into the prompt',
+      copyInstruction: 'Copy instruction',
+      sampleLabel: 'Reply you can paste to try it',
+      tryExample: 'Load the example and try it',
+      tryHint: 'Fills the text to redact and a fake reply that still contains the markers.',
+      replyLabel: 'Model reply',
+      replyOutLabel: 'Reply with legend values',
+      copyReply: 'Copy restored reply',
+      replyEmpty: 'Markers that are not in the legend stay as written.',
+      instruction:
+        'Copy the bracket markers exactly as they appear ([NAME_1], [EMAIL_1], [ADDR_1] and the others). Do not replace them with invented data, do not drop them, and do not change their spelling. When you mention a person, a contact or an address, keep the marker.',
+      sample:
+        'James Bond writes to james.bond@example.com or +14155552671 from 123 Main Street',
+      sampleReply:
+        'Draft for [NAME_1]: confirm [ADDR_1] and write to [EMAIL_1] or [PHONE_1].',
     }
   : {
       kicker: 'PII-06 · Nel browser',
       title: 'Sanitizza un prompt prima che esca dalla pagina',
-      lead: 'Incolla una bozza, un log o un ticket. Email, codici fiscali, partite IVA, IBAN, telefoni, segreti, indirizzi e coppie nome-cognome vengono sostituiti mentre scrivi. La legenda resta in questa scheda.',
+      lead: 'Incolla una bozza, un log o un ticket. Email, codici fiscali, partite IVA, IBAN, telefoni, segreti, indirizzi e coppie nome-cognome vengono sostituiti mentre scrivi. La legenda resta in questa scheda, e puoi reincollare la risposta del modello per rimettere quei marcatori.',
       warn: 'La legenda contiene ancora i valori originali. Non viene salvata e non viene inviata. Refresh o Reset la cancellano. Copia solo il testo redatto.',
       inputLabel: 'Testo da redigere',
       outputLabel: 'Testo redatto',
@@ -42,6 +60,24 @@ const copy = isEn
       none: 'Nessun dato personale riconosciuto',
       limit:
         'I nomi richiedono un nome di battesimo in lista più un cognome. Indirizzi insoliti e nomi singoli possono restare. È un controllo locale, non una garanzia che il testo sia anonimo.',
+      replyTitle: 'Rimetti i marcatori nella risposta',
+      replyLead:
+        'Incolla nel modello questa istruzione insieme al testo redatto, così non toglie i marcatori tra parentesi. Poi incolla qui la risposta: i marcatori ancora in legenda tornano ai valori originali, solo in questa scheda.',
+      instructionLabel: 'Istruzione da incollare nel prompt',
+      copyInstruction: 'Copia l’istruzione',
+      sampleLabel: 'Risposta di esempio da incollare',
+      tryExample: 'Carica l’esempio e provalo',
+      tryHint: 'Compila il testo da redigere e una risposta finta che contiene ancora i marcatori.',
+      replyLabel: 'Risposta del modello',
+      replyOutLabel: 'Risposta con i valori della legenda',
+      copyReply: 'Copia la risposta ripristinata',
+      replyEmpty: 'I marcatori che non sono in legenda restano come sono scritti.',
+      instruction:
+        'Copia i segnaposto tra parentesi quadre esattamente come compaiono ([NAME_1], [EMAIL_1], [ADDR_1] e gli altri). Non sostituirli con dati inventati, non ometterli e non cambiarne la grafia. Se citi una persona, un contatto o un indirizzo, tieni il segnaposto.',
+      sample:
+        'Mario Rossi (mario.rossi@devisia.it, 333 123 4567) abita in Via Roma 12, 20121 Milano',
+      sampleReply:
+        'Bozza per [NAME_1]: conferma [ADDR_1] e scrivi a [EMAIL_1] o al [PHONE_1].',
     };
 ---
 
@@ -53,6 +89,8 @@ const copy = isEn
   data-copied-label={copy.copied}
   data-count-label={copy.count}
   data-none-label={copy.none}
+  data-copy-instruction-label={copy.copyInstruction}
+  data-copy-reply-label={copy.copyReply}
 >
   <p class="site-eyebrow">{copy.kicker}</p>
   <h1 class="pii-sheet__title">{copy.title}</h1>
@@ -85,10 +123,44 @@ const copy = isEn
     <button class="ds-btn" data-variant="ghost" type="button" data-pii-reset>{copy.reset}</button>
   </div>
   <p class="ds-hint">{copy.limit}</p>
+
+  <section class="pii-sheet__reply" aria-labelledby="pii-reply-heading">
+    <h2 id="pii-reply-heading" class="pii-sheet__legend-title">{copy.replyTitle}</h2>
+    <p class="site-lead">{copy.replyLead}</p>
+
+    <div class="pii-sheet__example">
+      <span class="ds-label">{copy.instructionLabel}</span>
+      <pre data-pii-instruction>{copy.instruction}</pre>
+      <button class="ds-btn" data-variant="secondary" type="button" data-pii-copy-instruction>
+        {copy.copyInstruction}
+      </button>
+    </div>
+
+    <div class="pii-sheet__example">
+      <span class="ds-label">{copy.sampleLabel}</span>
+      <pre data-pii-sample-reply>{copy.sampleReply}</pre>
+      <p class="ds-hint" hidden data-pii-sample>{copy.sample}</p>
+      <button class="ds-btn" data-variant="primary" type="button" data-pii-try>{copy.tryExample}</button>
+      <p class="ds-hint">{copy.tryHint}</p>
+    </div>
+
+    <div class="pii-sheet__grid">
+      <label class="pii-sheet__field">
+        <span class="ds-label">{copy.replyLabel}</span>
+        <textarea class="ds-textarea" data-pii-reply rows="8" spellcheck="false"></textarea>
+      </label>
+      <label class="pii-sheet__field">
+        <span class="ds-label">{copy.replyOutLabel}</span>
+        <textarea class="ds-textarea" data-pii-reply-out rows="8" readonly spellcheck="false"></textarea>
+      </label>
+    </div>
+    <p class="ds-hint">{copy.replyEmpty}</p>
+    <button class="ds-btn" data-variant="secondary" type="button" data-pii-copy-reply>{copy.copyReply}</button>
+  </section>
 </section>
 
 <script>
-  import { sanitizePrompt } from '../lib/promptSanitizer';
+  import { applyLegend, sanitizePrompt } from '../lib/promptSanitizer';
 
   const root = document.querySelector('[data-pii-root]');
   if (root) {
@@ -99,18 +171,52 @@ const copy = isEn
     const status = root.querySelector('[data-pii-status]');
     const copyBtn = root.querySelector('[data-pii-copy]');
     const resetBtn = root.querySelector('[data-pii-reset]');
+    const reply = root.querySelector('[data-pii-reply]');
+    const replyOut = root.querySelector('[data-pii-reply-out]');
+    const copyInstructionBtn = root.querySelector('[data-pii-copy-instruction]');
+    const copyReplyBtn = root.querySelector('[data-pii-copy-reply]');
+    const tryBtn = root.querySelector('[data-pii-try]');
+    const instructionEl = root.querySelector('[data-pii-instruction]');
+    const sampleEl = root.querySelector('[data-pii-sample]');
+    const sampleReplyEl = root.querySelector('[data-pii-sample-reply]');
     const suppressed = new Set();
+    let currentLegend = [];
     const labels = {
       restore: root.dataset.restoreLabel ?? 'Ripristina',
       copy: root.dataset.copyLabel ?? 'Copia',
       copied: root.dataset.copiedLabel ?? 'Copiato',
       count: root.dataset.countLabel ?? '{n}',
       none: root.dataset.noneLabel ?? '',
+      copyInstruction: root.dataset.copyInstructionLabel ?? 'Copia',
+      copyReply: root.dataset.copyReplyLabel ?? 'Copia',
+    };
+
+    const flash = (button, next) => {
+      button.textContent = labels.copied;
+      window.setTimeout(() => {
+        button.textContent = next;
+      }, 1600);
+    };
+
+    const copyText = async (value, button, label) => {
+      if (!value || !button) return;
+      try {
+        await navigator.clipboard.writeText(value);
+        flash(button, label);
+      } catch {
+        /* leave the text selected by the user */
+      }
+    };
+
+    const renderReply = () => {
+      if (!reply || !replyOut) return;
+      replyOut.value = applyLegend(reply.value, currentLegend);
     };
 
     const render = () => {
       if (!input || !output || !legend || !empty || !status) return;
       const result = sanitizePrompt(input.value, [...suppressed]);
+      currentLegend = result.legend;
       output.value = result.text;
       legend.replaceChildren();
       const hasRows = result.legend.length > 0;
@@ -123,6 +229,7 @@ const copy = isEn
       for (const entry of result.legend) {
         legend.append(legendRow(entry));
       }
+      renderReply();
     };
 
     const legendRow = (entry) => {
@@ -152,22 +259,35 @@ const copy = isEn
     resetBtn?.addEventListener('click', () => {
       if (!input) return;
       input.value = '';
+      if (reply) reply.value = '';
       suppressed.clear();
       render();
       input.focus();
+    });
+    reply?.addEventListener('input', renderReply);
+    tryBtn?.addEventListener('click', () => {
+      if (!input || !reply) return;
+      input.value = sampleEl?.textContent ?? '';
+      reply.value = sampleReplyEl?.textContent?.trim() ?? '';
+      suppressed.clear();
+      render();
+      replyOut?.scrollIntoView({ block: 'nearest' });
     });
     copyBtn?.addEventListener('click', async () => {
       if (!output?.value || !copyBtn) return;
       try {
         await navigator.clipboard.writeText(output.value);
-        copyBtn.textContent = labels.copied;
-        window.setTimeout(() => {
-          copyBtn.textContent = labels.copy;
-        }, 1600);
+        flash(copyBtn, labels.copy);
       } catch {
         output.focus();
         output.select();
       }
+    });
+    copyInstructionBtn?.addEventListener('click', () => {
+      copyText(instructionEl?.textContent?.trim() ?? '', copyInstructionBtn, labels.copyInstruction);
+    });
+    copyReplyBtn?.addEventListener('click', () => {
+      copyText(replyOut?.value ?? '', copyReplyBtn, labels.copyReply);
     });
 
     render();
