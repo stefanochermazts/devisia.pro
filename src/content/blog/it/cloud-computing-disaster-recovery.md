@@ -110,7 +110,7 @@ Esaminiamo i quattro principali pattern architetturali, dal più semplice al pi�
 
 Questo è l’approccio DR più fondamentale e meno costoso. Prevede il backup regolare di dati e configurazioni delle applicazioni in una regione cloud geograficamente separata. I backup sono generalmente archiviati in storage object durevole e a basso costo come [Amazon S3](https://aws.amazon.com/s3/) o [Azure Blob Storage](https://azure.microsoft.com/en-us/products/storage/blobs).
 
-In uno scenario di disastro, viene avviato un processo di ripristino per predisporre nuova infrastruttura nella regione di recupero—idealmente utilizzando Infrastructure as Code (IaC)—e ripristinare i dati dal backup più recente.
+In uno scenario di disastro, viene avviato un processo di ripristino per predisporre nuova infrastruttura nella regione di recupero – idealmente utilizzando Infrastructure as Code (IaC) – e ripristinare i dati dal backup più recente.
 
 *   **RTO/RPO:** questo pattern comporta gli RTO e RPO più lunghi. Il ripristino può richiedere ore o giorni, a seconda dei tempi di provisioning dell’infrastruttura e del volume dei dati. L’RPO è determinato dalla frequenza dei backup; un backup giornaliero implica una potenziale perdita di dati fino a **24 ore**.
 *   **Ideale per:** servizi di Livello 3, come ambienti di sviluppo/test o job di elaborazione batch non critici. È un punto di partenza pratico per le organizzazioni nuove al DR cloud.
@@ -131,13 +131,13 @@ Un'architettura Warm Standby è un'evoluzione del modello Pilot Light. Mantiene 
 
 I dati vengono replicati attivamente nel database di standby, garantendo che rimanga aggiornato. In caso di disastro, il processo di failover consiste principalmente nel reindirizzare il traffico utente verso l'ambiente warm standby e nel scalarlo per gestire il carico completo di produzione.
 
-*   **RTO/RPO:** L'RTO è notevolmente ridotto, spesso a pochi minuti, perché le attività dispendiose in termini di tempo per il provisioning e la configurazione dei server sono già completate. Anche l'RPO è molto basso—da secondi a minuti—grazie alla replica attiva dei dati.
+*   **RTO/RPO:** L'RTO è notevolmente ridotto, spesso a pochi minuti, perché le attività dispendiose in termini di tempo per il provisioning e la configurazione dei server sono già completate. Anche l'RPO è molto basso – da secondi a minuti – grazie alla replica attiva dei dati.
 *   **Best For:** Servizi business-critical di Tier 1 per i quali pochi minuti di inattività sono tollerabili, ma ore causerebbero danni significativi. Questo è uno schema comune per applicazioni SaaS e piattaforme e-commerce. Per saperne di più su questa transizione, consulta la nostra guida su [on-premises vs cloud architectures](https://devisia.pro/en/blog/on-premises-vs-cloud).
 *   **Implementation Note:** L'automazione è fondamentale. Per ottenere il basso RTO promesso da questo schema, il processo di failover DNS, il ridimensionamento delle risorse e la convalida dello stato di salute devono essere completamente scriptati e testati regolarmente.
 
 ### Multi-Region Active-Active
 
-Questo è il pattern DR più resiliente — e più costoso. Un'architettura Active-Active esegue l'intero stack applicativo in due o più regioni cloud contemporaneamente. Un bilanciatore di carico globale distribuisce il traffico tra tutte le regioni attive.
+Questo è il pattern DR più resiliente – e più costoso. Un'architettura Active-Active esegue l'intero stack applicativo in due o più regioni cloud contemporaneamente. Un bilanciatore di carico globale distribuisce il traffico tra tutte le regioni attive.
 
 Non esiste un "failover" nel senso tradizionale. Se una regione si guasta, il bilanciatore di carico instrada automaticamente il traffico verso le regioni integre senza alcun intervento manuale.
 
@@ -186,7 +186,7 @@ Un flusso di failover completo e automatizzato include in genere questi passaggi
 
 ### Il ruolo dell'osservabilità e dei trigger automatizzati
 
-L'automazione richiede un trigger. I sistemi di osservabilità—monitoring, logging e tracing—fungono da sistema nervoso del tuo piano DR. Devono essere configurati per distinguere tra un problema di prestazioni transitorio e un vero disastro che richiede un failover.
+L'automazione richiede un trigger. I sistemi di osservabilità – monitoring, logging e tracing – fungono da sistema nervoso del tuo piano DR. Devono essere configurati per distinguere tra un problema di prestazioni transitorio e un vero disastro che richiede un failover.
 
 Una configurazione di monitoraggio sofisticata potrebbe attivare un alert ad alta severità in base a una combinazione di condizioni:
 
@@ -220,7 +220,7 @@ Un programma di test maturo costruisce fiducia in modo incrementale, iniziando c
 
 Per costruire sistemi veramente resilienti, devi andare oltre le esercitazioni pianificate e adottare i principi della **chaos engineering**. Questa pratica consiste nell'iniettare in modo proattivo e intenzionale guasti controllati nel tuo ambiente di produzione per osservare la risposta del sistema.
 
-Invece di aspettare che una dipendenza si guasti, usi strumenti per simulare quel guasto—ad esempio bloccando l'accesso di rete a una API chiave o terminando un'istanza server. L'obiettivo è scoprire debolezze nascoste e guasti a catena che un tabletop exercise non può rivelare.
+Invece di aspettare che una dipendenza si guasti, usi strumenti per simulare quel guasto – ad esempio bloccando l'accesso di rete a una API chiave o terminando un'istanza server. L'obiettivo è scoprire debolezze nascoste e guasti a catena che un tabletop exercise non può rivelare.
 
 Il mercato per questo livello di resilienza sta crescendo rapidamente. Si prevede che il mercato Disaster Recovery as a Service (DRaaS) crescerà da **$23.08 billion** nel 2026 a **$83.15 billion** entro il 2034. Tuttavia, il downtime rimane una minaccia critica, con aziende per cui il downtime costa tra **$10K and $5M per hour** che considerano sempre più pratiche come la chaos engineering essenziali. Puoi approfondire queste dinamiche di mercato in [this Fortune Business Insights report](https://www.fortunebusinessinsights.com/disaster-recovery-as-a-service-draas-market-104836).
 
@@ -239,7 +239,7 @@ Un efficace disaster recovery non è un progetto una tantum; è una pratica inge
 
 I principi fondamentali restano invariati. Dovete definire il rischio di business con chiari obiettivi **RTO** e **RPO**. Dovete selezionare il modello architetturale appropriato per ciascun servizio, evitando un costoso approccio uguale per tutti. Dovete automatizzare i processi di failover e failback per eliminare l'errore umano sotto pressione. E dovete testare continuamente.
 
-> La resilienza è una scelta architetturale intenzionale. È il risultato di decisioni deliberate prese in ogni fase del ciclo di vita dello sviluppo — dalla progettazione del sistema alla gestione operativa — garantendo che i vostri sistemi possano resistere e adattarsi a guasti imprevisti.
+> La resilienza è una scelta architetturale intenzionale. È il risultato di decisioni deliberate prese in ogni fase del ciclo di vita dello sviluppo – dalla progettazione del sistema alla gestione operativa – garantendo che i vostri sistemi possano resistere e adattarsi a guasti imprevisti.
 
 Questo impegno protegge i ricavi, rafforza la fiducia dei clienti e costruisce un significativo vantaggio competitivo. Quando il disaster recovery viene trattato come un principio fondamentale dell'ingegneria del software, state costruendo un'azienda più solida e affidabile.
 
@@ -257,7 +257,7 @@ Per prima cosa, calcolate il costo di un'ora di inattività. Tenete conto della 
 
 ### I provider cloud come AWS o Azure non gestiscono già tutto questo?
 
-No. Questa è una falsa convinzione critica e pericolosa. I provider cloud operano secondo un **modello di responsabilità condivisa**. Sono responsabili della resilienza della loro infrastruttura globale — il "cloud" stesso. Voi siete **responsabili al 100% della resilienza della vostra applicazione *in esecuzione nel* cloud**.
+No. Questa è una falsa convinzione critica e pericolosa. I provider cloud operano secondo un **modello di responsabilità condivisa**. Sono responsabili della resilienza della loro infrastruttura globale – il "cloud" stesso. Voi siete **responsabili al 100% della resilienza della vostra applicazione *in esecuzione nel* cloud**.
 
 Un'interruzione regionale, un deployment difettoso che corrompe il database di produzione o un attacco ransomware sono vostre responsabilità da mitigare. Il vostro piano di **disaster recovery per il cloud computing** affronta i guasti che si verificano nell'ambito della vostra area di responsabilità.
 

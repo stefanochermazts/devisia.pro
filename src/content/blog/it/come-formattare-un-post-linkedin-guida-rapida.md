@@ -26,7 +26,7 @@ Esempio debole:
 
 > Oggi voglio parlare di trasformazione digitale.
 
-Esempio piu utile:
+Esempio più utile:
 
 > Il problema della trasformazione digitale non è la tecnologia. È automatizzare processi che nessuno ha mai chiarito.
 
@@ -47,7 +47,7 @@ Non serve spezzare ogni frase. Serve evitare che chi legge debba orientarsi dent
 
 ## Non esagerare con grassetto e simboli
 
-La formattazione del testo LinkedIn puo aiutare, ma diventa rumore se ogni parola vuole attenzione.
+La formattazione del testo LinkedIn può aiutare, ma diventa rumore se ogni parola vuole attenzione.
 
 Usa il grassetto per una frase chiave, non per mezzo post. Usa gli elenchi quando hai elementi paralleli. Evita simboli decorativi se non aggiungono struttura.
 
@@ -69,8 +69,8 @@ Se una risposta non ti convince, sistema il testo prima di pensare agli emoji, a
 
 ## Usa il formatter quando il contenuto c'è già
 
-Il [LinkedIn Post Formatter](/tools/linkedin-post-formatter) di Devisia serve proprio a questo: incolli una bozza, sistemi a-capo, spaziature, elenchi e leggibilita mobile, poi copi il risultato.
+Il [LinkedIn Post Formatter](/tools/linkedin-post-formatter) di Devisia serve proprio a questo: incolli una bozza, sistemi a-capo, spaziature, elenchi e leggibilità mobile, poi copi il risultato.
 
-La formattazione resta nel browser. L'analisi AI e separata e parte solo se la richiedi.
+La formattazione resta nel browser. L'analisi AI è separata e parte solo se la richiedi.
 
 Usalo quando hai già un'idea valida e vuoi renderla più facile da leggere senza riscriverla in modo artificiale.

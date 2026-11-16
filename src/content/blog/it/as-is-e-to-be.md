@@ -51,7 +51,7 @@ Le aree chiave da documentare includono:
 
 *   **Architettura di sistema:** Mappare tutte le applicazioni, i database, le API e le integrazioni di terze parti. Documentarne versioni, dipendenze e protocolli di comunicazione.
 *   **Processi di business:** Dettagliare i flussi di lavoro passo dopo passo che i team seguono realmente, distinguendoli dalle procedure ufficiali documentate. Raccogliere la “conoscenza tribale” informale.
-*   **Flussi di dati:** Tracciare il ciclo di vita dei dati—dove vengono creati, archiviati, elaborati e consultati. Questa analisi spesso rivela colli di bottiglia prestazionali e rischi di conformità legati a normative come il GDPR.
+*   **Flussi di dati:** Tracciare il ciclo di vita dei dati – dove vengono creati, archiviati, elaborati e consultati. Questa analisi spesso rivela colli di bottiglia prestazionali e rischi di conformità legati a normative come il GDPR.
 *   **Flussi di lavoro degli utenti:** Osservare gli utenti mentre interagiscono con il sistema nel loro ambiente naturale. Documentarne metodi, frustrazioni e workaround.
 
 Questo approccio strutturato è essenziale in un mercato guidato dalla trasformazione digitale. Si prevede che il mercato globale dei servizi IT cresca da **1,65 trilioni di USD** nel 2026 a **2,51 trilioni di USD** entro il 2031, con l’**87%** delle imprese che adotta già strategie multi-cloud. Per le organizzazioni che gestiscono sistemi legacy, un’analisi **As-Is To-Be** rigorosa è l’unico punto di partenza realistico per la modernizzazione. [Puoi scoprire di più su queste tendenze del mercato dei servizi IT qui](https://www.globenewswire.com/news-release/2026/01/21/3222533/0/en/The-Global-Market-for-IT-Services-2026-2031-Total-Revenues-to-Grow-from-1-65-Trillion-in-2026-to-2-51-Trillion-by-2031.html).
@@ -168,7 +168,7 @@ Ciò richiede un approccio sistemico, progettando per l’affidabilità con barr
 
 ### Identificazione di Opportunità AI ad Alto Valore
 
-Non ogni problema richiede una soluzione AI. La chiave è identificare attività ripetitive, ad alta intensità di dati o soggette a errore umano—aree in cui l’automazione offre un ritorno sull’investimento misurabile. I punti critici identificati nel tuo modello As-Is sono i candidati principali.
+Non ogni problema richiede una soluzione AI. La chiave è identificare attività ripetitive, ad alta intensità di dati o soggette a errore umano – aree in cui l’automazione offre un ritorno sull’investimento misurabile. I punti critici identificati nel tuo modello As-Is sono i candidati principali.
 
 Le opportunità praticabili per l’integrazione dell’AI spesso includono:
 

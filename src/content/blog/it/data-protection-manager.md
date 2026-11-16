@@ -124,7 +124,7 @@ Il primo compito di un DPM nella governance dell'IA è scrutinare la pipeline de
 Il DPM mette in discussione questa pratica ponendo domande critiche:
 *   **Provenienza dei dati:** Da dove provengono i dati di addestramento per questo modello pre-addestrato? Abbiamo una base giuridica per usare i dati dei nostri clienti per il fine-tuning?
 *   **Minimizzazione dei dati:** Stiamo usando il minor quantitativo di dati personali necessario per il compito, o stiamo raccogliendo più del necessario?
-*   **Trasparenza e documentazione:** Possiamo tracciare e documentare l'intero ciclo di vita dei dati — dalla raccolta al loro utilizzo nell'output di un modello — per soddisfare i controlli normativi?
+*   **Trasparenza e documentazione:** Possiamo tracciare e documentare l'intero ciclo di vita dei dati – dalla raccolta al loro utilizzo nell'output di un modello – per soddisfare i controlli normativi?
 
 > Il ruolo di un DPM è garantire che i dati che alimentano la tua IA siano puliti e conformi quanto il codice che la esegue. Trasforma principi etici astratti in requisiti ingegneristici concreti, assicurando che i tuoi sistemi di IA non siano solo potenti ma anche difendibili legalmente.
 
@@ -148,7 +148,7 @@ Concentrati su ciò che il ruolo *fa*, non solo su ciò che sa:
 *   **Collaborazione tecnica:** Sottolinea l'esperienza nel lavorare direttamente all'interno di team agili o DevOps, menzionando la pianificazione degli sprint e le review architetturali.
 *   **Valutazione del rischio:** Richiedi competenze pratiche nel condurre Data Protection Impact Assessments (DPIAs), specialmente per nuove funzionalità software e modelli di IA.
 *   **Privacy-by-Design:** Chiedi esempi specifici di implementazione di tecniche che migliorano la privacy in sistemi di produzione.
-*   **Mentalità pragmatica:** Usa un linguaggio che rifletta un apprezzamento per un approccio consapevole del business — trovare compromessi pratici piuttosto che limitarsi a dire "no".
+*   **Mentalità pragmatica:** Usa un linguaggio che rifletta un apprezzamento per un approccio consapevole del business – trovare compromessi pratici piuttosto che limitarsi a dire "no".
 
 ### Principali domande da porre in colloquio
 Distingui i veri praticanti dai teorici. Le domande standard non sono sufficienti. Usa scenari che testino una comprensione pratica sul campo.
@@ -186,7 +186,7 @@ La risposta dipende dalla maturità della tua azienda e dalla sua esposizione al
 
 Per startup in fase iniziale, un DPM frazionario o un consulente è spesso la scelta più pratica. Fornisce orientamento esperto per stabilire politiche e processi fondamentali senza l'onere di uno stipendio a tempo pieno.
 
-Man mano che un'azienda cresce — o se opera in un settore ad alto rischio come healthtech o fintech — diventa essenziale un **Data Protection Manager** a tempo pieno e integrato. Offre l'integrazione continua con i cicli di sviluppo, valutazioni del rischio in tempo reale e gestione pratica di flussi di dati complessi che un consulente non può garantire.
+Man mano che un'azienda cresce – o se opera in un settore ad alto rischio come healthtech o fintech – diventa essenziale un **Data Protection Manager** a tempo pieno e integrato. Offre l'integrazione continua con i cicli di sviluppo, valutazioni del rischio in tempo reale e gestione pratica di flussi di dati complessi che un consulente non può garantire.
 
 ### Qual è la differenza tra un DPM e un DPO?
 Sebbene gli acronimi siano simili, i ruoli sono distinti. Il Data Protection Officer (DPO) è un ruolo formale e indipendente richiesto dal GDPR in determinate condizioni. La funzione principale del DPO è monitorare la conformità e riferire al massimo livello della direzione, libero da influenze operative.

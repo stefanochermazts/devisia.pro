@@ -1,8 +1,8 @@
 ---
 title: 'AI e Privacy: informativa GDPR e cookie'
 description: >-
-  Informazioni su AI e privacy, gestione dei cookie e governance intelligenza
-  artificiale secondo le normative GDPR vigenti.
+  Informazioni su AI e privacy, gestione dei cookie e governance
+  dell'intelligenza artificiale secondo le normative GDPR vigenti.
 heroTitle: ''
 heroSubtitle: ''
 homeWhatWeDoTitle: ''

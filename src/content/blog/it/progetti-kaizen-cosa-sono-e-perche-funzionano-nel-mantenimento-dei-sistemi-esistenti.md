@@ -24,14 +24,13 @@ Kaizen è una metodologia di origine giapponese che significa letteralmente **�
 - coinvolgimento costante delle persone
 - osservazione sistematica dei processi esistenti
 
-Applicato al mondo del software, Kaizen non è un framework tecnico, ma **un modo di gestire l’evoluzione di un sistema**, fondamentale nello **sviluppo saas** moderno.
+Applicato al mondo del software, il Kaizen è **un modo pragmatico di gestire l’evoluzione di un sistema**, particolarmente utile nello sviluppo SaaS moderno.
 
 ------
 
 ## Cosa si intende per “progetto Kaizen” nel software
 
-Un progetto Kaizen non è un progetto con una fine rigida.
- È piuttosto un **percorso strutturato di miglioramento continuo**, che lavora su un prodotto o un sistema già in produzione.
+Un progetto Kaizen è un **percorso strutturato di miglioramento continuo** che interviene su un prodotto o su un sistema già in produzione.
 
 Tipicamente include attività come:
 
@@ -39,10 +38,10 @@ Tipicamente include attività come:
 - riduzione del debito tecnico
 - miglioramento dei flussi operativi
 - affinamento dell’esperienza utente
-- automazione progressiva e **integrazione ai nei software** esistenti
-- aumento dell’affidabilità, della **sicurezza ai** e della **governance intelligenza artificiale**
+- automazione progressiva e integrazione dell'AI nei sistemi esistenti
+- aumento dell’affidabilità, della sicurezza e della governance dell'intelligenza artificiale
 
-Il focus non è “aggiungere tanto”, ma **far funzionare meglio ciò che esiste** garantendo un approccio di **ai responsabile**.
+L'obiettivo è **far funzionare meglio ciò che esiste**, mantenendo controllo e responsabilità sulle scelte tecniche.
 
 ------
 

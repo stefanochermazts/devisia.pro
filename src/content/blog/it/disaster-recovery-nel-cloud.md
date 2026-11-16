@@ -32,7 +32,7 @@ Questa realtà è amplificata dalle crescenti aspettative dei clienti per un upt
 
 Un malinteso comune e pericoloso è confondere l’alta disponibilità (HA) con il disaster recovery (DR). Sono concetti correlati, ma risolvono problemi fondamentalmente diversi. Riconoscere questa distinzione è il primo passo per costruire una reale resilienza del sistema.
 
-*   **Alta disponibilità (HA)** è la difesa contro guasti di piccola scala e localizzati. Questo include il crash di un singolo server, il guasto di un’istanza di database o un malfunzionamento del load balancer. Le architetture HA utilizzano la ridondanza—tipicamente all’interno di un singolo data center o di una singola zona di disponibilità—per mantenere la continuità del servizio senza un impatto percepibile per l’utente.
+*   **Alta disponibilità (HA)** è la difesa contro guasti di piccola scala e localizzati. Questo include il crash di un singolo server, il guasto di un’istanza di database o un malfunzionamento del load balancer. Le architetture HA utilizzano la ridondanza – tipicamente all’interno di un singolo data center o di una singola zona di disponibilità – per mantenere la continuità del servizio senza un impatto percepibile per l’utente.
 
 *   **Disaster Recovery (DR)** affronta eventi catastrofici su larga scala. Questo include il guasto completo di un data center, un’interruzione regionale del cloud provider o un attacco ransomware che compromette un intero ambiente. Un piano DR presuppone che il sito operativo primario non sia più disponibile e definisce il processo di failover verso una posizione secondaria geograficamente separata.
 
@@ -75,7 +75,7 @@ Con questi due valori, la missione non è più un astratto “costruire un piano
 
 ### Come RTO e RPO guidano architettura e costi
 
-La relazione tra questi obiettivi e la spesa cloud è diretta e inflessibile. Ridurre RTO e RPO—richiedendo un ripristino più rapido e una minore perdita di dati—aumenta in modo esponenziale la complessità architetturale e i costi.
+La relazione tra questi obiettivi e la spesa cloud è diretta e inflessibile. Ridurre RTO e RPO – richiedendo un ripristino più rapido e una minore perdita di dati – aumenta in modo esponenziale la complessità architetturale e i costi.
 
 Raggiungere un downtime quasi nullo e una perdita di dati pari a zero è tecnicamente possibile con i moderni servizi cloud, ma il costo può essere di ordini di grandezza superiore rispetto a una strategia più moderata. Questo è il compromesso centrale che ogni founder e CTO deve gestire: bilanciare il costo del downtime con il costo della prevenzione. Un RTO di quattro ore può essere accettabile per una piattaforma di analisi interna, ma sarebbe catastrofico per un servizio di elaborazione pagamenti rivolto ai clienti.
 
@@ -144,7 +144,7 @@ Se una regione va in errore, il bilanciatore del carico reindirizza automaticame
 
 <iframe width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/N-NzqiUUXwg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-Un piano di disaster recovery che esiste solo come documento PDF è una responsabilità, non una risorsa. Durante una crisi reale—un’interruzione regionale o un guasto critico del servizio—la pressione operativa è enorme. In ambienti ad alto stress, le procedure manuali di recovery sono soggette a fallimenti dovuti a errore umano, passaggi mancati o panico.
+Un piano di disaster recovery che esiste solo come documento PDF è una responsabilità, non una risorsa. Durante una crisi reale – un’interruzione regionale o un guasto critico del servizio – la pressione operativa è enorme. In ambienti ad alto stress, le procedure manuali di recovery sono soggette a fallimenti dovuti a errore umano, passaggi mancati o panico.
 
 Per costruire una vera resilienza, un piano teorico deve essere trasformato in una capacità comprovata e testata. Questa trasformazione si basa su due pilastri: **automazione** e **test rigorosi**. Una strategia DR non testata offre un falso senso di sicurezza che svanirà nel momento in cui sarà più necessaria.
 
@@ -177,7 +177,7 @@ Un piano non testato è un piano inutile. L’unico modo per verificare che una 
 2.  **Test di guasto di componenti:** Rompere deliberatamente un componente non critico in un ambiente di recovery isolato. Questo valida che gli script automatizzati di rilevamento e remediation funzionino come previsto.
 3.  **Esercitazioni di failover completo:** Il test definitivo. Consiste nel simulare un guasto regionale completo reindirizzando una parte del traffico live (o tutto il traffico) verso il sito di standby. Questo è l’*unico* metodo per validare veramente il tuo RTO e RPO in condizioni reali.
 
-Svolgere questi test con regolarità—trimestralmente per gli esercizi tabletop e i test dei componenti, e almeno una volta l’anno per un’esercitazione completa—costruisce la “memoria muscolare” di cui il team ha bisogno. Trasforma il disaster recovery da una procedura di emergenza temuta in una disciplina operativa praticata.
+Svolgere questi test con regolarità – trimestralmente per gli esercizi tabletop e i test dei componenti, e almeno una volta l’anno per un’esercitazione completa – costruisce la “memoria muscolare” di cui il team ha bisogno. Trasforma il disaster recovery da una procedura di emergenza temuta in una disciplina operativa praticata.
 
 ## DR per sistemi AI e ad alta intensità di dati
 

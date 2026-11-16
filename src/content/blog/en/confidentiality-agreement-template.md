@@ -25,7 +25,7 @@ Using a generic **confidentiality agreement template** from the internet is a co
 
 Before adopting a one-size-fits-all NDA, it's crucial to analyze the technical realities of your operations. A standard template often functions more as a procedural checkbox than a genuine safeguard for your core intellectual property (IP).
 
-The fundamental problem is that these documents were conceived for a different business era—one characterized by physical assets and linear project management, not ephemeral cloud infrastructure and iterative software delivery. The reliance on vague definitions like "Confidential Information" is a critical failure point when your actual IP comprises source code, architectural diagrams, API keys, and proprietary training datasets.
+The fundamental problem is that these documents were conceived for a different business era – one characterized by physical assets and linear project management, not ephemeral cloud infrastructure and iterative software delivery. The reliance on vague definitions like "Confidential Information" is a critical failure point when your actual IP comprises source code, architectural diagrams, API keys, and proprietary training datasets.
 
 ### The Disconnect with Agile Methodologies and API Economies
 
@@ -49,7 +49,7 @@ This type of IP leakage occurs because the agreement lacked precise clauses on:
 *   **Model Ownership:** Clearly defining ownership of the resulting trained model, its weights, and any derivative works.
 *   **Data Destruction:** Mandating the secure, verifiable deletion of all training data after project completion and requiring a certificate of destruction.
 
-A robust agreement defines the operational and behavioral boundaries between parties—what they can and, more importantly, *cannot* do. This principle of setting clear expectations is also vital for internal teams, as detailed in our guide on creating a company [code of conduct](https://devisia.pro/blog/codice-di-condotta). Viewing the confidentiality agreement as a critical system component is the first step toward meaningful IP protection.
+A robust agreement defines the operational and behavioral boundaries between parties – what they can and, more importantly, *cannot* do. This principle of setting clear expectations is also vital for internal teams, as detailed in our guide on creating a company [code of conduct](https://devisia.pro/blog/codice-di-condotta). Viewing the confidentiality agreement as a critical system component is the first step toward meaningful IP protection.
 
 ## Core Components of a Tech-Focused Confidentiality Agreement
 
@@ -73,7 +73,7 @@ This level of detail eliminates ambiguity. When a contractor is bound by this ag
 
 ### Obligations of the Receiving Party
 
-This section dictates *what* the recipient must do—and not do—with your information. It moves beyond a simple promise of secrecy to establish clear operational requirements.
+This section dictates *what* the recipient must do – and not do – with your information. It moves beyond a simple promise of secrecy to establish clear operational requirements.
 
 Key obligations include:
 *   **Standard of Care:** The recipient must protect your information with the same level of security they apply to their own most sensitive data, and in no case less than a "reasonable" standard of care. This prevents a partner with lax security from using their own poor practices as an excuse.

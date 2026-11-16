@@ -20,7 +20,7 @@ A **code of conduct** is more than a legal or HR document. For a technology comp
 
 In many organizations, the code of conduct is drafted by legal and HR departments. It focuses on workplace etiquette and general business principles. While necessary, this approach is insufficient for companies building scalable SaaS platforms, integrating AI features, and managing complex data pipelines.
 
-The most significant risks in modern digital products—from data breaches to algorithmic bias—do not originate from interpersonal conflicts but from technical and architectural decisions. A generic code of conduct fails to address the root cause of these risks.
+The most significant risks in modern digital products – from data breaches to algorithmic bias – do not originate from interpersonal conflicts but from technical and architectural decisions. A generic code of conduct fails to address the root cause of these risks.
 
 A tech-specific **code of conduct** bridges this gap. It provides an operational framework for engineering and product teams, translating abstract values into tangible technical guardrails. Without one, critical ethical decisions are left to individual interpretation, exposing the business to significant operational and reputational risks.
 
@@ -61,7 +61,7 @@ A tech-specific code shifts the focus from interpersonal behaviors to the techni
 
 In Italy, the need for robust ethical frameworks was accelerated by Legislative Decree 231/2001, which introduced corporate liability for specific criminal offenses. This pushed companies to adopt formal organizational models to mitigate legal and financial risks. A study on Italian corporate codes found that **60% were hybrid models**, combining legal compliance with value-based commitments, demonstrating a trend toward embedding a genuine ethical culture rather than mere formal compliance. Approfondisci i risultati dello studio sui codici aziendali in Italia.
 
-> A well-architected code of conduct is not a legal burden but a strategic asset. It enforces privacy by design, reduces technical and compliance debt, and serves as a public commitment to responsible innovation—a compelling business case for founders and CTOs.
+> A well-architected code of conduct is not a legal burden but a strategic asset. It enforces privacy by design, reduces technical and compliance debt, and serves as a public commitment to responsible innovation – a compelling business case for founders and CTOs.
 
 Ultimately, treating the code of conduct as a technical blueprint helps build more robust, secure, and trustworthy products, which is the foundation for long-term success.
 
@@ -104,7 +104,7 @@ For any company building AI systems, this is non-negotiable. It moves beyond the
 
 #### Transparent Data Handling
 
-This principle is about building trust by ensuring that how your system uses data is understandable—not just to auditors, but to the teams building it and, where relevant, to end-users.
+This principle is about building trust by ensuring that how your system uses data is understandable – not just to auditors, but to the teams building it and, where relevant, to end-users.
 
 *   **Sample Language:** "We will maintain clear and comprehensive documentation of our data pipelines, including data sources, transformations, and access controls. For AI systems, we will prioritize model explainability techniques to understand and, where possible, articulate the key drivers of their decisions. Users will be given clear information about how their data is used to power our services."
 *   **Technical Impact:** In practice, this means investing in data governance tools, maintaining data lineage records, and integrating explainability libraries (like [SHAP](https://shap.readthedocs.io/en/latest/)) directly into the model validation process. It transforms "data transparency" from a buzzword into a set of documented, reviewable engineering artifacts.
@@ -162,7 +162,7 @@ The growing emphasis on Corporate Social Responsibility (CSR) in Italy reflects 
 
 A **code of conduct** without clear ownership is an unenforced document. To have a real impact, it requires a well-defined governance structure and a trusted reporting process. The goal is not to create bureaucracy but to establish lightweight, practical mechanisms that encourage accountability and open communication.
 
-Without this structure, the code remains a statement of intent. When ethical dilemmas arise—such as a conflict between a business goal and a privacy principle—teams need a clear path for guidance and a safe channel to report concerns without fear of reprisal. A vague or non-existent process guarantees the code will be ignored when it is needed most.
+Without this structure, the code remains a statement of intent. When ethical dilemmas arise – such as a conflict between a business goal and a privacy principle – teams need a clear path for guidance and a safe channel to report concerns without fear of reprisal. A vague or non-existent process guarantees the code will be ignored when it is needed most.
 
 ![Diagram illustrating an Ethics Review Board process leading to a confidential privacy report with no retaliation.](https://cdn.outrank.so/66a41ce6-7698-4d58-8459-ed7623e4e974/134ef5d4-f20f-4c81-9b94-4f9614f75896/code-of-conduct-ethics-workflow.jpg)
 

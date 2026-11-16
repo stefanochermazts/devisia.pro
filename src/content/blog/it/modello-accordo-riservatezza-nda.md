@@ -73,7 +73,7 @@ Questo livello di dettaglio elimina l'ambiguità. Quando un collaboratore estern
 
 ### Obblighi della Parte Ricevente
 
-Questa sezione stabilisce *cosa* il destinatario deve fare — e non fare — con le vostre informazioni. Va oltre una semplice promessa di segretezza per definire requisiti operativi chiari.
+Questa sezione stabilisce *cosa* il destinatario deve fare – e non fare – con le vostre informazioni. Va oltre una semplice promessa di segretezza per definire requisiti operativi chiari.
 
 Gli obblighi chiave includono:
 *   **Diligenza dovuta:** Il destinatario deve proteggere le vostre informazioni con lo stesso livello di sicurezza che applica ai propri dati più sensibili e, in ogni caso, non inferiore a un livello di diligenza "ragionevole". Questo impedisce a un partner con sicurezza carente di usare le proprie cattive pratiche come scusa.

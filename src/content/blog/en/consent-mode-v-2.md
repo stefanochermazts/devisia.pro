@@ -238,7 +238,7 @@ While technically possible to build a custom consent solution, this is strongly 
 
 Google-certified [Consent Management Platforms (CMPs)](https://cmppartnerprogram.withgoogle.com/) are engineered to integrate with Consent Mode v2 and support frameworks like the IAB's TCF v2.2. They ensure signals are passed correctly and reliably.
 
-> A custom-built consent handler may appear to save on subscription costs, but the potential cost of a misconfiguration—in both data loss and legal penalties—is orders of magnitude higher. A certified CMP is a risk mitigation tool.
+> A custom-built consent handler may appear to save on subscription costs, but the potential cost of a misconfiguration – in both data loss and legal penalties – is orders of magnitude higher. A certified CMP is a risk mitigation tool.
 
 ### How do I verify my implementation is working correctly?
 

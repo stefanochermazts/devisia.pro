@@ -136,7 +136,7 @@ export const landingPages: Record<LandingSlug, LandingPageConfig> = {
     },
     form: {
       title: 'Stai valutando un sistema AI?',
-      text: 'Descrivi il caso d’uso, il processo coinvolto e i dati che il sistema dovrebbe trattare. La valutazione deve iniziare dal perimetro, non dal modello.',
+      text: 'Descrivi il caso d’uso, il processo coinvolto e i dati che il sistema dovrebbe trattare. Partiamo sempre dalla definizione del perimetro operativo.',
       submitLabel: 'Richiedi un confronto',
     },
   },
@@ -226,14 +226,14 @@ export const landingPages: Record<LandingSlug, LandingPageConfig> = {
     },
     hero: {
       eyebrow: 'Audit readiness',
-      title: 'L’audit dovrebbe verificare. Non ricostruire.',
+      title: 'L’audit serve a verificare ciò che è già tracciato.',
       lede: 'Le evidenze devono nascere durante il processo, essere collegate ai controlli e avere ownership, data, validità e tracciabilità.',
       ctaLabel: 'Organizza le evidenze',
       imageAlt: 'Confronto tra evidenze sparse e un modello strutturato di verifica',
     },
     problem: {
       title: 'Il giorno dell’audit è troppo tardi per iniziare a cercare le prove.',
-      text: 'Quando documenti, approvazioni e responsabilità sono distribuiti tra cartelle, email e persone diverse, ogni verifica diventa un lavoro di ricostruzione. Il problema non è soltanto trovare i file: è dimostrare a quale controllo appartengono, chi li ha prodotti e se sono ancora validi.',
+      text: 'Quando documenti, approvazioni e responsabilità sono distribuiti tra cartelle, email e persone diverse, ogni verifica diventa un lavoro di ricostruzione. Oltre a recuperare i file, occorre dimostrare a quale controllo appartengono, chi li ha prodotti e se sono ancora validi.',
     },
     checklist: {
       title: 'Ogni evidenza deve avere un contesto',

@@ -239,7 +239,7 @@ Sebbene tecnicamente sia possibile creare una soluzione di consenso personalizza
 
 Le [Consent Management Platform (CMP)](https://cmppartnerprogram.withgoogle.com/) certificate da Google sono progettate per integrarsi con Consent Mode v2 e supportare framework come il TCF v2.2 dell’IAB. Garantiscono che i segnali vengano trasmessi in modo corretto e affidabile.
 
-> Un gestore del consenso sviluppato internamente può sembrare far risparmiare sui costi di abbonamento, ma il potenziale costo di una configurazione errata — sia in termini di perdita di dati sia di sanzioni legali — è di gran lunga superiore. Una CMP certificata è uno strumento di mitigazione del rischio.
+> Un gestore del consenso sviluppato internamente può sembrare far risparmiare sui costi di abbonamento, ma il potenziale costo di una configurazione errata – sia in termini di perdita di dati sia di sanzioni legali – è di gran lunga superiore. Una CMP certificata è uno strumento di mitigazione del rischio.
 
 ### Come verifico che la mia implementazione funzioni correttamente?
 

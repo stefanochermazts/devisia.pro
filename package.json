@@ -23,6 +23,7 @@
     "blog:audit-english-residue": "node scripts/audit-blog-english-residue.mjs",
     "blog:fix-slugs": "node scripts/fix-it-translation-slugs.mjs",
     "blog:translate": "node scripts/translate-blog-en-to-it.js",
+    "copy:audit": "node scripts/audit-copy-naturalness.mjs",
     "test": "vitest",
     "test:run": "vitest run"
   },

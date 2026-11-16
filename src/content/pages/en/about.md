@@ -14,7 +14,7 @@ heroImage: /uploads/hero-about.png
 
 <p class="ds-muted" style="margin: 0">
 <strong>Developing intelligent vision.</strong><br />
-We believe software shouldn’t just work—it should guide decisions, simplify processes, and help organizations
+We believe software should support clear decisions, simplify operational processes, and help organizations
 become more aware and autonomous.
 </p>
 
@@ -24,7 +24,7 @@ become more aware and autonomous.
 <li>designed with intent</li>
 <li>measurable</li>
 <li>maintainable</li>
-<li>built to evolve, not to be rewritten</li>
+<li>built to evolve over time without constant rewrites</li>
 </ul>
 
 </section>
@@ -51,7 +51,7 @@ Every SaaS starts from a concrete need, validated in the field, and evolves cont
 <h3 style="margin: 0">Custom software</h3>
 <p class="ds-muted" style="margin: 0">
 We support companies building tailored solutions: web applications, internal dashboards and portals,
-system integrations, complex workflows and automation—from first idea to deploy and maintenance.
+system integrations, complex workflows and automation, from initial discovery to deployment and maintenance.
 </p>
 </section>
 </article>
@@ -86,7 +86,7 @@ We use clear, iterative processes to reduce risk and keep product control at all
 <ul style="margin: 0; padding-left: 1.25rem">
 <li>you’re building a product and want to do it right from the start</li>
 <li>you have a clear idea but need to turn it into real software</li>
-<li>you want a team that thinks like a product owner—not just developers</li>
+<li>you want a team that thinks about product outcomes as well as engineering</li>
 <li>you’re looking for technical quality without unnecessary bureaucracy</li>
 </ul>
 

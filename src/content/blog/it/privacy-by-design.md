@@ -28,7 +28,7 @@ Adottare la **Privacy by Design** ridefinisce la sfida. Sposta la protezione dei
 Questo approccio proattivo crea vantaggi architetturali e di business significativi:
 
 *   **Riduce il debito tecnico:** Costruire i controlli sulla privacy fin dall’inizio evita le costose e dirompenti rielaborazioni che penalizzano i team reattivi.
-*   **Migliora la resilienza del sistema:** Un sistema progettato con la privacy come preoccupazione centrale è intrinsecamente più sicuro e robusto — è progettato meglio.
+*   **Migliora la resilienza del sistema:** Un sistema progettato con la privacy come preoccupazione centrale è intrinsecamente più sicuro e robusto – è progettato meglio.
 *   **Costruisce la fiducia dei clienti:** Dimostrare un impegno verso la protezione dei dati è un potente elemento di differenziazione di mercato che favorisce la fidelizzazione.
 *   **Semplifica la manutenzione:** Quando la gestione dei dati è intenzionale ed esplicita, l’intero sistema diventa più facile da comprendere, mantenere ed evolvere.
 
@@ -51,10 +51,10 @@ Il concetto di Privacy by Design si basa su sette principi fondamentali formulat
 | **1. Proattiva e non reattiva; preventiva e non rimediale** | Anticipare e prevenire i problemi di privacy prima che si verifichino. | Eseguire valutazioni d’impatto sulla privacy (PIA) durante la fase di progettazione. Usare il threat modeling per i flussi di dati. |
 | **2. Privacy come impostazione predefinita** | Non è richiesta alcuna azione da parte dell’utente per proteggere la privacy; è integrata. | Le impostazioni predefinite per la condivisione dei dati sono “disattivate”. La raccolta dei dati è ridotta al minimo per impostazione predefinita. Usare l’opt-in per il trattamento dei dati non essenziali. |
 | **3. Privacy incorporata nella progettazione** | La privacy è una componente centrale del sistema, non un’aggiunta. | Integrare i controlli sulla privacy direttamente nell’architettura dell’applicazione. La crittografia dei dati è una funzionalità nativa, non un livello separato. |
-| **4. Funzionalità completa — somma positiva, non somma zero** | Soddisfare tutti gli interessi legittimi senza falsi compromessi. | Progettare sistemi che offrano valore di business *senza* compromettere la privacy degli utenti. Rifiutare le false dicotomie tra funzionalità e protezione dei dati. |
-| **5. Sicurezza end-to-end — protezione dell’intero ciclo di vita** | I dati sono protetti dalla raccolta fino alla distruzione. | Implementare la crittografia in transito e a riposo. Usare metodi sicuri di eliminazione dei dati. Applicare controlli di accesso rigorosi לאורך l’intero ciclo di vita dei dati. |
-| **6. Visibilità e trasparenza — mantenere tutto aperto** | Gli stakeholder comprendono quali dati vengono raccolti e per quale scopo. | Fornire informative sulla privacy chiare e concise. Implementare dashboard rivolte agli utenti per la gestione dei dati personali e del consenso. |
-| **7. Rispetto per la privacy dell’utente — mantenere l’approccio centrato sull’utente** | L’architettura e la progettazione del sistema danno priorità agli interessi dell’utente. | Progettare flussi di consenso intuitivi e strumenti facili da usare per le richieste di accesso/cancellazione dei dati. Mettere l’utente al controllo dei propri dati. |
+| **4. Funzionalità completa – somma positiva, non somma zero** | Soddisfare tutti gli interessi legittimi senza falsi compromessi. | Progettare sistemi che offrano valore di business *senza* compromettere la privacy degli utenti. Rifiutare le false dicotomie tra funzionalità e protezione dei dati. |
+| **5. Sicurezza end-to-end – protezione dell’intero ciclo di vita** | I dati sono protetti dalla raccolta fino alla distruzione. | Implementare la crittografia in transito e a riposo. Usare metodi sicuri di eliminazione dei dati. Applicare controlli di accesso rigorosi לאורך l’intero ciclo di vita dei dati. |
+| **6. Visibilità e trasparenza – mantenere tutto aperto** | Gli stakeholder comprendono quali dati vengono raccolti e per quale scopo. | Fornire informative sulla privacy chiare e concise. Implementare dashboard rivolte agli utenti per la gestione dei dati personali e del consenso. |
+| **7. Rispetto per la privacy dell’utente – mantenere l’approccio centrato sull’utente** | L’architettura e la progettazione del sistema danno priorità agli interessi dell’utente. | Progettare flussi di consenso intuitivi e strumenti facili da usare per le richieste di accesso/cancellazione dei dati. Mettere l’utente al controllo dei propri dati. |
 
 Questi principi stabiliscono che la privacy non è solo un’altra funzionalità nel backlog. È una metrica di qualità fondamentale per qualsiasi sistema ben progettato.
 
@@ -101,7 +101,7 @@ Il piano di test dovrebbe coprire scenari come:
 
 Gli obblighi di privacy non terminano con la distribuzione. La fase finale dello SDLC richiede una vigilanza continua per garantire che le protezioni restino efficaci mentre il sistema evolve e emergono nuove minacce.
 
-Questo inizia con la **gestione sicura della configurazione** durante il deployment — cambiare le credenziali predefinite, chiudere le porte non utilizzate e rafforzare gli ambienti di produzione. Una volta online, il **monitoraggio continuo** è essenziale. Gli avvisi automatici dovrebbero notificare al team i potenziali incidenti di privacy, come pattern anomali di accesso ai dati o picchi nei tentativi di accesso falliti.
+Questo inizia con la **gestione sicura della configurazione** durante il deployment – cambiare le credenziali predefinite, chiudere le porte non utilizzate e rafforzare gli ambienti di produzione. Una volta online, il **monitoraggio continuo** è essenziale. Gli avvisi automatici dovrebbero notificare al team i potenziali incidenti di privacy, come pattern anomali di accesso ai dati o picchi nei tentativi di accesso falliti.
 
 Infine, è fondamentale un processo ben documentato per la gestione delle richieste degli interessati. Quando un utente richiede i propri dati o la loro cancellazione, il team deve disporre di un flusso di lavoro chiaro per eseguire la richiesta in modo accurato e nei tempi previsti dalla legge. Questo processo deve essere testato e perfezionato regolarmente.
 
@@ -207,14 +207,14 @@ Un approccio strutturato è essenziale per i team che costruiscono prodotti AI. 
 
 ### Governance human-in-the-loop
 
-Per applicazioni AI ad alto impatto, l'automazione completa può rappresentare un rischio inaccettabile. Quando un'AI prende decisioni con un impatto umano significativo — in finanza, sanità o ambito legale — un'architettura **Human-in-the-Loop (HITL)** è essenziale per sicurezza, responsabilità e fiducia.
+Per applicazioni AI ad alto impatto, l'automazione completa può rappresentare un rischio inaccettabile. Quando un'AI prende decisioni con un impatto umano significativo – in finanza, sanità o ambito legale – un'architettura **Human-in-the-Loop (HITL)** è essenziale per sicurezza, responsabilità e fiducia.
 
 HITL è un pattern architetturale deliberato in cui il sistema è progettato per deferire al giudizio umano nei momenti critici. Questo fornisce una salvaguardia vitale contro errori del modello e conseguenze indesiderate.
 
 Dal punto di vista architetturale, l'implementazione dell'HITL comporta flussi di lavoro specifici:
 1.  **Soglie di confidenza:** Il modello elabora una richiesta e calcola un punteggio di confidenza. Se il punteggio scende al di sotto di una soglia predefinita, il caso viene automaticamente contrassegnato per la revisione umana.
 2.  **Code di revisione:** I casi segnalati vengono indirizzati a un'interfaccia dedicata in cui un esperto umano può esaminare l'input del modello, l'output proposto e il contesto rilevante.
-3.  **Anello di feedback:** La decisione dell'esperto — approvazione, rifiuto o modifica — viene registrata e reimmessa nel sistema come dato di training per migliorare il modello nel tempo.
+3.  **Anello di feedback:** La decisione dell'esperto – approvazione, rifiuto o modifica – viene registrata e reimmessa nel sistema come dato di training per migliorare il modello nel tempo.
 
 Questo approccio integra la governance direttamente nella funzionalità del sistema, trasformando un documento di policy in un processo operativo vivo.
 

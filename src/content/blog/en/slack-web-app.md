@@ -27,7 +27,7 @@ The primary challenge in modern IT environments is not a scarcity of tools but t
 Using the Slack web app as a central integration point offers distinct architectural advantages:
 
 *   **Zero-Installation Deployment:** Custom workflows and tools become accessible through any standard web browser, eliminating the overhead of software distribution, client-side updates, and complex onboarding for internal teams, contractors, or partners.
-*   **Centralised Interaction Models:** By embedding integrations within the Slack user interface, you standardize how teams interact with diverse systems—from CI/CD pipelines to CRM platforms and internal support queues. This enforces consistency and reduces cognitive load.
+*   **Centralised Interaction Models:** By embedding integrations within the Slack user interface, you standardize how teams interact with diverse systems – from CI/CD pipelines to CRM platforms and internal support queues. This enforces consistency and reduces cognitive load.
 *   **Enhanced Security Posture:** The browser's native sandboxing provides a layer of isolation between the web app and the host operating system. When combined with Slack's authentication and permission models, this allows for fine-grained control over data access and user actions.
 
 > The paradigm shift occurs when Slack is no longer treated as a passive destination for notifications but as an interactive control plane. The work should happen where the technical conversation happens.
@@ -87,7 +87,7 @@ With over **650,000 custom apps** built by organizations for internal use, the p
 
 ### The Web API: For Imperative, Application-Initiated Actions
 
-The **Slack Web API** follows a standard request-response model. It serves as your application's remote control for a Slack workspace. When your system needs to perform an action—such as posting a message, creating a channel, or looking up user information—it sends an authenticated HTTP request to a specific Web API endpoint. The interaction is synchronous: your application calls Slack and waits for a response.
+The **Slack Web API** follows a standard request-response model. It serves as your application's remote control for a Slack workspace. When your system needs to perform an action – such as posting a message, creating a channel, or looking up user information – it sends an authenticated HTTP request to a specific Web API endpoint. The interaction is synchronous: your application calls Slack and waits for a response.
 
 This pattern is ideal for tasks initiated by your own systems. For example, a CI/CD pipeline script would call the `chat.postMessage` method to announce a deployment status to a `#releases` channel.
 
@@ -136,7 +136,7 @@ A clear policy for token rotation and revocation is also necessary. Tokens shoul
 
 ### Verifying All Incoming Requests from Slack
 
-Every request that Slack sends to your application—whether from the Events API, a slash command, or an interactive component—includes an `X-Slack-Signature` HTTP header. Your application **must** verify this signature on every incoming payload.
+Every request that Slack sends to your application – whether from the Events API, a slash command, or an interactive component – includes an `X-Slack-Signature` HTTP header. Your application **must** verify this signature on every incoming payload.
 
 The verification process is as follows:
 1.  Extract the raw request body and the `X-Slack-Request-Timestamp` header.

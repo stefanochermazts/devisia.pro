@@ -18,13 +18,13 @@ translationSourceHash: 610306f7286497cace282bbe9b87498ff6e9e26fee56cfcc7ecdf3daf
 ---
 L'**Data Governance Act (DGA)** dell'UE non è solo l'ennesima normativa di conformità. È un quadro pragmatico progettato per risolvere un problema critico: rendere sicuro e tecnicamente fattibile per le organizzazioni condividere i dati.
 
-Il suo scopo è sbloccare il valore di enormi dataset—per lo più non personali—che oggi sono inaccessibili, confinati in silos del settore pubblico e privato. Stabilendo regole chiare per gli intermediari dei dati e incoraggiando la donazione di dati per il bene pubblico (altruismo dei dati), il DGA mira a consentire un'economia dei dati più connessa e innovativa. Per i leader tecnici, comprenderne i meccanismi è fondamentale sia per la conformità sia per cogliere le opportunità.
+Il suo scopo è sbloccare il valore di enormi dataset – per lo più non personali – che oggi sono inaccessibili, confinati in silos del settore pubblico e privato. Stabilendo regole chiare per gli intermediari dei dati e incoraggiando la donazione di dati per il bene pubblico (altruismo dei dati), il DGA mira a consentire un'economia dei dati più connessa e innovativa. Per i leader tecnici, comprenderne i meccanismi è fondamentale sia per la conformità sia per cogliere le opportunità.
 
 ## Perché esiste il Data Governance Act e quale problema risolve
 
 ![Illustrazione che mostra i silos di dati che bloccano l'innovazione, con il DGA che abilita uno scambio di dati affidabile.](https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/df9606ad-d408-4e3d-99d1-60df5c9bec2a/data-governance-act-data-exchange.jpg)
 
-Prima del DGA, l'UE affrontava un paradosso dei dati. Enormi volumi di dati preziosi—dai modelli anonimizzati del trasporto pubblico alle letture aggregate dei sensori IoT industriali—rimanevano inutilizzati all'interno di enti pubblici e aziende private. Questo accumulo di dati non rallenta solo la ricerca accademica; soffoca attivamente l'innovazione e crea vicoli ciechi economici.
+Prima del DGA, l'UE affrontava un paradosso dei dati. Enormi volumi di dati preziosi – dai modelli anonimizzati del trasporto pubblico alle letture aggregate dei sensori IoT industriali – rimanevano inutilizzati all'interno di enti pubblici e aziende private. Questo accumulo di dati non rallenta solo la ricerca accademica; soffoca attivamente l'innovazione e crea vicoli ciechi economici.
 
 Per qualsiasi founder o CTO, il problema era duplice. Primo, il deficit di fiducia: condividere dati sembrava intrinsecamente rischioso per timori di svantaggio competitivo, violazioni accidentali della privacy o uso improprio. Secondo, il deficit tecnico: l'assenza di API e protocolli standardizzati trasformava ogni tentativo di scambio dati in un costoso progetto di integrazione su misura.
 
@@ -41,7 +41,7 @@ Questo quadro è stata una risposta diretta alle esigenze del mercato. Una consu
 Per le aziende B2B software e AI, il DGA va considerato da una prospettiva strategica. Si tratta di nuove opportunità tecniche e di business, non solo di nuove regole. L'atto crea un percorso chiaro per:
 
 *   **Accedere ai dati del settore pubblico:** Il DGA impone agli enti pubblici di stabilire processi per rendere disponibili per il riutilizzo i dati non personali, creando opportunità per sviluppare nuovi servizi in ambito mobilità, sanità o scienze ambientali.
-*   **Creare nuovi servizi dati:** Abilita formalmente i "servizi di intermediazione dei dati"—terze parti neutrali e affidabili che facilitano lo scambio sicuro di dati tra altre organizzazioni.
+*   **Creare nuovi servizi dati:** Abilita formalmente i "servizi di intermediazione dei dati" – terze parti neutrali e affidabili che facilitano lo scambio sicuro di dati tra altre organizzazioni.
 *   **Alimentare AI e analytics:** Un flusso più affidabile di dati diversificati e di alta qualità è l'elemento vitale di modelli di machine learning robusti. Il DGA mira a far fluire questi dati.
 
 Ponentando questo quadro, il DGA è progettato per creare un circolo virtuoso: maggiore fiducia porta a una maggiore condivisione dei dati, che a sua volta alimenta l'innovazione e dimostra il valore della struttura di governance.
@@ -169,7 +169,7 @@ Mantenere questa catena di custodia è essenziale, soprattutto per gli intermedi
 
 Nessuna normativa UE esiste in isolamento. Per i leader tecnici, comprendere come il **Data Governance Act (DGA)** si intersechi con il GDPR e l’AI Act è cruciale per costruire un’architettura di conformità coerente. Il rapporto è complementare, non contraddittorio.
 
-La missione del GDPR è **proteggere i dati personali**. La missione del DGA è **abilitare la condivisione** dei dati—sia personali sia non personali—all’interno di un quadro di fiducia. Il GDPR stabilisce le regole per ciò che deve essere protetto; il DGA fornisce i meccanismi approvati per condividere i dati in modo che tali regole siano rispettate.
+La missione del GDPR è **proteggere i dati personali**. La missione del DGA è **abilitare la condivisione** dei dati – sia personali sia non personali – all’interno di un quadro di fiducia. Il GDPR stabilisce le regole per ciò che deve essere protetto; il DGA fornisce i meccanismi approvati per condividere i dati in modo che tali regole siano rispettate.
 
 > Il DGA rende operativa la condivisione dei dati in modo conforme by design. Crea percorsi, come intermediari di dati neutrali, per facilitare i flussi di dati senza violare i principi fondamentali del GDPR di limitazione delle finalità e minimizzazione dei dati.
 
@@ -231,13 +231,13 @@ Anche con una panoramica chiara, il DGA solleva domande pratiche per chi costrui
 
 Pensala così: **il GDPR riguarda la protezione dei dati personali, mentre il DGA riguarda la creazione di meccanismi di fiducia per condividere i dati.**
 
-Il GDPR stabilisce le regole per proteggere le informazioni personali. Il DGA si basa su quel fondamento, creando un quadro giuridico e tecnico (come gli intermediari di dati) affinché i dati—sia personali sia non personali—possano essere condivisi in un modo che rispetti i principi del GDPR. Sono progettati per funzionare in tandem.
+Il GDPR stabilisce le regole per proteggere le informazioni personali. Il DGA si basa su quel fondamento, creando un quadro giuridico e tecnico (come gli intermediari di dati) affinché i dati – sia personali sia non personali – possano essere condivisi in un modo che rispetti i principi del GDPR. Sono progettati per funzionare in tandem.
 
 ### Il Data Governance Act obbliga la mia azienda a condividere i propri dati?
 
 No. Il Data Governance Act **non impone un obbligo generale alle aziende private di condividere i propri dati.**
 
-Il quadro è volontario. Il suo scopo è incoraggiare la condivisione dei dati riducendo rischi e attriti. Gli obblighi sorgono solo se *scegli* di partecipare all’ecosistema—for example, operando come intermediario di dati o riutilizzando specifiche tipologie di dati del settore pubblico.
+Il quadro è volontario. Il suo scopo è incoraggiare la condivisione dei dati riducendo rischi e attriti. Gli obblighi sorgono solo se *scegli* di partecipare all’ecosistema – for example, operando come intermediario di dati o riutilizzando specifiche tipologie di dati del settore pubblico.
 
 ### La mia piattaforma SaaS potrebbe diventare accidentalmente un intermediario di dati?
 

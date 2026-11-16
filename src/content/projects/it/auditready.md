@@ -19,11 +19,11 @@ tags:
 ---
 ## Overview
 
-AuditReady nasce per risolvere uno dei problemi più comuni durante audit regolamentati: le evidenze esistono, ma sono distribuite, versionate male e difficili da dimostrare nel momento giusto.
+AuditReady nasce per risolvere uno dei problemi più comuni durante gli audit regolamentati: le evidenze esistono, ma sono distribuite in più strumenti, versionate in modo disomogeneo e difficili da presentare quando servono.
 
-Il progetto è un esempio concreto di **sviluppo SaaS** orientato alla cybersecurity: uno spazio operativo per raccogliere, versionare e collegare evidenze ai controlli DORA e NIS2. Mantiene tracciabilità e ordine senza introdurre piattaforme complesse, integrando principi di **governance intelligenza artificiale** per automazioni future.
+Il progetto è una piattaforma SaaS orientata alla cybersecurity e alla compliance operativa: offre uno spazio di lavoro strutturato per raccogliere, versionare e collegare le evidenze ai controlli DORA e NIS2. Mantiene tracciabilità e ordine con un'interfaccia snella, ed è predisposto per flussi assistiti basati su criteri di governance dell'intelligenza artificiale.
 
-AuditReady **non certifica la compliance**: è un supporto di **sviluppo software su misura** che aiuta a dimostrare ciò che è stato realmente implementato.
+AuditReady **non certifica la compliance**: è uno strumento operativo pensato per aiutare i team a dimostrare in modo verificabile ciò che è stato realmente implementato.
 
 ## Highlights
 

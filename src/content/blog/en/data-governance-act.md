@@ -18,13 +18,13 @@ autoTranslateToIt: true
 ---
 The EU's **Data Governance Act (DGA)** is not just another compliance regulation. It's a pragmatic framework designed to solve a critical problem: making it safe and technically feasible for organizations to share data.
 
-Its purpose is to unlock the value in vast datasets—mostly non-personal—that are currently inaccessible, locked away in public and private sector silos. By establishing clear rules for data intermediaries and encouraging data donation for public good (data altruism), the DGA aims to enable a more connected and innovative data economy. For technical leaders, understanding its mechanics is key to both compliance and opportunity.
+Its purpose is to unlock the value in vast datasets – mostly non-personal – that are currently inaccessible, locked away in public and private sector silos. By establishing clear rules for data intermediaries and encouraging data donation for public good (data altruism), the DGA aims to enable a more connected and innovative data economy. For technical leaders, understanding its mechanics is key to both compliance and opportunity.
 
 ## Why the Data Governance Act Exists and What Problem It Solves
 
 ![Illustration showing data silos blocking innovation, with DGA enabling trusted data exchange.](https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/df9606ad-d408-4e3d-99d1-60df5c9bec2a/data-governance-act-data-exchange.jpg)
 
-Before the DGA, the EU faced a data paradox. Enormous volumes of valuable data—from anonymized public transport patterns to aggregated industrial IoT sensor readings—were sitting unused within public bodies and private companies. This data hoarding doesn't just slow down academic research; it actively stifles innovation and creates economic dead ends.
+Before the DGA, the EU faced a data paradox. Enormous volumes of valuable data – from anonymized public transport patterns to aggregated industrial IoT sensor readings – were sitting unused within public bodies and private companies. This data hoarding doesn't just slow down academic research; it actively stifles innovation and creates economic dead ends.
 
 For any founder or CTO, the problem was twofold. First, the trust deficit: sharing data felt inherently risky due to concerns about competitive disadvantage, accidental privacy breaches, or misuse. Second, the technical deficit: a lack of standardized APIs and protocols made every attempt at data exchange a costly, bespoke integration project.
 
@@ -41,7 +41,7 @@ This framework was a direct response to market needs. A 2020 European Commission
 For B2B software and AI companies, the DGA should be viewed through a strategic lens. It's about new technical and business opportunities, not just new rules. The Act creates a clear pathway for:
 
 *   **Accessing Public Sector Data:** The DGA mandates that public bodies establish processes for making non-personal data available for re-use, creating opportunities to build new services in mobility, healthcare, or environmental science.
-*   **Creating New Data Services:** It formally enables "data intermediation services"—neutral, trusted third parties that facilitate secure data exchange between other organizations.
+*   **Creating New Data Services:** It formally enables "data intermediation services" – neutral, trusted third parties that facilitate secure data exchange between other organizations.
 *   **Fueling AI and Analytics:** A more reliable supply of high-quality, diverse data is the lifeblood of robust machine learning models. The DGA aims to get that data flowing.
 
 By putting this framework in place, the DGA is designed to create a virtuous cycle: more trust leads to more data sharing, which in turn fuels innovation and proves the value of the governance structure.
@@ -170,7 +170,7 @@ Maintaining this chain of custody is essential, especially for data intermediari
 
 No EU regulation exists in isolation. For technical leaders, understanding how the **Data Governance Act (DGA)** intersects with GDPR and the AI Act is crucial for building a coherent compliance architecture. The relationship is complementary, not contradictory.
 
-GDPR's mission is to **protect personal data**. The DGA's mission is to **enable the sharing** of data—both personal and non-personal—within a trusted framework. GDPR sets the rules for what must be protected; the DGA provides the approved mechanisms for sharing data in a way that respects those rules.
+GDPR's mission is to **protect personal data**. The DGA's mission is to **enable the sharing** of data – both personal and non-personal – within a trusted framework. GDPR sets the rules for what must be protected; the DGA provides the approved mechanisms for sharing data in a way that respects those rules.
 
 > The DGA operationalizes data sharing in a compliant-by-design manner. It creates pathways, like neutral data intermediaries, to facilitate data flows without violating GDPR's core principles of purpose limitation and data minimization.
 
@@ -232,13 +232,13 @@ Even with a clear overview, the DGA raises practical questions for those buildin
 
 Think of it this way: **GDPR is about protecting personal data, while the DGA is about creating trusted mechanisms to share data.**
 
-GDPR sets the rules for protecting personal information. The DGA builds on that foundation, creating a legal and technical framework (like data intermediaries) so that data—both personal and non-personal—can be shared in a way that honors GDPR's principles. They are designed to work in tandem.
+GDPR sets the rules for protecting personal information. The DGA builds on that foundation, creating a legal and technical framework (like data intermediaries) so that data – both personal and non-personal – can be shared in a way that honors GDPR's principles. They are designed to work in tandem.
 
 ### Does the Data Governance Act force my company to share its data?
 
 No. The Data Governance Act **does not impose a general obligation on private companies to share their data.**
 
-The framework is voluntary. Its purpose is to encourage data sharing by reducing risk and friction. Obligations only arise if you *choose* to participate in the ecosystem—for example, by operating as a data intermediary or by re-using specific types of public sector data.
+The framework is voluntary. Its purpose is to encourage data sharing by reducing risk and friction. Obligations only arise if you *choose* to participate in the ecosystem – for example, by operating as a data intermediary or by re-using specific types of public sector data.
 
 ### Could my SaaS platform accidentally become a data intermediary?
 
@@ -252,4 +252,4 @@ No, the DGA covers both **personal and non-personal data**, but it applies diffe
 
 ---
 
-At **Devisia**, we believe compliance with regulations like the Data Governance Act isn't a legal checkbox—it's an architectural choice. We build reliable digital products and AI-enabled systems with governance and privacy designed in from day one. To see how our pragmatic approach can turn your vision into maintainable, compliant software, visit us at [https://www.devisia.pro](https://www.devisia.pro).
+At **Devisia**, we believe compliance with regulations like the Data Governance Act isn't a legal checkbox – it's an architectural choice. We build reliable digital products and AI-enabled systems with governance and privacy designed in from day one. To see how our pragmatic approach can turn your vision into maintainable, compliant software, visit us at [https://www.devisia.pro](https://www.devisia.pro).

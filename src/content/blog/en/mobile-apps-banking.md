@@ -67,9 +67,9 @@ For **mobile apps banking**, where security and performance are non-negotiable, 
 
 The backend architecture dictates the system's scalability, resilience, and maintainability. Historically, a **monolithic architecture**, where all functions are bundled into a single, tightly-coupled application, was the standard.
 
-While monoliths may appear simpler to build and deploy initially, they become exceedingly difficult to update, scale, and secure as they grow. A failure in a single component, such as a loan application module, can cascade and cause a total system outage—an unacceptable risk for a financial institution.
+While monoliths may appear simpler to build and deploy initially, they become exceedingly difficult to update, scale, and secure as they grow. A failure in a single component, such as a loan application module, can cascade and cause a total system outage – an unacceptable risk for a financial institution.
 
-A modern **microservices architecture** decomposes the application into a collection of small, independent, and loosely coupled services. Each service handles a discrete business function—such as user authentication, transaction processing, or account management—and communicates with others via well-defined APIs.
+A modern **microservices architecture** decomposes the application into a collection of small, independent, and loosely coupled services. Each service handles a discrete business function – such as user authentication, transaction processing, or account management – and communicates with others via well-defined APIs.
 
 This modular approach offers distinct advantages for a mobile banking platform:
 
@@ -88,7 +88,7 @@ For a deeper dive into the principles of decoupled systems, our guide to [servic
 
 ## Architecting for Security and Privacy by Design
 
-In mobile banking, security is not a feature; it is a foundational architectural principle. A superficial approach—for example, relying solely on transport-layer encryption—creates unacceptable risks for both customers and the institution.
+In mobile banking, security is not a feature; it is a foundational architectural principle. A superficial approach – for example, relying solely on transport-layer encryption – creates unacceptable risks for both customers and the institution.
 
 The only viable methodology is a **privacy by design** philosophy, where every architectural decision is evaluated through a security and data minimization lens. The objective is to implement a defense-in-depth strategy, where multiple, independent security controls work in concert to protect sensitive data at all stages of its lifecycle. To understand how this shapes system development, you can [learn more about privacy by design](https://devisia.pro/en/blog/privacy-by-design).
 
@@ -217,7 +217,7 @@ These systems establish a behavioral baseline for each user by analyzing a conti
 *   **Device and Geolocation Data:** The devices, IP addresses, and geographical locations from which a user normally operates.
 *   **In-App Navigation:** Biometric patterns based on how a user navigates and interacts with the application interface.
 
-When a new action deviates significantly from this established baseline—such as a large transfer to an unknown beneficiary at an unusual time from a new device—the system can flag it in real time for immediate intervention, either by blocking the transaction or escalating it for manual review.
+When a new action deviates significantly from this established baseline – such as a large transfer to an unknown beneficiary at an unusual time from a new device – the system can flag it in real time for immediate intervention, either by blocking the transaction or escalating it for manual review.
 
 ### AI-Powered Identity Verification (ID&V) Automation
 

@@ -20,7 +20,7 @@ The **factory pattern** is a creational design pattern that centralizes object i
 
 ## The Problem: Tight Coupling from Direct Instantiation
 
-In many software systems, the `new` operator appears harmless at first. Over time, however, its direct usage becomes a significant source of rigidity and technical debt. Each time your code directly instantiates an object—for example, `new MySQLConnector()`—it creates a hard-coded dependency. This tight coupling between the client and the concrete implementation can severely hinder a system's evolution.
+In many software systems, the `new` operator appears harmless at first. Over time, however, its direct usage becomes a significant source of rigidity and technical debt. Each time your code directly instantiates an object – for example, `new MySQLConnector()`—it creates a hard-coded dependency. This tight coupling between the client and the concrete implementation can severely hinder a system's evolution.
 
 For simple applications with a stable set of requirements, this direct approach may be sufficient. But as complexity grows, the design becomes brittle. Consider a SaaS platform that initially supports a single file storage provider. The business logic is likely filled with `new AWSS3Storage()`. What happens when business requirements change, and you must add support for [Azure Blob Storage](https://azure.microsoft.com/en-us/products/storage/blobs) or [Google Cloud Storage](https://cloud.google.com/storage)?
 
@@ -36,7 +36,7 @@ This direct instantiation imposes tangible business costs:
 
 > An architecture that cannot adapt to new requirements is an architecture that is failing the business. The cost of rigidity is paid in delayed features, developer frustration, and missed opportunities.
 
-To build resilient systems, it's crucial to separate the *what* from the *how*. The client code should specify *what* it needs—an object that can store a file—but it should not be responsible for *how* that object is constructed. The factory pattern provides a structured solution to this problem by encapsulating creation logic, allowing the rest of the application to remain agile and adaptable.
+To build resilient systems, it's crucial to separate the *what* from the *how*. The client code should specify *what* it needs – an object that can store a file – but it should not be responsible for *how* that object is constructed. The factory pattern provides a structured solution to this problem by encapsulating creation logic, allowing the rest of the application to remain agile and adaptable.
 
 ## Simple Factory vs. Factory Method: Selecting the Appropriate Abstraction
 
@@ -83,7 +83,7 @@ To solve this, the `DataProcessor` class would declare an abstract factory metho
 | **Complexity** | Low. Easy to implement and understand. | Moderate. Requires a class hierarchy, which can add complexity. |
 | **Best For** | Small applications or when the set of object types is stable and unlikely to change. | Frameworks, libraries, or large systems where new types will be added over time. |
 
-The Simple Factory is an excellent starting point for refactoring object creation logic. However, for systems designed for growth—such as a SaaS platform where new integrations are part of the business roadmap—the Factory Method provides a more robust and scalable foundation.
+The Simple Factory is an excellent starting point for refactoring object creation logic. However, for systems designed for growth – such as a SaaS platform where new integrations are part of the business roadmap – the Factory Method provides a more robust and scalable foundation.
 
 ## Production-Ready Implementation Examples
 
@@ -371,7 +371,7 @@ Performance should only be a concern if you are instantiating millions of object
 
 ### Can the factory pattern be used in functional programming?
 
-Yes. While the pattern originated in object-oriented programming, its core principle—separating creation from use—is universal. In a functional paradigm, a factory is not a class but a higher-order function. This function would accept configuration or a type identifier as an argument and return a new function or data structure tailored for a specific task. The goal remains identical: to hide implementation details from the client code.
+Yes. While the pattern originated in object-oriented programming, its core principle – separating creation from use – is universal. In a functional paradigm, a factory is not a class but a higher-order function. This function would accept configuration or a type identifier as an argument and return a new function or data structure tailored for a specific task. The goal remains identical: to hide implementation details from the client code.
 
 ### Is a Simple Factory considered a "real" design pattern?
 

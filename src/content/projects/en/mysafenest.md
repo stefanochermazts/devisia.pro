@@ -19,24 +19,24 @@ tags:
 ---
 ### Family budgeting designed for real decisions
 
-Managing a family budget is not a math problem. It is a problem of **clarity**, **continuity**, and **shared decisions**.
+Managing a household budget comes down to **clarity**, **continuity**, and **shared decisions** rather than complex spreadsheets.
 
-Most budgeting tools focus on invasive bank integrations. MySafeNest was built from a different starting point: helping families **understand where their money goes** through an **AI and privacy** approach that protects sensitive data and daily decisions.
+Most budgeting apps rely on invasive bank integrations or cluttered charts. MySafeNest was built from a different starting point: helping families **understand where their money goes** while protecting sensitive data and keeping daily choices in their hands.
 
 ### The real problem
 
-In everyday family life, financial decisions are often made by intuition. This **AI-based software** makes habits, recurring expenses and available margin easier to read without turning private life into an unmanaged data stream.
+In everyday family life, financial decisions are often made by intuition. MySafeNest makes habits, recurring expenses and available margin easier to read without turning private life into an unmanaged data stream.
 
-### What MySafeNest actually does
+### What MySafeNest does in practice
 
-MySafeNest is a **family budgeting software** designed with a **responsible AI** mindset:
+MySafeNest combines straightforward budgeting tools with careful, privacy-aware AI support to:
 
 - give a clear view of income and expenses
 - plan monthly budgets realistically
 - separate fixed costs from variable spending
-- maintain total control over your financial data
+- maintain full control over financial data
 
-It does not promise full automation. It helps you **see**, **decide**, and **adjust**.
+Its purpose is to help families **see**, **decide**, and **adjust** as needs change.
 
 ### Key features
 

@@ -90,7 +90,7 @@ Più avanti nella supply chain, i modelli AI possono ottimizzare la logistica pr
 
 ### Aree di applicazione dell’AI in agricoltura
 
-La tabella seguente riassume il problema risolto da ciascuna applicazione e la principale tecnologia AI che la abilita. Questo mappa il “cosa” e il “perché”. Le sezioni successive si concentrano sul “come” — l’architettura necessaria per implementare questi sistemi.
+La tabella seguente riassume il problema risolto da ciascuna applicazione e la principale tecnologia AI che la abilita. Questo mappa il “cosa” e il “perché”. Le sezioni successive si concentrano sul “come” – l’architettura necessaria per implementare questi sistemi.
 
 | Ambito di applicazione | Problema risolto | Tecnologia AI principale |
 | :--- | :--- | :--- |
@@ -103,7 +103,7 @@ La tabella seguente riassume il problema risolto da ciascuna applicazione e la p
 
 Trasformare i casi d’uso in un sistema di produzione funzionante richiede scelte architetturali attente. Per CTO e product leader, i pattern giusti determinano se un sistema è una fragile proof-of-concept o uno strumento operativo scalabile e affidabile. Il design deve tenere conto della realtà disordinata dei dati agricoli e delle operazioni sul campo in aree remote.
 
-Un approccio pragmatico parte da un’architettura modulare e orientata ai servizi. In questo modo si evita un sistema monolitico difficile da aggiornare e mantenere. Le funzioni chiave — acquisizione dei dati, esecuzione del modello e integrazione del sistema — sono trattate come servizi distinti e interoperabili.
+Un approccio pragmatico parte da un’architettura modulare e orientata ai servizi. In questo modo si evita un sistema monolitico difficile da aggiornare e mantenere. Le funzioni chiave – acquisizione dei dati, esecuzione del modello e integrazione del sistema – sono trattate come servizi distinti e interoperabili.
 
 ### Architettura per l’acquisizione dei dati da fonti eterogenee e inaffidabili
 
@@ -195,7 +195,7 @@ Questo pattern di progettazione è fondamentale per costruire fiducia e garantir
 
 ### Orientarsi tra governance dei dati e conformità
 
-I dati agricoli — dalla chimica del suolo e le mappe di resa ai dati finanziari dell'azienda — sono spesso altamente sensibili e commercialmente preziosi. Una volta che un sistema AI inizia a elaborare queste informazioni, diventa soggetto a normative sulla protezione dei dati come il GDPR. Una violazione dei dati o un fallimento di conformità non è solo un problema tecnico; è una crisi aziendale che può comportare multe elevate e danni reputazionali.
+I dati agricoli – dalla chimica del suolo e le mappe di resa ai dati finanziari dell'azienda – sono spesso altamente sensibili e commercialmente preziosi. Una volta che un sistema AI inizia a elaborare queste informazioni, diventa soggetto a normative sulla protezione dei dati come il GDPR. Una violazione dei dati o un fallimento di conformità non è solo un problema tecnico; è una crisi aziendale che può comportare multe elevate e danni reputazionali.
 
 Una governance efficace inizia con la **privacy by design**. Le principali pratiche architetturali e procedurali includono:
 *   **Minimizzazione dei dati:** Raccogliere ed elaborare solo i dati strettamente necessari per la funzione del modello.

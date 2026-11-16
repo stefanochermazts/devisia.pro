@@ -5,7 +5,7 @@ import EditorialCTA from '../components/site/EditorialCTA.astro';
 import { breadcrumbListJsonLd } from '../lib/seo/structuredData';
 
 const description =
-  'Integrazione AI per aziende con governance intelligenza artificiale, privacy, sicurezza AI, human-in-the-loop, logging e audit trail.';
+  'Integrazione AI per aziende con governance dell’intelligenza artificiale, privacy, sicurezza AI, human-in-the-loop, logging e audit trail.';
 
 const site = Astro.site ?? new URL('https://devisia.pro');
 const breadcrumbs = breadcrumbListJsonLd({
@@ -20,25 +20,23 @@ const breadcrumbs = breadcrumbListJsonLd({
 <Layout title="AI governata: intelligenza artificiale responsabile" description={description} structuredData={[breadcrumbs]}>
   <PageIntro
     eyebrow="Foglio · AI governata"
-    h1="AI con guardrail, non con promesse magiche"
-    lede="Assistant, agenti, RAG e workflow solo dentro perimetri chiari: confini, supervisione, policy e traccia degli output — allineati a sistemi, privacy e compliance."
+    h1="AI in produzione dentro perimetri e guardrail verificabili"
+    lede="Progettiamo assistenti, agenti, sistemi RAG e workflow operativi con confini espliciti, supervisione umana, policy sui dati e tracciabilità degli output."
   />
 
   <section class="ds-stack ds-reading" data-gap="lg" style="margin-bottom: var(--ds-space-8)">
-    <h2>Prototipo e produzione non sono la stessa cosa</h2>
+    <h2>Dalla demo alla produzione</h2>
     <p>
-      In demo conta la demo. In produzione contano latenza, costi, errori, attacchi, deriva dei dati, diritto di accesso e
-      cosa succede quando un'uscita è inaccettabile. Le due fasi hanno criteri diversi.
+      In un prototipo basta mostrare che il modello risponde. In produzione contano latenza, costi, gestione degli errori, sicurezza, diritti di accesso ai dati e cosa succede quando un output non è accettabile. Le due fasi richiedono scelte architetturali diverse.
     </p>
 
-    <h2>AI responsabile: LLM come sistemi probabilistici</h2>
+    <h2>AI responsabile: trattare gli LLM come sistemi probabilistici</h2>
     <p>
-      Se lo trattate come sempre giusto, sbagliate. Se lo trattate con confini, verifica e umano in loop, può accelerare
-      compiti ripetitivi, sintesi e controlli secondari, senza sostituire la responsabilità sulle decisioni materiali.
+      Un modello linguistico è uno strumento probabilistico e va inserito in un perimetro preciso. Con confini chiari, verifiche automatiche e supervisione umana accelera sintesi, ricerca e compiti ripetitivi, lasciando alle persone la responsabilità sulle decisioni critiche.
     </p>
 
     <h2>Cosa integriamo in pratica</h2>
-    <p>Chatbot, agenti, RAG, orchestrazione, server MCP e automazioni, sempre con matrice chiara: dati, permessi, retention, log.</p>
+    <p>Realizziamo e integriamo chatbot aziendali, agenti, architetture RAG, server MCP e automazioni di processo, definendo sempre una matrice chiara per dati ammessi, permessi, tempi di conservazione e log.</p>
 
     <h2>Sicurezza AI e rischi che riduciamo</h2>
     <ul>
@@ -49,17 +47,16 @@ const breadcrumbs = breadcrumbListJsonLd({
 
     <h2>Controlli</h2>
     <p>
-      Human-in-the-loop dove serve, policy di strumentazione, versionamento, audit trail, verifica a campione, fallback e
-      chiusure di sicurezza. Minimizzazione e pseudonimizzazione dei dati, integrazione con identità e sistemi esistenti.
+      Applichiamo meccanismi di human-in-the-loop dove serve, insieme a policy di strumentazione, versionamento dei prompt, audit trail e verifiche a campione con fallback sicuri. Curiamo inoltre la minimizzazione e la pseudonimizzazione dei dati, integrando l’AI con i sistemi di identità e i permessi già presenti in azienda.
     </p>
     <p>Strumenti utili: <a href="/tools/ai-risk-checklist">Checklist risk &amp; privacy</a> e <a href="/ai-structure">AI Structure</a>.</p>
   </section>
 
   <EditorialCTA
     variant="tint"
-    title="L'obiettivo è valore con perimetro, non sorpresa in produzione"
+    title="Portare l'AI nei processi mantenendo il controllo operativo"
     ctaLabel="Progettiamo un uso controllato dell'AI"
     ctaHref="/contatti"
-    copy="Raccontaci perimetro, dati, utenti, limiti e cosa accetta l'organizzazione come prova. Definiamo con te cosa puo' essere automatico, cosa deve restare umano e come tracciare."
+    copy="Raccontaci perimetro, dati, utenti, limiti e quali evidenze servono alla tua organizzazione. Definiamo insieme cosa automatizzare, cosa lasciare alla supervisione umana e come tracciare le operazioni."
   />
 </Layout>
