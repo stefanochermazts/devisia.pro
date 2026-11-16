@@ -1,0 +1,701 @@
+---
+import {
+  DEFAULT_AI_ACT_INPUT,
+  classifyAiActUseCase,
+  formatAiActReport,
+  getAiActPresets,
+} from '../lib/euAiActClassifier';
+
+export interface Props {
+  lang?: 'it' | 'en';
+}
+
+const { lang = 'it' } = Astro.props;
+const isEn = lang === 'en';
+const presets = getAiActPresets(lang);
+const initialResult = classifyAiActUseCase(DEFAULT_AI_ACT_INPUT, lang);
+const initialReport = formatAiActReport(initialResult, lang);
+
+const copy = isEn
+  ? {
+      title: 'Classify your AI use case under the EU AI Act',
+      lead: 'Evaluate in 6 operational criteria whether a system falls under prohibited practices (Art. 5), high-risk obligations (Art. 6 and Annex I / III), documented Annex III exemption (Art. 6(3)), transparency duties (Art. 50) or minimal risk.',
+      warn: 'All checks run locally in your browser: no answers are stored or sent. This screening structures technical and documentary readiness and does not replace formal legal counsel.',
+      presetsLabel: 'Load a typical scenario:',
+      reset: 'Reset',
+      formTitle: 'Use case parameters',
+      formLead:
+        'Select the options that best describe your system and organizational role. The classification and evidence checklist update immediately.',
+      resultTitle: 'Regulatory tier & required evidence',
+      rationaleTitle: 'Why this tier applies',
+      evidenceTitle: 'Required evidence & governance checklist',
+      mandatoryTag: 'MANDATORY',
+      recommendedTag: 'RECOMMENDED',
+      copyReport: 'Copy classification report',
+      copied: 'Copied',
+      nextStepLabel: 'Related tool:',
+      criteria: [
+        {
+          id: 'operatorRole',
+          label: '1. Organizational role (Art. 3 & Art. 25)',
+          hint: 'Determines whether Provider conformity obligations (Art. 8–21) or Deployer operational duties (Art. 26–27) apply.',
+          options: [
+            {
+              value: 'deployer',
+              title: 'Deployer (business / organizational user)',
+              desc: 'You integrate or use a third-party AI model or application within your internal processes or customer services under your authority.',
+            },
+            {
+              value: 'provider',
+              title: 'Provider (developer or rebrander)',
+              desc: 'You develop an AI system (or substantially modify / rebrand a third-party model) and place it on the market or put it into service under your own name.',
+            },
+            {
+              value: 'product_manufacturer',
+              title: 'Regulated product manufacturer',
+              desc: 'You place an AI system on the market together with a hardware/regulated product under your own name or trademark.',
+            },
+          ],
+        },
+        {
+          id: 'prohibitedCheck',
+          label: '2. Prohibited practices screening (Art. 5)',
+          hint: 'Prohibitions in force since 2 February 2025.',
+          options: [
+            {
+              value: 'none',
+              title: 'None of the prohibited practices in Art. 5',
+              desc: 'Standard business, operational, analytical or customer-facing assistant with no manipulative or prohibited biometric functions.',
+            },
+            {
+              value: 'emotion_work_edu',
+              title: 'Workplace or education emotion recognition',
+              desc: 'Inferring emotions or mental states of employees or students from video, audio or biometrics (outside strict medical/safety exceptions).',
+            },
+            {
+              value: 'social_scoring_manipulative',
+              title: 'Social scoring or subliminal / vulnerability exploitation',
+              desc: 'Evaluating people over time based on social behavior in unrelated contexts, or deploying deceptive/manipulative techniques causing harm.',
+            },
+            {
+              value: 'biometric_scraping_categorization',
+              title: 'Untargeted facial scraping or sensitive biometric categorization',
+              desc: 'Scraping facial images from the internet/CCTV or categorizing individuals by race, political opinions, union membership or sexual orientation.',
+            },
+          ],
+        },
+        {
+          id: 'safetyComponent',
+          label: '3. Regulated product safety component (Art. 6(1) & Annex I)',
+          hint: 'Applies to sectors with EU harmonization laws requiring third-party conformity assessment.',
+          options: [
+            {
+              value: 'none',
+              title: 'Standalone software or business workflow',
+              desc: 'Not a safety component of a physical/regulated product subject to third-party conformity assessment.',
+            },
+            {
+              value: 'annex_i_safety',
+              title: 'Safety component of an Annex I regulated product',
+              desc: 'Medical devices (MDR/IVDR), industrial machinery, civil aviation, automotive, railway, marine equipment or lifts requiring notified-body certification.',
+            },
+          ],
+        },
+        {
+          id: 'annexIiiDomain',
+          label: '4. High-impact operational domain (Art. 6(2) & Annex III)',
+          hint: 'Check whether the use case falls within one of the eight sensitive areas listed in Annex III.',
+          options: [
+            {
+              value: 'none',
+              title: 'Standard business operations, productivity, support or code',
+              desc: 'Document search, customer support, marketing, software engineering, internal operations or logistics outside Annex III.',
+            },
+            {
+              value: 'employment_hr',
+              title: 'Employment, recruitment and workers management (Annex III, pt. 4)',
+              desc: 'CV screening, candidate ranking, interview evaluation, task allocation, performance monitoring or promotion/termination decisions.',
+            },
+            {
+              value: 'essential_services_credit',
+              title: 'Essential services, credit scoring or health/life insurance (Annex III, pt. 5)',
+              desc: 'Creditworthiness evaluation, credit scoring, risk assessment and pricing in life/health insurance, public benefits eligibility or emergency dispatch triage.',
+            },
+            {
+              value: 'education_vocational',
+              title: 'Education and vocational training (Annex III, pt. 3)',
+              desc: 'Determining access/admission to educational institutions, evaluating learning outcomes, or monitoring prohibited behavior during exams.',
+            },
+            {
+              value: 'biometrics_critical_infra',
+              title: 'Permitted biometrics or critical infrastructure safety (Annex III, pts. 1–2)',
+              desc: 'Remote biometric identification, biometric verification, or safety components in digital infrastructure, road traffic, water, gas, heating or electricity.',
+            },
+            {
+              value: 'law_justice_migration',
+              title: 'Justice, democratic processes, migration or law enforcement (Annex III, pts. 6–8)',
+              desc: 'Assisting judicial authorities in researching/interpreting facts and law, border control, visa/asylum examination, or influencing election outcomes.',
+            },
+          ],
+        },
+        {
+          id: 'decisionAutonomy',
+          label: '5. Decision weight, profiling & Art. 6(3) filter',
+          hint: 'Determines whether an Annex III system triggers full High-Risk obligations or qualifies for the documented Art. 6(3) exemption.',
+          options: [
+            {
+              value: 'narrow_procedural',
+              title: 'Narrow procedural or preparatory task (no profiling)',
+              desc: 'Classifies documents, translates text, routes files or improves the quality of prior human output without profiling individuals or materially steering the decision.',
+            },
+            {
+              value: 'influences_decision',
+              title: 'Materially influences the decision outcome',
+              desc: 'Provides scores, recommendations or assessments that drive or replace human decision-making in the selected domain.',
+            },
+            {
+              value: 'profiles_individuals',
+              title: 'Performs automated profiling of natural persons',
+              desc: 'Evaluates personal aspects, work performance, economic situation, reliability or behavior of individuals (always excludes the Art. 6(3) exemption).',
+            },
+          ],
+        },
+        {
+          id: 'transparencyTrigger',
+          label: '6. Direct user interaction & synthetic media (Art. 50)',
+          hint: 'Transparency duties apply both to standalone tools and cumulatively to High-Risk systems.',
+          options: [
+            {
+              value: 'none',
+              title: 'Internal back-office or API with no public synthetic media',
+              desc: 'Used by trained internal staff who know it is an AI tool, without publishing unreviewed synthetic content.',
+            },
+            {
+              value: 'chatbot_human_interaction',
+              title: 'Interacts directly with natural persons (chatbot / voicebot)',
+              desc: 'Customer assistant, helpdesk bot or interactive agent where users must be informed they are interacting with an AI system (Art. 50(1)).',
+            },
+            {
+              value: 'synthetic_content_gen',
+              title: 'Generates synthetic audio, image, video or public-interest text',
+              desc: 'Produces AI-generated media requiring machine-readable marking (Art. 50(2)) or public-interest text published without human editorial review (Art. 50(4)).',
+            },
+            {
+              value: 'deepfake_emotion_permitted',
+              title: 'Generates deepfakes or uses permitted emotion/biometric categorization',
+              desc: 'Manipulates real persons/places/events (deepfake) or applies emotion/biometric categorization in permitted non-workplace contexts (Art. 50(3)–(4)).',
+            },
+          ],
+        },
+      ],
+    }
+  : {
+      title: 'Classifica un caso d’uso AI secondo l’EU AI Act',
+      lead: 'Verifica in 6 criteri operativi se un sistema rientra tra le pratiche vietate (Art. 5), l’alto rischio (Art. 6 e Allegato I / III), la deroga documentata (Art. 6(3)), gli obblighi specifici di trasparenza (Art. 50) o il rischio minimo.',
+      warn: 'Tutti i calcoli avvengono nel browser: nessuna risposta viene salvata o inviata. Questa verifica struttura le evidenze tecniche e documentali e non sostituisce un parere legale formale.',
+      presetsLabel: 'Carica uno scenario tipico:',
+      reset: 'Reset',
+      formTitle: 'Parametri del caso d’uso',
+      formLead:
+        'Seleziona le opzioni che descrivono il sistema e il ruolo della tua organizzazione. Fascia normativa e checklist di evidenze si aggiornano in tempo reale.',
+      resultTitle: 'Fascia normativa ed evidenze richieste',
+      rationaleTitle: 'Motivazione della classificazione',
+      evidenceTitle: 'Checklist di evidenze e presidi richiesti',
+      mandatoryTag: 'OBBLIGATORIO',
+      recommendedTag: 'RACCOMANDATO',
+      copyReport: 'Copia scheda di classificazione',
+      copied: 'Copiato',
+      nextStepLabel: 'Strumento collegato:',
+      criteria: [
+        {
+          id: 'operatorRole',
+          label: '1. Ruolo dell’organizzazione (Art. 3 e Art. 25)',
+          hint: 'Determina se si applicano gli obblighi di conformità del Fornitore/Provider (Art. 8–21) o i doveri operativi dell’Utilizzatore/Deployer (Art. 26–27).',
+          options: [
+            {
+              value: 'deployer',
+              title: 'Deployer / Utilizzatore professionale',
+              desc: 'Integri o utilizzi un modello o sistema AI di terze parti nei tuoi processi aziendali o nei servizi offerti ai clienti sotto la tua autorità.',
+            },
+            {
+              value: 'provider',
+              title: 'Provider / Fornitore (sviluppo o rebranding)',
+              desc: 'Sviluppi un sistema AI (o modifichi in modo sostanziale / rimarchi un sistema esistente) immettendolo sul mercato o in servizio a tuo nome.',
+            },
+            {
+              value: 'product_manufacturer',
+              title: 'Produttore di prodotto regolamentato',
+              desc: 'Immetti sul mercato un sistema AI insieme a un prodotto hardware o regolamentato con il tuo nome o marchio.',
+            },
+          ],
+        },
+        {
+          id: 'prohibitedCheck',
+          label: '2. Verifica pratiche vietate (Art. 5)',
+          hint: 'Divieti già in vigore dal 2 febbraio 2025.',
+          options: [
+            {
+              value: 'none',
+              title: 'Nessuna delle pratiche vietate dall’Art. 5',
+              desc: 'Assistente operativo, analitico, documentale o di supporto clienti privo di funzioni manipolative o biometriche vietate.',
+            },
+            {
+              value: 'emotion_work_edu',
+              title: 'Riconoscimento delle emozioni sul lavoro o nell’istruzione',
+              desc: 'Inferenza di emozioni o stati d’animo di dipendenti o studenti da video, voce o biometria (fuori dalle strette eccezioni mediche o di sicurezza).',
+            },
+            {
+              value: 'social_scoring_manipulative',
+              title: 'Social scoring o tecniche subliminali / sfruttamento vulnerabilità',
+              desc: 'Valutazione delle persone basata sul comportamento sociale in contesti scollegati, o tecniche ingannevoli/manipolative che causano danno.',
+            },
+            {
+              value: 'biometric_scraping_categorization',
+              title: 'Scraping facciale non mirato o categorizzazione biometrica sensibile',
+              desc: 'Raccolta massiva di volti da internet/CCTV o categorizzazione biometrica per origine etnica, opinioni politiche, sindacato o orientamento sessuale.',
+            },
+          ],
+        },
+        {
+          id: 'safetyComponent',
+          label: '3. Componente di sicurezza in prodotti regolamentati (Art. 6(1) e Allegato I)',
+          hint: 'Riguarda i settori con normativa di armonizzazione UE e certificazione di enti notificati.',
+          options: [
+            {
+              value: 'none',
+              title: 'Software standalone o flusso aziendale',
+              desc: 'Non è un componente di sicurezza di un prodotto fisico o regolamentato soggetto a valutazione di conformità di terzi.',
+            },
+            {
+              value: 'annex_i_safety',
+              title: 'Componente di sicurezza di un prodotto Allegato I',
+              desc: 'Dispositivi medici (MDR/IVDR), macchinari industriali, aviazione civile, automotive, ferrovia, ascensori o impianti soggetti a ente notificato.',
+            },
+          ],
+        },
+        {
+          id: 'annexIiiDomain',
+          label: '4. Ambito operativo ad alto impatto (Art. 6(2) e Allegato III)',
+          hint: 'Verifica se il caso d’uso ricade in una delle otto aree sensibili elencate nell’Allegato III.',
+          options: [
+            {
+              value: 'none',
+              title: 'Operatività aziendale, produttività, supporto clienti o codice',
+              desc: 'Ricerca documentale, customer care, marketing, sviluppo software, operations o logistica fuori dagli ambiti dell’Allegato III.',
+            },
+            {
+              value: 'employment_hr',
+              title: 'Occupazione, selezione del personale e gestione lavoratori (Allegato III, pt. 4)',
+              desc: 'Screening CV, ranking candidati, valutazione colloqui, assegnazione task, monitoraggio performance o decisioni su promozioni e contratti.',
+            },
+            {
+              value: 'essential_services_credit',
+              title: 'Servizi essenziali, credit scoring o assicurazioni vita/salute (Allegato III, pt. 5)',
+              desc: 'Valutazione merito creditizio, credit scoring, calcolo rischi e premi di polizze vita/salute, accesso a prestazioni pubbliche o triage emergenze.',
+            },
+            {
+              value: 'education_vocational',
+              title: 'Istruzione e formazione professionale (Allegato III, pt. 3)',
+              desc: 'Ammissione a istituti di istruzione, valutazione dei risultati di apprendimento o monitoraggio di comportamenti vietati durante gli esami.',
+            },
+            {
+              value: 'biometrics_critical_infra',
+              title: 'Biometria consentita o sicurezza di infrastrutture critiche (Allegato III, pt. 1–2)',
+              desc: 'Identificazione biometrica remota consentita o componenti di sicurezza di reti digitali, traffico stradale, fornitura di acqua, gas, riscaldamento o elettricità.',
+            },
+            {
+              value: 'law_justice_migration',
+              title: 'Giustizia, processi democratici, migrazione o contrasto (Allegato III, pt. 6–8)',
+              desc: 'Supporto alle autorità giudiziarie nell’interpretazione di fatti e norme, controllo frontiere/visti/asilo o sistemi che influenzano l’esito elettorale.',
+            },
+          ],
+        },
+        {
+          id: 'decisionAutonomy',
+          label: '5. Peso decisionale, profilazione e filtro Art. 6(3)',
+          hint: 'Stabilisce se un sistema in ambito Allegato III attiva l’Alto Rischio completo o può accedere alla deroga documentata dell’Art. 6(3).',
+          options: [
+            {
+              value: 'narrow_procedural',
+              title: 'Compito procedurale ristretto o preparatorio (senza profilazione)',
+              desc: 'Classifica documenti, traduce testi, instrada pratiche o migliora un contenuto già prodotto da umani senza profilare persone né guidare la decisione.',
+            },
+            {
+              value: 'influences_decision',
+              title: 'Influenza materialmente l’esito decisionale',
+              desc: 'Fornisce punteggi, raccomandazioni o valutazioni che guidano o sostituiscono la scelta umana nell’ambito selezionato.',
+            },
+            {
+              value: 'profiles_individuals',
+              title: 'Effettua profilazione automatizzata di persone fisiche',
+              desc: 'Valuta aspetti personali, rendimento lavorativo, situazione economica, affidabilità o comportamento delle persone (esclude sempre la deroga Art. 6(3)).',
+            },
+          ],
+        },
+        {
+          id: 'transparencyTrigger',
+          label: '6. Interazione diretta e contenuti sintetici (Art. 50)',
+          hint: 'Gli obblighi di trasparenza si applicano sia ai sistemi a rischio specifico sia in aggiunta a quelli ad Alto Rischio.',
+          options: [
+            {
+              value: 'none',
+              title: 'Back-office interno o API senza diffusione di media sintetici',
+              desc: 'Utilizzato da personale interno formato e consapevole dello strumento AI, senza pubblicazione di contenuti sintetici non revisionati.',
+            },
+            {
+              value: 'chatbot_human_interaction',
+              title: 'Interagisce direttamente con persone fisiche (chatbot / voicebot)',
+              desc: 'Assistente clienti, helpdesk o agente conversazionale in cui l’utente deve sapere che sta interagendo con un sistema AI (Art. 50(1)).',
+            },
+            {
+              value: 'synthetic_content_gen',
+              title: 'Genera audio, immagini, video sintetici o testi d’interesse pubblico',
+              desc: 'Produce media sintetici da marcare in formato machine-readable (Art. 50(2)) o testi su temi di interesse pubblico pubblicati senza revisione editoriale umana (Art. 50(4)).',
+            },
+            {
+              value: 'deepfake_emotion_permitted',
+              title: 'Genera deepfake o usa riconoscimento emozioni/biometria consentiti',
+              desc: 'Manipola immagini/voci reali (deepfake) o applica categorizzazione biometrica/emozioni in contesti consentiti fuori dal lavoro (Art. 50(3)–(4)).',
+            },
+          ],
+        },
+      ],
+    };
+---
+
+<section
+  class="aiact-sheet"
+  data-aiact-root
+  data-lang={lang}
+  data-copy-label={copy.copyReport}
+  data-copied-label={copy.copied}
+  data-mandatory-label={copy.mandatoryTag}
+  data-recommended-label={copy.recommendedTag}
+>
+  <header class="aiact-sheet__header">
+    <h1 class="aiact-sheet__title">{copy.title}</h1>
+    <p class="site-lead">{copy.lead}</p>
+  </header>
+
+  <div class="aiact-sheet__demobar" role="region" aria-label={copy.presetsLabel}>
+    <p class="aiact-sheet__warn" role="note">{copy.warn}</p>
+    <div class="aiact-sheet__presets">
+      <span class="aiact-sheet__presets-label">{copy.presetsLabel}</span>
+      <div class="aiact-sheet__presets-list">
+        {
+          presets.map((preset, idx) => (
+            <button
+              class="ds-btn"
+              data-variant={idx === 0 ? 'primary' : 'secondary'}
+              data-size="sm"
+              type="button"
+              data-aiact-preset={preset.id}
+              data-preset-payload={JSON.stringify(preset.input)}
+              title={preset.shortDesc}
+            >
+              {preset.label}
+            </button>
+          ))
+        }
+        <button class="ds-btn" data-variant="ghost" data-size="sm" type="button" data-aiact-reset>
+          {copy.reset}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="aiact-sheet__workbench">
+    <form class="aiact-sheet__form" data-aiact-form onsubmit="return false;">
+      <header class="aiact-section-head">
+        <h2 class="aiact-section-head__title">{copy.formTitle}</h2>
+        <p class="aiact-section-head__lead">{copy.formLead}</p>
+      </header>
+
+      <div class="aiact-criteria-list">
+        {
+          copy.criteria.map((criterion) => {
+            const defaultVal =
+              DEFAULT_AI_ACT_INPUT[criterion.id as keyof typeof DEFAULT_AI_ACT_INPUT];
+            return (
+              <fieldset class="aiact-criterion">
+                <legend class="aiact-criterion__legend">{criterion.label}</legend>
+                <p class="aiact-criterion__hint">{criterion.hint}</p>
+                <div class="aiact-criterion__options">
+                  {criterion.options.map((opt) => (
+                    <label class="aiact-option">
+                      <input
+                        type="radio"
+                        name={criterion.id}
+                        value={opt.value}
+                        checked={opt.value === defaultVal}
+                      />
+                      <span class="aiact-option__body">
+                        <span class="aiact-option__title">{opt.title}</span>
+                        <span class="aiact-option__desc">{opt.desc}</span>
+                      </span>
+                    </label>
+                  ))}
+                </div>
+              </fieldset>
+            );
+          })
+        }
+      </div>
+    </form>
+
+    <aside class="aiact-sheet__result" aria-labelledby="aiact-result-heading" aria-live="polite">
+      <div class="aiact-result-panel" data-tone={initialResult.badgeTone} data-aiact-panel>
+        <header class="aiact-result-panel__meta">
+          <span class="aiact-result-panel__code" data-aiact-code>{initialResult.tierCode}</span>
+          <span class="aiact-result-panel__article" data-aiact-article>
+            {initialResult.primaryArticle}
+          </span>
+        </header>
+
+        <h2 id="aiact-result-heading" class="aiact-result-panel__title" data-aiact-tier-label>
+          {initialResult.tierLabel}
+        </h2>
+
+        <p class="aiact-result-panel__summary" data-aiact-summary>{initialResult.summary}</p>
+        <p class="aiact-result-panel__timeline" data-aiact-timeline>
+          {initialResult.applicabilityTimeline}
+        </p>
+
+        <section class="aiact-result-panel__block" aria-labelledby="aiact-rationale-heading">
+          <h3 id="aiact-rationale-heading" class="aiact-result-panel__sub">
+            {copy.rationaleTitle}
+          </h3>
+          <ul class="aiact-rationale-list" data-aiact-rationale>
+            {initialResult.rationale.map((line) => <li>{line}</li>)}
+          </ul>
+        </section>
+
+        <section class="aiact-result-panel__block" aria-labelledby="aiact-evidence-heading">
+          <h3 id="aiact-evidence-heading" class="aiact-result-panel__sub">
+            {copy.evidenceTitle}
+          </h3>
+          <ul class="aiact-evidence-list" data-aiact-evidences>
+            {
+              initialResult.evidences.map((ev) => (
+                <li class="aiact-evidence-item">
+                  <div class="aiact-evidence-item__top">
+                    <code class="aiact-evidence-item__ref">{ev.articleRef}</code>
+                    <span
+                      class="aiact-evidence-item__prio"
+                      data-prio={ev.priority}
+                    >
+                      {ev.priority === 'mandatory' ? copy.mandatoryTag : copy.recommendedTag}
+                    </span>
+                  </div>
+                  <strong class="aiact-evidence-item__title">{ev.title}</strong>
+                  <p class="aiact-evidence-item__desc">{ev.description}</p>
+                </li>
+              ))
+            }
+          </ul>
+        </section>
+
+        <footer class="aiact-result-panel__footer">
+          <div class="aiact-result-panel__actions">
+            <button
+              class="ds-btn"
+              data-variant="primary"
+              data-size="lg"
+              type="button"
+              data-aiact-copy
+            >
+              {copy.copyReport}
+            </button>
+          </div>
+          <p class="aiact-result-panel__related">
+            <span>{copy.nextStepLabel}</span>{' '}
+            <a
+              class="ds-link"
+              data-aiact-related-link
+              href={initialResult.recommendedToolHref}
+            >
+              <span data-aiact-related-label>{initialResult.recommendedToolLabel}</span>{' '}
+              <span aria-hidden="true">→</span>
+            </a>
+          </p>
+        </footer>
+
+        <textarea
+          class="aiact-result-panel__sr-report"
+          readonly
+          tabindex="-1"
+          aria-hidden="true"
+          data-aiact-report>{initialReport}</textarea
+        >
+      </div>
+    </aside>
+  </div>
+</section>
+
+<script>
+  import {
+    DEFAULT_AI_ACT_INPUT,
+    classifyAiActUseCase,
+    formatAiActReport,
+  } from '../lib/euAiActClassifier';
+
+  const root = document.querySelector('[data-aiact-root]');
+  if (root) {
+    const lang = root.getAttribute('data-lang') === 'en' ? 'en' : 'it';
+    const form = root.querySelector('[data-aiact-form]');
+    const panel = root.querySelector('[data-aiact-panel]');
+    const codeEl = root.querySelector('[data-aiact-code]');
+    const articleEl = root.querySelector('[data-aiact-article]');
+    const tierLabelEl = root.querySelector('[data-aiact-tier-label]');
+    const summaryEl = root.querySelector('[data-aiact-summary]');
+    const timelineEl = root.querySelector('[data-aiact-timeline]');
+    const rationaleList = root.querySelector('[data-aiact-rationale]');
+    const evidencesList = root.querySelector('[data-aiact-evidences]');
+    const relatedLink = root.querySelector('[data-aiact-related-link]');
+    const relatedLabel = root.querySelector('[data-aiact-related-label]');
+    const reportTextarea = root.querySelector('[data-aiact-report]');
+    const copyBtn = root.querySelector('[data-aiact-copy]');
+    const resetBtn = root.querySelector('[data-aiact-reset]');
+    const presetBtns = Array.from(root.querySelectorAll('[data-aiact-preset]'));
+
+    const labels = {
+      copy: root.getAttribute('data-copy-label') ?? 'Copia',
+      copied: root.getAttribute('data-copied-label') ?? 'Copiato',
+      mandatory: root.getAttribute('data-mandatory-label') ?? 'OBBLIGATORIO',
+      recommended: root.getAttribute('data-recommended-label') ?? 'RACCOMANDATO',
+    };
+
+    const readFormInput = () => {
+      if (!(form instanceof HTMLFormElement)) return { ...DEFAULT_AI_ACT_INPUT };
+      const data = new FormData(form);
+      return {
+        operatorRole: (data.get('operatorRole') ?? DEFAULT_AI_ACT_INPUT.operatorRole),
+        prohibitedCheck: (data.get('prohibitedCheck') ?? DEFAULT_AI_ACT_INPUT.prohibitedCheck),
+        safetyComponent: (data.get('safetyComponent') ?? DEFAULT_AI_ACT_INPUT.safetyComponent),
+        annexIiiDomain: (data.get('annexIiiDomain') ?? DEFAULT_AI_ACT_INPUT.annexIiiDomain),
+        decisionAutonomy: (data.get('decisionAutonomy') ?? DEFAULT_AI_ACT_INPUT.decisionAutonomy),
+        transparencyTrigger: (
+          data.get('transparencyTrigger') ?? DEFAULT_AI_ACT_INPUT.transparencyTrigger
+        ),
+      };
+    };
+
+    const applyInputToForm = (inputValues, activePresetId = '') => {
+      if (!(form instanceof HTMLFormElement)) return;
+      for (const [key, val] of Object.entries(inputValues)) {
+        const radio = form.querySelector(`input[name="${key}"][value="${val}"]`);
+        if (radio instanceof HTMLInputElement) {
+          radio.checked = true;
+        }
+      }
+      for (const btn of presetBtns) {
+        const isCurrent = btn.getAttribute('data-aiact-preset') === activePresetId;
+        btn.setAttribute('data-variant', isCurrent ? 'primary' : 'secondary');
+      }
+    };
+
+    const render = () => {
+      const currentInput = readFormInput();
+      const result = classifyAiActUseCase(currentInput, lang);
+      const report = formatAiActReport(result, lang);
+
+      if (panel) panel.setAttribute('data-tone', result.badgeTone);
+      if (codeEl) codeEl.textContent = result.tierCode;
+      if (articleEl) articleEl.textContent = result.primaryArticle;
+      if (tierLabelEl) tierLabelEl.textContent = result.tierLabel;
+      if (summaryEl) summaryEl.textContent = result.summary;
+      if (timelineEl) timelineEl.textContent = result.applicabilityTimeline;
+      if (relatedLink instanceof HTMLAnchorElement) {
+        relatedLink.href = result.recommendedToolHref;
+      }
+      if (relatedLabel) relatedLabel.textContent = result.recommendedToolLabel;
+      if (reportTextarea instanceof HTMLTextAreaElement) {
+        reportTextarea.value = report;
+      }
+
+      if (rationaleList) {
+        rationaleList.replaceChildren();
+        for (const item of result.rationale) {
+          const li = document.createElement('li');
+          li.textContent = item;
+          rationaleList.append(li);
+        }
+      }
+
+      if (evidencesList) {
+        evidencesList.replaceChildren();
+        for (const ev of result.evidences) {
+          const li = document.createElement('li');
+          li.className = 'aiact-evidence-item';
+
+          const top = document.createElement('div');
+          top.className = 'aiact-evidence-item__top';
+
+          const ref = document.createElement('code');
+          ref.className = 'aiact-evidence-item__ref';
+          ref.textContent = ev.articleRef;
+
+          const prio = document.createElement('span');
+          prio.className = 'aiact-evidence-item__prio';
+          prio.setAttribute('data-prio', ev.priority);
+          prio.textContent =
+            ev.priority === 'mandatory' ? labels.mandatory : labels.recommended;
+
+          top.append(ref, prio);
+
+          const title = document.createElement('strong');
+          title.className = 'aiact-evidence-item__title';
+          title.textContent = ev.title;
+
+          const desc = document.createElement('p');
+          desc.className = 'aiact-evidence-item__desc';
+          desc.textContent = ev.description;
+
+          li.append(top, title, desc);
+          evidencesList.append(li);
+        }
+      }
+    };
+
+    form?.addEventListener('change', () => {
+      for (const btn of presetBtns) {
+        btn.setAttribute('data-variant', 'secondary');
+      }
+      render();
+    });
+
+    for (const btn of presetBtns) {
+      btn.addEventListener('click', () => {
+        const raw = btn.getAttribute('data-preset-payload');
+        const id = btn.getAttribute('data-aiact-preset') ?? '';
+        if (!raw) return;
+        try {
+          const parsed = JSON.parse(raw);
+          applyInputToForm(parsed, id);
+          render();
+        } catch {
+          /* ignore malformed preset */
+        }
+      });
+    }
+
+    resetBtn?.addEventListener('click', () => {
+      applyInputToForm(DEFAULT_AI_ACT_INPUT, 'customer-rag-chatbot');
+      render();
+    });
+
+    copyBtn?.addEventListener('click', async () => {
+      if (!(reportTextarea instanceof HTMLTextAreaElement) || !copyBtn) return;
+      try {
+        await navigator.clipboard.writeText(reportTextarea.value);
+        copyBtn.textContent = labels.copied;
+        window.setTimeout(() => {
+          copyBtn.textContent = labels.copy;
+        }, 1600);
+      } catch {
+        reportTextarea.focus();
+        reportTextarea.select();
+      }
+    });
+  }
+</script>
