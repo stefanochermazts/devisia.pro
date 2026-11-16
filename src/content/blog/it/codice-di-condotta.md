@@ -30,7 +30,7 @@ Si concentra su comportamenti sul luogo di lavoro, correttezza professionale e p
 - sistemi data-driven
 - funzionalità basate su AI
 
-I rischi più rilevanti dei prodotti digitali moderni — **data breach, bias algoritmico, vulnerabilità di sicurezza, uso improprio dei dati** — non nascono da conflitti interpersonali, ma da **decisioni tecniche e architetturali**.
+I rischi più rilevanti dei prodotti digitali moderni – **data breach, bias algoritmico, vulnerabilità di sicurezza, uso improprio dei dati** – non nascono da conflitti interpersonali, ma da **decisioni tecniche e architetturali**.
 
 Un codice di condotta generico **non intercetta l’origine reale di questi rischi**.
 

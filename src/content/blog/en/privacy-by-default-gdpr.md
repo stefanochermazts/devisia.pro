@@ -1,18 +1,26 @@
 ---
-title: "Privacy by Default Under GDPR: An Engineer's Guide"
-description: "A pragmatic guide to implementing privacy by default GDPR in B2B software. Learn architectural principles, technical controls, and compliance strategies."
+title: 'Privacy by Default Under GDPR: An Engineer''s Guide'
+description: >-
+  A pragmatic guide to implementing privacy by default GDPR in B2B software.
+  Learn architectural principles, technical controls, and compliance strategies.
 pubDate: 2026-02-17T10:17:47.927Z
-heroImage: "https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/3b478309-72ca-4f8f-9f2b-9aa4d6bb31a1/privacy-by-default-gdpr-guide-cover.jpg"
-author: "Devisia AI"
-tags: ["privacy by default gdpr", "gdpr compliance", "b2b data privacy", "secure software development", "privacy by design"]
-translationSlug: "privacy-by-default-gdpr"
+heroImage: >-
+  https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/3b478309-72ca-4f8f-9f2b-9aa4d6bb31a1/privacy-by-default-gdpr-guide-cover.jpg
+author: Devisia AI
+tags:
+  - privacy by default gdpr
+  - gdpr compliance
+  - b2b data privacy
+  - secure software development
+  - privacy by design
+translationSlug: privacy-by-default-gdpr
 autoTranslateToIt: true
 ---
 At its core, **privacy by default**, as mandated by GDPR, is an architectural principle: systems must be configured to be as protective of personal data as possible out of the box, requiring no user action. This means that **only necessary personal data is processed**, collection is strictly minimized, and access is locked down from the start.
 
 ## The Problem: Privacy as a Compliance Afterthought
 
-For many engineering leaders, GDPR Article 25—which mandates **privacy by default GDPR**—often lands on their desk as just another legal constraint, another item on a long compliance checklist.
+For many engineering leaders, GDPR Article 25 – which mandates **privacy by default GDPR**—often lands on their desk as just another legal constraint, another item on a long compliance checklist.
 
 This perspective is a direct path to technical debt.
 
@@ -87,7 +95,7 @@ The implementation rests on three interconnected pillars: enforcing strict acces
 
 ![A flowchart titled 'Privacy by Default Process Flow' outlining three steps: Data Map, DPIA, and Product Decisions.](https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/e0a386a0-da7b-463f-a610-ed6e9a24910e/privacy-by-default-gdpr-privacy-flow.jpg)
 
-This flow shows how early diligence—data mapping and DPIAs—directly shapes the product decisions that engineers implement. Your technical controls cannot be generic; they must be a direct response to the specific data and its associated risks.
+This flow shows how early diligence – data mapping and DPIAs – directly shapes the product decisions that engineers implement. Your technical controls cannot be generic; they must be a direct response to the specific data and its associated risks.
 
 ### Enforcing Least Privilege with Robust Access Control
 
@@ -161,7 +169,7 @@ A trustworthy UX treats the user with respect. It assumes users will grant conse
 
 <iframe width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/57wFvOqzBvg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-Artificial Intelligence and Machine Learning systems introduce a new class of privacy challenges. Applying **privacy by default GDPR** principles here requires scrutinizing the entire lifecycle—from training data to live inference endpoints—through a different lens.
+Artificial Intelligence and Machine Learning systems introduce a new class of privacy challenges. Applying **privacy by default GDPR** principles here requires scrutinizing the entire lifecycle – from training data to live inference endpoints – through a different lens.
 
 The core problem is that these systems learn from data, creating complex artifacts that can unintentionally leak personal information. The common but high-risk practice of feeding raw production data directly into a model must be avoided. The only safe default is aggressive data minimization *before* any model interacts with the data.
 
@@ -178,7 +186,7 @@ For inference endpoints, the focus is on real-time filtering. Implement strict i
 
 ### The Hidden Risks of Embeddings and Logs
 
-Embeddings—numerical vectors models use to represent data—are a significant risk. While not human-readable, they are not anonymous. Research has shown it is possible to reconstruct parts of original input data from its embedding.
+Embeddings – numerical vectors models use to represent data – are a significant risk. While not human-readable, they are not anonymous. Research has shown it is possible to reconstruct parts of original input data from its embedding.
 
 > By default, treat embeddings derived from personal data with the same security controls as the raw data itself. They are not 'anonymized' simply because they are vectors.
 

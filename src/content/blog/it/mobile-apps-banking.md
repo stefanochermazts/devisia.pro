@@ -69,7 +69,7 @@ L’architettura backend determina la scalabilità, la resilienza e la manutenib
 
 Sebbene i monoliti possano sembrare inizialmente più semplici da costruire e distribuire, diventano estremamente difficili da aggiornare, scalare e proteggere man mano che crescono. Il guasto di un singolo componente, come un modulo di richiesta di prestito, può propagarsi e causare un’interruzione totale del sistema: un rischio inaccettabile per un istituto finanziario.
 
-Una moderna **architettura a microservizi** scompone l’applicazione in una raccolta di servizi piccoli, indipendenti e poco accoppiati. Ogni servizio gestisce una funzione aziendale distinta — come l’autenticazione degli utenti, l’elaborazione delle transazioni o la gestione dei conti — e comunica con gli altri tramite API ben definite.
+Una moderna **architettura a microservizi** scompone l’applicazione in una raccolta di servizi piccoli, indipendenti e poco accoppiati. Ogni servizio gestisce una funzione aziendale distinta – come l’autenticazione degli utenti, l’elaborazione delle transazioni o la gestione dei conti – e comunica con gli altri tramite API ben definite.
 
 Questo approccio modulare offre vantaggi distinti per una piattaforma di mobile banking:
 
@@ -88,7 +88,7 @@ Per un’analisi più approfondita dei principi dei sistemi disaccoppiati, la no
 
 ## Progettare Sicurezza e Privacy by Design
 
-Nel mobile banking, la sicurezza non è una funzionalità; è un principio architetturale fondamentale. Un approccio superficiale — ad esempio fare affidamento esclusivamente sulla crittografia del livello di trasporto — crea rischi inaccettabili sia per i clienti che per l’istituto.
+Nel mobile banking, la sicurezza non è una funzionalità; è un principio architetturale fondamentale. Un approccio superficiale – ad esempio fare affidamento esclusivamente sulla crittografia del livello di trasporto – crea rischi inaccettabili sia per i clienti che per l’istituto.
 
 L’unica metodologia valida è una filosofia di **privacy by design**, in cui ogni decisione architetturale viene valutata attraverso la lente della sicurezza e della minimizzazione dei dati. L’obiettivo è implementare una strategia di difesa in profondità, in cui più controlli di sicurezza indipendenti lavorano insieme per proteggere i dati sensibili in tutte le fasi del loro ciclo di vita. Per capire come questo influenzi lo sviluppo del sistema, puoi [scoprire di più sulla privacy by design](https://devisia.pro/en/blog/privacy-by-design).
 
@@ -217,7 +217,7 @@ Questi sistemi stabiliscono una baseline comportamentale per ciascun utente anal
 *   **Dati del dispositivo e di geolocalizzazione:** I dispositivi, gli indirizzi IP e le posizioni geografiche da cui un utente opera normalmente.
 *   **Navigazione in-app:** Pattern biometrici basati su come un utente naviga e interagisce con l'interfaccia dell'applicazione.
 
-Quando una nuova azione si discosta in modo significativo da questa baseline consolidata — come un bonifico di importo elevato verso un beneficiario sconosciuto in un orario insolito da un nuovo dispositivo — il sistema può segnalarla in tempo reale per un intervento immediato, bloccando la transazione oppure inoltrandola a revisione manuale.
+Quando una nuova azione si discosta in modo significativo da questa baseline consolidata – come un bonifico di importo elevato verso un beneficiario sconosciuto in un orario insolito da un nuovo dispositivo – il sistema può segnalarla in tempo reale per un intervento immediato, bloccando la transazione oppure inoltrandola a revisione manuale.
 
 ### Automazione della verifica dell'identità (ID&V) basata sull'IA
 *   **Elaborazione automatizzata dei documenti:** I modelli di computer vision possono eseguire la scansione ed estrarre dati da documenti di identità rilasciati dal governo, verificandone l'autenticità e incrociando le informazioni con i dati forniti dall'utente.

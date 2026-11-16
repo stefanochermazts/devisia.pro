@@ -46,7 +46,7 @@ Questo approccio proattivo non riguarda solo la gestione del rischio. Un framewo
 
 ## Orientarsi nel panorama globale della protezione dei dati
 
-Per i leader dell’ingegneria e del prodotto, la rete globale di normative sulla protezione dei dati—GDPR, CCPA, NIS2, DORA—può sembrare un groviglio intimidatorio di acronimi.
+Per i leader dell’ingegneria e del prodotto, la rete globale di normative sulla protezione dei dati – GDPR, CCPA, NIS2, DORA – può sembrare un groviglio intimidatorio di acronimi.
 
 La chiave non è memorizzare ogni singolo articolo, ma comprendere i principi *ingegneristici* fondamentali che li collegano. Queste leggi non sono solo documenti legali; sono specifiche tecniche che stabiliscono come deve essere costruito il software moderno. Traduccono idee giuridiche astratte come **base giuridica**, **minimizzazione dei dati** e diritti fondamentali degli **utenti** in vincoli ingegneristici concreti. Affinché un sistema sia conforme, la sua architettura deve basarsi su questi pilastri. Un approccio basato solo sulle policy non è sufficiente.
 
@@ -97,7 +97,7 @@ Per mettere in pratica la Privacy by Design, gli ingegneri possono fare affidame
 
 *   **Minimizzazione dei dati:** questo è il principio più critico. Prima di raccogliere qualsiasi dato, chiedetevi: è assolutamente essenziale perché la funzionalità possa operare? Ad esempio, invece di memorizzare la data di nascita esatta di un utente per verificarne l’età, potete salvare un semplice valore booleano: `is_over_18`. Il requisito viene soddisfatto senza conservare **informazioni personali identificabili (PII)** sensibili.
 
-*   **Segregazione dei dati:** separate i diversi tipi di dati, sia logicamente sia fisicamente. Le informazioni del profilo di un utente (nome, email) non dovrebbero trovarsi nello stesso database — o addirittura nello stesso schema — dei dati di analisi comportamentale (click, visualizzazioni di pagina). Questo contenimento garantisce che un compromesso in un sistema non si propaghi automaticamente ad altri. Il vostro servizio di analytics dovrebbe interrogare un registro eventi con ID anonimi, non il database principale dei clienti.
+*   **Segregazione dei dati:** separate i diversi tipi di dati, sia logicamente sia fisicamente. Le informazioni del profilo di un utente (nome, email) non dovrebbero trovarsi nello stesso database – o addirittura nello stesso schema – dei dati di analisi comportamentale (click, visualizzazioni di pagina). Questo contenimento garantisce che un compromesso in un sistema non si propaghi automaticamente ad altri. Il vostro servizio di analytics dovrebbe interrogare un registro eventi con ID anonimi, non il database principale dei clienti.
 
 *   **Pseudonimizzazione:** sostituite gli identificatori diretti con token reversibili e non identificativi. Un utente con ID `123` nel database principale potrebbe diventare `E7A8B9` nel sistema di analytics. Questo vi consente di tracciare i percorsi utente e aggregare i comportamenti senza trattare direttamente i loro dati personali, riducendo drasticamente il vostro profilo di rischio.
 
@@ -122,7 +122,7 @@ Questo diagramma di flusso rende chiaro un concetto: leggi regionali come GDPR e
 
 Una robusta architettura della privacy è solo metà della storia. Senza controlli di sicurezza altrettanto solidi, è una casa con pareti di vetro. La vera **protezione dei dati e della privacy** dipende dalla capacità di difendere i tuoi sistemi da un panorama di minacce più complesso e in rapido cambiamento che mai.
 
-Fare affidamento su modelli legacy come la difesa perimetrale è pericolosamente obsoleto. Oggi, una singola debolezza—una API configurata male, una vulnerabilità nella tua supply chain software, o un solo attacco di social engineering andato a buon fine—può sfociare in una violazione catastrofica dei dati. Per i leader tecnici, la sfida è passare da un atteggiamento reattivo all'integrazione della sicurezza lungo l'intero ciclo di vita dello sviluppo software (SDLC). Questo significa costruire una strategia di defense-in-depth in cui più controlli sovrapposti lavorano in sinergia. Se un livello fallisce, gli altri sono pronti a rilevare, contenere e neutralizzare la minaccia.
+Fare affidamento su modelli legacy come la difesa perimetrale è pericolosamente obsoleto. Oggi, una singola debolezza – una API configurata male, una vulnerabilità nella tua supply chain software, o un solo attacco di social engineering andato a buon fine – può sfociare in una violazione catastrofica dei dati. Per i leader tecnici, la sfida è passare da un atteggiamento reattivo all'integrazione della sicurezza lungo l'intero ciclo di vita dello sviluppo software (SDLC). Questo significa costruire una strategia di defense-in-depth in cui più controlli sovrapposti lavorano in sinergia. Se un livello fallisce, gli altri sono pronti a rilevare, contenere e neutralizzare la minaccia.
 
 ### Comprendere l'evoluzione del panorama delle minacce
 
@@ -134,7 +134,7 @@ Il punto chiave è che gli aggressori prendono di mira senza sosta gli anelli pi
 
 Mettere in sicurezza il tuo stack tecnologico significa passare da principi astratti a controlli tecnici concreti. Un approccio pragmatico si concentra sulle aree a maggior impatto che riducono direttamente la superficie di attacco e migliorano i tempi di risposta.
 
-*   **Progettazione sicura delle API:** Molte violazioni hanno origine da API protette in modo inadeguato. Devi imporre un rate limiting rigoroso, usare un'autenticazione robusta come **OAuth 2.0** e implementare un'autorizzazione granulare. Ogni singolo endpoint API che gestisce dati sensibili deve convalidare i permessi dell'utente a ogni richiesta—non fidarti mai di un controllo effettuato lato client.
+*   **Progettazione sicura delle API:** Molte violazioni hanno origine da API protette in modo inadeguato. Devi imporre un rate limiting rigoroso, usare un'autenticazione robusta come **OAuth 2.0** e implementare un'autorizzazione granulare. Ogni singolo endpoint API che gestisce dati sensibili deve convalidare i permessi dell'utente a ogni richiesta – non fidarti mai di un controllo effettuato lato client.
 
 *   **Scansione automatizzata delle dipendenze:** La sicurezza della tua applicazione è tanto forte quanto la sua dipendenza più debole. Integra strumenti automatizzati come Dependabot o Snyk direttamente nella tua pipeline CI/CD. Questi strumenti eseguono scansioni continue alla ricerca di vulnerabilità note nelle tue librerie open source. Una vulnerabilità critica in un pacchetto di terze parti è una vulnerabilità critica nel tuo prodotto.
 
@@ -150,7 +150,7 @@ L'implementazione di questi controlli richiede un cambiamento fondamentale di me
 
 Integrare l'AI e i modelli linguistici di grandi dimensioni (LLM) nei tuoi prodotti introduce sfide del tutto nuove in termini di **protezione dei dati e della privacy**. Non si tratta semplicemente di versioni più grandi di vecchi problemi; sono rischi fondamentalmente diversi che richiedono un nuovo approccio architetturale.
 
-Trattare un LLM come una semplice chiamata API è un errore critico. È una scorciatoia che può—e spesso lo fa—portare a gravi fughe di dati e problemi normativi. A differenza del software tradizionale, i modelli AI hanno comportamenti complessi, spesso imprevedibili. I loro output sono probabilistici, non deterministici. Ciò significa che possono divulgare accidentalmente informazioni sensibili assorbite durante l'addestramento o dal prompt di un utente. Questo crea modalità di guasto uniche che le tue misure di sicurezza standard non sono progettate per gestire.
+Trattare un LLM come una semplice chiamata API è un errore critico. È una scorciatoia che può – e spesso lo fa – portare a gravi fughe di dati e problemi normativi. A differenza del software tradizionale, i modelli AI hanno comportamenti complessi, spesso imprevedibili. I loro output sono probabilistici, non deterministici. Ciò significa che possono divulgare accidentalmente informazioni sensibili assorbite durante l'addestramento o dal prompt di un utente. Questo crea modalità di guasto uniche che le tue misure di sicurezza standard non sono progettate per gestire.
 
 Per i leader dell'ingegneria e del prodotto, questo significa progettare sistemi con una visione chiara di come i dati fluiscono *verso*, *attraverso* e *dal* modello. Ogni prompt che contiene dati dei clienti è un potenziale incidente di privacy in attesa di accadere.
 

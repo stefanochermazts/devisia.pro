@@ -21,7 +21,7 @@ Il **factory pattern** è un design pattern creazionale che केंदralizza 
 
 ## Il problema: accoppiamento stretto dovuto all’istanziazione diretta
 
-In molti sistemi software, l’operatore `new` all’inizio sembra innocuo. Con il tempo, però, il suo uso diretto diventa una fonte significativa di rigidità e debito tecnico. Ogni volta che il tuo codice istanzia direttamente un oggetto—per esempio, `new MySQLConnector()`—crea una dipendenza codificata in modo rigido. Questo forte accoppiamento tra il client e l’implementazione concreta può ostacolare seriamente l’evoluzione di un sistema.
+In molti sistemi software, l’operatore `new` all’inizio sembra innocuo. Con il tempo, però, il suo uso diretto diventa una fonte significativa di rigidità e debito tecnico. Ogni volta che il tuo codice istanzia direttamente un oggetto – per esempio, `new MySQLConnector()`—crea una dipendenza codificata in modo rigido. Questo forte accoppiamento tra il client e l’implementazione concreta può ostacolare seriamente l’evoluzione di un sistema.
 
 Per applicazioni semplici con un insieme stabile di requisiti, questo approccio diretto può essere sufficiente. Ma con l’aumentare della complessità, il design diventa fragile. Considera una piattaforma SaaS che inizialmente supporta un solo provider di archiviazione file. La logica di business è probabilmente piena di `new AWSS3Storage()`. Cosa succede quando i requisiti di business cambiano e devi aggiungere il supporto per [Azure Blob Storage](https://azure.microsoft.com/en-us/products/storage/blobs) o [Google Cloud Storage](https://cloud.google.com/storage)?
 
@@ -37,7 +37,7 @@ Questa istanziazione diretta impone costi di business tangibili:
 
 > Un’architettura che non può adattarsi a nuovi requisiti è un’architettura che sta fallendo il business. Il costo della rigidità si paga in funzionalità ritardate, frustrazione degli sviluppatori e opportunità perdute.
 
-Per costruire sistemi resilienti, è fondamentale separare il *cosa* dal *come*. Il codice client dovrebbe specificare *cosa* gli serve—un oggetto in grado di archiviare un file—ma non dovrebbe essere responsabile di *come* quell’oggetto viene costruito. Il factory pattern offre una soluzione strutturata a questo problema incapsulando la logica di creazione, consentendo al resto dell’applicazione di rimanere agile e adattabile.
+Per costruire sistemi resilienti, è fondamentale separare il *cosa* dal *come*. Il codice client dovrebbe specificare *cosa* gli serve – un oggetto in grado di archiviare un file – ma non dovrebbe essere responsabile di *come* quell’oggetto viene costruito. Il factory pattern offre una soluzione strutturata a questo problema incapsulando la logica di creazione, consentendo al resto dell’applicazione di rimanere agile e adattabile.
 
 ## Simple Factory vs. Factory Method: selezionare l’astrazione appropriata
 
@@ -84,7 +84,7 @@ Per risolvere questo problema, la classe `DataProcessor` dichiarerebbe un metodo
 | **Complessità** | Bassa. Facile da implementare e comprendere. | Moderata. Richiede una gerarchia di classi, che può aggiungere complessità. |
 | **Ideale per** | Applicazioni piccole o casi in cui l’insieme di tipi di oggetti è stabile e difficilmente cambierà. | Framework, librerie o sistemi grandi in cui nuovi tipi verranno aggiunti nel tempo. |
 
-La Simple Factory è un eccellente punto di partenza per rifattorizzare la logica di creazione degli oggetti. Tuttavia, per sistemi progettati per crescere—come una piattaforma SaaS in cui nuove integrazioni fanno parte della roadmap di business—il Factory Method fornisce una base più robusta e scalabile.
+La Simple Factory è un eccellente punto di partenza per rifattorizzare la logica di creazione degli oggetti. Tuttavia, per sistemi progettati per crescere – come una piattaforma SaaS in cui nuove integrazioni fanno parte della roadmap di business – il Factory Method fornisce una base più robusta e scalabile.
 
 ## Esempi di implementazione pronti per la produzione
 
@@ -371,7 +371,7 @@ Le prestazioni dovrebbero diventare una preoccupazione solo se stai istanziando 
 
 ### Il pattern factory può essere usato nella programmazione funzionale?
 
-Sì. Sebbene il pattern abbia avuto origine nella programmazione orientata agli oggetti, il suo principio fondamentale—separare la creazione dall’uso—è universale. In un paradigma funzionale, una factory non è una classe ma una funzione di ordine superiore. Questa funzione accetterebbe come argomento una configurazione o un identificatore di tipo e restituirebbe una nuova funzione o una struttura dati adattata a un compito specifico. L’obiettivo resta identico: nascondere i dettagli di implementazione al codice client.
+Sì. Sebbene il pattern abbia avuto origine nella programmazione orientata agli oggetti, il suo principio fondamentale – separare la creazione dall’uso – è universale. In un paradigma funzionale, una factory non è una classe ma una funzione di ordine superiore. Questa funzione accetterebbe come argomento una configurazione o un identificatore di tipo e restituirebbe una nuova funzione o una struttura dati adattata a un compito specifico. L’obiettivo resta identico: nascondere i dettagli di implementazione al codice client.
 
 ### Una Simple Factory è considerata un pattern di design “vero”?
 

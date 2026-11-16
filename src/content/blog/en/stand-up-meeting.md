@@ -190,7 +190,7 @@ Start with two high-impact metrics:
 
 These metrics are leading indicators of your team's agility and operational health. A rising Blocker Resolution Time, for example, may indicate external dependencies that require intervention from senior leadership. Understanding the function of a [Program Management Officer](https://devisia.pro/en/blog/responsabile-gestione-programmi) can provide context for managing such cross-team dependencies.
 
-Similarly, a high average Work Item Age suggests the team may be violating Work-In-Progress (WIP) limits—a common cause of context switching and reduced throughput. The stand up is the ideal forum to address this by shifting the focus from *starting* work to *finishing* work.
+Similarly, a high average Work Item Age suggests the team may be violating Work-In-Progress (WIP) limits – a common cause of context switching and reduced throughput. The stand up is the ideal forum to address this by shifting the focus from *starting* work to *finishing* work.
 
 Measuring the stand up's impact fosters a culture of accountability and data-driven continuous improvement.
 

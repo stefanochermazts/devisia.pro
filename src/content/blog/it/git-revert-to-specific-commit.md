@@ -23,7 +23,7 @@ Quando devi annullare le modifiche di uno specifico commit in un repository cond
 
 In qualsiasi progetto software, da una piattaforma SaaS a un complesso sistema di AI, l'introduzione di bug è una certezza operativa. Uno sviluppatore potrebbe pushare un commit che degrada le prestazioni dell'API, rompe una funzionalità critica o introduce una vulnerabilità di sicurezza. L'impatto sul business può essere immediato e grave.
 
-La sfida non è prevenire tutti gli errori, ma avere un processo robusto e prevedibile per correggerli senza interrompere il team di sviluppo o corrompere il codebase. Un approccio ingenuo — come riscrivere forzatamente la cronologia — può trasformare un singolo commit errato in un guasto di sincronizzazione a livello di team. È qui che padroneggiare `git revert` su un commit specifico diventa una competenza imprescindibile per la leadership tecnica.
+La sfida non è prevenire tutti gli errori, ma avere un processo robusto e prevedibile per correggerli senza interrompere il team di sviluppo o corrompere il codebase. Un approccio ingenuo – come riscrivere forzatamente la cronologia – può trasformare un singolo commit errato in un guasto di sincronizzazione a livello di team. È qui che padroneggiare `git revert` su un commit specifico diventa una competenza imprescindibile per la leadership tecnica.
 
 ![Diagramma che mostra una cronologia di commit con un 'bad commit' evidenziato e un successivo 'revert commit'.](https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/3ae1402b-4185-4edf-9c64-cf4be57dd259/git-revert-to-specific-commit-git-revert.jpg)
 
@@ -167,7 +167,7 @@ error: commit <merge-commit-hash> is a merge but no mainline was specified.
 fatal: revert failed
 ```
 
-Questo errore si verifica perché un merge commit ha almeno due genitori: il ramo in cui è stato eseguito il merge (es. `main`) e il ramo da cui è stato fatto il merge (es. `feature/new-auth`). Git richiede che tu specifichi quale storia dei genitori preservare — quale lato del merge rappresenta la "mainline" che vuoi mantenere. Fornisci questa istruzione con il flag `--mainline` (o `-m`), seguito da un numero che indica il genitore.
+Questo errore si verifica perché un merge commit ha almeno due genitori: il ramo in cui è stato eseguito il merge (es. `main`) e il ramo da cui è stato fatto il merge (es. `feature/new-auth`). Git richiede che tu specifichi quale storia dei genitori preservare – quale lato del merge rappresenta la "mainline" che vuoi mantenere. Fornisci questa istruzione con il flag `--mainline` (o `-m`), seguito da un numero che indica il genitore.
 
 *   `git revert <merge-commit-hash> -m 1`: Questo indica a Git di mantenere la storia del primo genitore (il ramo di destinazione, ad es., `main`) e annullare le modifiche introdotte dal secondo genitore (il ramo feature).
 *   `git revert <merge-commit-hash> -m 2`: Questo farebbe l'opposto, che è quasi mai l'azione desiderata quando si risolve un bug sul ramo main.
@@ -280,11 +280,11 @@ Implementare linee guida chiave è imprescindibile. Le **regole di protezione de
 
 Il livello successivo di difesa è la revisione obbligatoria tramite **pull request (PR)**. Questo requisito semplice assicura che almeno un altro ingegnere riveda il codice prima che venga unito, fungendo da checkpoint critico per qualità, condivisione della conoscenza e rispetto degli standard.
 
-Questo processo è potenziato da una solida pipeline **Continuous Integration/Continuous Deployment (CI/CD)**. Ogni PR dovrebbe attivare automaticamente una suite completa di test automatici—unitari, di integrazione e end-to-end—per convalidare le modifiche. Puoi scoprire di più su come costruire un sistema di delivery resiliente nella nostra [guida completa alle pipeline CI/CD](https://devisia.pro/en/blog/pipeline-ci-cd).
+Questo processo è potenziato da una solida pipeline **Continuous Integration/Continuous Deployment (CI/CD)**. Ogni PR dovrebbe attivare automaticamente una suite completa di test automatici – unitari, di integrazione e end-to-end – per convalidare le modifiche. Puoi scoprire di più su come costruire un sistema di delivery resiliente nella nostra [guida completa alle pipeline CI/CD](https://devisia.pro/en/blog/pipeline-ci-cd).
 
 Questa validazione automatizzata agisce come una rete di sicurezza critica. Se i test falliscono, il merge viene bloccato. Se comunque passa un bug, la combinazione di commit atomici e una cronologia PR chiara rende l'operazione `git revert` rapida e precisa. Secondo [approfondimenti sui team di ingegneria ad alte prestazioni](https://linearb.io/blog/git-analytics), i team d'élite mantengono il rework sotto il **3%** e conservano un New Work Rate oltre l'**86%**, in parte perché usano strumenti come `git revert` per correggere i difetti senza creare nuovo debito tecnico. Con il **74%** delle organizzazioni che praticano continuous deployment che si affidano al controllo versione, un workflow favorevole al revert è chiaramente collegato a qualità superiore e recupero più rapido.
 
-In ultima analisi, costruire questo workflow significa trattare il tuo processo di sviluppo come un componente dell'architettura del prodotto—un sistema progettato per la resilienza, dove `git revert to specific commit` è solo una parte ben oliata di una macchina costruita per il successo a lungo termine.
+In ultima analisi, costruire questo workflow significa trattare il tuo processo di sviluppo come un componente dell'architettura del prodotto – un sistema progettato per la resilienza, dove `git revert to specific commit` è solo una parte ben oliata di una macchina costruita per il successo a lungo termine.
 
 ## Domande frequenti su Git Revert
 

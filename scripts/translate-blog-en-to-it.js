@@ -246,26 +246,134 @@ async function callOpenAIChatCompletions({ model, messages }) {
   throw new Error('OpenAI API failed after retries.');
 }
 
-async function translateMetaWithOpenAI({ title, meta_description }) {
-  const model = process.env.OPENAI_MODEL || 'gpt-5-mini';
+const DEFAULT_OPENAI_MODEL = 'gpt-5.4';
+const DEFAULT_ANTHROPIC_MODEL = 'claude-sonnet-4-5';
 
-  const systemPrompt = `You are a professional translator and SEO copywriter for a software company called Devisia.
-Translate the following fields from English to Italian.
+function resolveLLMProvider() {
+  const explicit = String(process.env.TRANSLATION_PROVIDER ?? '').trim().toLowerCase();
+  if (explicit === 'anthropic' || explicit === 'claude') return 'anthropic';
+  if (explicit === 'openai') return 'openai';
+  if (process.env.ANTHROPIC_API_KEY && !process.env.OPENAI_API_KEY) return 'anthropic';
+  return 'openai';
+}
+
+export function normalizeItalianEditorialTypography(markdown) {
+  const lines = String(markdown ?? '').split('\n');
+  let inCodeFence = false;
+
+  return lines
+    .map((line) => {
+      if (/^\s*```/.test(line)) {
+        inCodeFence = !inCodeFence;
+        return line;
+      }
+      if (inCodeFence) return line;
+
+      // Protect inline code spans and markdown links/images before normalizing em-dashes
+      const placeholders = [];
+      const protectedLine = line.replace(/(`[^`]+`|!\[[^\]]*\]\([^)]+\)|\[[^\]]*\]\([^)]+\))/g, (match) => {
+        const token = `__MD_PROTECT_${placeholders.length}__`;
+        placeholders.push(match);
+        return token;
+      });
+
+      // Replace unspaced American em-dashes (word—word) with spaced en-dash (word – word)
+      const cleaned = protectedLine
+        .replace(/([A-Za-zÀ-ÿ0-9”"')])—([A-Za-zÀ-ÿ0-9“"'(])/g, '$1 – $2')
+        .replace(/\s+—\s+/g, ' – ');
+
+      return cleaned.replace(/__MD_PROTECT_(\d+)__/g, (_, idx) => placeholders[Number(idx)]);
+    })
+    .join('\n');
+}
+
+async function callAnthropicMessages({ model, systemPrompt, userPrompt }) {
+  const apiKey = requireEnv('ANTHROPIC_API_KEY');
+  const maxAttempts = Number.parseInt(process.env.OPENAI_MAX_RETRIES ?? '5', 10);
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      const res = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+        },
+        body: JSON.stringify({
+          model,
+          max_tokens: 8192,
+          system: systemPrompt,
+          messages: [{ role: 'user', content: `${userPrompt}\n\nRispondi esclusivamente con un oggetto JSON valido.` }],
+        }),
+      });
+
+      if (!res.ok) {
+        const text = await res.text().catch(() => '');
+        const summary = summarizeOpenAIErrorBody(text) || res.statusText;
+        if (isRetryableOpenAIStatus(res.status) && attempt < maxAttempts) {
+          const delayMs = Math.min(60_000, 2_000 * 2 ** (attempt - 1));
+          console.warn(`Anthropic API ${res.status} (${summary}). Retry ${attempt}/${maxAttempts - 1} in ${Math.round(delayMs / 1000)}s…`);
+          await sleep(delayMs);
+          continue;
+        }
+        throw new Error(`Anthropic API error (${res.status}): ${summary}`);
+      }
+
+      const data = await res.json();
+      const rawText = data?.content?.find((c) => c.type === 'text')?.text ?? '';
+      const jsonMatch = rawText.match(/\{[\s\S]*\}/);
+      if (!jsonMatch) {
+        throw new Error(`Anthropic did not return valid JSON. Raw: ${String(rawText).slice(0, 500)}`);
+      }
+      return JSON.parse(jsonMatch[0]);
+    } catch (err) {
+      const isNetworkError = err instanceof TypeError;
+      if (isNetworkError && attempt < maxAttempts) {
+        const delayMs = Math.min(60_000, 2_000 * 2 ** (attempt - 1));
+        await sleep(delayMs);
+        continue;
+      }
+      throw err;
+    }
+  }
+
+  throw new Error('Anthropic API failed after retries.');
+}
+
+async function callStructuredLLM({ systemPrompt, userPrompt }) {
+  const provider = resolveLLMProvider();
+  if (provider === 'anthropic') {
+    const model = process.env.ANTHROPIC_MODEL || DEFAULT_ANTHROPIC_MODEL;
+    return callAnthropicMessages({ model, systemPrompt, userPrompt });
+  }
+  const model = process.env.OPENAI_MODEL || DEFAULT_OPENAI_MODEL;
+  return callOpenAIChatCompletions({
+    model,
+    messages: [
+      { role: 'system', content: systemPrompt },
+      { role: 'user', content: userPrompt },
+    ],
+  });
+}
+
+async function translateMetaWithOpenAI({ title, meta_description }) {
+  const systemPrompt = `You are a senior Italian technical editor and SEO copywriter for Devisia (B2B custom software, governed AI, and operational compliance).
+Translate and adapt the following metadata from English to natural, authoritative Italian.
 Rules:
-1. Keep meaning accurate and natural Italian.
-2. Avoid overly literal translations of role titles and industry terms; prefer common Italian usage in tech.
-3. Keep established English role labels when they are clearer for the target audience.
-4. Use this glossary consistently:
+1. Write fluent, idiomatic Italian for CTOs, tech leads, and B2B decision-makers. Avoid literal calques and robotic phrasing.
+2. Never use unspaced em-dashes (—) or repetitive "Non X, ma Y" formulas.
+3. Keep established English technical/role terms when standard in Italian tech:
 - engineering leader -> engineering leader
 - tech lead -> tech lead
 - product manager -> product manager
 - growth -> growth
 - go-to-market -> go-to-market
-- scale/scale up -> scalare/scalabilità (when it reads naturally)
-5. Return the result as a JSON object with these keys: "title", "meta_description".`;
+- scale/scale up -> scalare/scalabilità (when natural)
+4. Return the result as a JSON object with these keys: "title", "meta_description".`;
 
   const userPrompt = [
-    'Translate these fields from English to Italian.',
+    'Translate and adapt these fields from English to natural Italian.',
     '',
     'TITLE:',
     title,
@@ -274,39 +382,35 @@ Rules:
     meta_description,
   ].join('\n');
 
-  const parsed = await callOpenAIChatCompletions({
-    model,
-    messages: [
-      { role: 'system', content: systemPrompt },
-      { role: 'user', content: userPrompt },
-    ],
-  });
+  const parsed = await callStructuredLLM({ systemPrompt, userPrompt });
 
   if (!parsed.title || !parsed.meta_description) {
-    throw new Error('OpenAI JSON is missing one of: title, meta_description.');
+    throw new Error('LLM JSON is missing one of: title, meta_description.');
   }
 
   return parsed;
 }
 
 async function translateMarkdownChunkWithOpenAI({ content_markdown, attempt }) {
-  const model = process.env.OPENAI_MODEL || 'gpt-5-mini';
-
-  const systemPrompt = `You are a professional translator for a software company called Devisia.
-Translate the following Markdown content from English to Italian.
+  const systemPrompt = `You are a senior Italian technical editor for Devisia (B2B software engineering, governed AI, operational compliance).
+Translate and editorially adapt the following Markdown content from English to natural, human-sounding Italian.
 Rules:
 1. Maintain the exact same Markdown structure, headings, bolding, lists, and links.
 2. Do NOT translate image URLs or link URLs. Do NOT change any URLs.
 3. DO translate image alt text inside markdown images: ![alt text here](url)
 4. DO translate markdown table headers and cell text. Keep table layout, pipes, and alignment rows unchanged.
 5. Preserve code blocks, inline code, iframe embeds, and HTML tags exactly (do not translate code or URLs inside them).
-6. Do NOT output the original English text. Output must be Italian.
-7. Return the result as a JSON object with this key: "content_markdown".`;
+6. Anti-AI Italian editorial guidelines:
+   - Never use unspaced American em-dashes (parola—parola); use colons (:), commas, parentheses, or spaced en-dashes ( – ).
+   - Avoid literal English syntax calques (e.g. mechanical "Non si misura in base a X. Si misura in base a Y." or stiff passive constructions).
+   - Write concrete, direct B2B technical prose as an experienced Italian software architect would write it.
+7. Do NOT output the original English text. Output must be Italian.
+8. Return the result as a JSON object with this key: "content_markdown".`;
 
   // NOTE: Do not JSON.stringify the markdown input: the escaping (\n, \") makes long posts
   // much harder to translate and may cause the model to "echo" the input content_markdown.
   const userPrompt = [
-    `Translate this markdown chunk from English to Italian. Attempt ${attempt}.`,
+    `Translate and adapt this markdown chunk from English to natural Italian. Attempt ${attempt}.`,
     '',
     'CONTENT_MARKDOWN:',
     '<<<MARKDOWN',
@@ -314,19 +418,13 @@ Rules:
     'MARKDOWN',
   ].join('\n');
 
-  const parsed = await callOpenAIChatCompletions({
-    model,
-    messages: [
-      { role: 'system', content: systemPrompt },
-      { role: 'user', content: userPrompt },
-    ],
-  });
+  const parsed = await callStructuredLLM({ systemPrompt, userPrompt });
 
   if (!parsed.content_markdown) {
-    throw new Error('OpenAI JSON is missing: content_markdown.');
+    throw new Error('LLM JSON is missing: content_markdown.');
   }
 
-  return parsed.content_markdown;
+  return normalizeItalianEditorialTypography(parsed.content_markdown);
 }
 
 function splitMarkdownIntoChunks(markdown, { maxChars = 12000 } = {}) {
@@ -388,7 +486,40 @@ async function translateMarkdownInChunks(content_markdown) {
   return translatedChunks.join('\n');
 }
 
+async function normalizeExistingBlogPosts(dirPath, label) {
+  const files = (await fs.readdir(dirPath)).filter(isMarkdownFile).sort((a, b) => a.localeCompare(b));
+  let changed = 0;
+
+  for (const filename of files) {
+    const filePath = path.join(dirPath, filename);
+    const { raw, parsed } = await readMarkdownFile(filePath);
+    const normalizedBody = normalizeItalianEditorialTypography(parsed.content);
+    if (normalizedBody !== parsed.content) {
+      const updatedRaw = buildItalianMarkdown({
+        frontmatter: parsed.data,
+        body: normalizedBody,
+      });
+      if (updatedRaw !== raw) {
+        await fs.writeFile(filePath, updatedRaw, 'utf8');
+        changed++;
+      }
+    }
+  }
+
+  console.log(`Normalized editorial typography in ${changed}/${files.length} ${label} blog post(s).`);
+}
+
 async function main() {
+  if (process.argv.includes('--normalize-existing-it')) {
+    await normalizeExistingBlogPosts(IT_DIR, 'IT');
+    return;
+  }
+  if (process.argv.includes('--normalize-existing-all')) {
+    await normalizeExistingBlogPosts(IT_DIR, 'IT');
+    await normalizeExistingBlogPosts(EN_DIR, 'EN');
+    return;
+  }
+
   const files = await fs.readdir(EN_DIR);
   const markdownFiles = files.filter(isMarkdownFile).sort((a, b) => a.localeCompare(b));
   const onlyFilter = parseOnlyTranslateFilter();

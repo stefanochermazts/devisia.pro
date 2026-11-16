@@ -17,7 +17,7 @@ tags:
 translationSlug: gdpr-art-9
 translationSourceHash: 7a28050c0b71e9236ca628ece09cea0f59b6487efd8740980c38afa6b9ce5026
 ---
-Se c’è una parte del GDPR che richiede l’attenzione dei leader tecnologici, è **l’Articolo 9**. Disciplina ciò che il regolamento definisce “dati appartenenti a categorie particolari”—le informazioni personali più sensibili che un sistema può elaborare.
+Se c’è una parte del GDPR che richiede l’attenzione dei leader tecnologici, è **l’Articolo 9**. Disciplina ciò che il regolamento definisce “dati appartenenti a categorie particolari” – le informazioni personali più sensibili che un sistema può elaborare.
 
 Per qualsiasi software, e in particolare per i sistemi di IA, gestire in modo errato questi dati non è soltanto un problema di conformità; è una minaccia diretta alla sostenibilità del tuo prodotto e alla reputazione della tua azienda.
 
@@ -58,7 +58,7 @@ Questa guida offre una roadmap pragmatica per i team di engineering e prodotto. 
 
 ## Identificare i dati appartenenti a categorie particolari nei tuoi sistemi
 
-Sapere quali sono le definizioni dell’Articolo 9 del GDPR è una cosa; identificare i dati appartenenti a categorie particolari in un ambiente software reale è un’altra. Per ingegneri e product manager, non si tratta di un’astrazione legale. Si tratta di riconoscere dati ad alto rischio che fluiscono attraverso le API, risiedono nei database o vengono elaborati dai modelli di IA—spesso senza un’etichetta chiara di “sensibile”.
+Sapere quali sono le definizioni dell’Articolo 9 del GDPR è una cosa; identificare i dati appartenenti a categorie particolari in un ambiente software reale è un’altra. Per ingegneri e product manager, non si tratta di un’astrazione legale. Si tratta di riconoscere dati ad alto rischio che fluiscono attraverso le API, risiedono nei database o vengono elaborati dai modelli di IA – spesso senza un’etichetta chiara di “sensibile”.
 
 Un approccio superficiale, che presume che i dati non siano “particolari” se non vengono etichettati esplicitamente, rappresenta un rischio significativo di conformità. I tuoi sistemi potrebbero elaborare queste informazioni in modo implicito e, secondo il GDPR, l’ignoranza non è una difesa.
 
@@ -90,7 +90,7 @@ L’obiettivo è promuovere una mentalità proattiva. Prima di elaborare un nuov
 
 ## Trovare una base giuridica per il trattamento
 
-**L’Articolo 9 del GDPR** inizia con un divieto. Per impostazione predefinita, l’elaborazione di qualsiasi dato appartenente a categorie particolari è vietata. Per farlo legalmente, devi stabilire una deroga valida dall’elenco specifico dell’Articolo 9(2). Questa è una decisione fondamentale che deve essere presa—e documentata—prima che i tuoi sistemi elaborino questi dati.
+**L’Articolo 9 del GDPR** inizia con un divieto. Per impostazione predefinita, l’elaborazione di qualsiasi dato appartenente a categorie particolari è vietata. Per farlo legalmente, devi stabilire una deroga valida dall’elenco specifico dell’Articolo 9(2). Questa è una decisione fondamentale che deve essere presa – e documentata – prima che i tuoi sistemi elaborino questi dati.
 
 <iframe width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/Osc_mEgN9ho" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
@@ -132,7 +132,7 @@ La tua scelta della base giuridica determina la progettazione del sistema, dai m
 
 Avere una base giuridica è un prerequisito; costruire un sistema che la faccia rispettare tecnicamente è la sfida ingegneristica. Per CTO e responsabili tecnici, un sistema conforme non riguarda solo le policy: riguarda l’architettura.
 
-Non puoi trattare i dati appartenenti a categorie particolari come gli altri dati degli utenti. Richiedono gestione, archiviazione e controlli di accesso diversi. Questa mentalità—la privacy come scelta architetturale—è l’unico modo per costruire software affidabile e difendibile che gestisca le informazioni coperte dall’**Art. 9 del GDPR**.
+Non puoi trattare i dati appartenenti a categorie particolari come gli altri dati degli utenti. Richiedono gestione, archiviazione e controlli di accesso diversi. Questa mentalità – la privacy come scelta architetturale – è l’unico modo per costruire software affidabile e difendibile che gestisca le informazioni coperte dall’**Art. 9 del GDPR**.
 
 ### La soluzione: segregazione dei dati e modello “vault”
 
@@ -155,7 +155,7 @@ Una tecnica efficace è la **pseudonimizzazione**. Questo processo sostituisce g
 > **Distinzione cruciale:** La pseudonimizzazione non è anonimizzazione. Con la pseudonimizzazione, i dati originali possono ancora essere re-identificati usando una chiave separata. Questo riduce il rischio pur preservando l’utilità dei dati per analisi o addestramento di modelli. La vera anonimizzazione, in cui la re-identificazione è impossibile, è molto più difficile da ottenere e spesso distrugge il valore dei dati.
 
 Dal punto di vista della progettazione del sistema, questo significa che la tua architettura deve:
-*   Archiviare la chiave di mappatura che collega gli pseudonimi alle identità reali in una posizione separata e altamente sicura—idealmente, all’interno del tuo data vault.
+*   Archiviare la chiave di mappatura che collega gli pseudonimi alle identità reali in una posizione separata e altamente sicura – idealmente, all’interno del tuo data vault.
 *   Eseguire attività di analisi e machine learning sul dataset pseudonimizzato, non sui dati grezzi e identificabili.
 *   Implementare policy automatiche di conservazione dei dati che cancellino in modo permanente i dati appartenenti a categorie particolari una volta scaduta la relativa base giuridica.
 
@@ -209,7 +209,7 @@ Questi metodi sono complessi e comportano compromessi in termini di accuratezza 
 
 ### Il diritto a una spiegazione
 
-Quando un’AI prende una decisione automatizzata utilizzando dati appartenenti a categorie particolari—come la valutazione di un rischio sanitario—quella decisione non può essere una scatola nera. Il GDPR riconosce agli individui il diritto a informazioni significative sulla logica alla base di tali decisioni.
+Quando un’AI prende una decisione automatizzata utilizzando dati appartenenti a categorie particolari – come la valutazione di un rischio sanitario – quella decisione non può essere una scatola nera. Il GDPR riconosce agli individui il diritto a informazioni significative sulla logica alla base di tali decisioni.
 
 Questo significa che la **spiegabilità del modello** non è solo una funzionalità auspicabile; è un requisito di conformità. Il tuo sistema deve essere in grado di fornire una ragione chiara per il suo output. Costruire strumenti per la spiegabilità deve essere una parte fondamentale del tuo processo di sviluppo ML fin dal primo giorno.
 

@@ -28,7 +28,7 @@ Per CTO, architetti e responsabili di prodotto, considerare il DPA sotto questa 
 
 ### Il problema: integrazione ingenua dei fornitori
 
-Considera uno scenario comune: un’azienda B2B SaaS integra un servizio di analytics di terze parti per analizzare il comportamento degli utenti. Il team di ingegneria integra l’SDK e i dati di interazione degli utenti — che possono includere identificativi personali come indirizzi email, ID utente o indirizzi IP — iniziano a fluire verso i server del fornitore.
+Considera uno scenario comune: un’azienda B2B SaaS integra un servizio di analytics di terze parti per analizzare il comportamento degli utenti. Il team di ingegneria integra l’SDK e i dati di interazione degli utenti – che possono includere identificativi personali come indirizzi email, ID utente o indirizzi IP – iniziano a fluire verso i server del fornitore.
 
 ![Diagramma disegnato a mano che illustra il flusso dei dati da un titolare attraverso sicurezza e più responsabili, fino al DPA.](https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/ff9dcfdc-4cf7-4d4d-85ff-69d99e7fc8df/data-processing-agreement-data-processing.jpg)
 
@@ -57,7 +57,7 @@ Analizziamo le clausole essenziali che incidono direttamente sull’architettura
 Ogni DPA inizia definendo il **titolare del trattamento** e il **responsabile del trattamento**. Questa non è solo una distinzione legale; ha profonde implicazioni tecniche.
 
 *   **Titolare del trattamento:** Questa è la tua organizzazione. Determini il “perché” e il “come” del trattamento dei dati. Sei proprietario della relazione con l’utente finale (l’interessato) e hai la responsabilità primaria della protezione dei dati.
-*   **Responsabile del trattamento:** Questo è il tuo fornitore — provider cloud, strumento di analytics, servizio AI. Trattano i dati **solo** secondo le tue istruzioni documentate. Sono un’estensione della tua infrastruttura, non un’entità indipendente.
+*   **Responsabile del trattamento:** Questo è il tuo fornitore – provider cloud, strumento di analytics, servizio AI. Trattano i dati **solo** secondo le tue istruzioni documentate. Sono un’estensione della tua infrastruttura, non un’entità indipendente.
 
 Questa distinzione stabilisce il fondamento di tutte le altre clausole. Chiarisce che il responsabile non può legalmente utilizzare i dati dei tuoi clienti per i propri scopi, come l’addestramento dei propri modelli AI pubblici, a meno che tu non lo autorizzi esplicitamente.
 
@@ -164,7 +164,7 @@ Senza questi dettagli, la vostra risposta all'incidente sarà ritardata, causand
 
 Le clausole di responsabilità e di manleva affrontano le conseguenze finanziarie di una violazione o di una sanzione regolatoria. Questa è spesso una delle sezioni più ampiamente negoziate di un DPA.
 
-Una clausola di manleva può richiedere al responsabile del trattamento di coprire i vostri costi — incluse sanzioni, spese legali e danni — derivanti dalla sua mancata conformità al DPA. Ciò fornisce una fondamentale protezione finanziaria, garantendo che la vostra organizzazione non sia ritenuta responsabile per un guasto che non ha causato.
+Una clausola di manleva può richiedere al responsabile del trattamento di coprire i vostri costi – incluse sanzioni, spese legali e danni – derivanti dalla sua mancata conformità al DPA. Ciò fornisce una fondamentale protezione finanziaria, garantendo che la vostra organizzazione non sia ritenuta responsabile per un guasto che non ha causato.
 
 ## Checklist operativa per l'implementazione di un DPA
 
@@ -247,7 +247,7 @@ Ecco risposte concise alle domande più comuni poste da leader tecnici e azienda
 
 Se un fornitore tratta dati personali per tuo conto, è richiesto un DPA. Questo vale non solo per i principali provider cloud, ma anche per strumenti di analytics, piattaforme di email marketing, CRM e software di assistenza clienti.
 
-Il fattore determinante è se il fornitore agisce come **responsabile del trattamento** — trattando dati personali secondo le tue istruzioni. In tal caso, normative come il GDPR impongono un DPA. Il rischio di conformità è indipendente dalle dimensioni del fornitore.
+Il fattore determinante è se il fornitore agisce come **responsabile del trattamento** – trattando dati personali secondo le tue istruzioni. In tal caso, normative come il GDPR impongono un DPA. Il rischio di conformità è indipendente dalle dimensioni del fornitore.
 
 ### Qual è la differenza tra un DPA e un Master Service Agreement (MSA)?
 

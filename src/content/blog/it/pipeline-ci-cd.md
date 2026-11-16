@@ -21,7 +21,7 @@ Una pipeline CI/CD è il processo automatizzato che porta il software dal commit
 
 ## Il problema: perché la consegna manuale è insostenibile
 
-In un mercato competitivo, la velocità e l’affidabilità della delivery del software sono fattori diretti dei risultati di business. I processi di deployment manuale introducono attriti significativi, portando a ritardi inaccettabili e a un’elevata probabilità di errore umano. Ogni passaggio manuale — compilare il codice, eseguire i test, configurare gli ambienti o distribuire gli artefatti — diventa un potenziale punto di failure.
+In un mercato competitivo, la velocità e l’affidabilità della delivery del software sono fattori diretti dei risultati di business. I processi di deployment manuale introducono attriti significativi, portando a ritardi inaccettabili e a un’elevata probabilità di errore umano. Ogni passaggio manuale – compilare il codice, eseguire i test, configurare gli ambienti o distribuire gli artefatti – diventa un potenziale punto di failure.
 
 Questo attrito crea problemi sistemici:
 
@@ -79,7 +79,7 @@ In questa fase, l’integrità del processo è fondamentale. Imponendo pratiche 
 
 Dopo un commit riuscito su un branch designato, il server di **Continuous Integration (CI)** (ad es. [Jenkins](https://www.jenkins.io/), GitLab CI) recupera l’ultimo codice sorgente e avvia il processo di build. L’obiettivo è compilare il codice e impacchettarlo in un’unica unità immutabile e distribuibile nota come **artifact**.
 
-Nelle architetture moderne, questo artifact è tipicamente un’immagine container [Docker](https://www.docker.com/). La containerizzazione è una scelta architetturale critica perché racchiude l’applicazione insieme a tutte le sue dipendenze — librerie, runtime e file di configurazione — in un pacchetto isolato. Questo garantisce che l’applicazione venga eseguita in modo coerente in tutti gli ambienti, eliminando la classe di problemi del tipo “funziona sulla mia macchina”.
+Nelle architetture moderne, questo artifact è tipicamente un’immagine container [Docker](https://www.docker.com/). La containerizzazione è una scelta architetturale critica perché racchiude l’applicazione insieme a tutte le sue dipendenze – librerie, runtime e file di configurazione – in un pacchetto isolato. Questo garantisce che l’applicazione venga eseguita in modo coerente in tutti gli ambienti, eliminando la classe di problemi del tipo “funziona sulla mia macchina”.
 
 ### La fase Test: validazione automatizzata
 
@@ -127,7 +127,7 @@ I dati di settore confermano l'adozione diffusa di queste pratiche. Oggi, l'**83
 
 ### Pipelines-as-Code: una pratica non negoziabile
 
-Indipendentemente dalla struttura del repository, una pratica è essenziale: definire la propria pipeline usando **Pipelines-as-Code**. Ciò comporta il commit della definizione della pipeline—tipicamente un file YAML per strumenti come [GitHub Actions](https://github.com/features/actions) o [GitLab CI/CD](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)—nello stesso repository del codice dell'applicazione.
+Indipendentemente dalla struttura del repository, una pratica è essenziale: definire la propria pipeline usando **Pipelines-as-Code**. Ciò comporta il commit della definizione della pipeline – tipicamente un file YAML per strumenti come [GitHub Actions](https://github.com/features/actions) o [GitLab CI/CD](https://about.gitlab.com/stages-devops-lifecycle/continuous-integration/)—nello stesso repository del codice dell'applicazione.
 
 > Trattando la configurazione della pipeline come codice, la trasformi da un processo fragile e configurato manualmente in un asset versionato, verificabile e recuperabile. Questo è un principio fondamentale per costruire sistemi software resilienti e manutenibili.
 
@@ -173,7 +173,7 @@ Le metriche chiave da monitorare includono:
 
 L'analisi di queste metriche aiuta a identificare i punti di attrito. I dati mostrano che le organizzazioni mature spesso utilizzano più strumenti CI/CD (**il 32% ne usa due**, **il 9% ne usa tre o più**), con [GitHub Actions](https://github.com/features/actions) in testa con un'adozione del **33%** e [Azure DevOps](https://azure.microsoft.com/en-us/products/devops) al **24%**. Ciò riflette una strategia di selezione dei migliori strumenti della categoria per esigenze specifiche come sicurezza e osservabilità. Il ROI è significativo, con **il 44% dei leader che riporta un ritorno 5x** e risparmi superiori a **2,5 milioni di dollari** in tre anni individuando i problemi in anticipo. Altre statistiche CI/CD possono essere trovate su Integrate.io.
 
-Questa mentalità da prodotto—affinare continuamente la pipeline sulla base dei dati—è ciò che distingue un semplice script di automazione da un asset strategico che moltiplica l'efficacia dell'ingegneria.
+Questa mentalità da prodotto – affinare continuamente la pipeline sulla base dei dati – è ciò che distingue un semplice script di automazione da un asset strategico che moltiplica l'efficacia dell'ingegneria.
 
 ## Evitare le insidie comuni e gli anti-pattern delle pipeline
 
@@ -207,7 +207,7 @@ La soluzione consiste nel costruire fiducia nell'automazione. Implementa rilasci
 
 ### Gestione inadeguata dei secret
 
-Codificare hardcoded i secret—chiavi API, credenziali del database, certificati—direttamente negli script della pipeline o nel controllo sorgente è una grave vulnerabilità di sicurezza. Espone credenziali critiche a chiunque abbia accesso al repository o ai log di build.
+Codificare hardcoded i secret – chiavi API, credenziali del database, certificati – direttamente negli script della pipeline o nel controllo sorgente è una grave vulnerabilità di sicurezza. Espone credenziali critiche a chiunque abbia accesso al repository o ai log di build.
 
 Questo non è negoziabile: una pipeline **deve** integrarsi con uno strumento dedicato alla gestione dei secret come [HashiCorp Vault](https://www.vaultproject.io/), [AWS Secrets Manager](https://aws.amazon.com/secrets-manager/) o [Azure Key Vault](https://azure.microsoft.com/en-us/products/key-vault). Le credenziali dovrebbero essere iniettate dinamicamente nell'ambiente di build a runtime e non devono mai essere memorizzate in testo semplice.
 

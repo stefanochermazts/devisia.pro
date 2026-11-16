@@ -20,7 +20,7 @@ I chatbot nel retail sono maturati oltre la fase sperimentale, diventando un’i
 
 ## Il problema: perché i modelli di supporto legacy falliscono su larga scala
 
-La tensione di fondo nel retail moderno è la necessità di offrire interazioni personalizzate e di alta qualità mantenendo al contempo l’efficienza operativa. I modelli di supporto legacy—call center con operatori umani e code email—non riescono a risolvere questa tensione. Sono sotto pressione a causa della crescita dell’e-commerce e delle aspettative dei clienti per un servizio immediato, disponibile 24 ore su 24, 7 giorni su 7.
+La tensione di fondo nel retail moderno è la necessità di offrire interazioni personalizzate e di alta qualità mantenendo al contempo l’efficienza operativa. I modelli di supporto legacy – call center con operatori umani e code email – non riescono a risolvere questa tensione. Sono sotto pressione a causa della crescita dell’e-commerce e delle aspettative dei clienti per un servizio immediato, disponibile 24 ore su 24, 7 giorni su 7.
 
 Non si tratta di un semplice inconveniente; è un problema architetturale sistemico. La questione principale è l’elevato volume di richieste ripetitive e a bassa complessità. Una parte significativa delle interazioni con i clienti riguarda la verifica dello stato degli ordini, la chiarificazione delle politiche di reso o il controllo delle disponibilità di magazzino. Assegnare agenti umani qualificati a queste attività transazionali è inefficiente e costoso. Li distoglie dalla risoluzione di problemi complessi e ad alto valore, dove la loro competenza è più necessaria.
 
@@ -217,7 +217,7 @@ I KPI essenziali del commercio includono:
 
 ### Collegare l'osservabilità tecnica ai risultati di business
 
-Misurare il ROI è uno sforzo collaborativo tra i team di business e di ingegneria. L'osservabilità tecnica integrata nel sistema—log strutturati, tracing distribuito, monitoraggio delle prestazioni—fornisce i dati grezzi necessari per calcolare questi KPI di business.
+Misurare il ROI è uno sforzo collaborativo tra i team di business e di ingegneria. L'osservabilità tecnica integrata nel sistema – log strutturati, tracing distribuito, monitoraggio delle prestazioni – fornisce i dati grezzi necessari per calcolare questi KPI di business.
 
 Ad esempio, un picco di errori API registrati dal tuo sistema di monitoraggio ridurrà direttamente il tuo **tasso FCR**. Un'elevata latenza nelle chiamate API aumenterà il **tempo medio di risoluzione** e avrà un impatto negativo sulla soddisfazione degli utenti.
 
@@ -251,7 +251,7 @@ Alcuni problemi non possono e non devono essere completamente automatizzati. Sit
 
 Questo richiede un workflow **Human-in-the-Loop (HITL)**.
 
-Il vostro sistema deve avere un percorso di escalation fluido. Il chatbot dovrebbe essere addestrato a riconoscere i trigger—come parole chiave specifiche, sentiment negativo o ripetuti fallimenti nel comprendere—che trasferiscono automaticamente la conversazione a un agente reale.
+Il vostro sistema deve avere un percorso di escalation fluido. Il chatbot dovrebbe essere addestrato a riconoscere i trigger – come parole chiave specifiche, sentiment negativo o ripetuti fallimenti nel comprendere – che trasferiscono automaticamente la conversazione a un agente reale.
 
 > Il passaggio di consegne dovrebbe essere invisibile al cliente. L'agente umano deve ricevere immediatamente la cronologia completa della conversazione e il contesto, consentendogli di intervenire senza richiedere al cliente di ripetere le informazioni. Questo mantiene un'esperienza fluida garantendo al contempo che i problemi complessi siano gestiti dal personale appropriato.
 

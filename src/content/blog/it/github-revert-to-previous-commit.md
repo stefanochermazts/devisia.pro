@@ -181,7 +181,7 @@ L’adesione a queste pratiche favorisce una cultura di governance e processo. Q
 
 Uno studio GitClear del 2024 ha rilevato che gli sviluppatori con le migliori performance (99º percentile) eseguono oltre **10.000** commit all’anno e che il **35%** di quel lavoro comporta revert per mantenere la robustezza del sistema. Come [evidenzia un issue di GitHub](https://github.com/anuraghazra/github-readme-stats/issues/4098), anche gli strumenti di tracciamento dei commit possono avere bug, rendendo essenziale una cronologia pulita e intenzionale per metriche di progetto accurate.
 
-> Un processo di revert strutturato è un segno distintivo di un’organizzazione ingegneristica matura. Segnala un impegno verso trasparenza, qualità e collaborazione—principi molto più incisivi della semplice velocità dei commit.
+> Un processo di revert strutturato è un segno distintivo di un’organizzazione ingegneristica matura. Segnala un impegno verso trasparenza, qualità e collaborazione – principi molto più incisivi della semplice velocità dei commit.
 
 Standardizzando il modo in cui il tuo team gestisce un `github revert to previous commit`, rafforzi il principio che la qualità del codice è una responsabilità condivisa. Questo approccio è fondamentale per costruire software affidabile ed è una componente chiave del nostro [codice di condotta](https://devisia.pro/blog/codice-di-condotta) interno.
 
@@ -205,7 +205,7 @@ Questa è un’operazione chirurgica. Non influisce su alcun commit effettuato d
 
 La decisione dipende dall’urgenza e dall’impatto del problema.
 
-*   **Revertire Immediatamente:** Se un commit unito di recente causa un guasto critico—come rompere la build principale, causare un’interruzione del servizio o introdurre una grave vulnerabilità di sicurezza—revertire il merge commit è quasi sempre il percorso più rapido e sicuro per ripristinare la stabilità.
+*   **Revertire Immediatamente:** Se un commit unito di recente causa un guasto critico – come rompere la build principale, causare un’interruzione del servizio o introdurre una grave vulnerabilità di sicurezza – revertire il merge commit è quasi sempre il percorso più rapido e sicuro per ripristinare la stabilità.
 
 *   **Creare una PR di Correzione:** Per bug non critici, regressioni minori o problemi cosmetici, creare una nuova pull request con una correzione mirata è spesso un approccio più pulito. Questo consente al team di esaminare la soluzione specifica senza il rumore contestuale di un revert completo.
 

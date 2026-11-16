@@ -16,7 +16,7 @@ tags:
 translationSlug: article-7-gdpr
 autoTranslateToIt: true
 ---
-For founders, CTOs, and product leaders, consent management has evolved from a legal checkbox into a core architectural challenge. **Article 7 of the GDPR** sets strict, technical conditions for consent that directly impact system design. A superficial approach—treating consent as a mere UI element—creates significant technical debt, compliance risk, and erodes the user trust that modern software products depend on.
+For founders, CTOs, and product leaders, consent management has evolved from a legal checkbox into a core architectural challenge. **Article 7 of the GDPR** sets strict, technical conditions for consent that directly impact system design. A superficial approach – treating consent as a mere UI element – creates significant technical debt, compliance risk, and erodes the user trust that modern software products depend on.
 
 ## Why Consent Is Now a Core Engineering Problem
 
@@ -64,7 +64,7 @@ This translates into two key engineering requirements:
 
 ### Unambiguous and Demonstrable Action
 
-Finally, consent requires an **unambiguous** signal via a clear, affirmative action. A user must actively *do* something—like ticking a box or clicking a button—that your system can reliably record. This recordable event is the foundation of your audit trail.
+Finally, consent requires an **unambiguous** signal via a clear, affirmative action. A user must actively *do* something – like ticking a box or clicking a button – that your system can reliably record. This recordable event is the foundation of your audit trail.
 
 The introduction of **Article 7 GDPR** forced a significant technical shift. When enforcement began, many organizations struggled to implement compliant mechanisms. By December 2018, only **50% of companies** believed they were fully GDPR compliant, with some spending an average of **$1.3 million** on initial compliance efforts. This history underscores the importance of getting the engineering right from the start to avoid costly retrofitting.
 
@@ -171,7 +171,7 @@ This level of honesty builds trust and ensures your implementation of **Article 
 
 The problem is that many systems implement this superficially. A common but dangerous anti-pattern is to just flip a flag in a user's profile from `true` to `false`. This doesn't solve the problem; it creates a legal one. Data collected *before* the withdrawal cannot be processed further for the withdrawn purpose. A proper withdrawal must trigger a verifiable erasure or cessation-of-processing request that ripples through every service that holds that user's data.
 
-The consent process—granular, clear, and contextual—must essentially be run in reverse.
+The consent process – granular, clear, and contextual – must essentially be run in reverse.
 
 ![A three-step compliant consent UI process diagram showing granular choice, clear language, and just-in-time context.](https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/49785276-c0fc-48c8-9322-66fbe93445d6/article-7-gdpr-consent-process.jpg)
 
@@ -199,7 +199,7 @@ Two common implementation challenges are:
 1.  **Data in Backups:** GDPR does not require you to alter immutable backups. However, your documented process must ensure that if a backup is restored, the user's withdrawn consent status is immediately re-applied *before* any data is processed again.
 2.  **Orphaned Data:** In complex systems, data can become "orphaned" in untracked services. Regular data mapping and discovery exercises are the only way to ensure your withdrawal process covers every data store, preventing "zombie data" from persisting after consent is withdrawn.
 
-Building a compliant withdrawal system requires a deep, almost obsessive, understanding of your data landscape. Documenting the end-to-end process is as important as the code itself—it's the evidence that proves you are meeting your obligations.
+Building a compliant withdrawal system requires a deep, almost obsessive, understanding of your data landscape. Documenting the end-to-end process is as important as the code itself – it's the evidence that proves you are meeting your obligations.
 
 ### An Article 7 GDPR Checklist for Your Product Team
 
@@ -225,7 +225,7 @@ Your ability to prove compliance rests on the quality and integrity of your cons
 > Under **Article 7(1)**, the burden of proof is on you. If your logs are incomplete, alterable, or non-existent, you have no defense. A solid audit trail is your primary evidence.
 
 *   **Essential Data Points Logged.** For every consent event, your logs must capture: a unique user ID, a precise timestamp, the specific scope of consent, and the version of the privacy notice presented.
-*   **Immutable Records.** Are your consent logs tamper-proof? They should be stored in an append-only fashion. Records should never be modified—only superseded by a new event, like a withdrawal.
+*   **Immutable Records.** Are your consent logs tamper-proof? They should be stored in an append-only fashion. Records should never be modified – only superseded by a new event, like a withdrawal.
 
 ### Consent Withdrawal Process
 

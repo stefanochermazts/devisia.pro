@@ -19,7 +19,7 @@ translationSourceHash: 9d34fb8a88b08f286b2a885e79fd87a74b1a5f51281324448b6007076
 ---
 L’articolo 14 del GDPR specifica le informazioni che devi fornire agli interessati quando tratti i loro dati personali *senza* ottenerli direttamente da loro. Questo diritto all’informazione è la pietra angolare della trasparenza ogni volta che acquisisci dati da fonti di terze parti, come API di partner, servizi di arricchimento dati o database pubblici. Garantisce che le persone siano consapevoli di chi tratta i loro dati e per quale finalità.
 
-Questa guida è scritta per i responsabili tecnici—CTO, architetti e product manager—che progettano e gestiscono sistemi software reali. Andremo oltre la teoria giuridica e ci concentreremo sui modelli architetturali e sulle realtà operative dell’implementazione dell’articolo 14.
+Questa guida è scritta per i responsabili tecnici – CTO, architetti e product manager – che progettano e gestiscono sistemi software reali. Andremo oltre la teoria giuridica e ci concentreremo sui modelli architetturali e sulle realtà operative dell’implementazione dell’articolo 14.
 
 ## Il Problema: La Sfida Architetturale dei "Dati Nascosti"
 
@@ -78,7 +78,7 @@ Questa tabella traduce i requisiti legali dell’articolo 14 in considerazioni t
 | **Periodo di Conservazione dei Dati** | Per quanto tempo conserverai i dati, o i criteri usati per determinare tale periodo. | Il tuo sistema deve disporre di meccanismi per applicare queste policy, come job di cancellazione automatica o impostazioni TTL (Time-To-Live) sui record. |
 | **Diritti dell’Interessato** | Una dichiarazione che informi le persone dei loro diritti (accesso, rettifica, cancellazione, ecc.). | Il back-end della tua applicazione e tutti gli strumenti amministrativi interni devono essere in grado di gestire queste richieste in modo efficiente. |
 | **Diritto di Proporre Reclamo** | Informazioni su come presentare un reclamo a un’autorità di controllo. | Questa è una dichiarazione obbligatoria e standardizzata che dimostra consapevolezza del quadro normativo. |
-| **Processo Decisionale Automatizzato** | Se utilizzi i dati per profilazione automatizzata, devi fornire informazioni significative sulla logica coinvolta. | Per i sistemi AI/ML, questo è fondamentale. Devi essere in grado di spiegare—ad alto livello—come operano i tuoi modelli e il loro potenziale impatto. |
+| **Processo Decisionale Automatizzato** | Se utilizzi i dati per profilazione automatizzata, devi fornire informazioni significative sulla logica coinvolta. | Per i sistemi AI/ML, questo è fondamentale. Devi essere in grado di spiegare – ad alto livello – come operano i tuoi modelli e il loro potenziale impatto. |
 
 ### Requisiti Temporali: Un Vincolo Architettonico
 
@@ -91,7 +91,7 @@ Devi fornire le informazioni entro il **primo** dei seguenti eventi:
 
 Per un team di ingegneria, ciò significa che l’architettura deve essere event-driven. Deve generare notifiche basate su eventi specifici del sistema, come l’ingestione di un nuovo record da un’API di terze parti o il primo invio di un’email automatizzata a un lead di vendita arricchito.
 
-Integrare questi trigger nella tua architettura è un principio fondamentale della Privacy by Design. Garantisce che la conformità sia automatizzata, verificabile e affidabile—non un ripensamento successivo. Questo è anche essenziale per mantenere registri accurati delle attività di trattamento, come illustrato nella nostra [guida sull’articolo 30 del GDPR](https://devisia.pro/en/blog/article-30-gdpr).
+Integrare questi trigger nella tua architettura è un principio fondamentale della Privacy by Design. Garantisce che la conformità sia automatizzata, verificabile e affidabile – non un ripensamento successivo. Questo è anche essenziale per mantenere registri accurati delle attività di trattamento, come illustrato nella nostra [guida sull’articolo 30 del GDPR](https://devisia.pro/en/blog/article-30-gdpr).
 
 ### Sapere Quando l’Articolo 14 Non Si Applica
 
@@ -189,7 +189,7 @@ Un approccio reattivo e manuale alla conformità non è sostenibile. Genera debi
 *   **Prioritize Data Provenance:** Progetta i tuoi modelli dati e le tue pipeline per tracciare la source di ogni dato personale. Questa è la base della conformità dimostrabile.
 *   **Document Everything:** Documenta in modo meticoloso la tua base giuridica per il trattamento, i flussi di dati e le giustificazioni per eventuali esenzioni. Questa documentazione è la tua prima linea di difesa in caso di audit.
 
-Vedere l'Articolo 14 non come un onere normativo ma come un insieme di vincoli ingegneristici porta a un software migliore. I sistemi progettati per la trasparenza e l'accountability sono intrinsecamente più robusti, manutenibili e affidabili — i tratti distintivi di qualsiasi prodotto costruito per durare.
+Vedere l'Articolo 14 non come un onere normativo ma come un insieme di vincoli ingegneristici porta a un software migliore. I sistemi progettati per la trasparenza e l'accountability sono intrinsecamente più robusti, manutenibili e affidabili – i tratti distintivi di qualsiasi prodotto costruito per durare.
 
 ## Frequently Asked Questions About Article 14
 

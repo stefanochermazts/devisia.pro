@@ -23,7 +23,7 @@ Data center network architecture is not a mere technical diagram; it is the stra
 
 It is a critical error to view the data center network as a simple IT component or an operational cost center. For any modern digital business, it is the architectural bedrock. It can either enable rapid innovation and scale or become the primary constraint that grinds growth to a halt.
 
-The central challenge is a fundamental shift in data traffic patterns. Historically, network traffic was predictable, flowing from users outside the data center to servers inside—a pattern known as **north-south traffic**. Traditional three-tier network designs (core, aggregation, access) were adequate for this model.
+The central challenge is a fundamental shift in data traffic patterns. Historically, network traffic was predictable, flowing from users outside the data center to servers inside – a pattern known as **north-south traffic**. Traditional three-tier network designs (core, aggregation, access) were adequate for this model.
 
 However, the proliferation of microservices, distributed databases, container orchestration, and AI workloads has caused an explosion of server-to-server communication *within* the data center.
 
@@ -34,7 +34,7 @@ This modern operational reality is dominated by **east-west traffic**, where dat
 The consequences of architectural misalignment are severe and business-impacting:
 *   **Application Performance Degradation:** High latency and packet loss render even the most powerful servers ineffective, directly degrading user experience and impacting business-critical processes.
 *   **Inhibited Scalability:** A rigid, hierarchical network prevents the seamless addition of new services or the scaling of existing ones. This architectural friction erodes the ability to respond to market demands.
-*   **Increased Operational Overhead:** Engineering teams become trapped in a reactive cycle of troubleshooting, manual configuration, and developing workarounds for fundamental network limitations—a direct drain on budget and talent.
+*   **Increased Operational Overhead:** Engineering teams become trapped in a reactive cycle of troubleshooting, manual configuration, and developing workarounds for fundamental network limitations – a direct drain on budget and talent.
 
 A well-designed network architecture is a decisive competitive advantage. It provides the foundation for building scalable, resilient, and cost-effective digital systems, elevating network design from an IT implementation detail to a core strategic decision. This guide offers a pragmatic walkthrough of the topologies, technologies, and trade-offs that define modern data center networking.
 
@@ -58,7 +58,7 @@ The diagram below illustrates why legacy designs are no longer viable.
 
 ![Diagram showing data traffic hierarchy, comparing old network with new network emphasizing east-west traffic.](https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/511fc74b-fdb0-42a7-a733-6aa5d372367b/data-center-network-architecture-traffic-hierarchy.jpg)
 
-Legacy networks were built for **north-south** traffic—data entering and exiting the data center. Today, the vast majority of traffic is **east-west**, as distributed applications and AI models generate immense volumes of internal communication.
+Legacy networks were built for **north-south** traffic – data entering and exiting the data center. Today, the vast majority of traffic is **east-west**, as distributed applications and AI models generate immense volumes of internal communication.
 
 The spine-leaf model is engineered for this reality, offering seamless **horizontal scalability**. To add compute capacity, a new rack with a leaf switch is simply connected to the spine switches. This expands the fabric without creating new bottlenecks or requiring a disruptive overhaul of the core network.
 
@@ -105,7 +105,7 @@ For decades, **VLANs (Virtual Local Area Networks)** were the standard for netwo
 
 ### EVPN: An Intelligent Control Plane
 
-VXLAN defines the data plane—how packets are encapsulated. But it requires a control plane to learn and distribute endpoint (MAC and IP address) information. Early VXLAN implementations used inefficient and complex multicast flooding for endpoint discovery.
+VXLAN defines the data plane – how packets are encapsulated. But it requires a control plane to learn and distribute endpoint (MAC and IP address) information. Early VXLAN implementations used inefficient and complex multicast flooding for endpoint discovery.
 
 The modern, industry-standard solution is **EVPN (Ethernet VPN)**. Using Multiprotocol BGP (MP-BGP), EVPN functions as an intelligent, scalable control plane for the VXLAN overlay. It efficiently distributes endpoint reachability information across the fabric, replacing archaic "flood-and-learn" mechanisms with precise, event-driven updates. This makes the network more stable, scalable, and operationally transparent. Effective [data center mapping](https://devisia.pro/en/blog/data-center-mapping) is crucial for aligning these logical constructs with physical assets.
 
@@ -115,7 +115,7 @@ The modern, industry-standard solution is **EVPN (Ethernet VPN)**. Using Multipr
 
 **Software-Defined Networking (SDN)** is the architectural principle that brings order to this complexity. SDN decouples the network's control plane (the intelligence that decides where traffic should go) from the data plane (the hardware that forwards packets).
 
-This separation has profound implications. Instead of configuring hundreds of devices individually, a centralized SDN controller programs the entire network from a single, authoritative source of truth. The controller defines and pushes policies, and the switches execute them. This shift is what's fueling the market's explosive growth—you can [discover more insights on this explosive growth from Grand View Research](https://www.grandviewresearch.com/industry-analysis/data-center-networking-market).
+This separation has profound implications. Instead of configuring hundreds of devices individually, a centralized SDN controller programs the entire network from a single, authoritative source of truth. The controller defines and pushes policies, and the switches execute them. This shift is what's fueling the market's explosive growth – you can [discover more insights on this explosive growth from Grand View Research](https://www.grandviewresearch.com/industry-analysis/data-center-networking-market).
 
 ## Architecting for Resilience, Performance, and Cost
 
@@ -171,9 +171,9 @@ Dedicated private interconnects like **AWS Direct Connect** or **Azure ExpressRo
 
 If hybrid workloads are demanding, AI and machine learning workloads are punishing. An AI training cluster represents one of the most extreme environments for a network. The primary bottleneck in most AI clusters is not the GPUs, but the network fabric that interconnects them.
 
-When a GPU completes a computation, it must exchange results with other GPUs and receive the next block of data. Any delay in this communication means your multi-million-dollar GPU investment sits idle—burning power without performing useful work.
+When a GPU completes a computation, it must exchange results with other GPUs and receive the next block of data. Any delay in this communication means your multi-million-dollar GPU investment sits idle – burning power without performing useful work.
 
-> **Implementation Risk:** A substandard network fabric is the fastest way to cripple an AI strategy. It starves your most expensive assets—the GPUs—of the data they need to function, leading to **gross underutilisation** and stretching training times from hours to days or even weeks.
+> **Implementation Risk:** A substandard network fabric is the fastest way to cripple an AI strategy. It starves your most expensive assets – the GPUs – of the data they need to function, leading to **gross underutilisation** and stretching training times from hours to days or even weeks.
 
 To prevent this data starvation, AI fabrics require specific network capabilities:
 *   **Lossless Ethernet:** Standard Ethernet drops packets under congestion, forcing retransmissions that introduce unacceptable delays (jitter). A lossless fabric uses protocols like **Priority-Flow Control (PFC)** to prevent packet drops entirely.
@@ -204,7 +204,7 @@ This provides two powerful security benefits:
 
 Manual, CLI-based configuration of network devices is slow, prone to human error, and does not scale. It is an operational liability in any modern data center.
 
-The definitive approach is **Infrastructure as Code (IaC)**. The entire desired state of the network—every switch, interface, VXLAN tunnel, and routing policy—is defined in declarative configuration files. These files are managed in a version control system (like Git) and applied by automation tools such as [Ansible](https://www.ansible.com/) or [Terraform](https://www.terraform.io/).
+The definitive approach is **Infrastructure as Code (IaC)**. The entire desired state of the network – every switch, interface, VXLAN tunnel, and routing policy – is defined in declarative configuration files. These files are managed in a version control system (like Git) and applied by automation tools such as [Ansible](https://www.ansible.com/) or [Terraform](https://www.terraform.io/).
 
 > Treating your network configuration as code transforms network operations. It makes deployments repeatable, testable, and auditable. It is the only viable method for managing a large-scale data center network architecture without an unmanageably large engineering team.
 
@@ -212,9 +212,9 @@ This shift elevates the role of network engineers from manual operators to devel
 
 ### From Reactive Monitoring to Proactive Observability
 
-Basic monitoring tells you if a device is up or down—it is reactive. **Observability**, in contrast, is the ability to understand the internal state of the system and ask arbitrary questions about its behavior in real-time.
+Basic monitoring tells you if a device is up or down – it is reactive. **Observability**, in contrast, is the ability to understand the internal state of the system and ask arbitrary questions about its behavior in real-time.
 
-Instead of polling devices every few minutes, modern observability relies on **streaming telemetry**. Network devices push a continuous, high-fidelity stream of operational data—traffic flows, packet latencies, buffer utilization—to a central analytics platform.
+Instead of polling devices every few minutes, modern observability relies on **streaming telemetry**. Network devices push a continuous, high-fidelity stream of operational data – traffic flows, packet latencies, buffer utilization – to a central analytics platform.
 
 This rich data stream enables:
 *   **Proactive Issue Detection:** Identify transient microbursts or creeping congestion before they impact application performance.

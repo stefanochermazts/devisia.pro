@@ -38,7 +38,7 @@ Prima di analizzare implementazioni specifiche, dobbiamo inquadrare il confronto
 *   **Modello finanziario:** L’on-premises è caratterizzato da un significativo **capital expenditure (CapEx)** iniziale per hardware, seguito da **operational expenses (OpEx)** continui per manutenzione e personale. I servizi cloud ribaltano questo modello, operando quasi interamente con un modello OpEx pay-as-you-go.
 *   **Controllo e sovranità:** L’on-premises offre un controllo fisico e logico completo su dati e hardware. Questo è essenziale per i settori soggetti a rigorose normative sulla residenza dei dati o per quelli che gestiscono proprietà intellettuale altamente sensibile, dove l’accesso di terze parti rappresenta un rischio inaccettabile.
 *   **Scalabilità e agilità:** Il cloud offre una scalabilità delle risorse quasi istantanea per gestire carichi di traffico imprevedibili o una crescita rapida. La scalabilità on-premises è un processo manuale e lungo che comporta cicli di approvvigionamento, installazione e configurazione dell’hardware.
-*   **Carico operativo:** Con l’on-premises, il team interno è responsabile dell’intero stack—manutenzione hardware, configurazione di rete, sicurezza fisica e patching. I provider cloud astraggono questa complessità, consentendo ai team di ingegneria di concentrarsi sullo sviluppo a livello applicativo.
+*   **Carico operativo:** Con l’on-premises, il team interno è responsabile dell’intero stack – manutenzione hardware, configurazione di rete, sicurezza fisica e patching. I provider cloud astraggono questa complessità, consentendo ai team di ingegneria di concentrarsi sullo sviluppo a livello applicativo.
 
 > La decisione riguarda meno quale modello sia oggettivamente “migliore” e più quale insieme di vincoli e compromessi si allinei ai vostri obiettivi strategici. Una startup che dà priorità alla velocità di sviluppo accetterà rischi diversi rispetto a un istituto finanziario soggetto alle normative DORA.
 
@@ -59,7 +59,7 @@ In definitiva, questa tabella evidenzia il compromesso architetturale centrale. 
 
 ## Scomporre il costo totale di proprietà
 
-Un confronto superficiale dei costi tra on-premises e cloud—presentandolo come una semplice scelta tra capital expenditure (CapEx) e operational expenditure (OpEx)—è fuorviante e finanziariamente irresponsabile. Una decisione architetturale solida richiede un’analisi rigorosa del **Total Cost of Ownership (TCO)**, che tenga conto di tutti i costi diretti, indiretti e nascosti lungo il ciclo di vita dell’infrastruttura.
+Un confronto superficiale dei costi tra on-premises e cloud – presentandolo come una semplice scelta tra capital expenditure (CapEx) e operational expenditure (OpEx) – è fuorviante e finanziariamente irresponsabile. Una decisione architetturale solida richiede un’analisi rigorosa del **Total Cost of Ownership (TCO)**, che tenga conto di tutti i costi diretti, indiretti e nascosti lungo il ciclo di vita dell’infrastruttura.
 
 Una valutazione TCO ingenua porta spesso a significativi sforamenti di budget e fallimenti operativi.
 
@@ -101,7 +101,7 @@ Sicurezza e conformità non sono funzionalità; sono proprietà architetturali c
 
 ### Il cloud e il modello di responsabilità condivisa
 
-Un’idea errata comune è che il passaggio al cloud scarichi gli obblighi di sicurezza. In realtà, si entra in un **modello di responsabilità condivisa**. Mentre il provider cloud protegge l’infrastruttura di base—data center fisici, server e networking core—voi siete **pienamente responsabili** della sicurezza di tutto ciò che costruite *su* quell’infrastruttura.
+Un’idea errata comune è che il passaggio al cloud scarichi gli obblighi di sicurezza. In realtà, si entra in un **modello di responsabilità condivisa**. Mentre il provider cloud protegge l’infrastruttura di base – data center fisici, server e networking core – voi siete **pienamente responsabili** della sicurezza di tutto ciò che costruite *su* quell’infrastruttura.
 
 Questo significa che il vostro team è responsabile di:
 *   **Sicurezza dei dati:** implementare la crittografia per i dati in transito e a riposo, includendo una robusta gestione delle chiavi.
@@ -148,7 +148,7 @@ Il cloud offre un paradigma di prestazioni diverso: elasticità quasi infinita, 
 
 ### Le dinamiche dell’elasticità del cloud
 
-Il principale vantaggio prestazionale del cloud è la capacità di scalare orizzontalmente su richiesta. Considera una piattaforma SaaS B2B che lancia una funzionalità che ottiene un’adozione virale inaspettata. Un sistema on-premises probabilmente crollerebbe sotto il carico, causando downtime mentre nuovo hardware viene acquistato e distribuito—un processo che può richiedere settimane.
+Il principale vantaggio prestazionale del cloud è la capacità di scalare orizzontalmente su richiesta. Considera una piattaforma SaaS B2B che lancia una funzionalità che ottiene un’adozione virale inaspettata. Un sistema on-premises probabilmente crollerebbe sotto il carico, causando downtime mentre nuovo hardware viene acquistato e distribuito – un processo che può richiedere settimane.
 
 In un’architettura cloud-native, questo viene affrontato con gli auto-scaling group. Quando una metrica come l’utilizzo della CPU supera una soglia predefinita, il provider cloud provisiona automaticamente nuove macchine virtuali per distribuire il carico. Quando la domanda diminuisce, quelle istanze vengono terminate e la fatturazione si interrompe.
 
@@ -161,7 +161,7 @@ Il beneficio operativo è enorme. Gli ingegneri passano dal montare server e ges
 
 ### L’onere delle operazioni on-premises
 
-Sebbene l’on-premises offra il controllo totale, quel controllo impone un costo operativo significativo. L’onere di gestire l’intero ciclo di vita dell’infrastruttura—dalla distribuzione alla dismissione—ricade interamente sul tuo team interno. Questo richiede un investimento continuo in talenti specializzati.
+Sebbene l’on-premises offra il controllo totale, quel controllo impone un costo operativo significativo. L’onere di gestire l’intero ciclo di vita dell’infrastruttura – dalla distribuzione alla dismissione – ricade interamente sul tuo team interno. Questo richiede un investimento continuo in talenti specializzati.
 
 Il carico operativo include:
 *   **Manutenzione hardware:** Sostituire in modo proattivo componenti guasti come dischi rigidi, alimentatori e ventole.
@@ -190,7 +190,7 @@ I pattern ibridi più comuni includono:
 
 ### Comprendere la repatriation dal cloud
 
-La repatriation dal cloud—il processo di spostare applicazioni da un cloud pubblico a un’infrastruttura on-premises—era un tempo vista come il segno di una strategia cloud fallita. Oggi è riconosciuta come una risposta matura all’evoluzione delle esigenze di business, in particolare quando i costi cloud per workload stabili e prevedibili diventano insostenibili.
+La repatriation dal cloud – il processo di spostare applicazioni da un cloud pubblico a un’infrastruttura on-premises – era un tempo vista come il segno di una strategia cloud fallita. Oggi è riconosciuta come una risposta matura all’evoluzione delle esigenze di business, in particolare quando i costi cloud per workload stabili e prevedibili diventano insostenibili.
 
 Il principale driver è quasi sempre finanziario. Sebbene il cloud sia eccellente per la domanda variabile, il suo modello pay-as-you-go può diventare una notevole passività finanziaria per applicazioni con utilizzo elevato e costante. Oltre una certa scala, il **TCO** dell’esecuzione di un workload stabile on-premises può essere sostanzialmente inferiore rispetto al pagamento continuo delle tariffe cloud.
 
@@ -246,13 +246,13 @@ Quando si valuta l'on-premises rispetto al cloud, emergono costantemente alcune 
 
 La migrazione è un'impresa significativa e il suo valore è determinato dagli obiettivi di business, non dalla tecnologia. Una migrazione "lift-and-shift", sebbene sembri semplice, spesso comporta costi operativi elevati perché non sfrutta i vantaggi cloud-native; stai semplicemente noleggiando server in un altro data center.
 
-Un approccio più strategico consiste nel refactoring delle applicazioni per utilizzare servizi cloud-native come database gestiti o funzioni serverless. Pur richiedendo un maggiore sforzo ingegneristico iniziale, ciò genera notevoli benefici in termini di TCO e scalabilità nel lungo periodo. La chiave è giustificare la migrazione con un chiaro caso di business — come accelerare i cicli di sviluppo o ridurre l'attrito operativo — invece di migrare per il solo gusto di farlo.
+Un approccio più strategico consiste nel refactoring delle applicazioni per utilizzare servizi cloud-native come database gestiti o funzioni serverless. Pur richiedendo un maggiore sforzo ingegneristico iniziale, ciò genera notevoli benefici in termini di TCO e scalabilità nel lungo periodo. La chiave è giustificare la migrazione con un chiaro caso di business – come accelerare i cicli di sviluppo o ridurre l'attrito operativo – invece di migrare per il solo gusto di farlo.
 
 ### Il Cloud Può Davvero Gestire Workload AI Specializzati?
 
 Sì, ma con compromessi importanti. I cloud pubblici offrono accesso immediato a potenti GPU e TPU, ideali per sperimentare con modelli AI o gestire workload di inferenza variabili senza un grande investimento iniziale in hardware.
 
-Tuttavia, per workload AI costanti e ad alto volume — come l'inferenza di modelli su larga scala, **24/7** — i costi di data egress e i costi di calcolo orari possono diventare proibitivi. In questi scenari, un'implementazione on-premises dedicata o ibrida offre spesso un TCO inferiore. La decisione dipende dal fatto che la tua domanda di AI sia prevedibile o volatile.
+Tuttavia, per workload AI costanti e ad alto volume – come l'inferenza di modelli su larga scala, **24/7** – i costi di data egress e i costi di calcolo orari possono diventare proibitivi. In questi scenari, un'implementazione on-premises dedicata o ibrida offre spesso un TCO inferiore. La decisione dipende dal fatto che la tua domanda di AI sia prevedibile o volatile.
 
 > La vera domanda per l'AI non è *se* il cloud possa gestire il workload, ma a quale costo nel lungo periodo. Per sistemi AI stabili e con utilizzo elevato, il caso finanziario per riportarli on-prem spesso diventa convincente in pochi mesi, non in anni.
 
@@ -265,7 +265,7 @@ Per mantenere il controllo dei costi, implementa i seguenti guardrail finanziari
 *   **Avvisi di Budget:** Configura avvisi automatici che si attivano quando la spesa si avvicina a soglie predefinite, per evitare sorprese a fine mese.
 *   **Istanze Riservate:** Per workload prevedibili e di lunga durata, acquista istanze riservate o piani di risparmio. Questi possono generare sconti fino al **70%** rispetto al pricing on-demand.
 
-Senza una governance disciplinata, il principale punto di forza del cloud — l'elasticità — può diventare la sua più grande passività finanziaria.
+Senza una governance disciplinata, il principale punto di forza del cloud – l'elasticità – può diventare la sua più grande passività finanziaria.
 
 ---
-In **Devisia**, consideriamo l'infrastruttura una scelta architettonica deliberata che deve servire gli obiettivi del tuo business, non una decisione predefinita. Progettiamo e realizziamo sistemi software affidabili e manutenibili — che ciò significhi on-premises, nel cloud o una soluzione ibrida pragmatica in linea con la tua realtà operativa. [Trasforma la visione del tuo business in un prodotto digitale robusto](https://www.devisia.pro).
+In **Devisia**, consideriamo l'infrastruttura una scelta architettonica deliberata che deve servire gli obiettivi del tuo business, non una decisione predefinita. Progettiamo e realizziamo sistemi software affidabili e manutenibili – che ciò significhi on-premises, nel cloud o una soluzione ibrida pragmatica in linea con la tua realtà operativa. [Trasforma la visione del tuo business in un prodotto digitale robusto](https://www.devisia.pro).

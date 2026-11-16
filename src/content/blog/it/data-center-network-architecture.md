@@ -172,7 +172,7 @@ Se i carichi di lavoro ibridi sono esigenti, i carichi di lavoro di AI e machine
 
 Quando una GPU completa un calcolo, deve scambiare i risultati con le altre GPU e ricevere il blocco successivo di dati. Qualsiasi ritardo in questa comunicazione significa che il vostro investimento da milioni di dollari in GPU resta inattivo, consumando energia senza svolgere lavoro utile.
 
-> **Rischio di implementazione:** Un fabric di rete scadente è il modo più rapido per compromettere una strategia AI. Priva i vostri asset più costosi—le GPU—dei dati di cui hanno bisogno per funzionare, portando a un **grave sottoutilizzo** e allungando i tempi di training da ore a giorni o persino settimane.
+> **Rischio di implementazione:** Un fabric di rete scadente è il modo più rapido per compromettere una strategia AI. Priva i vostri asset più costosi – le GPU – dei dati di cui hanno bisogno per funzionare, portando a un **grave sottoutilizzo** e allungando i tempi di training da ore a giorni o persino settimane.
 
 Per evitare questa carenza di dati, i fabric AI richiedono capacità di rete specifiche:
 *   **Ethernet lossless:** L'Ethernet standard scarta i pacchetti in caso di congestione, imponendo ritrasmissioni che introducono ritardi inaccettabili (jitter). Un fabric lossless utilizza protocolli come **Priority-Flow Control (PFC)** per prevenire del tutto la perdita di pacchetti.
@@ -203,7 +203,7 @@ Ciò offre due potenti vantaggi di sicurezza:
 
 La configurazione manuale dei dispositivi di rete tramite CLI è lenta, soggetta a errore umano e non scala. È una responsabilità operativa in qualsiasi data center moderno.
 
-L'approccio definitivo è l'**Infrastructure as Code (IaC)**. L'intero stato desiderato della rete—ogni switch, interfaccia, tunnel VXLAN e policy di routing—è definito in file di configurazione dichiarativi. Questi file sono gestiti in un sistema di controllo versione (come Git) e applicati da strumenti di automazione come [Ansible](https://www.ansible.com/) o [Terraform](https://www.terraform.io/).
+L'approccio definitivo è l'**Infrastructure as Code (IaC)**. L'intero stato desiderato della rete – ogni switch, interfaccia, tunnel VXLAN e policy di routing – è definito in file di configurazione dichiarativi. Questi file sono gestiti in un sistema di controllo versione (come Git) e applicati da strumenti di automazione come [Ansible](https://www.ansible.com/) o [Terraform](https://www.terraform.io/).
 
 > Trattare la configurazione della rete come codice trasforma le operazioni di rete. Rende le distribuzioni ripetibili, testabili e verificabili. È l'unico metodo praticabile per gestire un'architettura di rete di data center su larga scala senza un team di ingegneria eccessivamente grande.
 
@@ -213,7 +213,7 @@ Questo cambiamento eleva il ruolo degli ingegneri di rete da operatori manuali a
 
 Il monitoraggio di base ti dice se un dispositivo è attivo o inattivo: è reattivo. L'**osservabilità**, al contrario, è la capacità di comprendere lo stato interno del sistema e porre domande arbitrarie sul suo comportamento in tempo reale.
 
-Invece di eseguire polling sui dispositivi ogni pochi minuti, l'osservabilità moderna si basa sulla **telemetria in streaming**. I dispositivi di rete inviano un flusso continuo e ad alta fedeltà di dati operativi—flussi di traffico, latenze dei pacchetti, utilizzo dei buffer—a una piattaforma di analisi centralizzata.
+Invece di eseguire polling sui dispositivi ogni pochi minuti, l'osservabilità moderna si basa sulla **telemetria in streaming**. I dispositivi di rete inviano un flusso continuo e ad alta fedeltà di dati operativi – flussi di traffico, latenze dei pacchetti, utilizzo dei buffer – a una piattaforma di analisi centralizzata.
 
 Questo ricco flusso di dati consente di:
 *   **Rilevamento proattivo dei problemi:** identificare microburst transitori o congestione graduale prima che incidano sulle prestazioni delle applicazioni.

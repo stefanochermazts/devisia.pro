@@ -17,7 +17,7 @@ tags:
 translationSlug: data-processing-agreements
 translationSourceHash: 4c986a8f514ea317bea40a59dc6765ba83f9f651bc2408db133ed1e183d588eb
 ---
-Un Accordo sul Trattamento dei Dati (DPA) è un contratto giuridicamente vincolante che specifica le regole, le responsabilità e le misure tecniche per la gestione dei dati personali. Per i leader tecnici responsabili dei sistemi software, un DPA è il progetto operativo che disciplina il modo in cui i fornitori terzi — dai provider cloud agli strumenti SaaS — elaborano i dati degli utenti per tuo conto. Li obbliga contrattualmente ad agire solo secondo le tue istruzioni e a rispettare specifici standard di sicurezza e conformità.
+Un Accordo sul Trattamento dei Dati (DPA) è un contratto giuridicamente vincolante che specifica le regole, le responsabilità e le misure tecniche per la gestione dei dati personali. Per i leader tecnici responsabili dei sistemi software, un DPA è il progetto operativo che disciplina il modo in cui i fornitori terzi – dai provider cloud agli strumenti SaaS – elaborano i dati degli utenti per tuo conto. Li obbliga contrattualmente ad agire solo secondo le tue istruzioni e a rispettare specifici standard di sicurezza e conformità.
 
 ## Il Problema: Rischio di Dati di Terze Parti Non Gestito
 
@@ -90,7 +90,7 @@ Comprendere questi ruoli è fondamentale. Garantisce che, quando un utente richi
 
 ## Gestione dei Sub-responsabili e dei Flussi di Dati Globali
 
-La sicurezza dei dati di un'organizzazione è forte solo quanto il suo anello più debole. Nel software moderno, quell'anello debole è spesso un **sub-responsabile** — una terza parte ingaggiata dal tuo fornitore per fornire parte del loro servizio. Questo crea una supply chain dei dati. Un DPA ben costruito è lo strumento principale per gestire questa catena.
+La sicurezza dei dati di un'organizzazione è forte solo quanto il suo anello più debole. Nel software moderno, quell'anello debole è spesso un **sub-responsabile** – una terza parte ingaggiata dal tuo fornitore per fornire parte del loro servizio. Questo crea una supply chain dei dati. Un DPA ben costruito è lo strumento principale per gestire questa catena.
 
 Ad esempio, quando un provider CRM utilizza una piattaforma cloud come AWS per l'hosting, AWS diventa un sub-responsabile per i tuoi dati. Senza controlli contrattuali, non hai visibilità né voce in capitolo su chi gestisce le tue informazioni, dove vengono archiviate o quali standard di sicurezza vengono applicati.
 
@@ -201,7 +201,7 @@ Questa checklist fornisce una guida pragmatica per CTO e responsabili di prodott
 
 Prima di analizzare il testo legale, valida le dichiarazioni di sicurezza del vendor con evidenze esterne.
 *   **Verificare le certificazioni di sicurezza:** Richiedi i certificati aggiornati per standard come **ISO 27001** o **SOC 2 Type II**. Non accettare un logo su una pagina di marketing; esamina il report effettivo per confermarne l’ambito e la validità. Questi audit forniscono una verifica indipendente dei controlli di sicurezza.
-*   **Esaminare l’elenco dei sub-responsabili:** Ottieni un elenco completo e aggiornato di tutti i sub-responsabili che tratteranno i tuoi dati. Indaga su eventuali entità non riconosciute e assicurati che il DPA obblighi contrattualmente il vendor a notificarti — e a ottenere il consenso — prima di aggiungerne di nuovi.
+*   **Esaminare l’elenco dei sub-responsabili:** Ottieni un elenco completo e aggiornato di tutti i sub-responsabili che tratteranno i tuoi dati. Indaga su eventuali entità non riconosciute e assicurati che il DPA obblighi contrattualmente il vendor a notificarti – e a ottenere il consenso – prima di aggiungerne di nuovi.
 
 ### Clausole chiave da esaminare
 

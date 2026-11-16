@@ -50,7 +50,7 @@ Key areas to document include:
 
 *   **System Architecture:** Map all applications, databases, APIs, and third-party integrations. Document their versions, dependencies, and communication protocols.
 *   **Business Processes:** Detail the step-by-step workflows teams actually follow, distinguishing them from official, documented procedures. Capture informal "tribal knowledge."
-*   **Data Flows:** Trace the lifecycle of data—where it is created, stored, processed, and accessed. This analysis often reveals performance bottlenecks and compliance risks related to regulations like GDPR.
+*   **Data Flows:** Trace the lifecycle of data – where it is created, stored, processed, and accessed. This analysis often reveals performance bottlenecks and compliance risks related to regulations like GDPR.
 *   **User Workflows:** Observe users interacting with the system in their native environment. Document their methods, frustrations, and workarounds.
 
 This structured approach is essential in a market driven by digital transformation. The global IT services market is projected to grow from **USD 1.65 trillion** in 2026 to **USD 2.51 trillion** by 2031, with **87%** of enterprises already adopting multi-cloud strategies. For organizations managing legacy systems, a rigorous **As-Is To-Be** analysis is the only viable starting point for modernization. [You can discover more about these IT services market trends here](https://www.globenewswire.com/news-release/2026/01/21/3222533/0/en/The-Global-Market-for-IT-Services-2026-2031-Total-Revenues-to-Grow-from-1-65-Trillion-in-2026-to-2-51-Trillion-by-2031.html).
@@ -167,7 +167,7 @@ This requires a systems-thinking approach, designing for reliability with robust
 
 ### Identifying High-Value AI Opportunities
 
-Not every problem requires an AI solution. The key is to identify tasks that are repetitive, data-intensive, or prone to human error—areas where automation delivers a measurable return on investment. The pain points identified in your As-Is model are the primary candidates.
+Not every problem requires an AI solution. The key is to identify tasks that are repetitive, data-intensive, or prone to human error – areas where automation delivers a measurable return on investment. The pain points identified in your As-Is model are the primary candidates.
 
 Viable opportunities for AI integration often include:
 

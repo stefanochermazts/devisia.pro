@@ -1,9 +1,9 @@
 ---
-title: 'Kaizen Projects: What They Are and Why They Are So'
+title: 'Kaizen Projects: Continuous Improvement in Software'
 description: >-
-  In the software world, attention is often focused on the initial development
-  phase. However, the real complexity emerges after go-live, especially in SaaS
-  development and when integrating responsible AI systems.
+  In the software world, attention is often focused on initial development. Yet
+  real complexity emerges after go-live, when maintaining and evolving systems
+  in production.
 pubDate: 2026-01-05T00:00:00.000Z
 author: Stefano Chermaz
 heroImage: /uploads/progetti-kaizen.png
@@ -16,7 +16,7 @@ tags:
   - Long-Term Value
 translationSlug: progetti-kaizen-cosa-sono-e-perche-funzionano-nel-mantenimento-dei-sistemi-esistenti
 ---
-In the software and digital product world, attention is often focused on the **initial development phase**. However, the real complexity — and long-term value — emerges **after** go-live, particularly in modern **SaaS development**.
+In the software and digital product world, attention is often focused on the **initial development phase**. Yet the real complexity and long-term value emerge **after** go-live, when a platform is in daily use.
 
 This is where **Kaizen projects** come into play.
 
@@ -30,24 +30,23 @@ Kaizen is a Japanese methodology that literally means **“continuous improvemen
 - constant involvement of people and teams
 - systematic observation of existing processes
 
-When applied to software, Kaizen is not a technical framework, but **a way of managing the evolution of a system**, essential for high-quality **SaaS development**.
+When applied to software, Kaizen is **a practical way of managing the evolution of a system** across its entire lifecycle.
 
 ------
 
 ## What a “Kaizen Project” Means in Software
 
-A Kaizen project is not a project with a fixed end date.
- It is a **structured, ongoing improvement journey** focused on a system that is already in production.
+A Kaizen project is a **structured, ongoing improvement journey** focused on a system that is already in production.
 
 Typical Kaizen activities include:
 
 - performance optimization
 - technical debt reduction
 - process refinement
-- progressive automation and **AI integration in software**
-- reliability, **AI security**, and **artificial intelligence governance** enhancements
+- progressive automation and AI integration in existing systems
+- reliability, security, and governance enhancements
 
-The goal is not to “add more,” but to **make what already exists work better** while ensuring a **responsible AI** approach.
+The goal is to **make what already exists work better**, while keeping clear control over technical decisions.
 
 ------
 

@@ -18,7 +18,7 @@ autoTranslateToIt: true
 ---
 Article 14 of the GDPR specifies the information you must provide to data subjects when you process their personal data *without* obtaining it directly from them. This right to information is the cornerstone of transparency whenever you acquire data from third-party sources, such as partner APIs, data enrichment services, or public databases. It ensures individuals are aware of who is processing their data and for what purpose.
 
-This guide is written for technical leaders—CTOs, architects, and product managers—who build and operate real-world software systems. We will move beyond legal theory and focus on the architectural patterns and operational realities of implementing Article 14.
+This guide is written for technical leaders – CTOs, architects, and product managers – who build and operate real-world software systems. We will move beyond legal theory and focus on the architectural patterns and operational realities of implementing Article 14.
 
 ## The Problem: The Architectural Challenge of "Hidden Data"
 
@@ -77,7 +77,7 @@ This table translates the legal requirements of Article 14 into technical and op
 | **Data Retention Period** | How long you will store the data, or the criteria used to determine that period. | Your system must have mechanisms to enforce these policies, such as automated deletion jobs or TTL (Time-To-Live) settings on records. |
 | **Data Subject Rights** | A statement informing individuals of their rights (access, rectification, erasure, etc.). | Your application's back-end and any internal admin tools must be equipped to service these requests efficiently. |
 | **Right to Lodge a Complaint** | Information on how to complain to a supervisory authority. | This is a mandatory, standardized statement demonstrating awareness of the regulatory framework. |
-| **Automated Decision-Making** | If you use the data for automated profiling, you must provide meaningful information about the logic involved. | For AI/ML systems, this is critical. You must be able to explain—at a high level—how your models operate and their potential impact. |
+| **Automated Decision-Making** | If you use the data for automated profiling, you must provide meaningful information about the logic involved. | For AI/ML systems, this is critical. You must be able to explain – at a high level – how your models operate and their potential impact. |
 
 ### Timing Requirements: An Architectural Constraint
 
@@ -90,7 +90,7 @@ You must provide the information by the **earliest** of the following events:
 
 For an engineering team, this means your architecture must be event-driven. It needs to generate notifications based on specific system events, such as a new record being ingested from a third-party API or the first time an automated email is sent to an enriched sales lead.
 
-Building these triggers into your architecture is a core tenet of Privacy by Design. It ensures compliance is automated, auditable, and reliable—not an afterthought. This is also essential for maintaining accurate records of processing activities, as detailed in our [guide on Article 30 GDPR](https://devisia.pro/en/blog/article-30-gdpr).
+Building these triggers into your architecture is a core tenet of Privacy by Design. It ensures compliance is automated, auditable, and reliable – not an afterthought. This is also essential for maintaining accurate records of processing activities, as detailed in our [guide on Article 30 GDPR](https://devisia.pro/en/blog/article-30-gdpr).
 
 ### Knowing When Article 14 Does Not Apply
 
@@ -188,7 +188,7 @@ A reactive, manual approach to compliance is unsustainable. It creates technical
 *   **Prioritize Data Provenance:** Design your data models and pipelines to track the source of every piece of personal data. This is the foundation of provable compliance.
 *   **Document Everything:** Meticulously document your legal basis for processing, your data flows, and your justifications for any exemptions. This documentation is your first line of defense in an audit.
 
-Viewing Article 14 not as a regulatory burden but as a set of engineering constraints leads to better software. Systems designed for transparency and accountability are inherently more robust, maintainable, and trustworthy—the hallmarks of any product built to last.
+Viewing Article 14 not as a regulatory burden but as a set of engineering constraints leads to better software. Systems designed for transparency and accountability are inherently more robust, maintainable, and trustworthy – the hallmarks of any product built to last.
 
 ## Frequently Asked Questions About Article 14
 

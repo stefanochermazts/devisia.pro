@@ -21,7 +21,7 @@ Al centro, **privacy per impostazione predefinita**, come previsto dal GDPR, è 
 
 ## Il problema: la privacy come ripensamento per la conformità
 
-Per molti responsabili tecnici, l'Articolo 25 del GDPR — che impone la **privacy per impostazione predefinita del GDPR** — arriva spesso sulla loro scrivania come un altro vincolo legale, un altro elemento di una lunga checklist di conformità.
+Per molti responsabili tecnici, l'Articolo 25 del GDPR – che impone la **privacy per impostazione predefinita del GDPR** – arriva spesso sulla loro scrivania come un altro vincolo legale, un altro elemento di una lunga checklist di conformità.
 
 Questa prospettiva è un percorso diretto verso il debito tecnico.
 
@@ -96,7 +96,7 @@ L'implementazione si basa su tre pilastri interconnessi: applicare accessi rigor
 
 ![Un diagramma di flusso intitolato 'Privacy by Default Process Flow' che delinea tre passaggi: Mappa dei dati, DPIA e Decisioni di prodotto.](https://cdnimg.co/66a41ce6-7698-4d58-8459-ed7623e4e974/e0a386a0-da7b-463f-a610-ed6e9a24910e/privacy-by-default-gdpr-privacy-flow.jpg)
 
-Questo flusso mostra come la diligenza precoce — mappatura dei dati e DPIA — plasmi direttamente le decisioni di prodotto che gli ingegneri devono implementare. I tuoi controlli tecnici non possono essere generici; devono rispondere direttamente ai dati specifici e ai rischi associati.
+Questo flusso mostra come la diligenza precoce – mappatura dei dati e DPIA – plasmi direttamente le decisioni di prodotto che gli ingegneri devono implementare. I tuoi controlli tecnici non possono essere generici; devono rispondere direttamente ai dati specifici e ai rischi associati.
 
 ### Applicare il principio del privilegio minimo con controlli di accesso robusti
 
@@ -170,7 +170,7 @@ Una UX affidabile tratta l'utente con rispetto. Presuppone che gli utenti conced
 
 <iframe width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/57wFvOqzBvg" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
-I sistemi di Intelligenza Artificiale e Machine Learning introducono una nuova categoria di sfide per la privacy. Applicare i principi di **privacy per impostazione predefinita (GDPR)** qui richiede di esaminare l'intero ciclo di vita — dai dati di addestramento agli endpoint di inferenza live — sotto una lente diversa.
+I sistemi di Intelligenza Artificiale e Machine Learning introducono una nuova categoria di sfide per la privacy. Applicare i principi di **privacy per impostazione predefinita (GDPR)** qui richiede di esaminare l'intero ciclo di vita – dai dati di addestramento agli endpoint di inferenza live – sotto una lente diversa.
 
 Il problema centrale è che questi sistemi apprendono dai dati, creando artefatti complessi che possono involontariamente divulgare informazioni personali. La pratica comune ma ad alto rischio di alimentare modelli con dati di produzione grezzi deve essere evitata. L'unico comportamento predefinito sicuro è una forte minimizzazione dei dati prima che qualsiasi modello interagisca con essi.
 
@@ -187,7 +187,7 @@ Per gli endpoint di inferenza, il focus è sul filtraggio in tempo reale. Implem
 
 ### I rischi nascosti di embeddings e log
 
-Gli embeddings — vettori numerici che i modelli usano per rappresentare i dati — rappresentano un rischio significativo. Pur non essendo leggibili dall'uomo, non sono anonimi. La ricerca ha dimostrato che è possibile ricostruire parti dell'input originale dall'embedding.
+Gli embeddings – vettori numerici che i modelli usano per rappresentare i dati – rappresentano un rischio significativo. Pur non essendo leggibili dall'uomo, non sono anonimi. La ricerca ha dimostrato che è possibile ricostruire parti dell'input originale dall'embedding.
 
 > Per impostazione predefinita, tratta gli embeddings derivati da dati personali con le stesse misure di sicurezza applicate ai dati grezzi. Non sono 'anonimizzati' solo perché sono vettori.
 

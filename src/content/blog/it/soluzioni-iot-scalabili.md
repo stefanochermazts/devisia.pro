@@ -56,9 +56,9 @@ Questa tabella offre un punto di partenza per i leader tecnici per definire l'am
 
 Affrontando queste domande, si costruisce una solida base che collega direttamente le scelte tecniche al valore di business.
 
-Questo approccio metodico è essenziale. Il mercato delle piattaforme IoT — che aiutano a gestire questi componenti — ne è una testimonianza. Solo negli Stati Uniti, si prevede che crescerà da **4,71 miliardi di USD nel 2025** a **14,67 miliardi di USD entro il 2034**. Puoi [esplorare la ricerca completa sulla crescita delle piattaforme IoT](https://www.globenewswire.com/en/news-release/2024/05/29/2889816/0/en/United-States-IoT-Platform-Market-Size-Share-Analysis-2024-2034.html) per comprendere la centralità di questi sistemi.
+Questo approccio metodico è essenziale. Il mercato delle piattaforme IoT – che aiutano a gestire questi componenti – ne è una testimonianza. Solo negli Stati Uniti, si prevede che crescerà da **4,71 miliardi di USD nel 2025** a **14,67 miliardi di USD entro il 2034**. Puoi [esplorare la ricerca completa sulla crescita delle piattaforme IoT](https://www.globenewswire.com/en/news-release/2024/05/29/2889816/0/en/United-States-IoT-Platform-Market-Size-Share-Analysis-2024-2034.html) per comprendere la centralità di questi sistemi.
 
-> Inquadrando il tuo progetto attorno ai quattro pilastri — Sensing, Comunicazione, Elaborazione e Attuazione — garantisci che l'architettura sia progettata per offrire valore di business, non solo per mostrare una nuova tecnologia. Questa è la base di una strategia IoT affidabile e scalabile.
+> Inquadrando il tuo progetto attorno ai quattro pilastri – Sensing, Comunicazione, Elaborazione e Attuazione – garantisci che l'architettura sia progettata per offrire valore di business, non solo per mostrare una nuova tecnologia. Questa è la base di una strategia IoT affidabile e scalabile.
 
 ## Scomporre i Livelli dell'Architettura IoT Moderna
 
@@ -68,7 +68,7 @@ Questa architettura è tipicamente organizzata in quattro livelli distinti, cias
 
 ### Il Livello dei Dispositivi e del Firmware
 
-È qui che il mondo fisico e quello digitale si incontrano. Il livello dei dispositivi comprende l'hardware — sensori, attuatori, microcontrollori — e il software embedded, o **firmware**, che vi gira sopra. Questo livello è responsabile del rilevamento delle condizioni ambientali o dell'attuazione di cambiamenti fisici.
+È qui che il mondo fisico e quello digitale si incontrano. Il livello dei dispositivi comprende l'hardware – sensori, attuatori, microcontrollori – e il software embedded, o **firmware**, che vi gira sopra. Questo livello è responsabile del rilevamento delle condizioni ambientali o dell'attuazione di cambiamenti fisici.
 
 I compromessi in questo livello sono significativi. Un sensore a basso consumo progettato per funzionare per un decennio con una sola batteria avrà una capacità di elaborazione minima e una capacità limitata di trasmissione dati. Al contrario, un dispositivo con un processore potente per eseguire modelli di computer vision richiederà una fonte di alimentazione costante e una gestione termica.
 
@@ -84,7 +84,7 @@ La scelta del protocollo di comunicazione è una decisione architetturale determ
 *   **CoAP (Constrained Application Protocol):** Progettato per dispositivi e reti con risorse limitate, comunemente usato in applicazioni machine-to-machine (M2M).
 *   **Cellulare (4G/5G) e Wi-Fi:** Adatti a requisiti di elevata larghezza di banda, come lo streaming video, ma comportano un consumo energetico e costi più elevati.
 
-I gateway edge possono agire come hub locali, aggregando i dati provenienti da più dispositivi vicini prima di inoltrarli al cloud. Ciò riduce i costi di connettività e consente l'elaborazione locale in tempo reale. Ad esempio, un dispositivo edge su una linea di produzione può analizzare i dati di vibrazione, rilevare un guasto imminente della macchina e attivare uno spegnimento immediato — un compito per il quale la latenza di un round-trip verso il cloud sarebbe inaccettabile.
+I gateway edge possono agire come hub locali, aggregando i dati provenienti da più dispositivi vicini prima di inoltrarli al cloud. Ciò riduce i costi di connettività e consente l'elaborazione locale in tempo reale. Ad esempio, un dispositivo edge su una linea di produzione può analizzare i dati di vibrazione, rilevare un guasto imminente della macchina e attivare uno spegnimento immediato – un compito per il quale la latenza di un round-trip verso il cloud sarebbe inaccettabile.
 
 ### Il Livello della Piattaforma Cloud
 
@@ -104,7 +104,7 @@ La funzione principale di questo livello è tradurre dati complessi sottostanti 
 
 Un sistema IoT che si limita a raccogliere e visualizzare dati rappresenta un'opportunità mancata. Il vero valore si sblocca quando il sistema è in grado di interpretare i propri dati e agire autonomamente. È qui che l'Intelligenza Artificiale (AI) e il Machine Learning (ML) trasformano flussi di dati passivi in operazioni attive e intelligenti. È una parte fondamentale delle moderne **soluzioni per iot**, che trasformano semplici dispositivi in agenti decisionali.
 
-L'obiettivo è andare oltre le dashboard e costruire sistemi in grado di prevedere guasti, identificare problemi di qualità o ottimizzare dinamicamente i processi. Ciò richiede un cambiamento architetturale: non più soltanto convogliare dati nel cloud, ma collocare l'intelligenza dove è più efficace — spesso all'edge.
+L'obiettivo è andare oltre le dashboard e costruire sistemi in grado di prevedere guasti, identificare problemi di qualità o ottimizzare dinamicamente i processi. Ciò richiede un cambiamento architetturale: non più soltanto convogliare dati nel cloud, ma collocare l'intelligenza dove è più efficace – spesso all'edge.
 
 La gerarchia seguente illustra i livelli tipici di un'architettura IoT. Serve come base per integrare l'AI a vari livelli, dal dispositivo al cloud.
 
@@ -241,11 +241,11 @@ Gli schemi efficaci di ottimizzazione dei costi sono integrati nell’architettu
 Altre tattiche chiave includono:
 *   **Instradamento intelligente dei dati:** differenzia i dati in base alla loro importanza. Il sistema dovrebbe distinguere tra un avviso critico in tempo reale e la telemetria ordinaria, che può essere raggruppata e inviata meno frequentemente tramite una connessione meno costosa.
 *   **Uso strategico della cache:** implementare una cache sul gateway edge o nel cloud può ridurre drasticamente il carico su database e servizi di compute costosi per i dati richiesti frequentemente.
-*   **Policy dinamiche dei dati:** costruisci il sistema con la flessibilità necessaria per configurare da remoto la frequenza di trasmissione dei dati. Durante un evento critico, potrebbero essere necessari aggiornamenti ogni secondo, ma per le operazioni normali può bastare una volta all’ora — e costare molto meno.
+*   **Policy dinamiche dei dati:** costruisci il sistema con la flessibilità necessaria per configurare da remoto la frequenza di trasmissione dei dati. Durante un evento critico, potrebbero essere necessari aggiornamenti ogni secondo, ma per le operazioni normali può bastare una volta all’ora – e costare molto meno.
 
 ### Integrare l’osservabilità nel sistema
 
-Un sistema che non puoi vedere è un sistema che non puoi gestire. L’**osservabilità** — la capacità di comprendere lo stato interno di un sistema dai suoi output esterni — non è negoziabile per l’affidabilità. Senza di essa, non sei in grado di diagnosticare guasti, identificare colli di bottiglia nelle prestazioni o prevedere problemi prima che causino un’interruzione.
+Un sistema che non puoi vedere è un sistema che non puoi gestire. L’**osservabilità** – la capacità di comprendere lo stato interno di un sistema dai suoi output esterni – non è negoziabile per l’affidabilità. Senza di essa, non sei in grado di diagnosticare guasti, identificare colli di bottiglia nelle prestazioni o prevedere problemi prima che causino un’interruzione.
 
 L’osservabilità deve essere progettata in ogni livello dell’architettura fin dall’inizio. Hai bisogno di una visibilità approfondita su:
 *   **Stato dei dispositivi:** monitora metriche come **livello della batteria**, **intensità del segnale**, **utilizzo della memoria** e **versione del firmware** per identificare in modo proattivo i dispositivi che stanno fallendo.
