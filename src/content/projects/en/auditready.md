@@ -20,13 +20,13 @@ tags:
 ---
 ## Overview
 
-AuditReady addresses one of the most common problems in regulated audits: evidence exists, but it is scattered, poorly versioned and hard to demonstrate when it matters.
+AuditReady addresses one of the most common problems in regulated audits: evidence exists, but it is scattered across tools, inconsistently versioned and hard to present when it matters.
 
-The project is a concrete example of **SaaS development** oriented to cybersecurity: a structured operational workspace to collect, version and link evidence to DORA and NIS2 controls. It keeps traceability clear while integrating **AI governance** principles for future data collection automation.
+The project is a SaaS platform focused on cybersecurity and operational compliance: a structured workspace to collect, version and link evidence to DORA and NIS2 controls. It keeps traceability clear while incorporating AI governance principles for assisted evidence workflows.
 
 AuditReady **does not certify compliance**.
 
-It is a **custom software development** support that helps teams demonstrate what has actually been implemented.
+It is an operational platform that helps teams demonstrate what has actually been implemented.
 
 ## Highlights
 

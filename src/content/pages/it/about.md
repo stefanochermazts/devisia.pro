@@ -15,7 +15,7 @@ heroImage: /uploads/hero-about.png
 
 <p class="ds-muted" style="margin: 0">
 <strong>Developing intelligent vision.</strong><br />
-Crediamo che il software non debba solo funzionare, ma guidare decisioni, semplificare processi e
+Crediamo in un software capace di sostenere le decisioni, semplificare i processi operativi e
 rendere le organizzazioni più consapevoli e autonome.
 </p>
 
@@ -25,7 +25,7 @@ rendere le organizzazioni più consapevoli e autonome.
 <li>progettato con criterio</li>
 <li>misurabile</li>
 <li>manutenibile</li>
-<li>pronto ad evolvere, non a essere riscritto</li>
+<li>pronto a evolvere nel tempo senza continue riscritture</li>
 </ul>
 
 </section>
@@ -87,7 +87,7 @@ Lavoriamo con processi chiari e iterativi, riducendo il rischio e mantenendo sem
 <ul style="margin: 0; padding-left: 1.25rem">
 <li>stai costruendo un prodotto e vuoi farlo bene, fin dall’inizio</li>
 <li>hai un’idea chiara ma serve trasformarla in software reale</li>
-<li>vuoi un team che ragioni come product owner, non solo come sviluppatore</li>
+<li>vuoi un team capace di ragionare sul prodotto oltre che sul codice</li>
 <li>cerchi qualità tecnica senza burocrazia inutile</li>
 </ul>
 
