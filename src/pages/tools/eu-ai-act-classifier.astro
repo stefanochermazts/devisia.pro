@@ -1,0 +1,63 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import EuAiActClassifier from '../../components/EuAiActClassifier.astro';
+import '../../styles/eu-ai-act-classifier.css';
+
+const description =
+  'Classificatore gratuito EU AI Act (Reg. UE 2024/1689): verifica nel browser se un caso d’uso AI rientra tra pratiche vietate (Art. 5), alto rischio (Allegato I/III), deroga Art. 6(3), trasparenza (Art. 50) o rischio minimo.';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'Classificatore livello di rischio EU AI Act',
+  description,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'EUR',
+  },
+  url: 'https://devisia.pro/tools/eu-ai-act-classifier',
+};
+---
+
+<Layout
+  title="Classificatore livello di rischio EU AI Act"
+  documentTitle="Classificatore rischio EU AI Act: verifica fascia ed evidenze | Devisia"
+  description={description}
+  lang="it"
+  structuredData={structuredData}
+>
+  <section class="ds-container">
+    <EuAiActClassifier lang="it" />
+  </section>
+
+  <section class="ds-container aiact-seo" aria-labelledby="aiact-guide-heading">
+    <div class="aiact-seo__grid">
+      <article>
+        <h2 id="aiact-guide-heading">Come funziona la classificazione per fascia di rischio</h2>
+        <p>
+          Il Regolamento (UE) 2024/1689 (EU AI Act) non regola i modelli in astratto, ma il concreto caso d’uso e il ruolo dell’organizzazione nella catena del valore (<strong>Provider</strong> vs <strong>Deployer</strong>).
+        </p>
+        <p>
+          Questo strumento applica in sequenza i cancelli decisionali del regolamento: prima esclude le pratiche vietate dall’<strong>Articolo 5</strong>, poi verifica i componenti di sicurezza regolamentati (<strong>Allegato I</strong>) e gli ambiti ad alto impatto dell’<strong>Allegato III</strong> (come selezione HR, credit scoring, istruzione e servizi essenziali), distinguendo i compiti procedurali ristretti candidati alla deroga documentata dell’<strong>Articolo 6(3)</strong> e gli obblighi di trasparenza dell’<strong>Articolo 50</strong>.
+        </p>
+        <p>
+          La versione in inglese è disponibile alla pagina
+          <a class="ds-link" href="/en/tools/eu-ai-act-classifier">EU AI Act Risk Tier Classifier</a>.
+          Per l’architettura complessiva di controllo e tracciabilità consulta <a class="ds-link" href="/ai-governata">AI governata</a> e <a class="ds-link" href="/compliance-auditabilita">Compliance e auditabilità</a>.
+        </p>
+      </article>
+
+      <article>
+        <h2>Limiti dello strumento</h2>
+        <ul>
+          <li>È uno strumento di autovalutazione preliminare per team tecnici, DPO e compliance: non costituisce parere legale né sostituisce la valutazione di conformità formale.</li>
+          <li>Non tratta gli obblighi specifici per i fornitori di modelli GPAI / fondazionali (Art. 51–55), che ricadono su chi addestra e rilascia il modello di base.</li>
+          <li>Nessun dato inserito lascia il browser: puoi copiare la scheda risultante per allegarla alla tua documentazione interna o pre-DPIA.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+</Layout>

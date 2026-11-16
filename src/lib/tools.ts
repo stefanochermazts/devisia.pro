@@ -114,6 +114,26 @@ const toolsIt: MicroTool[] = [
     relatedServiceLabel: 'AI governata',
     featuredOnHome: true,
   },
+  {
+    id: 'eu-ai-act-classifier',
+    code: '05',
+    instrumentTag: 'CLS-05',
+    category: 'governance',
+    categoryLabel: 'Governance e Compliance',
+    title: 'Classificatore livello di rischio EU AI Act',
+    shortTitle: 'Classificatore EU AI Act',
+    description:
+      'Verifica rapida in 6 criteri per capire se un caso d’uso AI rientra tra pratiche vietate (Art. 5), alto rischio (Allegato I/III), deroga Art. 6(3), trasparenza (Art. 50) o rischio minimo.',
+    href: '/tools/eu-ai-act-classifier',
+    perimeterBadge: '100% nel browser · Nessun salvataggio',
+    inputSpec: '6 criteri normativi (ruolo, Art. 5, Allegato I/III, autonomia, Art. 50)',
+    guardrailSpec: 'Albero decisionale deterministico Reg. (UE) 2024/1689',
+    outputSpec: 'Fascia normativa + checklist di evidenze esportabile',
+    ctaLabel: 'Classifica il caso d’uso',
+    relatedServiceHref: '/ai-governata',
+    relatedServiceLabel: 'AI governata',
+    featuredOnHome: true,
+  },
 ];
 
 const toolsEn: MicroTool[] = [
@@ -197,22 +217,29 @@ const toolsEn: MicroTool[] = [
     relatedServiceLabel: 'Governed AI',
     featuredOnHome: true,
   },
+  {
+    id: 'eu-ai-act-classifier',
+    code: '05',
+    instrumentTag: 'CLS-05',
+    category: 'governance',
+    categoryLabel: 'Governance & Compliance',
+    title: 'EU AI Act Risk Tier Classifier',
+    shortTitle: 'EU AI Act Classifier',
+    description:
+      'Quick 6-criteria assessment to check whether an AI use case falls under prohibited practices (Art. 5), high-risk (Annex I/III), Art. 6(3) exemption, transparency obligations (Art. 50) or minimal risk.',
+    href: '/en/tools/eu-ai-act-classifier',
+    perimeterBadge: '100% in-browser · Zero storage',
+    inputSpec: '6 regulatory criteria (role, Art. 5, Annex I/III, autonomy, Art. 50)',
+    guardrailSpec: 'Deterministic decision tree for Reg. (EU) 2024/1689',
+    outputSpec: 'Regulatory tier + exportable evidence checklist',
+    ctaLabel: 'Classify use case',
+    relatedServiceHref: '/en/governed-ai',
+    relatedServiceLabel: 'Governed AI',
+    featuredOnHome: true,
+  },
 ];
 
 const upcomingToolsIt: UpcomingMicroTool[] = [
-  {
-    id: 'eu-ai-act-classifier',
-    instrumentTag: 'CLS-05',
-    category: 'governance',
-    categoryLabel: 'Governance e Compliance',
-    title: 'Classificatore livello di rischio EU AI Act',
-    description:
-      'Verifica rapida per capire se un caso d’uso AI rientra tra pratiche vietate, alto rischio (Allegato III), obblighi di trasparenza (Art. 50) o rischio minimo.',
-    targetIntent: 'Classificazione AI Act e obblighi documentali',
-    outputPreview: 'Fascia normativa + checklist di evidenze richieste',
-    relatedPillarHref: '/ai-governata',
-    relatedPillarLabel: 'AI governata',
-  },
   {
     id: 'nis2-dora-scope-check',
     instrumentTag: 'N2D-07',
@@ -268,19 +295,6 @@ const upcomingToolsIt: UpcomingMicroTool[] = [
 ];
 
 const upcomingToolsEn: UpcomingMicroTool[] = [
-  {
-    id: 'eu-ai-act-classifier',
-    instrumentTag: 'CLS-05',
-    category: 'governance',
-    categoryLabel: 'Governance & Compliance',
-    title: 'EU AI Act Risk Tier Classifier',
-    description:
-      'Quick assessment to check whether an AI use case falls under prohibited practices, high-risk (Annex III), transparency obligations (Art. 50) or minimal risk.',
-    targetIntent: 'EU AI Act classification and documentation readiness',
-    outputPreview: 'Regulatory tier + required evidence checklist',
-    relatedPillarHref: '/en/governed-ai',
-    relatedPillarLabel: 'Governed AI',
-  },
   {
     id: 'nis2-dora-scope-check',
     instrumentTag: 'N2D-07',

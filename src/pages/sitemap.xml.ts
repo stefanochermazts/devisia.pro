@@ -26,6 +26,7 @@ export const GET = async () => {
     `${site}/ai-structure`,
     `${site}/tools/linkedin-post-formatter`,
     `${site}/tools/prompt-sanitizer`,
+    `${site}/tools/eu-ai-act-classifier`,
     `${site}/en`,
     `${site}/en/what-we-do`,
     `${site}/en/method`,
@@ -44,6 +45,7 @@ export const GET = async () => {
     `${site}/en/ai-structure`,
     `${site}/en/tools/linkedin-post-formatter`,
     `${site}/en/tools/prompt-sanitizer`,
+    `${site}/en/tools/eu-ai-act-classifier`,
     /* Legacy URLs with redirects; still list canonic target above */
     `${site}/projects/mysafenest`,
     `${site}/en/projects/mysafenest`,

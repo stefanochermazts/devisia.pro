@@ -1,0 +1,63 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import EuAiActClassifier from '../../../components/EuAiActClassifier.astro';
+import '../../../styles/eu-ai-act-classifier.css';
+
+const description =
+  'Free EU AI Act Risk Tier Classifier (Reg. EU 2024/1689): check in your browser whether an AI use case falls under prohibited practices (Art. 5), high-risk (Annex I/III), Art. 6(3) exemption, transparency duties (Art. 50) or minimal risk.';
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'EU AI Act Risk Tier Classifier',
+  description,
+  applicationCategory: 'BusinessApplication',
+  operatingSystem: 'Web',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'EUR',
+  },
+  url: 'https://devisia.pro/en/tools/eu-ai-act-classifier',
+};
+---
+
+<Layout
+  title="EU AI Act Risk Tier Classifier"
+  documentTitle="EU AI Act Risk Tier Classifier: check tier & required evidence | Devisia"
+  description={description}
+  lang="en"
+  structuredData={structuredData}
+>
+  <section class="ds-container">
+    <EuAiActClassifier lang="en" />
+  </section>
+
+  <section class="ds-container aiact-seo" aria-labelledby="aiact-guide-heading">
+    <div class="aiact-seo__grid">
+      <article>
+        <h2 id="aiact-guide-heading">How the EU AI Act risk classification works</h2>
+        <p>
+          Regulation (EU) 2024/1689 (the EU AI Act) regulates AI systems based on their concrete operational use case and your role in the value chain (<strong>Provider</strong> vs <strong>Deployer</strong>).
+        </p>
+        <p>
+          This classifier evaluates the regulation’s decision gates in order: prohibited practices under <strong>Article 5</strong>, regulated safety components under <strong>Annex I</strong>, high-impact domains under <strong>Annex III</strong> (such as HR recruitment, credit scoring, education and essential services), narrow procedural tasks eligible for the documented <strong>Article 6(3)</strong> exemption, and specific transparency obligations under <strong>Article 50</strong>.
+        </p>
+        <p>
+          The Italian version is available at
+          <a class="ds-link" href="/tools/eu-ai-act-classifier">Classificatore livello di rischio EU AI Act</a>.
+          For broader architectural guardrails see <a class="ds-link" href="/en/governed-ai">Governed AI</a> and <a class="ds-link" href="/en/compliance-auditability">Compliance &amp; auditability</a>.
+        </p>
+      </article>
+
+      <article>
+        <h2>Scope and limitations</h2>
+        <ul>
+          <li>This is a preliminary technical and governance screening tool for engineering leads, DPOs and compliance teams; it does not constitute formal legal advice.</li>
+          <li>It focuses on AI systems (Provider and Deployer duties) rather than upstream obligations for General-Purpose AI (GPAI) model providers under Articles 51–55.</li>
+          <li>All selections stay in your browser: copy the generated report to attach it to your internal architecture or pre-DPIA notes.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+</Layout>
